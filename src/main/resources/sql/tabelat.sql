@@ -1,1 +1,0 @@
---Komenti i pare

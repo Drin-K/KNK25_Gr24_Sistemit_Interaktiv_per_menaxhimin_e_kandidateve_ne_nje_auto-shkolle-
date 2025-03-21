@@ -20,6 +20,7 @@ Email VARCHAR(100),
 Adresa TEXT,
 Roli VARCHAR(50) CHECK (Roli IN('Instruktor', 'Ekzaminues'))
 );
+
 CREATE TABLE Orari(
 ID_Sesioni SERIAL PRIMARY KEY,
 ID_Kandidat INT REFERENCES Kandidatet(ID_Kandidat) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -38,4 +39,13 @@ Lloji_i_Testit VARCHAR(50) CHECK (Lloji_i_Testit IN ('Teori', 'Praktikë')),
 Data_e_testit DATE,
 Rezultati VARCHAR(50) CHECK (Rezultati IN ('Kaluar', 'Dështuar')),
 Piket INT
+);
+
+CREATE TABLE Pagesat(
+ID_Pagesat SERIAL PRIMARY KEY,
+ID_Kandidat INT REFERENCES Kandidatet(ID_Kandidat) ON DELETE CASCADE ON UPDATE CASCADE,
+Shuma DECIMAL(10,2),
+Data_e_Pageses DATE,
+Metoda_e_Pageses VARCHAR(50) CHECK (Metoda_e_Pageses IN ('Cash', 'Kartë', 'Online')),
+Statusi_i_Pageses VARCHAR(50) CHECK (Statusi_i_Pageses IN ('Paguar', 'Pjesërisht', 'Mbetur'))
 );

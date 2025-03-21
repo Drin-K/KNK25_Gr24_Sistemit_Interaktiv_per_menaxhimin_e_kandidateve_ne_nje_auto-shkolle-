@@ -13,7 +13,7 @@ public class Test_1 {
         if(connection.isValid(100)){
             System.out.println("Db Connected!!!");
             System.out.println("Jemi ne rregull");
-            System.out.println("ALBENA DATABASE")
+            System.out.println("ALBENA DATABASE");
 
 
         }

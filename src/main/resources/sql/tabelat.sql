@@ -1,1 +1,2 @@
 --Komenti i pare
+-- kena mi marr krejt piket

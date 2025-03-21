@@ -49,3 +49,15 @@ Data_e_Pageses DATE,
 Metoda_e_Pageses VARCHAR(50) CHECK (Metoda_e_Pageses IN ('Cash', 'Kartë', 'Online')),
 Statusi_i_Pageses VARCHAR(50) CHECK (Statusi_i_Pageses IN ('Paguar', 'Pjesërisht', 'Mbetur'))
 );
+
+CREATE TABLE Automjetet(
+ID_Automjet SERIAL PRIMARY KEY,
+Lloji_i_Automjetit VARCHAR(50) CHECK (Lloji_i_Automjetit IN ('Vetura', 'Motoçikletë', 'Kamion')),
+Kategoria VARCHAR(10) CHECK (Kategoria IN ('A', 'B', 'C', 'D')),
+Nenkategoria VARCHAR(10) CHECK (Nenkategoria IN ('A1', 'A2', 'B1', 'B2', 'C1', 'C2', 'D1', 'D2')),
+Statusi VARCHAR(50) CHECK (Statusi IN ('Në përdorim', 'Mirëmbajtje', 'Jashtë shërbimit')),
+ ID_Staf INT,
+ CONSTRAINT fk_Stafi FOREIGN KEY (ID_Staf) REFERENCES Stafi(ID_Staf)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);

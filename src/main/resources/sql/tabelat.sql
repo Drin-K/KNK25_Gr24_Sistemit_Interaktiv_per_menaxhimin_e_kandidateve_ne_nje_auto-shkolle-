@@ -61,3 +61,28 @@ Statusi VARCHAR(50) CHECK (Statusi IN ('Në përdorim', 'Mirëmbajtje', 'Jashtë
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
+
+ALTER TABLE Kandidatet
+ALTER COLUMN Emri
+SET NOT NULL;
+
+ALTER TABLE Kandidatet
+ALTER COLUMN Mbiemri
+SET NOT NULL;
+
+ALTER TABLE Kandidatet
+ALTER COLUMN Datelindja
+SET NOT NULL;
+
+ALTER TABLE Kandidatet
+ADD CONSTRAINT gjinia_check CHECK (Gjinia IN ('Mashkull', 'Femer'));
+
+ALTER TABLE Kandidatet
+ADD CONSTRAINT unique_check UNIQUE (Email);
+
+ALTER TABLE Kandidatet
+ALTER COLUMN Data_e_Regjistrimit SET DEFAULT CURRENT_DATE;
+
+ALTER TABLE Kandidatet
+ADD CONSTRAINT statusi_i_procesit_check CHECK (Statusi_i_Procesit IN ('Në proces', 'Përfunduar'));
+

@@ -14,8 +14,6 @@ public class Test_1 {
             System.out.println("Db Connected!!!");
             System.out.println("Jemi ne rregull");
 
-
-
         }
     }
 }

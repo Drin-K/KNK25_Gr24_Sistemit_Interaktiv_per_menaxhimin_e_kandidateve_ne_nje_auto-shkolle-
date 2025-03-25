@@ -148,3 +148,25 @@ ALTER COLUMN Ora_e_Perfundimit
 SET NOT NULL;
 
 
+ALTER TABLE Automjetet
+ADD COLUMN ID_Kategori INT,
+ADD CONSTRAINT fk_id_kategori FOREIGN KEY (ID_Kategori) REFERENCES Kategorite_Patentes(ID_Kategori)
+ON DELETE CASCADE
+ON UPDATE CASCADE;
+
+
+
+CREATE TABLE Regjistrimet (
+    ID_Regjistrim SERIAL PRIMARY KEY,
+    ID_Kandidat INT REFERENCES Kandidatet(ID_Kandidat) ON DELETE CASCADE ON UPDATE CASCADE,
+    ID_Kategori INT REFERENCES Kategorite_Patentes(ID_Kategori) ON DELETE CASCADE ON UPDATE CASCADE,
+    Statusi VARCHAR(50) CHECK (Statusi IN ('Në proces', 'Përfunduar'))
+);
+
+CREATE TABLE Patenta (
+    ID_Patente SERIAL PRIMARY KEY,
+    ID_Kandidat INT REFERENCES Kandidatet(ID_Kandidat) ON DELETE CASCADE ON UPDATE CASCADE,
+    ID_Kategori INT REFERENCES Kategorite_Patentes(ID_Kategori) ON DELETE CASCADE ON UPDATE CASCADE,
+    Data_Leshimit DATE DEFAULT CURRENT_DATE,
+    Statusi VARCHAR(50) CHECK (Statusi IN ('E lëshuar', 'Në proces'))
+);

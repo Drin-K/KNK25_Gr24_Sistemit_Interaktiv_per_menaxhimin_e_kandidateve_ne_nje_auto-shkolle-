@@ -86,3 +86,33 @@ ALTER COLUMN Data_e_Regjistrimit SET DEFAULT CURRENT_DATE;
 ALTER TABLE Kandidatet
 ADD CONSTRAINT statusi_i_procesit_check CHECK (Statusi_i_Procesit IN ('Në proces', 'Përfunduar'));
 
+ALTER TABLE Testet
+ALTER COLUMN Data_e_testit
+SET NOT NULL;
+
+ALTER TABLE Testet
+ADD CONSTRAINT piket_check CHECK (Piket BETWEEN 0 AND 100);
+
+
+
+ALTER TABLE Pagesat
+ALTER COLUMN Shuma
+SET NOT NULL;
+
+ALTER TABLE Pagesat
+ALTER COLUMN Data_e_Pageses SET DEFAULT CURRENT_DATE;
+
+
+
+CREATE TABLE Kategorite_Patentes (
+    ID_Kategori SERIAL PRIMARY KEY,
+    Kategoria VARCHAR(10) UNIQUE NOT NULL,
+    Pershkrimi TEXT
+);
+
+
+ALTER TABLE Automjetet
+DROP COLUMN Kategoria;
+
+ALTER TABLE Automjetet
+DROP COLUMN Nenkategoria;

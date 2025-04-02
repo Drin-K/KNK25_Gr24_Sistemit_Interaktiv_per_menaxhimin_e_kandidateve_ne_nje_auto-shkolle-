@@ -1,7 +1,7 @@
 package models.Dto.Testet;
 
 public class CreateTestetDto {
-    private int id_test;
+
     private int id_kandidat;
     private int id_staf;
     private String lloji_i_testit;//
@@ -11,7 +11,7 @@ public class CreateTestetDto {
 
 
     public CreateTestetDto(int id_test, int id_kandidat, int id_staf, String lloji_i_testit, String data_e_testit, String rezultati, int piket) {
-        this.id_test = id_test;
+
         this.id_kandidat = id_kandidat;
         this.id_staf = id_staf;
         this.lloji_i_testit = lloji_i_testit;
@@ -20,13 +20,6 @@ public class CreateTestetDto {
         this.piket = piket;
     }
 
-    public int getId_test() {
-        return id_test;
-    }
-
-    public void setId_test(int id_test) {
-        this.id_test = id_test;
-    }
 
     public int getId_kandidat() {
         return id_kandidat;

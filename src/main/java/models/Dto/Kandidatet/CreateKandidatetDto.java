@@ -59,4 +59,39 @@ public class CreateKandidatetDto{
         return statusi_i_procesit;
     }
 
+    public void setEmri(String emri) {
+        this.emri = emri;
+    }
+
+    public void setMbiemri(String mbiemri) {
+        this.mbiemri = mbiemri;
+    }
+
+    public void setDatelindja(String datelindja) {
+        this.datelindja = datelindja;
+    }
+
+    public void setGjinia(String gjinia) {
+        this.gjinia = gjinia;
+    }
+
+    public void setNumri_telefonit(String numri_telefonit) {
+        this.numri_telefonit = numri_telefonit;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setAdresa(String adresa) {
+        this.adresa = adresa;
+    }
+
+    public void setData_e_regjistrimit(String data_e_regjistrimit) {
+        this.data_e_regjistrimit = data_e_regjistrimit;
+    }
+
+    public void setStatusi_i_procesit(String statusi_i_procesit) {
+        this.statusi_i_procesit = statusi_i_procesit;
+    }
 }

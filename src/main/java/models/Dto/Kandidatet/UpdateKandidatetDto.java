@@ -28,5 +28,21 @@ public class UpdateKandidatetDto{
     public String getStatusi_i_procesit() {
         return statusi_i_procesit;
     }
+
+    public void setNumri_telefonit(String numri_telefonit) {
+        this.numri_telefonit = numri_telefonit;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setAdresa(String adresa) {
+        this.adresa = adresa;
+    }
+
+    public void setStatusi_i_procesit(String statusi_i_procesit) {
+        this.statusi_i_procesit = statusi_i_procesit;
+    }
 }
 

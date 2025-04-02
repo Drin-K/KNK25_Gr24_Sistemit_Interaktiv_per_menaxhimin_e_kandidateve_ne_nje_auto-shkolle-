@@ -10,7 +10,7 @@ public class Patenta {
     private String data_leshimit;
     private String statusi;
 
-    public Patenta(int id_patente, int id_kandidat, int id_kategori, String data_leshimit, String statusi) {
+    private Patenta(int id_patente, int id_kandidat, int id_kategori, String data_leshimit, String statusi) {
         this.id_patente = id_patente;
         this.id_kandidat = id_kandidat;
         this.id_kategori = id_kategori;

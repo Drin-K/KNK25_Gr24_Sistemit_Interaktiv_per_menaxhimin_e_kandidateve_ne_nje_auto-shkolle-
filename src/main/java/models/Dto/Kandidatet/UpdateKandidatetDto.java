@@ -7,7 +7,8 @@ public class UpdateKandidatetDto{
     private String adresa;
     private String statusi_i_procesit;
 
-    public UpdateKandidatetDto(String numri_telefonit, String email, String adresa, String statusi_i_procesit) {
+    public UpdateKandidatetDto(int id_kandidatet,String numri_telefonit, String email, String adresa, String statusi_i_procesit) {
+       this.id_kandidat=id_kandidatet;
         this.numri_telefonit = numri_telefonit;
         this.email = email;
         this.adresa = adresa;

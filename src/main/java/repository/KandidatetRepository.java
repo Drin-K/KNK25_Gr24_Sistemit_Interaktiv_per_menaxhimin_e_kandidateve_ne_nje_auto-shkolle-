@@ -11,13 +11,15 @@ import java.util.ArrayList;
 public class KandidatetRepository {
     private Connection connection= DBConnector.getConnection();
     public ArrayList<Kandidatet> getAll(){
-        java.util.ArrayList<Kandidatet> kandidatet=new ArrayList<>();
+        java.util.ArrayList<Kandidatet>kandidatet=new ArrayList<>();
         String query="SELECT * FROM STAFI";
         try{
             Statement stm=this.connection.createStatement();
             ResultSet res=stm.executeQuery(query);
             while(res.next()){
-                kandidatet.add(Kandidatet.getInstance(res)); }
+                kandidatet.add(Kandidatet.getInstance(res));
+
+            }
         }catch(SQLException e){
             e.printStackTrace();
         }
@@ -25,7 +27,7 @@ public class KandidatetRepository {
     }
     public Kandidatet create(CreateKandidatetDto kandidatetDto){
         String query= """
-                INSERT INTO USERS(EMRI, MBIEMRI, DATELINDJA, GJINIA, NUMRI_TELEFONIT, EMAIL, ADRESA, DATA_REGJISTRIMIT, STATUSI_I_PROCESIT) 
+                INSERT INTO KANDIDATET(EMRI, MBIEMRI, DATELINDJA, GJINIA, NUMRI_TELEFONIT, EMAIL, ADRESA, DATA_REGJISTRIMIT, STATUSI_I_PROCESIT) 
                 VALUES(?,?,?,?,?,?,?,?,?)
                 """;
         try{
@@ -77,7 +79,7 @@ public class KandidatetRepository {
         return null;
     }
     public Kandidatet getById(int id){
-        String query="SELECT * FROM USERS WHERE ID = ?";
+        String query="SELECT * FROM KANDIDATET WHERE ID_KANDIDAT = ?";
         try{
             PreparedStatement pstm=this.connection.prepareStatement(query);
             pstm.setInt(1,id);

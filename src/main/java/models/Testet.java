@@ -13,7 +13,7 @@ public class Testet {
     private int piket;
 
 
-    public Testet(int id_test, int id_kandidat, int id_staf, String lloji_i_testit, String data_e_testit, String rezultati, int piket) {
+   private Testet(int id_test, int id_kandidat, int id_staf, String lloji_i_testit, String data_e_testit, String rezultati, int piket) {
         this.id_test = id_test;
         this.id_kandidat = id_kandidat;
         this.id_staf = id_staf;

@@ -9,7 +9,7 @@ public class Regjistrimet {
     private int id_kategori;
     private String statusi;
 
-    public Regjistrimet(int id_regjistrim, int id_kandidat, int id_kategori, String statusi) {
+   private Regjistrimet(int id_regjistrim, int id_kandidat, int id_kategori, String statusi) {
         this.id_regjistrim = id_regjistrim;
         this.id_kandidat = id_kandidat;
         this.id_kategori = id_kategori;

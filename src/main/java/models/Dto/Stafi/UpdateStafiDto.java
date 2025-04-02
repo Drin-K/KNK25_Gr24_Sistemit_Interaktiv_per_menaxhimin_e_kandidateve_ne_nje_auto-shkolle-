@@ -13,7 +13,7 @@ public class UpdateStafiDto {
         this.roli = roli;
     }
 
-    public String getNumri_telefonit() {
+    public String getNumri_telefonit(){
         return numri_telefonit;
     }
 
@@ -27,5 +27,21 @@ public class UpdateStafiDto {
 
     public String getRoli() {
         return roli;
+    }
+
+    public void setNumri_telefonit(String numri_telefonit) {
+        this.numri_telefonit = numri_telefonit;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setAdresa(String adresa) {
+        this.adresa = adresa;
+    }
+
+    public void setRoli(String roli) {
+        this.roli = roli;
     }
 }

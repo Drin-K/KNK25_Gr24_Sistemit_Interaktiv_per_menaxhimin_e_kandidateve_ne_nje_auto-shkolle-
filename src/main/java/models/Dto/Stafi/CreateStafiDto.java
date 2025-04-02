@@ -1,4 +1,43 @@
 package models.Dto.Stafi;
 
-public class CreateStafiDto {
+public class CreateStafiDto{
+    private String emri;
+    private String mbiemri;
+    private String numri_telefonit;
+    private String email;
+    private String adresa;
+    private String roli;
+
+    public CreateStafiDto(String emri, String mbiemri, String numri_telefonit, String email, String adresa, String roli) {
+        this.emri = emri;
+        this.mbiemri = mbiemri;
+        this.numri_telefonit = numri_telefonit;
+        this.email = email;
+        this.adresa = adresa;
+        this.roli = roli;
+    }
+
+    public String getEmri() {
+        return emri;
+    }
+
+    public String getMbiemri() {
+        return mbiemri;
+    }
+
+    public String getNumri_telefonit() {
+        return numri_telefonit;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getAdresa() {
+        return adresa;
+    }
+
+    public String getRoli() {
+        return roli;
+    }
 }

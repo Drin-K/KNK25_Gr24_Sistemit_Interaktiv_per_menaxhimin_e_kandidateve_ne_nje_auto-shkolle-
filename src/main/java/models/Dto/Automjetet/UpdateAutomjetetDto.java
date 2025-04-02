@@ -13,6 +13,18 @@ public class UpdateAutomjetetDto {
         return statusi;
     }
 
+    public void setId_automjet(int id_automjet) {
+        this.id_automjet = id_automjet;
+    }
+
+    public void setStatusi(String statusi) {
+        this.statusi = statusi;
+    }
+
+    public void setId_staf(int id_staf) {
+        this.id_staf = id_staf;
+    }
+
     public int getId_staf() {
         return id_staf;
     }

@@ -1,6 +1,7 @@
 package models.Dto.Orari;
 
 public class UpdateOrariDto {
+    private int id_sesioni;
     private int id_kandidat;
     private int id_staf;
     private String data_sesionit;
@@ -10,7 +11,8 @@ public class UpdateOrariDto {
     private String statusi;
     private int id_automjet;
 
-    public UpdateOrariDto(int id_kandidat, int id_staf, String data_sesionit, String ora_e_fillimit, String ora_e_perfundimit, String lloji_i_mesimit, String statusi, int id_automjet) {
+    public UpdateOrariDto(int id_sesioni,int id_kandidat, int id_staf, String data_sesionit, String ora_e_fillimit, String ora_e_perfundimit, String lloji_i_mesimit, String statusi, int id_automjet) {
+        this.id_sesioni=id_sesioni;
         this.id_kandidat = id_kandidat;
         this.id_staf = id_staf;
         this.data_sesionit = data_sesionit;
@@ -19,6 +21,14 @@ public class UpdateOrariDto {
         this.lloji_i_mesimit = lloji_i_mesimit;
         this.statusi = statusi;
         this.id_automjet = id_automjet;
+    }
+
+    public int getId_sesioni() {
+        return id_sesioni;
+    }
+
+    public void setId_sesioni(int id_sesioni) {
+        this.id_sesioni = id_sesioni;
     }
 
     public int getId_kandidat() {

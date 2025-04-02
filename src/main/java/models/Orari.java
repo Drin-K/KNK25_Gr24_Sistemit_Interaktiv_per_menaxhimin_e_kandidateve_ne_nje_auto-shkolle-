@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 public class Orari {
     private int id_sesioni;
-    private int id_kandidatet;
+    private int id_kandidat;
     private int id_staf;
     private String data_sesionit;
     private String ora_e_fillimit;
@@ -16,7 +16,7 @@ public class Orari {
 
     private Orari(int id_sesioni, int id_kandidatet, int id_staf, String data_sesionit, String ora_e_fillimit, String ora_e_perfundimit, String lloji_i_mesimit, String statusi, int id_automjet) {
         this.id_sesioni = id_sesioni;
-        this.id_kandidatet = id_kandidatet;
+        this.id_kandidat = id_kandidatet;
         this.id_staf = id_staf;
         this.data_sesionit = data_sesionit;
         this.ora_e_fillimit = ora_e_fillimit;
@@ -27,7 +27,7 @@ public class Orari {
     }
     public static Orari getInstance(ResultSet resultSet)throws SQLException{
         int id_sesioni= resultSet.getInt("id_sesioni");
-        int id_kanditatet=resultSet.getInt("id_kandidat");
+        int id_kanditat=resultSet.getInt("id_kandidat");
         int id_staf=resultSet.getInt("id_staf");
         String data_sesionit=resultSet.getString("data_sesionit");
         String ora_e_fillimit=resultSet.getString("ora_e_fillimit");
@@ -35,15 +35,15 @@ public class Orari {
         String lloji_i_mesimit=resultSet.getString("lloji_i_mesimit");
         String statusi=resultSet.getString("statusi");
         int id_automjet=resultSet.getInt("id_automjet");
-        return new Orari(id_sesioni,id_kanditatet,id_staf,data_sesionit,ora_e_fillimit,ora_e_perfundimit,lloji_i_mesimit,statusi,id_automjet);
+        return new Orari(id_sesioni,id_kanditat,id_staf,data_sesionit,ora_e_fillimit,ora_e_perfundimit,lloji_i_mesimit,statusi,id_automjet);
     }
 
     public int getId_sesioni() {
         return id_sesioni;
     }
 
-    public int getId_kandidatet() {
-        return id_kandidatet;
+    public int getId_kandidat() {
+        return id_kandidat;
     }
 
     public int getId_staf() {

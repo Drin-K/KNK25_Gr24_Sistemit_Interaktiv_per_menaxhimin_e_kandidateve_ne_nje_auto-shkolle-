@@ -1,6 +1,7 @@
 package models.Dto.Kandidatet;
 
 public class UpdateKandidatetDto{
+    private int id_kandidat;
     private String numri_telefonit;
     private String email;
     private String adresa;
@@ -27,6 +28,14 @@ public class UpdateKandidatetDto{
 
     public String getStatusi_i_procesit() {
         return statusi_i_procesit;
+    }
+
+    public int getId_kandidat() {
+        return id_kandidat;
+    }
+
+    public void setId_kandidat(int id_kandidat) {
+        this.id_kandidat = id_kandidat;
     }
 
     public void setNumri_telefonit(String numri_telefonit) {

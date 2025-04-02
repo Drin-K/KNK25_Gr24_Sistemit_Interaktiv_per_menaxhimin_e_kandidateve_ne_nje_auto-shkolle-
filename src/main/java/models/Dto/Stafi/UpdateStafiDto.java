@@ -1,6 +1,7 @@
 package models.Dto.Stafi;
 
 public class UpdateStafiDto {
+    private int id_staf;
     private String numri_telefonit;
     private String email;
     private String adresa;
@@ -27,6 +28,14 @@ public class UpdateStafiDto {
 
     public String getRoli() {
         return roli;
+    }
+
+    public int getId_staf() {
+        return id_staf;
+    }
+
+    public void setId_staf(int id_staf) {
+        this.id_staf = id_staf;
     }
 
     public void setNumri_telefonit(String numri_telefonit) {

@@ -2,7 +2,7 @@ package models.Dto.Patenta;
 
 public class UpdatePatentaDto {
     private int id_patente;
-    private int id_kandidat;
+    private int id_kandidat;//// ka mundesi duhet me hjek
     private int id_kategori;
     private String data_leshimit;
     private String statusi;

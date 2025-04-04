@@ -21,7 +21,7 @@ public class Stafi{
         this.roli = roli;
     }
 
-    public int getId_staf() {
+    public int getId() {
         return id;
     }
 
@@ -33,12 +33,12 @@ public class Stafi{
         return mbiemri;
     }
 
-    public String getNumri_telefonit() {
+    public String getNumriTelefonit() {
         return numriTelefonit;
     }
 
-    public void setId_staf(int id_staf) {
-        this.id = id_staf;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setEmri(String emri) {
@@ -49,8 +49,8 @@ public class Stafi{
         this.mbiemri = mbiemri;
     }
 
-    public void setNumri_telefonit(String numri_telefonit) {
-        this.numriTelefonit = numri_telefonit;
+    public void setNumriTelefonit(String numriTelefonit) {
+        this.numriTelefonit = numriTelefonit;
     }
 
     public void setEmail(String email) {
@@ -77,13 +77,13 @@ public class Stafi{
         return roli;
     }
     public static Stafi getInstance(ResultSet result)throws SQLException {
-        int id_staf=result.getInt("id_staf");
+        int idStaf=result.getInt("id_staf");
         String emri=result.getString("emri");
         String mbiemri=result.getString("mbiemri");
-        String numri_telefonit=result.getString("numri_telefonit");
+        String numriTelefonit=result.getString("numri_telefonit");
         String email=result.getString("email");
         String adresa=result.getString("adresa");
         String roli=result.getString("roli");
-        return new Stafi(id_staf,emri,mbiemri,numri_telefonit,email,adresa,roli);
+        return new Stafi(idStaf,emri,mbiemri,numriTelefonit,email,adresa,roli);
     }
 }

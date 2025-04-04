@@ -1,36 +1,38 @@
 package models.Dto.Pagesat;
 
+import java.time.LocalDate;
+
 public class UpdatePagesatDto {
-    private int id_pagesat;
-    private int id_kandidat;
+    private int idPagesat;
+    private int idKandidat;
     private double shuma;
-    private String data_e_pageses;
-    private String metoda_e_pageses;
-    private String statusi_i_pageses;
+    private LocalDate dataPageses;
+    private String metodaPageses;
+    private String statusiPageses;
 
-    public UpdatePagesatDto(int id_pagesat, int id_kandidat, double shuma, String data_e_pageses, String metoda_e_pageses, String statusi_i_pageses) {
-        this.id_pagesat = id_pagesat;
-        this.id_kandidat = id_kandidat;
+    public UpdatePagesatDto(int idPagesat, int idKandidat, double shuma, LocalDate dataPageses, String metodaPageses, String statusiPageses) {
+        this.idPagesat = idPagesat;
+        this.idKandidat = idKandidat;
         this.shuma = shuma;
-        this.data_e_pageses = data_e_pageses;
-        this.metoda_e_pageses = metoda_e_pageses;
-        this.statusi_i_pageses = statusi_i_pageses;
+        this.dataPageses = dataPageses;
+        this.metodaPageses = metodaPageses;
+        this.statusiPageses = statusiPageses;
     }
 
-    public int getId_pagesat() {
-        return id_pagesat;
+    public int getIdPagesat() {
+        return idPagesat;
     }
 
-    public void setId_pagesat(int id_pagesat) {
-        this.id_pagesat = id_pagesat;
+    public void setIdPagesat(int idPagesat) {
+        this.idPagesat = idPagesat;
     }
 
-    public int getId_kandidat() {
-        return id_kandidat;
+    public int getIdKandidat() {
+        return idKandidat;
     }
 
-    public void setId_kandidat(int id_kandidat) {
-        this.id_kandidat = id_kandidat;
+    public void setIdKandidat(int idKandidat) {
+        this.idKandidat = idKandidat;
     }
 
     public double getShuma() {
@@ -41,27 +43,27 @@ public class UpdatePagesatDto {
         this.shuma = shuma;
     }
 
-    public String getData_e_pageses() {
-        return data_e_pageses;
+    public LocalDate getDataPageses() {
+        return dataPageses;
     }
 
-    public void setData_e_pageses(String data_e_pageses) {
-        this.data_e_pageses = data_e_pageses;
+    public void setDataPageses(LocalDate dataPageses) {
+        this.dataPageses = dataPageses;
     }
 
-    public String getMetoda_e_pageses() {
-        return metoda_e_pageses;
+    public String getMetodaPageses() {
+        return metodaPageses;
     }
 
-    public void setMetoda_e_pageses(String metoda_e_pageses) {
-        this.metoda_e_pageses = metoda_e_pageses;
+    public void setMetodaPageses(String metodaPageses) {
+        this.metodaPageses = metodaPageses;
     }
 
-    public String getStatusi_i_pageses() {
-        return statusi_i_pageses;
+    public String getStatusiPageses() {
+        return statusiPageses;
     }
 
-    public void setStatusi_i_pageses(String statusi_i_pageses) {
-        this.statusi_i_pageses = statusi_i_pageses;
+    public void setStatusiPageses(String statusiPageses) {
+        this.statusiPageses = statusiPageses;
     }
 }

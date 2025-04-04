@@ -10,7 +10,7 @@ public class Automjetet {
     private int idStaf;
     private int idKategori;
 
-    public Automjetet(int idAutomjet, int llojiIAutomjetit, String statusi, int idStaf, int idKategori) {
+    private Automjetet(int idAutomjet, int llojiIAutomjetit, String statusi, int idStaf, int idKategori) {
         this.idAutomjet = idAutomjet;
         this.llojiIAutomjetit = llojiIAutomjetit;
         this.statusi = statusi;

@@ -1,4 +1,4 @@
-package models.Dto.Kandidatet;
+package models.Dto.kandidatet;
 
 public class UpdateKandidatetDto{
     private int id_kandidat;

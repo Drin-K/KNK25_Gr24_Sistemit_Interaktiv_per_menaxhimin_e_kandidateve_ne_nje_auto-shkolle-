@@ -1,4 +1,4 @@
-package models.Dto.FeedBack;
+package models.Dto.feedBack;
 
 public class CreateFeedBackDto {
 }

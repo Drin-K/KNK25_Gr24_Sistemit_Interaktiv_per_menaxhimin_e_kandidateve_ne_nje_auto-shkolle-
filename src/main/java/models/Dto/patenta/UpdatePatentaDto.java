@@ -1,20 +1,23 @@
-package models.Dto.Patenta;
+package models.Dto.patenta;
 
-public class CreatePatentaDto {
-
-    private int id_kandidat;
+public class UpdatePatentaDto {
+    private int id_patente;
+    private int id_kandidat;//// ka mundesi duhet me hjek
     private int id_kategori;
     private String data_leshimit;
     private String statusi;
 
-    public CreatePatentaDto(int id_patente, int id_kandidat, int id_kategori, String data_leshimit, String statusi) {
-
-        this.id_kandidat = id_kandidat;
-        this.id_kategori = id_kategori;
-        this.data_leshimit = data_leshimit;
+    public UpdatePatentaDto(String statusi, String data_leshimit, int id_kategori, int id_kandidat, int id_patente) {
         this.statusi = statusi;
+        this.data_leshimit = data_leshimit;
+        this.id_kategori = id_kategori;
+        this.id_kandidat = id_kandidat;
+        this.id_patente = id_patente;
     }
 
+    public int getId_patente() {
+        return id_patente;
+    }
 
     public int getId_kandidat() {
         return id_kandidat;
@@ -47,7 +50,4 @@ public class CreatePatentaDto {
     public void setStatusi(String statusi) {
         this.statusi = statusi;
     }
-
-
 }
-

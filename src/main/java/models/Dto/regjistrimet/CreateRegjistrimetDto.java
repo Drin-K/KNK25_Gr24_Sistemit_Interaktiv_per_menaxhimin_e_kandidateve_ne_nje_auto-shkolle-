@@ -1,4 +1,4 @@
-package models.Dto.Regjistrimet;
+package models.Dto.regjistrimet;
 
 public class CreateRegjistrimetDto {
 

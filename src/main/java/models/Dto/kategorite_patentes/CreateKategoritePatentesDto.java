@@ -1,4 +1,4 @@
-package models.Dto.Kategorite_Patentes;
+package models.Dto.kategorite_patentes;
 
 public class CreateKategoritePatentesDto {
     private String kategoria;

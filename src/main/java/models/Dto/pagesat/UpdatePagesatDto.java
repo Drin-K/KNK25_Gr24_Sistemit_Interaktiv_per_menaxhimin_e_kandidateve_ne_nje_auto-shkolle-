@@ -1,18 +1,28 @@
-package models.Dto.Pagesat;
+package models.Dto.pagesat;
 
-public class CreatePagesatDto {
+public class UpdatePagesatDto {
+    private int id_pagesat;
     private int id_kandidat;
     private double shuma;
     private String data_e_pageses;
     private String metoda_e_pageses;
     private String statusi_i_pageses;
 
-    public CreatePagesatDto(int id_kandidat, double shuma, String data_e_pageses, String metoda_e_pageses, String statusi_i_pageses) {
+    public UpdatePagesatDto(int id_pagesat, int id_kandidat, double shuma, String data_e_pageses, String metoda_e_pageses, String statusi_i_pageses) {
+        this.id_pagesat = id_pagesat;
         this.id_kandidat = id_kandidat;
         this.shuma = shuma;
         this.data_e_pageses = data_e_pageses;
         this.metoda_e_pageses = metoda_e_pageses;
         this.statusi_i_pageses = statusi_i_pageses;
+    }
+
+    public int getId_pagesat() {
+        return id_pagesat;
+    }
+
+    public void setId_pagesat(int id_pagesat) {
+        this.id_pagesat = id_pagesat;
     }
 
     public int getId_kandidat() {

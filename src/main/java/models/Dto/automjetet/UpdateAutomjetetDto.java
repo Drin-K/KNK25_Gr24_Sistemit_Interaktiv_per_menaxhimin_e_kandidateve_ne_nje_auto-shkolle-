@@ -1,4 +1,4 @@
-package models.Dto.Automjetet;
+package models.Dto.automjetet;
 
 public class UpdateAutomjetetDto {
     private int id;

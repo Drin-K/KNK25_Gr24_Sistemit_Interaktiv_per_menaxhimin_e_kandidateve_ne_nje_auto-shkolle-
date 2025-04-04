@@ -1,8 +1,8 @@
 package repository;
 
 import Database.DBConnector;
-import models.Dto.Kandidatet.CreateKandidatetDto;
-import models.Dto.Kandidatet.UpdateKandidatetDto;
+import models.Dto.kandidatet.CreateKandidatetDto;
+import models.Dto.kandidatet.UpdateKandidatetDto;
 import models.Kandidatet;
 
 import java.sql.*;

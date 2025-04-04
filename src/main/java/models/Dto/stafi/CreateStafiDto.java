@@ -1,20 +1,31 @@
-package models.Dto.Stafi;
+package models.Dto.stafi;
 
-public class UpdateStafiDto {
-    private int id_staf;
+public class CreateStafiDto{
+    private String emri;
+    private String mbiemri;
     private String numri_telefonit;
     private String email;
     private String adresa;
     private String roli;
 
-    public UpdateStafiDto(String numri_telefonit, String email, String adresa, String roli) {
+    public CreateStafiDto(String emri, String mbiemri, String numri_telefonit, String email, String adresa, String roli) {
+        this.emri = emri;
+        this.mbiemri = mbiemri;
         this.numri_telefonit = numri_telefonit;
         this.email = email;
         this.adresa = adresa;
         this.roli = roli;
     }
 
-    public String getNumri_telefonit(){
+    public String getEmri() {
+        return emri;
+    }
+
+    public String getMbiemri() {
+        return mbiemri;
+    }
+
+    public String getNumri_telefonit() {
         return numri_telefonit;
     }
 
@@ -30,12 +41,12 @@ public class UpdateStafiDto {
         return roli;
     }
 
-    public int getId_staf() {
-        return id_staf;
+    public void setEmri(String emri) {
+        this.emri = emri;
     }
 
-    public void setId_staf(int id_staf) {
-        this.id_staf = id_staf;
+    public void setMbiemri(String mbiemri) {
+        this.mbiemri = mbiemri;
     }
 
     public void setNumri_telefonit(String numri_telefonit) {
@@ -53,4 +64,5 @@ public class UpdateStafiDto {
     public void setRoli(String roli) {
         this.roli = roli;
     }
+
 }

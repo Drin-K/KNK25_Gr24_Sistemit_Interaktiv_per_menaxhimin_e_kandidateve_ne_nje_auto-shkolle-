@@ -180,6 +180,17 @@ CREATE TABLE Feedback (
     Koment TEXT
 );
 
+CREATE TABLE Raporti_Progresit (
+    ID_Raport SERIAL PRIMARY KEY,
+    ID_Kandidat INT REFERENCES Kandidatet(ID_Kandidat) ON DELETE CASCADE ON UPDATE CASCADE,
+    ID_Staf INT REFERENCES Stafi(ID_Staf) ON DELETE SET NULL ON UPDATE CASCADE,
+    Data_Raportit DATE DEFAULT CURRENT_DATE,
+    Piket_Teorike INT CHECK (Piket_Teorike BETWEEN 0 AND 100),
+    Piket_Praktike INT CHECK (Piket_Praktike BETWEEN 0 AND 100),
+    Komentet TEXT,
+    Performanca_Gjenerale VARCHAR(50) CHECK (Performanca_Gjenerale IN ('Shkëlqyeshëm', 'Mirë', 'Mesatar', 'Dobët'))
+);
+
 CREATE TABLE Dokumentet (
     ID_Dokument SERIAL PRIMARY KEY,
     ID_Kandidat INT NOT NULL REFERENCES Kandidatet(ID_Kandidat) ON DELETE CASCADE,

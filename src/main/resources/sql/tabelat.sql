@@ -170,6 +170,9 @@ CREATE TABLE Patenta (
     Data_Leshimit DATE DEFAULT CURRENT_DATE,
     Statusi VARCHAR(50) CHECK (Statusi IN ('E lëshuar', 'Në proces'))
 );
+--//feedback ----vleresimi qe kandidati ja ben stafit.
+--//raporti i progresit
+--//dokumentet Albena
 
 CREATE TABLE Feedback (
     ID_Feedback SERIAL PRIMARY KEY,
@@ -178,6 +181,17 @@ CREATE TABLE Feedback (
     Data_Feedback DATE DEFAULT CURRENT_DATE,
     Vleresimi INT CHECK (Vleresimi BETWEEN 1 AND 5),
     Koment TEXT
+);
+
+CREATE TABLE Raporti_Progresit (
+    ID_Raport SERIAL PRIMARY KEY,
+    ID_Kandidat INT REFERENCES Kandidatet(ID_Kandidat) ON DELETE CASCADE ON UPDATE CASCADE,
+    ID_Staf INT REFERENCES Stafi(ID_Staf) ON DELETE SET NULL ON UPDATE CASCADE,
+    Data_Raportit DATE DEFAULT CURRENT_DATE,
+    Piket_Teorike INT CHECK (Piket_Teorike BETWEEN 0 AND 100),
+    Piket_Praktike INT CHECK (Piket_Praktike BETWEEN 0 AND 100),
+    Komentet TEXT,
+    Performanca_Gjenerale VARCHAR(50) CHECK (Performanca_Gjenerale IN ('Shkëlqyeshëm', 'Mirë', 'Mesatar', 'Dobët'))
 );
 
 CREATE TABLE Dokumentet (

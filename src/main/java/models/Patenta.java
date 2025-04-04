@@ -2,55 +2,48 @@ package models;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class Patenta {
-    private int id_patente;
-    private int id_kandidat;
-    private int id_kategori;
-    private String data_leshimit;
+    private int id;
+    private int idKandidat;
+    private int idKategori;
+    private LocalDate dataLeshimit;
     private String statusi;
 
-    private Patenta(int id_patente, int id_kandidat, int id_kategori, String data_leshimit, String statusi) {
-        this.id_patente = id_patente;
-        this.id_kandidat = id_kandidat;
-        this.id_kategori = id_kategori;
-        this.data_leshimit = data_leshimit;
+    private Patenta(int id, int idKandidat, int idKategori, LocalDate dataLeshimit, String statusi) {
+        this.id = id;
+        this.idKandidat = idKandidat;
+        this.idKategori = idKategori;
+        this.dataLeshimit = dataLeshimit;
         this.statusi = statusi;
     }
-
-    public int getId_patente() {
-        return id_patente;
+    public int getId() {
+        return id;
     }
 
-    public int getId_kandidat() {
-        return id_kandidat;
+    public int getIdKandidat() {
+        return idKandidat;
     }
 
-    public int getId_kategori() {
-        return id_kategori;
+    public int getIdKategori() {
+        return idKategori;
     }
 
-    public String getData_leshimit() {
-        return data_leshimit;
+    public LocalDate getDataLeshimit() {
+        return dataLeshimit;
     }
 
     public String getStatusi() {
         return statusi;
     }
-
-
-//    private int id_patente;
-//    private int id_kandidat;
-//    private int id_kategori;
-//    private String data_leshimit;
-//    private String statusi;
     public static Patenta getInstance(ResultSet result)throws SQLException {
-        int id_patente=result.getInt("id_patente");
-        int id_kandidat=result.getInt("id_kandidat");
-        int id_kategori=result.getInt("id_kategori");
-        String data_leshimit =result.getString("data_leshimit");
+        int id=result.getInt("id_patente");
+        int idKandidat=result.getInt("id_kandidat");
+        int idKategori=result.getInt("id_kategori");
+        LocalDate dataLeshimit =result.getObject("data_leshimit", LocalDate.class);
         String  statusi=result.getString(" statusi");
 
-        return new Patenta(id_patente, id_kandidat,id_kategori,data_leshimit,statusi);
+        return new Patenta(id,idKandidat,idKategori,dataLeshimit,statusi);
     }
 }

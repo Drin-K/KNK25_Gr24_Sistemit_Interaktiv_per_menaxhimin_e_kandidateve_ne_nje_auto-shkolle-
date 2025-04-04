@@ -1,38 +1,42 @@
 package models.Dto.testet;
 
 public class UpdateTestetDto {
-    private int id_test;
-    private String lloji_i_testit;//
-    private String data_e_testit;//
+    private int id;
+    private String llojiTestit;//
+    private String dataTestit;//
     private String rezultati;//
     private int piket;
 
-    public UpdateTestetDto(int id_test, String lloji_i_testit, String data_e_testit, String rezultati, int piket) {
-        this.id_test = id_test;
-        this.lloji_i_testit = lloji_i_testit;
-        this.data_e_testit = data_e_testit;
+    public UpdateTestetDto(int idTest, String llojiTestit, String dataTestit, String rezultati, int piket) {
+        this.id = idTest;
+        this.llojiTestit = llojiTestit;
+        this.dataTestit = dataTestit;
         this.rezultati = rezultati;
         this.piket = piket;
     }
 
-    public int getId_test() {
-        return id_test;
+    public int getIdTest() {
+        return id;
     }
 
-    public String getLloji_i_testit() {
-        return lloji_i_testit;
+    public void setIdTest(int idTest) {
+        this.id = idTest;
     }
 
-    public void setLloji_i_testit(String lloji_i_testit) {
-        this.lloji_i_testit = lloji_i_testit;
+    public String getLlojiTestit() {
+        return llojiTestit;
     }
 
-    public String getData_e_testit() {
-        return data_e_testit;
+    public void setLlojiTestit(String llojiTestit) {
+        this.llojiTestit = llojiTestit;
     }
 
-    public void setData_e_testit(String data_e_testit) {
-        this.data_e_testit = data_e_testit;
+    public String getDataTestit() {
+        return dataTestit;
+    }
+
+    public void setDataTestit(String dataTestit) {
+        this.dataTestit = dataTestit;
     }
 
     public String getRezultati() {

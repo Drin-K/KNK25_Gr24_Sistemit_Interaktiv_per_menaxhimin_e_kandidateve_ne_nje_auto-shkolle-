@@ -4,45 +4,41 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Regjistrimet {
-    private int id_regjistrim;
-    private int id_kandidat;
-    private int id_kategori;
+    private int id;
+    private int idkandidat;
+    private int idKategori;
     private String statusi;
 
-   private Regjistrimet(int id_regjistrim, int id_kandidat, int id_kategori, String statusi) {
-        this.id_regjistrim = id_regjistrim;
-        this.id_kandidat = id_kandidat;
-        this.id_kategori = id_kategori;
+    private Regjistrimet(String statusi, int idKategori, int idkandidat, int id) {
         this.statusi = statusi;
+        this.idKategori = idKategori;
+        this.idkandidat = idkandidat;
+        this.id = id;
     }
 
-    public int getId_regjistrim() {
-        return id_regjistrim;
+    public int getId() {
+        return id;
     }
 
-    public int getId_kandidat() {
-        return id_kandidat;
+    public int getIdkandidat() {
+        return idkandidat;
     }
 
-    public int getId_kategori() {
-        return id_kategori;
+    public int getIdKategori() {
+        return idKategori;
     }
 
     public String getStatusi() {
         return statusi;
     }
 
-//    private int id_regjistrim;
-//    private int id_kandidat;
-//    private int id_kategori;
-//    private String statusi;
 
     public static Regjistrimet getInstance(ResultSet result)throws SQLException {
-        int id_regjistrim=result.getInt("id_regjistrim");
-        int id_kandidat=result.getInt("id_kandidat");
-        int id_kategori=result.getInt("id_kategori");
+        int id=result.getInt("id_regjistrim");
+        int idKandidat=result.getInt("id_kandidat");
+        int idKategori=result.getInt("id_kategori");
         String statusi=result.getString("statusi");
 
-        return new Regjistrimet(id_regjistrim, id_kandidat, id_kategori, statusi);
+        return new Regjistrimet(statusi, idKandidat, idKategori, id);
     }
 }

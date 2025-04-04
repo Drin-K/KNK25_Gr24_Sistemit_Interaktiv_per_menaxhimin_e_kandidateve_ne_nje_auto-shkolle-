@@ -1,17 +1,19 @@
 package models.Dto.kandidatet;
 
+import java.time.LocalDate;
+
 public class CreateKandidatetDto{
     private String emri;
     private String mbiemri;
-    private String datelindja;
+    private LocalDate datelindja;
     private String gjinia;
     private String numriTelefonit;
     private String email;
     private String adresa;
-    private String dataRegjistrimit;
+    private LocalDate dataRegjistrimit;
     private String statusiProcesit;
 
-    public CreateKandidatetDto(String emri, String mbiemri, String datelindja, String gjinia, String numriTelefonit, String email, String adresa, String dataRegjistrimit, String statusiProcesit) {
+    public CreateKandidatetDto(String emri, String mbiemri, LocalDate datelindja, String gjinia, String numriTelefonit, String email, String adresa, LocalDate dataRegjistrimit, String statusiProcesit) {
         this.emri = emri;
         this.mbiemri = mbiemri;
         this.datelindja = datelindja;
@@ -31,7 +33,7 @@ public class CreateKandidatetDto{
         return mbiemri;
     }
 
-    public String getDatelindja() {
+    public LocalDate getDatelindja() {
         return datelindja;
     }
 
@@ -51,7 +53,7 @@ public class CreateKandidatetDto{
         return adresa;
     }
 
-    public String getDataRegjistrimit() {
+    public LocalDate getDataRegjistrimit() {
         return dataRegjistrimit;
     }
 
@@ -67,7 +69,7 @@ public class CreateKandidatetDto{
         this.mbiemri = mbiemri;
     }
 
-    public void setDatelindja(String datelindja) {
+    public void setDatelindja(LocalDate datelindja) {
         this.datelindja = datelindja;
     }
 
@@ -87,7 +89,7 @@ public class CreateKandidatetDto{
         this.adresa = adresa;
     }
 
-    public void setDataRegjistrimit(String dataRegjistrimit) {
+    public void setDataRegjistrimit(LocalDate dataRegjistrimit) {
         this.dataRegjistrimit = dataRegjistrimit;
     }
 

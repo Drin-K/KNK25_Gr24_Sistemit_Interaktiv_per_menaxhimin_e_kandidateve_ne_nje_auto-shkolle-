@@ -35,13 +35,13 @@ public class KandidatetRepository {
 
             pstm.setString(1,kandidatetDto.getEmri());
             pstm.setString(2, kandidatetDto.getMbiemri());
-            pstm.setString(3, kandidatetDto.getDatelindja());
+            pstm.setObject(3, kandidatetDto.getDatelindja());
             pstm.setString(4, kandidatetDto.getGjinia());
-            pstm.setString(5, kandidatetDto.getNumri_telefonit());
+            pstm.setString(5, kandidatetDto.getNumriTelefonit());
             pstm.setString(6, kandidatetDto.getEmail());
             pstm.setString(7, kandidatetDto.getAdresa());
-            pstm.setString(8, kandidatetDto.getData_e_regjistrimit());
-            pstm.setString(9, kandidatetDto.getStatusi_i_procesit());
+            pstm.setObject(8, kandidatetDto.getDataRegjistrimit());
+            pstm.setString(9, kandidatetDto.getStatusiProcesit());
 
             pstm.execute();
             ResultSet res=pstm.getGeneratedKeys();
@@ -67,10 +67,10 @@ public class KandidatetRepository {
             PreparedStatement pstm=this.connection.prepareStatement(query);
 
             pstm.setString(1,kandidatetDto.getEmail());
-            pstm.setInt(2, kandidatetDto.getId_kandidat());
+            pstm.setInt(2, kandidatetDto.getId());
             int updatedRecords=pstm.executeUpdate();
             if(updatedRecords==1){
-                return this.getById(kandidatetDto.getId_kandidat());
+                return this.getById(kandidatetDto.getId());
             }
 
         }catch (SQLException e){

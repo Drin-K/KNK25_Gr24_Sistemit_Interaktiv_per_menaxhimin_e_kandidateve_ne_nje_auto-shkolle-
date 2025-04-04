@@ -3,15 +3,15 @@ package models.Dto.stafi;
 public class CreateStafiDto{
     private String emri;
     private String mbiemri;
-    private String numri_telefonit;
+    private String numriTelefonit;
     private String email;
     private String adresa;
     private String roli;
 
-    public CreateStafiDto(String emri, String mbiemri, String numri_telefonit, String email, String adresa, String roli) {
+    public CreateStafiDto(String emri, String mbiemri, String numriTelefonit, String email, String adresa, String roli) {
         this.emri = emri;
         this.mbiemri = mbiemri;
-        this.numri_telefonit = numri_telefonit;
+        this.numriTelefonit = numriTelefonit;
         this.email = email;
         this.adresa = adresa;
         this.roli = roli;
@@ -25,8 +25,8 @@ public class CreateStafiDto{
         return mbiemri;
     }
 
-    public String getNumri_telefonit() {
-        return numri_telefonit;
+    public String getNumriTelefonit() {
+        return numriTelefonit;
     }
 
     public String getEmail() {
@@ -49,8 +49,8 @@ public class CreateStafiDto{
         this.mbiemri = mbiemri;
     }
 
-    public void setNumri_telefonit(String numri_telefonit) {
-        this.numri_telefonit = numri_telefonit;
+    public void setNumriTelefonit(String numriTelefonit) {
+        this.numriTelefonit = numriTelefonit;
     }
 
     public void setEmail(String email) {

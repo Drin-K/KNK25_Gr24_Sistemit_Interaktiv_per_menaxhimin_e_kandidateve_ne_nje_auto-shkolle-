@@ -77,13 +77,13 @@ public class Stafi{
         return roli;
     }
     public static Stafi getInstance(ResultSet result)throws SQLException {
-        int idStaf=result.getInt("id_staf");
+        int id=result.getInt("id_staf");
         String emri=result.getString("emri");
         String mbiemri=result.getString("mbiemri");
         String numriTelefonit=result.getString("numri_telefonit");
         String email=result.getString("email");
         String adresa=result.getString("adresa");
         String roli=result.getString("roli");
-        return new Stafi(idStaf,emri,mbiemri,numriTelefonit,email,adresa,roli);
+        return new Stafi(id,emri,mbiemri,numriTelefonit,email,adresa,roli);
     }
 }

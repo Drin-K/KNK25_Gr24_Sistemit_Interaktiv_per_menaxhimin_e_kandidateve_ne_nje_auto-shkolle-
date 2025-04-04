@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class Pagesat {
-    private int idPagesat;
+    private int id;
     private int idKandidat;
     private double shuma;
     private LocalDate dataPageses;
@@ -14,8 +14,8 @@ public class Pagesat {
     private String statusiPageses;
 
 
-    public Pagesat(int idPagesat, int idKandidat, double shuma, LocalDate dataPageses, String metodaPageses, String statusiPageses) {
-        this.idPagesat = idPagesat;
+    private Pagesat(int id, int idKandidat, double shuma, LocalDate dataPageses, String metodaPageses, String statusiPageses) {
+        this.id = id;
         this.idKandidat = idKandidat;
         this.shuma = shuma;
         this.dataPageses = dataPageses;
@@ -24,17 +24,17 @@ public class Pagesat {
     }
 
     public static Pagesat getInstance(ResultSet resultSet) throws SQLException {
-int idPagesat=resultSet.getInt("id_pagesat");
+int id=resultSet.getInt("id_pagesat");
 int idKandidat=resultSet.getInt("id_kandidat");
 double shuma=resultSet.getDouble("shuma");
 LocalDate dataPageses=resultSet.getObject("data_e_pageses",LocalDate.class);
 String metodaPageses=resultSet.getString("metoda_e_pageses");
 String statusiPageses=resultSet.getString("statusi_i_pageses");
-return new Pagesat(idPagesat,idKandidat,shuma,dataPageses,metodaPageses,statusiPageses);
+return new Pagesat(id,idKandidat,shuma,dataPageses,metodaPageses,statusiPageses);
     }
 
-    public int getIdPagesat() {
-        return idPagesat;
+    public int getId() {
+        return id;
     }
 
     public int getIdKandidat() {

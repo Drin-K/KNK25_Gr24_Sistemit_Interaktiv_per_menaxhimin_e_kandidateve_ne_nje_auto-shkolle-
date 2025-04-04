@@ -4,46 +4,46 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Automjetet {
-    private int id_automjet;
-    private int lloji_i_automjetit;
+    private int idAutomjet;
+    private int llojiIAutomjetit;
     private String statusi;
-    private int id_staf;
-    private int id_kategori;
+    private int idStaf;
+    private int idKategori;
 
-    private Automjetet(int id_automjet, int lloji_i_automjetit, String statusi, int id_staf, int id_kategori) {
-        this.id_automjet = id_automjet;
-        this.lloji_i_automjetit = lloji_i_automjetit;
+    public Automjetet(int idAutomjet, int llojiIAutomjetit, String statusi, int idStaf, int idKategori) {
+        this.idAutomjet = idAutomjet;
+        this.llojiIAutomjetit = llojiIAutomjetit;
         this.statusi = statusi;
-        this.id_staf = id_staf;
-        this.id_kategori = id_kategori;
+        this.idStaf = idStaf;
+        this.idKategori = idKategori;
     }
 
-    public int getId_automjet() {
-        return id_automjet;
+    public int getIdAutomjet() {
+        return idAutomjet;
     }
 
-    public int getLloji_i_automjetit() {
-        return lloji_i_automjetit;
+    public int getLlojiIAutomjetit() {
+        return llojiIAutomjetit;
     }
 
     public String getStatusi() {
         return statusi;
     }
 
-    public int getId_staf() {
-        return id_staf;
+    public int getIdStaf() {
+        return idStaf;
     }
 
-    public int getId_kategori() {
-        return id_kategori;
+    public int getIdKategori() {
+        return idKategori;
     }
 
     public static Automjetet getInstance(ResultSet result) throws SQLException{
-        int id_automjet = result.getInt("id_automjet");
-        int lloji_i_automjetit = result.getInt("lloji_i_automjetit");
+        int idAutomjet = result.getInt("id_automjet");
+        int llojiIAutomjetit = result.getInt("lloji_i_automjetit");
         String statusi = result.getString("statusi");
-        int id_staf = result.getInt("id_staf");
-        int id_kategori = result.getInt("id_kategori");
-        return new Automjetet(id_automjet,lloji_i_automjetit,statusi,id_staf,id_kategori);
+        int idStaf = result.getInt("id_staf");
+        int idKategori = result.getInt("id_kategori");
+        return new Automjetet(idAutomjet,llojiIAutomjetit,statusi,idStaf,idKategori);
     }
 }

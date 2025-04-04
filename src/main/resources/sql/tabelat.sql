@@ -170,3 +170,20 @@ CREATE TABLE Patenta (
     Data_Leshimit DATE DEFAULT CURRENT_DATE,
     Statusi VARCHAR(50) CHECK (Statusi IN ('E lëshuar', 'Në proces'))
 );
+
+CREATE TABLE Feedback (
+    ID_Feedback SERIAL PRIMARY KEY,
+    ID_Kandidat INT NOT NULL REFERENCES Kandidatet(ID_Kandidat) ON DELETE CASCADE,
+    ID_Staf INT NOT NULL REFERENCES Stafi(ID_Staf) ON DELETE CASCADE,
+    Data_Feedback DATE DEFAULT CURRENT_DATE,
+    Vleresimi INT CHECK (Vleresimi BETWEEN 1 AND 5),
+    Koment TEXT
+);
+
+CREATE TABLE Dokumentet (
+    ID_Dokument SERIAL PRIMARY KEY,
+    ID_Kandidat INT NOT NULL REFERENCES Kandidatet(ID_Kandidat) ON DELETE CASCADE,
+    Lloji_Dokumentit VARCHAR(100) NOT NULL CHECK (Lloji_Dokumentit IN ('Leternjoftim', 'Certifikate Mjekësore', 'Aplikim', 'Foto')),
+    Emri_Skedari VARCHAR(255),
+    Data_Ngarkimit DATE DEFAULT CURRENT_DATE
+);

@@ -170,6 +170,9 @@ CREATE TABLE Patenta (
     Data_Leshimit DATE DEFAULT CURRENT_DATE,
     Statusi VARCHAR(50) CHECK (Statusi IN ('E lëshuar', 'Në proces'))
 );
+--//feedback ----vleresimi qe kandidati ja ben stafit.
+--//raporti i progresit
+--//dokumentet Albena
 
 CREATE TABLE Feedback (
     ID_Feedback SERIAL PRIMARY KEY,

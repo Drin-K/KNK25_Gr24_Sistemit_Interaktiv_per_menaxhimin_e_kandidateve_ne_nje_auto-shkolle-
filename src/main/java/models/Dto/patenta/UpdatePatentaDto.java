@@ -1,46 +1,52 @@
 package models.Dto.patenta;
 
+import java.time.LocalDate;
+
 public class UpdatePatentaDto {
-    private int id_patente;
-    private int id_kandidat;//// ka mundesi duhet me hjek
-    private int id_kategori;
-    private String data_leshimit;
+    private int id;
+    private int idKandidat;//// ka mundesi duhet me hjek
+    private int idKategori;
+    private LocalDate dataLeshimit;
     private String statusi;
 
-    public UpdatePatentaDto(String statusi, String data_leshimit, int id_kategori, int id_kandidat, int id_patente) {
+    public UpdatePatentaDto(int id, int idKandidat, int idKategori, LocalDate dataLeshimit, String statusi) {
+        this.id = id;
+        this.idKandidat = idKandidat;
+        this.idKategori = idKategori;
+        this.dataLeshimit = dataLeshimit;
         this.statusi = statusi;
-        this.data_leshimit = data_leshimit;
-        this.id_kategori = id_kategori;
-        this.id_kandidat = id_kandidat;
-        this.id_patente = id_patente;
     }
 
-    public int getId_patente() {
-        return id_patente;
+    public int getId() {
+        return id;
     }
 
-    public int getId_kandidat() {
-        return id_kandidat;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setId_kandidat(int id_kandidat) {
-        this.id_kandidat = id_kandidat;
+    public int getIdKandidat() {
+        return idKandidat;
     }
 
-    public int getId_kategori() {
-        return id_kategori;
+    public void setIdKandidat(int idKandidat) {
+        this.idKandidat = idKandidat;
     }
 
-    public void setId_kategori(int id_kategori) {
-        this.id_kategori = id_kategori;
+    public int getIdKategori() {
+        return idKategori;
     }
 
-    public String getData_leshimit() {
-        return data_leshimit;
+    public void setIdKategori(int idKategori) {
+        this.idKategori = idKategori;
     }
 
-    public void setData_leshimit(String data_leshimit) {
-        this.data_leshimit = data_leshimit;
+    public LocalDate getDataLeshimit() {
+        return dataLeshimit;
+    }
+
+    public void setDataLeshimit(LocalDate dataLeshimit) {
+        this.dataLeshimit = dataLeshimit;
     }
 
     public String getStatusi() {

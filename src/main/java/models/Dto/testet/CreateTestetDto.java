@@ -1,56 +1,55 @@
 package models.Dto.testet;
 
+import java.time.LocalDate;
+
 public class CreateTestetDto {
 
-    private int id_kandidat;
-    private int id_staf;
-    private String lloji_i_testit;//
-    private String data_e_testit;//
+    private int idKandidat;
+    private int idStaf;
+    private String llojiTestit;//
+    private LocalDate dataTestit;//
     private String rezultati;//
     private int piket;
 
-
-    public CreateTestetDto(int id_test, int id_kandidat, int id_staf, String lloji_i_testit, String data_e_testit, String rezultati, int piket) {
-
-        this.id_kandidat = id_kandidat;
-        this.id_staf = id_staf;
-        this.lloji_i_testit = lloji_i_testit;
-        this.data_e_testit = data_e_testit;
+    public CreateTestetDto(int idKandidat, int idStaf, String llojiTestit, LocalDate dataTestit, String rezultati, int piket) {
+        this.idKandidat = idKandidat;
+        this.idStaf = idStaf;
+        this.llojiTestit = llojiTestit;
+        this.dataTestit = dataTestit;
         this.rezultati = rezultati;
         this.piket = piket;
     }
 
-
-    public int getId_kandidat() {
-        return id_kandidat;
+    public int getIdKandidat() {
+        return idKandidat;
     }
 
-    public void setId_kandidat(int id_kandidat) {
-        this.id_kandidat = id_kandidat;
+    public void setIdKandidat(int idKandidat) {
+        this.idKandidat = idKandidat;
     }
 
-    public int getId_staf() {
-        return id_staf;
+    public int getIdStaf() {
+        return idStaf;
     }
 
-    public void setId_staf(int id_staf) {
-        this.id_staf = id_staf;
+    public void setIdStaf(int idStaf) {
+        this.idStaf = idStaf;
     }
 
-    public String getLloji_i_testit() {
-        return lloji_i_testit;
+    public String getLlojiTestit() {
+        return llojiTestit;
     }
 
-    public void setLloji_i_testit(String lloji_i_testit) {
-        this.lloji_i_testit = lloji_i_testit;
+    public void setLlojiTestit(String llojiTestit) {
+        this.llojiTestit = llojiTestit;
     }
 
-    public String getData_e_testit() {
-        return data_e_testit;
+    public LocalDate getDataTestit() {
+        return dataTestit;
     }
 
-    public void setData_e_testit(String data_e_testit) {
-        this.data_e_testit = data_e_testit;
+    public void setDataTestit(LocalDate dataTestit) {
+        this.dataTestit = dataTestit;
     }
 
     public String getRezultati() {
@@ -68,5 +67,4 @@ public class CreateTestetDto {
     public void setPiket(int piket) {
         this.piket = piket;
     }
-
 }

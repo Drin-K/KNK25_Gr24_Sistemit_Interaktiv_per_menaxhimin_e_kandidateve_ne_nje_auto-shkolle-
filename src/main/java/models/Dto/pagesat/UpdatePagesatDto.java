@@ -3,15 +3,15 @@ package models.Dto.pagesat;
 import java.time.LocalDate;
 
 public class UpdatePagesatDto {
-    private int idPagesat;
+    private int id;
     private int idKandidat;
     private double shuma;
     private LocalDate dataPageses;
     private String metodaPageses;
     private String statusiPageses;
 
-    public UpdatePagesatDto(int idPagesat, int idKandidat, double shuma, LocalDate dataPageses, String metodaPageses, String statusiPageses) {
-        this.idPagesat = idPagesat;
+    public UpdatePagesatDto(int id, int idKandidat, double shuma, LocalDate dataPageses, String metodaPageses, String statusiPageses) {
+        this.id = id;
         this.idKandidat = idKandidat;
         this.shuma = shuma;
         this.dataPageses = dataPageses;
@@ -19,12 +19,12 @@ public class UpdatePagesatDto {
         this.statusiPageses = statusiPageses;
     }
 
-    public int getIdPagesat() {
-        return idPagesat;
+    public int getId() {
+        return id;
     }
 
     public void setIdPagesat(int idPagesat) {
-        this.idPagesat = idPagesat;
+        this.id = idPagesat;
     }
 
     public int getIdKandidat() {

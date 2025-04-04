@@ -2,14 +2,16 @@ package models;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Orari {
     private int idSesioni;
     private int idKandidat;
     private int idStaf;
-    private String dataSesionit;
-    private String oraFillimit;
-    private String oraPerfundimit;
+    private LocalDate dataSesionit;
+    private LocalTime oraFillimit;
+    private LocalTime oraPerfundimit;
     private String llojiMesimit;
     private String statusi;
     private int idAutomjet;
@@ -18,9 +20,9 @@ public class Orari {
         int idSesioni= resultSet.getInt("id_sesioni");
         int idKanditat=resultSet.getInt("id_kandidat");
         int idStaf =resultSet.getInt("id_staf");
-        String dataSesionit=resultSet.getString("data_sesionit");
-        String oraFillimit=resultSet.getString("ora_e_fillimit");
-        String oraPerfundimit=resultSet.getString("ora_e_perfundimit");
+        LocalDate dataSesionit = resultSet.getObject("data_sesionit",LocalDate.class);
+        LocalTime oraFillimit=resultSet.getObject("ora_e_fillimit", LocalTime.class);
+        LocalTime oraPerfundimit=resultSet.getObject("ora_e_perfundimit", LocalTime.class);
         String llojiMesimit=resultSet.getString("lloji_i_mesimit");
         String statusi=resultSet.getString("statusi");
         int idAutomjet=resultSet.getInt("id_automjet");
@@ -39,15 +41,15 @@ public class Orari {
         return idStaf;
     }
 
-    public String getDataSesionit() {
+    public LocalDate getDataSesionit() {
         return dataSesionit;
     }
 
-    public String getOraFillimit() {
+    public LocalTime getOraFillimit() {
         return oraFillimit;
     }
 
-    public String getOraPerfundimit() {
+    public LocalTime getOraPerfundimit() {
         return oraPerfundimit;
     }
 
@@ -63,7 +65,7 @@ public class Orari {
         return idAutomjet;
     }
 
-    private Orari(int idSesioni, int idKandidat, int idStaf, String dataSesionit, String oraFillimit, String oraPerfundimit, String llojiMesimit, String statusi, int idAutomjet) {
+    private Orari(int idSesioni, int idKandidat, int idStaf, LocalDate dataSesionit, LocalTime oraFillimit, LocalTime oraPerfundimit, String llojiMesimit, String statusi, int idAutomjet) {
         this.idSesioni = idSesioni;
         this.idKandidat = idKandidat;
         this.idStaf = idStaf;

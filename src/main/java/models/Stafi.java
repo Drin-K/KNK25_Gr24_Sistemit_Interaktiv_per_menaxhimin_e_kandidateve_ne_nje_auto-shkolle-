@@ -4,25 +4,25 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Stafi{
-    private int id_staf;
+    private int id;
     private String emri;
     private String mbiemri;
-    private String numri_telefonit;
+    private String numriTelefonit;
     private String email;
     private String adresa;
     private String roli;
-    private Stafi(int id_staf, String emri, String mbiemri, String numri_telefonit, String email, String adresa, String roli){
-        this.id_staf = id_staf;
+    private Stafi(int id, String emri, String mbiemri, String numriTelefonit, String email, String adresa, String roli){
+        this.id = id;
         this.emri = emri;
         this.mbiemri = mbiemri;
-        this.numri_telefonit = numri_telefonit;
+        this.numriTelefonit = numriTelefonit;
         this.email = email;
         this.adresa = adresa;
         this.roli = roli;
     }
 
     public int getId_staf() {
-        return id_staf;
+        return id;
     }
 
     public String getEmri() {
@@ -34,11 +34,11 @@ public class Stafi{
     }
 
     public String getNumri_telefonit() {
-        return numri_telefonit;
+        return numriTelefonit;
     }
 
     public void setId_staf(int id_staf) {
-        this.id_staf = id_staf;
+        this.id = id_staf;
     }
 
     public void setEmri(String emri) {
@@ -50,7 +50,7 @@ public class Stafi{
     }
 
     public void setNumri_telefonit(String numri_telefonit) {
-        this.numri_telefonit = numri_telefonit;
+        this.numriTelefonit = numri_telefonit;
     }
 
     public void setEmail(String email) {

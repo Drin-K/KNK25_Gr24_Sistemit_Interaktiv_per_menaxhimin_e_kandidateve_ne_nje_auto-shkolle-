@@ -1,15 +1,15 @@
 package models.Dto.Kategorite_Patentes;
 
-public class UpdateKategorite_PatentesDto {
-    private int id_kategori;
+public class UpdateKategoritePatentesDto {
+    private int id;
     private String pershkrimi;
 
-    public int getId_kategori() {
-        return id_kategori;
+    public int getId() {
+        return id;
     }
 
-    public void setId_kategori(int id_kategori) {
-        this.id_kategori = id_kategori;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getPershkrimi() {

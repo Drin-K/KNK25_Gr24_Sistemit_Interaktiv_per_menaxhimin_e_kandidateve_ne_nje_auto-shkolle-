@@ -1,47 +1,47 @@
 package models.Dto.Automjetet;
 
 public class CreateAutomjetetDto {
-    private String lloji_i_automjetit;
+    private String llojiAutomjetit;
     private String statusi;
-    private int id_staf;
-    private int id_kategori;
+    private int idStaf;
+    private int idKategori;
 
-    public CreateAutomjetetDto(String lloji_i_automjetit, String statusi, int id_staf, int id_kategori) {
-        this.lloji_i_automjetit = lloji_i_automjetit;
+    public CreateAutomjetetDto(String llojiAutomjetit, String statusi, int idStaf, int idKategori) {
+        this.llojiAutomjetit = llojiAutomjetit;
         this.statusi = statusi;
-        this.id_staf = id_staf;
-        this.id_kategori = id_kategori;
+        this.idStaf = idStaf;
+        this.idKategori = idKategori;
     }
 
-    public String getLloji_i_automjetit() {
-        return lloji_i_automjetit;
-    }
-
-    public void setLloji_i_automjetit(String lloji_i_automjetit) {
-        this.lloji_i_automjetit = lloji_i_automjetit;
-    }
-
-    public String getStatusi() {
-        return statusi;
+    public void setLlojiAutomjetit(String llojiAutomjetit) {
+        this.llojiAutomjetit = llojiAutomjetit;
     }
 
     public void setStatusi(String statusi) {
         this.statusi = statusi;
     }
 
-    public int getId_staf() {
-        return id_staf;
+    public void setIdStaf(int idStaf) {
+        this.idStaf = idStaf;
     }
 
-    public void setId_staf(int id_staf) {
-        this.id_staf = id_staf;
+    public void setIdKategori(int idKategori) {
+        this.idKategori = idKategori;
     }
 
-    public int getId_kategori() {
-        return id_kategori;
+    public String getLlojiAutomjetit() {
+        return llojiAutomjetit;
     }
 
-    public void setId_kategori(int id_kategori) {
-        this.id_kategori = id_kategori;
+    public String getStatusi() {
+        return statusi;
+    }
+
+    public int getIdStaf() {
+        return idStaf;
+    }
+
+    public int getIdKategori() {
+        return idKategori;
     }
 }

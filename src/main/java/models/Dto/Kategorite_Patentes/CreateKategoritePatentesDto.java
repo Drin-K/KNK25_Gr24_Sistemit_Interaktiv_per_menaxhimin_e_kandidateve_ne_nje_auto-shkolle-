@@ -1,10 +1,10 @@
 package models.Dto.Kategorite_Patentes;
 
-public class CreateKategorite_PatentesDto {
+public class CreateKategoritePatentesDto {
     private String kategoria;
     private String pershkrimi;
 
-    public CreateKategorite_PatentesDto(String kategoria, String pershkrimi) {
+    public CreateKategoritePatentesDto(String kategoria, String pershkrimi) {
         this.kategoria = kategoria;
         this.pershkrimi = pershkrimi;
     }

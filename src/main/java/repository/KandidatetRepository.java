@@ -8,23 +8,16 @@ import models.Kandidatet;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class KandidatetRepository {
-    private Connection connection= DBConnector.getConnection();
-    public ArrayList<Kandidatet> getAll(){
-        java.util.ArrayList<Kandidatet>kandidatet=new ArrayList<>();
-        String query="SELECT * FROM STAFI";
-        try{
-            Statement stm=this.connection.createStatement();
-            ResultSet res=stm.executeQuery(query);
-            while(res.next()){
-                kandidatet.add(Kandidatet.getInstance(res));
-
-            }
-        }catch(SQLException e){
-            e.printStackTrace();
-        }
-        return kandidatet;
+public class KandidatetRepository extends BaseRepository<Kandidatet, CreateKandidatetDto, UpdateKandidatetDto> {
+    public KandidatetRepository(){
+        super("kandidatet");
     }
+
+    public Kandidatet fromResultSet(ResultSet result) throws SQLException{
+        return Kandidatet.getInstance(result);
+    }
+
+
     public Kandidatet create(CreateKandidatetDto kandidatetDto){
         String query= """
                 INSERT INTO KANDIDATET(EMRI, MBIEMRI, DATELINDJA, GJINIA, NUMRI_TELEFONIT, EMAIL, ADRESA, DATA_REGJISTRIMIT, STATUSI_I_PROCESIT) 
@@ -78,21 +71,38 @@ public class KandidatetRepository {
         }
         return null;
     }
-    public Kandidatet getById(int id){
-        String query="SELECT * FROM KANDIDATET WHERE ID_KANDIDAT = ?";
-        try{
-            PreparedStatement pstm=this.connection.prepareStatement(query);
-            pstm.setInt(1,id);
-            ResultSet res=pstm.executeQuery();
-            if(res.next()){
-                return Kandidatet.getInstance(res);
-            }
 
-        }catch(SQLException e){
-            e.printStackTrace();
-        }
-        return null;
-    }
+    //    public ArrayList<Kandidatet> getAll(){
+//        java.util.ArrayList<Kandidatet>kandidatet=new ArrayList<>();
+//        String query="SELECT * FROM STAFI";
+//        try{
+//            Statement stm=this.connection.createStatement();
+//            ResultSet res=stm.executeQuery(query);
+//            while(res.next()){
+//                kandidatet.add(Kandidatet.getInstance(res));
+//
+//            }
+//        }catch(SQLException e){
+//            e.printStackTrace();
+//        }
+//        return kandidatet;
+//    }
+
+//    public Kandidatet getById(int id){
+//        String query="SELECT * FROM KANDIDATET WHERE ID_KANDIDAT = ?";
+//        try{
+//            PreparedStatement pstm=this.connection.prepareStatement(query);
+//            pstm.setInt(1,id);
+//            ResultSet res=pstm.executeQuery();
+//            if(res.next()){
+//                return Kandidatet.getInstance(res);
+//            }
+//
+//        }catch(SQLException e){
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 }
 
 

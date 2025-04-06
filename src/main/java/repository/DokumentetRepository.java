@@ -1,8 +1,9 @@
 package repository;
 
-import models.Dto.stafi.CreateStafiDto;
-import models.Dto.stafi.UpdateStafiDto;
-import models.Stafi;
+import models.Dokumentet;
+import models.Dto.dokumentet.CreateDokumentetDto;
+import models.Dto.dokumentet.CreateDokumentetDto;
+import models.Dto.dokumentet.UpdateDokumentetDto;
 
 import java.nio.file.attribute.UserPrincipal;
 import java.sql.PreparedStatement;
@@ -11,29 +12,27 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class DokumentetRepository extends BaseRepository<Stafi, CreateStafiDto, UpdateStafiDto> {
+public class DokumentetRepository extends BaseRepository<Dokumentet, CreateDokumentetDto, UpdateDokumentetDto> {
     public DokumentetRepository() {
         super("Dokumentet");
     }
 
-    public Stafi fromResultSet(ResultSet result) throws SQLException {
-        return Stafi.getInstance(result);
+    public Dokumentet fromResultSet(ResultSet result) throws SQLException {
+        return Dokumentet.getInstance(result);
     }
 
-    public Stafi create(CreateStafiDto stafiDto) {
+    public Dokumentet create(CreateDokumentetDto dokumentetDto) {
         String query = """
                 INSERT INTO 
-                STAFI(EMRI, MBIEMRI, NUMRITELEFONIT, EMAIL, ADRESA, ROLI)
-                VALUES(?,?,?,?,?,?);
+                DOKUMENTET(IDKANDIDAT, LLOJIDOKUMENTIT, EMRISKEDARIT, DATANGARKIMIT)
+                VALUES(?,?,?,?,?);
                 """;
         try{
             PreparedStatement pstm=this.connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
-            pstm.setString(1,stafiDto.getEmri());
-            pstm.setString(2, stafiDto.getMbiemri());
-            pstm.setString(3, stafiDto.getNumriTelefonit());
-            pstm.setString(4, stafiDto.getEmail());
-            pstm.setString(5, stafiDto.getAdresa());
-            pstm.setString(6, stafiDto.getRoli());
+            pstm.setInt(1,dokumentetDto.getIdKandidat());
+            pstm.setString(2, dokumentetDto.getLlojiDokumentit());
+            pstm.setString(3, dokumentetDto.getEmriSkedarit());
+            pstm.setObject(4, dokumentetDto.getDataNgarkimit());
             pstm.execute();
             ResultSet res=pstm.getGeneratedKeys();
             if(res.next()){
@@ -45,35 +44,32 @@ public class DokumentetRepository extends BaseRepository<Stafi, CreateStafiDto, 
         }
         return null;
     }
-    public Stafi update(UpdateStafiDto stafiDto){
+    public Dokumentet update(UpdateDokumentetDto dokumentetDto){
 
-        StringBuilder query=new StringBuilder("UPDATE STAFI SET ");
+        StringBuilder query=new StringBuilder("UPDATE DOKUMENTET SET ");
         ArrayList<Object>params=new ArrayList<>();
 //        if (stafiDto.getEmail().equals(" ")){
 //            query+=" SET email = ?"
 //        }
-        if(stafiDto.getEmail() !=null){
-            query.append("EMAIL = ?, ");
-            params.add(stafiDto.getEmail());
+        if(dokumentetDto.getIdKandidat()!=0){
+            query.append("IDKANDIDAT = ?, ");
+            params.add(dokumentetDto.getIdKandidat());
         }
-        if(stafiDto.getNumriTelefonit() != null){
-            query.append("NUMRITELEFONIT = ?, ");
-            params.add(stafiDto.getNumriTelefonit());
+        if(dokumentetDto.getEmriSkedarit() != null){
+            query.append("EMRISKEDARIT = ?, ");
+            params.add(dokumentetDto.getEmriSkedarit());
         }
-        if(stafiDto.getRoli() !=null){
-            query.append("ROLI = ?, ");
-            params.add(stafiDto.getRoli());
+        if(dokumentetDto.getLlojiDokumentit() !=null){
+            query.append("LLOJIDOKUMENTIT = ?, ");
+            params.add(dokumentetDto.getLlojiDokumentit());
         }
-        if(stafiDto.getAdresa() != null){
-            query.append("ADRESA=?, ");
-            params.add(stafiDto.getAdresa());
-        }
+
         if(params.isEmpty()){
-            return getById(stafiDto.getId());
+            return getById(dokumentetDto.getId());
         }
         query.setLength(query.length()-2);//me largu "? "->se paraqet gabim ne sintakse
         query.append(" WHERE KID = ?");
-        params.add(stafiDto.getId());
+        params.add(dokumentetDto.getId());
         try{
             PreparedStatement pstm=this.connection.prepareStatement(query.toString());
             for(int i=0; i<params.size();i++){
@@ -81,7 +77,7 @@ public class DokumentetRepository extends BaseRepository<Stafi, CreateStafiDto, 
             }
             int updated=pstm.executeUpdate();
             if(updated==1){
-                return this.getById(stafiDto.getId());
+                return this.getById(dokumentetDto.getId());
             }
         } catch (SQLException e) {
             e.printStackTrace();

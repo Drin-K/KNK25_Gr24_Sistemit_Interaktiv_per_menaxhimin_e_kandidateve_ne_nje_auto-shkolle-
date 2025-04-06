@@ -9,24 +9,24 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class KandidatetRepository extends BaseRepository<Kandidatet, CreateKandidatetDto, UpdateKandidatetDto> {
-    public KandidatetRepository(){
-        super("kandidatet");
+    public KandidatetRepository() {
+        super("Kandidatet");
     }
 
-    public Kandidatet fromResultSet(ResultSet result) throws SQLException{
+    public Kandidatet fromResultSet(ResultSet result) throws SQLException {
         return Kandidatet.getInstance(result);
     }
 
 
-    public Kandidatet create(CreateKandidatetDto kandidatetDto){
-        String query= """
+    public Kandidatet create(CreateKandidatetDto kandidatetDto) {
+        String query = """
                 INSERT INTO KANDIDATET(EMRI, MBIEMRI, DATELINDJA, GJINIA, NUMRI_TELEFONIT, EMAIL, ADRESA, DATA_REGJISTRIMIT, STATUSI_I_PROCESIT) 
                 VALUES(?,?,?,?,?,?,?,?,?)
                 """;
-        try{
-            PreparedStatement pstm=this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        try {
+            PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
-            pstm.setString(1,kandidatetDto.getEmri());
+            pstm.setString(1, kandidatetDto.getEmri());
             pstm.setString(2, kandidatetDto.getMbiemri());
             pstm.setObject(3, kandidatetDto.getDatelindja());
             pstm.setString(4, kandidatetDto.getGjinia());
@@ -37,72 +37,60 @@ public class KandidatetRepository extends BaseRepository<Kandidatet, CreateKandi
             pstm.setString(9, kandidatetDto.getStatusiProcesit());
 
             pstm.execute();
-            ResultSet res=pstm.getGeneratedKeys();
-            if(res.next()){
-                int id=res.getInt(1);
+            ResultSet res = pstm.getGeneratedKeys();
+            if (res.next()) {
+                int id = res.getInt(1);
 
-                 return this.getById(id);
+                return this.getById(id);
             }
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public Kandidatet update(UpdateKandidatetDto kandidatetDto){
-        String query= """
-                UPDATE KANDIDATET 
-                SET EMAIL=?
-                WHERE ID=?
-                """;
+    public Kandidatet update(UpdateKandidatetDto kandidatetDto) {
+        StringBuilder query=new StringBuilder("UPDATE KANDIDATET SET ");
+        ArrayList<Object>params=new ArrayList<>();
+//        if (kandidatetDto.getEmail().equals(" ")){
+//            query+=" SET email = ?"
+//        }
+        if(kandidatetDto.getEmail()!=null){
+            query.append("EMAIL = ?, ");
+            params.add(kandidatetDto.getEmail());
+        }
+        if(kandidatetDto.getNumriTelefonit() != null){
+            query.append("NUMRITELEFONIT = ?, ");
+            params.add(kandidatetDto.getNumriTelefonit());
+        }
+        if(kandidatetDto.getStatusiProcesit() !=null){
+            query.append("STATUSIPROCESIT = ?, ");
+            params.add(kandidatetDto.getStatusiProcesit());
+        }
+        if(kandidatetDto.getAdresa() != null){
+            query.append("ADRESA=?, ");
+            params.add(kandidatetDto.getAdresa());
+        }
+        if(params.isEmpty()){
+            return getById(kandidatetDto.getId());
+        }
+        query.setLength(query.length()-2);//me largu "? "->se paraqet gabim ne sintakse
+        query.append(" WHERE KID = ?");
+        params.add(kandidatetDto.getId());
         try{
-            PreparedStatement pstm=this.connection.prepareStatement(query);
-
-            pstm.setString(1,kandidatetDto.getEmail());
-            pstm.setInt(2, kandidatetDto.getId());
-            int updatedRecords=pstm.executeUpdate();
-            if(updatedRecords==1){
+            PreparedStatement pstm=this.connection.prepareStatement(query.toString());
+            for(int i=0; i<params.size();i++){
+                pstm.setObject(i+1, params.get(i));
+            }
+            int updated=pstm.executeUpdate();
+            if(updated==1){
                 return this.getById(kandidatetDto.getId());
             }
-
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    //    public ArrayList<Kandidatet> getAll(){
-//        java.util.ArrayList<Kandidatet>kandidatet=new ArrayList<>();
-//        String query="SELECT * FROM STAFI";
-//        try{
-//            Statement stm=this.connection.createStatement();
-//            ResultSet res=stm.executeQuery(query);
-//            while(res.next()){
-//                kandidatet.add(Kandidatet.getInstance(res));
-//
-//            }
-//        }catch(SQLException e){
-//            e.printStackTrace();
-//        }
-//        return kandidatet;
-//    }
-
-//    public Kandidatet getById(int id){
-//        String query="SELECT * FROM KANDIDATET WHERE ID_KANDIDAT = ?";
-//        try{
-//            PreparedStatement pstm=this.connection.prepareStatement(query);
-//            pstm.setInt(1,id);
-//            ResultSet res=pstm.executeQuery();
-//            if(res.next()){
-//                return Kandidatet.getInstance(res);
-//            }
-//
-//        }catch(SQLException e){
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
 }
-
-

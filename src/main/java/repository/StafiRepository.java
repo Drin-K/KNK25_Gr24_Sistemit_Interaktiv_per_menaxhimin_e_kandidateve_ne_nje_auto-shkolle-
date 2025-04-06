@@ -49,16 +49,19 @@ public Stafi update(UpdateStafiDto stafiDto){
 
         StringBuilder query=new StringBuilder("UPDATE STAFI SET ");
         ArrayList<Object>params=new ArrayList<>();
+//        if (stafiDto.getEmail().equals(" ")){
+//            query+=" SET email = ?"
+//        }
     if(stafiDto.getEmail() !=null){
         query.append("EMAIL = ?, ");
         params.add(stafiDto.getEmail());
     }
     if(stafiDto.getNumriTelefonit() != null){
-        query.append("NRTELEFONIT = ?, ");
+        query.append("NUMRITELEFONIT = ?, ");
         params.add(stafiDto.getNumriTelefonit());
     }
     if(stafiDto.getRoli() !=null){
-        query.append("Roli = ?, ");
+        query.append("ROLI = ?, ");
         params.add(stafiDto.getRoli());
     }
     if(stafiDto.getAdresa() != null){

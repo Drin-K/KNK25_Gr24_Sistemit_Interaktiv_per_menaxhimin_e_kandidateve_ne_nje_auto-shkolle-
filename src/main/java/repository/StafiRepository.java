@@ -8,6 +8,8 @@ import java.nio.file.attribute.UserPrincipal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Objects;
 
 public class StafiRepository extends BaseRepository<Stafi, CreateStafiDto, UpdateStafiDto> {
     public StafiRepository() {
@@ -43,7 +45,45 @@ public class StafiRepository extends BaseRepository<Stafi, CreateStafiDto, Updat
         }
         return null;
     }
-public Stafi update(UpdateStafiDto stafiDto)
+public Stafi update(UpdateStafiDto stafiDto){
 
+        StringBuilder query=new StringBuilder("UPDATE STAFI SET ");
+        ArrayList<Object>params=new ArrayList<>();
+    if(stafiDto.getEmail() !=null){
+        query.append("EMAIL = ?, ");
+        params.add(stafiDto.getEmail());
+    }
+    if(stafiDto.getNumriTelefonit() != null){
+        query.append("NRTELEFONIT = ?, ");
+        params.add(stafiDto.getNumriTelefonit());
+    }
+    if(stafiDto.getRoli() !=null){
+        query.append("Roli = ?, ");
+        params.add(stafiDto.getRoli());
+    }
+    if(stafiDto.getAdresa() != null){
+        query.append("ADRESA=?, ");
+        params.add(stafiDto.getAdresa());
+    }
+    if(params.isEmpty()){
+        return getById(stafiDto.getId());
+    }
+    query.setLength(query.length()-2);//me largu "? "->se paraqet gabim ne sintakse
+    query.append(" WHERE KID = ?");
+    params.add(stafiDto.getId());
+    try{
+        PreparedStatement pstm=this.connection.prepareStatement(query.toString());
+        for(int i=0; i<params.size();i++){
+            pstm.setObject(i+1, params.get(i));
+        }
+        int updated=pstm.executeUpdate();
+        if(updated==1){
+            return this.getById(stafiDto.getId());
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return null;
+}
 }
 

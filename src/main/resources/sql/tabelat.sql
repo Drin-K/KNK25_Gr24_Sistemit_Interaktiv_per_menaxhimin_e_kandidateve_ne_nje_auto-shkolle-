@@ -170,3 +170,31 @@ CREATE TABLE Patenta (
     Data_Leshimit DATE DEFAULT CURRENT_DATE,
     Statusi VARCHAR(50) CHECK (Statusi IN ('E lëshuar', 'Në proces'))
 );
+
+CREATE TABLE Feedback (
+    ID_Feedback SERIAL PRIMARY KEY,
+    ID_Kandidat INT NOT NULL REFERENCES Kandidatet(ID_Kandidat) ON DELETE CASCADE,
+    ID_Staf INT NOT NULL REFERENCES Stafi(ID_Staf) ON DELETE CASCADE,
+    Data_Feedback DATE DEFAULT CURRENT_DATE,
+    Vleresimi INT CHECK (Vleresimi BETWEEN 1 AND 5),
+    Koment TEXT
+);
+
+CREATE TABLE Raporti_Progresit (
+    ID_Raport SERIAL PRIMARY KEY,
+    ID_Kandidat INT REFERENCES Kandidatet(ID_Kandidat) ON DELETE CASCADE ON UPDATE CASCADE,
+    ID_Staf INT REFERENCES Stafi(ID_Staf) ON DELETE CASCADE ON UPDATE CASCADE,
+    Data_Raportit DATE DEFAULT CURRENT_DATE,
+    Piket_Teorike INT CHECK (Piket_Teorike BETWEEN 0 AND 100),
+    Piket_Praktike INT CHECK (Piket_Praktike BETWEEN 0 AND 100),
+    Komentet TEXT,
+    Performanca_Gjenerale VARCHAR(50) CHECK (Performanca_Gjenerale IN ('Shkëlqyeshëm', 'Mirë', 'Mesatar', 'Dobët'))
+);
+
+CREATE TABLE Dokumentet (
+    ID_Dokument SERIAL PRIMARY KEY,
+    ID_Kandidat INT NOT NULL REFERENCES Kandidatet(ID_Kandidat) ON DELETE CASCADE,
+    Lloji_Dokumentit VARCHAR(100) NOT NULL CHECK (Lloji_Dokumentit IN ('Leternjoftim', 'Certifikate Mjekësore', 'Aplikim', 'Foto')),
+    Emri_Skedari VARCHAR(255),
+    Data_Ngarkimit DATE DEFAULT CURRENT_DATE
+);

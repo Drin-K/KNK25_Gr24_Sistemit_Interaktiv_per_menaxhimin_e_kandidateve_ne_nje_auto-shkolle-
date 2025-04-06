@@ -21,7 +21,7 @@ public class StafiRepository extends BaseRepository<Stafi, CreateStafiDto, Updat
     public Stafi create(CreateStafiDto stafiDto) {
         String query = """
                 INSERT INTO 
-                USERS(EMRI, MBIEMRI, NUMRITELEFONIT, EMAIL, ADRESA, ROLI)
+                STAFI(EMRI, MBIEMRI, NUMRITELEFONIT, EMAIL, ADRESA, ROLI)
                 VALUES(?,?,?,?,?,?);
                 """;
         try{
@@ -43,7 +43,7 @@ public class StafiRepository extends BaseRepository<Stafi, CreateStafiDto, Updat
         }
         return null;
     }
-
+public Stafi update(UpdateStafiDto stafiDto)
 
 }
 

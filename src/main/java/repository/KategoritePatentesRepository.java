@@ -16,7 +16,9 @@ public class KategoritePatentesRepository extends BaseRepository<KategoritePaten
     public KategoritePatentes create(CreateKategoritePatentesDto kategoritePatentesDto){
         String query = """
                     INSERT INTO
-                    KATEGORITE_PATENTES("KATEGORIA","PERSHKRIMI")""";
+                    KATEGORITE_PATENTES("KATEGORIA","PERSHKRIMI")
+                    VALUES(?,?);
+                    """;
         try{
             PreparedStatement pstm = this.connection.prepareStatement(query,PreparedStatement.RETURN_GENERATED_KEYS);
             pstm.setString(1,kategoritePatentesDto.getKategoria());

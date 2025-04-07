@@ -13,6 +13,7 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("sign_up.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Auto Shkolla Tigri");
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }

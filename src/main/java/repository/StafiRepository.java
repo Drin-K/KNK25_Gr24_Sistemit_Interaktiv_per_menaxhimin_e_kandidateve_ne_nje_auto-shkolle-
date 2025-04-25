@@ -23,7 +23,7 @@ public class StafiRepository extends BaseRepository<Stafi, CreateStafiDto, Updat
     public Stafi create(CreateStafiDto stafiDto) {
         String query = """
                 INSERT INTO 
-                STAFI(EMRI, MBIEMRI, NUMRITELEFONIT, EMAIL, ADRESA, ROLI)
+                STAFI(EMRI, MBIEMRI, NUMRI_TELEFONIT, EMAIL, ADRESA, ROLI)
                 VALUES(?,?,?,?,?,?);
                 """;
         try{
@@ -57,7 +57,7 @@ public Stafi update(UpdateStafiDto stafiDto){
         params.add(stafiDto.getEmail());
     }
     if(stafiDto.getNumriTelefonit() != null){
-        query.append("NUMRITELEFONIT = ?, ");
+        query.append("NUMRI_TELEFONIT = ?, ");
         params.add(stafiDto.getNumriTelefonit());
     }
     if(stafiDto.getRoli() !=null){
@@ -72,7 +72,7 @@ public Stafi update(UpdateStafiDto stafiDto){
         return getById(stafiDto.getId());
     }
     query.setLength(query.length()-2);//me largu "? "->se paraqet gabim ne sintakse
-    query.append(" WHERE KID = ?");
+    query.append(" WHERE ID_STAF = ?");
     params.add(stafiDto.getId());
     try{
         PreparedStatement pstm=this.connection.prepareStatement(query.toString());

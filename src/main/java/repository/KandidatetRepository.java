@@ -20,7 +20,7 @@ public class KandidatetRepository extends BaseRepository<Kandidatet, CreateKandi
 
     public Kandidatet create(CreateKandidatetDto kandidatetDto) {
         String query = """
-                INSERT INTO KANDIDATET(EMRI, MBIEMRI, DATELINDJA, GJINIA, NUMRI_TELEFONIT, EMAIL, ADRESA, DATA_REGJISTRIMIT, STATUSI_I_PROCESIT) 
+                INSERT INTO KANDIDATET(EMRI, MBIEMRI, DATELINDJA, GJINIA, NUMRI_TELEFONIT, EMAIL, ADRESA, DATA_E_REGJISTRIMIT, STATUSI_I_PROCESIT) 
                 VALUES(?,?,?,?,?,?,?,?,?)
                 """;
         try {
@@ -53,7 +53,7 @@ public class KandidatetRepository extends BaseRepository<Kandidatet, CreateKandi
     public Kandidatet update(UpdateKandidatetDto kandidatetDto) {
         StringBuilder query=new StringBuilder("UPDATE KANDIDATET SET ");
         ArrayList<Object>params=new ArrayList<>();
-//        if (kandidatetDto.getEmail().equals(" ")){
+//        if (kandidatetDto.getEmail().equals(" ")){-> me string vetem per njeren
 //            query+=" SET email = ?"
 //        }
         if(kandidatetDto.getEmail()!=null){
@@ -61,11 +61,11 @@ public class KandidatetRepository extends BaseRepository<Kandidatet, CreateKandi
             params.add(kandidatetDto.getEmail());
         }
         if(kandidatetDto.getNumriTelefonit() != null){
-            query.append("NUMRITELEFONIT = ?, ");
+            query.append("NUMRI_TELEFONIT = ?, ");
             params.add(kandidatetDto.getNumriTelefonit());
         }
         if(kandidatetDto.getStatusiProcesit() !=null){
-            query.append("STATUSIPROCESIT = ?, ");
+            query.append("STATUSI_I_PROCESIT = ?, ");
             params.add(kandidatetDto.getStatusiProcesit());
         }
         if(kandidatetDto.getAdresa() != null){
@@ -76,7 +76,7 @@ public class KandidatetRepository extends BaseRepository<Kandidatet, CreateKandi
             return getById(kandidatetDto.getId());
         }
         query.setLength(query.length()-2);//me largu "? "->se paraqet gabim ne sintakse
-        query.append(" WHERE KID = ?");
+        query.append(" WHERE ID_KANDIDAT = ?");
         params.add(kandidatetDto.getId());
         try{
             PreparedStatement pstm=this.connection.prepareStatement(query.toString());

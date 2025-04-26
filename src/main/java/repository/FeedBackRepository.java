@@ -4,9 +4,11 @@ import models.Dto.feedBack.CreateFeedBackDto;
 import models.Dto.feedBack.UpdateFeedBackDto;
 import models.FeedBack;
 
+import java.sql.Array;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class FeedBackRepository extends BaseRepository<FeedBack, CreateFeedBackDto, UpdateFeedBackDto> {
     public FeedBackRepository(){super("FeedBack");}
@@ -37,6 +39,33 @@ public class FeedBackRepository extends BaseRepository<FeedBack, CreateFeedBackD
         }
         return null;
         }
-        public FeedBack update(UpdateFeedBackDto updateFeedBackDto){return null;}
+        public FeedBack update(UpdateFeedBackDto updateFeedBackDto){
+        StringBuilder query=new StringBuilder("UPDATE FEEDBACK SET");
+            ArrayList<Object>params=new ArrayList<>();
+            if (updateFeedBackDto.getVlersimi() !=0){
+                query.append("vleresimi=?, ");
+                params.add(updateFeedBackDto.getVlersimi());
+            }
+            if (updateFeedBackDto.getKoment()!=null){
+                query.append("koment=?, ");
+                params.add(updateFeedBackDto.getKoment());
+            }
+            query.setLength(query.length() - 2);//me largu ", "->se paraqet gabim ne sintakse
+            query.append(" WHERE ID_KANDIDAT = ?");
+            params.add(updateFeedBackDto.getId());
+            try {
+                PreparedStatement pstm = this.connection.prepareStatement(query.toString());
+                for (int i = 0; i < params.size(); i++) {
+                    pstm.setObject(i + 1, params.get(i));
+                }
+                int updated = pstm.executeUpdate();
+                if (updated == 1) {
+                    return this.getById(updateFeedBackDto.getId());
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException("Gabim gjatë përditësimit të kandidatit", e);
+            }
+            return null;
+    }
     }
 

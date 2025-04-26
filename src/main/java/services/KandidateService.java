@@ -5,6 +5,7 @@ import models.Kandidatet;
 import repository.KandidatetRepository;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 public class KandidateService {
     private KandidatetRepository kandidatetRepository;
@@ -14,6 +15,8 @@ public class KandidateService {
         this.kandidatetRepository = new KandidatetRepository();
     }
     public Kandidatet create(CreateKandidatetDto createDto) throws Exception{
+        int mosha = Period.between(createDto.getDatelindja(), LocalDate.now()).getYears(); //Llogarit moshen duke kalkuluar perioden e sotme zbritur me perioden e lindjes se kandidatit
+        //Implementimi i Period eshte i nevojshum qe saktesisht ta llogarisim moshen duke mos injoruar muajin dhe diten !!!!
         //Validimi i emrit dhe mbiemrit gjate krijimit te kandidatit
         //Emri dhe mbiemri nuk duhet te jete bosh -> createDto.getEmri()/getMbiemri() == null
         //Emri dhe mbiemri duhet te kete se paku nje karakter -> createDto.getEmri()/getMbiemri().trim().isEmpty()
@@ -24,7 +27,7 @@ public class KandidateService {
             throw new Exception("Mbiemri nuk duhet të jetë bosh!");
         }
         //Validimi i moshes per krijimin e kandidatit
-        if(createDto.getDatelindja().getYear() < 18){
+        if(mosha < 18){
             throw new Exception("Kandidati duhet të jetë mbi 18 vjeç!");
         }
         //Validimi i gjinise

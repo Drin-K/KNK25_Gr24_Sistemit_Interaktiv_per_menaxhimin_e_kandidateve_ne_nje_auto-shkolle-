@@ -27,7 +27,7 @@ public class OrariService {
         this.stafiRepository = stafiRepository;
         this.automjetRepository = automjetRepository;
     }
-
+//METODAT
     // metode ndihmese per dy poshte: e kemi lene si mundesi nese na vie ide me vone per ndonje kolone tjeter
     public List<Orari> shikoOraretPerId(String kolona, int id) {
         return orariRepository.gjejOraretPerId(kolona, id);

@@ -7,6 +7,7 @@ import models.KategoritePatentes;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class KategoritePatentesRepository extends BaseRepository<KategoritePatentes, CreateKategoritePatentesDto, UpdateKategoritePatentesDto> {
     public KategoritePatentesRepository(){super("kategorite_patentes");}
@@ -34,5 +35,32 @@ public class KategoritePatentesRepository extends BaseRepository<KategoritePaten
         }
         return null;
     }
-    public KategoritePatentes update(UpdateKategoritePatentesDto kategoritePatentesDto){return null;}
+    public KategoritePatentes update(UpdateKategoritePatentesDto kategoritePatentesDto){
+        StringBuilder query = new StringBuilder();
+        ArrayList<Object> params = new ArrayList<>();
+        if(kategoritePatentesDto.getPershkrimi() != null){
+            query.append("PERSHKRIMI = ?, ");
+            params.add(kategoritePatentesDto.getPershkrimi());
+        }
+        if(params.isEmpty()){
+            return getById(kategoritePatentesDto.getId());
+        }
+        query.setLength(query.length() - 2);
+        query.append(" WHERE ID_KATEGORI = ?");
+        params.add(kategoritePatentesDto.getId());
+        try {
+            PreparedStatement pstm = this.connection.prepareStatement(query.toString());
+            for(int i=0;i<params.size();i++){
+                pstm.setObject(i+1,params.get(i));
+            }
+            int update = pstm.executeUpdate();
+            if(update == 1){
+                return this.getById(kategoritePatentesDto.getId());
+            }
+        }
+        catch (SQLException e){
+            throw new RuntimeException("Gabim gjate perditsimit te kategorise_patentes",e);
+        }
+        return null;
+    }
 }

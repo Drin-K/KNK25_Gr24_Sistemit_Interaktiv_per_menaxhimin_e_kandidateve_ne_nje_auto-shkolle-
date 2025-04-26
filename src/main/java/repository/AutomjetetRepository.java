@@ -68,7 +68,7 @@ public class AutomjetetRepository extends BaseRepository<Automjetet, CreateAutom
                 }
             }
             catch (SQLException e){
-                throw new RuntimeException("Gabim gjate perditsimit te automjetit",e);
+                throw new RuntimeException("Gabim gjatë përditësimit të automjetit",e);
             }
             return null;
         }

@@ -42,7 +42,48 @@ public class OrariRepository extends BaseRepository<Orari, CreateOrariDto, Updat
         return null;
 
         }
-        public Orari update(UpdateOrariDto orariDto){return null;}
+        public Orari update(UpdateOrariDto orariDto){
+            StringBuilder query = new StringBuilder("UPDATE KANDIDATET SET ");
+            ArrayList<Object> params = new ArrayList<>();
+            if (orariDto.getDataSesionit()!=null){
+                query.append("data_e_sesionit=?, ");
+                params.add(orariDto.getDataSesionit());
+            }
+            if (orariDto.getOraFillimit()!=null){
+                query.append("ora_e_fillimit=?, ");
+                params.add(orariDto.getOraFillimit());
+            }
+            if (orariDto.getOraPerfundimit()!=null){
+                query.append("ora_e_perfundimit=?, ");
+                params.add(orariDto.getOraPerfundimit());
+            }
+            if (orariDto.getLlojiMesimit()!=null){
+                query.append("lloji_i_mesimit=?, ");
+                params.add(orariDto.getLlojiMesimit());
+            }
+            if (orariDto.getStatusi()!=null){
+                query.append("statusi=?, ");
+                params.add(orariDto.getStatusi());
+            }
+            if (params.isEmpty()) {
+                return getById(orariDto.getIdSesioni());
+            }
+            query.setLength(query.length() - 2);//me largu "? "->se paraqet gabim ne sintakse
+            query.append(" WHERE id_sesioni = ?");
+            params.add(orariDto.getIdSesioni());
+            try {
+                PreparedStatement pstm = this.connection.prepareStatement(query.toString());
+                for (int i = 0; i < params.size(); i++) {
+                    pstm.setObject(i + 1, params.get(i));
+                }
+                int updated = pstm.executeUpdate();
+                if (updated == 1) {
+                    return this.getById(orariDto.getIdSesioni());
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException("Gabim gjatë përditësimit të kandidatit", e);
+            }
+        return null;}
 
 //na duhet te repository ->
     public List<Orari> gjejOraretPerId(String columnName, int id) {

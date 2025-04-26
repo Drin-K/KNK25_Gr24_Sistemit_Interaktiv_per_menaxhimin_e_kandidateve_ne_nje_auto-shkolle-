@@ -50,8 +50,11 @@ public class FeedBackRepository extends BaseRepository<FeedBack, CreateFeedBackD
                 query.append("koment=?, ");
                 params.add(updateFeedBackDto.getKoment());
             }
+            if (params.isEmpty()) {
+                return getById(updateFeedBackDto.getId());
+            }
             query.setLength(query.length() - 2);//me largu ", "->se paraqet gabim ne sintakse
-            query.append(" WHERE ID_KANDIDAT = ?");
+            query.append(" WHERE id_feedback = ?");
             params.add(updateFeedBackDto.getId());
             try {
                 PreparedStatement pstm = this.connection.prepareStatement(query.toString());

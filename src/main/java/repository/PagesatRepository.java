@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 
 public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto, UpdatePagesatDto>{
@@ -50,24 +51,37 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
     }
 
     public Pagesat update(UpdatePagesatDto pagesatDto) {
-//        String query = """
-//                UPDATE USERS
-//                SET EMAIL = ?
-//                WHERE ID = ?
-//                """;
-//        try{
-//            PreparedStatement pstm = this.connection.prepareStatement(query);
-//            pstm.setString(1, pagesatDto.getEmail());
-//            pstm.setInt(2, pagesatDto.getId());
-//            int updatedRecords = pstm.executeUpdate();
-//            if(updatedRecords == 1){
-//                return this.getById(pagesatDto.getId());
-//            }
-//        }catch (SQLException e){
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
+        StringBuilder query = new StringBuilder("UPDATE PAGESAT SET ");
+        ArrayList<Object> params = new ArrayList<>();
+        if (pagesatDto.getShuma() !=0){
+            query.append("shuma=?, ");
+            params.add(pagesatDto.getShuma());
+        }
+        if (pagesatDto.getMetodaPageses()!=null){
+            query.append("metoda_e_pageses=?, ");
+            params.add(pagesatDto.getMetodaPageses());
+        }
+        if (pagesatDto.getStatusiPageses()!=null){
+            query.append("statusi_i_pageses=?, ");
+        }
+        if (params.isEmpty()) {
+            return getById(pagesatDto.getId());
+        }
+        query.setLength(query.length() - 2);//me largu "? "->se paraqet gabim ne sintakse
+        query.append(" WHERE id_pagesat = ?");
+        params.add(pagesatDto.getId());
+        try {
+            PreparedStatement pstm = this.connection.prepareStatement(query.toString());
+            for (int i = 0; i < params.size(); i++) {
+                pstm.setObject(i + 1, params.get(i));
+            }
+            int updated = pstm.executeUpdate();
+            if (updated == 1) {
+                return this.getById(pagesatDto.getId());
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Gabim gjatë përditësimit të kandidatit", e);
+        }
         return null;
     }
     }

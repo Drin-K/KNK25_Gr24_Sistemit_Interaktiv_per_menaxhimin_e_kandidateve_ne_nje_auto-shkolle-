@@ -33,4 +33,5 @@ public class FeedBackService {
             throw new Exception("Feedback nuk u krijua!");
         }
         return feedback;
-}}
+}//PYTJE: A ka nevoj me ba validime kur te boj update te nje repository
+}

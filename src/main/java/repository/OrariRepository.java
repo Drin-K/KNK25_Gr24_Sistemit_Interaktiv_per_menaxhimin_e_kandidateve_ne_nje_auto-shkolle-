@@ -85,7 +85,7 @@ public class OrariRepository extends BaseRepository<Orari, CreateOrariDto, Updat
             }
         return null;}
 
-//na duhet te repository ->
+//na duhet te service ->
     public List<Orari> gjejOraretPerId(String columnName, int id) {
         String query = String.format("SELECT * FROM ORARI WHERE %s = ?", columnName);
         List<Orari> oraret = new ArrayList<>();

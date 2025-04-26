@@ -45,7 +45,7 @@ public class OrariService {
 
 
     // ===================== METODA: Shto sesion të ri =====================
-    public void shtoSesion(CreateOrariDto dto) throws Exception {
+    public Orari shtoSesion(CreateOrariDto dto) throws Exception {
         // 1. Validimi i datës së sesionit
         if (dto.getDataSesionit() == null) {
             throw new Exception("Data e sesionit nuk mund të jetë bosh.");
@@ -102,6 +102,8 @@ public class OrariService {
         List<Orari> ekzistuesKandidat = shikoOraretPerKandidat(dto.getIdKandidat());
         // Për staf
         List<Orari> ekzistuesStaf = shikoOraretPerStaf(dto.getIdStaf());
+        //Per automjet
+        List<Orari> ekzistuesAutomjet = orariRepository.gjejOraretPerId("ID_AUTOMJET", dto.getIdAutomjet());
         StringBuilder errorMessage = new StringBuilder(); // Për të mbajtur mesazhet e gabimit
         // Kontrollo për kandidat
         for (Orari orar : ekzistuesKandidat) {
@@ -117,12 +119,19 @@ public class OrariService {
                 errorMessage.append("Stafi ka një sesion tjetër në këtë orar.\n");
             }
         }
+         for (Orari orar : ekzistuesAutomjet) {
+            if (orar.getDataSesionit().equals(dto.getDataSesionit()) &&
+                    (orar.getOraFillimit().isBefore(dto.getOraPerfundimit()) && orar.getOraPerfundimit().isAfter(dto.getOraFillimit()))) {
+                errorMessage.append("Automjeti është i zënë në këtë orar.\n");
+            }
+        }
+
         // Nëse ka mesazhe gabimi për kandidat ose staf, hedh përjashtimin
         if (!errorMessage.isEmpty()) {
             throw new Exception(errorMessage.toString());
         }
         // 7. Në fund e shtojmë sesionin përmes OrariRepository
-        orariRepository.create(dto);
-
+       Orari orari=orariRepository.create(dto);
+        return orari;
     }
 }

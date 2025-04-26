@@ -6,6 +6,7 @@ import repository.KandidatetRepository;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
 
 public class KandidateService {
     private KandidatetRepository kandidatetRepository;
@@ -13,6 +14,14 @@ public class KandidateService {
     private String numriTelefonitRegEx = "\\d{8,15}"; //E kqyri a me specifiku veq per numra tKS -> qitash osht veq minimumi mi pas 8 deri 15 numra
     public KandidateService(){
         this.kandidatetRepository = new KandidatetRepository();
+    }
+    public Kandidatet getById(int id) throws Exception{
+        if(id<=0){
+            throw new Exception("Id does not exist!");
+        }
+        Kandidatet kandidati = this.kandidatetRepository.getById(id);
+        if (kandidati == null) throw new Exception("Kandidati nuk u gjet!");
+        return kandidati;
     }
     public Kandidatet create(CreateKandidatetDto createDto) throws Exception{
         int mosha = Period.between(createDto.getDatelindja(), LocalDate.now()).getYears(); //Llogarit moshen duke kalkuluar perioden e sotme zbritur me perioden e lindjes se kandidatit
@@ -59,4 +68,12 @@ public class KandidateService {
         }
         return kandidati;
     }
+    public ArrayList<Kandidatet> getAll(){
+        return kandidatetRepository.getAll(); //Kthen te gjithe kandidatet i nevojshum per listime, grafe, tabela etj....
+    }
+    public boolean delete(int id) throws Exception{
+        this.getById(id); // E kontrollojm a ekziston
+        return kandidatetRepository.delete(id);
+    }
+    //update metet me fol me blendin a duhet me validu edhe update...
 }

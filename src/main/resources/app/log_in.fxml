@@ -32,17 +32,17 @@
       </Label>
       <ImageView fitHeight="30.0" fitWidth="46.0" layoutX="168.0" layoutY="315.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../images/Key.png" />
+            <Image url="@../images/Key.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="35.0" fitWidth="52.0" layoutX="165.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../images/UserLogo.png" />
+            <Image url="@../images/UserLogo.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="134.0" fitWidth="228.0" layoutX="253.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../images/CarLogo.png" />
+            <Image url="@../images/CarLogo.png" />
          </image>
       </ImageView>
    </children>

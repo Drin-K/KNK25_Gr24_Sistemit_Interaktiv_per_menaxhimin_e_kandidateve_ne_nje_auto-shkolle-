@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class RegjistrimetRepository extends BaseRepository<Regjistrimet, CreateRegjistrimetDto, UpdateRegjistrimetDto> {
 
@@ -51,24 +52,31 @@ public class RegjistrimetRepository extends BaseRepository<Regjistrimet, CreateR
     }
 
     public Regjistrimet update(UpdateRegjistrimetDto regjistrtimetDto) {
-//        String query = """
-//                UPDATE regjistrimet
-//                SET EMAIL = ?
-//                WHERE ID = ?
-//                """;
-//        try{
-//            PreparedStatement pstm = this.connection.prepareStatement(query);
-//            pstm.setString(1, regjistrimetDto.getEmail());
-//            pstm.setInt(2, regjistrimetDto.getId());
-//            int updatedRecords = pstm.executeUpdate();
-//            if(updatedRecords == 1){
-//                return this.getById(testetDto.getId());
-//            }
-//        }catch (SQLException e){
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
+        StringBuilder query = new StringBuilder("UPDATE REGJISTRIMET SET ");
+        ArrayList<Object> params = new ArrayList<>();
+
+        if (regjistrtimetDto.getStatusi() != null) {
+            query.append("STATUSI = ?, ");
+            params.add(regjistrtimetDto.getStatusi());
+        }
+        if (params.isEmpty()) {
+            return getById(regjistrtimetDto.getIdRegjistrim());
+        }
+        query.setLength(query.length() - 2);//me largu "? "->se paraqet gabim ne sintakse
+        query.append(" WHERE ID_REGJISTRIM = ?");
+        params.add(regjistrtimetDto.getIdRegjistrim());
+        try {
+            PreparedStatement pstm = this.connection.prepareStatement(query.toString());
+            for (int i = 0; i < params.size(); i++) {
+                pstm.setObject(i + 1, params.get(i));
+            }
+            int updated = pstm.executeUpdate();
+            if (updated == 1) {
+                return this.getById(regjistrtimetDto.getIdRegjistrim());
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Gabim gjatë përditësimit të testeve", e);
+        }
         return null;
     }
 }

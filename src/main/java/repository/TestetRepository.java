@@ -74,11 +74,11 @@ public class TestetRepository extends BaseRepository<Testet, CreateTestetDto, Up
                     params.add(testetDto.getPiket());
                 }
                 if (params.isEmpty()) {
-                    return getById(testetDto.getId());
+                    return getById(testetDto.getIdTest());
                 }
                 query.setLength(query.length() - 2);//me largu "? "->se paraqet gabim ne sintakse
                 query.append(" WHERE ID_TEST = ?");
-                params.add(testetDto.getId());
+                params.add(testetDto.getIdTest());
                 try {
                     PreparedStatement pstm = this.connection.prepareStatement(query.toString());
                     for (int i = 0; i < params.size(); i++) {
@@ -86,7 +86,7 @@ public class TestetRepository extends BaseRepository<Testet, CreateTestetDto, Up
                     }
                     int updated = pstm.executeUpdate();
                     if (updated == 1) {
-                        return this.getById(testetDto.getId());
+                        return this.getById(testetDto.getIdTest());
                     }
                 } catch (SQLException e) {
                     throw new RuntimeException("Gabim gjatë përditësimit të testeve", e);

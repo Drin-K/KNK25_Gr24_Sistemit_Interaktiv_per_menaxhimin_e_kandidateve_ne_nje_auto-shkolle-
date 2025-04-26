@@ -13,8 +13,8 @@ public class UpdateTestetDto {
     private RezultatiTestit rezultati;
     private int piket;
 
-    public UpdateTestetDto(int id, LlojiTestit llojiTestit, LocalDate dataTestit, RezultatiTestit rezultati, int piket) {
-        this.id = id;
+    public UpdateTestetDto(int idTest, LlojiTestit llojiTestit, LocalDate dataTestit, RezultatiTestit rezultati, int piket) {
+        this.id = idTest;
         this.llojiTestit = llojiTestit;
         this.dataTestit = dataTestit;
         this.rezultati = rezultati;
@@ -24,18 +24,9 @@ public class UpdateTestetDto {
     public int getIdTest() {
         return id;
     }
-
     public void setIdTest(int idTest) {
         this.id = idTest;
     }
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public LlojiTestit getLlojiTestit() {
         return llojiTestit;
     }

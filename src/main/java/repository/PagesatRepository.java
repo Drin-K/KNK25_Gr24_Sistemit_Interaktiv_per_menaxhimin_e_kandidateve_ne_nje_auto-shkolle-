@@ -84,4 +84,25 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
         }
         return null;
     }
+    public ArrayList<Pagesat> findByStatus(String statusi) {
+        //Funksion i cili gjen te gjitha pagesat ne baze te statusit
+        ArrayList<Pagesat> pagesatList = new ArrayList<>();
+        String query = "SELECT * FROM PAGESAT WHERE STATUSI_I_PAGESES = ?";
+
+        try {
+            PreparedStatement pstm = this.connection.prepareStatement(query);
+            pstm.setString(1, statusi);
+            ResultSet rs = pstm.executeQuery();
+
+            while (rs.next()) {
+                Pagesat pagesa = fromResultSet(rs);
+                pagesatList.add(pagesa);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return pagesatList;
     }
+
+}

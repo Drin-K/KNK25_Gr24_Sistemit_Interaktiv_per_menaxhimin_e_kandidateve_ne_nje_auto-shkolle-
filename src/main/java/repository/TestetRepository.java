@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class TestetRepository extends BaseRepository<Testet, CreateTestetDto, UpdateTestetDto> {
 
@@ -52,7 +53,44 @@ public class TestetRepository extends BaseRepository<Testet, CreateTestetDto, Up
 
     @Override
     public Testet update(UpdateTestetDto testetDto) {
-        //
-        return null;
-    }
+        StringBuilder query = new StringBuilder("UPDATE TESTET SET ");
+                ArrayList<Object> params = new ArrayList<>();
+
+                if (testetDto.getLlojiTestit() != null) {
+                    query.append("LLOJI_I_TESTIT = ?, ");
+                    params.add(testetDto.getLlojiTestit());
+                }
+                if (testetDto.getDataTestit() != null) {
+                    query.append("DATA_E_TESTIT = ?, ");
+                    params.add(testetDto.getDataTestit());
+                }
+
+                if (testetDto.getRezultati() != null) {
+                    query.append("REZULTATI = ?, ");
+                    params.add(testetDto.getRezultati());
+                }
+                if (testetDto.getPiket() != 0) {
+                    query.append("PIKET = ?, ");
+                    params.add(testetDto.getPiket());
+                }
+                if (params.isEmpty()) {
+                    return getById(testetDto.getIdTest());
+                }
+                query.setLength(query.length() - 2);//me largu "? "->se paraqet gabim ne sintakse
+                query.append(" WHERE ID_TEST = ?");
+                params.add(testetDto.getIdTest());
+                try {
+                    PreparedStatement pstm = this.connection.prepareStatement(query.toString());
+                    for (int i = 0; i < params.size(); i++) {
+                        pstm.setObject(i + 1, params.get(i));
+                    }
+                    int updated = pstm.executeUpdate();
+                    if (updated == 1) {
+                        return this.getById(testetDto.getIdTest());
+                    }
+                } catch (SQLException e) {
+                    throw new RuntimeException("Gabim gjatë përditësimit të testeve", e);
+                }
+                return null;
+         }
 }

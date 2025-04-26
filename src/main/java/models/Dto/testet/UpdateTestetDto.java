@@ -24,11 +24,9 @@ public class UpdateTestetDto {
     public int getIdTest() {
         return id;
     }
-
     public void setIdTest(int idTest) {
         this.id = idTest;
     }
-
     public LlojiTestit getLlojiTestit() {
         return llojiTestit;
     }

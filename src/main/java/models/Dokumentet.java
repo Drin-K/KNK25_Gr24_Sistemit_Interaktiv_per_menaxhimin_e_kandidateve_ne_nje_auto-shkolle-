@@ -59,13 +59,13 @@ public class Dokumentet {
         this.dataNgarkimit = dataNgarkimit;
     }
 
-    public static Dokumentet getInstance(ResultSet result)throws SQLException {
-        int id=result.getInt("ID_Dokument");
-        int idKandidat=result.getInt("ID_Kandidat");
-        String llojiDokumentit=result.getString("llojiDokumentit");
-        String emriSkedarit=result.getString("Emri_Skedarit");
-        LocalDate dataNgarkimit=result.getObject("Data_Ngarkimit",LocalDate.class);
+    public static Dokumentet getInstance(ResultSet result) throws SQLException {
+        int id = result.getInt("ID_Dokument");
+        int idKandidat = result.getInt("ID_Kandidat");
+        String llojiDokumentit = result.getString("llojiDokumentit");
+        String emriSkedarit = result.getString("Emri_Skedarit");
+        LocalDate dataNgarkimit = result.getObject("Data_Ngarkimit", LocalDate.class);
 
-        return new Dokumentet(id,idKandidat,llojiDokumentit,emriSkedarit,dataNgarkimit);
+        return new Dokumentet(id, idKandidat, llojiDokumentit, emriSkedarit, dataNgarkimit);
     }
 }

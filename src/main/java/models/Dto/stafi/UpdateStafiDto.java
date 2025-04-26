@@ -14,7 +14,7 @@ public class UpdateStafiDto {
         this.roli = roli;
     }
 
-    public String getNumriTelefonit(){
+    public String getNumriTelefonit() {
         return numriTelefonit;
     }
 
@@ -35,7 +35,7 @@ public class UpdateStafiDto {
     }
 
     public void setId(int id) {
-        this.id= id;
+        this.id = id;
     }
 
     public void setNumriTelefonit(String numriTelefonit) {

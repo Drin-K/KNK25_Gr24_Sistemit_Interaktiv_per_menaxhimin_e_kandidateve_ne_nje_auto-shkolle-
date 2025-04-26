@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
-public class Kandidatet{
+public class Kandidatet {
     private int id;
     private String emri;
     private String mbiemri;
@@ -109,17 +109,17 @@ public class Kandidatet{
         return statusiProcesit;
     }
 
-    public static Kandidatet getInstance(ResultSet result)throws SQLException {
-        int id=result.getInt("id_kandidat");
-        String emri=result.getString("emri");
-        String mbiemri=result.getString("mbiemri");
-        LocalDate datelindja=result.getObject("datelindja", LocalDate.class);
-        String gjinia=result.getString("gjinia");
-        String numriTelefonit=result.getString("numri_telefonit");
-        String email=result.getString("email");
-        String adresa=result.getString("adresa");
-        LocalDate dataRegjistrimit=result.getObject("data_e_regjistrimit", LocalDate.class);
-        String statusiProcesit=result.getString("statusi_i_procesit");
-        return new Kandidatet(id,emri,mbiemri,datelindja,gjinia,numriTelefonit,email,adresa,dataRegjistrimit,statusiProcesit);
+    public static Kandidatet getInstance(ResultSet result) throws SQLException {
+        int id = result.getInt("id_kandidat");
+        String emri = result.getString("emri");
+        String mbiemri = result.getString("mbiemri");
+        LocalDate datelindja = result.getObject("datelindja", LocalDate.class);
+        String gjinia = result.getString("gjinia");
+        String numriTelefonit = result.getString("numri_telefonit");
+        String email = result.getString("email");
+        String adresa = result.getString("adresa");
+        LocalDate dataRegjistrimit = result.getObject("data_e_regjistrimit", LocalDate.class);
+        String statusiProcesit = result.getString("statusi_i_procesit");
+        return new Kandidatet(id, emri, mbiemri, datelindja, gjinia, numriTelefonit, email, adresa, dataRegjistrimit, statusiProcesit);
     }
 }

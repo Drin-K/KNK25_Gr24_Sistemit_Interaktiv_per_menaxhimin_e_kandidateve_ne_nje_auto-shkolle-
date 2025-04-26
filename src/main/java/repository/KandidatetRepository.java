@@ -1,6 +1,5 @@
 package repository;
 
-import Database.DBConnector;
 import models.Dto.kandidatet.CreateKandidatetDto;
 import models.Dto.kandidatet.UpdateKandidatetDto;
 import models.Kandidatet;
@@ -20,7 +19,7 @@ public class KandidatetRepository extends BaseRepository<Kandidatet, CreateKandi
 
     public Kandidatet create(CreateKandidatetDto kandidatetDto) {
         String query = """
-                INSERT INTO KANDIDATET(EMRI, MBIEMRI, DATELINDJA, GJINIA, NUMRI_TELEFONIT, EMAIL, ADRESA, DATA_E_REGJISTRIMIT, STATUSI_I_PROCESIT) 
+                INSERT INTO KANDIDATET(EMRI, MBIEMRI, DATELINDJA, GJINIA, NUMRI_TELEFONIT, EMAIL, ADRESA, DATA_E_REGJISTRIMIT, STATUSI_I_PROCESIT)
                 VALUES(?,?,?,?,?,?,?,?,?)
                 """;
         try {
@@ -45,50 +44,47 @@ public class KandidatetRepository extends BaseRepository<Kandidatet, CreateKandi
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Gabim gjatë krijimit të kandidatit", e);
         }
         return null;
     }
 
     public Kandidatet update(UpdateKandidatetDto kandidatetDto) {
-        StringBuilder query=new StringBuilder("UPDATE KANDIDATET SET ");
-        ArrayList<Object>params=new ArrayList<>();
-//        if (kandidatetDto.getEmail().equals(" ")){-> me string vetem per njeren
-//            query+=" SET email = ?"
-//        }
-        if(kandidatetDto.getEmail()!=null){
+        StringBuilder query = new StringBuilder("UPDATE KANDIDATET SET ");
+        ArrayList<Object> params = new ArrayList<>();
+        if (kandidatetDto.getEmail() != null) {
             query.append("EMAIL = ?, ");
             params.add(kandidatetDto.getEmail());
         }
-        if(kandidatetDto.getNumriTelefonit() != null){
+        if (kandidatetDto.getNumriTelefonit() != null) {
             query.append("NUMRI_TELEFONIT = ?, ");
             params.add(kandidatetDto.getNumriTelefonit());
         }
-        if(kandidatetDto.getStatusiProcesit() !=null){
+        if (kandidatetDto.getStatusiProcesit() != null) {
             query.append("STATUSI_I_PROCESIT = ?, ");
             params.add(kandidatetDto.getStatusiProcesit());
         }
-        if(kandidatetDto.getAdresa() != null){
-            query.append("ADRESA=?, ");
+        if (kandidatetDto.getAdresa() != null) {
+            query.append("ADRESA = ?, ");
             params.add(kandidatetDto.getAdresa());
         }
-        if(params.isEmpty()){
+        if (params.isEmpty()) {
             return getById(kandidatetDto.getId());
         }
-        query.setLength(query.length()-2);//me largu "? "->se paraqet gabim ne sintakse
+        query.setLength(query.length() - 2);//me largu "? "->se paraqet gabim ne sintakse
         query.append(" WHERE ID_KANDIDAT = ?");
         params.add(kandidatetDto.getId());
-        try{
-            PreparedStatement pstm=this.connection.prepareStatement(query.toString());
-            for(int i=0; i<params.size();i++){
-                pstm.setObject(i+1, params.get(i));
+        try {
+            PreparedStatement pstm = this.connection.prepareStatement(query.toString());
+            for (int i = 0; i < params.size(); i++) {
+                pstm.setObject(i + 1, params.get(i));
             }
-            int updated=pstm.executeUpdate();
-            if(updated==1){
+            int updated = pstm.executeUpdate();
+            if (updated == 1) {
                 return this.getById(kandidatetDto.getId());
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Gabim gjatë përditësimit të kandidatit", e);
         }
         return null;
     }

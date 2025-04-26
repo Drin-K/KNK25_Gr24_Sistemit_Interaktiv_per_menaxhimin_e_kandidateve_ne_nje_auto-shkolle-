@@ -5,12 +5,12 @@ import java.sql.SQLException;
 
 public class Automjetet {
     private int id;
-    private int llojiAutomjetit;
+    private String llojiAutomjetit;
     private String statusi;
     private int idStaf;
     private int idKategori;
 
-    private Automjetet(int id, int llojiAutomjetit, String statusi, int idStaf, int idKategori) {
+    private Automjetet(int id, String llojiAutomjetit, String statusi, int idStaf, int idKategori) {
         this.id = id;
         this.llojiAutomjetit = llojiAutomjetit;
         this.statusi = statusi;
@@ -22,7 +22,7 @@ public class Automjetet {
         return id;
     }
 
-    public int getLlojiAutomjetit() {
+    public String getLlojiAutomjetit() {
         return llojiAutomjetit;
     }
 
@@ -40,7 +40,7 @@ public class Automjetet {
 
     public static Automjetet getInstance(ResultSet result) throws SQLException{
         int idAutomjet = result.getInt("id_automjet");
-        int llojiAutomjetit = result.getInt("lloji_i_automjetit");
+        String llojiAutomjetit = result.getString("lloji_i_automjetit");
         String statusi = result.getString("statusi");
         int idStaf = result.getInt("id_staf");
         int idKategori = result.getInt("id_kategori");

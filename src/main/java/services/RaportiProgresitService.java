@@ -57,5 +57,10 @@ public class RaportiProgresitService {
 
         return raportiProgresitRepository.create(dto);
     }
+    //ide tjera per ma vone:
+    //1. Metodë: Me i llogarit pikët totale të një kandidati në raport progresi
+    //2. Metodë: Me i marrë të gjithë raportet për një kandidat të caktuar
+    //3. Metodë: Me llogarit mesataren e performancës së një kandidati
+    //Nëse më vonë e konverton PerformancaGjenerale në Enum me vlerë numerike (p.sh. Shkëlqyeshëm = 4, Mirë = 3...), atëherë mundesh me bo diçka të tillë:
 
 }

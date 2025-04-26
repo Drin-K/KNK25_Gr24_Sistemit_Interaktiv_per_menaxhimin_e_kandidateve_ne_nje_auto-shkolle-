@@ -5,7 +5,6 @@ import models.Enums.RezultatiTestit;
 import models.Dto.testet.CreateTestetDto;
 import models.Testet;
 import repository.TestetRepository;
-
 import java.time.LocalDate;
 
 public class TestiService {
@@ -70,4 +69,7 @@ public class TestiService {
 //        System.out.println("Rezultati: " + dto.getRezultati());
 //        System.out.println("Piket: " + dto.getPiket());
 //    }
+
+    //QETU OSHT IDE SHTESE ME E INTEGRU NI FUNKSION PER PIK MESATARE
+
 }

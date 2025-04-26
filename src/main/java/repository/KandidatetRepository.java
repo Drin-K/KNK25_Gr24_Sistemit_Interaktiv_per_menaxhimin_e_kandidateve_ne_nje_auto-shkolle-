@@ -88,5 +88,16 @@ public class KandidatetRepository extends BaseRepository<Kandidatet, CreateKandi
         }
         return null;
     }
-
+    public boolean existsByEmail(String email){
+        String query = "SELECT 1 FROM KANDIDATET WHERE EMAIL = ?";
+        try  {
+            PreparedStatement pstm = this.connection.prepareStatement(query);
+            pstm.setString(1, email);
+            ResultSet rs = pstm.executeQuery();
+            return rs.next(); // Nese ka rezultat, email ekziston
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

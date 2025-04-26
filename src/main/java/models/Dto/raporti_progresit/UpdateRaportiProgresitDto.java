@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 public class UpdateRaportiProgresitDto {
     private int id;
-    private LocalDate dataRaportit;
     private int piketTeorike;
     private int piketPraktike;
     private String komentet;
@@ -12,7 +11,6 @@ public class UpdateRaportiProgresitDto {
 
     public UpdateRaportiProgresitDto(int id, LocalDate dataRaportit, int piketTeorike, int piketPraktike, String komentet, String performancaGjenerale) {
         this.id = id;
-        this.dataRaportit = dataRaportit;
         this.piketTeorike = piketTeorike;
         this.piketPraktike = piketPraktike;
         this.komentet = komentet;
@@ -25,14 +23,6 @@ public class UpdateRaportiProgresitDto {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public LocalDate getDataRaportit() {
-        return dataRaportit;
-    }
-
-    public void setDataRaportit(LocalDate dataRaportit) {
-        this.dataRaportit = dataRaportit;
     }
 
     public int getPiketTeorike() {

@@ -6,7 +6,6 @@ public class UpdatePagesatDto {
     private int id;
     private int idKandidat;
     private double shuma;
-    private LocalDate dataPageses;
     private String metodaPageses;
     private String statusiPageses;
 
@@ -14,7 +13,6 @@ public class UpdatePagesatDto {
         this.id = id;
         this.idKandidat = idKandidat;
         this.shuma = shuma;
-        this.dataPageses = dataPageses;
         this.metodaPageses = metodaPageses;
         this.statusiPageses = statusiPageses;
     }
@@ -41,14 +39,6 @@ public class UpdatePagesatDto {
 
     public void setShuma(double shuma) {
         this.shuma = shuma;
-    }
-
-    public LocalDate getDataPageses() {
-        return dataPageses;
-    }
-
-    public void setDataPageses(LocalDate dataPageses) {
-        this.dataPageses = dataPageses;
     }
 
     public String getMetodaPageses() {

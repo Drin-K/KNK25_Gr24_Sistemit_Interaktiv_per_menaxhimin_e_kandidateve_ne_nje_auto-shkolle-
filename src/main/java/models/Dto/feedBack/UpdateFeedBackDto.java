@@ -6,15 +6,13 @@ public class UpdateFeedBackDto {
     private int id;
     private  int idKandidat;
     private int idStaf;
-    private LocalDate dataFeedback;
     private int vlersimi;
     private String koment;
 
-    public UpdateFeedBackDto(int id, int idKandidat, int idStaf, LocalDate dataFeedback, int vlersimi, String koment) {
+    public UpdateFeedBackDto(int id, int idKandidat, int idStaf, int vlersimi, String koment) {
         this.id = id;
         this.idKandidat = idKandidat;
         this.idStaf = idStaf;
-        this.dataFeedback = dataFeedback;
         this.vlersimi = vlersimi;
         this.koment = koment;
     }
@@ -41,14 +39,6 @@ public class UpdateFeedBackDto {
 
     public void setIdStaf(int idStaf) {
         this.idStaf = idStaf;
-    }
-
-    public LocalDate getDataFeedback() {
-        return dataFeedback;
-    }
-
-    public void setDataFeedback(LocalDate dataFeedback) {
-        this.dataFeedback = dataFeedback;
     }
 
     public int getVlersimi() {

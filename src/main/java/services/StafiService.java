@@ -57,7 +57,7 @@ public class StafiService {
         return stafi;
     }
     public ArrayList<Stafi> getAll(){
-        return stafiRepository.getAll(); //Kthen te gjithe kandidatet i nevojshum per listime, grafe, tabela etj....
+        return stafiRepository.getAll(); //Kthen te gjithe stafin e nevojshum per listime, grafe, tabela etj....
     }
     public boolean delete(int id) throws Exception{
         this.getById(id); // E kontrollojm a ekziston

@@ -10,8 +10,7 @@ import java.util.ArrayList;
 
 public class PatentaService {
     private PatentaRepository patentaRepository;
-    private String emailRegEx = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$"; //RegEx i thjesht i emailit
-    private String numriTelefonitRegEx = "\\d{8,15}";// nga bardhi idea. Shikoni KandidatetService per me shum info :)
+
     private boolean isValidStatus(String status) {
         return status.equalsIgnoreCase("aktive") ||
                 status.equalsIgnoreCase("e skaduar");
@@ -51,7 +50,7 @@ public class PatentaService {
         return patenta;
     }
     public ArrayList<Patenta> getAll(){
-        return patentaRepository.getAll(); //Kthen te gjithe kandidatet i nevojshum per listime, grafe, tabela etj....
+        return patentaRepository.getAll();
     }
     public boolean delete(int id) throws Exception{
         this.getById(id); // E kontrollojm a ekziston

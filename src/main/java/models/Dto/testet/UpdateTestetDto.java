@@ -1,13 +1,19 @@
 package models.Dto.testet;
 
+import models.Enums.LlojiTestit;
+import models.Enums.RezultatiTestit;
+
+import java.time.LocalDate;
+
 public class UpdateTestetDto {
+
     private int id;
-    private String llojiTestit;//
-    private String dataTestit;//
-    private String rezultati;//
+    private LlojiTestit llojiTestit;
+    private LocalDate dataTestit;
+    private RezultatiTestit rezultati;
     private int piket;
 
-    public UpdateTestetDto(int idTest, String llojiTestit, String dataTestit, String rezultati, int piket) {
+    public UpdateTestetDto(int idTest, LlojiTestit llojiTestit, LocalDate dataTestit, RezultatiTestit rezultati, int piket) {
         this.id = idTest;
         this.llojiTestit = llojiTestit;
         this.dataTestit = dataTestit;
@@ -23,27 +29,27 @@ public class UpdateTestetDto {
         this.id = idTest;
     }
 
-    public String getLlojiTestit() {
+    public LlojiTestit getLlojiTestit() {
         return llojiTestit;
     }
 
-    public void setLlojiTestit(String llojiTestit) {
+    public void setLlojiTestit(LlojiTestit llojiTestit) {
         this.llojiTestit = llojiTestit;
     }
 
-    public String getDataTestit() {
+    public LocalDate getDataTestit() {
         return dataTestit;
     }
 
-    public void setDataTestit(String dataTestit) {
+    public void setDataTestit(LocalDate dataTestit) {
         this.dataTestit = dataTestit;
     }
 
-    public String getRezultati() {
+    public RezultatiTestit getRezultati() {
         return rezultati;
     }
 
-    public void setRezultati(String rezultati) {
+    public void setRezultati(RezultatiTestit rezultati) {
         this.rezultati = rezultati;
     }
 

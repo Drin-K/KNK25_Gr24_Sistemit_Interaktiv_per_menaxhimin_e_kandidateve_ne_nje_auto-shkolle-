@@ -80,7 +80,7 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
                 return this.getById(pagesatDto.getId());
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Gabim gjatë përditësimit të kandidatit", e);
+            throw new RuntimeException("Gabim gjatë përditësimit të pagesave", e);
         }
         return null;
     }

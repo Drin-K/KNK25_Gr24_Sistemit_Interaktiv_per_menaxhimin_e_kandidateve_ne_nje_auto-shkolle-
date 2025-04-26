@@ -7,6 +7,8 @@ import models.Orari;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OrariRepository extends BaseRepository<Orari, CreateOrariDto, UpdateOrariDto> {
     public OrariRepository(){super("Orari");}
@@ -41,5 +43,27 @@ public class OrariRepository extends BaseRepository<Orari, CreateOrariDto, Updat
 
         }
         public Orari update(UpdateOrariDto orariDto){return null;}
+
+
+    public List<Orari> gjejOraretPerId(String columnName, int id) {
+        String query = String.format("SELECT * FROM ORARI WHERE %s = ?", columnName);
+        List<Orari> oraret = new ArrayList<>();
+
+        try (PreparedStatement pstm = this.connection.prepareStatement(query)) {
+            pstm.setInt(1, id);
+            ResultSet res = pstm.executeQuery();
+
+            while (res.next()) {
+                Orari orar = fromResultSet(res);
+                oraret.add(orar);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Nuk mund të lexohen oraret nga databaza për kolonën: " + columnName + " me ID: " + id, e);
+        }
+
+        return oraret;
     }
+
+
+}
 

@@ -72,4 +72,23 @@ public class AutomjetetRepository extends BaseRepository<Automjetet, CreateAutom
             }
             return null;
         }
+    public ArrayList<Automjetet> getByLloji(String lloji) {
+        //Funksion i cili kthen te gjitha automjetet e nje lloji te caktuar si Veture, Motociklete apo Kamion
+        ArrayList<Automjetet> automjetetList = new ArrayList<>();
+        String query = "SELECT * FROM AUTOMJETET WHERE LLOJI_I_AUTOMJETIT = ?";
+
+        try {
+            PreparedStatement pstm = this.connection.prepareStatement(query);
+            pstm.setString(1, lloji);
+            ResultSet resultSet = pstm.executeQuery();
+
+            while (resultSet.next()) {
+                automjetetList.add(this.fromResultSet(resultSet));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return automjetetList;
     }
+
+}

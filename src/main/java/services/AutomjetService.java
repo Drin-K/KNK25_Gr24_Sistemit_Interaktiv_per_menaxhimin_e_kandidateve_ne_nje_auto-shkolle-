@@ -6,6 +6,8 @@ import repository.AutomjetetRepository;
 import repository.KategoritePatentesRepository;
 import repository.StafiRepository;
 
+import java.util.ArrayList;
+
 public class AutomjetService {
     private AutomjetetRepository automjetetRepository;
     private KategoritePatentesRepository kategoritePatentesRepository;
@@ -14,6 +16,17 @@ public class AutomjetService {
         this.automjetetRepository = new AutomjetetRepository();
         this.kategoritePatentesRepository = new KategoritePatentesRepository();
         this.stafiRepository = new StafiRepository();
+    }
+    public Automjetet getById(int id) throws Exception{
+        if (id <= 0){
+            throw new Exception("Id does not exist!");
+        }
+        Automjetet automjeti = this.automjetetRepository.getById(id);
+        if (automjeti == null)
+        {
+            throw new Exception("Automjeti nuk ekziston!");
+        }
+        return automjeti;
     }
     public Automjetet create(CreateAutomjetetDto createDto) throws Exception{
         //Validimi i ID_Stafi
@@ -38,5 +51,12 @@ public class AutomjetService {
             throw new Exception("Automjeti nuk u krijua!");
         }
         return automjeti;
+    }
+    public boolean delete(int id) throws Exception{
+        this.getById(id);
+        return automjetetRepository.delete(id);
+    }
+    public ArrayList<Automjetet> findByLloji(String lloji){
+        return automjetetRepository.getByLloji(lloji);
     }
 }

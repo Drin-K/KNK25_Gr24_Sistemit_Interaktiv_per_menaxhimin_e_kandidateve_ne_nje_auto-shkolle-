@@ -62,4 +62,12 @@ public class TestiService {
 
         return testetRepository.create(dto);
     }
+    //qet pjesen posht pe ruj per kontroller
+//    public void shfaqInformacioniPerKandidatin(CreateTestetDto dto) {
+//        System.out.println("Informacioni për Testin:");
+//        System.out.println("Lloji i testit: " + dto.getLlojiTestit());
+//        System.out.println("Data e testit: " + dto.getDataTestit());
+//        System.out.println("Rezultati: " + dto.getRezultati());
+//        System.out.println("Piket: " + dto.getPiket());
+//    }
 }

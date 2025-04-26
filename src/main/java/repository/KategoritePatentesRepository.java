@@ -60,7 +60,7 @@ public class KategoritePatentesRepository extends BaseRepository<KategoritePaten
             }
         }
         catch (SQLException e){
-            throw new RuntimeException("Gabim gjate perditsimit te kategorise_patentes",e);
+            throw new RuntimeException("Gabim gjatë përditësimit të kategorisë së patentës",e);
         }
         return null;
     }

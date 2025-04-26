@@ -27,6 +27,7 @@ public class RaportiProgresitRepository extends BaseRepository<RaportiProgresit,
             pstm.setInt(5,raportiProgresitDto.getPiketPraktike());
             pstm.setString(6,raportiProgresitDto.getKomentet());
             pstm.setString(7,raportiProgresitDto.getPerformancaGjenerale());
+            pstm.execute();
             ResultSet res = pstm.getGeneratedKeys();
             if(res.next()){
                 int id = res.getInt(1);

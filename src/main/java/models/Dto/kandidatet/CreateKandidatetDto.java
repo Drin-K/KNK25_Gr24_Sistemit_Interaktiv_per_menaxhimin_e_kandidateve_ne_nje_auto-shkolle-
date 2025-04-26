@@ -2,7 +2,7 @@ package models.Dto.kandidatet;
 
 import java.time.LocalDate;
 
-public class CreateKandidatetDto{
+public class CreateKandidatetDto {
     private String emri;
     private String mbiemri;
     private LocalDate datelindja;

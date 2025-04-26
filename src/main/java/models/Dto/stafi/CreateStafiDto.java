@@ -1,6 +1,6 @@
 package models.Dto.stafi;
 
-public class CreateStafiDto{
+public class CreateStafiDto {
     private String emri;
     private String mbiemri;
     private String numriTelefonit;

@@ -7,7 +7,7 @@ public class UpdateDokumentetDto {
     private int idKandidat;
     private String llojiDokumentit;
     private String emriSkedarit;
-  // sjom e sigurt!  private LocalDate dataNgarkimit;
+    // sjom e sigurt!  private LocalDate dataNgarkimit;
 
     public int getId() {
         return id;

@@ -2,7 +2,7 @@ package models.Dto.dokumentet;
 
 import java.time.LocalDate;
 
-public class CreateDokumentetDto{
+public class CreateDokumentetDto {
     private int idKandidat;
     private String llojiDokumentit;
     private String emriSkedarit;

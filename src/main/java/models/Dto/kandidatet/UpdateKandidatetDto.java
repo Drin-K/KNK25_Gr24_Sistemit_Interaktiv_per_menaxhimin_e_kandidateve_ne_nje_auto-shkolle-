@@ -1,14 +1,14 @@
 package models.Dto.kandidatet;
 
-public class UpdateKandidatetDto{
+public class UpdateKandidatetDto {
     private int id;
     private String numriTelefonit;
     private String email;
     private String adresa;
     private String statusiProcesit;
 
-    public UpdateKandidatetDto(int id,String numriTelefonit, String email, String adresa, String statusiProcesit) {
-       this.id=id;
+    public UpdateKandidatetDto(int id, String numriTelefonit, String email, String adresa, String statusiProcesit) {
+        this.id = id;
         this.numriTelefonit = numriTelefonit;
         this.email = email;
         this.adresa = adresa;

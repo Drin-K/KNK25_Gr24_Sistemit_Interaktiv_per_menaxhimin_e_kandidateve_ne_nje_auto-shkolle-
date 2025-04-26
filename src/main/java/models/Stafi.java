@@ -3,7 +3,7 @@ package models;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Stafi{
+public class Stafi {
     private int id;
     private String emri;
     private String mbiemri;
@@ -11,7 +11,8 @@ public class Stafi{
     private String email;
     private String adresa;
     private String roli;
-    private Stafi(int id, String emri, String mbiemri, String numriTelefonit, String email, String adresa, String roli){
+
+    private Stafi(int id, String emri, String mbiemri, String numriTelefonit, String email, String adresa, String roli) {
         this.id = id;
         this.emri = emri;
         this.mbiemri = mbiemri;
@@ -76,14 +77,15 @@ public class Stafi{
     public String getRoli() {
         return roli;
     }
-    public static Stafi getInstance(ResultSet result)throws SQLException {
-        int id=result.getInt("id_staf");
-        String emri=result.getString("emri");
-        String mbiemri=result.getString("mbiemri");
-        String numriTelefonit=result.getString("numri_telefonit");
-        String email=result.getString("email");
-        String adresa=result.getString("adresa");
-        String roli=result.getString("roli");
-        return new Stafi(id,emri,mbiemri,numriTelefonit,email,adresa,roli);
+
+    public static Stafi getInstance(ResultSet result) throws SQLException {
+        int id = result.getInt("id_staf");
+        String emri = result.getString("emri");
+        String mbiemri = result.getString("mbiemri");
+        String numriTelefonit = result.getString("numri_telefonit");
+        String email = result.getString("email");
+        String adresa = result.getString("adresa");
+        String roli = result.getString("roli");
+        return new Stafi(id, emri, mbiemri, numriTelefonit, email, adresa, roli);
     }
 }

@@ -24,6 +24,7 @@ public class KategoritePatentesRepository extends BaseRepository<KategoritePaten
             PreparedStatement pstm = this.connection.prepareStatement(query,PreparedStatement.RETURN_GENERATED_KEYS);
             pstm.setString(1,kategoritePatentesDto.getKategoria());
             pstm.setString(2,kategoritePatentesDto.getPershkrimi());
+            pstm.execute();
             ResultSet res  = pstm.getGeneratedKeys();
             if(res.next()){
                 int id = res.getInt(1);
@@ -36,7 +37,7 @@ public class KategoritePatentesRepository extends BaseRepository<KategoritePaten
         return null;
     }
     public KategoritePatentes update(UpdateKategoritePatentesDto kategoritePatentesDto){
-        StringBuilder query = new StringBuilder();
+        StringBuilder query = new StringBuilder("UPDATE KATEGORITE_PATENTES SET ");
         ArrayList<Object> params = new ArrayList<>();
         if(kategoritePatentesDto.getPershkrimi() != null){
             query.append("PERSHKRIMI = ?, ");

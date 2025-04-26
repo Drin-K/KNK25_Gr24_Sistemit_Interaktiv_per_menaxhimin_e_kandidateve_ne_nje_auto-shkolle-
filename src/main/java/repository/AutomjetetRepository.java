@@ -27,6 +27,7 @@ public class AutomjetetRepository extends BaseRepository<Automjetet, CreateAutom
             pstm.setString(2,automjetetDto.getStatusi());
             pstm.setInt(3,automjetetDto.getIdStaf());
             pstm.setInt(4,automjetetDto.getIdKategori());
+            pstm.execute();
             ResultSet res = pstm.getGeneratedKeys();
             if(res.next()){
                 int id = res.getInt(1);

@@ -1,8 +1,8 @@
 package utils;
 
 public class SceneLocator {
-    //ni pytje per blendin
-    // Ne ushtrime i kena lan fxml ne views ne main/java dhe jo ne resource
-    //por per me funksionu kontrollore edhe aplication duhet me pas folderi emrin e njejt ne main/java dhe ne resource ku i shtina fxml
-    //Pyrja eshte, qysh me i strukturu edhe qysh me i nda
+    public static final String LOGIN_PAGE="/app/login_in.fxml";
+    public static final String SIGNUP_PAGE="/app/sign_up.fxml";
+    public static final String FRONT_PAGE="/app/FrontPage.Konsumator.fxml";
+    public static final String CATEGORY_PAGE="/app/candidate_category.fxml";
 }

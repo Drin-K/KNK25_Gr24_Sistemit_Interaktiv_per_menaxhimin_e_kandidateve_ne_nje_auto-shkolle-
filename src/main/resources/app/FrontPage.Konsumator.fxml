@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1540.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.switchPageController">
+   <children>
+      <AnchorPane layoutX="88.0" maxHeight="151.0" prefHeight="145.0" prefWidth="1440.0" style="-fx-background-color: #2D3447;" AnchorPane.bottomAnchor="665.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="119.0" fitWidth="247.0" layoutX="-10.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Downloads/image-with-removed-background.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="1265.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" text="Profile" AnchorPane.leftAnchor="1265.0" AnchorPane.rightAnchor="198.20000000000005" />
+            <Button layoutX="1450.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" text="Log Out" AnchorPane.leftAnchor="1450.0" AnchorPane.rightAnchor="24.0" />
+            <Button layoutX="1364.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" AnchorPane.leftAnchor="1364.0" AnchorPane.rightAnchor="110.0" />
+            <ImageView fitHeight="42.0" fitWidth="41.0" layoutX="1211.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../IdeaProjects/KNK25_Gr24_Sistemit_Interaktiv_per_menaxhimin_e_kandidateve_ne_nje_auto-shkolle-/src/main/resources/images/User.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="33.0" fitWidth="56.0" layoutX="1368.0" layoutY="11.0">
+               <image>
+                  <Image url="@KNK-fotot/language-solid.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="152.0" fitWidth="190.0" layoutX="19.0" layoutY="19.0">
+               <image>
+                  <Image url="@KNK-fotot/emri.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="7.0" layoutY="213.0" prefHeight="664.0" prefWidth="226.0" style="-fx-background-color: #2D3447;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+         <children>
+            <Button fx:id="categoryBttn" alignment="TOP_LEFT" layoutY="188.0" mnemonicParsing="false" onAction="#categoryClick" prefHeight="34.0" prefWidth="226.0" style="-fx-font-weight: bold;" text="Category" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <Button alignment="TOP_LEFT" layoutX="-1.0" layoutY="253.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="226.0" style="-fx-font-weight: bold;" text="Scheduler" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" />
+            <Button alignment="TOP_LEFT" layoutY="438.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="226.0" style="-fx-font-weight: bold;" text="Progress" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <Button alignment="TOP_LEFT" layoutX="-1.0" layoutY="315.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="226.0" style="-fx-font-weight: bold;" text="Theory/Practice Tests" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" />
+            <Button alignment="TOP_LEFT" layoutY="501.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="226.0" style="-fx-font-weight: bold;" text="FeedBack" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <Button alignment="TOP_LEFT" layoutY="373.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="226.0" style="-fx-font-weight: bold;" text="Manage Payments" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <Text fill="WHITE" layoutX="59.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 22px;" text="Candidate" wrappingWidth="107.73675537109375" />
+            <Button alignment="TOP_LEFT" layoutX="5.0" layoutY="94.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="226.0" style="-fx-font-weight: bold;" text="Home" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="rightPage" layoutX="228.0" layoutY="136.0" prefHeight="620.0" prefWidth="1263.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="228.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="136.0">
+         <children>
+            <Text layoutX="27.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 30; -fx-font-weight: bold;" text="Welcome to Autoshkolla Tigri – Your Driving Journey Starts Here!" wrappingWidth="938.9366455078125" />
+            <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="58.0" layoutY="581.0">
+               <image>
+                  <Image url="@KNK-fotot/location-map-pins-png-3.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="114.0" layoutY="608.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18px;" text="Shemsi Ahmeti, Mitrovicë 40000" />
+            <Text layoutX="58.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18px; -fx-font-family: arial;" text="Autoshkolla Tigri is your all-in-one platform designed to guide you through every step of your journey toward becoming a confident, licensed driver. " wrappingWidth="715.7999267578125" />
+            <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="1039.0" layoutY="579.0">
+               <image>
+                  <Image url="@KNK-fotot/phone-icon-923.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="1094.0" layoutY="607.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18;" text="+383 44 595 708" />
+            <Text layoutX="58.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="Whether you're booking lessons, taking practice tests, tracking your progress, or managing your payments, everything you need is right at your fingertips." wrappingWidth="576.5367431640625" />
+            <Text layoutX="58.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="With a user-friendly interface and powerful tools, this app ensures you stay organized, informed, and on track with your learning goals. Let’s drive forward together – safely and smartly! " wrappingWidth="715.7999267578125" />
+            <Text layoutX="47.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 25; -fx-font-weight: bold;" text=" Why Use This App?" />
+            <Text layoutX="58.0" layoutY="399.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="Learning to drive can feel overwhelming, especially when you're balancing school, work, or other commitments. " />
+            <Text layoutX="58.0" layoutY="436.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="Our app makes it easier by keeping everything structured and transparent. You’ll always know where you stand, what’s next, and how close you are to achieving your license." wrappingWidth="889.875" />
+            <Text layoutX="58.0" layoutY="492.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="Whether you're just starting out or getting ready for your final exam, Autoshkolla Tigri is here to help you stay on track and motivated." />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

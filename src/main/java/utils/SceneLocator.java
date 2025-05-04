@@ -20,10 +20,4 @@ public class SceneLocator {
     public static String getCurrentRightPage() {
         return currentRightPage;
     }
-
-
-
-
-
-
 }

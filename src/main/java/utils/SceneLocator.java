@@ -24,6 +24,8 @@ public class SceneLocator {
     public static final String MANAGE_VEHICLES = "/app/stafiFXML/manageVehicles.fxml";
     public static final String REPORTS = "/app/stafiFXML/raports.fxml";
     public static final String INSTRUCTOR_PROFILE = "/app/stafiFXML/instructorProfile.fxml";
+    public static final String INSTRUCTOR_HOME = "/app/stafiFXML/InstructorHome.fxml";
+
     //PER ADMIN!
     public static final String FRONT_PAGE_ADMIN="/app/adminFXML/FrontPage.Admin.fxml";
     public static final String LICENSES_PAGE="/app/adminFXML/admin_licenses.fxml";

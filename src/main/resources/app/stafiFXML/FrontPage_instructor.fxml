@@ -16,7 +16,7 @@
             <Button layoutX="1382.4" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="58.0" AnchorPane.leftAnchor="1382.0" AnchorPane.rightAnchor="126.0" />
             <ImageView fitHeight="51.0" fitWidth="200.0" layoutX="32.0" layoutY="15.0">
                <image>
-                  <Image url="@../../images/car.png" />
+                  <Image url="@../../../../../../../Desktop/image-with-removed-background.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="41.0" fitWidth="92.0" layoutX="1206.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
@@ -26,7 +26,7 @@
             </ImageView>
             <ImageView fitHeight="26.0" fitWidth="41.0" layoutX="1391.0" layoutY="14.0">
                <image>
-                  <Image url="@../../images/language.icon.png" />
+                  <Image url="@../../../../../../../Downloads/language-solid.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="146.0" fitWidth="181.0" layoutX="42.0" layoutY="14.0">

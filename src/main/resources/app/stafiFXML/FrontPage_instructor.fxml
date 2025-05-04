@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1540.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutX="-23.0" maxHeight="151.0" prefHeight="135.0" prefWidth="1566.0" style="-fx-background-color: #2D3447;" AnchorPane.bottomAnchor="665.0" AnchorPane.leftAnchor="-23.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button layoutX="1265.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" text="Profile" AnchorPane.leftAnchor="1265.0" AnchorPane.rightAnchor="198.20000000000005" />
+            <Button layoutX="1450.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="61.0" text="Log Out" AnchorPane.leftAnchor="1450.0" AnchorPane.rightAnchor="29.200000000000045" />
+            <Button layoutX="1382.4" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="58.0" AnchorPane.leftAnchor="1382.0" AnchorPane.rightAnchor="126.0" />
+            <ImageView fitHeight="51.0" fitWidth="200.0" layoutX="32.0" layoutY="15.0">
+               <image>
+                  <Image url="@../../../../../../../Desktop/image-with-removed-background.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="41.0" fitWidth="92.0" layoutX="1206.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/User.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="26.0" fitWidth="41.0" layoutX="1391.0" layoutY="14.0">
+               <image>
+                  <Image url="@../../../../../../../Downloads/language-solid.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="146.0" fitWidth="181.0" layoutX="42.0" layoutY="14.0">
+               <image>
+                  <Image url="@../Downloads/ChatGPT%20Image%20May%203,%202025,%2004_34_53%20PM.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="136.0" prefHeight="664.0" prefWidth="226.0" style="-fx-background-color: #2D3447;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+         <children>
+            <Button alignment="TOP_LEFT" layoutY="187.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="226.0" style="-fx-font-weight: bold;" text="Scheduler" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <Button alignment="TOP_LEFT" layoutY="374.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="226.0" style="-fx-font-weight: bold;" text="Reports" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <Button alignment="TOP_LEFT" layoutY="247.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="226.0" style="-fx-font-weight: bold;" text="Manage Tests" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.8000000000000114" />
+            <Button alignment="TOP_LEFT" layoutY="309.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="226.0" style="-fx-font-weight: bold;" text="Manage Vehicles" />
+            <Text fill="WHITE" layoutX="59.0" layoutY="52.0" strokeType="OUTSIDE" style="-fx-font-weight: bold; -fx-font-size: 22px;" text="Instructor" wrappingWidth="111.73675537109375">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <Button alignment="TOP_LEFT" layoutY="439.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="226.0" style="-fx-font-weight: bold;" text="FeedBack" />
+            <Button alignment="TOP_LEFT" layoutX="5.0" layoutY="94.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="94.0" style="-fx-font-weight: bold;" text="Home" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="226.0" layoutY="133.0" prefHeight="670.0" prefWidth="1313.0" AnchorPane.bottomAnchor="-2.6000000000000227" AnchorPane.leftAnchor="226.0" AnchorPane.rightAnchor="2.800000000000182" AnchorPane.topAnchor="133.0">
+         <children>
+            <Text layoutX="45.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 30;" text="Welcome, Instructor!" wrappingWidth="304.992919921875" />
+            <Text layoutX="45.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="Your dashboard is designed to streamline every aspect of driver training. Here, you can: " />
+            <Text layoutX="85.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="-Schedule lessons with candidates in just a few clicks." />
+            <Text layoutX="86.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="-Manage tests on theory and practical skills." />
+            <Text layoutX="86.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="-Create reports for events while on lessons." />
+            <Text layoutX="85.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="-Manage vehicles and resources efficiently." />
+            <Text layoutX="45.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="This platform empowers you to focus on what matters most: " />
+            <Text layoutX="86.0" layoutY="394.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="-Shaping safe, confident drivers." />
+            <Text layoutX="86.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="-Review “Feedback” to improve your coaching approach." />
+            <Text layoutX="45.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: arial; -fx-font-size: 18;" text="Welcome to the Autoshkolla Tigri platform — a smart, all-in-one solution designed specifically for modern driving schools. Whether you're managing lessons, tracking candidate progress, or organizing resources, our platform helps you do it all quickly and efficiently." wrappingWidth="705.3750000000001" />
+            <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="58.0" layoutY="581.0">
+               <image>
+                  <Image url="@../../../../../../../Downloads/location-map-pins-png-3.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="114.0" layoutY="608.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="Shemsi Ahmeti, Mitrovicë 40000" />
+            <ImageView fitHeight="40.0" fitWidth="41.0" layoutX="1039.0" layoutY="579.0">
+               <image>
+                  <Image url="@../../../../../../../Downloads/phone-icon-923.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="1094.0" layoutY="607.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="+383 44 595 708" />
+         </children></AnchorPane>
+   </children>
+</AnchorPane>

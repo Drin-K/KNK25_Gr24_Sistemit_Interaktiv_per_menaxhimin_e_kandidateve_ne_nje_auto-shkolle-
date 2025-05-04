@@ -9,19 +9,18 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="670.0" prefWidth="1313.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane layoutX="168.0" layoutY="103.0" prefHeight="462.0" prefWidth="150.0" style="-fx-border-color: #dcdcdc; -fx-border-style: round;">
          <children>
             <Button layoutX="39.0" layoutY="159.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="72.0" style="-fx-background-color: #07842b;" text="Schedule" textFill="#d4d4d4" />
             <Button layoutX="39.0" layoutY="204.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="72.0" style="-fx-background-color: #994949;" text="Remove" textFill="#dcdcdc" />
-            <Button layoutX="39.0" layoutY="249.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="72.0" text="Edit" textFill="#176e52" />
+            <Button layoutX="39.0" layoutY="249.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="72.0" style="-fx-background-color: #ffffff; -fx-border-color: gray; -fx-border-radius: 3;" text="Edit" textFill="#51b191" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="360.0" layoutY="104.0" prefHeight="462.0" prefWidth="574.0" style="-fx-border-color: #dcdcdc;">
          <children>
-            <MenuButton layoutX="65.0" layoutY="30.0" mnemonicParsing="false" text="Choose lesson type">
+            <MenuButton layoutX="65.0" layoutY="30.0" mnemonicParsing="false" style="-fx-background-color: #137156;" text="Choose lesson type" textFill="#f4f4f4">
               <items>
                 <MenuItem mnemonicParsing="false" text="Action 1" />
                 <MenuItem mnemonicParsing="false" text="Action 2" />
@@ -37,7 +36,7 @@
                   <Font name="System Italic" size="14.0" />
                </font>
             </TextField>
-            <MenuButton layoutX="63.0" layoutY="278.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="130.0" text="Choose Category">
+            <MenuButton layoutX="63.0" layoutY="278.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="130.0" style="-fx-background-color: #137156;" text="Choose Category" textFill="WHITE">
                <items>
                   <MenuItem mnemonicParsing="false" text="Action 1" />
                   <MenuItem mnemonicParsing="false" text="Action 2" />

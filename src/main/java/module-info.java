@@ -3,6 +3,7 @@ module com.example.knk25_gr24_sistemit_interaktiv_per_menaxhimin_e_kandidateve_n
     requires javafx.fxml;
     requires java.sql;
 
+    opens models to javafx.base, javafx.fxml;
 
 
     opens app to javafx.fxml;

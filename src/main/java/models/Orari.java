@@ -17,15 +17,15 @@ public class Orari {
     private int idAutomjet;
 
     public static Orari getInstance(ResultSet resultSet)throws SQLException{
-        int idSesioni= resultSet.getInt("id_sesioni");
-        int idKanditat=resultSet.getInt("id_kandidat");
-        int idStaf =resultSet.getInt("id_staf");
-        LocalDate dataSesionit = resultSet.getObject("data_sesionit",LocalDate.class);
-        LocalTime oraFillimit=resultSet.getObject("ora_e_fillimit", LocalTime.class);
-        LocalTime oraPerfundimit=resultSet.getObject("ora_e_perfundimit", LocalTime.class);
-        String llojiMesimit=resultSet.getString("lloji_i_mesimit");
-        String statusi=resultSet.getString("statusi");
-        int idAutomjet=resultSet.getInt("id_automjet");
+        int idSesioni= resultSet.getInt("ID_Sesioni");
+        int idKanditat=resultSet.getInt("ID_Kandidat");
+        int idStaf =resultSet.getInt("ID_Staf");
+        LocalDate dataSesionit = resultSet.getObject("Data_e_Sesionit",LocalDate.class);
+        LocalTime oraFillimit=resultSet.getObject("Ora_e_Fillimit", LocalTime.class);
+        LocalTime oraPerfundimit=resultSet.getObject("Ora_e_Perfundimit", LocalTime.class);
+        String llojiMesimit=resultSet.getString("Lloji_i_Mesimit");
+        String statusi=resultSet.getString("Statusi");
+        int idAutomjet=resultSet.getInt("ID_Automjet");
         return new Orari(idSesioni,idKanditat, idStaf,dataSesionit,oraFillimit,oraPerfundimit,llojiMesimit,statusi,idAutomjet);
     }
 

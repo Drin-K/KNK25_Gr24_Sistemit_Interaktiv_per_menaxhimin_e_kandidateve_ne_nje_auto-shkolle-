@@ -76,6 +76,7 @@ public class OrariKandidatiController {
                 showAlert("Informacion", "Nuk u gjetën orare për këtë kandidat");
             }
         } catch (Exception e) {
+            e.printStackTrace();
             showAlert("Gabim", "Ndodhi një gabim gjatë ngarkimit të orareve: " + e.getMessage());
         }
     }

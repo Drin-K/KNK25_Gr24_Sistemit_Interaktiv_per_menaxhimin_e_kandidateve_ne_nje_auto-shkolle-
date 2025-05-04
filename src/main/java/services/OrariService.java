@@ -40,15 +40,6 @@ public class OrariService {
         return orariRepository.gjejOraretPerId(id);
     }
 
-    // ===================== METODA: Kandidati sheh oraret =====================
-//    public List<Orari> shikoOraretPerKandidat(int idKandidat) {
-//        return shikoOraretPerId("ID_KANDIDAT", idKandidat);
-//    }
-//
-//    // ===================== METODA: Stafi sheh oraret =====================
-//    public List<Orari> shikoOraretPerStaf(int idStaf) {
-//        return shikoOraretPerId("ID_STAF", idStaf);
-//    }
     public boolean eshteGatiPerProvim(int idKandidat) {
         long teori = numeroSesione(idKandidat, "Teori","");
         long praktike = numeroSesione(idKandidat, "Praktikë","");

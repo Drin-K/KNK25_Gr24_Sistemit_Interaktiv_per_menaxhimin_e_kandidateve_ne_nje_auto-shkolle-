@@ -31,7 +31,7 @@ public class DokumentService {
         }
 
         // Kontrollojmë nëse kandidati ekziston
-        Kandidatet kandidati = this.kandidatRepository.getById(createDokumentDto.getIdKandidat());
+        Kandidatet kandidati =(Kandidatet) this.kandidatRepository.getById(createDokumentDto.getIdKandidat());
         if (kandidati == null) {
             throw new Exception("Kandidati me ID: " + createDokumentDto.getIdKandidat() + " nuk ekziston.");
         }

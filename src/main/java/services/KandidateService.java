@@ -2,6 +2,7 @@ package services;
 
 import models.Dto.kandidatet.CreateKandidatetDto;
 import models.Kandidatet;
+import models.User;
 import repository.KandidatetRepository;
 
 import java.time.LocalDate;
@@ -19,20 +20,20 @@ public class KandidateService {
         if(id<=0){
             throw new Exception("Id does not exist!");
         }
-        Kandidatet kandidati = this.kandidatetRepository.getById(id);
+        Kandidatet kandidati = (Kandidatet) this.kandidatetRepository.getById(id);
         if (kandidati == null) throw new Exception("Kandidati nuk u gjet!");
         return kandidati;
     }
     public Kandidatet create(CreateKandidatetDto createDto) throws Exception{
-        int mosha = Period.between(createDto.getDatelindja(), LocalDate.now()).getYears(); //Llogarit moshen duke kalkuluar perioden e sotme zbritur me perioden e lindjes se kandidatit
+        int mosha = Period.between(createDto.getDateOfBirth(), LocalDate.now()).getYears(); //Llogarit moshen duke kalkuluar perioden e sotme zbritur me perioden e lindjes se kandidatit
         //Implementimi i Period eshte i nevojshum qe saktesisht ta llogarisim moshen duke mos injoruar muajin dhe diten !!!!
         //Validimi i emrit dhe mbiemrit gjate krijimit te kandidatit
         //Emri dhe mbiemri nuk duhet te jete bosh -> createDto.getEmri()/getMbiemri() == null
         //Emri dhe mbiemri duhet te kete se paku nje karakter -> createDto.getEmri()/getMbiemri().trim().isEmpty()
-        if(createDto.getEmri() == null || createDto.getEmri().trim().isEmpty()){
+        if(createDto.getName() == null || createDto.getName().trim().isEmpty()){
             throw new Exception("Emri nuk duhet të jetë bosh!");
         }
-        if(createDto.getMbiemri() == null || createDto.getMbiemri().trim().isEmpty()){
+        if(createDto.getSurname() == null || createDto.getSurname().trim().isEmpty()){
             throw new Exception("Mbiemri nuk duhet të jetë bosh!");
         }
         //Validimi i moshes per krijimin e kandidatit
@@ -44,16 +45,12 @@ public class KandidateService {
             throw new Exception("Gjinia duhet të jetë Mashkull ose Femer");
         }
         //Validimi i numrit te telefonit permes numriTelefonitRegEx
-        if(!createDto.getNumriTelefonit().matches(numriTelefonitRegEx)){
+        if(!createDto.getPhoneNumber().matches(numriTelefonitRegEx)){
             throw new Exception("Numri i telefonit nuk është valid");
         }
         //Validimi i emailit permes emailRegEx
         if(!createDto.getEmail().matches(emailRegEx)){
             throw new Exception("Emaili nuk është në formatin e duhur");
-        }
-        //Kontrollimi i emailit a ekziston ne databazen tone apo jo
-        if(kandidatetRepository.existsByEmail(createDto.getEmail())){
-            throw new Exception("Emaili tashmë ekziston!");
         }
         //Validimi i statusit të procesit
         if(!createDto.getStatusiProcesit().equals("Në proces") && !createDto.getStatusiProcesit().equals("Përfunduar")){
@@ -62,15 +59,24 @@ public class KandidateService {
         //Data e regjistrimit duhet te jete data e regjistrimit te Kandidatit
         createDto.setDataRegjistrimit(LocalDate.now());
         //Krijimi i Kandidatit ne DB
-        Kandidatet kandidati = kandidatetRepository.create(createDto);
+        Kandidatet kandidati =(Kandidatet) kandidatetRepository.create(createDto);
         if(kandidati == null){
             throw new Exception("Kandidati nuk u krijua");
         }
         return kandidati;
     }
-    public ArrayList<Kandidatet> getAll(){
-        return kandidatetRepository.getAll(); //Kthen te gjithe kandidatet i nevojshum per listime, grafe, tabela etj....
+    public ArrayList<Kandidatet> getAll() {
+        ArrayList<User> users = kandidatetRepository.getAll(); // Supozojmë se kthen User
+        ArrayList<Kandidatet> kandidatetList = new ArrayList<>();
+
+        for (User user : users) {
+            if (user instanceof Kandidatet) {
+                kandidatetList.add((Kandidatet) user); // Safe cast
+            }
+        }
+        return kandidatetList;
     }
+
     public boolean delete(int id) throws Exception{
         this.getById(id); // E kontrollojm a ekziston
         return kandidatetRepository.delete(id);

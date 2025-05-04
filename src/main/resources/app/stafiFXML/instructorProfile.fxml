@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="670.0" prefWidth="1313.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text layoutX="148.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: arial; -fx-font-size: 20; -fx-font-weight: bold;" text="Name:" wrappingWidth="110.13671875" />
+      <Text layoutX="117.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: arial; -fx-font-size: 20; -fx-font-weight: bold;" text="Surname:" wrappingWidth="101.33670043945312" />
+      <Text layoutX="151.0" layoutY="312.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: arial; -fx-font-size: 20; -fx-font-weight: bold;" text="Email:" wrappingWidth="64.53671264648438" />
+      <TextField layoutX="220.0" layoutY="144.0" prefHeight="26.0" prefWidth="247.0" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray;" />
+      <Text layoutX="486.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 23; -fx-font-weight: bold; -fx-font-family: arial;" text="Your personal information:" />
+      <Text layoutX="144.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: arial; -fx-font-size: 20; -fx-font-weight: bold;" text="Phone:" wrappingWidth="77.33670043945312" />
+      <Text layoutX="141.0" layoutY="452.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: arial; -fx-font-size: 20; -fx-font-weight: bold;" text="Adress:" wrappingWidth="83.73669433593739" />
+      <Text layoutX="94.0" layoutY="520.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: arial; -fx-font-size: 20; -fx-font-weight: bold;" text="Last logged: " wrappingWidth="126.93682861328125" />
+      <ImageView fitHeight="102.0" fitWidth="110.0" layoutX="479.0" layoutY="145.0">
+         <image>
+            <Image url="@../../../../../../../Desktop/Screenshot_3.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="56.0" fitWidth="65.0" layoutX="502.0" layoutY="277.0">
+         <image>
+            <Image url="@../../../../../../../Desktop/Screenshot_5.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="49.0" fitWidth="54.0" layoutX="507.0" layoutY="349.0">
+         <image>
+            <Image url="@../../../../../../../Downloads/phone-icon-923.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="56.0" fitWidth="65.0" layoutX="502.0" layoutY="420.0">
+         <image>
+            <Image url="@../../../../../../../Downloads/location-map-pins-png-3.png" />
+         </image>
+      </ImageView>
+      <TextField layoutX="220.0" layoutY="214.0" prefHeight="26.0" prefWidth="247.0" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray;" />
+      <TextField layoutX="220.0" layoutY="499.0" prefHeight="26.0" prefWidth="247.0" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray;" />
+      <TextField layoutX="220.0" layoutY="432.0" prefHeight="26.0" prefWidth="247.0" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray;" />
+      <TextField layoutX="220.0" layoutY="360.0" prefHeight="26.0" prefWidth="247.0" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray;" />
+      <TextField layoutX="220.0" layoutY="292.0" prefHeight="26.0" prefWidth="247.0" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray;" />
+   </children>
+</AnchorPane>

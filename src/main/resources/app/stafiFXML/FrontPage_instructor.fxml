@@ -31,7 +31,7 @@
             </ImageView>
             <ImageView fitHeight="146.0" fitWidth="181.0" layoutX="42.0" layoutY="14.0">
                <image>
-                  <Image url="@../Downloads/ChatGPT%20Image%20May%203,%202025,%2004_34_53%20PM.png" />
+                  <Image url="@../../images/emri.png" />
                </image>
             </ImageView>
          </children>

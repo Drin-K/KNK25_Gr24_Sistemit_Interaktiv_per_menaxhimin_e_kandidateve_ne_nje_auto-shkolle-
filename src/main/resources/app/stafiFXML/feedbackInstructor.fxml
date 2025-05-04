@@ -35,7 +35,7 @@
             </MenuButton>
             <TableView layoutX="33.0" layoutY="289.0" prefHeight="176.0" prefWidth="750.0" style="-fx-background-color: white; -fx-border-radius: 4; -fx-background-radius: 4; -fx-border-color: gray;">
                <columns>
-                  <TableColumn prefWidth="642.3999176025391" text="Feedback" />
+                  <TableColumn prefWidth="642.3999176025391" text="Comment" />
                   <TableColumn prefWidth="105.60003662109375" text="Points (  /5)" />
                </columns>
             </TableView>

@@ -1,14 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.gluonhq.charm.glisten.control.ToggleButtonGroup?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="app.stafiFXML.AutomjetetInstructor"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="670.0" prefWidth="1313.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutX="291.0" layoutY="96.0" prefHeight="454.0" prefWidth="588.0" style="-fx-border-color: #dcdcdc;">
+         <children>
+            <Text fill="#0c8e39" layoutX="222.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 13; -fx-font-family: arial;" text="Choose a category (e.g cars, motorcycles, bus)" />
+            <MenuButton layoutX="79.0" layoutY="34.0" mnemonicParsing="false" style="-fx-background-color: #137156;" text="Category" textFill="#f9ffbc">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Action 1" />
+                  <MenuItem mnemonicParsing="false" text="Action 2" />
+               </items>
+            </MenuButton>
+            <Text fill="#0c8e39" layoutX="79.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 13;" />
+            <TextField focusTraversable="false" layoutX="79.0" layoutY="97.0" prefHeight="26.0" prefWidth="322.0" promptText="Enter the model of vehicle to add/remove/service" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </TextField>
+            <ToggleButtonGroup layoutX="341.0" layoutY="223.0" selectionType="SINGLE" />
+            <Button layoutX="79.0" layoutY="223.0" mnemonicParsing="false" style="-fx-background-color: #137156;" text="Check status" textFill="#fffaaf" />
+            <TableView layoutX="62.0" layoutY="277.0" prefHeight="162.0" prefWidth="478.0">
+              <columns>
+                <TableColumn prefWidth="157.60003662109375" text="On use" />
+                <TableColumn prefWidth="181.5999755859375" text="On service" />
+                  <TableColumn prefWidth="137.60001220703123" text="Out of use" />
+              </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="74.0" layoutY="96.0" prefHeight="454.0" prefWidth="146.0" style="-fx-border-color: #dcdcdc; -fx-border-style: round;">
+         <children>
+            <Button layoutX="19.0" layoutY="159.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" style="-fx-background-color: #07842b;" text="Add vehicle" textFill="#efecec" />
+            <Button layoutX="19.0" layoutY="204.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" style="-fx-background-color: #994949;" text="Remove" textFill="#fcf8f8" />
+            <Button layoutX="19.0" layoutY="293.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" style="-fx-background-color: #3b47b4;" text="Put for service" textFill="#e4fae7" />
+            <Button layoutX="19.0" layoutY="249.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="92.0" style="-fx-background-color: #ffffff; -fx-border-color: gray; -fx-border-radius: 3;" text="Update" textFill="#29a47b" />
+         </children>
+      </AnchorPane>
+      <Text layoutX="403.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: arial; -fx-font-weight: bold; -fx-font-size: 20;" text="Manage vehicles used for lessons and for driving exams" />
+   </children>
 </AnchorPane>

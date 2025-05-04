@@ -81,11 +81,6 @@ Data_e_Pageses DATE DEFAULT CURRENT_DATE,
 Metoda_e_Pageses VARCHAR(50) CHECK (Metoda_e_Pageses IN ('Cash', 'Kartë', 'Online')),
 Statusi_i_Pageses VARCHAR(50) CHECK (Statusi_i_Pageses IN ('Paguar', 'Pjesërisht', 'Mbetur'))
 );
-
-
-
-
-
 CREATE TABLE Regjistrimet (
     ID_Regjistrim SERIAL PRIMARY KEY,
     ID_Kandidat INT REFERENCES Kandidatet(idUser) ON DELETE CASCADE ON UPDATE CASCADE,

@@ -34,15 +34,14 @@ public class OrariService {
         this.stafiRepository = new StafiRepository();
         this.automjetRepository = new AutomjetetRepository();
     }
-    //METODAT
-    // metode ndihmese per dy poshte: e kemi lene si mundesi nese na vie ide me vone per ndonje kolone tjeter
+
     public List<Orari> shikoOraretPerId(int id) {
         return orariRepository.gjejOraretPerId(id);
     }
 
     public boolean eshteGatiPerProvim(int idKandidat) {
-        long teori = numeroSesione(idKandidat, "Teori","");
-        long praktike = numeroSesione(idKandidat, "Praktikë","");
+        long teori = numeroSesione(idKandidat, "Teori","Përfunduar");
+        long praktike = numeroSesione(idKandidat, "Praktikë","Përfunduar");
         return teori >= 15 && praktike >= 20;
     }
     public void delete(int orariId) throws Exception {
@@ -186,12 +185,6 @@ public class OrariService {
 
     public long numeroSesione(int idKandidat, String llojiMesimit, String statusi){
         return orariRepository.numeroSesione(idKandidat,llojiMesimit,statusi);
-    }
-    public List<Orari> gjejOraretPerId(String columnName, int id){
-        return orariRepository.gjejOraretPerId(id);
-    }
-    public List<Orari> gjejOraretMidis(LocalDate dataStart, LocalDate dataEnd){
-        return orariRepository.gjejOraretMidis(dataStart,dataEnd);
     }
     public List<Orari> gjejOraretPerDate(LocalDate data){
         return orariRepository.gjejOraretPerDate(data);

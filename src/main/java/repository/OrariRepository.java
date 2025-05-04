@@ -106,26 +106,6 @@ public class OrariRepository extends BaseRepository<Orari, CreateOrariDto, Updat
         return oraret;
     }
 
-    // Gjetja e orareve për një periudhë prej 7 ditësh (javë)
-    public List<Orari> gjejOraretMidis(LocalDate dataStart, LocalDate dataEnd) {
-        String query = "SELECT * FROM Orari WHERE Data_e_Sesionit BETWEEN ? AND ?";
-        List<Orari> oraret = new ArrayList<>();
-
-        try (PreparedStatement pstm = this.connection.prepareStatement(query)) {
-            pstm.setObject(1, dataStart);
-            pstm.setObject(2, dataEnd);
-            ResultSet res = pstm.executeQuery();
-
-            while (res.next()) {
-                Orari orar = fromResultSet(res);
-                oraret.add(orar);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException("Gabim gjatë kërkimit të orareve për periudhën: " + dataStart + " deri " + dataEnd, e);
-        }
-
-        return oraret;
-    }
 
     public List<Orari> gjejOraretPerId(int id) {
         String query = "SELECT * FROM Orari WHERE ID_Kandidat = ?";

@@ -4,7 +4,7 @@ public class CreateKategoritePatentesDto {
     private String kategoria;
     private String pershkrimi;
 
-    public CreateKategoritePatentesDto(String kategoria) {
+    public CreateKategoritePatentesDto(String kategoria, String pershkrimi) {
         this.kategoria = kategoria;
         this.pershkrimi = pershkrimi;
     }

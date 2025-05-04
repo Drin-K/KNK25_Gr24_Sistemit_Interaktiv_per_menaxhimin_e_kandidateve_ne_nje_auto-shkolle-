@@ -15,6 +15,7 @@ public class SceneLocator {
     public static final String PROFILE_PAGE= "/app/candidateFXML/candidate_profile.fxml";
     private static String currentRightPage = HOME_PAGE;
 
+
     // Stafi Paths
     public static final String INSTRUCTOR_FRONT_PAGE = "/app/stafiFXML/FrontPage_instructor.fxml";
     public static final String INSTRUCTOR_FEEDBACK = "/app/stafiFXML/feedbackInstructor.fxml";

@@ -16,7 +16,7 @@
             <Button layoutX="1382.4" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="58.0" AnchorPane.leftAnchor="1382.0" AnchorPane.rightAnchor="126.0" />
             <ImageView fitHeight="51.0" fitWidth="200.0" layoutX="32.0" layoutY="15.0">
                <image>
-                  <Image url="@../../../../../../../Desktop/image-with-removed-background.png" />
+                  <Image url="@../../images/car.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="41.0" fitWidth="92.0" layoutX="1206.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
@@ -26,7 +26,7 @@
             </ImageView>
             <ImageView fitHeight="26.0" fitWidth="41.0" layoutX="1391.0" layoutY="14.0">
                <image>
-                  <Image url="@../../../../../../../Downloads/language-solid.png" />
+                  <Image url="@../../images/language.icon.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="146.0" fitWidth="181.0" layoutX="42.0" layoutY="14.0">
@@ -51,7 +51,7 @@
             <Button alignment="TOP_LEFT" layoutX="5.0" layoutY="94.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="94.0" style="-fx-font-weight: bold;" text="Home" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="226.0" layoutY="133.0" prefHeight="670.0" prefWidth="1313.0" AnchorPane.bottomAnchor="-2.6000000000000227" AnchorPane.leftAnchor="226.0" AnchorPane.rightAnchor="2.800000000000182" AnchorPane.topAnchor="133.0">
+      <AnchorPane fx:id="rightPage" layoutX="226.0" layoutY="133.0" prefHeight="670.0" prefWidth="1313.0" AnchorPane.bottomAnchor="-2.6000000000000227" AnchorPane.leftAnchor="226.0" AnchorPane.rightAnchor="2.800000000000182" AnchorPane.topAnchor="133.0">
          <children>
             <Text layoutX="45.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 30;" text="Welcome, Instructor!" wrappingWidth="304.992919921875" />
             <Text layoutX="45.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="Your dashboard is designed to streamline every aspect of driver training. Here, you can: " />
@@ -65,13 +65,13 @@
             <Text layoutX="45.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: arial; -fx-font-size: 18;" text="Welcome to the Autoshkolla Tigri platform — a smart, all-in-one solution designed specifically for modern driving schools. Whether you're managing lessons, tracking candidate progress, or organizing resources, our platform helps you do it all quickly and efficiently." wrappingWidth="705.3750000000001" />
             <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="58.0" layoutY="581.0">
                <image>
-                  <Image url="@../../../../../../../Downloads/location-map-pins-png-3.png" />
+                  <Image url="@../../images/location.pin.png" />
                </image>
             </ImageView>
             <Text layoutX="114.0" layoutY="608.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="Shemsi Ahmeti, Mitrovicë 40000" />
             <ImageView fitHeight="40.0" fitWidth="41.0" layoutX="1039.0" layoutY="579.0">
                <image>
-                  <Image url="@../../../../../../../Downloads/phone-icon-923.png" />
+                  <Image url="@../../images/phone-icon.png" />
                </image>
             </ImageView>
             <Text layoutX="1094.0" layoutY="607.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="+383 44 595 708" />

@@ -1,6 +1,7 @@
 package utils;
 
 public class SceneLocator {
+    //Kandidati
     public static final String LOGIN_PAGE="/app/login_in.fxml";
     public static final String SIGNUP_PAGE="/app/sign_up.fxml";
     public static final String FRONT_PAGE= "/app/candidateFXML/FrontPage.Konsumator.fxml";
@@ -14,12 +15,21 @@ public class SceneLocator {
     public static final String PROFILE_PAGE= "/app/candidateFXML/candidate_profile.fxml";
     private static String currentRightPage = HOME_PAGE;
 
+    // Stafi Paths
+    public static final String INSTRUCTOR_FRONT_PAGE = "/app/stafiFXML/FrontPage_instructor.fxml";
+    public static final String INSTRUCTOR_FEEDBACK = "/app/stafiFXML/feedbackInstructor.fxml";
+    public static final String INSTRUCTOR_SCHEDULER = "/app/stafiFXML/instructorScheduler.fxml";
+    public static final String MANAGE_TESTS = "/app/stafiFXML/testManagerInstructor.fxml";
+    public static final String MANAGE_VEHICLES = "/app/stafiFXML/manageVehicles.fxml";
+    public static final String REPORTS = "/app/stafiFXML/raports.fxml";
+    public static final String INSTRUCTOR_PROFILE = "/app/stafiFXML/instructorProfile.fxml";
     //PER ADMIN!
     public static final String FRONT_PAGE_ADMIN="/app/adminFXML/FrontPage.Admin.fxml";
     public static final String LICENSES_PAGE="/app/adminFXML/admin_licenses.fxml";
     public static final String STAF_PAGE="/app/adminFXML/admin_manage_staf.fxml";
     public static final String CANDIDATES_PAGE="/app/adminFXML/admin_manage_candidates.fxml";
     public static final String PAYMENTS_MANAGE_PAGE="/app/adminFXML/admin_payments.fxml";
+    public static final String ADMIN_HOME_PAGE="/app/adminFXML/admin_home.fxml";
 
     public static void setCurrentRightPage(String path) {
         currentRightPage = path;
@@ -28,4 +38,5 @@ public class SceneLocator {
     public static String getCurrentRightPage() {
         return currentRightPage;
     }
+
 }

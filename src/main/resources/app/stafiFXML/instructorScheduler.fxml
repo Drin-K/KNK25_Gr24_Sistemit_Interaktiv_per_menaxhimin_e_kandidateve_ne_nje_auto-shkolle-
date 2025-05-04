@@ -22,8 +22,8 @@
          <children>
             <MenuButton layoutX="65.0" layoutY="30.0" mnemonicParsing="false" style="-fx-background-color: #137156;" text="Choose lesson type" textFill="#f4f4f4">
               <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
+                <MenuItem mnemonicParsing="false" text="Teori" />
+                <MenuItem mnemonicParsing="false" text="Praktik" />
               </items>
             </MenuButton>
             <TextField focusTraversable="false" layoutX="63.0" layoutY="88.0" prefHeight="26.0" prefWidth="322.0" promptText="Enter Candidate name" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;">
@@ -38,8 +38,8 @@
             </TextField>
             <MenuButton layoutX="63.0" layoutY="278.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="130.0" style="-fx-background-color: #137156;" text="Choose Category" textFill="WHITE">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                  <MenuItem mnemonicParsing="false" text="Action 2" />
+                  <MenuItem mnemonicParsing="false" text="Praktik" />
+                  <MenuItem mnemonicParsing="false" text="Teori" />
                </items>
             </MenuButton>
             <TextField focusTraversable="false" layoutX="63.0" layoutY="213.0" prefHeight="30.0" prefWidth="322.0" promptText=" Length of lesson (Start time - End time)" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;">

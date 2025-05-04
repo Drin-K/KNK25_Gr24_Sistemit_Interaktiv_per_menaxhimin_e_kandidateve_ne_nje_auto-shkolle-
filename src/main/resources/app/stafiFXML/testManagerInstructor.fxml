@@ -14,7 +14,7 @@
          </children>
       </AnchorPane>
       <Text layoutX="493.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: arial; -fx-font-size: 15;" text=" Choose driving/theory exam, add the date, choose the candidate and write the result" wrappingWidth="345.215576171875" />
-      <SplitMenuButton layoutX="240.0" layoutY="127.0" mnemonicParsing="false" text="Zgjedh llojin e testit">
+      <SplitMenuButton layoutX="240.0" layoutY="127.0" mnemonicParsing="false" text="Choose exam type">
         <items>
           <MenuItem mnemonicParsing="false" text="Action 1" />
           <MenuItem mnemonicParsing="false" text="Action 2" />

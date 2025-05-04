@@ -24,12 +24,12 @@ public class Pagesat {
     }
 
     public static Pagesat getInstance(ResultSet resultSet) throws SQLException {
-int id=resultSet.getInt("id_pagesat");
-int idKandidat=resultSet.getInt("id_kandidat");
-double shuma=resultSet.getDouble("shuma");
-LocalDate dataPageses=resultSet.getObject("data_e_pageses",LocalDate.class);
-String metodaPageses=resultSet.getString("metoda_e_pageses");
-String statusiPageses=resultSet.getString("statusi_i_pageses");
+int id=resultSet.getInt("id");
+int idKandidat=resultSet.getInt("ID_Kandidat");
+double shuma=resultSet.getDouble("Shuma");
+LocalDate dataPageses=resultSet.getObject("Data_e_Pageses",LocalDate.class);
+String metodaPageses=resultSet.getString("Metoda_e_Pageses");
+String statusiPageses=resultSet.getString("Statusi_i_Pageses");
 return new Pagesat(id,idKandidat,shuma,dataPageses,metodaPageses,statusiPageses);
     }
 

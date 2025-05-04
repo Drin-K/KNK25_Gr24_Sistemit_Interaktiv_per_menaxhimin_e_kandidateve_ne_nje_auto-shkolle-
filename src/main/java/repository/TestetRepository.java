@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class TestetRepository extends BaseRepository<Testet, CreateTestetDto, UpdateTestetDto> {
 
     public TestetRepository() {
-        super("testet");
+        super("Testet");
     }
 
     @Override
@@ -25,7 +25,7 @@ public class TestetRepository extends BaseRepository<Testet, CreateTestetDto, Up
     public Testet create(CreateTestetDto testetDto) {
         String query = """
                 INSERT INTO 
-                TESTET (ID_Kandidat, ID_Staf, Lloji_i_Testit, Data_e_Testit, Rezultati, Piket)
+                Testet (ID_Kandidat, ID_Staf, Lloji_i_Testit, Data_e_testit, Rezultati, Piket)
                 VALUES (?, ?, ?, ?, ?, ?)
                 """;
         try {
@@ -34,9 +34,9 @@ public class TestetRepository extends BaseRepository<Testet, CreateTestetDto, Up
             );
             pstm.setInt(1, testetDto.getIdKandidat());
             pstm.setInt(2, testetDto.getIdStaf());
-            pstm.setString(3, testetDto.getLlojiTestit().name()); // Enumi kthehet në String
+            pstm.setString(3, testetDto.getLlojiTestit());
             pstm.setObject(4, testetDto.getDataTestit());
-            pstm.setString(5, testetDto.getRezultati().name());  // Edhe rezultati kthehet në String
+            pstm.setString(5, testetDto.getRezultati());
             pstm.setInt(6, testetDto.getPiket());
 
             pstm.execute();
@@ -53,31 +53,31 @@ public class TestetRepository extends BaseRepository<Testet, CreateTestetDto, Up
 
     @Override
     public Testet update(UpdateTestetDto testetDto) {
-        StringBuilder query = new StringBuilder("UPDATE TESTET SET ");
+        StringBuilder query = new StringBuilder("UPDATE Testet SET ");
                 ArrayList<Object> params = new ArrayList<>();
 
                 if (testetDto.getLlojiTestit() != null) {
-                    query.append("LLOJI_I_TESTIT = ?, ");
+                    query.append("Lloji_i_Testit = ?, ");
                     params.add(testetDto.getLlojiTestit());
                 }
                 if (testetDto.getDataTestit() != null) {
-                    query.append("DATA_E_TESTIT = ?, ");
+                    query.append("Data_e_testit = ?, ");
                     params.add(testetDto.getDataTestit());
                 }
 
                 if (testetDto.getRezultati() != null) {
-                    query.append("REZULTATI = ?, ");
+                    query.append("Rezultati = ?, ");
                     params.add(testetDto.getRezultati());
                 }
                 if (testetDto.getPiket() != 0) {
-                    query.append("PIKET = ?, ");
+                    query.append("Piket = ?, ");
                     params.add(testetDto.getPiket());
                 }
                 if (params.isEmpty()) {
                     return getById(testetDto.getIdTest());
                 }
                 query.setLength(query.length() - 2);//me largu "? "->se paraqet gabim ne sintakse
-                query.append(" WHERE ID_TEST = ?");
+                query.append(" WHERE id = ?");
                 params.add(testetDto.getIdTest());
                 try {
                     PreparedStatement pstm = this.connection.prepareStatement(query.toString());

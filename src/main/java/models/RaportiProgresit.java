@@ -58,14 +58,14 @@ public class RaportiProgresit {
     }
 
     public static RaportiProgresit getInstance(ResultSet resultSet)throws SQLException {
-        int id = resultSet.getInt("id_raport");
-        int idKandidat = resultSet.getInt("id_kandidat");
-        int idStaf = resultSet.getInt("id_staf");
-        LocalDate dataRaportit = resultSet.getObject("data_raportit", LocalDate.class);
-        int piketTeorike = resultSet.getInt("piket_teorike");
-        int piketPraktike = resultSet.getInt("piket_praktike");
-        String komentet = resultSet.getString("komentet");
-        String performancaGjenerale = resultSet.getString("performanca_gjenerale");
+        int id = resultSet.getInt("id");
+        int idKandidat = resultSet.getInt("ID_Kandidat");
+        int idStaf = resultSet.getInt("ID_Staf");
+        LocalDate dataRaportit = resultSet.getObject("Data_Raportit", LocalDate.class);
+        int piketTeorike = resultSet.getInt("Piket_Teorike");
+        int piketPraktike = resultSet.getInt("Piket_Praktike");
+        String komentet = resultSet.getString("Komentet");
+        String performancaGjenerale = resultSet.getString("Performanca_Gjenerale");
         return new RaportiProgresit(id,idKandidat,idStaf,dataRaportit,piketTeorike,piketPraktike,komentet,performancaGjenerale);
     }
 }

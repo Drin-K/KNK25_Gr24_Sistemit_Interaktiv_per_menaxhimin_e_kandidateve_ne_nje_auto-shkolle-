@@ -60,10 +60,10 @@ public class Dokumentet {
     }
 
     public static Dokumentet getInstance(ResultSet result) throws SQLException {
-        int id = result.getInt("ID_Dokument");
+        int id = result.getInt("id");
         int idKandidat = result.getInt("ID_Kandidat");
-        String llojiDokumentit = result.getString("llojiDokumentit");
-        String emriSkedarit = result.getString("Emri_Skedarit");
+        String llojiDokumentit = result.getString("Lloji_Dokumentit");
+        String emriSkedarit = result.getString("Emri_Skedari");
         LocalDate dataNgarkimit = result.getObject("Data_Ngarkimit", LocalDate.class);
 
         return new Dokumentet(id, idKandidat, llojiDokumentit, emriSkedarit, dataNgarkimit);

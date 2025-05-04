@@ -20,7 +20,7 @@ public class PatentaRepository extends BaseRepository<Patenta, CreatePatentaDto,
     public Patenta create(CreatePatentaDto patentaDto){
         String query= """
                 INSERT INTO
-                PATENTA(ID_KANDIDAT, ID_KATEGORI,DATA_LESHIMIT, STATUSI)
+                Patenta(ID_Kandidat, ID_Kategori, Data_Leshimit, Statusi)
                 VALUES(?,?,?,?);
                 """;
         try{
@@ -42,7 +42,7 @@ public class PatentaRepository extends BaseRepository<Patenta, CreatePatentaDto,
 
     }
     public Patenta update(UpdatePatentaDto patentaDto){
-        StringBuilder query = new StringBuilder("UPDATE PATENTA SET ");
+        StringBuilder query = new StringBuilder("Update Patenta SET ");
         ArrayList<Object> params = new ArrayList<>();
 // private int id;
 //    private int idKandidat;//// ka mundesi duhet me hjek
@@ -50,19 +50,19 @@ public class PatentaRepository extends BaseRepository<Patenta, CreatePatentaDto,
 //    private LocalDate dataLeshimit;
 //    private String statusi;
         if (patentaDto.getIdKandidat()!=0){
-            query.append("ID_KANDIDAT=?, ");
+            query.append("ID_Kandidat=?, ");
             params.add(patentaDto.getIdKandidat());
         }
         if (patentaDto.getIdKategori()!=0){
-            query.append("ID_KATEGORI=?, ");
+            query.append("ID_Kategori=?, ");
             params.add(patentaDto.getIdKategori());
         }
         if (patentaDto.getDataLeshimit()!=null){
-            query.append("DATA_LESHIMIT=?, ");
+            query.append("Data_Leshimit=?, ");
             params.add(patentaDto.getDataLeshimit());
         }
         if (patentaDto.getStatusi()!=null){
-            query.append("statusi=?, ");
+            query.append("Statusi=?, ");
             params.add(patentaDto.getStatusi());
         }
         if (params.isEmpty()) {

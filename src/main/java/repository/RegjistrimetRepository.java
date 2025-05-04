@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class RegjistrimetRepository extends BaseRepository<Regjistrimet, CreateRegjistrimetDto, UpdateRegjistrimetDto> {
 
     public RegjistrimetRepository() {
-        super("regjistrimet");
+        super("Regjistrimet");
     }
 
     public Regjistrimet fromResultSet(ResultSet result) throws SQLException {
@@ -28,7 +28,7 @@ public class RegjistrimetRepository extends BaseRepository<Regjistrimet, CreateR
     public Regjistrimet create(CreateRegjistrimetDto regjistrimetDto) {
         String query = """
                 INSERT INTO 
-                REGJISTRIMET (id_kandidat, id_kateogri , statusi)
+                Regjistrimet(ID_Kandidat, ID_Kategori ,Statusi)
                 VALUES (?, ?, ?);
                 """;
         try {
@@ -52,18 +52,18 @@ public class RegjistrimetRepository extends BaseRepository<Regjistrimet, CreateR
     }
 
     public Regjistrimet update(UpdateRegjistrimetDto regjistrtimetDto) {
-        StringBuilder query = new StringBuilder("UPDATE REGJISTRIMET SET ");
+        StringBuilder query = new StringBuilder("UPDATE Regjistrimet SET ");
         ArrayList<Object> params = new ArrayList<>();
 
         if (regjistrtimetDto.getStatusi() != null) {
-            query.append("STATUSI = ?, ");
+            query.append("Statusi = ?, ");
             params.add(regjistrtimetDto.getStatusi());
         }
         if (params.isEmpty()) {
             return getById(regjistrtimetDto.getIdRegjistrim());
         }
         query.setLength(query.length() - 2);//me largu "? "->se paraqet gabim ne sintakse
-        query.append(" WHERE ID_REGJISTRIM = ?");
+        query.append(" WHERE id = ?");
         params.add(regjistrtimetDto.getIdRegjistrim());
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query.toString());

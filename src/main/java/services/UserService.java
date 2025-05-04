@@ -16,11 +16,11 @@ public class UserService {
 //kemi vendos qe me i identifiku userat ne baze te emailit si ne sems
     private static String getRoleFromEmail(String email) {
         if (email.matches(".*@stafi\\.com$")) {
-            return "staf";
+            return "Staf";
         } else if (email.matches(".*@kandidat\\.com$")) {
-            return "kandidat";
+            return "Kandidat";
         } else {
-            return "unknown";
+            return "Unknown";
         }
     }
     public static SignUpStatus signUp(SignUpDto userData) throws Exception {
@@ -35,7 +35,7 @@ public class UserService {
 
         // Detektimi i rolit nga emaili
         String detectedRole = getRoleFromEmail(userData.getEmail());
-        if (detectedRole.equals("unknown")) {
+        if (detectedRole.equals("Unknown")) {
             return SignUpStatus.INVALID_ROLE;//sa ma bukur me enume :)
         }
 

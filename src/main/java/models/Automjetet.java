@@ -39,11 +39,11 @@ public class Automjetet {
     }
 
     public static Automjetet getInstance(ResultSet result) throws SQLException{
-        int idAutomjet = result.getInt("id_automjet");
-        String llojiAutomjetit = result.getString("lloji_i_automjetit");
-        String statusi = result.getString("statusi");
-        int idStaf = result.getInt("id_staf");
-        int idKategori = result.getInt("id_kategori");
+        int idAutomjet = result.getInt("id");
+        String llojiAutomjetit = result.getString("Lloji_i_Automjetit");
+        String statusi = result.getString("Statusi");
+        int idStaf = result.getInt("ID_Staf");
+        int idKategori = result.getInt("ID_Kategori");
         return new Automjetet(idAutomjet,llojiAutomjetit,statusi,idStaf,idKategori);
     }
 }

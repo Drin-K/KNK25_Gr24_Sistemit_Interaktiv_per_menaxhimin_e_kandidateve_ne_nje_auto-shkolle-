@@ -22,12 +22,12 @@ public class FeedBack {
         this.koment = koment;
     }
     public static FeedBack getInstance(ResultSet resultSet)throws SQLException{
-        int id=resultSet.getInt("id_feedback");
-        int idKandidat=resultSet.getInt("id_kandidat");
-        int idStaf=resultSet.getInt("id_staf");
-        LocalDate dataFeedback=resultSet.getObject("data_feedback",LocalDate.class);
-        int vlersimi=resultSet.getInt("vleresimi");
-        String koment=resultSet.getString("koment");
+        int id=resultSet.getInt("id");
+        int idKandidat=resultSet.getInt("ID_Kandidat");
+        int idStaf=resultSet.getInt("ID_Staf");
+        LocalDate dataFeedback=resultSet.getObject("Data_Feedback",LocalDate.class);
+        int vlersimi=resultSet.getInt("Vleresimi");
+        String koment=resultSet.getString("Koment");
         return new FeedBack(id,idKandidat,idStaf,dataFeedback,vlersimi,koment);
     }
 

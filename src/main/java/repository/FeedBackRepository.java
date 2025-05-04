@@ -18,7 +18,7 @@ public class FeedBackRepository extends BaseRepository<FeedBack, CreateFeedBackD
     public FeedBack create(CreateFeedBackDto createFeedBackDto){
         String query= """
                 INSERT INTO
-                FEEDBACK(ID_KANDIDAT, ID_STAF, DATA_FEEDBACK, VLERSIMI, KOMENT)
+                Feedback(ID_Kandidat, ID_Staf, Data_Feedback, Vleresimi, Koment)
                 VALUES(?,?,?,?,?);
                 """;
         try {
@@ -40,21 +40,21 @@ public class FeedBackRepository extends BaseRepository<FeedBack, CreateFeedBackD
         return null;
         }
         public FeedBack update(UpdateFeedBackDto updateFeedBackDto){
-        StringBuilder query=new StringBuilder("UPDATE FEEDBACK SET");
+        StringBuilder query=new StringBuilder("UPDATE Feedback SET");
             ArrayList<Object>params=new ArrayList<>();
             if (updateFeedBackDto.getVlersimi() !=0){
-                query.append("vleresimi=?, ");
+                query.append("Vleresimi=?, ");
                 params.add(updateFeedBackDto.getVlersimi());
             }
             if (updateFeedBackDto.getKoment()!=null){
-                query.append("koment=?, ");
+                query.append("Koment=?, ");
                 params.add(updateFeedBackDto.getKoment());
             }
             if (params.isEmpty()) {
                 return getById(updateFeedBackDto.getId());
             }
             query.setLength(query.length() - 2);//me largu ", "->se paraqet gabim ne sintakse
-            query.append(" WHERE id_feedback = ?");
+            query.append(" WHERE id = ?");
             params.add(updateFeedBackDto.getId());
             try {
                 PreparedStatement pstm = this.connection.prepareStatement(query.toString());

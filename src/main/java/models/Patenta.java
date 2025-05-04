@@ -38,11 +38,11 @@ public class Patenta {
         return statusi;
     }
     public static Patenta getInstance(ResultSet result)throws SQLException {
-        int id=result.getInt("id_patente");
-        int idKandidat=result.getInt("id_kandidat");
-        int idKategori=result.getInt("id_kategori");
-        LocalDate dataLeshimit =result.getObject("data_leshimit", LocalDate.class);
-        String  statusi=result.getString(" statusi");
+        int id=result.getInt("id");
+        int idKandidat=result.getInt("ID_Kandidat");
+        int idKategori=result.getInt("ID_Kategori");
+        LocalDate dataLeshimit =result.getObject("Data_Leshimit", LocalDate.class);
+        String  statusi=result.getString("Statusi");
 
         return new Patenta(id,idKandidat,idKategori,dataLeshimit,statusi);
     }

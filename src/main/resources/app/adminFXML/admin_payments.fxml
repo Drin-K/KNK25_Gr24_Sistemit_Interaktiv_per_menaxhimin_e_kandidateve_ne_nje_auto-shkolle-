@@ -1,11 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane prefHeight="620.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="699.0" prefHeight="699.0" prefWidth="1314.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.AdminHomeController">
     <children>
-        <Text layoutX="98.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Payments" />
+        <Label layoutX="20.0" layoutY="20.0" prefHeight="35.0" prefWidth="361.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Menaxhimi i pagesave" />
+
+        <HBox layoutX="20.0" layoutY="75.19999694824219" spacing="20" />
+
+        <PieChart fx:id="statistikatKandidateveChart" layoutX="20.0" layoutY="159.60000610351562" prefHeight="250" prefWidth="400" />
+        <VBox layoutX="170.0" layoutY="385.0" />
+        <VBox layoutX="614.0" layoutY="91.0" prefHeight="270.0" prefWidth="250.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
+            <Label text="4. Kërkimi dhe filtrimiFiltër për:Emër/Mbiemër i kandidatitData e pagesës (range)Metoda e pagesësStatusi i pagesës" textFill="WHITE" />
+        </VBox>
+        <VBox layoutX="82.0" layoutY="63.0" prefHeight="147.0" prefWidth="350.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
+            <Label prefHeight="79.0" prefWidth="330.0" text="1. Pamja përmbledhëse (Dashboard)Grafike për:Shuma totale e mbledhur (në ditë, muaj, vit)Numri total i pagesavePagesat me status “Paguar”, “Pjesërisht”, dhe “Mbetur”Lista e fundit e pagesave të kryer" textFill="WHITE" />
+        </VBox>
+        <VBox layoutX="609.0" layoutY="428.0" prefHeight="188.0" prefWidth="250.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
+            <children>
+                <Label text="5. Raporte për pagesatEksport në Excel/PDF për periudha specifikeRaporte për:Kandidatë me pagesa të mbeturaKandidatë që kanë paguar pjesërishtKandidatë që kanë përfunduar pagesat" textFill="WHITE" />
+            </children>
+        </VBox>
+        <VBox layoutX="44.0" layoutY="219.0" prefHeight="442.0" prefWidth="426.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
+            <children>
+                <Label prefHeight="178.0" prefWidth="393.0" text="2. Lista e të gjitha pagesaveTabela me kolonat:ID_PagesatEmri &amp; Mbiemri i KandidatitShumaData_e_PagesesMetoda_e_PagesesStatusi_i_PagesesOpsione për secilën rresht:🔍 Shiko Detajet✏️ Ndrysho Statusin e Pagesës🗑️ Fshij Pagesën (nëse gabim)" textFill="WHITE" />
+            </children>
+        </VBox>
     </children>
 </AnchorPane>

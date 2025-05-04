@@ -11,71 +11,74 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane prefHeight="670.0" prefWidth="1313.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.AdminHomeController">
+<AnchorPane maxHeight="699.0" prefHeight="699.0" prefWidth="1314.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.AdminHomeController">
     <children>
         <Label layoutX="20.0" layoutY="20.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Paneli Kryesor" />
 
         <HBox layoutX="20.0" layoutY="75.19999694824219" spacing="20" />
 
         <PieChart fx:id="statistikatKandidateveChart" layoutX="20.0" layoutY="159.60000610351562" prefHeight="250" prefWidth="400" />
-        <VBox layoutX="122.0" layoutY="506.0">
+        <VBox layoutX="170.0" layoutY="385.0">
             <children>
                 <Label prefHeight="0.0" prefWidth="154.0" text="Recent Activity Table" />
 
-                <TableView fx:id="tabelaAktivitetit" prefHeight="321.0" prefWidth="531.0">
+                <TableView fx:id="tabelaAktivitetit" prefHeight="100.0" prefWidth="553.0">
                     <columns>
-                        <TableColumn fx:id="dataCol" prefWidth="153.32885360717773" text="Data" />
-                        <TableColumn fx:id="llojiCol" prefWidth="185.40777587890625" text="Lloji" />
-                        <TableColumn fx:id="pershkrimiCol" prefWidth="190.79997558593755" text="Përshkrimi" />
+                        <TableColumn fx:id="dataCol" prefWidth="167.6505584716797" text="Data" />
+                        <TableColumn fx:id="llojiCol" prefWidth="189.5494384765625" text="Lloji" />
+                        <TableColumn fx:id="pershkrimiCol" prefWidth="195.2152099609375" text="Përshkrimi" />
                     </columns>
                 </TableView>
             </children>
         </VBox>
-        <VBox layoutX="878.0" layoutY="104.0" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #fff9c4; -fx-padding: 10;">
-            <Label text="Pagesa të Papaguara" />
+        <VBox layoutX="878.0" layoutY="58.0" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
+            <Label text="Pagesa të Papaguara" textFill="WHITE" />
         </VBox>
-        <VBox layoutX="487.0" layoutY="108.0" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #dcedc8; -fx-padding: 10;">
-            <Label text="Patenta të lëshuara" />
+        <VBox layoutX="487.0" layoutY="62.0" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
+            <Label text="Patenta të lëshuara" textFill="WHITE" />
         </VBox>
-        <VBox layoutX="94.0" layoutY="109.0" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #e0f7fa; -fx-padding: 10;">
-            <Label text="Kandidatët Total" />
+        <VBox layoutX="94.0" layoutY="63.0" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
+            <Label text="Kandidatët Total" textFill="WHITE" />
         </VBox>
-        <VBox layoutX="882.0" layoutY="258.0" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #e1f7fb; -fx-padding: 10;">
+        <VBox layoutX="882.0" layoutY="180.0" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
             <children>
-                <Label text="Stafi aktiv" />
+                <Label text="Stafi aktiv" textFill="WHITE" />
             </children>
         </VBox>
-        <VBox layoutX="488.0" layoutY="252.0" prefHeight="188.0" prefWidth="250.0" style="-fx-background-color: #e1f7fb; -fx-padding: 10;">
+        <VBox layoutX="488.0" layoutY="174.0" prefHeight="188.0" prefWidth="250.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
             <children>
-                <Label text="Sesionet sot" />
+                <Label text="Sesionet sot" textFill="WHITE" />
             </children>
         </VBox>
-        <VBox layoutX="96.0" layoutY="252.0" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #e1f7fb; -fx-padding: 10;">
+        <VBox layoutX="96.0" layoutY="174.0" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
             <children>
-                <Label text="Ne proces/perfunduar" />
+                <Label text="Ne proces/perfunduar" textFill="WHITE" />
                 <PieChart />
             </children>
         </VBox>
-        <VBox layoutX="887.0" layoutY="431.0" prefHeight="153.0" prefWidth="272.0" style="-fx-background-color: #fff9c4; -fx-padding: 10;">
+        <VBox layoutX="769.0" layoutY="306.0" prefHeight="153.0" prefWidth="272.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
             <children>
-                <Label text="Numri i regjistrimeve/Pagesa te kryesra" />
-                <BarChart>
-                    <xAxis>
-                        <CategoryAxis side="BOTTOM" />
-                    </xAxis>
-                    <yAxis>
-                        <NumberAxis side="LEFT" />
-                    </yAxis>
-                </BarChart>
-                <BarChart>
-                    <xAxis>
-                        <CategoryAxis side="BOTTOM" />
-                    </xAxis>
-                    <yAxis>
-                        <NumberAxis side="LEFT" />
-                    </yAxis>
-                </BarChart>
+                <Label text="Numri i regjistrimeve/Pagesa te kryesra" textFill="WHITE" />
+            <HBox>
+               <children>
+                      <BarChart>
+                          <xAxis>
+                              <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                              <NumberAxis side="LEFT" />
+                          </yAxis>
+                      </BarChart>
+                      <BarChart>
+                          <xAxis>
+                              <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                              <NumberAxis side="LEFT" />
+                          </yAxis>
+                      </BarChart>
+               </children>
+            </HBox>
             </children>
         </VBox>
     </children>

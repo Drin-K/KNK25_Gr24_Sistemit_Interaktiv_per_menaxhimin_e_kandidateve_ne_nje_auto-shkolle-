@@ -12,7 +12,14 @@ public class SceneLocator {
     public static final String PROGRESS_PAGE= "/app/candidateFXML/candidate_progress.fxml";
     public static final String FEEDBACK_PAGE= "/app/candidateFXML/candidate_feedback.fxml";
     public static final String PROFILE_PAGE= "/app/candidateFXML/candidate_profile.fxml";
+    private static String currentRightPage = HOME_PAGE;
+    public static void setCurrentRightPage(String path) {
+        currentRightPage = path;
+    }
 
+    public static String getCurrentRightPage() {
+        return currentRightPage;
+    }
 
 
 

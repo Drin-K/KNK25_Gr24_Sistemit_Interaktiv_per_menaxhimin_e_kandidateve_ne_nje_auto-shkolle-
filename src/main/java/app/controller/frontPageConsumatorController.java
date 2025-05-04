@@ -56,6 +56,6 @@ public class frontPageConsumatorController {
     private void languageClick()throws Exception{
         languageManager.getInstance().toggleLanguage();
         SceneManager.reload();
-        SceneManager.reload(SceneLocator.getCurrentRightPage(), rightPage);
+        SceneManager.load(SceneLocator.getCurrentRightPage(), rightPage);
     }
 }

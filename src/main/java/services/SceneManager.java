@@ -12,15 +12,15 @@ public class SceneManager {
     private LanguageManager languageManager;
     private String currentPath;
 
-    private SceneManager(){
+    private SceneManager(String currentpath){
         this.languageManager = LanguageManager.getInstance();
-        this.currentPath = SceneLocator.FRONT_PAGE;
+        this.currentPath = currentpath;
         this.scene = this.initScene();
     }
 
-    public static SceneManager getInstance(){
+    public static SceneManager getInstance(String currentPath){
         if(sceneManager == null)
-            sceneManager = new SceneManager();
+            sceneManager = new SceneManager(currentPath);
         return sceneManager;
     }
 

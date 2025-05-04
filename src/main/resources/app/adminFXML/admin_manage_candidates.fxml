@@ -1,11 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane prefHeight="620.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="699.0" prefHeight="699.0" prefWidth="1314.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.AdminHomeController">
     <children>
-        <Text layoutX="98.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Candidates Page" />
+        <Label layoutX="20.0" layoutY="20.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Menaxhimi i kandidateve" />
+
+        <HBox layoutX="20.0" layoutY="75.19999694824219" spacing="20" />
+
+        <PieChart fx:id="statistikatKandidateveChart" layoutX="20.0" layoutY="159.60000610351562" prefHeight="250" prefWidth="400" />
+        <VBox layoutX="170.0" layoutY="385.0" />
+        <VBox layoutX="955.0" layoutY="196.0" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
+            <Label text="Verifikimi dhe miratimi i dokumenteve:" textFill="WHITE" />
+        </VBox>
+        <VBox layoutX="614.0" layoutY="91.0" prefHeight="270.0" prefWidth="250.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
+            <Label text="Lista e dokumenteve të ngarkuara: " textFill="WHITE" />
+        </VBox>
+        <VBox layoutX="82.0" layoutY="63.0" prefHeight="147.0" prefWidth="350.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
+            <Label prefHeight="79.0" prefWidth="330.0" text="Statusi i procesit: Admini mund të ndryshojë statusin e kandidatëve nga &quot;Në proces&quot; në &quot;Përfunduar&quot; ose anasjelltas." textFill="WHITE" />
+        </VBox>
+        <VBox layoutX="960.0" layoutY="363.0" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
+            <children>
+                <Label text="8. Menaxhimi i Pagesave:Shikimi i pagesave të kandidatëve: Admini mund të shohë të gjitha informacionet e lidhura me pagesat për kandidatët, duke përfshirë shumën, datën dhe metodën e pagesës.Statusi i pagesës: Admini mund të ndryshojë statusin e pagesave të kandidatëve (paguar, pjesërisht, mbetur)." textFill="WHITE" />
+            </children>
+        </VBox>
+        <VBox layoutX="609.0" layoutY="428.0" prefHeight="188.0" prefWidth="250.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
+            <children>
+                <Label text="Shikimi i rezultateve të testeve:  mundsia per perditsim" textFill="WHITE" />
+            </children>
+        </VBox>
+        <VBox layoutX="44.0" layoutY="219.0" prefHeight="442.0" prefWidth="426.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
+            <children>
+                <Label prefHeight="178.0" prefWidth="393.0" text="Tabele ne te cilen mundet mi pa krejt t dhanat per kandidatet edhe mi fshi mi perditsu mi shtu" textFill="WHITE" />
+            </children>
+        </VBox>
+        <VBox layoutX="950.0" layoutY="505.0" prefHeight="153.0" prefWidth="272.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
+            <children>
+                <Label text="9. Lidhja me Patentën:Statusi i patentës: Admini mund të shohë dhe menaxhojë statusin e patentës për kandidatët.Mundësia për të lëshuar patentën për një kandidat të suksesshëm.Azhurnimi i statusit të patentës: Statusi mund të ndryshohet nga &quot;Në proces&quot; në &quot;E lëshuar&quot;." textFill="WHITE" />
+                <HBox />
+            </children>
+        </VBox>
     </children>
 </AnchorPane>

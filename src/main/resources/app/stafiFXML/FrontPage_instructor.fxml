@@ -11,8 +11,8 @@
    <children>
       <AnchorPane layoutX="-23.0" maxHeight="151.0" prefHeight="135.0" prefWidth="1566.0" style="-fx-background-color: #2D3447;" AnchorPane.bottomAnchor="665.0" AnchorPane.leftAnchor="-23.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="profileBttn" layoutX="1265.0" layoutY="14.0" mnemonicParsing="false" onAction="#profileClick" prefHeight="26.0" prefWidth="78.0" text="%btn.profile" AnchorPane.leftAnchor="1265.0" AnchorPane.rightAnchor="198.20000000000005" />
-            <Button layoutX="1450.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="61.0" text="%btn.logout" AnchorPane.leftAnchor="1450.0" AnchorPane.rightAnchor="29.200000000000045" />
+            <Button fx:id="profileBttn" layoutX="1265.0" layoutY="14.0" mnemonicParsing="false" onAction="#profileClick" prefHeight="26.0" prefWidth="78.0" style="-fx-background-color: #2D3447; -fx-border-width: 0 0 1 0; -fx-border-color: gray;" text="%btn.profile" textFill="WHITE" AnchorPane.leftAnchor="1265.0" AnchorPane.rightAnchor="198.20000000000005" />
+            <Button layoutX="1450.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="61.0" style="-fx-background-color: #2D3447; -fx-border-width: 0 0 1 0; -fx-border-color: gray;" text="%btn.logout" textFill="WHITE" AnchorPane.leftAnchor="1450.0" AnchorPane.rightAnchor="29.200000000000045" />
             <Button fx:id="languageBttn" layoutX="1382.4" layoutY="14.0" mnemonicParsing="false" onAction="#languageClick" prefHeight="26.0" prefWidth="58.0" AnchorPane.leftAnchor="1382.0" AnchorPane.rightAnchor="126.0" />
             <ImageView fitHeight="51.0" fitWidth="200.0" layoutX="32.0" layoutY="15.0">
                <image>
@@ -38,17 +38,17 @@
       </AnchorPane>
       <AnchorPane layoutY="136.0" prefHeight="664.0" prefWidth="226.0" style="-fx-background-color: #2D3447;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
          <children>
-            <Button fx:id="scheduleBttn" alignment="TOP_LEFT" layoutY="187.0" mnemonicParsing="false" onAction="#scheduleClick" prefHeight="29.0" prefWidth="226.0" style="-fx-font-weight: bold;" text="%btn.scheduler" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-            <Button fx:id="raportsBttn" alignment="TOP_LEFT" layoutY="374.0" mnemonicParsing="false" onAction="#raportsClick" prefHeight="30.0" prefWidth="226.0" style="-fx-font-weight: bold;" text="%btn.reports" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-            <Button fx:id="testBttn" alignment="TOP_LEFT" layoutY="247.0" mnemonicParsing="false" onAction="#mngTestClick" prefHeight="30.0" prefWidth="226.0" style="-fx-font-weight: bold;" text="%btn.tests" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.8000000000000114" />
-            <Button fx:id="vehiclesBttn" alignment="TOP_LEFT" layoutY="309.0" mnemonicParsing="false" onAction="#mngVehiclesClick" prefHeight="30.0" prefWidth="226.0" style="-fx-font-weight: bold;" text="%btn.manageVehicles" />
+            <Button fx:id="scheduleBttn" alignment="TOP_LEFT" layoutY="187.0" mnemonicParsing="false" onAction="#scheduleClick" prefHeight="29.0" prefWidth="226.0" style="-fx-font-weight: bold; -fx-background-color: #2D3447; -fx-border-width: 0 0 1 0; -fx-border-color: gray;" text="%btn.scheduler" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <Button fx:id="raportsBttn" alignment="TOP_LEFT" layoutY="374.0" mnemonicParsing="false" onAction="#raportsClick" prefHeight="30.0" prefWidth="226.0" style="-fx-font-weight: bold; -fx-background-color: #2D3447; -fx-border-width: 0 0 1 0; -fx-border-color: gray;" text="%btn.reports" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <Button fx:id="testBttn" alignment="TOP_LEFT" layoutY="247.0" mnemonicParsing="false" onAction="#mngTestClick" prefHeight="30.0" prefWidth="226.0" style="-fx-font-weight: bold; -fx-background-color: #2D3447; -fx-border-width: 0 0 1 0; -fx-border-color: gray;" text="%btn.tests" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.8000000000000114" />
+            <Button fx:id="vehiclesBttn" alignment="TOP_LEFT" layoutY="309.0" mnemonicParsing="false" onAction="#mngVehiclesClick" prefHeight="30.0" prefWidth="226.0" style="-fx-font-weight: bold; -fx-background-color: #2D3447; -fx-border-width: 0 0 1 0; -fx-border-color: gray;" text="%btn.manageVehicles" textFill="WHITE" />
             <Text fill="WHITE" layoutX="59.0" layoutY="52.0" strokeType="OUTSIDE" style="-fx-font-weight: bold; -fx-font-size: 22px;" text="%text.instructorTitle" wrappingWidth="111.73675537109375">
                <font>
                   <Font size="16.0" />
                </font>
             </Text>
-            <Button fx:id="feedbackBttn" alignment="TOP_LEFT" layoutY="439.0" mnemonicParsing="false" onAction="#feedbackClick" prefHeight="30.0" prefWidth="226.0" style="-fx-font-weight: bold;" text="%btn.feedback" />
-            <Button fx:id="homeBttn" alignment="TOP_LEFT" layoutX="5.0" layoutY="94.0" mnemonicParsing="false" onAction="#homeClick" prefHeight="30.0" prefWidth="94.0" style="-fx-font-weight: bold;" text="%btn.home" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" />
+            <Button fx:id="feedbackBttn" alignment="TOP_LEFT" layoutY="439.0" mnemonicParsing="false" onAction="#feedbackClick" prefHeight="30.0" prefWidth="226.0" style="-fx-font-weight: bold; -fx-background-color: #2D3447; -fx-border-width: 0 0 1 0; -fx-border-color: gray;" text="%btn.feedback" textFill="#fffdfd" />
+            <Button fx:id="homeBttn" alignment="TOP_LEFT" layoutX="5.0" layoutY="94.0" mnemonicParsing="false" onAction="#homeClick" prefHeight="30.0" prefWidth="94.0" style="-fx-font-weight: bold; -fx-background-color: #2D3447; -fx-border-width: 0 0 1 0; -fx-border-color: gray;" text="%btn.home" textFill="WHITE" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="rightPage" layoutX="226.0" layoutY="133.0" prefHeight="670.0" prefWidth="1313.0" AnchorPane.bottomAnchor="-2.6000000000000227" AnchorPane.leftAnchor="226.0" AnchorPane.rightAnchor="2.800000000000182" AnchorPane.topAnchor="133.0">

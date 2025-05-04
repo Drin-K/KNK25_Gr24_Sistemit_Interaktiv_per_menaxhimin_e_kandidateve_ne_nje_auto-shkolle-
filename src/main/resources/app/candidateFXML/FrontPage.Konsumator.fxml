@@ -8,22 +8,22 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1540.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.frontPageController">
    <children>
-      <AnchorPane fx:id="profileBttn" layoutX="88.0" maxHeight="151.0" onDragDetected="#profileClick" prefHeight="145.0" prefWidth="1440.0" style="-fx-background-color: #2D3447;" AnchorPane.bottomAnchor="665.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="profileBtt" layoutX="88.0" maxHeight="151.0" prefHeight="145.0" prefWidth="1440.0" style="-fx-background-color: #2D3447;" AnchorPane.bottomAnchor="665.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="119.0" fitWidth="247.0" layoutX="-10.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/car.png" />
                </image>
             </ImageView>
-            <Button fx:id="profileBttn" layoutX="1265.0" layoutY="14.0" mnemonicParsing="false" onAction="#profileClick" prefHeight="26.0" prefWidth="78.0" text="Profile" AnchorPane.leftAnchor="1265.0" AnchorPane.rightAnchor="198.20000000000005" />
-            <Button layoutX="1450.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" text="Log Out" AnchorPane.leftAnchor="1450.0" AnchorPane.rightAnchor="24.0" />
-            <Button layoutX="1364.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" AnchorPane.leftAnchor="1364.0" AnchorPane.rightAnchor="110.0" />
+            <Button fx:id="profileBttn" layoutX="1265.0" layoutY="14.0" mnemonicParsing="false" onAction="#profileClick" prefHeight="26.0" prefWidth="78.0" text="%btn.profile" AnchorPane.leftAnchor="1265.0" AnchorPane.rightAnchor="198.20000000000005" />
+            <Button layoutX="1450.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" text="%btn.logout" AnchorPane.leftAnchor="1450.0" AnchorPane.rightAnchor="24.0" />
+            <Button fx:id="languageBttn" layoutX="1364.0" layoutY="14.0" mnemonicParsing="false" onAction="#languageClick" prefHeight="26.0" prefWidth="66.0" AnchorPane.leftAnchor="1364.0" AnchorPane.rightAnchor="110.0" />
             <ImageView fitHeight="42.0" fitWidth="41.0" layoutX="1211.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/User.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="33.0" fitWidth="56.0" layoutX="1368.0" layoutY="11.0">
+            <ImageView fx:id="" fitHeight="33.0" fitWidth="56.0" layoutX="1368.0" layoutY="11.0">
                <image>
                   <Image url="@../../images/language.icon.png" />
                </image>
@@ -37,14 +37,14 @@
       </AnchorPane>
       <AnchorPane layoutX="7.0" layoutY="213.0" prefHeight="664.0" prefWidth="226.0" style="-fx-background-color: #2D3447;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
          <children>
-            <Button fx:id="categoryBttn" alignment="TOP_LEFT" layoutY="188.0" mnemonicParsing="false" onAction="#categoryClick" prefHeight="34.0" prefWidth="226.0" style="-fx-font-weight: bold;" text="Category" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-            <Button fx:id="schedulerBttn" alignment="TOP_LEFT" layoutX="-1.0" layoutY="253.0" mnemonicParsing="false" onAction="#schedulerClick" prefHeight="34.0" prefWidth="226.0" style="-fx-font-weight: bold;" text="Scheduler" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" />
-            <Button fx:id="progressBttn" alignment="TOP_LEFT" layoutY="438.0" mnemonicParsing="false" onAction="#progressClick" prefHeight="34.0" prefWidth="226.0" style="-fx-font-weight: bold;" text="Progress" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-            <Button fx:id="testBttn" alignment="TOP_LEFT" layoutX="-1.0" layoutY="315.0" mnemonicParsing="false" onAction="#testClick" prefHeight="34.0" prefWidth="226.0" style="-fx-font-weight: bold;" text="Theory/Practice Tests" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" />
-            <Button fx:id="feedbackBttn" alignment="TOP_LEFT" layoutY="501.0" mnemonicParsing="false" onAction="#feedbackClick" prefHeight="34.0" prefWidth="226.0" style="-fx-font-weight: bold;" text="FeedBack" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-            <Button fx:id="paymentsBttn" alignment="TOP_LEFT" layoutY="373.0" mnemonicParsing="false" onAction="#paymentsClick" prefHeight="34.0" prefWidth="226.0" style="-fx-font-weight: bold;" text="Manage Payments" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <Button fx:id="categoryBttn" alignment="TOP_LEFT" layoutY="188.0" mnemonicParsing="false" onAction="#categoryClick" prefHeight="34.0" prefWidth="226.0" style="-fx-font-weight: bold;" text="%btn.category" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <Button fx:id="schedulerBttn" alignment="TOP_LEFT" layoutX="-1.0" layoutY="253.0" mnemonicParsing="false" onAction="#schedulerClick" prefHeight="34.0" prefWidth="226.0" style="-fx-font-weight: bold;" text="%btn.scheduler" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" />
+            <Button fx:id="progressBttn" alignment="TOP_LEFT" layoutY="438.0" mnemonicParsing="false" onAction="#progressClick" prefHeight="34.0" prefWidth="226.0" style="-fx-font-weight: bold;" text="%btn.progress" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <Button fx:id="testBttn" alignment="TOP_LEFT" layoutX="-1.0" layoutY="315.0" mnemonicParsing="false" onAction="#testClick" prefHeight="34.0" prefWidth="226.0" style="-fx-font-weight: bold;" text="%btn.tests" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" />
+            <Button fx:id="feedbackBttn" alignment="TOP_LEFT" layoutY="501.0" mnemonicParsing="false" onAction="#feedbackClick" prefHeight="34.0" prefWidth="226.0" style="-fx-font-weight: bold;" text="%btn.feedback" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <Button fx:id="paymentsBttn" alignment="TOP_LEFT" layoutY="373.0" mnemonicParsing="false" onAction="#paymentsClick" prefHeight="34.0" prefWidth="226.0" style="-fx-font-weight: bold;" text="%btn.payments" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
             <Text fill="WHITE" layoutX="59.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 22px;" text="Candidate" wrappingWidth="107.73675537109375" />
-            <Button fx:id="homeBttn" alignment="TOP_LEFT" layoutX="5.0" layoutY="94.0" mnemonicParsing="false" onAction="#homeClick" prefHeight="34.0" prefWidth="226.0" style="-fx-font-weight: bold;" text="Home" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <Button fx:id="homeBttn" alignment="TOP_LEFT" layoutX="5.0" layoutY="94.0" mnemonicParsing="false" onAction="#homeClick" prefHeight="34.0" prefWidth="226.0" style="-fx-font-weight: bold;" text="%btn.home" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="rightPage" layoutX="228.0" layoutY="136.0" prefHeight="620.0" prefWidth="1263.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="228.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="136.0">

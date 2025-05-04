@@ -22,9 +22,9 @@ public class KategoritePatentes {
     }
 
     public static KategoritePatentes getInstance(ResultSet result) throws SQLException{
-        int id = result.getInt("id_kategori");
-        String kategoria = result.getString("kategoria");
-        String pershkrimi = result.getString("pershkrimi");
+        int id = result.getInt("id");
+        String kategoria = result.getString("Kategoria");
+        String pershkrimi = result.getString("Pershkrimi");
         return new KategoritePatentes(id,kategoria,pershkrimi);
     }
 

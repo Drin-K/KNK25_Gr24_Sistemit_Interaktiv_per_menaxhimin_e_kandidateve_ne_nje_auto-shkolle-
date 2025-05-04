@@ -1,7 +1,5 @@
 package services;
 
-import models.Enums.LlojiTestit;
-import models.Enums.RezultatiTestit;
 import models.Dto.testet.CreateTestetDto;
 import models.Testet;
 import repository.TestetRepository;
@@ -31,11 +29,8 @@ public class TestiService {
         if (dto.getLlojiTestit() == null) {
             throw new Exception("Lloji i testit nuk mund të jetë null.");
         }
-        LlojiTestit llojiTestit;
-        try {
-            llojiTestit = LlojiTestit.valueOf(dto.getLlojiTestit().toString());
-        } catch (Exception e) {
-            throw new Exception("Lloji i testit duhet të jetë 'TEORI' ose 'PRAKTIKE'.");
+        if(!dto.getLlojiTestit().equals("Teori") && !dto.getLlojiTestit().equals("Praktikë")){
+            throw new Exception("Lloji i testit duhet të jetë 'Teori' ose 'Praktikë'.");
         }
 
         // Validimi i datës së testit
@@ -47,11 +42,9 @@ public class TestiService {
         if (dto.getRezultati() == null) {
             throw new Exception("Rezultati nuk mund të jetë null.");
         }
-        RezultatiTestit rezultatiTestit;
-        try {
-            rezultatiTestit = RezultatiTestit.valueOf(dto.getRezultati().toString());
-        } catch (Exception e) {
-            throw new Exception("Rezultati duhet të jetë 'KALUAR' ose 'DESHTUAR'.");
+
+        if(!dto.getRezultati().equals("Kaluar") && !dto.getRezultati().equals("Dështuar")){
+            throw new Exception("Rezultati duhet të jetë 'Kaluar' ose 'Dështuar'.");
         }
 
         // Validimi i pikëve

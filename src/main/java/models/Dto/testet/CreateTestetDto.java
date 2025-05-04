@@ -1,20 +1,17 @@
 package models.Dto.testet;
 
-import models.Enums.LlojiTestit;
-import models.Enums.RezultatiTestit;
-
 import java.time.LocalDate;
 
 public class CreateTestetDto {
 
     private int idKandidat;
     private int idStaf;
-    private LlojiTestit llojiTestit; // ENUM në vend të String
+    private String llojiTestit;
     private LocalDate dataTestit;
-    private RezultatiTestit rezultati; // ENUM në vend të String
+    private String rezultati;
     private int piket;
 
-    public CreateTestetDto(int idKandidat, int idStaf, LlojiTestit llojiTestit, LocalDate dataTestit, RezultatiTestit rezultati, int piket) {
+    public CreateTestetDto(int idKandidat, int idStaf, String llojiTestit, LocalDate dataTestit, String rezultati, int piket) {
         this.idKandidat = idKandidat;
         this.idStaf = idStaf;
         this.llojiTestit = llojiTestit;
@@ -39,11 +36,11 @@ public class CreateTestetDto {
         this.idStaf = idStaf;
     }
 
-    public LlojiTestit getLlojiTestit() {
+    public String getLlojiTestit() {
         return llojiTestit;
     }
 
-    public void setLlojiTestit(LlojiTestit llojiTestit) {
+    public void setLlojiTestit(String llojiTestit) {
         this.llojiTestit = llojiTestit;
     }
 
@@ -55,11 +52,11 @@ public class CreateTestetDto {
         this.dataTestit = dataTestit;
     }
 
-    public RezultatiTestit getRezultati() {
+    public String getRezultati() {
         return rezultati;
     }
 
-    public void setRezultati(RezultatiTestit rezultati) {
+    public void setRezultati(String rezultati) {
         this.rezultati = rezultati;
     }
 

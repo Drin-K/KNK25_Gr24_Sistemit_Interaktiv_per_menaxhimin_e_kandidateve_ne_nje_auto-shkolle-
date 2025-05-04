@@ -6,8 +6,8 @@ import java.time.LocalDate;
 
 
 public class CreateKandidatetDto extends CreateUserDto {
-    private LocalDate dataRegjistrimit; // Data e regjistrimit
-    private String statusiProcesit; // Statusi i procesit
+    private LocalDate dataRegjistrimit;
+    private String statusiProcesit;
 
     public CreateKandidatetDto(String name, String surname, String email, String phoneNumber, LocalDate dateOfBirth,
                                String password, String salt, String role, String adresa, String gjinia,

@@ -18,7 +18,7 @@ public class AutomjetetRepository extends BaseRepository<Automjetet, CreateAutom
     public Automjetet create(CreateAutomjetetDto automjetetDto){
         String query = """
                    INSERT INTO
-                   AUTOMJETET("LLOJI_I_AUTOMJETIT","STATUSI","ID_STAF","ID_KATEGORI")
+                   Automjetet(Lloji_i_Automjetit,Statusi,ID_Staf,ID_Kategori)
                    VALUES (?,?,?,?);
                    """;
         try{
@@ -40,22 +40,22 @@ public class AutomjetetRepository extends BaseRepository<Automjetet, CreateAutom
         return null;
         }
         public Automjetet update(UpdateAutomjetetDto automjetetDto){
-            StringBuilder query = new StringBuilder("UPDATE AUTOMJETET SET ");
+            StringBuilder query = new StringBuilder("UPDATE Automjetet SET ");
             ArrayList<Object> params = new ArrayList<>();
 
             if(automjetetDto.getIdStaf() != 0){
-                query.append("ID_STAF = ?, ");
+                query.append("ID_Staf = ?, ");
                 params.add(automjetetDto.getIdStaf());
             }
             if(automjetetDto.getStatusi() != null){
-                query.append("STATUSI = ?, ");
+                query.append("Statusi = ?, ");
                 params.add(automjetetDto.getStatusi());
             }
             if(params.isEmpty()){
                 return getById(automjetetDto.getId());
             }
             query.setLength(query.length() -2);
-            query.append(" WHERE ID_AUTOMJET = ?");
+            query.append(" WHERE id = ?");
             params.add(automjetetDto.getId());
             try{
                 PreparedStatement pstm = this.connection.prepareStatement(query.toString());
@@ -75,7 +75,7 @@ public class AutomjetetRepository extends BaseRepository<Automjetet, CreateAutom
     public ArrayList<Automjetet> getByLloji(String lloji) {
         //Funksion i cili kthen te gjitha automjetet e nje lloji te caktuar si Veture, Motociklete apo Kamion
         ArrayList<Automjetet> automjetetList = new ArrayList<>();
-        String query = "SELECT * FROM AUTOMJETET WHERE LLOJI_I_AUTOMJETIT = ?";
+        String query = "SELECT * FROM Automjetet WHERE Lloji_i_Automjetit = ?";
 
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query);

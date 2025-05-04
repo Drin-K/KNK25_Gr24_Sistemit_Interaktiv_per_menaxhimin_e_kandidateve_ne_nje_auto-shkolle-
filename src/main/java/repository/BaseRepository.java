@@ -16,7 +16,7 @@ abstract class BaseRepository<Model, CreateModelDto, UpdateModelDto> {
     abstract Model fromResultSet(ResultSet res) throws SQLException;
 
     public Model getById(int id){
-        String query = "SELECT * FROM " + this.tableName + " WHERE ID = ?";
+        String query = "SELECT * FROM " + this.tableName + " WHERE id = ?";
         try{
             PreparedStatement pstm = this.connection.prepareStatement(
                     query);
@@ -45,7 +45,7 @@ abstract class BaseRepository<Model, CreateModelDto, UpdateModelDto> {
         return models;
     }
     public boolean delete(int id){
-        String query = "DELETE FROM " + this.tableName + " WHERE ID = ?";
+        String query = "DELETE FROM " + this.tableName + " WHERE id = ?";
         try{
             PreparedStatement pstm =
                     this.connection.prepareStatement(query);

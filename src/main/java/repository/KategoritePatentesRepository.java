@@ -10,14 +10,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class KategoritePatentesRepository extends BaseRepository<KategoritePatentes, CreateKategoritePatentesDto, UpdateKategoritePatentesDto> {
-    public KategoritePatentesRepository(){super("kategorite_patentes");}
+    public KategoritePatentesRepository(){super("Kategorite_Patentes");}
     public KategoritePatentes fromResultSet(ResultSet result) throws SQLException{
         return KategoritePatentes.getInstance(result);
     }
     public KategoritePatentes create(CreateKategoritePatentesDto kategoritePatentesDto){
         String query = """
                     INSERT INTO
-                    KATEGORITE_PATENTES("KATEGORIA","PERSHKRIMI")
+                    Kategorite_Patentes(Kategoria,Pershkrimi)
                     VALUES(?,?);
                     """;
         try{
@@ -37,17 +37,17 @@ public class KategoritePatentesRepository extends BaseRepository<KategoritePaten
         return null;
     }
     public KategoritePatentes update(UpdateKategoritePatentesDto kategoritePatentesDto){
-        StringBuilder query = new StringBuilder("UPDATE KATEGORITE_PATENTES SET ");
+        StringBuilder query = new StringBuilder("UPDATE Kategorite_Patentes SET ");
         ArrayList<Object> params = new ArrayList<>();
         if(kategoritePatentesDto.getPershkrimi() != null){
-            query.append("PERSHKRIMI = ?, ");
+            query.append("Pershkrimi = ?, ");
             params.add(kategoritePatentesDto.getPershkrimi());
         }
         if(params.isEmpty()){
             return getById(kategoritePatentesDto.getId());
         }
         query.setLength(query.length() - 2);
-        query.append(" WHERE ID_KATEGORI = ?");
+        query.append(" WHERE id= ?");
         params.add(kategoritePatentesDto.getId());
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query.toString());

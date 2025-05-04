@@ -99,7 +99,7 @@ public class UserRepository extends BaseRepository<User, CreateUserDto, UpdateUs
         }
 
         query.setLength(query.length() - 2); //per me largu  ", "
-        query.append(" WHERE idUser = ?");
+        query.append(" WHERE id = ?");
         params.add(updateUserDto.getIdUser());
 
         try {

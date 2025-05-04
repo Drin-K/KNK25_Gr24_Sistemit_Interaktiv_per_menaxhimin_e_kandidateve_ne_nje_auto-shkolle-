@@ -25,7 +25,7 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
     public Pagesat create(CreatePagesatDto pagesatDto){
         String query = """
                 INSERT INTO 
-                PAGESAT (id_kandidat, shuma , data_e_pageses, medota_e_pageses, statusi_i_pageses)
+                Pagesat(ID_Kandidat, Shuma, Data_e_Pageses, Medota_e_Pageses, Statusi_i_Pageses)
                 VALUES (?, ?, ?, ?, ?);
                 """;
         try{
@@ -51,24 +51,24 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
     }
 
     public Pagesat update(UpdatePagesatDto pagesatDto) {
-        StringBuilder query = new StringBuilder("UPDATE PAGESAT SET ");
+        StringBuilder query = new StringBuilder("UPDATE Pagesat SET ");
         ArrayList<Object> params = new ArrayList<>();
         if (pagesatDto.getShuma() !=0){
-            query.append("shuma=?, ");
+            query.append("Shuma=?, ");
             params.add(pagesatDto.getShuma());
         }
         if (pagesatDto.getMetodaPageses()!=null){
-            query.append("metoda_e_pageses=?, ");
+            query.append("Metoda_e_Pageses=?, ");
             params.add(pagesatDto.getMetodaPageses());
         }
         if (pagesatDto.getStatusiPageses()!=null){
-            query.append("statusi_i_pageses=?, ");
+            query.append("Statusi_i_Pageses=?, ");
         }
         if (params.isEmpty()) {
             return getById(pagesatDto.getId());
         }
         query.setLength(query.length() - 2);//me largu "? "->se paraqet gabim ne sintakse
-        query.append(" WHERE id_pagesat = ?");
+        query.append(" WHERE id = ?");
         params.add(pagesatDto.getId());
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query.toString());
@@ -87,7 +87,7 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
     public ArrayList<Pagesat> findByStatus(String statusi) {
         //Funksion i cili gjen te gjitha pagesat ne baze te statusit
         ArrayList<Pagesat> pagesatList = new ArrayList<>();
-        String query = "SELECT * FROM PAGESAT WHERE STATUSI_I_PAGESES = ?";
+        String query = "SELECT * FROM Pagesat WHERE Statusi_i_Pageses = ?";
 
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query);

@@ -10,14 +10,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class RaportiProgresitRepository extends BaseRepository<RaportiProgresit, CreateRaportiProgresitDto, UpdateRaportiProgresitDto>{
-    public RaportiProgresitRepository(){super("raporti_progresit");}
+    public RaportiProgresitRepository(){super("Raporti_Progresit");}
     public RaportiProgresit fromResultSet(ResultSet result) throws SQLException {
         return RaportiProgresit.getInstance(result);
     }
     public RaportiProgresit create(CreateRaportiProgresitDto raportiProgresitDto){
         String query = """
                 INSERT INTO 
-                RAPORTI_PROGRESIT("ID_KANDIDAT","ID_STAF","DATA_RAPORTIT","PIKET_TEORIKE","PIKET_PRAKTIKE","KOMENTET","PERFORMACA_GJENERALE")
+                Raporti_Progresit(ID_Kandidat,ID_Staf,Data_Raportit,Piket_Teorike,Piket_Praktike,Komentet,Performanca_Gjenerale)
                 VALUES(?,?,?,?,?,?,?);""";
         try{
             PreparedStatement pstm = this.connection.prepareStatement(query,PreparedStatement.RETURN_GENERATED_KEYS);
@@ -41,29 +41,29 @@ public class RaportiProgresitRepository extends BaseRepository<RaportiProgresit,
         return null;
     }
     public RaportiProgresit update(UpdateRaportiProgresitDto raportiProgresitDto){
-        StringBuilder query = new StringBuilder("UPDATE RAPORTI_PROGRESIT SET ");
+        StringBuilder query = new StringBuilder("UPDATE Raporti_Progresit SET ");
         ArrayList<Object> params = new ArrayList<>();
         if(raportiProgresitDto.getKomentet() != null){
-            query.append("KOMENTET = ?, ");
+            query.append("Komentet = ?, ");
             params.add(raportiProgresitDto.getKomentet());
         }
         if(raportiProgresitDto.getPiketTeorike() != 0){
-            query.append("PIKET_TEORIKE = ?, ");
+            query.append("Piket_Teorike = ?, ");
             params.add(raportiProgresitDto.getPiketTeorike());
         }
         if(raportiProgresitDto.getPiketPraktike() != 0){
-            query.append("PIKET_PRAKTIKE = ?, ");
+            query.append("Piket_Praktike = ?, ");
             params.add(raportiProgresitDto.getPiketTeorike());
         }
         if(raportiProgresitDto.getPerformancaGjenerale() != null){
-            query.append("PERFORMANCA_GJENERALE = ?, ");
+            query.append("Performanca_Gjenerale = ?, ");
             params.add(raportiProgresitDto.getPerformancaGjenerale());
         }
         if(params.isEmpty()){
             return getById(raportiProgresitDto.getId());
         }
         query.setLength(query.length() -2 );
-        query.append(" WHERE ID_RAPORT = ?");
+        query.append(" WHERE id = ?");
         params.add(raportiProgresitDto.getId());
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query.toString());

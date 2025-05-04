@@ -19,7 +19,7 @@ public class OrariRepository extends BaseRepository<Orari, CreateOrariDto, Updat
     public Orari create(CreateOrariDto orariDto){
         String query= """
                 INSERT INTO
-                ORARI(ID_Kandidat, ID_Staf, Data_e_Sesionit, Ora_e_Fillimit, Ora_e_Perfundimit, Lloji_i_Mesimit, Statusi, ID_Automjet)
+                Orari(ID_Kandidat, ID_Staf, Data_e_Sesionit, Ora_e_Fillimit, Ora_e_Perfundimit, Lloji_i_Mesimit, Statusi, ID_Automjet)
                 VALUES(?,?,?,?,?,?,?,?);
                 """;
         try{
@@ -70,7 +70,7 @@ public class OrariRepository extends BaseRepository<Orari, CreateOrariDto, Updat
             return getById(orariDto.getIdSesioni());
         }
         query.setLength(query.length() - 2);//me largu "? "->se paraqet gabim ne sintakse
-        query.append(" WHERE ID_Sesioni = ?");
+        query.append(" WHERE id = ?");
         params.add(orariDto.getIdSesioni());
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query.toString());

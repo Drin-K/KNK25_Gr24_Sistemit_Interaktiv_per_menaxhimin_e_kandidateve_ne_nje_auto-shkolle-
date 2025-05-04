@@ -17,7 +17,7 @@ public class Orari {
     private int idAutomjet;
 
     public static Orari getInstance(ResultSet resultSet)throws SQLException{
-        int idSesioni= resultSet.getInt("ID_Sesioni");
+        int idSesioni= resultSet.getInt("id");
         int idKanditat=resultSet.getInt("ID_Kandidat");
         int idStaf =resultSet.getInt("ID_Staf");
         LocalDate dataSesionit = resultSet.getObject("Data_e_Sesionit",LocalDate.class);

@@ -1,8 +1,5 @@
 package models;
 
-import models.Enums.LlojiTestit;
-import models.Enums.RezultatiTestit;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -11,12 +8,12 @@ public class Testet {
     private int id;
     private int idKandidat;
     private int idStaf;
-    private LlojiTestit llojiTestit;
+    private String llojiTestit;
     private LocalDate dataTestit;
-    private RezultatiTestit rezultati;
+    private String rezultati;
     private int piket;
 
-    private Testet(int id, int idKandidat, int idStaf, LlojiTestit llojiTestit, LocalDate dataTestit, RezultatiTestit rezultati, int piket) {
+    private Testet(int id, int idKandidat, int idStaf, String llojiTestit, LocalDate dataTestit, String rezultati, int piket) {
         this.id = id;
         this.idKandidat = idKandidat;
         this.idStaf = idStaf;
@@ -38,7 +35,7 @@ public class Testet {
         return idStaf;
     }
 
-    public LlojiTestit getLlojiTestit() {
+    public String getLlojiTestit() {
         return llojiTestit;
     }
 
@@ -46,7 +43,7 @@ public class Testet {
         return dataTestit;
     }
 
-    public RezultatiTestit getRezultati() {
+    public String getRezultati() {
         return rezultati;
     }
 
@@ -55,20 +52,13 @@ public class Testet {
     }
 
     public static Testet getInstance(ResultSet result) throws SQLException {
-        int id = result.getInt("id_test");
-        int idKandidat = result.getInt("id_kandidat");
-        int idStaf = result.getInt("id_staf");
-
-        String llojiTestitString = result.getString("lloji_i_testit");
-        LlojiTestit llojiTestit = LlojiTestit.valueOf(llojiTestitString);
-
-        LocalDate dataTestit = result.getObject("data_e_testit", LocalDate.class);
-
-        String rezultatiString = result.getString("rezultati");
-        RezultatiTestit rezultati = RezultatiTestit.valueOf(rezultatiString);
-
-        int piket = result.getInt("piket");
-
+        int id = result.getInt("id");
+        int idKandidat = result.getInt("ID_Kandidat");
+        int idStaf = result.getInt("ID_Staf");
+        String llojiTestit = result.getString("Lloji_i_Testit");
+        LocalDate dataTestit = result.getObject("Data_e_testit", LocalDate.class);
+        String rezultati = result.getString("Rezultati");
+        int piket = result.getInt("Piket");
         return new Testet(id, idKandidat, idStaf, llojiTestit, dataTestit, rezultati, piket);
     }
 }

@@ -41,7 +41,7 @@ public class KandidateService {
             throw new Exception("Kandidati duhet të jetë mbi 18 vjeç!");
         }
         //Validimi i gjinise
-        if(!createDto.getGjinia().equals("Mashkull") && !createDto.getGjinia().equals("Femer")){
+        if(!createDto.getGjinia().equals("M") && !createDto.getGjinia().equals("F")){
             throw new Exception("Gjinia duhet të jetë Mashkull ose Femer");
         }
         //Validimi i numrit te telefonit permes numriTelefonitRegEx

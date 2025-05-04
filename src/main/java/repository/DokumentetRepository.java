@@ -20,7 +20,7 @@ public class DokumentetRepository extends BaseRepository<Dokumentet, CreateDokum
 
     public Dokumentet create(CreateDokumentetDto dokumentetDto) {
         String query = """
-                INSERT INTO DOKUMENTET(ID_KANDIDAT, LLOJI_DOKUMENTIT, EMRI_SKEDARI, DATA_NGARKIMIT)
+                INSERT INTO Dokumentet(ID_Kandidat, Lloji_Dokumentit, Emri_Skedari, Data_Ngarkimit)
                 VALUES(?,?,?,?);
                 """;
         try {
@@ -44,19 +44,19 @@ public class DokumentetRepository extends BaseRepository<Dokumentet, CreateDokum
 
     public Dokumentet update(UpdateDokumentetDto dokumentetDto) {
 
-        StringBuilder query = new StringBuilder("UPDATE DOKUMENTET SET ");
+        StringBuilder query = new StringBuilder("UPDATE Dokumentet SET ");
         ArrayList<Object> params = new ArrayList<>();
 
         if (dokumentetDto.getIdKandidat() != 0) {
-            query.append("ID_KANDIDAT = ?, ");
+            query.append("ID_Kandidat = ?, ");
             params.add(dokumentetDto.getIdKandidat());
         }
         if (dokumentetDto.getEmriSkedarit() != null) {
-            query.append("EMRI_SKEDARI = ?, ");
+            query.append("Emri_Skeadri = ?, ");
             params.add(dokumentetDto.getEmriSkedarit());
         }
         if (dokumentetDto.getLlojiDokumentit() != null) {
-            query.append("LLOJI_DOKUMENTIT = ?, ");
+            query.append("Lloji_Dokumentit = ?, ");
             params.add(dokumentetDto.getLlojiDokumentit());
         }
 
@@ -64,7 +64,7 @@ public class DokumentetRepository extends BaseRepository<Dokumentet, CreateDokum
             return getById(dokumentetDto.getId());
         }
         query.setLength(query.length() - 2);//me largu "? "->se paraqet gabim ne sintakse
-        query.append(" WHERE ID_DOKUMENT = ?");
+        query.append(" WHERE id = ?");
         params.add(dokumentetDto.getId());
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query.toString());

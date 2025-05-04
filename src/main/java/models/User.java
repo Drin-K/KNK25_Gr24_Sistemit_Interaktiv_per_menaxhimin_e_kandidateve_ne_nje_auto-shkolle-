@@ -73,7 +73,7 @@ public class User {
         return adresa;
     }
     public static User getInstance(ResultSet result) throws SQLException {
-        int id = result.getInt("idUser");
+        int id = result.getInt("id");
         String name=result.getString("name");
         String surname=result.getString("surname");
 

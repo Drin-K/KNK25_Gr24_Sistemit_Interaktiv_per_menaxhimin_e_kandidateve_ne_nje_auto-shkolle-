@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="620.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text layoutX="379.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Apply for different categories" textAlignment="CENTER" wrappingWidth="504.01878356933594">
+         <font>
+            <Font name="Cambria Bold" size="36.0" />
+         </font></Text>
+      <ImageView fitHeight="48.0" fitWidth="62.0" layoutX="94.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Motorcycle.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="93.0" fitWidth="71.0" layoutX="405.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Car2.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="66.0" fitWidth="79.0" layoutX="735.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Truck.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="66.0" fitWidth="71.0" layoutX="1070.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Bus.png" />
+         </image>
+      </ImageView>
+      <Line endX="-38.0" endY="375.0999755859375" layoutX="317.0" layoutY="245.0" startX="-38.0" startY="-131.60000610351562" />
+      <Line endX="-38.0" endY="383.9000244140625" layoutX="648.0" layoutY="236.0" startX="-38.0" startY="-121.99999237060547" />
+      <Line endX="-38.0" endY="383.9000244140625" layoutX="989.0" layoutY="236.0" startX="-38.0" startY="-121.99999237060547" />
+      <Text fill="#2d3447" layoutX="77.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Motorcycles" wrappingWidth="107.63870239257812">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="#2d3447" layoutX="420.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cars" wrappingWidth="42.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="#2d3447" layoutX="720.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Trucks &amp; Vanns" wrappingWidth="150.83871459960938">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="#2d3447" layoutX="1078.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Busses" wrappingWidth="62.00000000000003">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="87.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AM, A1, A2, A" wrappingWidth="87.6387329101563">
+         <font>
+            <Font name="System Italic" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="379.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="B1, B, B automatic, BE" wrappingWidth="150.83871459960938">
+         <font>
+            <Font name="System Italic" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="735.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="C1, C1E, C, CE " wrappingWidth="100.4386901855469">
+         <font>
+            <Font name="System Italic" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="1059.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="D1, D1E, D, DE " wrappingWidth="100.4386901855469">
+         <font>
+            <Font name="System Italic" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="20.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AM - E-Kickscooters, Mopeds &amp; Quadricycles (≤ 45km/h)" wrappingWidth="216.53676986694336">
+         <font>
+            <Font name="Cambria" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="21.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A1 - Motorcycles ≤ 11kW (125cc) &amp; Motortricycles ≤ 15kW" wrappingWidth="238.93674850463862">
+         <font>
+            <Font name="Cambria" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="21.0" layoutY="378.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: cambria;" text="A2 - Motorcycles ≤ 35kW" wrappingWidth="238.93674850463867">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="21.0" layoutY="418.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: cambria;" text="A - Any Motorcycle or Motortricycle " wrappingWidth="238.93674850463867">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="#2d3447" layoutX="60.0" layoutY="491.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Apply here for categories above" textAlignment="CENTER" wrappingWidth="160.4386749267578">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <TextField layoutX="77.0" layoutY="549.0" prefHeight="26.0" prefWidth="51.0" />
+      <Text layoutX="14.0" layoutY="568.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category:" wrappingWidth="61.99999999999994" />
+      <Button layoutX="184.0" layoutY="542.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="71.0" style="-fx-background-color: #151928;" text="Apply" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Text layoutX="644.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: cambria;" text="C1 - Trucks weighing between 3.5T and 7.5TC1E - Trucks between 3.5T and 7.5T with Heavy Trailers" wrappingWidth="282.9367485046387">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="647.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: cambria;" text="C1E - Trucks between 3.5T and 7.5T with Heavy Trailers" wrappingWidth="254.13676071166992">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="647.0" layoutY="379.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: cambria;" text="C - Any Truck heavier than 3.5T" wrappingWidth="254.13676071166992">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="647.0" layoutY="422.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: cambria;" text="CE - Any Truck heavier than 3.5T with Heavy Trailers" wrappingWidth="254.13676071166992">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="#2d3447" layoutX="705.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Apply here for categories above" textAlignment="CENTER" wrappingWidth="160.4386749267578">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="631.0" layoutY="568.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category:" wrappingWidth="61.99999999999994" />
+      <TextField layoutX="694.0" layoutY="549.0" prefHeight="26.0" prefWidth="51.0" />
+      <Button layoutX="847.0" layoutY="542.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="71.0" style="-fx-background-color: #151928;" text="Apply" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Text layoutX="306.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: cambria;" text="B1 - Quadricycles" wrappingWidth="282.9367485046387">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="306.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: cambria;" text="B - Cars up to 3.5T (incl. Farm Tractors)" wrappingWidth="282.9367485046387">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="306.0" layoutY="362.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: cambria;" text="B automatic - Auto-Transmission Cars" wrappingWidth="282.9367485046387">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="306.0" layoutY="411.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: cambria;" text="BE - Passenger Cars + Heavy Trailers (&gt; 750kg)" wrappingWidth="282.9367485046387">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="#2d3447" layoutX="360.0" layoutY="491.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Apply here for categories above" textAlignment="CENTER" wrappingWidth="160.4386749267578">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="298.0" layoutY="568.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category:" wrappingWidth="61.99999999999994" />
+      <TextField layoutX="360.0" layoutY="549.0" prefHeight="26.0" prefWidth="51.0" />
+      <Button layoutX="504.0" layoutY="543.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="71.0" style="-fx-background-color: #151928;" text="Apply" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Text layoutX="968.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: cambria;" text="D1 - Passenger Vans up to 16 passengers" wrappingWidth="282.9367485046387">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="968.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: cambria;" text="D1E - Passenger Vans up to 16 passengers + HeavyTrailer" wrappingWidth="282.9367485046387">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="968.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: cambria;" text="D - Any Passenger Van" wrappingWidth="282.9367485046387">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="968.0" layoutY="410.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: cambria;" text="DE - Any Passenger Van + Heavy Trailer (&gt; 750kg)" wrappingWidth="282.9367485046387">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="#2d3447" layoutX="1029.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Apply here for categories above" textAlignment="CENTER" wrappingWidth="160.4386749267578">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="968.0" layoutY="568.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category:" wrappingWidth="61.99999999999994" />
+      <TextField layoutX="1033.0" layoutY="550.0" prefHeight="26.0" prefWidth="51.0" />
+      <Button layoutX="1159.0" layoutY="542.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="71.0" style="-fx-background-color: #151928;" text="Apply" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

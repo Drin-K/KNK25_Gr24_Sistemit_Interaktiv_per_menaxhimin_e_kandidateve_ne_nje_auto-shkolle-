@@ -3,7 +3,7 @@ package models;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-
+//ME VONE DO TA SHQYRTOSH TA BESH ABSTRAKTE
 public class User {
     private int idUser;
     private String name;
@@ -18,7 +18,7 @@ public class User {
     private String adresa;
     private String gjinia; //('M', 'F')
 
-    private User(int idUser, String name, String surname, String email, String phoneNumber, LocalDate dateOfBirth, String hashedPassword, String salt, String role, String adresa, String gjinia) {
+    protected User(int idUser, String name, String surname, String email, String phoneNumber, LocalDate dateOfBirth, String hashedPassword, String salt, String role, String adresa, String gjinia) {
         this.idUser = idUser;
         this.name = name;
         this.surname = surname;

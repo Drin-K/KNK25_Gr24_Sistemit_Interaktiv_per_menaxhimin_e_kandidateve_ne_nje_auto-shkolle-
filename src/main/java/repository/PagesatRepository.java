@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 
 public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto, UpdatePagesatDto>{
@@ -103,6 +105,48 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
         }
 
         return pagesatList;
+    }
+
+    public List<Pagesat> getUnpaidPayments() {
+        List<Pagesat> pagesat = new ArrayList<>();
+        String query = "SELECT * FROM Pagesat WHERE Statusi_i_Pageses = 'Mbetur'";
+
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            ResultSet resultSet = stmt.executeQuery();
+            while (resultSet.next()) {
+                Pagesat pagesa = Pagesat.getInstance(resultSet);
+                pagesat.add(pagesa);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return pagesat;
+    }
+    public HashMap<String, Integer> getPaymentsLast12Months() {
+        HashMap<String, Integer> data = new HashMap<>();
+
+        String sql = "SELECT TO_CHAR(Data_e_Pageses, 'YYYY-MM') AS month, COUNT(*) AS total " +
+                "FROM Pagesat " +
+                "WHERE Data_e_Pageses >= CURRENT_DATE - INTERVAL '12 MONTH' " +
+                "GROUP BY TO_CHAR(Data_e_Pageses, 'YYYY-MM') " +
+                "ORDER BY month ASC";
+
+        try (
+             PreparedStatement stmt = this.connection.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                String month = rs.getString("month");
+                int total = rs.getInt("total");
+                data.put(month, total);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return data;
     }
 
 }

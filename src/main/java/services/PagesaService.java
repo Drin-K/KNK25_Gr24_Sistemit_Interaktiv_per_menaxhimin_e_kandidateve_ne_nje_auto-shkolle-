@@ -1,11 +1,14 @@
 package services;
 
+import javafx.scene.chart.XYChart;
 import models.Dto.pagesat.CreatePagesatDto;
 import models.Pagesat;
 import repository.PagesatRepository;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class PagesaService {
     private PagesatRepository pagesatRepository;
@@ -57,5 +60,22 @@ public class PagesaService {
     }
     public ArrayList<Pagesat> findPagesaByStatus(String statusi) {
         return pagesatRepository.findByStatus(statusi);
+    }
+    public XYChart.Series<String, Number> getUnpaidPaymentsChartData() {
+        List<Pagesat> pagesatList = pagesatRepository.getUnpaidPayments();
+
+        // Krijoni një seri të re për grafikun
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName("UnpaidPayments");
+
+        // Për çdo pagesë të papaguar, shto të dhënat në seri
+        for (Pagesat pagesa : pagesatList) {
+            series.getData().add(new XYChart.Data<>("Kandidat " + pagesa.getIdKandidat(), pagesa.getShuma()));
+        }
+
+        return series;
+    }
+    public HashMap<String, Integer> getPaymentsLast12Months() {
+        return pagesatRepository.getPaymentsLast12Months();
     }
 }

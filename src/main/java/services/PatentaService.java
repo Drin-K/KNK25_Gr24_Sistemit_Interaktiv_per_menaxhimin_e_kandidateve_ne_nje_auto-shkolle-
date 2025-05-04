@@ -6,7 +6,9 @@ import models.Stafi;
 import repository.PatentaRepository;
 
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class PatentaService {
     private PatentaRepository patentaRepository;
@@ -55,5 +57,8 @@ public class PatentaService {
     public boolean delete(int id) throws Exception{
         this.getById(id); // E kontrollojm a ekziston
         return patentaRepository.delete(id);
+    }
+    public List<Patenta> getLicensesIssued() throws SQLException {
+        return patentaRepository.getLicensesIssued();
     }
 }

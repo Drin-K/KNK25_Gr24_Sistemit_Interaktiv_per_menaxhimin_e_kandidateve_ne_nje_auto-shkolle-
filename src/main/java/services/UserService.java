@@ -10,8 +10,15 @@ import models.User;
 import repository.UserRepository;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 
 public class UserService {
+    //shiko qeta edhe njehere mire
+
+//    private  UserRepository userRepository;
+//    public UserService(){
+//        this.userRepository=new UserRepository();
+//    }
 
 //kemi vendos qe me i identifiku userat ne baze te emailit si ne sems
     private static String getRoleFromEmail(String email) {
@@ -116,4 +123,12 @@ public class UserService {
         // Përdoruesi aktual largohet nga sistemi
         UserContext.clear();
     }
+    public int countUsersByRole(String role) {
+        return new UserRepository().countByRole(role);
+    }
+    public HashMap<String, Integer> getKandidatetStatusReport() {
+        return new UserRepository().countKandidatetByStatusiProcesit();
+    }
+
+
 }

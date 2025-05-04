@@ -189,4 +189,8 @@ public class OrariService {
     public List<Orari> gjejOraretPerDate(LocalDate data){
         return orariRepository.gjejOraretPerDate(data);
     }
+    public List<Orari> getSessionsToday() {
+        LocalDate currentDate = LocalDate.now(); // Merr datën e sotme
+        return gjejOraretPerDate(currentDate); // Thërrisni metodën ekzistuese për datën aktuale
+    }
 }

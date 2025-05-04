@@ -1,10 +1,12 @@
 package repository;
 
+import Database.DBConnector;
 import models.Dto.user.CreateUserDto;
 import models.Dto.user.UpdateUserDto;
 import models.User;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class UserRepository extends BaseRepository<User, CreateUserDto, UpdateUserDto> {
 
@@ -153,5 +155,39 @@ public class UserRepository extends BaseRepository<User, CreateUserDto, UpdateUs
 
         return null;
     }
+    public int countByRole(String role) {
+        String query = "SELECT COUNT(*) FROM \"User\" WHERE role = ?";
+        try {
+            PreparedStatement pstm = this.connection.prepareStatement(query);
+            pstm.setString(1, role);
+            ResultSet rs = pstm.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    public HashMap<String, Integer> countKandidatetByStatusiProcesit() {
+        HashMap<String, Integer> result = new HashMap<>();
+        String query = "SELECT statusiProcesit, COUNT(*) as total FROM Kandidatet GROUP BY statusiProcesit";
+
+        try (PreparedStatement stmt = this.connection.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery();){
+
+            while (rs.next()) {
+                String status = rs.getString("statusiProcesit");
+                int count = rs.getInt("total");
+                result.put(status, count);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
 
 }

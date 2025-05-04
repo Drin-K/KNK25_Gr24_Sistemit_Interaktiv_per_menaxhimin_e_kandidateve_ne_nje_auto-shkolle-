@@ -5,9 +5,11 @@ import models.Kandidatet;
 import models.User;
 import repository.KandidatetRepository;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class KandidateService {
     private KandidatetRepository kandidatetRepository;
@@ -81,5 +83,13 @@ public class KandidateService {
         this.getById(id); // E kontrollojm a ekziston
         return kandidatetRepository.delete(id);
     }
+    public HashMap<String, Integer> getRegistrationsLast12Months() {
+        try {
+            return kandidatetRepository.getRegistrationsLast12Months();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return new HashMap<>();
+        }
     //update metet me fol me blendin a duhet me validu edhe update...
-}
+
+}}

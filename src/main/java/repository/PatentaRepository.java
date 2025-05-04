@@ -9,6 +9,7 @@ import models.Patenta;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,7 +85,18 @@ public class PatentaRepository extends BaseRepository<Patenta, CreatePatentaDto,
             throw new RuntimeException("Gabim gjatë përditësimit të patentes", e);
         }
         return null;}
+    public List<Patenta> getLicensesIssued() throws SQLException {
+        List<Patenta> patentat = new ArrayList<>();
+        String query = "SELECT * FROM Patenta WHERE Statusi = 'E lëshuar'";
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(query);
 
+        while (resultSet.next()) {
+            patentat.add(Patenta.getInstance(resultSet));
+        }
+
+        return patentat;
+    }
     //na duhet te service ->
 
 }

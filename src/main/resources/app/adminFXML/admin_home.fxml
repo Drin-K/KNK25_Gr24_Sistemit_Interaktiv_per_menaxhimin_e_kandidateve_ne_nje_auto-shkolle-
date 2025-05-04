@@ -1,11 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
 
-<AnchorPane prefHeight="620.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="670.0" prefWidth="1313.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.AdminHomeController">
     <children>
-        <Text layoutX="98.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Home Page" />
+        <Label layoutX="20.0" layoutY="20.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Paneli Kryesor" />
+
+        <HBox layoutX="20.0" layoutY="75.19999694824219" spacing="20" />
+
+        <PieChart fx:id="statistikatKandidateveChart" layoutX="20.0" layoutY="159.60000610351562" prefHeight="250" prefWidth="400" />
+        <VBox layoutX="122.0" layoutY="506.0">
+            <children>
+                <Label prefHeight="0.0" prefWidth="154.0" text="Recent Activity Table" />
+
+                <TableView fx:id="tabelaAktivitetit" prefHeight="321.0" prefWidth="531.0">
+                    <columns>
+                        <TableColumn fx:id="dataCol" prefWidth="153.32885360717773" text="Data" />
+                        <TableColumn fx:id="llojiCol" prefWidth="185.40777587890625" text="Lloji" />
+                        <TableColumn fx:id="pershkrimiCol" prefWidth="190.79997558593755" text="Përshkrimi" />
+                    </columns>
+                </TableView>
+            </children>
+        </VBox>
+        <VBox layoutX="878.0" layoutY="104.0" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #fff9c4; -fx-padding: 10;">
+            <Label text="Pagesa të Papaguara" />
+        </VBox>
+        <VBox layoutX="487.0" layoutY="108.0" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #dcedc8; -fx-padding: 10;">
+            <Label text="Patenta të lëshuara" />
+        </VBox>
+        <VBox layoutX="94.0" layoutY="109.0" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #e0f7fa; -fx-padding: 10;">
+            <Label text="Kandidatët Total" />
+        </VBox>
+        <VBox layoutX="882.0" layoutY="258.0" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #e1f7fb; -fx-padding: 10;">
+            <children>
+                <Label text="Stafi aktiv" />
+            </children>
+        </VBox>
+        <VBox layoutX="488.0" layoutY="252.0" prefHeight="188.0" prefWidth="250.0" style="-fx-background-color: #e1f7fb; -fx-padding: 10;">
+            <children>
+                <Label text="Sesionet sot" />
+            </children>
+        </VBox>
+        <VBox layoutX="96.0" layoutY="252.0" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #e1f7fb; -fx-padding: 10;">
+            <children>
+                <Label text="Ne proces/perfunduar" />
+                <PieChart />
+            </children>
+        </VBox>
+        <VBox layoutX="887.0" layoutY="431.0" prefHeight="153.0" prefWidth="272.0" style="-fx-background-color: #fff9c4; -fx-padding: 10;">
+            <children>
+                <Label text="Numri i regjistrimeve/Pagesa te kryesra" />
+                <BarChart>
+                    <xAxis>
+                        <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis side="LEFT" />
+                    </yAxis>
+                </BarChart>
+                <BarChart>
+                    <xAxis>
+                        <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis side="LEFT" />
+                    </yAxis>
+                </BarChart>
+            </children>
+        </VBox>
     </children>
 </AnchorPane>

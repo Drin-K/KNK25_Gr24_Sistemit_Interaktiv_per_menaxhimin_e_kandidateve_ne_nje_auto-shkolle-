@@ -1,20 +1,19 @@
 package app.controller;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
+import javafx.fxml.FXML;import javafx.scene.layout.AnchorPane;
 import services.LanguageManager;
 import services.SceneManager;
 import utils.SceneLocator;
 
 import java.util.Locale;
 
-public class frontPageController {
+public class frontPageConsumatorController {
 
     private final LanguageManager languageManager = LanguageManager.getInstance();
     private void loadLanguage(Locale locale) throws Exception{
         languageManager.setLocale(locale);
         SceneManager.reload();
+
     }
     @FXML
     private AnchorPane rightPage;
@@ -57,6 +56,6 @@ public class frontPageController {
     private void languageClick()throws Exception{
         languageManager.getInstance().toggleLanguage();
         SceneManager.reload();
-        SceneManager.load(SceneLocator.getCurrentRightPage(), rightPage);
+        SceneManager.reload(SceneLocator.getCurrentRightPage(), rightPage);
     }
 }

@@ -7,6 +7,7 @@ import models.Orari;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class OrariRepository extends BaseRepository<Orari, CreateOrariDto, Updat
     public Orari create(CreateOrariDto orariDto){
         String query= """
                 INSERT INTO
-                ORARI(ID_KANDIDAT, ID_STAF,DATA_E_SESIONIT, ORA_E_FILLIMIT, ORA_E_PERFUNDIMIT, LLOJI_I_MESIMIT, STATUSI, ID_AUTOMJET)
+                ORARI(ID_Kandidat, ID_Staf, Data_e_Sesionit, Ora_e_Fillimit, Ora_e_Perfundimit, Lloji_i_Mesimit, Statusi, ID_Automjet)
                 VALUES(?,?,?,?,?,?,?,?);
                 """;
         try{
@@ -41,53 +42,93 @@ public class OrariRepository extends BaseRepository<Orari, CreateOrariDto, Updat
         }
         return null;
 
+    }
+    public Orari update(UpdateOrariDto orariDto){
+        StringBuilder query = new StringBuilder("UPDATE Orari SET ");
+        ArrayList<Object> params = new ArrayList<>();
+        if (orariDto.getDataSesionit()!=null){
+            query.append("Data_e_Sesionit=?, ");
+            params.add(orariDto.getDataSesionit());
         }
-        public Orari update(UpdateOrariDto orariDto){
-            StringBuilder query = new StringBuilder("UPDATE KANDIDATET SET ");
-            ArrayList<Object> params = new ArrayList<>();
-            if (orariDto.getDataSesionit()!=null){
-                query.append("data_e_sesionit=?, ");
-                params.add(orariDto.getDataSesionit());
+        if (orariDto.getOraFillimit()!=null){
+            query.append("Ora_e_Fillimit=?, ");
+            params.add(orariDto.getOraFillimit());
+        }
+        if (orariDto.getOraPerfundimit()!=null){
+            query.append("Ora_e_perfundimit=?, ");
+            params.add(orariDto.getOraPerfundimit());
+        }
+        if (orariDto.getLlojiMesimit()!=null){
+            query.append("Lloji_i_Mesimit=?, ");
+            params.add(orariDto.getLlojiMesimit());
+        }
+        if (orariDto.getStatusi()!=null){
+            query.append("Statusi=?, ");
+            params.add(orariDto.getStatusi());
+        }
+        if (params.isEmpty()) {
+            return getById(orariDto.getIdSesioni());
+        }
+        query.setLength(query.length() - 2);//me largu "? "->se paraqet gabim ne sintakse
+        query.append(" WHERE ID_Sesioni = ?");
+        params.add(orariDto.getIdSesioni());
+        try {
+            PreparedStatement pstm = this.connection.prepareStatement(query.toString());
+            for (int i = 0; i < params.size(); i++) {
+                pstm.setObject(i + 1, params.get(i));
             }
-            if (orariDto.getOraFillimit()!=null){
-                query.append("ora_e_fillimit=?, ");
-                params.add(orariDto.getOraFillimit());
+            int updated = pstm.executeUpdate();
+            if (updated == 1) {
+                return this.getById(orariDto.getIdSesioni());
             }
-            if (orariDto.getOraPerfundimit()!=null){
-                query.append("ora_e_perfundimit=?, ");
-                params.add(orariDto.getOraPerfundimit());
-            }
-            if (orariDto.getLlojiMesimit()!=null){
-                query.append("lloji_i_mesimit=?, ");
-                params.add(orariDto.getLlojiMesimit());
-            }
-            if (orariDto.getStatusi()!=null){
-                query.append("statusi=?, ");
-                params.add(orariDto.getStatusi());
-            }
-            if (params.isEmpty()) {
-                return getById(orariDto.getIdSesioni());
-            }
-            query.setLength(query.length() - 2);//me largu "? "->se paraqet gabim ne sintakse
-            query.append(" WHERE id_sesioni = ?");
-            params.add(orariDto.getIdSesioni());
-            try {
-                PreparedStatement pstm = this.connection.prepareStatement(query.toString());
-                for (int i = 0; i < params.size(); i++) {
-                    pstm.setObject(i + 1, params.get(i));
-                }
-                int updated = pstm.executeUpdate();
-                if (updated == 1) {
-                    return this.getById(orariDto.getIdSesioni());
-                }
-            } catch (SQLException e) {
-                throw new RuntimeException("Gabim gjatë përditësimit të kandidatit", e);
-            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Gabim gjatë përditësimit të orarit", e);
+        }
         return null;}
 
-//na duhet te service ->
-    public List<Orari> gjejOraretPerId(String columnName, int id) {
-        String query = String.format("SELECT * FROM ORARI WHERE %s = ?", columnName);
+    //na duhet te service ->
+    public List<Orari> gjejOraretPerDate(LocalDate data) {
+        String query = "SELECT * FROM ORARI WHERE Data_e_Sesionit = ?";
+        List<Orari> oraret = new ArrayList<>();
+
+        try (PreparedStatement pstm = this.connection.prepareStatement(query)) {
+            pstm.setObject(1, data);
+            ResultSet res = pstm.executeQuery();
+
+            while (res.next()) {
+                Orari orar = fromResultSet(res);
+                oraret.add(orar);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Gabim gjatë kërkimit të orareve për datën: " + data, e);
+        }
+
+        return oraret;
+    }
+
+    // Gjetja e orareve për një periudhë prej 7 ditësh (javë)
+    public List<Orari> gjejOraretMidis(LocalDate dataStart, LocalDate dataEnd) {
+        String query = "SELECT * FROM Orari WHERE Data_e_Sesionit BETWEEN ? AND ?";
+        List<Orari> oraret = new ArrayList<>();
+
+        try (PreparedStatement pstm = this.connection.prepareStatement(query)) {
+            pstm.setObject(1, dataStart);
+            pstm.setObject(2, dataEnd);
+            ResultSet res = pstm.executeQuery();
+
+            while (res.next()) {
+                Orari orar = fromResultSet(res);
+                oraret.add(orar);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Gabim gjatë kërkimit të orareve për periudhën: " + dataStart + " deri " + dataEnd, e);
+        }
+
+        return oraret;
+    }
+
+    public List<Orari> gjejOraretPerId(int id) {
+        String query = "SELECT * FROM Orari WHERE ID_Kandidat = ?";
         List<Orari> oraret = new ArrayList<>();
 
         try (PreparedStatement pstm = this.connection.prepareStatement(query)) {
@@ -99,10 +140,30 @@ public class OrariRepository extends BaseRepository<Orari, CreateOrariDto, Updat
                 oraret.add(orar);
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Nuk mund të lexohen oraret nga databaza për kolonën: " + columnName + " me ID: " + id, e);
+            throw new RuntimeException("Nuk mund të lexohen oraret nga databaza për kolonën me ID: " + id, e);
         }
 
         return oraret;
+    }
+
+    public long numeroSesione(int idKandidat, String llojiMesimit, String statusi) {
+        String query = "SELECT COUNT(*) FROM Orari WHERE ID_Kandidat = ? AND Lloji_i_Mesimit = ? AND Statusi = ?";
+        long numri = 0;
+
+        try (PreparedStatement pstm = this.connection.prepareStatement(query)) {
+            pstm.setInt(1, idKandidat);
+            pstm.setString(2, llojiMesimit);
+            pstm.setString(3, statusi);
+            ResultSet res = pstm.executeQuery();
+
+            if (res.next()) {
+                numri = res.getLong(1); // Lexon rezultatin e COUNT(*)
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Gabim gjatë numërimit të sesioneve për kandidat: " + idKandidat, e);
+        }
+
+        return numri;
     }
 
 

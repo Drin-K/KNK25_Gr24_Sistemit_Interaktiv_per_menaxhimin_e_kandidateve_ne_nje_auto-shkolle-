@@ -1,5 +1,6 @@
 package services;
 
+import models.Dto.orari.UpdateOrariDto;
 import models.Orari;
 import models.Kandidatet;
 import models.Stafi;
@@ -27,25 +28,82 @@ public class OrariService {
         this.stafiRepository = stafiRepository;
         this.automjetRepository = automjetRepository;
     }
-//METODAT
+    public OrariService() {
+        this.orariRepository = new OrariRepository();
+        this.kandidatRepository = new KandidatetRepository();
+        this.stafiRepository = new StafiRepository();
+        this.automjetRepository = new AutomjetetRepository();
+    }
+    //METODAT
     // metode ndihmese per dy poshte: e kemi lene si mundesi nese na vie ide me vone per ndonje kolone tjeter
-    public List<Orari> shikoOraretPerId(String kolona, int id) {
-        return orariRepository.gjejOraretPerId(kolona, id);
+    public List<Orari> shikoOraretPerId(int id) {
+        return orariRepository.gjejOraretPerId(id);
     }
 
     // ===================== METODA: Kandidati sheh oraret =====================
-    public List<Orari> shikoOraretPerKandidat(int idKandidat) {
-        return shikoOraretPerId("ID_KANDIDAT", idKandidat);
+//    public List<Orari> shikoOraretPerKandidat(int idKandidat) {
+//        return shikoOraretPerId("ID_KANDIDAT", idKandidat);
+//    }
+//
+//    // ===================== METODA: Stafi sheh oraret =====================
+//    public List<Orari> shikoOraretPerStaf(int idStaf) {
+//        return shikoOraretPerId("ID_STAF", idStaf);
+//    }
+    public boolean eshteGatiPerProvim(int idKandidat) {
+        long teori = numeroSesione(idKandidat, "Teori","");
+        long praktike = numeroSesione(idKandidat, "Praktikë","");
+        return teori >= 15 && praktike >= 20;
     }
-
-    // ===================== METODA: Stafi sheh oraret =====================
-    public List<Orari> shikoOraretPerStaf(int idStaf) {
-        return shikoOraretPerId("ID_STAF", idStaf);
+    public void delete(int orariId) throws Exception {
+        Orari ekzistues = orariRepository.getById(orariId);
+        if (ekzistues == null) {
+            throw new Exception("Orari me ID " + orariId + " nuk ekziston.");
+        }
+        boolean fshirje = orariRepository.delete(orariId);
+        if (!fshirje) {
+            throw new Exception("Gabim gjatë fshirjes së orarit me ID " + orariId);
+        }
     }
+    public Orari update(int orariId, UpdateOrariDto dto) throws Exception {
+        Orari ekzistues = orariRepository.getById(orariId);
+        if (ekzistues == null) {
+            throw new Exception("Orari me ID " + orariId + " nuk ekziston.");
+        }
 
+        // VALIDIME TE ZAKONSHME
+        if (dto.getIdKandidat() <= 0)
+            throw new Exception("ID e kandidatit është e pavlefshme.");
+
+        if (dto.getIdStaf() <= 0)
+            throw new Exception("ID e stafit është e pavlefshme.");
+
+        if (dto.getDataSesionit() == null)
+            throw new Exception("Data e sesionit nuk mund të jetë null.");
+
+        if (dto.getOraFillimit() == null || dto.getOraPerfundimit() == null)
+            throw new Exception("Ora e fillimit dhe përfundimit janë të detyrueshme.");
+
+        if (dto.getOraFillimit().isAfter(dto.getOraPerfundimit()))
+            throw new Exception("Ora e fillimit nuk mund të jetë pas orës së përfundimit.");
+
+        if (dto.getLlojiMesimit() == null || dto.getLlojiMesimit().isBlank())
+            throw new Exception("Lloji i mësimit është i detyrueshëm.");
+
+        if (dto.getStatusi() == null || dto.getStatusi().isBlank())
+            throw new Exception("Statusi është i detyrueshëm.");
+
+        if (dto.getIdAutomjet() <= 0)
+            throw new Exception("ID e automjetit është e pavlefshme.");
+
+        // PËRDITËSIMI NË BAZËN E TË DHËNAVE
+        // Shto ID-në e sesionit në DTO
+        dto.setIdSesioni(orariId);
+
+        return orariRepository.update(dto);
+    }
 
     // ===================== METODA: Shto sesion të ri =====================
-    public Orari shtoSesion(CreateOrariDto dto) throws Exception {
+    public Orari create(CreateOrariDto dto) throws Exception {
         // 1. Validimi i datës së sesionit
         if (dto.getDataSesionit() == null) {
             throw new Exception("Data e sesionit nuk mund të jetë bosh.");
@@ -82,12 +140,12 @@ public class OrariService {
         }
 
         // 5. Kontrollo ekzistencën e kandidatit, stafit dhe automjetit përmes BaseRepository -> getById()
-        Kandidatet kandidati = kandidatRepository.getById(dto.getIdKandidat());
+        Kandidatet kandidati = (Kandidatet) kandidatRepository.getById(dto.getIdKandidat());
         if (kandidati == null) {
             throw new Exception("Kandidati me këtë ID nuk ekziston.");
         }
 
-        Stafi stafi = stafiRepository.getById(dto.getIdStaf());
+        Stafi stafi =(Stafi) stafiRepository.getById(dto.getIdStaf());
         if (stafi == null) {
             throw new Exception("Stafi me këtë ID nuk ekziston.");
         }
@@ -99,11 +157,11 @@ public class OrariService {
 
         // --6. Kontrollo që nuk ka orar të dyfishtë për kandidat, staf dhe automjet--
         // Për kandidat
-        List<Orari> ekzistuesKandidat = shikoOraretPerKandidat(dto.getIdKandidat());
+        List<Orari> ekzistuesKandidat = shikoOraretPerId(dto.getIdKandidat());
         // Për staf
-        List<Orari> ekzistuesStaf = shikoOraretPerStaf(dto.getIdStaf());
+        List<Orari> ekzistuesStaf = shikoOraretPerId(dto.getIdStaf());
         //Per automjet
-        List<Orari> ekzistuesAutomjet = orariRepository.gjejOraretPerId("ID_AUTOMJET", dto.getIdAutomjet());
+        List<Orari> ekzistuesAutomjet = orariRepository.gjejOraretPerId(dto.getIdAutomjet());
         StringBuilder errorMessage = new StringBuilder(); // Për të mbajtur mesazhet e gabimit
         // Kontrollo për kandidat
         for (Orari orar : ekzistuesKandidat) {
@@ -119,7 +177,7 @@ public class OrariService {
                 errorMessage.append("Stafi ka një sesion tjetër në këtë orar.\n");
             }
         }
-         for (Orari orar : ekzistuesAutomjet) {
+        for (Orari orar : ekzistuesAutomjet) {
             if (orar.getDataSesionit().equals(dto.getDataSesionit()) &&
                     (orar.getOraFillimit().isBefore(dto.getOraPerfundimit()) && orar.getOraPerfundimit().isAfter(dto.getOraFillimit()))) {
                 errorMessage.append("Automjeti është i zënë në këtë orar.\n");
@@ -131,7 +189,20 @@ public class OrariService {
             throw new Exception(errorMessage.toString());
         }
         // 7. Në fund e shtojmë sesionin përmes OrariRepository
-       Orari orari=orariRepository.create(dto);
+        Orari orari=orariRepository.create(dto);
         return orari;
+    }
+
+    public long numeroSesione(int idKandidat, String llojiMesimit, String statusi){
+        return orariRepository.numeroSesione(idKandidat,llojiMesimit,statusi);
+    }
+    public List<Orari> gjejOraretPerId(String columnName, int id){
+        return orariRepository.gjejOraretPerId(id);
+    }
+    public List<Orari> gjejOraretMidis(LocalDate dataStart, LocalDate dataEnd){
+        return orariRepository.gjejOraretMidis(dataStart,dataEnd);
+    }
+    public List<Orari> gjejOraretPerDate(LocalDate data){
+        return orariRepository.gjejOraretPerDate(data);
     }
 }

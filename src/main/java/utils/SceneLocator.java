@@ -29,6 +29,7 @@ public class SceneLocator {
     public static final String STAF_PAGE="/app/adminFXML/admin_manage_staf.fxml";
     public static final String CANDIDATES_PAGE="/app/adminFXML/admin_manage_candidates.fxml";
     public static final String PAYMENTS_MANAGE_PAGE="/app/adminFXML/admin_payments.fxml";
+    public static final String ADMIN_HOME_PAGE="/app/adminFXML/admin_home.fxml";
 
     public static void setCurrentRightPage(String path) {
         currentRightPage = path;

@@ -3,8 +3,6 @@ package app.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import models.Dto.orari.CreateOrariDto;
@@ -21,8 +19,7 @@ import java.time.LocalTime;
 public class InstructorSchedulerController {
     // Services & context
     private final OrariService orariService;
-    private final UserContext context;
-    private AutomjetService automjetService;
+    private final AutomjetService automjetService;
     private Integer vehicleId;
 
     // Form fields
@@ -33,29 +30,18 @@ public class InstructorSchedulerController {
     @FXML private TextField txtStart;
     @FXML private TextField txtEnd;
 
-    // Used to store which lesson type was picked
+    // Lesson type and vehicle type
     private String llojiMesimit;
-    private String txtSpecify;
+    private String selectedVehicleType;  // Stores "Motoçikletë", "Vetura", or "Kamion"
 
-    /** True no-arg constructor for FXMLLoader */
     public InstructorSchedulerController() {
         this.orariService = new OrariService();
-        this.context      = new UserContext();
         this.automjetService = new AutomjetService();
     }
 
-    /** Called by FXMLLoader after @FXML injections */
     @FXML
     private void initialize() {
-        // Pre-fetch an available vehicle (or defer this logic to scheduleClick if preferred)
-        try {
-            this.vehicleId = automjetService.getFirstAvailableVehicleIdByLloji(txtSpecify);
-        } catch (Exception e) {
-            e.printStackTrace();
-            this.vehicleId = null;
-        }
-
-        // You can also set up any dynamic UI state here if needed
+        // No initialization of vehicleId here
     }
 
     @FXML
@@ -72,11 +58,16 @@ public class InstructorSchedulerController {
     }
 
     private CreateOrariDto getScheduleInputData() {
-        int kandId   = Integer.parseInt(this.candidateId.getText().trim());
-        int stafId   = UserContext.getUserId();
+        // Validate vehicle selection
+        if (vehicleId == null) {
+            throw new IllegalArgumentException("No vehicle selected or available.");
+        }
+
+        int kandId = Integer.parseInt(this.candidateId.getText().trim());
+        int stafId = UserContext.getUserId();
         LocalDate date = this.dateForLesson.getValue();
         LocalTime start = LocalTime.parse(this.txtStart.getText().trim());
-        LocalTime end   = LocalTime.parse(this.txtEnd.getText().trim());
+        LocalTime end = LocalTime.parse(this.txtEnd.getText().trim());
 
         return new CreateOrariDto(
                 kandId,
@@ -92,24 +83,53 @@ public class InstructorSchedulerController {
 
     private void cleanFields() {
         this.candidateId.clear();
-        this.txtSpecify=null;
         this.txtEnd.clear();
         this.txtStart.clear();
         this.dateForLesson.setValue(null);
-        // reset lesson type if desired:
         this.llojiMesimit = null;
+        this.selectedVehicleType = null;
+        this.vehicleId = null;
         this.chooseLessonBttn.setText("Choose lesson type");
     }
 
-    // Lesson‐type menu handlers
-    @FXML private void teoriClick()   { this.llojiMesimit = "Teori";   chooseLessonBttn.setText("Teori"); }
-    @FXML private void praktikClick() { this.llojiMesimit = "Praktik"; chooseLessonBttn.setText("Praktik"); }
+    // Lesson type handlers
+    @FXML private void teoriClick()   {
+        this.llojiMesimit = "Teori";
+        chooseLessonBttn.setText("Teori");
+    }
 
-    // Vehicle radio‐buttons
-    @FXML private void AClick()    { this.txtSpecify="Motoçikletë"; }
-    @FXML private void BClick()      { this.txtSpecify="Vetura";    }
-    @FXML private void CClick() { this.txtSpecify="Kamion"; }
+    @FXML private void praktikClick() {
+        this.llojiMesimit = "Praktik";
+        chooseLessonBttn.setText("Praktik");
+    }
 
+    // Vehicle type handlers
+    @FXML
+    private void AClick() {
+        this.selectedVehicleType = "Motoçikletë";
+        fetchVehicleId();  // Initialize vehicleId AFTER selecting the type
+    }
+
+    @FXML
+    private void BClick() {
+        this.selectedVehicleType = "Vetura";
+        fetchVehicleId();
+    }
+
+    @FXML
+    private void CClick() {
+        this.selectedVehicleType = "Kamion";
+        fetchVehicleId();
+    }
+
+    private void fetchVehicleId() {
+        try {
+            this.vehicleId = automjetService.getFirstAvailableVehicleIdByLloji(selectedVehicleType);
+        } catch (Exception e) {
+            e.printStackTrace();
+            this.vehicleId = null;
+        }
+    }
 
     @FXML
     private void editClick() throws Exception {

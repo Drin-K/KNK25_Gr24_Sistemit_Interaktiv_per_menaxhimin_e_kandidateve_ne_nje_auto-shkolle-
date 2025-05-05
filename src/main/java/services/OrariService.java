@@ -34,6 +34,9 @@ public class OrariService {
         this.stafiRepository = new StafiRepository();
         this.automjetRepository = new AutomjetetRepository();
     }
+    public Orari getById(int idSesioni) {
+        return orariRepository.getById(idSesioni);
+    }
 
     public List<Orari> shikoOraretPerId(int id) {
         return orariRepository.gjejOraretPerId(id);

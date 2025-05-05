@@ -72,22 +72,17 @@ public class AdminHomeController {
 
         private void loadLicensesIssued() {
             try {
-                // Merrni patentat e lëshuara
                 List<Patenta> patentat = patentaService.getLicensesIssued();
 
-                // Krijoni një serie për të shfaqur në grafik
                 XYChart.Series<String, Number> series = new XYChart.Series<>();
                 series.setName("Licenses Issued");
 
-                // Përdorni një DateTimeFormatter për të shfaqur datën si String
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
                 for (Patenta patenta : patentat) {
-                    // Shtoni të dhënat në serinë e grafikut
                     series.getData().add(new XYChart.Data<>(patenta.getDataLeshimit().format(formatter), 1)); // Përdoreni 1 për të treguar një patentë për datën specifike
                 }
 
-                // Vendosni serinë në grafikonin tuaj
                 patentatEleshuara.getData().add(series);
 
             } catch (SQLException e) {
@@ -98,20 +93,19 @@ public class AdminHomeController {
     private void loadUnpaidPayments() {
         XYChart.Series<String, Number> chartData = pagesaService.getUnpaidPaymentsChartData();
 
-        // Shto të dhënat në BarChart
-        pagesaTePapaguara.getData().clear();  // Fshi çdo të dhënë të mëparshme
-        pagesaTePapaguara.getData().add(chartData);  // Shto serinë e re
+
+        pagesaTePapaguara.getData().clear();
+        pagesaTePapaguara.getData().add(chartData);
     }
     private void loadSessionsToday() {
         List<Orari> sessionsToday = sesioniService.getSessionsToday();
 
-        // Krijoni një List<String> për t'i shfaqur në ListView
         for (Orari orari : sessionsToday) {
             sesionetSot.getItems().add(orari.getLlojiMesimit() + ": " + orari.getOraFillimit()+"-"+orari.getOraPerfundimit());
         }
     }
     private void loadRegistrationsTopPayments(){
-        // Regjistrimet
+
         HashMap<String, Integer> registrationsData = kandidateService.getRegistrationsLast12Months();
         XYChart.Series<String, Number> registrationsSeries = new XYChart.Series<>();
         registrationsSeries.setName("Registrations");

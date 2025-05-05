@@ -110,10 +110,8 @@ public class UserService {
             return new LoginResponse(LoginStatus.INVALID_PASSWORD, null, 0);
         }
 
-        // Marrim rolin nga emaili në vend që të përdorim atë nga objekti user
         String detectedRole = getRoleFromEmail(user.getEmail());
 
-        // Ruajmë përdoruesin në kontekst me rolin e detektuar
         UserContext.setUser(detectedRole, user.getIdUser());
 
         return new LoginResponse(LoginStatus.SUCCESS, detectedRole, user.getIdUser());

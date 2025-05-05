@@ -32,7 +32,7 @@
            </yAxis>
          </BarChart>
         </VBox>
-        <VBox layoutX="15.0" layoutY="391.0" prefHeight="275.0" prefWidth="398.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
+        <VBox layoutX="66.0" layoutY="392.0" prefHeight="275.0" prefWidth="398.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
             <Label text="Licenses Issued" textFill="WHITE" />
          <LineChart fx:id="patentatEleshuara">
            <xAxis>

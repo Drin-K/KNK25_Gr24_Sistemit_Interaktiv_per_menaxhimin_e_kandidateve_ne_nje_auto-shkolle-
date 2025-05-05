@@ -20,8 +20,8 @@
 
         <HBox layoutX="20.0" layoutY="75.19999694824219" spacing="20" />
 
-        <PieChart fx:id="statistikatKandidateveChart" layoutX="20.0" layoutY="159.60000610351562" prefHeight="250" prefWidth="400" />
-        <VBox layoutX="42.0" layoutY="151.0" prefHeight="328.0" prefWidth="626.0" style="-fx-background-color: #e1f7fb; -fx-padding: 10;">
+        <PieChart fx:id="statistikatKandidateveChart" layoutX="20.0" layoutY="159.60000610351562" prefHeight="250" prefWidth="400" AnchorPane.bottomAnchor="289.3999938964844" AnchorPane.topAnchor="500.0" />
+        <VBox layoutX="42.0" layoutY="151.0" prefHeight="328.0" prefWidth="626.0" style="-fx-background-color: #213e60; -fx-border-color: #ff7900; -fx-padding: 10;">
             <children>
                 <BorderPane prefHeight="285.0" prefWidth="579.0">
                     <center>
@@ -32,15 +32,15 @@
                             <children>
                                 <HBox spacing="10">
                                     <children>
-                                        <Label text="Kandidati:" />
+                                        <Label prefHeight="24.0" prefWidth="62.0" text="Kandidati:" textFill="#ffc90d" />
                                         <TextField fx:id="kandidatiField" promptText="Emri i kandidatit" />
-                                        <Label text="Kategoria:" />
+                                        <Label prefHeight="24.0" prefWidth="54.0" text="Kategoria:" textFill="#ffc90d" />
                                         <ComboBox fx:id="kategoriaCombo" prefWidth="150" />
                                     </children>
                                 </HBox>
                                 <HBox spacing="10">
                                     <children>
-                                        <Label text="Statusi:" />
+                                        <Label prefHeight="24.0" prefWidth="42.0" text="Statusi:" textFill="#ffc90d" />
                                         <ComboBox fx:id="statusiCombo">
                                             <items>
                                                 <FXCollections fx:factory="observableArrayList">
@@ -49,18 +49,18 @@
                                                 </FXCollections>
                                             </items>
                                         </ComboBox>
-                                        <Button onAction="#shtoPatente" text="Shto Patentë" />
-                                        <Button onAction="#perditesoPatente" text="Përditëso" />
-                                        <Button onAction="#fshijPatente" text="Fshij" />
+                                        <Button onAction="#shtoPatente" style="-fx-background-color: #39cf15;" text="Shto Patentë" textFill="WHITE" />
+                                        <Button onAction="#perditesoPatente" style="-fx-background-color: f28500;" text="Përditëso" textFill="WHITE" />
+                                        <Button onAction="#fshijPatente" style="-fx-background-color: #b7410e;" text="Fshij" textFill="WHITE" />
                                     </children>
                                 </HBox>
                                 <TableView fx:id="patentaTable" prefHeight="300" prefWidth="600">
                                     <columns>
-                                        <TableColumn fx:id="idColumn" prefWidth="50" text="ID" />
-                                        <TableColumn fx:id="kandidatiColumn" prefWidth="150" text="Kandidati" />
-                                        <TableColumn fx:id="kategoriaColumn" prefWidth="100" text="Kategoria" />
-                                        <TableColumn fx:id="dataColumn" prefWidth="120" text="Data Lëshimit" />
-                                        <TableColumn fx:id="statusiColumn" prefWidth="100" text="Statusi" />
+                                        <TableColumn fx:id="idColumn" prefWidth="74.79998016357422" text="ID" />
+                                        <TableColumn fx:id="kandidatiColumn" prefWidth="125.20001220703125" text="Kandidati" />
+                                        <TableColumn fx:id="kategoriaColumn" prefWidth="112.4000244140625" text="Kategoria" />
+                                        <TableColumn fx:id="dataColumn" prefWidth="125.20004272460938" text="Data Lëshimit" />
+                                        <TableColumn fx:id="statusiColumn" prefWidth="108.0" text="Statusi" />
                                     </columns>
                                 </TableView>
                             </children>

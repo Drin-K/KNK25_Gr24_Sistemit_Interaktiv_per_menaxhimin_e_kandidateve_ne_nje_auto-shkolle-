@@ -123,3 +123,24 @@
 📋 Analiza e mbështetjes së stafit:
    - Raport për mbështetje dhe konsultime me kandidatët.
 
++-----------------------------+
+| Regjistro Kandidatët        |
+| (Emri, Mbiemri, etj.)        |
++-----------------------------+
+          |
+          v
++-----------------------------+
+| Verifiko të dhënat          |
+| (Telefon, Email, Data, etj.)|
++-----------------------------+
+          |
+          v
++-----------------------------+
+| Cakto statusin e kandidatit |
+| (Në proces, Përfunduar)     |
++-----------------------------+
+          |
+          v
++-----------------------------+
+| Aktivizo procesin e regjistrimit |
++-----------------------------+

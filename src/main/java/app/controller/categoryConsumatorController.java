@@ -1,61 +1,83 @@
 package app.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import models.Dto.kategorite_patentes.CreateKategoritePatentesDto;
+import models.Dto.regjistrimet.CreateRegjistrimetDto;
 import models.KategoritePatentes;
+import models.Regjistrimet;
+import services.KandidateService;
 import services.KategoritePatentesService;
+import services.RegjistrimiService;
+import services.UserContext;
 
+//
+//CreateRegjistrimetDto dto = new CreateRegjistrimetDto(this.kandidatId, /*kategoritePatentesService.getId()*/, statusi);
+////              Regjistrimet result = regjistrimiService.create(dto);
+////              System.out.printf("Category inserted successfuly !");
+////              System.out.println("Kategoria ID: " + result.getId());
 public class categoryConsumatorController {
-
-    @FXML private TextArea txtDescriptionA, txtDescriptionB, txtDescriptionC, txtDescriptionD;
-    @FXML private TextField txtCategoryA, txtCategoryB, txtCategoryC, txtCategoryD;
-
+    private int kategoriId;
+    private final RegjistrimiService regjistrimiService;
     private final KategoritePatentesService kategoritePatentesService;
-
-    public categoryConsumatorController() {
+    private final int kandidatId = UserContext.getUserId();
+    private final String statusi = "Në proces";
+    public categoryConsumatorController(){
+        this.regjistrimiService = new RegjistrimiService();
         this.kategoritePatentesService = new KategoritePatentesService();
     }
 
     @FXML
-    private void applyClickA() {
-        saveCategory(txtCategoryA, txtDescriptionA);
+    private void applyClickA(){
+        this.kategoriId = 1;
+        try{
+              CreateRegjistrimetDto dto = new CreateRegjistrimetDto(this.kandidatId,this.kategoriId, statusi);
+              Regjistrimet result = regjistrimiService.create(dto);
+              System.out.printf("Category inserted successfuly !");
+              System.out.println("Kategoria ID: " + result.getId());
+              showAlert("Notification","Kategoria A u ruajt me sukses");
+        }
+        catch (Exception e){
+            System.out.println("Kategoria nuk u ruajt me sukses !");
+            showAlert("Notification","Kategoria A nuk u ruajt me sukses");
+        }
     }
-
     @FXML
-    private void applyClickB() {
-        saveCategory(txtCategoryB, txtDescriptionB);
-    }
-
-    @FXML
-    private void applyClickC() {
-        saveCategory(txtCategoryC, txtDescriptionC);
-    }
-
-    @FXML
-    private void applyClickD() {
-        saveCategory(txtCategoryD, txtDescriptionD);
-    }
-
-    private void saveCategory(TextField categoryField, TextArea descriptionArea) {
-        try {
-            CreateKategoritePatentesDto dto = getKategoriaInputData(categoryField.getText(), descriptionArea.getText());
-            KategoritePatentes result = kategoritePatentesService.create(dto); // Fixed method call
-            System.out.println("Kategoria inserted successfully!");
+    private void applyClickB(){
+        this.kategoriId = 2;
+        try{
+            CreateRegjistrimetDto dto = new CreateRegjistrimetDto(this.kandidatId,this.kategoriId, statusi);
+            Regjistrimet result = regjistrimiService.create(dto);
+            System.out.printf("Category inserted successfuly !");
             System.out.println("Kategoria ID: " + result.getId());
-            cleanFields(categoryField, descriptionArea);
-        } catch (Exception e) {
-            System.out.println("Error inserting category: " + e.getMessage());
+            showAlert("Notification","Kategoria B u ruajt me sukses");
+        }
+        catch (Exception e){
+            System.out.println("Kategoria nuk u ruajt me sukses !");
+            showAlert("Notification","Kategoria B nuk u ruajt me sukses");
+        }
+    }
+    @FXML
+    private void applyClickC(){
+        this.kategoriId = 2;
+        try{
+            CreateRegjistrimetDto dto = new CreateRegjistrimetDto(this.kandidatId,this.kategoriId, statusi);
+            Regjistrimet result = regjistrimiService.create(dto);
+            System.out.printf("Category inserted successfuly !");
+            System.out.println("Kategoria ID: " + result.getId());
+            showAlert("Notification","Kategoria C u ruajt me sukses");
+        }
+        catch (Exception e){
+            System.out.println("Kategoria nuk u ruajt me sukses !");
+            showAlert("Notification","Kategoria C nuk u ruajt me sukses");
         }
     }
 
-    private CreateKategoritePatentesDto getKategoriaInputData(String categoryInput, String description) {
-        return new CreateKategoritePatentesDto(categoryInput, description);
-    }
-
-    private void cleanFields(TextField categoryField, TextArea descriptionArea) {
-        categoryField.setText("");
-        descriptionArea.setText("");
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, message, ButtonType.OK);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.showAndWait();
     }
 }

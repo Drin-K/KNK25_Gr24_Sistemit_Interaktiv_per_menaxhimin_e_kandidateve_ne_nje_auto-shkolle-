@@ -2,107 +2,123 @@ package app.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import models.Dto.orari.CreateOrariDto;
 import models.Orari;
 import services.AutomjetService;
 import services.OrariService;
-import services.SceneManager;
 import services.UserContext;
+import services.SceneManager;
 import utils.SceneLocator;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class InstructorSchedulerController {
-    AutomjetService automjetService;
-    UserContext context;
+    // Services & context
     private final OrariService orariService;
+    private final UserContext context;
+    private AutomjetService automjetService;
+    private Integer vehicleId;
 
-    public InstructorSchedulerController() throws Exception {
-        this.orariService=new OrariService();
-        this.context=new UserContext();
+    // Form fields
+    @FXML private AnchorPane rightPane;
+    @FXML private MenuButton chooseLessonBttn;
+    @FXML private MenuItem teoriBttn;
+    @FXML private MenuItem praktikBttn;
+    @FXML private TextField candidateId;
+    @FXML private DatePicker dateForLesson;
+    @FXML private TextField txtStart;
+    @FXML private TextField txtEnd;
+    @FXML private TextField txtSpecify;
+    @FXML private RadioButton golf4Bttn;
+    @FXML private RadioButton bmwBttn;
+    @FXML private RadioButton mercedesBttn;
+    @FXML private RadioButton golf7Bttn;
+
+    // Used to store which lesson type was picked
+    private String llojiMesimit;
+
+    /** True no-arg constructor for FXMLLoader */
+    public InstructorSchedulerController() {
+        this.orariService = new OrariService();
+        this.context      = new UserContext();
+        this.automjetService = new AutomjetService();
     }
-    String llojiMesimit;
+
+    /** Called by FXMLLoader after @FXML injections */
     @FXML
-     private AnchorPane rightPane;
-    @FXML
-    private TextField candidateId;
-    @FXML
-    private DatePicker dateForLesson;
-    @FXML
-    private TextField txtStart;
-    @FXML
-    private TextField txtEnd;
-    @FXML
-    private TextField txtSpecify;
-    Integer vehicleId = automjetService.getFirstAvailableVehicleIdByLloji("vetura");
+    private void initialize() {
+        // Pre-fetch an available vehicle (or defer this logic to scheduleClick if preferred)
+        try {
+            this.vehicleId = automjetService.getFirstAvailableVehicleIdByLloji("vetura");
+        } catch (Exception e) {
+            e.printStackTrace();
+            this.vehicleId = null;
+        }
+
+        // You can also set up any dynamic UI state here if needed
+    }
 
     @FXML
-    private void scheduleClick ()throws Exception{
-       try{
-           Orari orari= this.orariService.create(this.getScheduleInputData());
-           System.out.println("Schedule is inserted successfully");
-           System.out.println("Candidate ID"+orari.getIdKandidat());
-           this.cleanFields();
-       }
-       catch (Exception e){
-           System.out.println("---Error Scheduling---"+e.getMessage());
-       }
+    private void scheduleClick() {
+        try {
+            CreateOrariDto dto = this.getScheduleInputData();
+            Orari orari = this.orariService.create(dto);
+            System.out.println("Schedule inserted successfully; session ID=" + orari.getIdSesioni());
+            this.cleanFields();
+        } catch (Exception e) {
+            System.err.println("---Error Scheduling--- " + e.getMessage());
+            e.printStackTrace();
+        }
     }
-    private CreateOrariDto getScheduleInputData(){
-        int candidateId=Integer.parseInt(this.candidateId.getText());
-        String textSpecify=this.txtSpecify.getText();
-        LocalDate dateForLesson= this.dateForLesson.getValue();
-        LocalTime startTime=LocalTime.parse(txtStart.getText());
-        LocalTime endTime=LocalTime.parse(txtEnd.getText());
-        return new CreateOrariDto(candidateId, UserContext.getUserId(), dateForLesson,startTime,endTime,this.llojiMesimit,"Planifikuar",vehicleId);
 
+    private CreateOrariDto getScheduleInputData() {
+        int kandId   = Integer.parseInt(this.candidateId.getText().trim());
+        int stafId   = UserContext.getUserId();
+        LocalDate date = this.dateForLesson.getValue();
+        LocalTime start = LocalTime.parse(this.txtStart.getText().trim());
+        LocalTime end   = LocalTime.parse(this.txtEnd.getText().trim());
+
+        return new CreateOrariDto(
+                kandId,
+                stafId,
+                date,
+                start,
+                end,
+                this.llojiMesimit,
+                "Planifikuar",
+                this.vehicleId
+        );
     }
-    private void cleanFields(){
-        this.candidateId.setText("");
-        this.txtSpecify.setText("");
-        this.txtEnd.setText("");
-        this.txtStart.setText("");
+
+    private void cleanFields() {
+        this.candidateId.clear();
+        this.txtSpecify.clear();
+        this.txtEnd.clear();
+        this.txtStart.clear();
         this.dateForLesson.setValue(null);
-    }
-    @FXML
-    private void  removeScheduleClick()throws Exception{
-        SceneManager.load(SceneLocator.INSTRUCTOR_EDIT, this.rightPane);
-    }
-
-    @FXML
-    private void teoriClick()throws Exception{
-        this.llojiMesimit="Teori";
+        // reset lesson type if desired:
+        this.llojiMesimit = null;
+        this.chooseLessonBttn.setText("Choose lesson type");
     }
 
-    @FXML
-    private  void praktikClick()throws Exception{
-       this.llojiMesimit="Praktik";
-    }
+    // Lesson‐type menu handlers
+    @FXML private void teoriClick()   { this.llojiMesimit = "Teori";   chooseLessonBttn.setText("Teori"); }
+    @FXML private void praktikClick() { this.llojiMesimit = "Praktik"; chooseLessonBttn.setText("Praktik"); }
+
+    // Vehicle radio‐buttons
+    @FXML private void golf4Click()    { this.txtSpecify.setText("Golf 4"); }
+    @FXML private void bmwClick()      { this.txtSpecify.setText("BMW");    }
+    @FXML private void mercedesClick() { this.txtSpecify.setText("Mercedes"); }
+    @FXML private void glof7Click()    { this.txtSpecify.setText("Golf 7"); }
 
     @FXML
-    private  void golf4Click()throws Exception{
-        this.txtSpecify.setText("Golf 4");
-    }
-
-    @FXML
-    private  void bmwClick()throws Exception{
-        this.txtSpecify.setText("BMW");
-    }
-
-    @FXML
-    private  void mercedesClick()throws Exception{
-        this.txtSpecify.setText("Mercedes");
-    }
-
-    @FXML
-    private  void glof7Click()throws Exception{
-        this.txtSpecify.setText("Golf 7");
-    }
-    @FXML
-    private void editClick()throws Exception{
-        SceneManager.load("/app/stafiFXML/edit_scheduler.fxml", rightPane);
+    private void editClick() throws Exception {
+        SceneManager.load(SceneLocator.INSTRUCTOR_EDIT, rightPane);
     }
 }

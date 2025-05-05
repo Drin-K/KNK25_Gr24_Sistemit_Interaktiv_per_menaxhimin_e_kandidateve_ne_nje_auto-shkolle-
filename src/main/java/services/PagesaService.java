@@ -86,4 +86,9 @@ public class PagesaService {
             e.printStackTrace();
         }
     }
+    public List<Pagesat> getAllPagesat() {
+        return pagesatRepository.loadPagesatData();  }
+    public List<Pagesat> searchPagesatByCandidateName(String name){
+        return pagesatRepository.searchPagesatByCandidateName(name);
+    }
 }

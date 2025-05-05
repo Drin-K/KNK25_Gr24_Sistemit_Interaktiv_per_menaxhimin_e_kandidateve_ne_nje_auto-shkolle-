@@ -1,10 +1,16 @@
 package app.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.shape.Circle;
 import models.Pagesat;
+import services.PagesaService;
+
+import java.util.List;
 
 public class AdminPaymentController {
     @FXML
@@ -45,5 +51,20 @@ public class AdminPaymentController {
     private TableColumn<Pagesat, String> MetodaPagesesCol;
     @FXML
     private TableColumn<Pagesat, String> StatusiPagese;
+
+    private ObservableList<Pagesat> pagesatList = FXCollections.observableArrayList();
+    private PagesaService pagesatService = new PagesaService();
+    public void loadTableDatat(){
+        pagesatList.clear();
+        pagesatList.addAll(pagesatService.getAllPagesat());
+        IdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        idCandidatCol.setCellValueFactory(new PropertyValueFactory<>("idKandidat"));
+        ShumaCol.setCellValueFactory(new PropertyValueFactory<>("shuma"));
+        DataEPagesesCol.setCellValueFactory(new PropertyValueFactory<>("dataPageses"));
+        MetodaPagesesCol.setCellValueFactory(new PropertyValueFactory<>("metodaPageses"));
+        StatusiPagese.setCellValueFactory(new PropertyValueFactory<>("statusiPageses"));
+        pagesatTable.setItems(pagesatList);
+}
+
 
 }

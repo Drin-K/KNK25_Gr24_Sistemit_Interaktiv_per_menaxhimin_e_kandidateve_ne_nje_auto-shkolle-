@@ -156,5 +156,37 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
             statement.executeUpdate();
         }
     }
+    public List<Pagesat> loadPagesatData() {
+        List<Pagesat> pagesatList = new ArrayList<>();
+        String query = "SELECT * FROM Pagesat";
+        try (PreparedStatement stmt = this.connection.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
 
+            while (rs.next()) {
+                Pagesat pagesat = Pagesat.getInstance(rs);
+                pagesatList.add(pagesat);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return pagesatList;
+    }
+    public List<Pagesat> searchPagesatByCandidateName(String name) {
+        List<Pagesat> pagesatList = new ArrayList<>();
+        String query = "SELECT * FROM Pagesat JOIN Kandidatet ON Pagesat.ID_Kandidat = Kandidatet.ID WHERE Kandidatet.Emri LIKE ?";
+
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setString(1, "%" + name + "%"); // Kërkoni për emrin e kandidatit që përmban 'name'
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Pagesat pagesat = Pagesat.getInstance(rs);
+                    pagesatList.add(pagesat);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return pagesatList;
+    }
 }

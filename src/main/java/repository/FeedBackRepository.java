@@ -75,10 +75,18 @@ public class FeedBackRepository extends BaseRepository<FeedBack, CreateFeedBackD
     }
     public ArrayList<FeedBack> getFeedbacks(Integer candidateId, int instructorId, LocalDate date) {
         ArrayList<FeedBack> feedbackList = new ArrayList<>();
-        String query = "SELECT * FROM FeedBack WHERE Id_Staf = ?";
+        StringBuilder queryBuilder = new StringBuilder("SELECT * FROM FeedBack WHERE Id_Staf = ?");
 
-        if (candidateId != null) query += " AND ID_Kandidat= ?";
-        if (date != null) query += " AND DATE(Data) = ?";
+        // Add conditions dynamically based on provided arguments
+        if (candidateId != null) {
+            queryBuilder.append(" AND ID_Kandidat = ?");
+        }
+        if (date != null) {
+            queryBuilder.append(" AND DATE(Data) = ?");
+        }
+
+        String query = queryBuilder.toString();
+        System.out.println("Executing query: " + query); // Log the query for debugging
 
         try {
             PreparedStatement stmt = this.connection.prepareStatement(query);
@@ -102,8 +110,9 @@ public class FeedBackRepository extends BaseRepository<FeedBack, CreateFeedBackD
 
         return feedbackList;
     }
+
     public List<FeedBack> getFiltered(Integer candidateId, int instructorId, LocalDate date) {
-        List<FeedBack> all = getAll(); // assume this gets all feedbacks from DB or in-memory
+        List<FeedBack> all = getAll(); // Assume this gets all feedbacks from DB or in-memory
 
         return all.stream()
                 .filter(fb -> fb.getIdStaf() == instructorId)
@@ -111,6 +120,7 @@ public class FeedBackRepository extends BaseRepository<FeedBack, CreateFeedBackD
                 .filter(fb -> date == null || fb.getDataFeedback().equals(date))
                 .collect(Collectors.toList());
     }
+
 
 
 }

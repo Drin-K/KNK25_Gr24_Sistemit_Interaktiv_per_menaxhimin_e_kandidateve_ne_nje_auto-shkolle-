@@ -265,3 +265,17 @@
 +-------------------------------+
 
 
+📊 **Statistika për Pagesat:**
+   - Pie chart për statusin e pagesave (Paguar, Pjesërisht, Mbetur).
+   - Bar chart për metodat e pagesës (Cash, Kartë, Online).
+   - Histogramë për numrin e pagesave të përfunduara brenda periudhës.
+
+📈 **Raportet për Pagesat e Kandidatëve:**
+   - Raporte mujore, gjashtëmujor dhe vjetor për pagesat e kryera.
+   - Raporte për të gjitha pagesat e pasqyruara me shuma të paguara.
+   - Shih pagesat që janë bërë dhe pagesat e mbetura.
+
+📉 **Monitorimi i Dhomave të Pagesave:**
+   - Shikimi i pagesave që kanë kaluar afatin e pagesës.
+   - Shikimi i statusit të pagesave për çdo kandidat.
+

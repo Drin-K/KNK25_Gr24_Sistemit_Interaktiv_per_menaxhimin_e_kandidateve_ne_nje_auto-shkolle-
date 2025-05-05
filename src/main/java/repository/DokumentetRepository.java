@@ -4,6 +4,7 @@ import models.Dokumentet;
 import models.Dto.dokumentet.CreateDokumentetDto;
 import models.Dto.dokumentet.UpdateDokumentetDto;
 
+import java.io.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -79,6 +80,48 @@ public class DokumentetRepository extends BaseRepository<Dokumentet, CreateDokum
             throw new RuntimeException("Gabim gjatë përditësimit të dokumentit", e);
         }
         return null;
+    }
+    public ArrayList<Dokumentet> getDokumenteByKandidatId(String kandidatId) throws SQLException {
+        ArrayList<Dokumentet> dokumentetList = new ArrayList<>();
+        String query = "SELECT * FROM Dokumentet WHERE ID_Kandidat = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, kandidatId);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                dokumentetList.add(Dokumentet.getInstance(resultSet));
+            }
+        }
+
+        return dokumentetList;
+    }
+    public boolean downloadDokument(Dokumentet dokument) {
+        String query = "SELECT * FROM Dokumentet WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, dokument.getId());
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                String emriSkedarit = resultSet.getString("Emri_Skedari");
+                String filePath = "path_to_directory" + File.separator + emriSkedarit;  // Vendosni këtu udhëzimin për ruajtjen
+                File file = new File(filePath);
+
+                // Nëse dokumenti ekziston, e shkarkoni
+                try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file));
+                     BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream("C:/path_to_download_location" + File.separator + emriSkedarit))) {
+                    byte[] buffer = new byte[1024];
+                    int length;
+                    while ((length = bis.read(buffer)) > 0) {
+                        bos.write(buffer, 0, length);
+                    }
+                    return true;
+                }
+            }
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }
 

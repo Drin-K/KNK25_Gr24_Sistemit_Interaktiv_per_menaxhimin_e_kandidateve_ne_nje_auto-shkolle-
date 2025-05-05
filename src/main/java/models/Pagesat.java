@@ -56,4 +56,5 @@ return new Pagesat(id,idKandidat,shuma,dataPageses,metodaPageses,statusiPageses)
     public String getStatusiPageses() {
         return statusiPageses;
     }
+
 }

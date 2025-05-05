@@ -66,4 +66,7 @@ public class StafiService {
         this.getById(id); // E kontrollojm a ekziston
         return stafiRepository.delete(id);
     }
+    public int countStafi() {
+        return this.stafiRepository.countStafi();
+    }
 }

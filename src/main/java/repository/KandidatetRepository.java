@@ -43,23 +43,23 @@ public class KandidatetRepository extends UserRepository {
     }
     public List<Kandidatet> gjejKandidatetMeTeDrejte(boolean statusiProcesit, boolean pagesa, boolean testet, boolean regjistrimi) throws SQLException {
         String sql = """
-        SELECT DISTINCT ON (u.id)
-               u.id, u.name, u.surname, u.email, u.phoneNumber, u.dateOfBirth,
-               u.hashedPassword, u.salt, u.role, u.adresa, u.gjinia,
-               k.dataRegjistrimi, k.statusiProcesit
-        FROM "User" u
-        JOIN Kandidatet k ON u.id = k.id
-        LEFT JOIN Pagesat p ON u.id = p.ID_Kandidat
-        LEFT JOIN Testet t ON u.id = t.ID_Kandidat
-        LEFT JOIN Regjistrimet r ON u.id = r.ID_Kandidat
-        LEFT JOIN Patenta pa ON u.id = pa.ID_Kandidat AND pa.Statusi = 'E lëshuar'
-        WHERE pa.ID_Kandidat IS NULL -- PËRJASHTO kandidatët që e kanë patentën 'E lëshuar'
-          AND k.statusiProcesit = ?
-          AND (p.Statusi_i_Pageses = ? OR p.Statusi_i_Pageses IS NULL)
-          AND (t.Rezultati = ? OR t.Rezultati IS NULL)
-          AND (r.Statusi = ? OR r.Statusi IS NULL)
-        ORDER BY u.id
-    """;
+            SELECT DISTINCT ON (u.id)
+                   u.id, u.name, u.surname, u.email, u.phoneNumber, u.dateOfBirth,
+                   u.hashedPassword, u.salt, u.role, u.adresa, u.gjinia,
+                   k.dataRegjistrimi, k.statusiProcesit
+            FROM "User" u
+            JOIN Kandidatet k ON u.id = k.id
+            JOIN Pagesat p ON u.id = p.ID_Kandidat
+            JOIN Testet t ON u.id = t.ID_Kandidat
+            JOIN Regjistrimet r ON u.id = r.ID_Kandidat
+            LEFT JOIN Patenta pa ON u.id = pa.ID_Kandidat AND pa.Statusi = 'E lëshuar'
+            WHERE pa.ID_Kandidat IS NULL
+              AND k.statusiProcesit = ?
+              AND p.Statusi_i_Pageses = ?
+              AND t.Rezultati = ?
+              AND r.Statusi = ?
+            ORDER BY u.id;
+            """;
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             // Vendosja e parametrave për filtrim në query
             stmt.setString(1, statusiProcesit ? "Përfunduar" : "Në proces");
@@ -83,10 +83,50 @@ public class KandidatetRepository extends UserRepository {
             return kandidatet;
         }
     }
+    public void updateStatusiProcesit(int kandidatId, String statusi) throws SQLException {
+        String sql = "UPDATE Kandidatet SET statusiProcesit = ? WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, statusi);
+            statement.setInt(2, kandidatId);
+            statement.executeUpdate();
+        }
+    }
 
+    public ArrayList<Kandidatet> getAllKandidatet() {
+        ArrayList<Kandidatet> kandidatet = new ArrayList<>();
+        String query = "SELECT * FROM Kandidatet";  // Sigurohu që kjo pyetje është e saktë për bazën tuaj të të dhënave
 
+        try ( // Krijo lidhjen me bazën e të dhënave
+             PreparedStatement stmt = connection.prepareStatement(query);  // Krijo pyetjen SQL
+             ResultSet rs = stmt.executeQuery()) {  // Ekzekuto pyetjen dhe merr rezultatet
 
+            // Kalojmë përmes të dhënave të kthyer nga ResultSet dhe krijojmë objekte Kandidatet
+            while (rs.next()) {
+                // Krijo një objekt Kandidatet nga rezultatet e ResultSet
+                Kandidatet kandidat = Kandidatet.getInstance(rs);
+                kandidatet.add(kandidat);  // Shto objektin në listë
+            }
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
+        return kandidatet;  // Kthe listën e kandidatëve
+    }
+
+    public int countKandidatet() {
+        String query = "SELECT COUNT(*) FROM Kandidatet";
+        try {
+            PreparedStatement pstm = this.connection.prepareStatement(query);
+            ResultSet rs = pstm.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 
 }

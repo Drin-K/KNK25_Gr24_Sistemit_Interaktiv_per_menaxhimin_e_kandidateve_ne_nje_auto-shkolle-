@@ -148,5 +148,13 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
 
         return data;
     }
+    public void updateStatusiPageses(int pagesaId, String statusiRi) throws SQLException {
+        String sql = "UPDATE Pagesat SET Statusi_i_Pageses = ? WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, statusiRi);
+            statement.setInt(2, pagesaId);
+            statement.executeUpdate();
+        }
+    }
 
 }

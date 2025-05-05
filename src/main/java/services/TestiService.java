@@ -64,5 +64,16 @@ public class TestiService {
 //    }
 
     //QETU OSHT IDE SHTESE ME E INTEGRU NI FUNKSION PER PIK MESATARE
+    public void updateRezultatetKandidat(String idKandidatStr, String rezultati) {
+        try {
+            int idKandidat = Integer.parseInt(idKandidatStr);
+            testetRepository.updateRezultatiKandidatit(idKandidat, rezultati);
+        } catch (NumberFormatException e) {
+            System.err.println("ID e kandidatit nuk është numër i vlefshëm.");
+        } catch (Exception e) {
+            System.err.println("Gabim gjatë përditësimit të rezultatit.");
+            e.printStackTrace();
+        }
+    }
 
 }

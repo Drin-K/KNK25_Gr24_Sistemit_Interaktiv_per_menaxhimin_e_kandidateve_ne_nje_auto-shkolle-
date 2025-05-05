@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 
 <AnchorPane maxHeight="699.0" prefHeight="699.0" prefWidth="1314.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.AdminHomeController">
     <children>
@@ -14,21 +20,69 @@
 
         <PieChart fx:id="statistikatKandidateveChart" layoutX="20.0" layoutY="159.60000610351562" prefHeight="250" prefWidth="400" />
         <VBox layoutX="170.0" layoutY="385.0" />
-        <VBox layoutX="614.0" layoutY="91.0" prefHeight="270.0" prefWidth="250.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
-            <Label text="4. Kërkimi dhe filtrimiFiltër për:Emër/Mbiemër i kandidatitData e pagesës (range)Metoda e pagesësStatusi i pagesës" textFill="WHITE" />
-        </VBox>
-        <VBox layoutX="82.0" layoutY="63.0" prefHeight="147.0" prefWidth="350.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
-            <Label prefHeight="79.0" prefWidth="330.0" text="1. Pamja përmbledhëse (Dashboard)Grafike për:Shuma totale e mbledhur (në ditë, muaj, vit)Numri total i pagesavePagesat me status “Paguar”, “Pjesërisht”, dhe “Mbetur”Lista e fundit e pagesave të kryer" textFill="WHITE" />
-        </VBox>
-        <VBox layoutX="609.0" layoutY="428.0" prefHeight="188.0" prefWidth="250.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
+        <VBox layoutX="464.0" layoutY="91.0" prefHeight="244.0" prefWidth="596.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
+            <Label text="Search By Name:" textFill="WHITE" />
+         <TextField fx:id="searchByName" />
+         <HBox spacing="100.0">
             <children>
-                <Label text="5. Raporte për pagesatEksport në Excel/PDF për periudha specifikeRaporte për:Kandidatë me pagesa të mbeturaKandidatë që kanë paguar pjesërishtKandidatë që kanë përfunduar pagesat" textFill="WHITE" />
+               <VBox>
+                  <children>
+                     <Label text="From: " textFill="WHITE" />
+                     <DatePicker fx:id="from" />
+                  </children>
+               </VBox>
+               <VBox>
+                  <children>
+                     <Label text="To:" textFill="WHITE" />
+                     <DatePicker fx:id="to" />
+                  </children>
+               </VBox>
+            </children>
+         </HBox>
+         <Label text="Payment Method:" textFill="WHITE" />
+         <ComboBox fx:id="combobox1" prefWidth="150.0" />
+         <Label text="Payment Status:" textFill="WHITE" />
+         <ComboBox fx:id="comboBox2" prefWidth="150.0" />
+        </VBox>
+        <VBox layoutX="27.0" layoutY="92.0" prefHeight="250.0" prefWidth="350.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
+         <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+            <children>
+               <Circle fx:id="today" fill="WHITE" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
+               <Circle fx:id="month" fill="WHITE" layoutX="61.0" layoutY="61.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
+               <Circle fx:id="year" fill="WHITE" layoutX="163.0" layoutY="61.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
+            </children>
+         </HBox>
+         <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+            <children>
+               <Label alignment="CENTER" prefHeight="97.0" prefWidth="110.0" text="Today" textAlignment="CENTER" textFill="WHITE" />
+               <Label contentDisplay="CENTER" prefHeight="100.0" prefWidth="96.0" text="Current Month" textFill="WHITE" />
+               <Label alignment="CENTER" prefHeight="106.0" prefWidth="119.0" text="Current Year" textFill="WHITE" />
+            </children>
+         </HBox>
+        </VBox>
+        <VBox layoutX="609.0" layoutY="403.0" prefHeight="291.0" prefWidth="410.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
+            <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="30.0">
+               <children>
+                      <Label text="Paguar" textFill="WHITE" />
+                  <Label fx:id="paguar" layoutX="10.0" layoutY="10.0" textFill="WHITE" />
+                  <Label layoutX="10.0" layoutY="27.0" text="Pjeserisht" textFill="WHITE" />
+                  <Label fx:id="Pjeserisht" layoutX="10.0" layoutY="44.0" textFill="WHITE" />
+                  <Label layoutX="10.0" layoutY="62.0" text="Mbetur" textFill="WHITE" />
+                  <Label fx:id="Mbetur" layoutX="10.0" layoutY="79.0" textFill="WHITE" />
+               </children>
+            </VBox>
             </children>
         </VBox>
-        <VBox layoutX="44.0" layoutY="219.0" prefHeight="442.0" prefWidth="426.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
-            <children>
-                <Label prefHeight="178.0" prefWidth="393.0" text="2. Lista e të gjitha pagesaveTabela me kolonat:ID_PagesatEmri &amp; Mbiemri i KandidatitShumaData_e_PagesesMetoda_e_PagesesStatusi_i_PagesesOpsione për secilën rresht:🔍 Shiko Detajet✏️ Ndrysho Statusin e Pagesës🗑️ Fshij Pagesën (nëse gabim)" textFill="WHITE" />
-            </children>
-        </VBox>
+      <TableView fx:id="pagesatTable" layoutX="17.0" layoutY="392.0" prefHeight="303.0" prefWidth="574.0">
+        <columns>
+          <TableColumn fx:id="IdCol" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="idCandidatCol" prefWidth="94.40003204345703" text="ID_CANDIDATE" />
+            <TableColumn fx:id="ShumaCol" prefWidth="50.0" text="SUM" />
+            <TableColumn fx:id="DataEPagesesCol" prefWidth="117.5999755859375" text="PAYMENT_DATE" />
+            <TableColumn fx:id="MetodaPagesesCol" prefWidth="120.4000244140625" text="PAYMENT_METHOD" />
+            <TableColumn fx:id="StatusiPagese" prefWidth="115.59994506835938" text="PAYMENT_STATUS" />
+        </columns>
+      </TableView>
     </children>
 </AnchorPane>

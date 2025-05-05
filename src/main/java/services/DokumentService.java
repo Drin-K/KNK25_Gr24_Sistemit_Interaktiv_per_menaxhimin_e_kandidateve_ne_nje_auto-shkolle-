@@ -1,10 +1,15 @@
 package services;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import models.Dokumentet;
 import models.Dto.dokumentet.CreateDokumentetDto;
 import models.Kandidatet;
 import repository.DokumentetRepository;
 import repository.KandidatetRepository;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class DokumentService {
     private DokumentetRepository dokumentRepository;
@@ -65,5 +70,17 @@ public class DokumentService {
                 llojiDokumentit.equals("Certifikate Mjekësore") ||
                 llojiDokumentit.equals("Aplikim") ||
                 llojiDokumentit.equals("Foto");
+    }
+    public ObservableList<Dokumentet> getDokumenteByKandidatId(String kandidatId) {
+        try {
+            ArrayList<Dokumentet> dokumentetList = dokumentRepository.getDokumenteByKandidatId(kandidatId);
+            return FXCollections.observableArrayList(dokumentetList);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return FXCollections.observableArrayList();
+        }
+    }
+    public boolean downloadDokument(Dokumentet dokument) {
+        return dokumentRepository.downloadDokument(dokument);
     }
 }

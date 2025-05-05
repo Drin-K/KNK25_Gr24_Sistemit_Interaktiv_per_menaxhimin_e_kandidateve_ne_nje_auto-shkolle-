@@ -4,8 +4,6 @@ import models.*;
 import models.Dto.kandidatet.CreateKandidatetDto;
 import repository.KandidatetRepository;
 import repository.PatentaRepository;
-
-//import javax.print.Doc;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
@@ -109,5 +107,17 @@ public class KandidateService {
     public void aprovoPatenten(int kandidatId) throws SQLException {
         // Mund të vendosni logjikën tjetër të biznesit këtu (nëse ka ndonjë)
         patentaRepository.aprovoPatenten(kandidatId);
+    }
+//    public boolean verifikoPatentenAprovuar(int idKandidat) throws SQLException{
+//       // return this.kandidatetRepository.verifikoPatentenAprovuar(idKandidat);
+//    }
+public ArrayList<Kandidatet> getAllKandidatet() {
+        return this.kandidatetRepository.getAllKandidatet();
+}
+    public int countKandidatet() {
+        return this.kandidatetRepository.countKandidatet();
+  }
+    public HashMap<String, Integer> getKandidatetStatusReport() {
+        return this.kandidatetRepository.countKandidatetByStatusiProcesit();
     }
 }

@@ -61,4 +61,15 @@ public class PatentaService {
     public List<Patenta> getLicensesIssued() throws SQLException {
         return patentaRepository.getLicensesIssued();
     }
+    public void updateStatusiPatentes(String idKandidatStr, String statusi) {
+        try {
+            int idKandidat = Integer.parseInt(idKandidatStr);
+            patentaRepository.updateStatusiPatentes(idKandidat, statusi);
+        } catch (NumberFormatException e) {
+            System.err.println("ID e kandidatit nuk është numër i vlefshëm.");
+        } catch (Exception e) {
+            System.err.println("Gabim gjatë përditësimit të statusit të patentës.");
+            e.printStackTrace();
+        }
+    }
 }

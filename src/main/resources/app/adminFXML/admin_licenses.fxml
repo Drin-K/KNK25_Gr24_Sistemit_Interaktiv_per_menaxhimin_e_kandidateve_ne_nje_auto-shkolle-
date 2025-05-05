@@ -1,102 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="699.0" prefHeight="699.0" prefWidth="1314.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.AdminHomeController">
+<AnchorPane maxHeight="699.0" prefHeight="699.0" prefWidth="1314.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.AdminPatentaController2">
     <children>
 
         <HBox layoutX="20.0" layoutY="75.19999694824219" spacing="20" />
 
         <PieChart fx:id="statistikatKandidateveChart" layoutX="20.0" layoutY="159.60000610351562" prefHeight="250" prefWidth="400" AnchorPane.bottomAnchor="289.3999938964844" AnchorPane.topAnchor="500.0" />
-        <VBox layoutX="42.0" layoutY="151.0" prefHeight="328.0" prefWidth="626.0" style="-fx-background-color: #213e60; -fx-border-color: #ff7900; -fx-padding: 10;">
+        <VBox layoutX="39.0" layoutY="123.0" prefHeight="349.0" prefWidth="902.0" style="-fx-background-color: #ffffff; -fx-border-color: #ff7900; -fx-padding: 10;">
             <children>
-                <BorderPane prefHeight="285.0" prefWidth="579.0">
-                    <center>
-                        <VBox alignment="CENTER" spacing="15">
-                            <padding>
-                                <Insets bottom="20" left="30" right="30" top="20" />
-                            </padding>
-                            <children>
-                                <HBox spacing="10">
-                                    <children>
-                                        <Label prefHeight="24.0" prefWidth="62.0" text="Kandidati:" textFill="#ffc90d" />
-                                        <TextField fx:id="kandidatiField" promptText="Emri i kandidatit" />
-                                        <Label prefHeight="24.0" prefWidth="54.0" text="Kategoria:" textFill="#ffc90d" />
-                                        <ComboBox fx:id="kategoriaCombo" prefWidth="150" />
-                                    </children>
-                                </HBox>
-                                <HBox spacing="10">
-                                    <children>
-                                        <Label prefHeight="24.0" prefWidth="42.0" text="Statusi:" textFill="#ffc90d" />
-                                        <ComboBox fx:id="statusiCombo">
-                                            <items>
-                                                <FXCollections fx:factory="observableArrayList">
-                                                    <String fx:value="E lëshuar" />
-                                                    <String fx:value="Në proces" />
-                                                </FXCollections>
-                                            </items>
-                                        </ComboBox>
-                                        <Button onAction="#shtoPatente" style="-fx-background-color: #39cf15;" text="Shto Patentë" textFill="WHITE" />
-                                        <Button onAction="#perditesoPatente" style="-fx-background-color: f28500;" text="Përditëso" textFill="WHITE" />
-                                        <Button onAction="#fshijPatente" style="-fx-background-color: #b7410e;" text="Fshij" textFill="WHITE" />
-                                    </children>
-                                </HBox>
-                                <TableView fx:id="patentaTable" prefHeight="300" prefWidth="600">
-                                    <columns>
-                                        <TableColumn fx:id="idColumn" prefWidth="74.79998016357422" text="ID" />
-                                        <TableColumn fx:id="kandidatiColumn" prefWidth="125.20001220703125" text="Kandidati" />
-                                        <TableColumn fx:id="kategoriaColumn" prefWidth="112.4000244140625" text="Kategoria" />
-                                        <TableColumn fx:id="dataColumn" prefWidth="125.20004272460938" text="Data Lëshimit" />
-                                        <TableColumn fx:id="statusiColumn" prefWidth="108.0" text="Statusi" />
-                                    </columns>
-                                </TableView>
-                            </children>
-                        </VBox>
-                    </center>
-                </BorderPane>
+                <VBox spacing="15" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="20">
+      
+                    <!-- Titulli -->
+                    <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Lista e Kandidatëve që kanë të drejtë të marrin patentën" />
+      
+                    <!-- Filtrat -->
+                    <HBox spacing="15">
+                        <CheckBox fx:id="checkStatusiProcesit" text="Statusi i Procesit: Përfunduar" />
+                        <CheckBox fx:id="checkPagesa" text="Pagesa: Paguar" />
+                        <CheckBox fx:id="checkTestet" text="Testet: Kaluar" />
+                        <CheckBox fx:id="checkRegjistrimi" text="Regjistrimi: Përfunduar" />
+                        <Button fx:id="btnShfaqKandidatet" text="Shfaq Kandidatët që kanë të drejtë" />
+                        <Button text="Aprovo Patenten" onAction="#aprovoPatenten"/>
+
+                    </HBox>
+      
+                    <!-- Tabela e Kandidatëve -->
+                    <TableView fx:id="tableKandidatet" prefHeight="500">
+                        <columns>
+                            <TableColumn fx:id="colEmri" prefWidth="120" text="Emri" />
+                            <TableColumn fx:id="colMbiemri" prefWidth="120" text="Mbiemri" />
+                            <TableColumn fx:id="colEmail" prefWidth="180" text="Email" />
+                            <TableColumn fx:id="colTelefoni" prefWidth="120" text="Telefoni" />
+                            <TableColumn fx:id="colDataRegjistrimit" prefWidth="140" text="Data e Regjistrimit" />
+                            <TableColumn fx:id="colStatusi" prefWidth="100" text="Statusi" />
+                        </columns>
+                    </TableView>
+      
+                </VBox>
             </children>
         </VBox>
-        <Label layoutX="-24.0" layoutY="44.0" prefHeight="100.0" prefWidth="364.0" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Menaxhimi i Patentave">
+        <Label layoutX="-30.0" layoutY="38.0" prefHeight="100.0" prefWidth="364.0" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Menaxhimi i Patentave">
             <padding>
                 <Insets left="100.0" />
             </padding>
         </Label>
-      <VBox layoutX="786.0" layoutY="179.0" prefHeight="304.0" prefWidth="242.0" style="-fx-background-color: #213e60;">
-         <children>
-            <Label text="Shohë të gjitha aplikimet për patentë." textFill="WHITE" />
-         </children>
-      </VBox>
-      <VBox layoutX="122.0" layoutY="544.0" prefHeight="304.0" prefWidth="242.0" style="-fx-background-color: #213e60;">
+
+        <VBox layoutX="1066.0" layoutY="98.0" prefHeight="304.0" prefWidth="242.0" style="-fx-background-color: #213e60;">
          <children>
             <Label text="A. Numri total i patentave të lëshuara sipas kategorivesql" textFill="WHITE" />
-         </children>
-      </VBox>
-      <VBox layoutX="391.0" layoutY="526.0" prefHeight="304.0" prefWidth="242.0" style="-fx-background-color: #213e60;">
-         <children>
-            <Label text="Suksesi i kandidatëve për marrje të patentës (raporti kalim/fallim)" textFill="WHITE" />
-         </children>
-      </VBox>
-      <VBox layoutX="673.0" layoutY="509.0" prefHeight="304.0" prefWidth="242.0" style="-fx-background-color: #213e60;">
-         <children>
-            <Label text="Patentat e lëshuara gjatë muajve të fundit (trend mujor)" textFill="WHITE" />
-         </children>
-      </VBox>
-      <VBox layoutX="977.0" layoutY="547.0" prefHeight="304.0" prefWidth="242.0" style="-fx-background-color: #213e60;">
-         <children>
-            <Label text="Kandidatë që kanë përfunduar gjithçka, por u mungon vetëm pagesasqlCopyEdit" textFill="WHITE" />
+            <VBox prefHeight="304.0" prefWidth="242.0" style="-fx-background-color: #213e60;">
+               <children>
+                  <Label text="Suksesi i kandidatëve për marrje të patentës (raporti kalim/fallim)" textFill="WHITE" />
+                  <VBox prefHeight="304.0" prefWidth="242.0" style="-fx-background-color: #213e60;">
+                     <children>
+                        <Label text="Patentat e lëshuara gjatë muajve të fundit (trend mujor)" textFill="WHITE" />
+                        <VBox prefHeight="304.0" prefWidth="242.0" style="-fx-background-color: #213e60;">
+                           <children>
+                              <Label text="Kandidatë që kanë përfunduar gjithçka, por u mungon vetëm pagesasqlCopyEdit" textFill="WHITE" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
          </children>
       </VBox>
     </children>

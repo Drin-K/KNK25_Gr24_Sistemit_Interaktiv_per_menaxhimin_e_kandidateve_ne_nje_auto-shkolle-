@@ -1,7 +1,5 @@
 package app.controller;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.LineChart;
@@ -18,7 +16,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class AdminHomeController {
     @FXML
@@ -31,11 +28,11 @@ public class AdminHomeController {
     private BarChart<String, Number> pagesaTePapaguara, nrRegjistrimeve, PagesaTeKryera;
     @FXML
     private ListView<String> sesionetSot;
-    private final UserService userService = new UserService();
     private final PatentaService patentaService=new PatentaService();
     private final PagesaService pagesaService=new PagesaService();
     private final OrariService sesioniService=new OrariService();
     private final KandidateService kandidateService=new KandidateService();
+    private final StafiService stafiService=new StafiService();
 
 
     @FXML
@@ -49,16 +46,16 @@ public class AdminHomeController {
         loadRegistrationsTopPayments();
     }
     private void loadTotalCandidates() {
-        int total = userService.countUsersByRole("Kandidat");
+        int total = kandidateService.countKandidatet();
         totalKandidat.setText(String.valueOf(total));
     }
 
     private void loadTotalStaff() {
-        int total = userService.countUsersByRole("Staf");
+        int total = stafiService.countStafi();
         totalStafi.setText(String.valueOf(total));
     }
     private void loadInProgressCompleted() {
-        HashMap<String, Integer> statusReport = userService.getKandidatetStatusReport();
+        HashMap<String, Integer> statusReport = kandidateService.getKandidatetStatusReport();
 
         ArrayList<PieChart.Data> pieChartData = new ArrayList<>();
 

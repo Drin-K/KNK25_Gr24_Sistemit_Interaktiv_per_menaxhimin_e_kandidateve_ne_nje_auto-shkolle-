@@ -93,4 +93,12 @@ public class TestetRepository extends BaseRepository<Testet, CreateTestetDto, Up
                 }
                 return null;
          }
+    public void updateRezultatiKandidatit(int idKandidat, String rezultati) throws SQLException {
+        String sql = "UPDATE Testet SET Rezultati = ? WHERE ID_Kandidat = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, rezultati);
+            statement.setInt(2, idKandidat);
+            statement.executeUpdate();
+        }
+    }
 }

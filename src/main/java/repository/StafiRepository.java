@@ -19,5 +19,19 @@ public class StafiRepository extends UserRepository {
     public Stafi fromResultSet(ResultSet result) throws SQLException {
         return Stafi.getInstance(result);
     }
+    public int countStafi() {
+        String query = "SELECT COUNT(*) FROM Stafi";
+        try {
+            PreparedStatement pstm = this.connection.prepareStatement(query);
+            ResultSet rs = pstm.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 
 }

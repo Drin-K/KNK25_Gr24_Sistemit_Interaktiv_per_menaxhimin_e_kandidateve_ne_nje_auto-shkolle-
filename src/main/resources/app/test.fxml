@@ -6,41 +6,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextField?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.AdminPatentaController">
+    <HBox spacing="10">
+        <Label text="Kërko:"/>
+        <TextField fx:id="txtKerko" promptText="Shto emër ose kategori"/>
+    </HBox>
 
-    <!-- Titulli -->
-    <Label text="Menaxhimi i Patentave" layoutX="20" layoutY="20" style="-fx-font-size: 24;" />
 
-    <!-- Tabela e patentave -->
-    <TableView fx:id="patentaTable" layoutX="20" layoutY="60" prefWidth="700" prefHeight="300">
-        <columns>
-            <TableColumn fx:id="colEmri" text="Emri" />
-            <TableColumn fx:id="colMbiemri" text="Mbiemri" />
-            <TableColumn fx:id="colKategoria" text="Kategoria" />
-            <TableColumn fx:id="colDataLeshimit" text="Data Lëshimit" />
-            <TableColumn fx:id="colStatusi" text="Statusi" />
-        </columns>
-    </TableView>
-
-    <!-- Forma për shtim/modifikim -->
-    <Label text="Kandidat:" layoutX="20" layoutY="380" />
-    <ComboBox fx:id="kandidatCombo" layoutX="100" layoutY="375" prefWidth="200" />
-
-    <Label text="Kategoria:" layoutX="320" layoutY="380" />
-    <ComboBox fx:id="kategoriaCombo" layoutX="400" layoutY="375" prefWidth="200" />
-
-    <Label text="Statusi:" layoutX="20" layoutY="420" />
-    <ComboBox fx:id="statusiCombo" layoutX="100" layoutY="415" prefWidth="200">
-        <items>
-            <FXCollections fx:factory="observableArrayList">
-                <String fx:value="Në proces" />
-                <String fx:value="E lëshuar" />
-            </FXCollections>
-        </items>
-    </ComboBox>
-
-    <!-- Butonat -->
-    <Button fx:id="btnShto" text="Shto Patentë" layoutX="320" layoutY="415" />
-    <Button fx:id="btnPerditeso" text="Përditëso" layoutX="430" layoutY="415" />
-    <Button fx:id="btnFshij" text="Fshij" layoutX="540" layoutY="415" />
 </AnchorPane>

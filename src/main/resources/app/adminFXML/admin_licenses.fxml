@@ -74,5 +74,30 @@
                 <Insets left="100.0" />
             </padding>
         </Label>
+      <VBox layoutX="786.0" layoutY="179.0" prefHeight="304.0" prefWidth="242.0" style="-fx-background-color: #213e60;">
+         <children>
+            <Label text="Shohë të gjitha aplikimet për patentë." textFill="WHITE" />
+         </children>
+      </VBox>
+      <VBox layoutX="122.0" layoutY="544.0" prefHeight="304.0" prefWidth="242.0" style="-fx-background-color: #213e60;">
+         <children>
+            <Label text="A. Numri total i patentave të lëshuara sipas kategorivesql" textFill="WHITE" />
+         </children>
+      </VBox>
+      <VBox layoutX="391.0" layoutY="526.0" prefHeight="304.0" prefWidth="242.0" style="-fx-background-color: #213e60;">
+         <children>
+            <Label text="Suksesi i kandidatëve për marrje të patentës (raporti kalim/fallim)" textFill="WHITE" />
+         </children>
+      </VBox>
+      <VBox layoutX="673.0" layoutY="509.0" prefHeight="304.0" prefWidth="242.0" style="-fx-background-color: #213e60;">
+         <children>
+            <Label text="Patentat e lëshuara gjatë muajve të fundit (trend mujor)" textFill="WHITE" />
+         </children>
+      </VBox>
+      <VBox layoutX="977.0" layoutY="547.0" prefHeight="304.0" prefWidth="242.0" style="-fx-background-color: #213e60;">
+         <children>
+            <Label text="Kandidatë që kanë përfunduar gjithçka, por u mungon vetëm pagesasqlCopyEdit" textFill="WHITE" />
+         </children>
+      </VBox>
     </children>
 </AnchorPane>

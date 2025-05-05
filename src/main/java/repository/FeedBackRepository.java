@@ -73,8 +73,8 @@ public class FeedBackRepository extends BaseRepository<FeedBack, CreateFeedBackD
             }
             return null;
     }
-    public ArrayList<FeedBack> getFeedbacks(Integer candidateId, int instructorId, LocalDate date) {
-        ArrayList<FeedBack> feedbackList = new ArrayList<>();
+    public List<FeedBack> getFeedbacks(Integer candidateId, int instructorId, LocalDate date) {
+        List<FeedBack> feedbackList = new ArrayList<>();
         StringBuilder queryBuilder = new StringBuilder("SELECT * FROM FeedBack WHERE Id_Staf = ?");
 
         // Add conditions dynamically based on provided arguments
@@ -82,14 +82,14 @@ public class FeedBackRepository extends BaseRepository<FeedBack, CreateFeedBackD
             queryBuilder.append(" AND ID_Kandidat = ?");
         }
         if (date != null) {
-            queryBuilder.append(" AND DATE(Data) = ?");
+            queryBuilder.append(" AND Data::date = ?"); // PostgreSQL-specific date cast
+            // For MySQL use: queryBuilder.append(" AND DATE(Data) = ?");
         }
 
         String query = queryBuilder.toString();
-        System.out.println("Executing query: " + query); // Log the query for debugging
+        System.out.println("Executing query: " + query);
 
-        try {
-            PreparedStatement stmt = this.connection.prepareStatement(query);
+        try (PreparedStatement stmt = this.connection.prepareStatement(query)) {
             int index = 1;
             stmt.setInt(index++, instructorId);
 
@@ -100,25 +100,18 @@ public class FeedBackRepository extends BaseRepository<FeedBack, CreateFeedBackD
                 stmt.setDate(index, java.sql.Date.valueOf(date));
             }
 
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                feedbackList.add(this.fromResultSet(rs)); // Assuming you already have fromResultSet method
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    feedbackList.add(this.fromResultSet(rs));
+                }
             }
         } catch (SQLException e) {
-            e.printStackTrace(); // You may want to log this or rethrow a custom exception
+            System.err.println("Error fetching feedbacks: " + e.getMessage());
+            e.printStackTrace();
+            throw new RuntimeException("Failed to fetch feedbacks", e);
         }
 
         return feedbackList;
-    }
-
-    public List<FeedBack> getFiltered(Integer candidateId, int instructorId, LocalDate date) {
-        List<FeedBack> all = getAll(); // Assume this gets all feedbacks from DB or in-memory
-
-        return all.stream()
-                .filter(fb -> fb.getIdStaf() == instructorId)
-                .filter(fb -> candidateId == null || fb.getIdKandidat() == candidateId)
-                .filter(fb -> date == null || fb.getDataFeedback().equals(date))
-                .collect(Collectors.toList());
     }
 
 

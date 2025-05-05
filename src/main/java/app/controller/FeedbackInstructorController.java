@@ -8,6 +8,7 @@ import services.FeedBackService;
 import services.UserContext;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class FeedbackInstructorController {
 
@@ -64,28 +65,32 @@ public class FeedbackInstructorController {
             Integer candidateId = null;
             LocalDate date = null;
 
-            // Apply filters based on the selected filter type
-            switch (currentFilter) {
-                case CANDIDATE:
-                    if (!candField.getText().isEmpty()) {
-                        candidateId = Integer.parseInt(candField.getText());
-                    }
-                    break;
-                case DATE:
-                    date = dateField.getValue();
-                    break;
-                default:
-                    break;
+            // Validate inputs before processing
+            if (currentFilter == FilterType.CANDIDATE && !candField.getText().isEmpty()) {
+                try {
+                    candidateId = Integer.parseInt(candField.getText());
+                } catch (NumberFormatException e) {
+                    new Alert(Alert.AlertType.ERROR, "Invalid candidate ID format").show();
+                    return;
+                }
+            } else if (currentFilter == FilterType.DATE) {
+                date = dateField.getValue();
+                if (date == null) {
+                    new Alert(Alert.AlertType.ERROR, "Please select a valid date").show();
+                    return;
+                }
             }
 
-            // Get filtered feedbacks from the repository
-            var feedbacks = feedBackService.getFilteredFeedbacks(candidateId, instructorId, date);
+            List<FeedBack> feedbacks = feedBackService.getFilteredFeedbacks(candidateId, instructorId, date);
 
-            // Update the table with filtered feedbacks
+            if (feedbacks.isEmpty()) {
+                new Alert(Alert.AlertType.INFORMATION, "No feedbacks found with these filters").show();
+            }
+
             feedback.getItems().setAll(feedbacks);
         } catch (Exception e) {
             e.printStackTrace();
-            new Alert(Alert.AlertType.ERROR, "Failed to filter feedback.").show();
+            new Alert(Alert.AlertType.ERROR, "Failed to filter feedback: " + e.getMessage()).show();
         }
     }
 }

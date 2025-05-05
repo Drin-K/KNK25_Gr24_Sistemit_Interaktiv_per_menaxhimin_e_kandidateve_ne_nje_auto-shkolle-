@@ -173,11 +173,15 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
     }
     public List<Pagesat> searchPagesatByCandidateName(String name) {
         List<Pagesat> pagesatList = new ArrayList<>();
-        String query = "SELECT * FROM Pagesat JOIN Kandidatet ON Pagesat.ID_Kandidat = Kandidatet.ID WHERE Kandidatet.Emri LIKE ?";
-
+        String query = """
+        SELECT p.*
+        FROM Pagesat p
+        JOIN Kandidatet k ON p.ID_Kandidat = k.id
+        JOIN "User" u ON k.id = u.id
+        WHERE u.name ILIKE ?
+    """;
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setString(1, "%" + name + "%"); // Kërkoni për emrin e kandidatit që përmban 'name'
-
+            stmt.setString(1, "%" + name + "%");
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     Pagesat pagesat = Pagesat.getInstance(rs);
@@ -187,6 +191,8 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return pagesatList;
     }
+
 }

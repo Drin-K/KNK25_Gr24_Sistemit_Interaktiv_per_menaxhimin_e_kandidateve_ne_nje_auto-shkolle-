@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 import javafx.scene.shape.Circle;
 import models.Pagesat;
 import services.PagesaService;
@@ -54,7 +55,8 @@ public class AdminPaymentController {
 
     private ObservableList<Pagesat> pagesatList = FXCollections.observableArrayList();
     private PagesaService pagesatService = new PagesaService();
-    public void loadTableDatat(){
+
+    public void loadTableDatat() {
         pagesatList.clear();
         pagesatList.addAll(pagesatService.getAllPagesat());
         IdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -64,7 +66,23 @@ public class AdminPaymentController {
         MetodaPagesesCol.setCellValueFactory(new PropertyValueFactory<>("metodaPageses"));
         StatusiPagese.setCellValueFactory(new PropertyValueFactory<>("statusiPageses"));
         pagesatTable.setItems(pagesatList);
-}
+    }
+
+    @FXML
+    public void initialize() {
+        this.loadTableDatat();
+        searchByName.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                String searchText = searchByName.getText();
+                if (searchText != null && !searchText.isEmpty()) {
+                    List<Pagesat> filteredPagesat = pagesatService.searchPagesatByCandidateName(searchText);
+                    pagesatList.setAll(filteredPagesat);
+                } else {
+                    loadTableDatat();
+                }
+            }
+        });
+    }
 
 
 }

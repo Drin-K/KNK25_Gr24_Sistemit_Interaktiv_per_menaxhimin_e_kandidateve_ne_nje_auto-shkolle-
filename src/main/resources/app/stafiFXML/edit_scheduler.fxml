@@ -6,18 +6,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="462.0" prefWidth="574.0" style="-fx-border-color: #dcdcdc;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="462.0" prefWidth="574.0" style="-fx-border-color: #dcdcdc;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.EditScheduleController">
    <children>
-      <TextField fx:id="candidateId" focusTraversable="false" layoutX="63.0" layoutY="88.0" prefHeight="26.0" prefWidth="322.0" promptText="Candidate id" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;">
+      <TextField fx:id="sessionId" focusTraversable="false" layoutX="63.0" layoutY="88.0" prefHeight="26.0" prefWidth="322.0" promptText="Session Id" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;">
          <font>
             <Font name="System Italic" size="14.0" />
          </font>
       </TextField>
       <MenuButton fx:id="chooseLessonBttn" layoutX="459.0" layoutY="95.0" mnemonicParsing="false" style="-fx-background-color: #137156;" text="Status" textFill="#f4f4f4">
          <items>
-            <MenuItem fx:id="teoriBttn" mnemonicParsing="false" text="Anuluar" />
-            <MenuItem fx:id="praktikBttn" mnemonicParsing="false" text="Perfunduar" />
-            <MenuItem mnemonicParsing="false" text="Planifikuar" />
+            <MenuItem fx:id="anuloBttn" mnemonicParsing="false" onAction="#anuluarClick" text="Anuluar" />
+            <MenuItem fx:id="perfundoBttn" mnemonicParsing="false" onAction="#perfundoClick" text="Perfunduar" />
          </items>
       </MenuButton>
    </children>

@@ -8,6 +8,7 @@ import java.sql.Array;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class FeedBackRepository extends BaseRepository<FeedBack, CreateFeedBackDto, UpdateFeedBackDto> {
@@ -70,5 +71,35 @@ public class FeedBackRepository extends BaseRepository<FeedBack, CreateFeedBackD
             }
             return null;
     }
+    public ArrayList<FeedBack> getFeedbacks(Integer candidateId, int instructorId, LocalDate date) {
+        ArrayList<FeedBack> feedbackList = new ArrayList<>();
+        String query = "SELECT * FROM FeedBack WHERE Id_Instruktori = ?";
+
+        if (candidateId != null) query += " AND Id_Kandidati = ?";
+        if (date != null) query += " AND DATE(Data) = ?";
+
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            int index = 1;
+            stmt.setInt(index++, instructorId);
+
+            if (candidateId != null) {
+                stmt.setInt(index++, candidateId);
+            }
+            if (date != null) {
+                stmt.setDate(index, java.sql.Date.valueOf(date));
+            }
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                feedbackList.add(this.fromResultSet(rs)); // Assuming you already have fromResultSet method
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // You may want to log this or rethrow a custom exception
+        }
+
+        return feedbackList;
     }
+
+}
 

@@ -20,7 +20,7 @@ public class OrariRepository extends BaseRepository<Orari, CreateOrariDto, Updat
         String query= """
                 INSERT INTO
                 Orari(ID_Kandidat, ID_Staf, Data_e_Sesionit, Ora_e_Fillimit, Ora_e_Perfundimit, Lloji_i_Mesimit, Statusi, ID_Automjet)
-                VALUES(?,?,?,?,?,?,?,?);
+                VALUES(?,?,?,?,?,?,?,?)
                 """;
         try{
             PreparedStatement pstm=this.connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -32,6 +32,7 @@ public class OrariRepository extends BaseRepository<Orari, CreateOrariDto, Updat
             pstm.setString(6,orariDto.getLlojiMesimit());
             pstm.setString(7,orariDto.getStatusi());
             pstm.setInt(8,orariDto.getIdAutomjet());
+            pstm.execute();
             ResultSet res=pstm.getGeneratedKeys();
             if(res.next()){
                 int id=res.getInt(1);

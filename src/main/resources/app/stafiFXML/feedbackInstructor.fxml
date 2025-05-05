@@ -11,32 +11,32 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="670.0" prefWidth="1313.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="670.0" prefWidth="1313.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.FeedbackInstructorController">
    <children>
       <Text layoutX="172.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-font-family: arial;" text="In this window you can see the feedback, and the points given as feedback  " />
       <AnchorPane layoutX="119.0" layoutY="101.0" prefHeight="518.0" prefWidth="829.0" style="-fx-background-color: #e1e1e1; -fx-border-color: #cec9ff; -fx-border-radius: 4; -fx-background-radius: 4;">
          <children>
-            <Button layoutX="167.0" layoutY="16.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" style="-fx-background-color: white; -fx-border-radius: 4; -fx-background-radius: 4; -fx-border-color: gray;" text="Filter" textFill="#5a65dc" />
+            <Button fx:id="filterBttn" layoutX="167.0" layoutY="16.0" mnemonicParsing="false" onAction="#filterClick" prefHeight="26.0" prefWidth="92.0" style="-fx-background-color: white; -fx-border-radius: 4; -fx-background-radius: 4; -fx-border-color: gray;" text="Filter" textFill="#5a65dc" />
             <AnchorPane layoutX="31.0" layoutY="79.0" prefHeight="166.0" prefWidth="750.0" style="-fx-background-color: white; -fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: gray;">
                <children>
-                  <TextField focusTraversable="false" layoutX="24.0" layoutY="36.0" prefHeight="26.0" prefWidth="322.0" promptText="Enter Candidate name" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;">
+                  <TextField fx:id="txtcandId" focusTraversable="false" layoutX="24.0" layoutY="36.0" prefHeight="26.0" prefWidth="322.0" promptText="Enter Candidate name" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;">
                      <font>
                         <Font name="System Italic" size="14.0" />
                      </font>
                   </TextField>
-                  <DatePicker layoutX="24.0" layoutY="86.0" prefHeight="39.0" prefWidth="220.0" promptText="Choose the date" />
+                  <DatePicker fx:id="dateField" layoutX="24.0" layoutY="86.0" prefHeight="39.0" prefWidth="220.0" promptText="Choose the date" />
                </children>
             </AnchorPane>
-            <MenuButton layoutX="31.0" layoutY="16.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="102.0" style="-fx-background-color: white; -fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: gray;" text="Filter by:" textFill="#786cff">
+            <MenuButton fx:id="filterbyBttn" layoutX="31.0" layoutY="16.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="102.0" style="-fx-background-color: white; -fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: gray;" text="Filter by:" textFill="#786cff">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                  <MenuItem mnemonicParsing="false" text="Action 2" />
+                  <MenuItem fx:id="candidateOption" mnemonicParsing="false" text="Candidate" />
+                  <MenuItem fx:id="dateOption" mnemonicParsing="false"  text="Date" />
                </items>
             </MenuButton>
-            <TableView layoutX="33.0" layoutY="289.0" prefHeight="176.0" prefWidth="750.0" style="-fx-background-color: white; -fx-border-radius: 4; -fx-background-radius: 4; -fx-border-color: gray;">
+            <TableView fx:id="feedbackTable" layoutX="33.0" layoutY="289.0" prefHeight="176.0" prefWidth="750.0" style="-fx-background-color: white; -fx-border-radius: 4; -fx-background-radius: 4; -fx-border-color: gray;">
                <columns>
-                  <TableColumn prefWidth="642.3999176025391" text="Comment" />
-                  <TableColumn prefWidth="105.60003662109375" text="Points (  /5)" />
+                  <TableColumn fx:id="commentColumn"  prefWidth="642.3999176025391" text="Comment" />
+                  <TableColumn fx:id="pointsColumn" prefWidth="105.60003662109375" text="Points (  /5)" />
                </columns>
             </TableView>
          </children>

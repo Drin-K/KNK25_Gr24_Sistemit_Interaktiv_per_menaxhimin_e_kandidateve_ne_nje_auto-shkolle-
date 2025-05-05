@@ -4,6 +4,9 @@ import models.Dto.feedBack.CreateFeedBackDto;
 import models.FeedBack;
 import repository.FeedBackRepository;
 
+import java.time.LocalDate;
+import java.util.List;
+
 public class FeedBackService {
     private FeedBackRepository feedbackRepository;
 
@@ -33,5 +36,8 @@ public class FeedBackService {
             throw new Exception("Feedback nuk u krijua!");
         }
         return feedback;
-}//PYTJE: A ka nevoj me ba validime kur te boj update te nje repository
+    }
+    public List<FeedBack> getFilteredFeedbacks(Integer candidateId, int instructorId, LocalDate date) {
+        return feedbackRepository.getFeedbacks(candidateId, instructorId, date);
+    }//PYTJE: A ka nevoj me ba validime kur te boj update te nje repository
 }

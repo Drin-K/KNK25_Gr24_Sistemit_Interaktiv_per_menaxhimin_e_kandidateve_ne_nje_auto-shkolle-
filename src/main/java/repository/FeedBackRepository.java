@@ -73,32 +73,13 @@ public class FeedBackRepository extends BaseRepository<FeedBack, CreateFeedBackD
             }
             return null;
     }
-    public List<FeedBack> getFeedbacks(Integer candidateId, int instructorId, LocalDate date) {
+    public List<FeedBack> getFeedbacksByStaffAndDate(int instructorId, LocalDate date) {
         List<FeedBack> feedbackList = new ArrayList<>();
-        StringBuilder queryBuilder = new StringBuilder("SELECT * FROM FeedBack WHERE Id_Staf = ?");
-
-        // Add conditions dynamically based on provided arguments
-        if (candidateId != null) {
-            queryBuilder.append(" AND ID_Kandidat = ?");
-        }
-        if (date != null) {
-            queryBuilder.append(" AND Data::date = ?"); // PostgreSQL-specific date cast
-            // For MySQL use: queryBuilder.append(" AND DATE(Data) = ?");
-        }
-
-        String query = queryBuilder.toString();
-        System.out.println("Executing query: " + query);
+        String query = "SELECT * FROM FeedBack WHERE Id_Staf = ? AND Data::date = ?";
 
         try (PreparedStatement stmt = this.connection.prepareStatement(query)) {
-            int index = 1;
-            stmt.setInt(index++, instructorId);
-
-            if (candidateId != null) {
-                stmt.setInt(index++, candidateId);
-            }
-            if (date != null) {
-                stmt.setDate(index, java.sql.Date.valueOf(date));
-            }
+            stmt.setInt(1, instructorId);
+            stmt.setDate(2, java.sql.Date.valueOf(date));
 
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
@@ -107,10 +88,8 @@ public class FeedBackRepository extends BaseRepository<FeedBack, CreateFeedBackD
             }
         } catch (SQLException e) {
             System.err.println("Error fetching feedbacks: " + e.getMessage());
-            e.printStackTrace();
-            throw new RuntimeException("Failed to fetch feedbacks", e);
+            throw new RuntimeException("Failed to fetch feedbacks for staff " + instructorId + " on date " + date, e);
         }
-
         return feedbackList;
     }
 

@@ -38,14 +38,11 @@ public class FeedBackService {
         }
         return feedback;
     }
-    public List<FeedBack> getFilteredFeedbacks(Integer candidateId, int instructorId, LocalDate date) {
-        try {
-            return feedbackRepository.getFeedbacks(candidateId, instructorId, date);
-        } catch (RuntimeException e) {
-            // Log the error and return empty list or rethrow as application-specific exception
-            System.err.println("Error filtering feedbacks: " + e.getMessage());
-            return Collections.emptyList();
+    public List<FeedBack> getFeedbacksByDate(int instructorId, LocalDate date) {
+        if (date == null) {
+            throw new IllegalArgumentException("Date cannot be null");
         }
+        return feedbackRepository.getFeedbacksByStaffAndDate(instructorId, date);
     }
 //PYTJE: A ka nevoj me ba validime kur te boj update te nje repository
 }

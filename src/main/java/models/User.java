@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 //ME VONE DO TA SHQYRTOSH TA BESH ABSTRAKTE
-public class User {
+public abstract class User {
     private int idUser;
     private String name;
     private String surname;
@@ -72,22 +72,4 @@ public class User {
     public String getAdresa(){
         return adresa;
     }
-    public static User getInstance(ResultSet result) throws SQLException {
-        int id = result.getInt("id");
-        String name=result.getString("name");
-        String surname=result.getString("surname");
-
-        String email=result.getString("email");
-        String phoneNumber=result.getString("phoneNumber");
-
-        LocalDate dateOfBirth = result.getObject("dateOfBirth", LocalDate.class);
-
-        String hashedPassword = result.getString("hashedPassword");
-        String salt=result.getString("salt");
-        String role=result.getString("role");
-        String adresa=result.getString("adresa");
-        String gjinia=result.getString("gjinia");
-        return new User(id, name, surname, email, phoneNumber, dateOfBirth, hashedPassword, salt, role, adresa,gjinia);
-    }
-
 }

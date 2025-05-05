@@ -5,7 +5,7 @@ import models.Dto.kandidatet.CreateKandidatetDto;
 import repository.KandidatetRepository;
 import repository.PatentaRepository;
 
-
+//import javax.print.Doc;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;

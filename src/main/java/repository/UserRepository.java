@@ -8,15 +8,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class UserRepository extends BaseRepository<User, CreateUserDto, UpdateUserDto> {
+public abstract class UserRepository extends BaseRepository<User, CreateUserDto, UpdateUserDto> {
 
     public UserRepository() {
         super("\"User\"");
-    }
-
-    @Override
-    public User fromResultSet(ResultSet result) throws SQLException {
-        return User.getInstance(result);
     }
 
     @Override
@@ -120,25 +115,25 @@ public class UserRepository extends BaseRepository<User, CreateUserDto, UpdateUs
         return null;
     }
 //qetu ma vone duhe me bo reduktim te kodit se po perseriten shume rreshta disa here
-    public ArrayList<User> findByRole(String role) {
-        ArrayList<User> userList = new ArrayList<>();
-        String query = "SELECT * FROM \"User\" WHERE role = ?";//se user osht fjal e rezervume ne postgresql
-
-        try {
-            PreparedStatement pstm = this.connection.prepareStatement(query);
-            pstm.setString(1, role);
-            ResultSet rs = pstm.executeQuery();
-
-            while (rs.next()) {
-                User user = fromResultSet(rs);
-                userList.add(user);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return userList;
-    }
+//    public ArrayList<User> findByRole(String role) {
+//        ArrayList<User> userList = new ArrayList<>();
+//        String query = "SELECT * FROM \"User\" WHERE role = ?";//se user osht fjal e rezervume ne postgresql
+//
+//        try {
+//            PreparedStatement pstm = this.connection.prepareStatement(query);
+//            pstm.setString(1, role);
+//            ResultSet rs = pstm.executeQuery();
+//
+//            while (rs.next()) {
+//                User user = fromResultSet(rs);
+//                userList.add(user);
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return userList;
+//    }
     public User findByEmail(String email) {
         String query = "SELECT * FROM \"User\" WHERE email = ?";
         try {

@@ -23,10 +23,21 @@ public class Kandidatet extends User{
     }
 
     public static Kandidatet getInstance(ResultSet result) throws SQLException {
-        User user = User.getInstance(result); // merret pjesa e përbashkët
+        int id = result.getInt("id");
+        String name=result.getString("name");
+        String surname=result.getString("surname");
+
+        String email=result.getString("email");
+        String phoneNumber=result.getString("phoneNumber");
+
+        LocalDate dateOfBirth = result.getObject("dateOfBirth", LocalDate.class);
+
+        String hashedPassword = result.getString("hashedPassword");
+        String salt=result.getString("salt");
+        String adresa=result.getString("adresa");
+        String gjinia=result.getString("gjinia");
         LocalDate dataRegjistrimit=result.getObject("dataRegjistrimi", LocalDate.class);
         String statusiProcesit=result.getString("statusiProcesit");
-        return new Kandidatet(user.getIdUser(),user.getName(),user.getSurname(),user.getEmail(),user.getPhoneNumber(),user.getDateOfBirth(),user.getHashedPassword(),user.getSalt(), user.getAdresa(), user.getGjinia(), dataRegjistrimit,statusiProcesit);
+        return new Kandidatet(id,name,surname,email,phoneNumber,dateOfBirth,hashedPassword,salt,adresa,gjinia,dataRegjistrimit,statusiProcesit);
     }
-
 }

@@ -16,11 +16,8 @@ public class StafiRepository extends UserRepository {
         super();
     }
     @Override
-    public ArrayList<User> findByRole(String role) {
-        // Filtron përdoruesit me rolin Staf
-        return super.findByRole("Staf");
+    public Stafi fromResultSet(ResultSet result) throws SQLException {
+        return Stafi.getInstance(result);
     }
-
-
 
 }

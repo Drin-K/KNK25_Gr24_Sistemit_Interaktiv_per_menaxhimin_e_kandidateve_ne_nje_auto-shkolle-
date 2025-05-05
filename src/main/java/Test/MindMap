@@ -239,3 +239,29 @@
 | (Paguar, Pjesërisht, Mbetur)  |
 +-------------------------------+
 
+
++-------------------------------+
+| Verifiko statusin e pagesës   |
+| (Paguar, Pjesërisht, Mbetur)  |
++-------------------------------+
+          |
+          v
++-------------------------------+
+| A është paguar plotësisht?    |
+| (Nëse PO, procedo me lëshimin |
+| e patentës)                   |
++-------------------------------+
+          |
+          v
++-------------------------------+
+| Nëse Pjesërisht, kërko dërgimin|
+| e pagesës së mbetur           |
++-------------------------------+
+          |
+          v
++-------------------------------+
+| Nëse Mbetur, kërko që të bëhet |
+| pagesa përfundimtare          |
++-------------------------------+
+
+

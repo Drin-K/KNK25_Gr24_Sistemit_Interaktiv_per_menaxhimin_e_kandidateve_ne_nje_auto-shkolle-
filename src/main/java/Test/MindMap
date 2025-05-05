@@ -24,3 +24,30 @@
 | Njofto Kandidatin me    |
 | email/SMS për lëshim    |
 +-------------------------+
+
+📊 Patentat sipas kategorive:
+   - Pie chart: Sa për A, B, C, etj.
+
+📈 Patentat e lëshuara me kalimin e kohës:
+   - Line chart për çdo muaj.
+
+📉 Raporti i suksesit të kandidatëve:
+   - Bar chart: Kaluan / Dështuan në teori & praktikë.
+
+📋 Kandidatë me pagesa të papërfunduara:
+   - Tabelë me emër, borxh, data e fundit.
+
+🔁 Numri i tentimeve për test praktik/teorik për kandidat.
+
+🔔 Notifikime automatike:
+   - Kandidatit për lëshim, dështim, pagesë të papaguar.
+
+🧠 Algoritëm për vendim të mençur:
+   - Nëse ka më shumë se 3 dështime → Sugjero konsultim.
+
+🏆 Ranking i instruktorëve:
+   - Bazuar në përformancën e kandidatëve të tyre.
+
+📑 Gjenerim i raporteve mujore:
+   - PDF për drejtori/menaxher me statistika & komente.
+

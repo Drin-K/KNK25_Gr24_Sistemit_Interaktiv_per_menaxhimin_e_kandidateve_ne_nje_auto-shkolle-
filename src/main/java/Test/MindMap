@@ -73,6 +73,12 @@ Testet Praktike (Po ashtu, kontrollo rezultatet e testeve praktike për të konf
 
 Nëse një nga testet ka dështuar (rezultati është Dështuar), atëherë kërkohet refuzimi i kërkesës për patentë dhe lëshimi i një njoftimi për kandidatin.
 
+3. Verifikimi i Pagesave
+Verifikoni që kandidati ka përfunduar pagesat për regjistrimin dhe për trajnimin. Duhet të kontrollohet:
+
+Pagesa e Plotë (Nëse statusi i pagesës është "Paguar", atëherë kandidati është i pranueshëm për lëshimin e patentës).
+
+Statusi i Pagesës (Nëse statusi është "Pjesërisht" ose "Mbetur", duhet kërkuar që kandidati të përfundojë pagesën për të kaluar në fazën tjetër).
 
 
 

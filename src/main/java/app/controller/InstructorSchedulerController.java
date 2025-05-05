@@ -28,8 +28,6 @@ public class InstructorSchedulerController {
     // Form fields
     @FXML private AnchorPane rightPane;
     @FXML private MenuButton chooseLessonBttn;
-    @FXML private MenuItem teoriBttn;
-    @FXML private MenuItem praktikBttn;
     @FXML private TextField candidateId;
     @FXML private DatePicker dateForLesson;
     @FXML private TextField txtStart;
@@ -55,7 +53,7 @@ public class InstructorSchedulerController {
     private void initialize() {
         // Pre-fetch an available vehicle (or defer this logic to scheduleClick if preferred)
         try {
-            this.vehicleId = automjetService.getFirstAvailableVehicleIdByLloji("vetura");
+            this.vehicleId = automjetService.getFirstAvailableVehicleIdByLloji(txtSpecify.getText());
         } catch (Exception e) {
             e.printStackTrace();
             this.vehicleId = null;
@@ -112,10 +110,10 @@ public class InstructorSchedulerController {
     @FXML private void praktikClick() { this.llojiMesimit = "Praktik"; chooseLessonBttn.setText("Praktik"); }
 
     // Vehicle radio‐buttons
-    @FXML private void golf4Click()    { this.txtSpecify.setText("Golf 4"); }
-    @FXML private void bmwClick()      { this.txtSpecify.setText("BMW");    }
-    @FXML private void mercedesClick() { this.txtSpecify.setText("Mercedes"); }
-    @FXML private void glof7Click()    { this.txtSpecify.setText("Golf 7"); }
+    @FXML private void AClick()    { this.txtSpecify.setText("Motoçikletë"); }
+    @FXML private void BClick()      { this.txtSpecify.setText("Vetura");    }
+    @FXML private void CClick() { this.txtSpecify.setText("Kamion"); }
+
 
     @FXML
     private void editClick() throws Exception {

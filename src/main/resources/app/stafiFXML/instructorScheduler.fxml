@@ -37,9 +37,9 @@
                </font>
             </TextField>
             <Text fill="#2cafc9" layoutX="63.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose a category for the lesson" />
-            <RadioButton fx:id="golf4Bttn" layoutX="63.0" layoutY="330.0" mnemonicParsing="false" onAction="#golf4Click" text="A" />
-            <RadioButton fx:id="golf7Bttn" layoutX="192.0" layoutY="331.0" mnemonicParsing="false" onAction="#glof7Click" text="B" />
-            <RadioButton fx:id="bmwBttn" layoutX="306.0" layoutY="330.0" mnemonicParsing="false" onAction="#bmwClick" text="C" />
+            <RadioButton fx:id="Abttn" layoutX="63.0" layoutY="330.0" mnemonicParsing="false" onAction="#AClick" text="A" />
+            <RadioButton fx:id="Bbttn" layoutX="192.0" layoutY="331.0" mnemonicParsing="false" onAction="#BClick" text="B" />
+            <RadioButton fx:id="Cbttn" layoutX="306.0" layoutY="330.0" mnemonicParsing="false" onAction="#CClick" text="C" />
             <DatePicker fx:id="dateForLesson" layoutX="64.0" layoutY="157.0" prefHeight="26.0" prefWidth="322.0" promptText="Enter the date for the lesson" />
             <TextField fx:id="txtEnd" focusTraversable="false" layoutX="287.0" layoutY="208.0" prefHeight="30.0" prefWidth="98.0" promptText="End time" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;">
                <font>

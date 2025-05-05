@@ -32,14 +32,10 @@ public class InstructorSchedulerController {
     @FXML private DatePicker dateForLesson;
     @FXML private TextField txtStart;
     @FXML private TextField txtEnd;
-    @FXML private TextField txtSpecify;
-    @FXML private RadioButton golf4Bttn;
-    @FXML private RadioButton bmwBttn;
-    @FXML private RadioButton mercedesBttn;
-    @FXML private RadioButton golf7Bttn;
 
     // Used to store which lesson type was picked
     private String llojiMesimit;
+    private String txtSpecify;
 
     /** True no-arg constructor for FXMLLoader */
     public InstructorSchedulerController() {
@@ -53,7 +49,7 @@ public class InstructorSchedulerController {
     private void initialize() {
         // Pre-fetch an available vehicle (or defer this logic to scheduleClick if preferred)
         try {
-            this.vehicleId = automjetService.getFirstAvailableVehicleIdByLloji(txtSpecify.getText());
+            this.vehicleId = automjetService.getFirstAvailableVehicleIdByLloji(txtSpecify);
         } catch (Exception e) {
             e.printStackTrace();
             this.vehicleId = null;
@@ -96,7 +92,7 @@ public class InstructorSchedulerController {
 
     private void cleanFields() {
         this.candidateId.clear();
-        this.txtSpecify.clear();
+        this.txtSpecify=null;
         this.txtEnd.clear();
         this.txtStart.clear();
         this.dateForLesson.setValue(null);
@@ -110,9 +106,9 @@ public class InstructorSchedulerController {
     @FXML private void praktikClick() { this.llojiMesimit = "Praktik"; chooseLessonBttn.setText("Praktik"); }
 
     // Vehicle radio‐buttons
-    @FXML private void AClick()    { this.txtSpecify.setText("Motoçikletë"); }
-    @FXML private void BClick()      { this.txtSpecify.setText("Vetura");    }
-    @FXML private void CClick() { this.txtSpecify.setText("Kamion"); }
+    @FXML private void AClick()    { this.txtSpecify="Motoçikletë"; }
+    @FXML private void BClick()      { this.txtSpecify="Vetura";    }
+    @FXML private void CClick() { this.txtSpecify="Kamion"; }
 
 
     @FXML

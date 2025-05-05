@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class FeedBackRepository extends BaseRepository<FeedBack, CreateFeedBackDto, UpdateFeedBackDto> {
     public FeedBackRepository(){super("FeedBack");}
@@ -100,6 +102,16 @@ public class FeedBackRepository extends BaseRepository<FeedBack, CreateFeedBackD
 
         return feedbackList;
     }
+    public List<FeedBack> getFiltered(Integer candidateId, int instructorId, LocalDate date) {
+        List<FeedBack> all = getAll(); // assume this gets all feedbacks from DB or in-memory
+
+        return all.stream()
+                .filter(fb -> fb.getIdStaf() == instructorId)
+                .filter(fb -> candidateId == null || fb.getIdKandidat() == candidateId)
+                .filter(fb -> date == null || fb.getDataFeedback().equals(date))
+                .collect(Collectors.toList());
+    }
+
 
 }
 

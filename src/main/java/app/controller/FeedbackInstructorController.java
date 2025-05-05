@@ -1,77 +1,88 @@
+// ✅ FIXED FeedbackInstructorController.java
 package app.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TableColumn;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.FeedBack;
-
-import models.Dto.feedBack.CreateFeedBackDto;
-import models.Dto.feedBack.UpdateFeedBackDto;
-import models.Dto.regjistrimet.UpdateRegjistrimetDto;
 import services.FeedBackService;
 import services.UserContext;
 
 import java.time.LocalDate;
 
 public class FeedbackInstructorController {
-    private UserContext userContext;
 
+    private UserContext userContext = new UserContext(); // Ensure this is properly set
     private final FeedBackService feedBackService;
-    @FXML
-    private TextField txtcandId;
-    @FXML
-    private DatePicker dateField;
-    @FXML
-    private MenuButton filterbyBttn;
-    @FXML
-    private MenuItem candidateOption;
-    @FXML
-    private MenuItem dateOption;
 
-    @FXML
-    private TableView<FeedBack> feedbackTable;
-    @FXML
-    private TableColumn<FeedBack, String> commentColumn;
-    @FXML
-    private TableColumn<FeedBack, Integer> pointsColumn;
+    @FXML private TextField candField;
+    @FXML private DatePicker dateField;
+    @FXML private TableView<FeedBack> feedback;
+    @FXML private TableColumn<FeedBack, String> commentArea;
+    @FXML private TableColumn<FeedBack, Integer> pointsArea;
+    @FXML private MenuItem candidateOption;
+    @FXML private MenuItem dateOption;
+    @FXML private MenuButton filterbyBttn;
+    @FXML private Button filterBttn;
 
-
-    public FeedbackInstructorController(FeedBackService feedBackService) {
-        this.feedBackService = feedBackService;
+    public FeedbackInstructorController() {
+        this.feedBackService = new FeedBackService();
     }
-//    private UpdateFeedBackDto getFeedbackInput(){
-//        int kandId=Integer.parseInt(this.txtcandId.getText());
-//        LocalDate date=this.dateField.getValue();
-//        return  new UpdateFeedBackDto(kandId,userContext.getUserId(), date,)
-//    }
+
+    private enum FilterType {
+        CANDIDATE, DATE, BOTH, NONE
+    }
+    private FilterType currentFilter = FilterType.NONE;
 
     @FXML
     public void initialize() {
-        commentColumn.setCellValueFactory(new PropertyValueFactory<>("koment"));
-        pointsColumn.setCellValueFactory(new PropertyValueFactory<>("vlersimi"));
+        commentArea.setCellValueFactory(new PropertyValueFactory<>("koment"));
+        pointsArea.setCellValueFactory(new PropertyValueFactory<>("vlersimi"));
+        filterBttn.setOnAction(e -> filterClick());
+        candField.setDisable(true);
+        dateField.setDisable(true);
     }
 
     @FXML
-    private void filterClick() {
-        try {
-            Integer candidateId = txtcandId.getText().isEmpty() ? null : Integer.parseInt(txtcandId.getText());
-            LocalDate date = dateField.getValue();
-
-            int instructorId = userContext.getUserId();
-            var feedbacks = feedBackService.getFilteredFeedbacks(candidateId, instructorId, date);
-
-            feedbackTable.getItems().clear();
-            feedbackTable.getItems().addAll(feedbacks);
-        } catch (Exception e) {
-            e.printStackTrace();
-
-        }
+    private void candidateClick() {
+        currentFilter = FilterType.CANDIDATE;
+        filterbyBttn.setText("Candidate");
+        candField.setDisable(false);
+        dateField.setDisable(true);
     }
 
+    @FXML
+    private void dateClick() {
+        currentFilter = FilterType.DATE;
+        filterbyBttn.setText("Date");
+        candField.setDisable(true);
+        dateField.setDisable(false);
+    }
 
+    private void filterClick() {
+        try {
+            int instructorId = userContext.getUserId();
+            Integer candidateId = null;
+            LocalDate date = null;
+
+            switch (currentFilter) {
+                case CANDIDATE:
+                    if (!candField.getText().isEmpty()) {
+                        candidateId = Integer.parseInt(candField.getText());
+                    }
+                    break;
+                case DATE:
+                    date = dateField.getValue();
+                    break;
+                default:
+                    return;
+            }
+
+            var feedbacks = feedBackService.getFilteredFeedbacks(candidateId, instructorId, date);
+            feedback.getItems().setAll(feedbacks);
+        } catch (Exception e) {
+            e.printStackTrace();
+            new Alert(Alert.AlertType.ERROR, "Failed to filter feedback.").show();
+        }
+    }
 }

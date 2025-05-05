@@ -39,5 +39,7 @@ public class FeedBackService {
     }
     public List<FeedBack> getFilteredFeedbacks(Integer candidateId, int instructorId, LocalDate date) {
         return feedbackRepository.getFeedbacks(candidateId, instructorId, date);
-    }//PYTJE: A ka nevoj me ba validime kur te boj update te nje repository
+    }
+
+//PYTJE: A ka nevoj me ba validime kur te boj update te nje repository
 }

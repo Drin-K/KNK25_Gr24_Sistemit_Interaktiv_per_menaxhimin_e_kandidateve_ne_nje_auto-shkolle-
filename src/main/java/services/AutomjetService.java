@@ -56,6 +56,20 @@ public class AutomjetService {
         this.getById(id);
         return automjetetRepository.delete(id);
     }
+    public Integer getFirstAvailableVehicleIdByLloji(String llojiAutomjetit) throws Exception {
+        if (!llojiAutomjetit.equals("Vetura") && !llojiAutomjetit.equals("Motoçikletë") && !llojiAutomjetit.equals("Kamion")) {
+            throw new Exception("Lloji i automjetit nuk është valid!");
+        }
+
+        ArrayList<Automjetet> automjetet = automjetetRepository.getByStatus(llojiAutomjetit);
+        for (Automjetet a : automjetet) {
+            if (a.getStatusi().equals("Në përdorim")) {
+                return a.getId();
+            }
+        }
+
+        throw new Exception("Asnjë automjet i lirë nuk është i disponueshëm për llojin: " + llojiAutomjetit);
+    }
     public ArrayList<Automjetet> findByLloji(String lloji){
         return automjetetRepository.getByLloji(lloji);
     }

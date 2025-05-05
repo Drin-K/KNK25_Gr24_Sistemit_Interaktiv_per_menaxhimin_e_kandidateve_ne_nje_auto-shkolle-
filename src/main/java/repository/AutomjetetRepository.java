@@ -90,5 +90,23 @@ public class AutomjetetRepository extends BaseRepository<Automjetet, CreateAutom
         }
         return automjetetList;
     }
+    public ArrayList<Automjetet> getByStatus(String lloji) {
+        //Funksion i cili kthen te gjitha automjetet e nje lloji te caktuar si Veture, Motociklete apo Kamion
+        ArrayList<Automjetet> automjetetList = new ArrayList<>();
+        String query = "SELECT * FROM Automjetet WHERE Lloji_i_Automjetit = ?  AND Statusi = 'Në përdorim'";
+
+        try {
+            PreparedStatement pstm = this.connection.prepareStatement(query);
+            pstm.setString(1, lloji);
+            ResultSet resultSet = pstm.executeQuery();
+
+            while (resultSet.next()) {
+                automjetetList.add(this.fromResultSet(resultSet));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return automjetetList;
+    }
 
 }

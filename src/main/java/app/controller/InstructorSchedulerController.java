@@ -6,6 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import models.Dto.orari.CreateOrariDto;
 import models.Orari;
+import services.AutomjetService;
 import services.OrariService;
 import services.SceneManager;
 import services.UserContext;
@@ -15,14 +16,15 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class InstructorSchedulerController {
+    AutomjetService automjetService;
     UserContext context;
     private final OrariService orariService;
 
-    public InstructorSchedulerController() {
+    public InstructorSchedulerController() throws Exception {
         this.orariService=new OrariService();
         this.context=new UserContext();
     }
-
+    String llojiMesimit;
     @FXML
      private AnchorPane rightPane;
     @FXML
@@ -35,6 +37,7 @@ public class InstructorSchedulerController {
     private TextField txtEnd;
     @FXML
     private TextField txtSpecify;
+    Integer vehicleId = automjetService.getFirstAvailableVehicleIdByLloji("vetura");
 
     @FXML
     private void scheduleClick ()throws Exception{
@@ -42,7 +45,7 @@ public class InstructorSchedulerController {
            Orari orari= this.orariService.create(this.getScheduleInputData());
            System.out.println("Schedule is inserted successfully");
            System.out.println("Candidate ID"+orari.getIdKandidat());
-           this.cleanFeilds();
+           this.cleanFields();
        }
        catch (Exception e){
            System.out.println("---Error Scheduling---"+e.getMessage());
@@ -54,10 +57,10 @@ public class InstructorSchedulerController {
         LocalDate dateForLesson= this.dateForLesson.getValue();
         LocalTime startTime=LocalTime.parse(txtStart.getText());
         LocalTime endTime=LocalTime.parse(txtEnd.getText());
-        return new CreateOrariDto(candidateId, ,dateForLesson,startTime,endTime);
+        return new CreateOrariDto(candidateId, UserContext.getUserId(), dateForLesson,startTime,endTime,this.llojiMesimit,"Planifikuar",vehicleId);
 
     }
-    private void cleanFeilds(){
+    private void cleanFields(){
         this.candidateId.setText("");
         this.txtSpecify.setText("");
         this.txtEnd.setText("");
@@ -71,12 +74,12 @@ public class InstructorSchedulerController {
 
     @FXML
     private void teoriClick()throws Exception{
-        SceneManager.load(SceneLocator.INSTRUCTOR_EDIT, this.rightPane);
+        this.llojiMesimit="Teori";
     }
 
     @FXML
     private  void praktikClick()throws Exception{
-        SceneManager.load(SceneLocator.INSTRUCTOR_EDIT, this.rightPane);
+       this.llojiMesimit="Praktik";
     }
 
     @FXML

@@ -13,7 +13,6 @@ public class frontPageInstructorController {
     private void loadLanguage(Locale locale) throws Exception{
         languageManager.setLocale(locale);
         SceneManager.reload();
-
     }
     @FXML
     private AnchorPane rightPage;
@@ -28,7 +27,6 @@ public class frontPageInstructorController {
     @FXML
     private void mngTestClick()throws Exception{
         SceneManager.load(SceneLocator.MANAGE_TESTS,this.rightPage);
-
     }
     @FXML
     private void mngVehiclesClick()throws Exception{

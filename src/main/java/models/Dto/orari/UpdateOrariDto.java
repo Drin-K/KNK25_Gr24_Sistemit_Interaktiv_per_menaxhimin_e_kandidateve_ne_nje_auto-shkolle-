@@ -14,6 +14,9 @@ public class UpdateOrariDto {
     private String statusi;
     private int idAutomjet;
 
+    public UpdateOrariDto(){
+
+    }
     public UpdateOrariDto(int idSesioni, int idKandidat, int idStaf, LocalDate dataSesionit, LocalTime oraFillimit, LocalTime oraPerfundimit, String llojiMesimit, String statusi, int idAutomjet) {
         this.idSesioni = idSesioni;
         this.idKandidat = idKandidat;

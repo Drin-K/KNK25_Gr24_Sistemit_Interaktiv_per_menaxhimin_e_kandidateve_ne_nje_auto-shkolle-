@@ -4,8 +4,6 @@ import models.*;
 import models.Dto.kandidatet.CreateKandidatetDto;
 import repository.KandidatetRepository;
 import repository.PatentaRepository;
-
-import javax.print.Doc;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
@@ -110,4 +108,8 @@ public class KandidateService {
         // Mund të vendosni logjikën tjetër të biznesit këtu (nëse ka ndonjë)
         patentaRepository.aprovoPatenten(kandidatId);
     }
+//    public boolean verifikoPatentenAprovuar(int idKandidat) throws SQLException{
+//       // return this.kandidatetRepository.verifikoPatentenAprovuar(idKandidat);
+//    }
+
 }

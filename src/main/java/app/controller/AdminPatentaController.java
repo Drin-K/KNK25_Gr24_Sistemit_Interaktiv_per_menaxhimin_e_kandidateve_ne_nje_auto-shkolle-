@@ -25,7 +25,7 @@ public class AdminPatentaController {
 
     @FXML
     private TableColumn<Kandidatet, String> colEmri, colMbiemri, colEmail, colTelefoni, colDataRegjistrimit,  colStatusi;
- private final KandidateService kandidatService = new KandidateService();
+    private final KandidateService kandidatService = new KandidateService();
 
 
     @FXML
@@ -72,17 +72,18 @@ public class AdminPatentaController {
         boolean testet = checkTestet.isSelected();
         boolean regjistrimi = checkRegjistrimi.isSelected();
 
-        // Kontrolloni nëse të gjitha checkbox janë të kontrolluara
         if (statusiProcesit && pagesa && testet && regjistrimi) {
             if (kandidat != null) {
                 try {
-                    kandidatService.aprovoPatenten(kandidat.getIdUser());
-                    shfaqKandidatetMeTeDrejte();
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Suksesi");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Patenta është aprovuar me sukses.");
-                    alert.showAndWait();
+                    // Aprovoni patentën dhe shfaqni një mesazh
+                        kandidatService.aprovoPatenten(kandidat.getIdUser());
+                        tableKandidatet.getItems().remove(kandidat);
+                        shfaqKandidatetMeTeDrejte();
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Suksesi");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Patenta është aprovuar me sukses.");
+                        alert.showAndWait();
                 } catch (SQLException e) {
                     e.printStackTrace();
                     Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -109,3 +110,5 @@ public class AdminPatentaController {
     }
 
 }
+
+

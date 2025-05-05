@@ -39,21 +39,23 @@ public class KandidatetRepository extends UserRepository {
     }
     public List<Kandidatet> gjejKandidatetMeTeDrejte(boolean statusiProcesit, boolean pagesa, boolean testet, boolean regjistrimi) throws SQLException {
         String sql = """
-    SELECT DISTINCT ON (u.id)
-           u.id, u.name, u.surname, u.email, u.phoneNumber, u.dateOfBirth,
-           u.hashedPassword, u.salt, u.role, u.adresa, u.gjinia,
-           k.dataRegjistrimi, k.statusiProcesit
-    FROM "User" u
-    JOIN Kandidatet k ON u.id = k.id
-    LEFT JOIN Pagesat p ON u.id = p.ID_Kandidat
-    LEFT JOIN Testet t ON u.id = t.ID_Kandidat
-    LEFT JOIN Regjistrimet r ON u.id = r.ID_Kandidat
-    WHERE k.statusiProcesit = ?
-      AND (p.Statusi_i_Pageses = ? OR p.Statusi_i_Pageses IS NULL)
-      AND (t.Rezultati = ? OR t.Rezultati IS NULL)
-      AND (r.Statusi = ? OR r.Statusi IS NULL)
-    ORDER BY u.id
-""";
+        SELECT DISTINCT ON (u.id)
+               u.id, u.name, u.surname, u.email, u.phoneNumber, u.dateOfBirth,
+               u.hashedPassword, u.salt, u.role, u.adresa, u.gjinia,
+               k.dataRegjistrimi, k.statusiProcesit
+        FROM "User" u
+        JOIN Kandidatet k ON u.id = k.id
+        LEFT JOIN Pagesat p ON u.id = p.ID_Kandidat
+        LEFT JOIN Testet t ON u.id = t.ID_Kandidat
+        LEFT JOIN Regjistrimet r ON u.id = r.ID_Kandidat
+        LEFT JOIN Patenta pa ON u.id = pa.ID_Kandidat AND pa.Statusi = 'E lëshuar'
+        WHERE pa.ID_Kandidat IS NULL -- PËRJASHTO kandidatët që e kanë patentën 'E lëshuar'
+          AND k.statusiProcesit = ?
+          AND (p.Statusi_i_Pageses = ? OR p.Statusi_i_Pageses IS NULL)
+          AND (t.Rezultati = ? OR t.Rezultati IS NULL)
+          AND (r.Statusi = ? OR r.Statusi IS NULL)
+        ORDER BY u.id
+    """;
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             // Vendosja e parametrave për filtrim në query
             stmt.setString(1, statusiProcesit ? "Përfunduar" : "Në proces");
@@ -77,6 +79,9 @@ public class KandidatetRepository extends UserRepository {
             return kandidatet;
         }
     }
+
+
+
 
 
 

@@ -130,15 +130,9 @@ public class OrariService {
         }
 
         // 5. Kontrollo ekzistencën e kandidatit, stafit dhe automjetit përmes BaseRepository -> getById()
-        Kandidatet kandidati = (Kandidatet) kandidatRepository.getById(dto.getIdKandidat());
-        if (kandidati == null) {
-            throw new Exception("Kandidati me këtë ID nuk ekziston.");
-        }
 
-        Stafi stafi =(Stafi) stafiRepository.getById(dto.getIdStaf());
-        if (stafi == null) {
-            throw new Exception("Stafi me këtë ID nuk ekziston.");
-        }
+
+
 
         Automjetet automjeti = automjetRepository.getById(dto.getIdAutomjet());
         if (automjeti == null) {

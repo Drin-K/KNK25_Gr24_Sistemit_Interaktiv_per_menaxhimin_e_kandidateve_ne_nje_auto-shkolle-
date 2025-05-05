@@ -99,8 +99,8 @@ public class InstructorSchedulerController {
     }
 
     @FXML private void praktikClick() {
-        this.llojiMesimit = "Praktik";
-        chooseLessonBttn.setText("Praktik");
+        this.llojiMesimit = "Praktikë";
+        chooseLessonBttn.setText("Praktikë");
     }
 
     // Vehicle type handlers

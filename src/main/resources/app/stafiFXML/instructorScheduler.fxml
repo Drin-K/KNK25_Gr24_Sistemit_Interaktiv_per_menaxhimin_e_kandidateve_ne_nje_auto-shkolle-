@@ -15,7 +15,6 @@
       <AnchorPane layoutX="168.0" layoutY="103.0" prefHeight="462.0" prefWidth="150.0" style="-fx-border-color: #dcdcdc; -fx-border-style: round;">
          <children>
             <Button fx:id="scheduleBttn" layoutX="39.0" layoutY="159.0" mnemonicParsing="false" onAction="#scheduleClick" prefHeight="26.0" prefWidth="72.0" style="-fx-background-color: #07842b;" text="Schedule" textFill="#d4d4d4" />
-            <Button fx:id="removeBttn" layoutX="39.0" layoutY="204.0" mnemonicParsing="false" onAction="#removeScheduleClick" prefHeight="26.0" prefWidth="72.0" style="-fx-background-color: #994949;" text="Remove" textFill="#dcdcdc" />
             <Button layoutX="39.0" layoutY="249.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="72.0" style="-fx-background-color: #ffffff; -fx-border-color: gray; -fx-border-radius: 3;" text="Edit" textFill="#51b191" />
          </children>
       </AnchorPane>
@@ -37,7 +36,7 @@
                   <Font name="System Italic" size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="txtSpecify" focusTraversable="false" layoutX="63.0" layoutY="402.0" prefHeight="30.0" prefWidth="322.0" promptText="Another option (specify)" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;">
+            <TextField fx:id="txtSpecify" focusTraversable="false" layoutX="63.0" layoutY="402.0" prefHeight="30.0" prefWidth="204.0" promptText="Another option (specify)" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font>
@@ -56,5 +55,6 @@
          </children>
       </AnchorPane>
       <Text layoutX="403.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: arial; -fx-font-weight: bold; -fx-font-size: 20;" text="Here you can create a schedule date for lessons " />
+      <Button fx:id="removeBttn" layoutX="207.0" layoutY="306.0" mnemonicParsing="false" onAction="#removeScheduleClick" prefHeight="26.0" prefWidth="72.0" style="-fx-background-color: #994949;" text="Remove" textFill="#dcdcdc" />
    </children>
 </AnchorPane>

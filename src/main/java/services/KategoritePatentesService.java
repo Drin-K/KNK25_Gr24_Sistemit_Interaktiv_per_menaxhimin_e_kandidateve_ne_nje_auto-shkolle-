@@ -20,7 +20,6 @@ public class KategoritePatentesService {
         return kategoritePatentes;
     }
 
-
     public KategoritePatentes create(CreateKategoritePatentesDto createDto) throws Exception{
 
         if (createDto.getKategoria()== null || createDto.getKategoria().isBlank()) {

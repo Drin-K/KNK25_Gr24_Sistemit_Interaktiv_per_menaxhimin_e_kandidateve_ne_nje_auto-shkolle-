@@ -13,8 +13,8 @@ public class Admin extends User {
 
 
     public static Admin getInstance(ResultSet result) throws SQLException {
-        User user = User.getInstance(result);
-        return new Admin(user.getIdUser(),user.getName(),user.getSurname(),user.getEmail(),user.getPhoneNumber(),user.getDateOfBirth(),user.getHashedPassword(),user.getSalt(),"Admin", user.getAdresa(), user.getGjinia());
+        Admin admin = Admin.getInstance(result);
+        return new Admin(admin.getIdUser(),admin.getName(),admin.getSurname(),admin.getEmail(),admin.getPhoneNumber(),admin.getDateOfBirth(),admin.getHashedPassword(),admin.getSalt(),"Admin", admin.getAdresa(), admin.getGjinia());
     }
 
 }

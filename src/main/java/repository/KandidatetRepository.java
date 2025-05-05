@@ -12,10 +12,14 @@ public class KandidatetRepository extends UserRepository {
 
     public KandidatetRepository() {
         super();}
-    @Override
-    public ArrayList<User> findByRole(String role) {
+
+    public ArrayList<Kandidatet> findByRole(String role) {
         // Filtron përdoruesit me rolin 'kandidat'
-        return super.findByRole("Kandidat");
+        return this.findByRole("Kandidat");
+    }
+    @Override
+    public Kandidatet fromResultSet(ResultSet result) throws SQLException {
+        return Kandidatet.getInstance(result);
     }
     public HashMap<String, Integer> getRegistrationsLast12Months() throws SQLException {
         HashMap<String, Integer> data = new HashMap<>();

@@ -1,6 +1,7 @@
 package app.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextField;
@@ -49,16 +50,39 @@ public class InstructorSchedulerController {
         try {
             CreateOrariDto dto = this.getScheduleInputData();
             Orari orari = this.orariService.create(dto);
-            System.out.println("Schedule inserted successfully; session ID=" + orari.getIdSesioni());
+
+            // Success alert
+            Alert success = new Alert(Alert.AlertType.INFORMATION);
+            success.setTitle("Sukses");
+            success.setHeaderText(null);
+            success.setContentText("Orari u krijua me sukses! ID e sesionit: " + orari.getIdSesioni());
+            success.showAndWait();
+
             this.cleanFields();
+
+        } catch (IllegalArgumentException iae) {
+
+            Alert warn = new Alert(Alert.AlertType.WARNING);
+            warn.setTitle("Vërejtje");
+            warn.setHeaderText("Të dhëna të paplota ose të pavlefshme");
+            warn.setContentText(iae.getMessage());
+            warn.showAndWait();
+
         } catch (Exception e) {
-            System.err.println("---Error Scheduling--- " + e.getMessage());
+            // Everything else (service or repository errors)
+            Alert error = new Alert(Alert.AlertType.ERROR);
+            error.setTitle("Gabim");
+            error.setHeaderText("Nuk mund të krijohej orari");
+            error.setContentText(e.getMessage());
+            error.showAndWait();
+
             e.printStackTrace();
         }
     }
 
+
     private CreateOrariDto getScheduleInputData() {
-        // Validate vehicle selection
+
         if (vehicleId == null) {
             throw new IllegalArgumentException("No vehicle selected or available.");
         }
@@ -92,7 +116,7 @@ public class InstructorSchedulerController {
         this.chooseLessonBttn.setText("Choose lesson type");
     }
 
-    // Lesson type handlers
+
     @FXML private void teoriClick()   {
         this.llojiMesimit = "Teori";
         chooseLessonBttn.setText("Teori");
@@ -103,7 +127,7 @@ public class InstructorSchedulerController {
         chooseLessonBttn.setText("Praktikë");
     }
 
-    // Vehicle type handlers
+
     @FXML
     private void AClick() {
         this.selectedVehicleType = "Motoçikletë";

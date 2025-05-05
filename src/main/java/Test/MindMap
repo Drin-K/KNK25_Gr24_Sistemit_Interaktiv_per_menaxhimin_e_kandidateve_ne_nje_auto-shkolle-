@@ -110,3 +110,16 @@
 | për performancën e stafit    |
 +----------------------------+
 
+
+📊 Performanca e Stafit:
+   - Bar chart për vlerësimet e stafit nga kandidatët.
+
+📈 Angazhimi i Stafit:
+   - Line chart: Aktivitetet e stafit për muajt.
+
+📉 Trajnime dhe Avancime:
+   - Pie chart për ndarjen e stafit sipas niveleve të trajnimit.
+
+📋 Analiza e mbështetjes së stafit:
+   - Raport për mbështetje dhe konsultime me kandidatët.
+

@@ -220,3 +220,22 @@
    - Raporte mbi testet, pagesat dhe performancën e kandidatëve.
    - Mundësi për të gjeneruar raporte mujore, gjashtëmujor dhe vjetor.
 
+
++-------------------------------+
+| Regjistro Pagesën e Kandidatit|
+| (Shuma, Data, Metoda, Statusi)|
++-------------------------------+
+          |
+          v
++-------------------------------+
+| Verifiko të dhënat e pagesës  |
+| (Verifiko nëse është paguar   |
+| plotësisht ose pjesërisht)    |
++-------------------------------+
+          |
+          v
++-------------------------------+
+| Cakto statusin e pagesës      |
+| (Paguar, Pjesërisht, Mbetur)  |
++-------------------------------+
+

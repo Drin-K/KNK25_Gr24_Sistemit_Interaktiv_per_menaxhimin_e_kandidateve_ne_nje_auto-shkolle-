@@ -75,9 +75,9 @@ public class FeedBackRepository extends BaseRepository<FeedBack, CreateFeedBackD
     }
     public ArrayList<FeedBack> getFeedbacks(Integer candidateId, int instructorId, LocalDate date) {
         ArrayList<FeedBack> feedbackList = new ArrayList<>();
-        String query = "SELECT * FROM FeedBack WHERE Id_Instruktori = ?";
+        String query = "SELECT * FROM FeedBack WHERE Id_Staf= ?";
 
-        if (candidateId != null) query += " AND Id_Kandidati = ?";
+        if (candidateId != null) query += " AND Id_Staf = ?";
         if (date != null) query += " AND DATE(Data) = ?";
 
         try {

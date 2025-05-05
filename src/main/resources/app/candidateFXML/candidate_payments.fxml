@@ -1,11 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
 
 <AnchorPane prefHeight="620.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text layoutX="117.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Payments Page" />
+      <Text layoutX="117.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 22; -fx-font-family: arial; -fx-font-weight: bold;" text="Payments" />
+      <AnchorPane layoutX="331.0" layoutY="139.0" prefHeight="385.0" prefWidth="472.0">
+         <children>
+            <MenuButton layoutX="166.0" layoutY="19.0" mnemonicParsing="false" style="-fx-background-color: #137156;" text="Choose Payment Method" textFill="#f4f4f4">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Cash" />
+                  <MenuItem mnemonicParsing="false" text="Kartel" />
+                  <MenuItem mnemonicParsing="false" text="PayPal" />
+               </items>
+            </MenuButton>
+            <TextField focusTraversable="false" layoutX="88.0" layoutY="74.0" prefHeight="26.0" prefWidth="322.0" promptText="Enter you'r ID" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </TextField>
+            <TextField focusTraversable="false" layoutX="88.0" layoutY="220.0" prefHeight="26.0" prefWidth="322.0" promptText="Amount" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </TextField>
+            <TextField focusTraversable="false" layoutX="88.0" layoutY="280.0" prefHeight="26.0" prefWidth="322.0" promptText="Status of the payment" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </TextField>
+            <TextField focusTraversable="false" layoutX="88.0" layoutY="150.0" prefHeight="26.0" prefWidth="322.0" promptText="Bank Account Number" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </TextField>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

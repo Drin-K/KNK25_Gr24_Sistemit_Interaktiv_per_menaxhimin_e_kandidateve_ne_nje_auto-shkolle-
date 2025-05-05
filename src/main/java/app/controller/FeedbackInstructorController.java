@@ -1,4 +1,3 @@
-// ✅ FIXED FeedbackInstructorController.java
 package app.controller;
 
 import javafx.fxml.FXML;
@@ -65,6 +64,7 @@ public class FeedbackInstructorController {
             Integer candidateId = null;
             LocalDate date = null;
 
+            // Apply filters based on the selected filter type
             switch (currentFilter) {
                 case CANDIDATE:
                     if (!candField.getText().isEmpty()) {
@@ -75,10 +75,13 @@ public class FeedbackInstructorController {
                     date = dateField.getValue();
                     break;
                 default:
-                    return;
+                    break;
             }
 
+            // Get filtered feedbacks from the repository
             var feedbacks = feedBackService.getFilteredFeedbacks(candidateId, instructorId, date);
+
+            // Update the table with filtered feedbacks
             feedback.getItems().setAll(feedbacks);
         } catch (Exception e) {
             e.printStackTrace();
@@ -86,3 +89,4 @@ public class FeedbackInstructorController {
         }
     }
 }
+

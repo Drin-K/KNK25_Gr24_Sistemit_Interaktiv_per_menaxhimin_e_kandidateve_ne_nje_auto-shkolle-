@@ -98,6 +98,13 @@ public class PatentaRepository extends BaseRepository<Patenta, CreatePatentaDto,
         return patentat;
     }
     //na duhet te service ->
+    public void aprovoPatenten(int kandidatId) throws SQLException {
+        String query = "UPDATE Patenta SET Statusi = 'E lëshuar' WHERE ID_Kandidat = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, kandidatId);
+            stmt.executeUpdate();
+        }
+    }
 
 }
 

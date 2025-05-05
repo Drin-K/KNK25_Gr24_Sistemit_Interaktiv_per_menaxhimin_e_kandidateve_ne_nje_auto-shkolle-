@@ -15,11 +15,7 @@ public class KategoritePatentesRepository extends BaseRepository<KategoritePaten
         return KategoritePatentes.getInstance(result);
     }
     public KategoritePatentes create(CreateKategoritePatentesDto kategoritePatentesDto){
-        String query = """
-                    INSERT INTO
-                    Kategorite_Patentes(Kategoria,Pershkrimi)
-                    VALUES(?,?);
-                    """;
+        String query = "INSERT INTO Kategorite_Patentes(Kategoria,Pershkrimi) VALUES(?,?);";
         try{
             PreparedStatement pstm = this.connection.prepareStatement(query,PreparedStatement.RETURN_GENERATED_KEYS);
             pstm.setString(1,kategoritePatentesDto.getKategoria());

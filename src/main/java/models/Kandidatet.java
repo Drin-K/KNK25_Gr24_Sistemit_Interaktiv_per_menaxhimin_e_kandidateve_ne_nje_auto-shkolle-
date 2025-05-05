@@ -28,4 +28,5 @@ public class Kandidatet extends User{
         String statusiProcesit=result.getString("statusiProcesit");
         return new Kandidatet(user.getIdUser(),user.getName(),user.getSurname(),user.getEmail(),user.getPhoneNumber(),user.getDateOfBirth(),user.getHashedPassword(),user.getSalt(), user.getAdresa(), user.getGjinia(), dataRegjistrimit,statusiProcesit);
     }
+
 }

@@ -1,20 +1,119 @@
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.AnchorPane?>
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.TextField?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.AdminPatentaController">
-    <HBox spacing="10">
-        <Label text="Kërko:"/>
-        <TextField fx:id="txtKerko" promptText="Shto emër ose kategori"/>
-    </HBox>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.collections.FXCollections?>
 
+<?import java.lang.String?>
+<VBox xmlns:fx="http://javafx.com/fxml">
+    <TabPane>
+        <!-- Tab për të dhënat e kandidatëve -->
+        <Tab text="Të Dhënat e Kandidatit">
+            <VBox spacing="10">
+                <HBox spacing="10">
+                    <Label text="Emri"/>
+                    <TextField fx:id="emriTextField" />
+                    <Label text="Mbiemri"/>
+                    <TextField fx:id="mbiemriTextField" />
+                </HBox>
+                <HBox spacing="10">
+                    <Label text="Email"/>
+                    <TextField fx:id="emailTextField" />
+                    <Label text="Nr. Telefonit"/>
+                    <TextField fx:id="telefonTextField" />
+                </HBox>
+                <HBox spacing="10">
+                    <Label text="Gjinia"/>
+                    <ComboBox fx:id="gjiniaComboBox">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="M" />
+                                <String fx:value="F" />
+                            </FXCollections>
+                        </items>
+                    </ComboBox>
+                    <Label text="Data e Lindjes"/>
+                    <DatePicker fx:id="dataLindjesDatePicker" />
+                </HBox>
+                <Button text="Ruaj" fx:id="saveButton" />
+            </VBox>
+        </Tab>
 
-</AnchorPane>
+        <!-- Tab për dokumentet e ngarkuara -->
+        <Tab text="Dokumentet">
+            <TableView fx:id="documentTableView">
+                <columns>
+                    <TableColumn text="Lloji i Dokumentit" />
+                    <TableColumn text="Emri i Skedarit" />
+                    <TableColumn text="Data e Ngarkimit" />
+                </columns>
+            </TableView>
+        </Tab>
+
+        <!-- Tab për pagesat -->
+        <Tab text="Pagesat">
+            <TableView fx:id="paymentTableView">
+                <columns>
+                    <TableColumn text="Shuma" />
+                    <TableColumn text="Data e Pagesës" />
+                    <TableColumn text="Statusi" />
+                </columns>
+            </TableView>
+        </Tab>
+
+        <!-- Tab për rezultatet e testeve -->
+        <Tab text="Rezultatet e Testeve">
+            <TableView fx:id="testResultTableView">
+                <columns>
+                    <TableColumn text="Lloji i Testit" />
+                    <TableColumn text="Data e Testit" />
+                    <TableColumn text="Rezultati" />
+                    <TableColumn text="Piket" />
+                </columns>
+            </TableView>
+        </Tab>
+
+        <!-- Tab për raportin e progresit -->
+        <Tab text="Raporti i Progresit">
+            <VBox spacing="10">
+                <Label text="Piket Teorike"/>
+                <TextField fx:id="piketTeorikeTextField" />
+                <Label text="Piket Praktike"/>
+                <TextField fx:id="piketPraktikeTextField" />
+                <Label text="Komentet"/>
+                <TextField fx:id="komentetTextField" />
+                <Label text="Performanca Gjenerale"/>
+                <ComboBox fx:id="performancaComboBox">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Shkëlqyeshëm" />
+                            <String fx:value="Mirë" />
+                            <String fx:value="Mesatar" />
+                            <String fx:value="Dobët" />
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+            </VBox>
+        </Tab>
+
+        <!-- Tab për feedback-et e stafit -->
+        <Tab text="Feedback">
+            <TableView fx:id="feedbackTableView">
+                <columns>
+                    <TableColumn text="Vlerësimi" />
+                    <TableColumn text="Koment" />
+                    <TableColumn text="Data e Feedback-ut" />
+                </columns>
+            </TableView>
+        </Tab>
+    </TabPane>
+</VBox>

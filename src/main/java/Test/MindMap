@@ -144,3 +144,23 @@
 +-----------------------------+
 | Aktivizo procesin e regjistrimit |
 +-----------------------------+
+
++-----------------------------+
+| Planifikimi i Testeve       |
+| (Testi teorik, praktik)     |
++-----------------------------+
+          |
+          v
++-----------------------------+
+| Regjistro Testet e Kandidatëve |
++-----------------------------+
+          |
+          v
++-----------------------------+
+| Vlerëso rezultatet dhe performancën|
++-----------------------------+
+          |
+          v
++-----------------------------+
+| Aftësia për të aprovuar ose refuzuar kandidatin|
++-----------------------------+

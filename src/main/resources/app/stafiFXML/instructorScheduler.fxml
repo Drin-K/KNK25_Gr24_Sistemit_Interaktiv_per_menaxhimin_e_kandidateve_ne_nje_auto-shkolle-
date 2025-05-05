@@ -18,7 +18,7 @@
             <Button fx:id="editBttn" layoutX="39.0" layoutY="213.0" mnemonicParsing="false" onAction="#editClick" prefHeight="26.0" prefWidth="72.0" style="-fx-background-color: #ffffff; -fx-border-color: gray; -fx-border-radius: 3;" text="Edit" textFill="#51b191" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="rightPane" layoutX="360.0" layoutY="104.0" prefHeight="462.0" prefWidth="574.0" style="-fx-border-color: #dcdcdc;">
+      <AnchorPane fx:id="rightPane" layoutX="360.0" layoutY="104.0" prefHeight="462.0" prefWidth="566.0" style="-fx-border-color: #dcdcdc;">
          <children>
             <MenuButton fx:id="chooseLessonBttn" layoutX="65.0" layoutY="30.0" mnemonicParsing="false" style="-fx-background-color: #137156;" text="Choose lesson type" textFill="#f4f4f4">
               <items>
@@ -36,16 +36,10 @@
                   <Font name="System Italic" size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="txtSpecify" focusTraversable="false" layoutX="63.0" layoutY="402.0" prefHeight="30.0" prefWidth="204.0" promptText="Another option (specify)" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;">
-               <font>
-                  <Font name="System Italic" size="14.0" />
-               </font>
-            </TextField>
-            <Text fill="#2cafc9" layoutX="63.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose a vehicle for the lesson" />
-            <RadioButton fx:id="golf4Bttn" layoutX="63.0" layoutY="330.0" mnemonicParsing="false" onAction="#golf4Click" text="Golf 4" />
-            <RadioButton fx:id="mercedesBttn" layoutX="192.0" layoutY="370.0" mnemonicParsing="false" onAction="#mercedesClick" text="Mercedes" />
-            <RadioButton fx:id="golf7Bttn" layoutX="192.0" layoutY="331.0" mnemonicParsing="false" onAction="#glof7Click" text="Golf 7" />
-            <RadioButton fx:id="bmwBttn" layoutX="63.0" layoutY="370.0" mnemonicParsing="false" onAction="#bmwClick" text="BMW" />
+            <Text fill="#2cafc9" layoutX="63.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose a category for the lesson" />
+            <RadioButton fx:id="golf4Bttn" layoutX="63.0" layoutY="330.0" mnemonicParsing="false" onAction="#golf4Click" text="A" />
+            <RadioButton fx:id="golf7Bttn" layoutX="192.0" layoutY="331.0" mnemonicParsing="false" onAction="#glof7Click" text="B" />
+            <RadioButton fx:id="bmwBttn" layoutX="306.0" layoutY="330.0" mnemonicParsing="false" onAction="#bmwClick" text="C" />
             <DatePicker fx:id="dateForLesson" layoutX="64.0" layoutY="157.0" prefHeight="26.0" prefWidth="322.0" promptText="Enter the date for the lesson" />
             <TextField fx:id="txtEnd" focusTraversable="false" layoutX="287.0" layoutY="208.0" prefHeight="30.0" prefWidth="98.0" promptText="End time" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;">
                <font>

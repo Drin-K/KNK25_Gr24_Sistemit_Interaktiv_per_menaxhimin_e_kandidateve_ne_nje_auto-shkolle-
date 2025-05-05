@@ -181,3 +181,26 @@
 | Dërgo njoftimin për pagesën e përfunduar|
 +-----------------------------+
 
++-----------------------------+
+| Regjistro Regjistrimin e Patentës|
+| (Data, Statusi, Kategoria)   |
++-----------------------------+
+          |
+          v
++-----------------------------+
+| Verifiko testet dhe pagesat|
+| për lëshimin e patentës    |
++-----------------------------+
+          |
+          v
++-----------------------------+
+| Lësho Patentën për Kandidatin|
++-----------------------------+
+          |
+          v
++-----------------------------+
+| Dërgo Njoftimin me Email/SMS|
+| për lëshimin e patentës    |
++-----------------------------+
+
+

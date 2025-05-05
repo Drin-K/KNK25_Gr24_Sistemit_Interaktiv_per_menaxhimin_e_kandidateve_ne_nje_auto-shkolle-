@@ -1,0 +1,26 @@
++-------------------+
+| Merr Listën e     |
+| Kandidatëve       |
++---------+---------+
+          |
+          v
++---------+----------+
+| Verifiko Testet    |--> Nëse JO → Refuzo kërkesën
++---------+----------+
+          |
+          v
++---------+----------+
+| Verifiko Pagesat   |--> Nëse JO → Kërko Pagesën
++---------+----------+
+          |
+          v
++---------+----------+
+| Lësho Patentën     |
+| (Regjistro në DB)  |
++---------+----------+
+          |
+          v
++-------------------------+
+| Njofto Kandidatin me    |
+| email/SMS për lëshim    |
++-------------------------+

@@ -29,8 +29,8 @@
             </AnchorPane>
             <MenuButton fx:id="filterbyBttn" layoutX="31.0" layoutY="16.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="102.0" style="-fx-background-color: white; -fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: gray;" text="Filter by:" textFill="#786cff">
                <items>
-                  <MenuItem fx:id="candidateOption" mnemonicParsing="false" onAction="#candidateClick" text="Candidate" />
-                  <MenuItem fx:id="dateOption" mnemonicParsing="false" onAction="#dateClick" text="Date" />
+                  <MenuItem fx:id="candidateOption" mnemonicParsing="false" text="Candidate" />
+                  <MenuItem fx:id="dateOption" mnemonicParsing="false"  text="Date" />
                </items>
             </MenuButton>
             <TableView fx:id="feedbackTable" layoutX="33.0" layoutY="289.0" prefHeight="176.0" prefWidth="750.0" style="-fx-background-color: white; -fx-border-radius: 4; -fx-background-radius: 4; -fx-border-color: gray;">

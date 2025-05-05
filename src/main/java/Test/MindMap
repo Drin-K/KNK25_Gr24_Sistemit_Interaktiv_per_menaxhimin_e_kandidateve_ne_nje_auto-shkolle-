@@ -81,6 +81,14 @@ Pagesa e Plotë (Nëse statusi i pagesës është "Paguar", atëherë kandidati 
 Statusi i Pagesës (Nëse statusi është "Pjesërisht" ose "Mbetur", duhet kërkuar që kandidati të përfundojë pagesën për të kaluar në fazën tjetër).
 
 
+4. Lëshimi i Patentës dhe Regjistrimi në DB
+Nëse kandidati ka përmbushur të gjitha kërkesat, lëshimi i patentës duhet të regjistrohet në databazë:
+
+Tabela Patenta: Duhet të krijohet një regjistër në këtë tabelë për kandidatët që kanë kaluar testet dhe kanë përfunduar pagesat.
+
+Statusi i Patentës: Pas regjistrimit, statusi i patentës duhet të jetë "E lëshuar".
+
+
 
 3. Ndryshimi i Roleve dhe Statusit
 2. Lista e StafitNjë tabelë që i paraqet të gjithë anëtarët e stafit me kolonat:Emri dhe mbiemriPozita/roliEmailStatusi (aktiv / joaktiv)Data e regjistrimitOpsione për: Shiko / Përditëso / Fshij

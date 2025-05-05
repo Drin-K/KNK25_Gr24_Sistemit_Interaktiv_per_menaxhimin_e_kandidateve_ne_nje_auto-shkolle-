@@ -164,3 +164,20 @@
 +-----------------------------+
 | Aftësia për të aprovuar ose refuzuar kandidatin|
 +-----------------------------+
+
++-----------------------------+
+| Regjistro Pagesën e Kandidatit|
+| (Shuma, Metoda, Statusi)    |
++-----------------------------+
+          |
+          v
++-----------------------------+
+| Verifiko statusin e pagesës |
+| (Paguar, Pjesërisht, etj.)  |
++-----------------------------+
+          |
+          v
++-----------------------------+
+| Dërgo njoftimin për pagesën e përfunduar|
++-----------------------------+
+

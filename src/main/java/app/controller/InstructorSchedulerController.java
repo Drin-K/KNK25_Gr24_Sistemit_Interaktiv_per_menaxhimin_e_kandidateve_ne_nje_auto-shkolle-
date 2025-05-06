@@ -40,10 +40,6 @@ public class InstructorSchedulerController {
         this.automjetService = new AutomjetService();
     }
 
-    @FXML
-    private void initialize() {
-        // No initialization of vehicleId here
-    }
 
     @FXML
     private void scheduleClick() {

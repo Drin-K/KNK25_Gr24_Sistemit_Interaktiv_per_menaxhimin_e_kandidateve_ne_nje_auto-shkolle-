@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="454.0" prefWidth="588.0" style="-fx-border-color: #475779; -fx-background-radius: 5; -fx-border-radius: 5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text fill="#bf3d3d" layoutX="41.0" layoutY="151.0" opacity="0.62" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: arial; -fx-font-size: 13; -fx-font-weight: bold;" text="Write the id of the vehicle you want to put to service" />
+      <MenuButton layoutX="409.0" layoutY="199.0" mnemonicParsing="false" style="-fx-background-color: #3434a1;" text="Choose Category" textFill="#b1eba9">
+        <items>
+          <MenuItem mnemonicParsing="false" text="MotorBike (A)" />
+          <MenuItem mnemonicParsing="false" text="Car (B)" />
+            <MenuItem mnemonicParsing="false" text="Truck (C)" />
+        </items>
+      </MenuButton>
+      <TextField focusTraversable="false" layoutX="41.0" layoutY="196.0" prefHeight="26.0" prefWidth="322.0" promptText="Enter the vehicle id" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-width: 0 0 1 0; -fx-border-color: #475779; -fx-text-fill: #a0a2ab;">
+         <font>
+            <Font name="System Italic" size="14.0" />
+         </font>
+      </TextField>
+   </children>
+</AnchorPane>

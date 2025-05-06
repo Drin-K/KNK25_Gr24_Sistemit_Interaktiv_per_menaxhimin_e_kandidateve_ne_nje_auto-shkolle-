@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 public class TestetRepository extends BaseRepository<Testet, CreateTestetDto, UpdateTestetDto> {
 
@@ -101,4 +102,19 @@ public class TestetRepository extends BaseRepository<Testet, CreateTestetDto, Up
             statement.executeUpdate();
         }
     }
+    public List<Testet> getTestetByKandidatId(int idKandidat) {
+        List<Testet> testetList = new ArrayList<>();
+        String sql = "SELECT * FROM Testet WHERE ID_Kandidat = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, idKandidat);
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
+                testetList.add(fromResultSet(result));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return testetList;
+    }
+
 }

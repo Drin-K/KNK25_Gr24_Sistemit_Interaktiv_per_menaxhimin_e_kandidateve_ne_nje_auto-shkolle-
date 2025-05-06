@@ -1,11 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="620.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="620.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.FeedbackConsumatorController">
    <children>
-      <Text layoutX="113.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FeedBack Page" />
+      <Text layoutX="345.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Feedback for Instructor" textAlignment="CENTER" wrappingWidth="504.01878356933594">
+         <font>
+            <Font name="Cambria Bold" size="36.0" />
+         </font>
+      </Text>
+      <TextArea fx:id="commentField" layoutX="92.0" layoutY="171.0" prefHeight="336.0" prefWidth="357.0" promptText="Write a comment..." style="-fx-border-radius: 4; -fx-border-width: 4; -fx-border-color: gray;" />
+      <Text layoutX="122.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Write a comment for instructor:" textAlignment="CENTER" wrappingWidth="297.6188507080078">
+         <font>
+            <Font name="Cambria Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="860.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a rating for our instructor:" textAlignment="CENTER" wrappingWidth="320.01893615722656">
+         <font>
+            <Font name="Cambria Bold" size="18.0" />
+         </font>
+      </Text>
+      <RadioButton layoutX="1124.0" layoutY="184.0" mnemonicParsing="false" onAction="#handleRatingSelected" text="5">
+         <toggleGroup>
+            <ToggleGroup fx:id="ratingInstructor" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton layoutX="1124.0" layoutY="392.0" mnemonicParsing="false" onAction="#handleRatingSelected" text="2" toggleGroup="$ratingInstructor" />
+      <RadioButton layoutX="1124.0" layoutY="253.0" mnemonicParsing="false" onAction="#handleRatingSelected" text="4" toggleGroup="$ratingInstructor" />
+      <RadioButton layoutX="1124.0" layoutY="321.0" mnemonicParsing="false" onAction="#handleRatingSelected" text="3" toggleGroup="$ratingInstructor" />
+      <RadioButton layoutX="1124.0" layoutY="474.0" mnemonicParsing="false" onAction="#handleRatingSelected" text="1" toggleGroup="$ratingInstructor" />
+      <Text layoutX="871.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Excellent" textAlignment="CENTER" wrappingWidth="140.0188751220703">
+         <font>
+            <Font name="Cambria Italic" size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="891.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Very Good" textAlignment="CENTER" wrappingWidth="100.81892395019531">
+         <font>
+            <Font name="Cambria Italic" size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="905.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Good" textAlignment="CENTER" wrappingWidth="71.21888732910156">
+         <font>
+            <Font name="Cambria Italic" size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="878.0" layoutY="408.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Medium" textAlignment="CENTER" wrappingWidth="125.61885070800804">
+         <font>
+            <Font name="Cambria Italic" size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="878.0" layoutY="489.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bad" textAlignment="CENTER" wrappingWidth="125.61885070800804">
+         <font>
+            <Font name="Cambria Italic" size="18.0" />
+         </font>
+      </Text>
+      <Button fx:id="submitbtn" layoutX="656.0" layoutY="544.0" mnemonicParsing="false" onAction="#submitbtn" prefHeight="42.0" prefWidth="101.0" style="-fx-background-color: #151928;" text="Submit" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Text layoutX="537.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select instructor ID:" textAlignment="CENTER" wrappingWidth="297.6188507080078">
+         <font>
+            <Font name="Cambria Bold" size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="instructorId" layoutX="608.0" layoutY="172.0" prefHeight="26.0" prefWidth="41.0" />
    </children>
 </AnchorPane>

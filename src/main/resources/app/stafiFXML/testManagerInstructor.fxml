@@ -32,12 +32,6 @@
                </font>
             </TextField>
             <DatePicker fx:id="setDate" layoutX="415.0" layoutY="150.0" />
-            <SplitMenuButton layoutX="444.0" layoutY="207.0" mnemonicParsing="false" text="Result">
-               <items>
-                  <MenuItem fx:id="kaluarBttn" mnemonicParsing="false" onAction="#kaluarClick" text="Kaluar" />
-                  <MenuItem fx:id="deshtuarBttn" mnemonicParsing="false" onAction="#deshtuarClick" text="Dështuar" />
-               </items>
-            </SplitMenuButton>
             <TextField fx:id="txtPiket" focusTraversable="false" layoutX="53.0" layoutY="213.0" prefHeight="26.0" prefWidth="322.0" promptText="Enter Points" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;">
                <font>
                   <Font name="System Italic" size="14.0" />

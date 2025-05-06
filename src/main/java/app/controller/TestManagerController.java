@@ -2,6 +2,7 @@ package app.controller;
 
 import app.Test;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -20,7 +21,6 @@ import java.time.LocalDate;
 public class TestManagerController {
     private TestiService testiService;
     private String llojiTestit;
-    private String resultati;
    @FXML
     private TextField txtCandidateId, txtPiket;
    @FXML
@@ -36,33 +36,41 @@ public class TestManagerController {
     private void praktikClick(){
      this.llojiTestit="Praktikë";
    }
-   @FXML
-    private void kaluarClick(){
-      this.resultati="Kaluar";
+    @FXML
+    private void setResultClick() {
+        try {
+            CreateTestetDto dto = getInput();
+            Testet saved = testiService.regjistroTestin(dto);
 
-   }
-   @FXML
-    private void deshtuarClick(){
-      this.resultati="Dështuar";
-   }
-   @FXML
-    private void setResultClick(){
-       try{
-           Testet test = this.testiService.regjistroTestin(this.getInput());
-           System.out.println("Test Result inserted successfully!");
-           System.out.println("Test Id: " + test.getId());
-           this.cleanFields();
-       }catch (Exception e){
-           System.out.println("Error inserting user. " + e.getMessage());
-       }
-   }
+            // Success alert
+            Alert info = new Alert(Alert.AlertType.INFORMATION);
+            info.setTitle("Test Result");
+            info.setHeaderText("Sukses");
+            info.setContentText("Testi u regjistrua me ID: " + saved.getId());
+            info.showAndWait();
+
+            cleanFields();
+        } catch (Exception ex) {
+            // Error alert
+            Alert err = new Alert(Alert.AlertType.ERROR);
+            err.setTitle("Gabim");
+            err.setHeaderText("Nuk mund të regjistrohet testi");
+            err.setContentText(ex.getMessage());
+            err.showAndWait();
+        }
+    }
    private CreateTestetDto getInput(){
        int kandId = Integer.parseInt(this.txtCandidateId.getText().trim());
        int stafiId= UserContext.getUserId();
        String lloji=this.llojiTestit;
        LocalDate date = this.setDate.getValue();
-       String rezultati=this.resultati;
+       String rezultati=null;
        int piket=Integer.parseInt(this.txtPiket.getText().trim());
+       if (piket>=85){
+           rezultati="Kaluar";
+       } else if (piket<85) {
+           rezultati="Dështuar";
+       }
        return new CreateTestetDto(kandId,stafiId,lloji,date,rezultati,piket);
    }
     private void cleanFields() {
@@ -70,7 +78,6 @@ public class TestManagerController {
         this.txtPiket.clear();
         this.setDate.setValue(null);
         this.llojiTestit = null;
-        this.resultati = null;
     }
 
 }

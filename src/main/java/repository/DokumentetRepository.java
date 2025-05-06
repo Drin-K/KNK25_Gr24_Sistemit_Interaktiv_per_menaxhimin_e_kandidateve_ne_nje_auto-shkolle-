@@ -96,32 +96,53 @@ public class DokumentetRepository extends BaseRepository<Dokumentet, CreateDokum
 
         return dokumentetList;
     }
-    public boolean downloadDokument(Dokumentet dokument) {
-        String query = "SELECT * FROM Dokumentet WHERE id = ?";
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setInt(1, dokument.getId());
-            ResultSet resultSet = statement.executeQuery();
+//    public boolean downloadDokument(Dokumentet dokument) {
+//        String query = "SELECT * FROM Dokumentet WHERE id = ?";
+//        try (PreparedStatement statement = connection.prepareStatement(query)) {
+//            statement.setInt(1, dokument.getId());
+//            ResultSet resultSet = statement.executeQuery();
+//
+//            if (resultSet.next()) {
+//                String emriSkedarit = resultSet.getString("Emri_Skedari");
+//                String filePath = "path_to_directory" + File.separator + emriSkedarit;  // Vendosni këtu udhëzimin për ruajtjen
+//                File file = new File(filePath);
+//
+//                // Nëse dokumenti ekziston, e shkarkoni
+//                try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file));
+//                     BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream("C:/path_to_download_location" + File.separator + emriSkedarit))) {
+//                    byte[] buffer = new byte[1024];
+//                    int length;
+//                    while ((length = bis.read(buffer)) > 0) {
+//                        bos.write(buffer, 0, length);
+//                    }
+//                    return true;
+//                }
+//            }
+//        } catch (SQLException | IOException e) {
+//            e.printStackTrace();
+//        }
+//        return false;
+//    }
+public ArrayList<Dokumentet> getAllDokumentet() {
+    ArrayList<Dokumentet> dokumentetList = new ArrayList<>();
+    String query = "SELECT d.id, d.ID_Kandidat, d.Lloji_Dokumentit, d.Emri_Skedari, d.Data_Ngarkimit " +
+            "FROM Dokumentet d";
 
-            if (resultSet.next()) {
-                String emriSkedarit = resultSet.getString("Emri_Skedari");
-                String filePath = "path_to_directory" + File.separator + emriSkedarit;  // Vendosni këtu udhëzimin për ruajtjen
-                File file = new File(filePath);
-
-                // Nëse dokumenti ekziston, e shkarkoni
-                try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file));
-                     BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream("C:/path_to_download_location" + File.separator + emriSkedarit))) {
-                    byte[] buffer = new byte[1024];
-                    int length;
-                    while ((length = bis.read(buffer)) > 0) {
-                        bos.write(buffer, 0, length);
-                    }
-                    return true;
-                }
-            }
-        } catch (SQLException | IOException e) {
-            e.printStackTrace();
+    try (
+            PreparedStatement stmt = connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery()
+    ) {
+        while (rs.next()) {
+            Dokumentet dokument = Dokumentet.getInstance(rs);
+            dokumentetList.add(dokument);
         }
-        return false;
+
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
+
+    return dokumentetList;
+}
+
 }
 

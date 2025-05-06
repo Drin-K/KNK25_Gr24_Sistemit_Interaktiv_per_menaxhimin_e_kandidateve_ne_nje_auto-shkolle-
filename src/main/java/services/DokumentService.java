@@ -80,7 +80,7 @@ public class DokumentService {
             return FXCollections.observableArrayList();
         }
     }
-    public boolean downloadDokument(Dokumentet dokument) {
-        return dokumentRepository.downloadDokument(dokument);
+    public ArrayList<Dokumentet> getAllDokumentet(){
+        return this.dokumentRepository.getAllDokumentet();
     }
 }

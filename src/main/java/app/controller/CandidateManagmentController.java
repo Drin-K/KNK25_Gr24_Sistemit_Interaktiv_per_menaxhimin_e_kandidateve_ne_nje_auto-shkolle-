@@ -7,8 +7,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import models.Dokumentet;
 import models.Kandidatet;
 import repository.KandidatetRepository;
+import services.DokumentService;
 import services.KandidateService;
 
 import java.sql.SQLException;
@@ -28,7 +30,27 @@ public class CandidateManagmentController{
     @FXML private TableColumn<Kandidatet, String> gjiniaColumn;
     @FXML private TableColumn<Kandidatet, String> dataRegjistrimiColumn;
     @FXML private TableColumn<Kandidatet, String> statusiProcesitColumn;
+    @FXML
+    private TableView<Dokumentet> tableViewDokumente;
+    @FXML
+    private TableColumn<Dokumentet, String> colEmriSkedari;
+    @FXML
+    private TableColumn<Dokumentet, String> colLlojiDokumentit;
+    @FXML
+    private TableColumn<Dokumentet, String> colDataNgarkimit;
+
     private KandidateService kandidateService=new KandidateService();
+    private DokumentService dokumentService=new DokumentService();
+    private void setDokumentetColumnFactories() {
+        colEmriSkedari.setCellValueFactory(new PropertyValueFactory<>("emriSkedari"));
+        colLlojiDokumentit.setCellValueFactory(new PropertyValueFactory<>("llojiDokumentit"));
+        colDataNgarkimit.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getDataNgarkimit().toString()));
+    }
+    private void loadDokumentetData(){
+        ObservableList<Dokumentet>dokumentetsList = FXCollections.observableArrayList(dokumentService.getAllDokumentet());
+        tableViewDokumente.setItems(dokumentetsList);
+    }
     private void setColumnFactories() {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("idUser"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));

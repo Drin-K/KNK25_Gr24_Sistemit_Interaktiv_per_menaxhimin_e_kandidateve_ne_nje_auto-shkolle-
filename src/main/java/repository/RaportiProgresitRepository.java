@@ -20,7 +20,7 @@ public class RaportiProgresitRepository extends BaseRepository<RaportiProgresit,
         String query = """
                 INSERT INTO 
                 Raporti_Progresit(ID_Kandidat,ID_Staf,Data_Raportit,Piket_Teorike,Piket_Praktike,Komentet,Performanca_Gjenerale)
-                VALUES(?,?,?,?,?,?,?);""";
+                VALUES(?,?,?,?,?,?,?)""";
         try{
             PreparedStatement pstm = this.connection.prepareStatement(query,PreparedStatement.RETURN_GENERATED_KEYS);
             pstm.setInt(1,raportiProgresitDto.getIdKandidat());

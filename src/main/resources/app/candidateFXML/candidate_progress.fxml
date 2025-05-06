@@ -17,11 +17,11 @@
             <Font name="Cambria Bold" size="36.0" />
          </font>
       </Text>
-      <AnchorPane layoutX="215.0" layoutY="98.0" prefHeight="507.0" prefWidth="853.0" style="-fx-background-color: #e1e1e1; -fx-border-radius: 4; -fx-background-radius: 4;">
+      <AnchorPane layoutX="215.0" layoutY="98.0" prefHeight="507.0" prefWidth="853.0" style="-fx-background-color: #e1e1e1; -fx-border-radius: 4; -fx-background-radius: 4; -fx-border-color: #475779;">
          <children>
-            <AnchorPane layoutX="31.0" layoutY="86.0" prefHeight="95.0" prefWidth="750.0" style="-fx-background-color: white; -fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: gray;">
+            <AnchorPane layoutX="31.0" layoutY="86.0" prefHeight="95.0" prefWidth="750.0" style="-fx-background-color: white; -fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: #475779;">
                <children>
-                  <TextField fx:id="stafField" focusTraversable="false" layoutX="38.0" layoutY="33.0" prefHeight="26.0" prefWidth="322.0" promptText="Enter Stafi Id" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;">
+                  <TextField fx:id="stafField" focusTraversable="false" layoutX="38.0" layoutY="33.0" prefHeight="26.0" prefWidth="322.0" promptText="Enter Stafi Id" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: #475779; -fx-text-fill: #a0a2ab;">
                      <font>
                         <Font name="System Italic" size="14.0" />
                      </font>
@@ -33,7 +33,7 @@
                   </Button>
                </children>
             </AnchorPane>
-            <TableView fx:id="raportiprogresit" layoutX="33.0" layoutY="289.0" prefHeight="176.0" prefWidth="767.0" style="-fx-background-color: white; -fx-border-radius: 4; -fx-background-radius: 4; -fx-border-color: gray;">
+            <TableView fx:id="raportiprogresit" layoutX="33.0" layoutY="289.0" prefHeight="176.0" prefWidth="767.0" style="-fx-background-color: white; -fx-border-radius: 4; -fx-background-radius: 4; -fx-border-color: #475779;">
                <columns>
                   <TableColumn fx:id="dateArea" prefWidth="112.00003051757812" text="Date" />
                   <TableColumn fx:id="theoryPointsArea" minWidth="6.39996337890625" prefWidth="120.79998779296875" text="Theory Points" />

@@ -81,13 +81,8 @@ public class PagesaService {
     public HashMap<String, Integer> getPaymentsLast12Months() {
         return pagesatRepository.getPaymentsLast12Months();
     }
-    public void updateStatusiPageses(Pagesat pagesa, String statusiRi) {
-        try {
-            pagesatRepository.updateStatusiPageses(pagesa.getId(), statusiRi);
-        } catch (Exception e) {
-            System.err.println("Gabim gjatë përditësimit të statusit të pagesës.");
-            e.printStackTrace();
-        }
+    public void updateStatusiPageses(int pagesaId, String statusiRi) throws SQLException{
+      pagesatRepository.updateStatusiPageses(pagesaId,statusiRi);
     }
     public List<Pagesat> getAllPagesat() {
         return pagesatRepository.loadPagesatData();  }

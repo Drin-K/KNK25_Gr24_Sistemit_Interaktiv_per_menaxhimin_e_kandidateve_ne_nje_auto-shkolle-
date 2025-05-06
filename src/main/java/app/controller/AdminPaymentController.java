@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
@@ -22,6 +23,9 @@ public class AdminPaymentController {
     @FXML private Text todayText;
     @FXML private Text monthText;
     @FXML private Text yearText;
+    @FXML
+    private ComboBox<String> statusiIRiComboBox;
+
 
     @FXML
     private PieChart statistikatKandidateveChart;
@@ -119,6 +123,37 @@ public class AdminPaymentController {
         yearText.setText(String.valueOf(yearCount));
 
     }
+    @FXML
+    private void ndryshoStatusin() {
+        Pagesat selectedPagesa = pagesatTable.getSelectionModel().getSelectedItem();
+        String statusiRi = statusiIRiComboBox.getValue();
+
+        if (selectedPagesa == null || statusiRi == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Vërejtje");
+            alert.setHeaderText(null);
+            alert.setContentText("Ju lutem zgjidhni një pagesë dhe një status të ri.");
+            alert.showAndWait();
+            return;
+        }
+
+        try {
+            pagesatService.updateStatusiPageses(selectedPagesa.getId(), statusiRi);
+            Alert success = new Alert(Alert.AlertType.INFORMATION);
+            success.setTitle("Sukses");
+            success.setHeaderText(null);
+            success.setContentText("Statusi i pagesës u përditësua me sukses!");
+            success.showAndWait();
+            loadTableDatat();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Alert error = new Alert(Alert.AlertType.ERROR);
+            error.setTitle("Gabim");
+            error.setHeaderText(null);
+            error.setContentText("Ndodhi një gabim gjatë përditësimit të statusit.");
+            error.showAndWait();
+        }
+    }
 
     @FXML
     public void initialize() {
@@ -130,6 +165,7 @@ public class AdminPaymentController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        statusiIRiComboBox.setItems(FXCollections.observableArrayList("Paguar", "Pjeserisht", "Mbetur"));
 
     }
 

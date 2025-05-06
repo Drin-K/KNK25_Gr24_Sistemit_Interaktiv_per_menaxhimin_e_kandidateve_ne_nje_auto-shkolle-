@@ -155,6 +155,7 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
             statement.executeUpdate();
         }
     }
+
     public List<Pagesat> loadPagesatData() {
         List<Pagesat> pagesatList = new ArrayList<>();
         String query = "SELECT * FROM Pagesat";

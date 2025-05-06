@@ -6,6 +6,7 @@ import models.Pagesat;
 import repository.PagesatRepository;
 
 import java.sql.Date;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -89,5 +90,8 @@ public class PagesaService {
     }
     public List<Pagesat> getAllPagesat() {
         return pagesatRepository.loadPagesatData();  }
+    public List<Pagesat> getFilteredPagesat(String name, String fromDate, String toDate, String metodaPageses, String statusiPageses) throws SQLException, SQLException {
+        return pagesatRepository.filterPagesat(name, fromDate, toDate, metodaPageses, statusiPageses);
+    }
 
 }

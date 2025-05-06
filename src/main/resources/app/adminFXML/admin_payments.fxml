@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
+<?import javafx.scene.control.Button?>
 <AnchorPane maxHeight="699.0" prefHeight="699.0" prefWidth="1314.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.AdminPaymentController">
     <children>
         <Label layoutX="20.0" layoutY="20.0" prefHeight="35.0" prefWidth="361.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Menaxhimi i pagesave" />
@@ -43,6 +44,8 @@
          <ComboBox fx:id="combobox1" prefWidth="150.0" />
          <Label text="Payment Status:" textFill="WHITE" />
          <ComboBox fx:id="comboBox2" prefWidth="150.0" />
+            <Button fx:id="btnFilter" onAction="#filterPagesatIfValid" text="Filtro" />
+
         </VBox>
         <VBox layoutX="27.0" layoutY="92.0" prefHeight="250.0" prefWidth="350.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
          <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0">

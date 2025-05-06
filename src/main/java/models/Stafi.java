@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class Stafi extends User{
-    private Stafi(int idUser, String name, String surname, String email, String phoneNumber, LocalDate dateOfBirth, String hashedPassword, String salt, String adresa, String gjinia) {
+    protected Stafi(int idUser, String name, String surname, String email, String phoneNumber, LocalDate dateOfBirth, String hashedPassword, String salt, String adresa, String gjinia) {
         super(idUser,name,surname,email,phoneNumber,dateOfBirth,hashedPassword,salt,"Staf",adresa, gjinia);
 
     }

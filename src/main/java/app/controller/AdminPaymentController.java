@@ -7,10 +7,14 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import models.Pagesat;
 import services.PagesaService;
 
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.List;
 
 public class AdminPaymentController {
@@ -67,11 +71,37 @@ public class AdminPaymentController {
         StatusiPagese.setCellValueFactory(new PropertyValueFactory<>("statusiPageses"));
         pagesatTable.setItems(pagesatList);
     }
+    @FXML
+    public void filterPagesatIfValid() throws SQLException {
+        // Merrni vlerat nga fushat e filtrimit
+        String name = searchByName.getText();
+        String fromDate = from.getValue() != null ? from.getValue().toString() : null;
+        String toDate = to.getValue() != null ? to.getValue().toString() : null;
+        String metodaPageses = combobox1.getValue();
+        String statusiPageses = comboBox2.getValue();
+
+        if (name.isEmpty() || fromDate == null || toDate == null || metodaPageses == null || statusiPageses == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Vërejtje");
+            alert.setHeaderText(null);
+            alert.setContentText("Të gjitha fushat duhet të plotësohen!");
+            alert.showAndWait();
+            return;
+        }
+
+        List<Pagesat> filteredPagesat = pagesatService.getFilteredPagesat(name, fromDate, toDate, metodaPageses, statusiPageses);
+
+        pagesatList.clear();
+        pagesatList.addAll(filteredPagesat);
+        pagesatTable.setItems(pagesatList);
+    }
 
 
     @FXML
     public void initialize() {
         this.loadTableDatat();
+        combobox1.setItems(FXCollections.observableArrayList("Cash", "Kartë", "Online"));
+        comboBox2.setItems(FXCollections.observableArrayList("Paguar", "Pjesërisht", "Mbetur"));
 
 
     }

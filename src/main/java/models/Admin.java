@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 public class Admin extends User {
 
-    private Admin(int idUser, String name, String surname, String email, String phoneNumber, LocalDate dateOfBirth, String hashedPassword, String salt, String role, String adresa, String gjinia) {
+    protected Admin(int idUser, String name, String surname, String email, String phoneNumber, LocalDate dateOfBirth, String hashedPassword, String salt, String role, String adresa, String gjinia) {
         super(idUser,name,surname,email,phoneNumber,dateOfBirth,hashedPassword,salt,role,adresa,gjinia);
 
     }

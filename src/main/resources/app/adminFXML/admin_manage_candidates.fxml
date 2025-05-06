@@ -2,6 +2,8 @@
 
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -14,32 +16,46 @@
 
         <PieChart fx:id="statistikatKandidateveChart" layoutX="20.0" layoutY="159.60000610351562" prefHeight="250" prefWidth="400" />
         <VBox layoutX="170.0" layoutY="385.0" />
-        <VBox layoutX="955.0" layoutY="196.0" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
-            <Label text="Verifikimi dhe miratimi i dokumenteve:" textFill="WHITE" />
-        </VBox>
-        <VBox layoutX="614.0" layoutY="91.0" prefHeight="270.0" prefWidth="250.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
-            <Label text="Lista e dokumenteve të ngarkuara: " textFill="WHITE" />
-        </VBox>
-        <VBox layoutX="82.0" layoutY="63.0" prefHeight="147.0" prefWidth="350.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
+        <VBox layoutX="958.0" layoutY="350.0" prefHeight="147.0" prefWidth="350.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
             <Label prefHeight="79.0" prefWidth="330.0" text="Statusi i procesit: Admini mund të ndryshojë statusin e kandidatëve nga &quot;Në proces&quot; në &quot;Përfunduar&quot; ose anasjelltas." textFill="WHITE" />
         </VBox>
         <VBox layoutX="960.0" layoutY="363.0" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
             <children>
                 <Label text="8. Menaxhimi i Pagesave:Shikimi i pagesave të kandidatëve: Admini mund të shohë të gjitha informacionet e lidhura me pagesat për kandidatët, duke përfshirë shumën, datën dhe metodën e pagesës.Statusi i pagesës: Admini mund të ndryshojë statusin e pagesave të kandidatëve (paguar, pjesërisht, mbetur)." textFill="WHITE" />
+              <VBox prefHeight="270.0" prefWidth="250.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
+                  <Label text="Lista e dokumenteve të ngarkuara: " textFill="WHITE" />
+              </VBox>
             </children>
         </VBox>
-        <VBox layoutX="609.0" layoutY="428.0" prefHeight="188.0" prefWidth="250.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
+        <VBox layoutX="1.0" layoutY="90.0" prefHeight="170.0" prefWidth="1306.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
             <children>
-                <Label text="Shikimi i rezultateve të testeve:  mundsia per perditsim" textFill="WHITE" />
-            </children>
-        </VBox>
-        <VBox layoutX="44.0" layoutY="219.0" prefHeight="442.0" prefWidth="426.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
-            <children>
-                <Label prefHeight="178.0" prefWidth="393.0" text="Tabele ne te cilen mundet mi pa krejt t dhanat per kandidatet edhe mi fshi mi perditsu mi shtu" textFill="WHITE" />
+                <TableView fx:id="kandidatTable" layoutX="20" layoutY="20" prefHeight="422.0" prefWidth="888.0">
+                    <columns>
+                        <TableColumn fx:id="idColumn" prefWidth="127.47979164123535" text="ID" />
+                        <TableColumn fx:id="nameColumn" prefWidth="122.80007934570312" text="Emri" />
+                        <TableColumn fx:id="surnameColumn" minWidth="0.0" prefWidth="104.66983032226562" text="Mbiemri" />
+                        <TableColumn fx:id="emailColumn" prefWidth="89.87393188476562" text="Email" />
+                        <TableColumn fx:id="phoneColumn" prefWidth="107.74200439453125" text="Nr. Tel" />
+                        <TableColumn fx:id="dobColumn" prefWidth="125.4581298828125" text="Datëlindja" />
+                        <TableColumn fx:id="roleColumn" prefWidth="95.0538330078125" text="Roli" />
+                        <TableColumn fx:id="adresaColumn" prefWidth="121.31805419921875" text="Adresa" />
+                        <TableColumn fx:id="gjiniaColumn" prefWidth="103.05615234375" text="Gjinia" />
+                        <TableColumn fx:id="dataRegjistrimiColumn" prefWidth="126.91546630859375" text="Data Regjistrimit" />
+                        <TableColumn fx:id="statusiProcesitColumn" prefWidth="161.18115234375" text="Statusi i Procesit" />
+                    </columns>
+                </TableView>
             </children>
         </VBox>
         <VBox layoutX="950.0" layoutY="505.0" prefHeight="153.0" prefWidth="272.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
             <children>
+              <VBox prefHeight="188.0" prefWidth="250.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
+                  <children>
+                    <VBox prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
+                        <Label text="Verifikimi dhe miratimi i dokumenteve:" textFill="WHITE" />
+                    </VBox>
+                      <Label text="Shikimi i rezultateve të testeve:  mundsia per perditsim" textFill="WHITE" />
+                  </children>
+              </VBox>
                 <Label text="9. Lidhja me Patentën:Statusi i patentës: Admini mund të shohë dhe menaxhojë statusin e patentës për kandidatët.Mundësia për të lëshuar patentën për një kandidat të suksesshëm.Azhurnimi i statusit të patentës: Statusi mund të ndryshohet nga &quot;Në proces&quot; në &quot;E lëshuar&quot;." textFill="WHITE" />
                 <HBox />
             </children>

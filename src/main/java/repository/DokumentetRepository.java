@@ -3,22 +3,23 @@ package repository;
 import models.Dokumentet;
 import models.Dto.dokumentet.CreateDokumentetDto;
 import models.Dto.dokumentet.UpdateDokumentetDto;
+import models.Kandidatet;
+import services.DokumentService;
+import services.KandidateService;
 
 import java.io.*;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class DokumentetRepository extends BaseRepository<Dokumentet, CreateDokumentetDto, UpdateDokumentetDto> {
     public DokumentetRepository() {
         super("Dokumentet");
     }
-
+    private KandidateService kandidateService;
+    private DokumentService dokumentService;
     public Dokumentet fromResultSet(ResultSet result) throws SQLException {
         return Dokumentet.getInstance(result);
     }
-
     public Dokumentet create(CreateDokumentetDto dokumentetDto) {
         String query = """
                 INSERT INTO Dokumentet(ID_Kandidat, Lloji_Dokumentit, Emri_Skedari, Data_Ngarkimit)
@@ -143,6 +144,58 @@ public ArrayList<Dokumentet> getAllDokumentet() {
 
     return dokumentetList;
 }
+    public Dokumentet create(CreateDokumentetDto dto, File fileToUpload) throws Exception {
+        // Folder where to store files
+        String relativePath = "src/main/resources/uploaded_docs";
+        File uploadDir = new File(relativePath);
+        if (!uploadDir.exists()) {
+            uploadDir.mkdirs();
+        }
+
+        File targetFile = new File(uploadDir, dto.getEmriSkedarit());
+
+        // Copy file
+        try (FileInputStream fis = new FileInputStream(fileToUpload);
+             FileOutputStream fos = new FileOutputStream(targetFile)) {
+
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = fis.read(buffer)) > 0) {
+                fos.write(buffer, 0, length);
+            }
+        } catch (IOException e) {
+            throw new Exception("Gabim gjatë ruajtjes së skedarit.", e);
+        }
+        System.out.println("Inserting: " + dto.getIdKandidat() + ", " +
+                dto.getLlojiDokumentit() + ", " +
+                dto.getEmriSkedarit() + ", " +
+                dto.getDataNgarkimit());
+
+        // Insert into DB
+        String query = "INSERT INTO dokumentet (id_kandidat, lloji_dokumentit, emri_skedari, data_ngarkimit) VALUES (?, ?, ?, ?) RETURNING id";
+
+        try {
+            PreparedStatement pstm = this.connection.prepareStatement(query);
+            pstm.setInt(1, dto.getIdKandidat());
+            pstm.setString(2, dto.getLlojiDokumentit());
+            pstm.setString(3, dto.getEmriSkedarit());
+            pstm.setDate(4, Date.valueOf(dto.getDataNgarkimit()));
+
+            ResultSet rs = pstm.executeQuery();
+            if (rs.next()) {
+                int id = rs.getInt("id");
+                return new Dokumentet(id, dto.getIdKandidat(), dto.getLlojiDokumentit(),
+                        dto.getEmriSkedarit(), dto.getDataNgarkimit());
+            } else {
+                throw new Exception("Dokumenti nuk u ruajt në DB.");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new Exception("Gabim në DB.");
+        }
+    }
+
 
 }
 

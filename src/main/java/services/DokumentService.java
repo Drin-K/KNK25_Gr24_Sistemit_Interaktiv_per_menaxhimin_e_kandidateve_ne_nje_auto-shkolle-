@@ -8,6 +8,7 @@ import models.Kandidatet;
 import repository.DokumentetRepository;
 import repository.KandidatetRepository;
 
+import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -21,7 +22,7 @@ public class DokumentService {
     }
 
     // Funksioni për krijimin e dokumentit
-    public Dokumentet create(CreateDokumentetDto createDokumentDto) throws Exception {
+    public Dokumentet create(CreateDokumentetDto createDokumentDto, File file) throws Exception {
         // Validimet bazike për të kontrolluar të dhënat e dokumentit
         if (createDokumentDto.getIdKandidat() <= 0) {
             throw new Exception("ID e Kandidatit nuk është valide.");
@@ -49,7 +50,6 @@ public class DokumentService {
 
         return dokument;
     }
-
     // Funksioni për të marrë dokumentin me ID
     public Dokumentet getById(int id) throws Exception {
         if (id <= 0) {
@@ -71,6 +71,27 @@ public class DokumentService {
                 llojiDokumentit.equals("Aplikim") ||
                 llojiDokumentit.equals("Foto");
     }
+    public void uploadDokument(CreateDokumentetDto dto, File file) throws Exception {
+        if (dto.getIdKandidat() <= 0) {
+            throw new Exception("ID e Kandidatit nuk është valide.");
+        }
+
+        if (dto.getLlojiDokumentit() == null || dto.getLlojiDokumentit().isEmpty()) {
+            throw new Exception("Lloji i dokumentit është i detyrueshëm.");
+        }
+
+        if (!isValidDokumentType(dto.getLlojiDokumentit())) {
+            throw new Exception("Lloji i dokumentit është i gabuar.");
+        }
+
+        Kandidatet kandidati = kandidatRepository.getbyID(dto.getIdKandidat());
+        if (kandidati == null) {
+            throw new Exception("Kandidati nuk ekziston.");
+        }
+
+        dokumentRepository.create(dto,file);
+    }
+
     public ObservableList<Dokumentet> getDokumenteByKandidatId(String kandidatId) {
         try {
             ArrayList<Dokumentet> dokumentetList = dokumentRepository.getDokumenteByKandidatId(kandidatId);

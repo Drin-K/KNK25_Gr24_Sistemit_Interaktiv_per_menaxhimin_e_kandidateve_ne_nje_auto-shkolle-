@@ -64,7 +64,6 @@ public class RaportiProgresitCandidateController {
                                 " | Performance: " + r.getPerformancaGjenerale()
                 ));
             }
-
             raportiprogresit.getItems().setAll(raportet);
 
         } catch (Exception e) {
@@ -72,7 +71,6 @@ public class RaportiProgresitCandidateController {
             e.printStackTrace();
         }
     }
-
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning");

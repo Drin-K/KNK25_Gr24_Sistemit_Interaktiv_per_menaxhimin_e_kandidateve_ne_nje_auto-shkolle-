@@ -1,5 +1,7 @@
 package utils;
 
+import javafx.scene.layout.Pane;
+
 public class SceneLocator {
     //Kandidati
     public static final String LOGIN_PAGE="/app/login_in.fxml";
@@ -13,6 +15,7 @@ public class SceneLocator {
     public static final String PROGRESS_PAGE= "/app/candidateFXML/candidate_progress.fxml";
     public static final String FEEDBACK_PAGE= "/app/candidateFXML/candidate_feedback.fxml";
     public static final String PROFILE_PAGE= "/app/candidateFXML/candidate_profile.fxml";
+    public static final String DOCUMENTS_PAGE_A = "/app/candidateFXML/candidate_document.fxml";
     private static String currentRightPage = HOME_PAGE;
 
 

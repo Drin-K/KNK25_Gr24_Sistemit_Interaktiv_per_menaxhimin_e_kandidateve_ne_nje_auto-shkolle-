@@ -3,14 +3,13 @@ package app.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import models.Dto.kategorite_patentes.CreateKategoritePatentesDto;
 import models.Dto.regjistrimet.CreateRegjistrimetDto;
 import models.KategoritePatentes;
 import models.Regjistrimet;
-import services.KandidateService;
-import services.KategoritePatentesService;
-import services.RegjistrimiService;
-import services.UserContext;
+import services.*;
+import utils.SceneLocator;
 
 //
 //CreateRegjistrimetDto dto = new CreateRegjistrimetDto(this.kandidatId, /*kategoritePatentesService.getId()*/, statusi);
@@ -27,7 +26,8 @@ public class categoryConsumatorController {
         this.regjistrimiService = new RegjistrimiService();
         this.kategoritePatentesService = new KategoritePatentesService();
     }
-
+    @FXML
+    private AnchorPane rightPage;
     @FXML
     private void applyClickA(){
         this.kategoriId = 1;
@@ -37,6 +37,8 @@ public class categoryConsumatorController {
               System.out.printf("Category inserted successfuly !");
               System.out.println("Kategoria ID: " + result.getId());
               showAlert("Notification","Kategoria A u ruajt me sukses");
+              SceneManager.load(SceneLocator.DOCUMENTS_PAGE_A,this.rightPage);
+
         }
         catch (Exception e){
             System.out.println("Kategoria nuk u ruajt me sukses !");
@@ -52,6 +54,7 @@ public class categoryConsumatorController {
             System.out.printf("Category inserted successfuly !");
             System.out.println("Kategoria ID: " + result.getId());
             showAlert("Notification","Kategoria B u ruajt me sukses");
+            SceneManager.load(SceneLocator.DOCUMENTS_PAGE_A,this.rightPage);
         }
         catch (Exception e){
             System.out.println("Kategoria nuk u ruajt me sukses !");
@@ -67,6 +70,7 @@ public class categoryConsumatorController {
             System.out.printf("Category inserted successfuly !");
             System.out.println("Kategoria ID: " + result.getId());
             showAlert("Notification","Kategoria C u ruajt me sukses");
+            SceneManager.load(SceneLocator.DOCUMENTS_PAGE_A,this.rightPage);
         }
         catch (Exception e){
             System.out.println("Kategoria nuk u ruajt me sukses !");

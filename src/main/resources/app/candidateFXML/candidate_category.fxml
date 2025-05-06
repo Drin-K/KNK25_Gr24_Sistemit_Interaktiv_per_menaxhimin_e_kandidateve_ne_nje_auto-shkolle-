@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="620.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.categoryConsumatorController">
+<AnchorPane fx:id="rightPage" prefHeight="620.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.categoryConsumatorController">
    <children>
       <Text layoutX="379.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Apply for different categories" textAlignment="CENTER" wrappingWidth="504.01878356933594">
          <font>

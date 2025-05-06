@@ -13,7 +13,10 @@ import services.UserContext;
 import utils.SceneLocator;
 
 import java.time.LocalDate;
-
+//SELECT setval(
+//  pg_get_serial_sequence('Testet','id'),
+//  (SELECT MAX(id) FROM Testet) + 1
+//);
 public class TestManagerController {
     private TestiService testiService;
     private String llojiTestit;

@@ -68,20 +68,12 @@ public class AdminPaymentController {
         pagesatTable.setItems(pagesatList);
     }
 
+
     @FXML
     public void initialize() {
         this.loadTableDatat();
-        searchByName.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                String searchText = searchByName.getText();
-                if (searchText != null && !searchText.isEmpty()) {
-                    List<Pagesat> filteredPagesat = pagesatService.searchPagesatByCandidateName(searchText);
-                    pagesatList.setAll(filteredPagesat);
-                } else {
-                    loadTableDatat();
-                }
-            }
-        });
+
+
     }
 
 

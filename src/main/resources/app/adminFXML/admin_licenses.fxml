@@ -31,7 +31,7 @@
                         <CheckBox fx:id="checkTestet" text="Testet: Kaluar" />
                         <CheckBox fx:id="checkRegjistrimi" text="Regjistrimi: Përfunduar" />
                         <Button fx:id="btnShfaqKandidatet" text="Shfaq Kandidatët që kanë të drejtë" />
-                        <Button text="Aprovo Patenten" onAction="#aprovoPatenten"/>
+                        <Button text="Aprovo Patenten"/>
 
                     </HBox>
       

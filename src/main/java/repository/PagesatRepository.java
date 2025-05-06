@@ -5,10 +5,7 @@ import models.Pagesat;
 import models.Dto.pagesat.UpdatePagesatDto;
 
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -171,28 +168,5 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
         }
         return pagesatList;
     }
-    public List<Pagesat> searchPagesatByCandidateName(String name) {
-        List<Pagesat> pagesatList = new ArrayList<>();
-        String query = """
-        SELECT p.*
-        FROM Pagesat p
-        JOIN Kandidatet k ON p.ID_Kandidat = k.id
-        JOIN "User" u ON k.id = u.id
-        WHERE u.name ILIKE ?
-    """;
-        try (PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setString(1, "%" + name + "%");
-            try (ResultSet rs = stmt.executeQuery()) {
-                while (rs.next()) {
-                    Pagesat pagesat = Pagesat.getInstance(rs);
-                    pagesatList.add(pagesat);
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
-        return pagesatList;
     }
-
-}

@@ -5,6 +5,7 @@ import models.Dto.pagesat.CreatePagesatDto;
 import models.Pagesat;
 import repository.PagesatRepository;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -88,7 +89,5 @@ public class PagesaService {
     }
     public List<Pagesat> getAllPagesat() {
         return pagesatRepository.loadPagesatData();  }
-    public List<Pagesat> searchPagesatByCandidateName(String name){
-        return pagesatRepository.searchPagesatByCandidateName(name);
-    }
+
 }

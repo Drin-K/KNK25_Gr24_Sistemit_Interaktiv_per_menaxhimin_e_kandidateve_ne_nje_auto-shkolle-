@@ -1,10 +1,7 @@
 package services;
 
+import models.*;
 import models.Dto.orari.UpdateOrariDto;
-import models.Orari;
-import models.Kandidatet;
-import models.Stafi;
-import models.Automjetet;
 import models.Dto.orari.CreateOrariDto;
 import repository.OrariRepository;
 import repository.KandidatetRepository;
@@ -189,5 +186,8 @@ public class OrariService {
     public List<Orari> getSessionsToday() {
         LocalDate currentDate = LocalDate.now(); // Merr datën e sotme
         return gjejOraretPerDate(currentDate); // Thërrisni metodën ekzistuese për datën aktuale
+    }
+    public List<Orari> getAllOrari(){
+        return this.orariRepository.loadOrariData();
     }
 }

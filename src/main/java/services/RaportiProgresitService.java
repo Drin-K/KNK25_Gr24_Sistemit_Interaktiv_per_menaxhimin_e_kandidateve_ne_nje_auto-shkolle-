@@ -22,12 +22,12 @@ public class RaportiProgresitService {
 
     public RaportiProgresit create(CreateRaportiProgresitDto dto) throws Exception {
         // Validimi i ID_KANDIDAT
-        if (dto.getIdKandidat() <= 0 || kandidatetRepository.getById(dto.getIdKandidat()) == null) {
+        if (dto.getIdKandidat() <= 0 || kandidatetRepository.getbyID(dto.getIdKandidat()) == null) {
             throw new Exception("ID i kandidatit është i pavlefshëm.");
         }
 
         // Validimi i ID_STAF
-        if (dto.getIdStaf() <= 0 || stafiRepository.getById(dto.getIdStaf()) == null) {
+        if (dto.getIdStaf() <= 0 || stafiRepository.getByIDstaf(dto.getIdStaf()) == null) {
             throw new Exception("ID i stafit është i pavlefshëm.");
         }
         // Validimi i pikëve teorike dhe praktike

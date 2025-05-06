@@ -42,7 +42,7 @@ public class CandidateManagmentController{
     private KandidateService kandidateService=new KandidateService();
     private DokumentService dokumentService=new DokumentService();
     private void setDokumentetColumnFactories() {
-        colEmriSkedari.setCellValueFactory(new PropertyValueFactory<>("emriSkedari"));
+        colEmriSkedari.setCellValueFactory(new PropertyValueFactory<>("emriSkedarit"));
         colLlojiDokumentit.setCellValueFactory(new PropertyValueFactory<>("llojiDokumentit"));
         colDataNgarkimit.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getDataNgarkimit().toString()));
@@ -75,7 +75,9 @@ public class CandidateManagmentController{
     @FXML
     public void initialize(){
         loadKandidatetData();
+        loadDokumentetData();
         setColumnFactories();
+        setDokumentetColumnFactories();
 
     }
 

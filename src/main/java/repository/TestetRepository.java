@@ -116,5 +116,4 @@ public class TestetRepository extends BaseRepository<Testet, CreateTestetDto, Up
         }
         return testetList;
     }
-
 }

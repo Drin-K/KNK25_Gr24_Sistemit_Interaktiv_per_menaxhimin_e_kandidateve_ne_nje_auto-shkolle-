@@ -8,11 +8,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Testet;
 import services.TestiService;
+import services.UserContext;
 
 import java.time.LocalDate;
 import java.util.List;
 
 public class TestResultsCandidateController {
+    public  UserContext userContext;
     private final TestiService testiService = new TestiService();
 
 
@@ -22,7 +24,6 @@ public class TestResultsCandidateController {
     @FXML private TableColumn<Testet, LocalDate> dateHeld;
     @FXML private TableColumn<Testet, String> resultStatus;
 
-
     @FXML
     private void initialize() {
         // Set the cell value factories
@@ -31,11 +32,10 @@ public class TestResultsCandidateController {
         dateHeld.setCellValueFactory(new PropertyValueFactory<>("dataTestit"));
         resultStatus.setCellValueFactory(new PropertyValueFactory<>("rezultati"));
     }
-
     @FXML
     private void resultClick() {
-        int kandidatId = 1; // Replace with dynamic ID logic if needed
-        List<Testet> testResults = testiService.getTestetByKandidatId(kandidatId);
+        userContext.getUserId(); // Replace with dynamic ID logic if needed
+        List<Testet> testResults = testiService.getTestetByKandidatId(userContext.getUserId());
         overallResults.setItems(FXCollections.observableArrayList(testResults));
     }
 }

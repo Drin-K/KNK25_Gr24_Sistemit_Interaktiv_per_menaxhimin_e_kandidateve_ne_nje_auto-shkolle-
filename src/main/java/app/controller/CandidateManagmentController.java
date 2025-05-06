@@ -4,10 +4,9 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import models.*;
 import repository.KandidatetRepository;
 import services.*;
@@ -19,6 +18,8 @@ import java.time.LocalTime;
 public class CandidateManagmentController{
     @FXML
     private TableView<Kandidatet> kandidatTable;
+    @FXML
+    private HBox krijoFormenHBox;
 
     @FXML private TableColumn<Kandidatet, Integer> idColumn;
     @FXML private TableColumn<Kandidatet, String> nameColumn;
@@ -90,7 +91,12 @@ public class CandidateManagmentController{
 
     @FXML
     private Button btnDeleteKandidat;
-
+    @FXML
+    private TextField txtEmri, txtMbiemri, txtEmail, txtPhone, txtRoli, txtAdresa, txtStatusiProcesit;
+    @FXML
+    private DatePicker datePickerDob, datePickerRegjistrimi;
+    @FXML
+    private ComboBox<String> comboGjinia;
 
     private ObservableList<Pagesat> pagesatList = FXCollections.observableArrayList();
     private KandidateService kandidateService=new KandidateService();
@@ -173,7 +179,12 @@ public class CandidateManagmentController{
         testetTable.setItems(testetList);
     }
     @FXML
+    private void onCreateKandidatClick() {
+        krijoFormenHBox.setVisible(true);
+    }
+    @FXML
     public void initialize(){
+        krijoFormenHBox.setVisible(false);
         loadKandidatetData();
         loadDokumentetData();
         loadPagesatData();

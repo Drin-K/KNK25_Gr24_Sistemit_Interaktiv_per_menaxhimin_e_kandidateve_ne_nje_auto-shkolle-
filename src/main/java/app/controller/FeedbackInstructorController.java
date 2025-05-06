@@ -28,7 +28,7 @@ public class FeedbackInstructorController {
 
         filterBttn.setOnAction(e -> handleFilter());
     }
-
+   @FXML
     private void handleFilter() {
         LocalDate selectedDate = dateField.getValue();
 

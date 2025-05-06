@@ -3,6 +3,7 @@ package app.controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
@@ -25,6 +26,10 @@ public class AdminPaymentController {
     @FXML private Text yearText;
     @FXML
     private ComboBox<String> statusiIRiComboBox;
+
+    @FXML
+    private LineChart<String, Number> PPM;  // LineChart
+
 
 
     @FXML
@@ -68,6 +73,9 @@ public class AdminPaymentController {
 
     private ObservableList<Pagesat> pagesatList = FXCollections.observableArrayList();
     private PagesaService pagesatService = new PagesaService();
+    private XYChart.Series<String, Number> paguarSeries = new XYChart.Series<>();
+    private XYChart.Series<String, Number> pjeserishtSeries = new XYChart.Series<>();
+    private XYChart.Series<String, Number> mbeturSeries = new XYChart.Series<>();
 
     public void loadTableDatat() {
         pagesatList.clear();
@@ -79,6 +87,32 @@ public class AdminPaymentController {
         MetodaPagesesCol.setCellValueFactory(new PropertyValueFactory<>("metodaPageses"));
         StatusiPagese.setCellValueFactory(new PropertyValueFactory<>("statusiPageses"));
         pagesatTable.setItems(pagesatList);
+    }
+    @FXML
+    private void updateLineChartData() throws SQLException {
+        // Fshirja e seri-ve të mëparshme
+        paguarSeries.getData().clear();
+        pjeserishtSeries.getData().clear();
+        mbeturSeries.getData().clear();
+
+        // Merrni të dhënat për secilin status nga databaza për periudhën e caktuar
+        List<Integer> paguarData = pagesatService.getPagesatDataByStatus("Paguar");
+        List<Integer> pjeserishtData = pagesatService.getPagesatDataByStatus("Pjeserisht");
+        List<Integer> mbeturData = pagesatService.getPagesatDataByStatus("Mbetur");
+        System.out.println("Paguar Data: " + paguarData);
+        System.out.println("Pjeserisht Data: " + pjeserishtData);
+        System.out.println("Mbetur Data: " + mbeturData);
+
+        // Shtoni të dhënat në seri
+        for (int i = 0; i < paguarData.size(); i++) {
+            paguarSeries.getData().add(new XYChart.Data<>("Data" + (i + 1), paguarData.get(i)));
+            pjeserishtSeries.getData().add(new XYChart.Data<>("Data" + (i + 1), pjeserishtData.get(i)));
+            mbeturSeries.getData().add(new XYChart.Data<>("Data" + (i + 1), mbeturData.get(i)));
+        }
+
+        // Vendosni seri në grafikon
+        PPM.getData().clear();
+        PPM.getData().addAll(paguarSeries, pjeserishtSeries, mbeturSeries);
     }
     @FXML
     public void filterPagesatIfValid() throws SQLException {
@@ -160,13 +194,13 @@ public class AdminPaymentController {
         this.loadTableDatat();
         combobox1.setItems(FXCollections.observableArrayList("Cash", "Kartë", "Online"));
         comboBox2.setItems(FXCollections.observableArrayList("Paguar", "Pjesërisht", "Mbetur"));
+        statusiIRiComboBox.setItems(FXCollections.observableArrayList("Paguar", "Pjeserisht", "Mbetur"));
         try {
             updateCircleIndicators();
+            updateLineChartData();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        statusiIRiComboBox.setItems(FXCollections.observableArrayList("Paguar", "Pjeserisht", "Mbetur"));
-
     }
 
 

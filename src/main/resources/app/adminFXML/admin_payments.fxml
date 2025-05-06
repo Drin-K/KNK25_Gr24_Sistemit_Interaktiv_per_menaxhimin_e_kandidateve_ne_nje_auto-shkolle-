@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
@@ -18,7 +19,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="699.0" prefHeight="699.0" prefWidth="1314.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.AdminPaymentController">
+<AnchorPane maxHeight="880.0" prefHeight="880.0" prefWidth="1199.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.AdminPaymentController">
     <children>
         <Label layoutX="20.0" layoutY="20.0" prefHeight="35.0" prefWidth="361.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Menaxhimi i pagesave" />
 
@@ -79,12 +80,18 @@
             </children>
          </HBox>
         </VBox>
-        <VBox layoutX="609.0" layoutY="403.0" prefHeight="291.0" prefWidth="410.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
+        <VBox layoutX="619.0" layoutY="388.0" prefHeight="316.0" prefWidth="445.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
             <children>
-            <VBox prefHeight="200.0" prefWidth="100.0" spacing="30.0">
+            <VBox prefHeight="279.0" prefWidth="345.0" spacing="30.0">
                <children>
-                  <Label text="PAGUAR/MBETUR/PJESERISHT" textFill="WHITE" />
-                  <LineChart fx:id="PPM">
+                  <HBox spacing="100.0">
+                     <children>
+                        <Label prefHeight="24.0" prefWidth="76.0" text="PAGUAR    " textFill="#ef0000" />
+                        <Label layoutX="10.0" layoutY="10.0" prefHeight="24.0" prefWidth="76.0" text="MBETUR" textFill="#20ed00" />
+                        <Label layoutX="86.0" layoutY="10.0" prefHeight="24.0" prefWidth="76.0" text="PJESERISHT" textFill="#edcd00" />
+                     </children>
+                  </HBox>
+                  <LineChart fx:id="PPM" prefHeight="236.0" prefWidth="425.0">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>
@@ -92,13 +99,16 @@
                       <NumberAxis side="LEFT" />
                     </yAxis>
                   </LineChart>
+                   <Button layoutX="1050" layoutY="550" onAction="#ndryshoStatusin" text="Ndrysho Statusin" />
+                   <ComboBox fx:id="statusiIRiComboBox" layoutX="1050" layoutY="500" prefWidth="150" />
                   <Label fx:id="paguar" layoutX="10.0" layoutY="10.0" textFill="WHITE" />
                   <Label fx:id="Pjeserisht" layoutX="10.0" layoutY="44.0" textFill="WHITE" />
                   <Label fx:id="Mbetur" layoutX="10.0" layoutY="79.0" textFill="WHITE" />
-                   <Button layoutX="1050" layoutY="550" onAction="#ndryshoStatusin" text="Ndrysho Statusin" />
-                   <ComboBox fx:id="statusiIRiComboBox" layoutX="1050" layoutY="500" prefWidth="150" />
 
                </children>
+               <VBox.margin>
+                  <Insets bottom="50.0" />
+               </VBox.margin>
             </VBox>
             </children>
         </VBox>

@@ -232,5 +232,20 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
         }
     }
 
+    public List<Integer> getPagesatDataByStatus(String status) throws SQLException {
+        List<Integer> result = new ArrayList<>();
+        String query = "SELECT COUNT(*) FROM Pagesat WHERE Statusi_i_Pageses = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setString(1, status);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                result.add(resultSet.getInt(1)); }
+        }
+        return result;
+    }
+
 
 }

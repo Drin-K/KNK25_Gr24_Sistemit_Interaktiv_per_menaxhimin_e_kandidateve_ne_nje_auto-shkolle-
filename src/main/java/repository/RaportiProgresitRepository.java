@@ -7,7 +7,9 @@ import models.RaportiProgresit;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 public class RaportiProgresitRepository extends BaseRepository<RaportiProgresit, CreateRaportiProgresitDto, UpdateRaportiProgresitDto>{
     public RaportiProgresitRepository(){super("Raporti_Progresit");}
@@ -80,4 +82,29 @@ public class RaportiProgresitRepository extends BaseRepository<RaportiProgresit,
         }
         return null;
     }
+    public List<RaportiProgresit> getRaportetByStaf(int idStaf,int idKandidat) {
+        List<RaportiProgresit> raportet = new ArrayList<>();
+
+        String query = """
+        SELECT *
+        FROM Raporti_Progresit
+        WHERE ID_Staf = ? and ID_Kandidat = ?
+    """;
+
+        try (PreparedStatement stmt = this.connection.prepareStatement(query)) {
+            stmt.setInt(1, idStaf);
+            stmt.setInt(2,idKandidat);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    raportet.add(this.fromResultSet(rs));
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error fetching raportet: " + e.getMessage());
+            throw new RuntimeException("Failed to fetch progress reports for staff " + idStaf, e);
+        }
+        System.out.println("Found " + raportet.size() + " reports entries.");
+        return raportet;
+    }
+
 }

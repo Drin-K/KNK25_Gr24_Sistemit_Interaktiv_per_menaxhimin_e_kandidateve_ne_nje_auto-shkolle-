@@ -5,18 +5,18 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 //ME VONE DO TA SHQYRTOSH TA BESH ABSTRAKTE
 public abstract class User {
-    private int idUser;
-    private String name;
-    private String surname;
-    private String email;
-    private String phoneNumber;
-    private LocalDate dateOfBirth;
-    private String hashedPassword;
-    private String salt;
-    private String role; //  'Kandidat', 'Staf', 'Admin'> adminin do ta bejme vetem nje dhe ai do vendoset direkt
+    protected int idUser;
+    protected String name;
+    protected String surname;
+    protected String email;
+    protected String phoneNumber;
+    protected LocalDate dateOfBirth;
+    protected String hashedPassword;
+    protected String salt;
+    protected String role; //  'Kandidat', 'Staf', 'Admin'> adminin do ta bejme vetem nje dhe ai do vendoset direkt
     //nga databaza
-    private String adresa;
-    private String gjinia; //('M', 'F')
+    protected String adresa;
+    protected String gjinia; //('M', 'F')
 
     protected User(int idUser, String name, String surname, String email, String phoneNumber, LocalDate dateOfBirth, String hashedPassword, String salt, String role, String adresa, String gjinia) {
         this.idUser = idUser;
@@ -86,7 +86,7 @@ public abstract class User {
         this.gjinia = gjinia;
     }
 
-    // Metoda statike për krijimin e User bazuar në rol (Kandidat, Staf, Admin)
+
     public static User getInstance(ResultSet result) throws SQLException {
         int id = result.getInt("id");
         String name = result.getString("name");
@@ -98,8 +98,10 @@ public abstract class User {
         String salt = result.getString("salt");
         String adresa = result.getString("adresa");
         String gjinia = result.getString("gjinia");
-
         String role = result.getString("role");
+        if (role == null) {
+            System.out.println("Role is null for user ID: " + result.getInt("id"));
+        }
         if ("Kandidat".equals(role)) {
             LocalDate dataRegjistrimi = result.getObject("dataRegjistrimi", LocalDate.class);
             String statusiProcesit = result.getString("statusiProcesit");

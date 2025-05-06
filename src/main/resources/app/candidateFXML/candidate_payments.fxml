@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="620.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text layoutX="567.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 22; -fx-font-family: arial; -fx-font-weight: bold;" text="Payments" />
+      <Text fill="#390eb5" layoutX="567.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 22; -fx-font-family: arial; -fx-font-weight: bold;" text="Payments" />
       <AnchorPane layoutX="383.0" layoutY="140.0" prefHeight="385.0" prefWidth="472.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #390eb5;">
          <children>
             <MenuButton layoutX="88.0" layoutY="25.0" mnemonicParsing="false" style="-fx-background-color: #390eb5;" text="Choose Payment Method" textFill="#f4f4f4">

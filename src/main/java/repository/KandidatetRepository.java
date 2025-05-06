@@ -94,24 +94,25 @@ public class KandidatetRepository extends UserRepository {
 
     public ArrayList<Kandidatet> getAllKandidatet() {
         ArrayList<Kandidatet> kandidatet = new ArrayList<>();
-        String query = "SELECT * FROM Kandidatet";  // Sigurohu që kjo pyetje është e saktë për bazën tuaj të të dhënave
+        String query = "SELECT u.id, u.name, u.surname, u.email, u.phoneNumber, u.dateOfBirth, u.hashedPassword, u.salt, u.adresa, u.gjinia, k.dataRegjistrimi, k.statusiProcesit, u.role " +
+                "FROM Kandidatet k " +
+                "JOIN \"User\" u ON k.id = u.id " +
+                "WHERE u.role = 'Kandidat'";
+        try (
+             PreparedStatement stmt = connection.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
 
-        try ( // Krijo lidhjen me bazën e të dhënave
-             PreparedStatement stmt = connection.prepareStatement(query);  // Krijo pyetjen SQL
-             ResultSet rs = stmt.executeQuery()) {  // Ekzekuto pyetjen dhe merr rezultatet
-
-            // Kalojmë përmes të dhënave të kthyer nga ResultSet dhe krijojmë objekte Kandidatet
             while (rs.next()) {
-                // Krijo një objekt Kandidatet nga rezultatet e ResultSet
+
                 Kandidatet kandidat = Kandidatet.getInstance(rs);
-                kandidatet.add(kandidat);  // Shto objektin në listë
+                kandidatet.add(kandidat);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return kandidatet;  // Kthe listën e kandidatëve
+        return kandidatet;
     }
 
     public int countKandidatet() {

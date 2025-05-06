@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -9,12 +13,11 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
-
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Text?>
+
 <AnchorPane maxHeight="699.0" prefHeight="699.0" prefWidth="1314.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.AdminPaymentController">
     <children>
         <Label layoutX="20.0" layoutY="20.0" prefHeight="35.0" prefWidth="361.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Menaxhimi i pagesave" />
@@ -53,17 +56,17 @@
          <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0">
             <children>
                 <StackPane>
-                    <Circle fx:id="today" radius="40" fill="LIGHTGRAY"/>
+                    <Circle fx:id="today" fill="LIGHTGRAY" radius="40" />
                     <Text fx:id="todayText" text="0" />
                 </StackPane>
 
                 <StackPane>
-                    <Circle fx:id="month" radius="40" fill="LIGHTGRAY"/>
+                    <Circle fx:id="month" fill="LIGHTGRAY" radius="40" />
                     <Text fx:id="monthText" text="0" />
                 </StackPane>
 
                 <StackPane>
-                    <Circle fx:id="year" radius="40" fill="LIGHTGRAY"/>
+                    <Circle fx:id="year" fill="LIGHTGRAY" radius="40" />
                     <Text fx:id="yearText" text="0" />
                 </StackPane>
             </children>
@@ -80,14 +83,20 @@
             <children>
             <VBox prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                <children>
-                      <Label text="Paguar" textFill="WHITE" />
+                  <Label text="PAGUAR/MBETUR/PJESERISHT" textFill="WHITE" />
+                  <LineChart fx:id="PPM">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                  </LineChart>
                   <Label fx:id="paguar" layoutX="10.0" layoutY="10.0" textFill="WHITE" />
-                  <Label layoutX="10.0" layoutY="27.0" text="Pjeserisht" textFill="WHITE" />
                   <Label fx:id="Pjeserisht" layoutX="10.0" layoutY="44.0" textFill="WHITE" />
-                  <Label layoutX="10.0" layoutY="62.0" text="Mbetur" textFill="WHITE" />
                   <Label fx:id="Mbetur" layoutX="10.0" layoutY="79.0" textFill="WHITE" />
-                   <Button layoutX="1050" layoutY="550" text="Ndrysho Statusin" onAction="#ndryshoStatusin"/>
-                   <ComboBox fx:id="statusiIRiComboBox" layoutX="1050" layoutY="500" prefWidth="150"/>
+                   <Button layoutX="1050" layoutY="550" onAction="#ndryshoStatusin" text="Ndrysho Statusin" />
+                   <ComboBox fx:id="statusiIRiComboBox" layoutX="1050" layoutY="500" prefWidth="150" />
 
                </children>
             </VBox>

@@ -75,11 +75,18 @@ public class FeedBackRepository extends BaseRepository<FeedBack, CreateFeedBackD
     }
     public List<FeedBack> getFeedbacksByStaffAndDate(int instructorId, LocalDate date) {
         List<FeedBack> feedbackList = new ArrayList<>();
-        String query = "SELECT * FROM FeedBack WHERE Id_Staf = ? AND Data::date = ?";
+
+        String query = """
+        SELECT * FROM FeedBack 
+        WHERE Id_Staf = ? 
+        AND DATE(Data_Feedback) = ?
+        """;
 
         try (PreparedStatement stmt = this.connection.prepareStatement(query)) {
             stmt.setInt(1, instructorId);
             stmt.setDate(2, java.sql.Date.valueOf(date));
+
+            System.out.println("Running query with instructorId=" + instructorId + " and date=" + date);
 
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
@@ -90,9 +97,10 @@ public class FeedBackRepository extends BaseRepository<FeedBack, CreateFeedBackD
             System.err.println("Error fetching feedbacks: " + e.getMessage());
             throw new RuntimeException("Failed to fetch feedbacks for staff " + instructorId + " on date " + date, e);
         }
+
+        System.out.println("Found " + feedbackList.size() + " feedback entries.");
         return feedbackList;
     }
-
 
 
 }

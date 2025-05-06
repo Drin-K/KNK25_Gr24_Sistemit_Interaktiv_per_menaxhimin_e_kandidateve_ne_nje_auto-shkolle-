@@ -38,10 +38,8 @@ public class FeedBackService {
         }
         return feedback;
     }
+
     public List<FeedBack> getFeedbacksByDate(int instructorId, LocalDate date) {
-        if (date == null) {
-            throw new IllegalArgumentException("Date cannot be null");
-        }
         return feedbackRepository.getFeedbacksByStaffAndDate(instructorId, date);
     }
 //PYTJE: A ka nevoj me ba validime kur te boj update te nje repository

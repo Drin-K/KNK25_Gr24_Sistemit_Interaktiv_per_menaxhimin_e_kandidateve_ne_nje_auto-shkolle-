@@ -12,7 +12,7 @@
 
 <AnchorPane prefHeight="670.0" prefWidth="1313.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane layoutX="291.0" layoutY="96.0" prefHeight="454.0" prefWidth="588.0" style="-fx-border-color: #dcdcdc;">
+      <AnchorPane layoutX="291.0" layoutY="96.0" prefHeight="454.0" prefWidth="588.0" style="-fx-border-color: #475779; -fx-background-radius: 5; -fx-border-radius: 5;">
          <children>
             <Text fill="#0c8e39" layoutX="222.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 13; -fx-font-family: arial;" text="Choose a category (e.g cars, motorcycles, bus)" />
             <MenuButton layoutX="79.0" layoutY="34.0" mnemonicParsing="false" style="-fx-background-color: #137156;" text="Category" textFill="#f9ffbc">
@@ -28,7 +28,7 @@
                </font>
             </TextField>
             <Button layoutX="79.0" layoutY="223.0" mnemonicParsing="false" style="-fx-background-color: #137156;" text="Check status" textFill="#fffaaf" />
-            <TableView layoutX="62.0" layoutY="277.0" prefHeight="162.0" prefWidth="478.0">
+            <TableView layoutX="62.0" layoutY="277.0" prefHeight="162.0" prefWidth="478.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #475779;">
               <columns>
                 <TableColumn prefWidth="157.60003662109375" text="On use" />
                 <TableColumn prefWidth="181.5999755859375" text="On service" />
@@ -37,7 +37,7 @@
             </TableView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="74.0" layoutY="96.0" prefHeight="454.0" prefWidth="146.0" style="-fx-border-color: #dcdcdc; -fx-border-style: round;">
+      <AnchorPane layoutX="74.0" layoutY="96.0" prefHeight="454.0" prefWidth="146.0" style="-fx-border-color: #475779; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-style: round;">
          <children>
             <Button layoutX="19.0" layoutY="159.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" style="-fx-background-color: #07842b;" text="Add vehicle" textFill="#efecec" />
             <Button layoutX="19.0" layoutY="204.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" style="-fx-background-color: #994949;" text="Remove" textFill="#fcf8f8" />

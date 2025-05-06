@@ -11,13 +11,13 @@
 
 <AnchorPane prefHeight="620.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.TestManagerController">
    <children>
-      <AnchorPane layoutX="124.0" layoutY="199.0" prefHeight="200.0" prefWidth="154.0" style="-fx-border-color: #dcdcdc; -fx-border-style: round;">
+      <AnchorPane layoutX="124.0" layoutY="199.0" prefHeight="200.0" prefWidth="154.0" style="-fx-border-color: #475779; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #475779;">
          <children>
             <Button fx:id="setResultBttn" layoutX="40.0" layoutY="87.0" mnemonicParsing="false" onAction="#setResultClick" prefHeight="26.0" prefWidth="73.0" style="-fx-background-color: #07842b;" text="Set Result" textFill="#d4d4d4" />
          </children>
       </AnchorPane>
       <Text layoutX="408.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="Create and manage tests" />
-      <AnchorPane layoutX="316.0" layoutY="126.0" prefHeight="346.0" prefWidth="736.0" style="-fx-border-color: #dcdcdc;">
+      <AnchorPane layoutX="316.0" layoutY="126.0" prefHeight="346.0" prefWidth="736.0" style="-fx-border-color: #475779; -fx-border-radius: 5; -fx-background-radius: 5; -fx-border-color: #475779;">
          <children>
             <Text layoutX="308.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: arial; -fx-font-size: 15;" text=" Choose driving/theory exam, add the date, choose the candidate and write the result" wrappingWidth="345.215576171875" />
             <SplitMenuButton layoutX="55.0" layoutY="32.0" mnemonicParsing="false" text="Choose exam type">
@@ -32,7 +32,7 @@
                </font>
             </TextField>
             <DatePicker fx:id="setDate" layoutX="415.0" layoutY="150.0" />
-            <SplitMenuButton layoutX="444.0" layoutY="207.0" mnemonicParsing="false" text="Result">
+            <SplitMenuButton layoutX="605.0" layoutY="150.0" mnemonicParsing="false" text="Result">
                <items>
                   <MenuItem fx:id="kaluarBttn" mnemonicParsing="false" onAction="#kaluarClick" text="Kaluar" />
                   <MenuItem fx:id="deshtuarBttn" mnemonicParsing="false" onAction="#deshtuarClick" text="Dështuar" />

@@ -8,6 +8,7 @@ import repository.PagesatRepository;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -93,5 +94,13 @@ public class PagesaService {
     public List<Pagesat> getFilteredPagesat(String name, String fromDate, String toDate, String metodaPageses, String statusiPageses) throws SQLException, SQLException {
         return pagesatRepository.filterPagesat(name, fromDate, toDate, metodaPageses, statusiPageses);
     }
-
+    public int countPagesatOnDate(LocalDate date) throws SQLException{
+        return pagesatRepository.countPagesatOnDate(date);
+    }
+    public int countPagesatInMonth(YearMonth month) throws SQLException{
+        return pagesatRepository.countPagesatInMonth(month);
+    }
+    public int countPagesatInYear(int year) throws SQLException {
+        return pagesatRepository.countPagesatInYear(year);
+    }
 }

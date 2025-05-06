@@ -9,6 +9,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
 import models.Pagesat;
 import services.PagesaService;
 
@@ -18,6 +19,10 @@ import java.time.YearMonth;
 import java.util.List;
 
 public class AdminPaymentController {
+    @FXML private Text todayText;
+    @FXML private Text monthText;
+    @FXML private Text yearText;
+
     @FXML
     private PieChart statistikatKandidateveChart;
     @FXML
@@ -95,14 +100,36 @@ public class AdminPaymentController {
         pagesatList.addAll(filteredPagesat);
         pagesatTable.setItems(pagesatList);
     }
+    @FXML
+    private void updateCircleIndicators() throws SQLException {
+        LocalDate todayDate = LocalDate.now();
+        YearMonth currentMonth = YearMonth.now();
 
+        int todayCount = pagesatService.countPagesatOnDate(todayDate);
+        int monthCount = pagesatService.countPagesatInMonth(currentMonth);
+        int yearCount = pagesatService.countPagesatInYear(todayDate.getYear());
+
+        // Ndrysho ngjyrat sipas kushteve (opsionale)
+        today.setFill(todayCount > 0 ? Color.GREEN : Color.LIGHTGRAY);
+        month.setFill(monthCount > 0 ? Color.BLUE : Color.LIGHTGRAY);
+        year.setFill(yearCount > 0 ? Color.GOLD : Color.LIGHTGRAY);
+
+        todayText.setText(String.valueOf(todayCount));
+        monthText.setText(String.valueOf(monthCount));
+        yearText.setText(String.valueOf(yearCount));
+
+    }
 
     @FXML
     public void initialize() {
         this.loadTableDatat();
         combobox1.setItems(FXCollections.observableArrayList("Cash", "Kartë", "Online"));
         comboBox2.setItems(FXCollections.observableArrayList("Paguar", "Pjesërisht", "Mbetur"));
-
+        try {
+            updateCircleIndicators();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 

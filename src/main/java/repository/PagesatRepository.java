@@ -6,6 +6,8 @@ import models.Dto.pagesat.UpdatePagesatDto;
 
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -198,5 +200,36 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
             throw e;
         }
     }
+    public int countPagesatOnDate(LocalDate date) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM pagesat WHERE data_e_pageses = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setDate(1, Date.valueOf(date));
+            ResultSet rs = stmt.executeQuery();
+            return rs.next() ? rs.getInt(1) : 0;
+        }
+    }
+    public int countPagesatInMonth(YearMonth month) throws SQLException {
+        LocalDate start = month.atDay(1);
+        LocalDate end = month.atEndOfMonth();
+        String sql = "SELECT COUNT(*) FROM pagesat WHERE data_e_pageses BETWEEN ? AND ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setDate(1, Date.valueOf(start));
+            stmt.setDate(2, Date.valueOf(end));
+            ResultSet rs = stmt.executeQuery();
+            return rs.next() ? rs.getInt(1) : 0;
+        }
+    }
+    public int countPagesatInYear(int year) throws SQLException {
+        LocalDate start = LocalDate.of(year, 1, 1);
+        LocalDate end = LocalDate.of(year, 12, 31);
+        String sql = "SELECT COUNT(*) FROM pagesat WHERE data_e_pageses BETWEEN ? AND ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setDate(1, java.sql.Date.valueOf(start));
+            stmt.setDate(2, java.sql.Date.valueOf(end));
+            ResultSet rs = stmt.executeQuery();
+            return rs.next() ? rs.getInt(1) : 0;
+        }
+    }
+
 
 }

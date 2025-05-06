@@ -23,14 +23,9 @@ public class Kandidatet extends User{
     }
 
     public static Kandidatet getInstance(ResultSet result) throws SQLException {
-        // Krijo instancën e User nga getInstance e User
         User user = User.getInstance(result);
-
-        // Merr të dhënat shtesë për Kandidat
         LocalDate dataRegjistrimi = result.getObject("dataRegjistrimi", LocalDate.class);
         String statusiProcesit = result.getString("statusiProcesit");
-
-        // Krijo dhe kthe instancën e Kandidatet
         return new Kandidatet(user.getIdUser(), user.getName(), user.getSurname(), user.getEmail(),
                 user.getPhoneNumber(), user.getDateOfBirth(), user.getHashedPassword(),
                 user.getSalt(), user.getAdresa(), user.getGjinia(), dataRegjistrimi, statusiProcesit);

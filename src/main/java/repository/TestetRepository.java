@@ -1,7 +1,9 @@
 package repository;
 
+import app.Test;
 import models.Dto.testet.CreateTestetDto;
 import models.Dto.testet.UpdateTestetDto;
+import models.Orari;
 import models.Testet;
 
 import java.sql.PreparedStatement;
@@ -110,6 +112,21 @@ public class TestetRepository extends BaseRepository<Testet, CreateTestetDto, Up
             ResultSet result = statement.executeQuery();
             while (result.next()) {
                 testetList.add(fromResultSet(result));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return testetList;
+    }
+    public List<Testet> getAllTestet() {
+        List<Testet> testetList = new ArrayList<>();
+        String query = "SELECT * FROM Testet";
+        try (PreparedStatement stmt = this.connection.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Testet testet = Testet.getInstance(rs);
+                testetList.add(testet);
             }
         } catch (SQLException e) {
             e.printStackTrace();

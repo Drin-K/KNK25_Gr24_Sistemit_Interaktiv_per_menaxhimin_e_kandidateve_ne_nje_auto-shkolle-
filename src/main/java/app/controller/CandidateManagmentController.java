@@ -4,18 +4,12 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import models.Dokumentet;
-import models.Kandidatet;
-import models.Orari;
-import models.Pagesat;
+import javafx.scene.layout.HBox;
+import models.*;
 import repository.KandidatetRepository;
-import services.DokumentService;
-import services.KandidateService;
-import services.OrariService;
-import services.PagesaService;
+import services.*;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -24,6 +18,8 @@ import java.time.LocalTime;
 public class CandidateManagmentController{
     @FXML
     private TableView<Kandidatet> kandidatTable;
+    @FXML
+    private HBox krijoFormenHBox;
 
     @FXML private TableColumn<Kandidatet, Integer> idColumn;
     @FXML private TableColumn<Kandidatet, String> nameColumn;
@@ -78,12 +74,36 @@ public class CandidateManagmentController{
     private TableColumn<Orari, String> statusiColumn;
     @FXML
     private TableColumn<Orari, Integer> idAutomjetColumn;
+    @FXML private TableView<Testet> testetTable;
+
+    @FXML private TableColumn<Testet, Integer> idColumn2;
+    @FXML private TableColumn<Testet, Integer> idKandidatColumn2;
+    @FXML private TableColumn<Testet, Integer> idStafColumn2;
+    @FXML private TableColumn<Testet, String> llojiTestitColumn;
+    @FXML private TableColumn<Testet, LocalDate> dataTestitColumn;
+    @FXML private TableColumn<Testet, String> rezultatiColumn;
+    @FXML private TableColumn<Testet, Integer> piketColumn;
+    @FXML
+    private Button btnCreateKandidat;
+
+    @FXML
+    private Button btnReplaceKandidat;
+
+    @FXML
+    private Button btnDeleteKandidat;
+    @FXML
+    private TextField txtEmri, txtMbiemri, txtEmail, txtPhone, txtRoli, txtAdresa, txtStatusiProcesit;
+    @FXML
+    private DatePicker datePickerDob, datePickerRegjistrimi;
+    @FXML
+    private ComboBox<String> comboGjinia;
 
     private ObservableList<Pagesat> pagesatList = FXCollections.observableArrayList();
     private KandidateService kandidateService=new KandidateService();
     private DokumentService dokumentService=new DokumentService();
     private PagesaService pagesaService=new PagesaService();
     private OrariService orariService=new OrariService();
+    private TestiService testiService=new TestiService();
     private void setDokumentetColumnFactories() {
         colEmriSkedari.setCellValueFactory(new PropertyValueFactory<>("emriSkedarit"));
         colLlojiDokumentit.setCellValueFactory(new PropertyValueFactory<>("llojiDokumentit"));
@@ -120,10 +140,10 @@ public class CandidateManagmentController{
                 new SimpleStringProperty(cellData.getValue().getDataRegjistrimit().toString()));
     }
     private void setColumnOrari(){
-            idColumn1.setCellValueFactory(new PropertyValueFactory<>("id"));
+            idColumn1.setCellValueFactory(new PropertyValueFactory<>("idSesioni"));
             idKandidatColumn.setCellValueFactory(new PropertyValueFactory<>("idKandidat"));
             idStafColumn.setCellValueFactory(new PropertyValueFactory<>("idStaf"));
-            dataSesioniColumn.setCellValueFactory(new PropertyValueFactory<>("dataSesioni"));
+            dataSesioniColumn.setCellValueFactory(new PropertyValueFactory<>("dataSesionit"));
             oraFillimitColumn.setCellValueFactory(new PropertyValueFactory<>("oraFillimit"));
             oraPerfundimitColumn.setCellValueFactory(new PropertyValueFactory<>("oraPerfundimit"));
             llojiMesimitColumn.setCellValueFactory(new PropertyValueFactory<>("llojiMesimit"));
@@ -132,6 +152,16 @@ public class CandidateManagmentController{
 
 
     }
+    private void setColumnTestet() {
+        idColumn2.setCellValueFactory(new PropertyValueFactory<>("id"));
+        idKandidatColumn2.setCellValueFactory(new PropertyValueFactory<>("idKandidat"));
+        idStafColumn2.setCellValueFactory(new PropertyValueFactory<>("idStaf"));
+        llojiTestitColumn.setCellValueFactory(new PropertyValueFactory<>("llojiTestit"));
+        dataTestitColumn.setCellValueFactory(new PropertyValueFactory<>("dataTestit"));
+        rezultatiColumn.setCellValueFactory(new PropertyValueFactory<>("rezultati"));
+        piketColumn.setCellValueFactory(new PropertyValueFactory<>("piket"));
+    }
+
     private void loadKandidatetData(){
         ObservableList<Kandidatet> kandidatetList = FXCollections.observableArrayList(kandidateService.getAllKandidatet());
         kandidatTable.setItems(kandidatetList);
@@ -144,40 +174,33 @@ public class CandidateManagmentController{
         ObservableList<Orari>orariList=FXCollections.observableArrayList(orariService.getAllOrari());
         orariTable.setItems(orariList);
     }
+    private void loadTestetData(){
+        ObservableList<Testet>testetList=FXCollections.observableArrayList(testiService.getAllTestet());
+        testetTable.setItems(testetList);
+    }
+    @FXML
+    private void onCreateKandidatClick() {
+        krijoFormenHBox.setVisible(true);
+    }
     @FXML
     public void initialize(){
+        krijoFormenHBox.setVisible(false);
         loadKandidatetData();
         loadDokumentetData();
         loadPagesatData();
         loadOrariData();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        loadTestetData();
         setColumnFactories();
         setDokumentetColumnFactories();
         setColumnPayments();
         setColumnOrari();
+        setColumnTestet();
+//        btnCreateKandidat.setOnAction(event -> handleCreateKandidat());
+//        btnReplaceKandidat.setOnAction(event -> handleReplaceKandidat());
+//        btnDeleteKandidat.setOnAction(event -> handleDeleteKandidat());
 
     }
+
+
 
 }

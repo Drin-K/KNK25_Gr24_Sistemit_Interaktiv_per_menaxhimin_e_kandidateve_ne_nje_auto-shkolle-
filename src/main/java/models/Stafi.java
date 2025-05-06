@@ -10,7 +10,7 @@ public class Stafi extends User{
 
     }
     public static Stafi getInstance(ResultSet result) throws SQLException {
-        Stafi stafi = Stafi.getInstance(result);
+        User stafi = User.getInstance(result);
         return new Stafi(stafi.getIdUser(),stafi.getName(),stafi.getSurname(),stafi.getEmail(),stafi.getPhoneNumber(),stafi.getDateOfBirth(),stafi.getHashedPassword(),stafi.getSalt(), stafi.getAdresa(), stafi.getGjinia());
     }
 }

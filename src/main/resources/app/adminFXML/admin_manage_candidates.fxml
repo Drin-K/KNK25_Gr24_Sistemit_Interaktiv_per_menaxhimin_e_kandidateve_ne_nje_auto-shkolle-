@@ -8,6 +8,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.DatePicker?>
+<?import java.lang.String?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.collections.FXCollections?>
 <AnchorPane maxHeight="699.0" prefHeight="699.0" prefWidth="1314.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.CandidateManagmentController">
     <children>
         <Label layoutX="20.0" layoutY="20.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Menaxhimi i kandidateve" />
@@ -16,8 +22,9 @@
 
         <PieChart fx:id="statistikatKandidateveChart" layoutX="20.0" layoutY="159.60000610351562" prefHeight="250" prefWidth="400" />
         <VBox layoutX="170.0" layoutY="385.0" />
-        <VBox layoutX="958.0" layoutY="350.0" prefHeight="147.0" prefWidth="350.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
-            <TableView fx:id="orariTable" prefWidth="800" prefHeight="400">
+        <VBox layoutX="895.0" layoutY="272.0" prefHeight="147.0" prefWidth="418.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
+
+            <TableView fx:id="orariTable" prefHeight="400" prefWidth="800">
                 <columns>
                     <TableColumn fx:id="idColumn1" text="ID" />
                     <TableColumn fx:id="idKandidatColumn" text="ID Kandidat" />
@@ -30,9 +37,9 @@
                     <TableColumn fx:id="idAutomjetColumn" text="ID Automjet" />
                 </columns>
             </TableView></VBox>
-        <VBox layoutX="417.0" layoutY="272.0" prefHeight="100.0" prefWidth="500.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
+        <VBox layoutX="388.0" layoutY="272.0" prefHeight="100.0" prefWidth="500.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
             <children>
-                <TableView fx:id="tabelaPagesat" layoutX="50" layoutY="50" prefHeight="400" prefWidth="700" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+                <TableView fx:id="tabelaPagesat" layoutX="50" layoutY="50" prefHeight="161.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
                     <columns>
                         <TableColumn fx:id="colId" text="ID" />
                         <TableColumn fx:id="colIdKandidat" text="ID Kandidat" />
@@ -46,6 +53,11 @@
         </VBox>
         <VBox layoutX="1.0" layoutY="90.0" prefHeight="170.0" prefWidth="1306.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
             <children>
+                <HBox spacing="10" alignment="CENTER" style="-fx-padding: 5;">
+                    <Button fx:id="btnCreateKandidat" text="Create" onMouseClicked="#onCreateKandidatClick" />
+                    <Button fx:id="btnReplaceKandidat" text="Replace" />
+                    <Button fx:id="btnDeleteKandidat" text="Delete" />
+                </HBox>
                 <TableView fx:id="kandidatTable" layoutX="20" layoutY="20" prefHeight="422.0" prefWidth="888.0">
                     <columns>
                         <TableColumn fx:id="idColumn" prefWidth="127.47979164123535" text="ID" />
@@ -61,6 +73,28 @@
                         <TableColumn fx:id="statusiProcesitColumn" prefWidth="161.18115234375" text="Statusi i Procesit" />
                     </columns>
                 </TableView>
+                <HBox fx:id="krijoFormenHBox" layoutX="20.0" layoutY="640.0" spacing="10" visible="false" style="-fx-background-color: #f0f0f0; -fx-padding: 10;" alignment="CENTER">
+                    <children>
+                        <TextField fx:id="txtEmri" promptText="Emri" />
+                        <TextField fx:id="txtMbiemri" promptText="Mbiemri" />
+                        <TextField fx:id="txtEmail" promptText="Email" />
+                        <TextField fx:id="txtPhone" promptText="Nr. Telefonit" />
+                        <DatePicker fx:id="datePickerDob" promptText="Datëlindja" />
+                        <TextField fx:id="txtRoli" promptText="Roli" />
+                        <TextField fx:id="txtAdresa" promptText="Adresa" />
+                        <ComboBox fx:id="comboGjinia" promptText="Gjinia">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="Mashkull" />
+                                    <String fx:value="Femër" />
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+                        <DatePicker fx:id="datePickerRegjistrimi" promptText="Data Regjistrimit" />
+                        <TextField fx:id="txtStatusiProcesit" promptText="Statusi i Procesit" />
+                        <Button text="Ruaj" onAction="#ruajKandidatin" />
+                    </children>
+                </HBox>
             </children>
         </VBox>
         <VBox layoutX="18.0" layoutY="271.0" prefHeight="255.0" prefWidth="364.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
@@ -75,5 +109,20 @@
                 <HBox />
             </children>
         </VBox>
+      <VBox layoutX="458.0" layoutY="378.0" prefHeight="255.0" prefWidth="364.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
+         <children>
+             <TableView fx:id="testetTable" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+                 <columns>
+                     <TableColumn fx:id="idColumn2" text="ID" prefWidth="50.0"/>
+                     <TableColumn fx:id="idKandidatColumn2" text="ID Kandidat" prefWidth="100.0"/>
+                     <TableColumn fx:id="idStafColumn2" text="ID Staf" prefWidth="100.0"/>
+                     <TableColumn fx:id="llojiTestitColumn" text="Lloji i Testit" prefWidth="120.0"/>
+                     <TableColumn fx:id="dataTestitColumn" text="Data e Testit" prefWidth="120.0"/>
+                     <TableColumn fx:id="rezultatiColumn" text="Rezultati" prefWidth="100.0"/>
+                     <TableColumn fx:id="piketColumn" text="Piket" prefWidth="80.0"/>
+                 </columns>
+             </TableView>
+         </children>
+      </VBox>
     </children>
 </AnchorPane>

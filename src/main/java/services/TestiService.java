@@ -1,9 +1,11 @@
 package services;
 
 import models.Dto.testet.CreateTestetDto;
+import models.Kandidatet;
 import models.Testet;
 import repository.TestetRepository;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TestiService {
@@ -79,6 +81,8 @@ public class TestiService {
     public List<Testet> getTestetByKandidatId(int idKandidat) {
         return testetRepository.getTestetByKandidatId(idKandidat);
     }
-
+    public List<Testet> getAllTestet() {
+        return this.testetRepository.getAllTestet();
+    }
 
 }

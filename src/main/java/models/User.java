@@ -105,7 +105,6 @@ public abstract class User {
             String statusiProcesit = result.getString("statusiProcesit");
             return new Kandidatet(id, name, surname, email, phoneNumber, dateOfBirth, hashedPassword, salt, adresa, gjinia, dataRegjistrimi, statusiProcesit);
         } else if ("Staf".equals(role)) {
-            // Shtoni ndonjë informacion shtesë për Staf nëse ka
             return new Stafi(id, name, surname, email, phoneNumber, dateOfBirth, hashedPassword, salt, adresa, gjinia);
         } else {
             throw new SQLException("Role i pa njohur: " + role);

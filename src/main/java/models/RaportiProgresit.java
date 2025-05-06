@@ -68,4 +68,36 @@ public class RaportiProgresit {
         String performancaGjenerale = resultSet.getString("Performanca_Gjenerale");
         return new RaportiProgresit(id,idKandidat,idStaf,dataRaportit,piketTeorike,piketPraktike,komentet,performancaGjenerale);
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setIdKandidat(int idKandidat) {
+        this.idKandidat = idKandidat;
+    }
+
+    public void setIdStaf(int idStaf) {
+        this.idStaf = idStaf;
+    }
+
+    public void setDataRaportit(LocalDate dataRaportit) {
+        this.dataRaportit = dataRaportit;
+    }
+
+    public void setPiketTeorike(int piketTeorike) {
+        this.piketTeorike = piketTeorike;
+    }
+
+    public void setPiketPraktike(int piketPraktike) {
+        this.piketPraktike = piketPraktike;
+    }
+
+    public void setKomentet(String komentet) {
+        this.komentet = komentet;
+    }
+
+    public void setPerformancaGjenerale(String performancaGjenerale) {
+        this.performancaGjenerale = performancaGjenerale;
+    }
 }

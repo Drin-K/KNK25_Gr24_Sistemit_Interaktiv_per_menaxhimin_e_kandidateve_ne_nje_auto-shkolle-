@@ -129,5 +129,26 @@ public class KandidatetRepository extends UserRepository {
         }
         return 0;
     }
+    public Kandidatet getbyID(int id){
+        String query = "SELECT u.id, u.name, u.surname, u.email, u.phoneNumber, " +
+                "u.dateOfBirth, u.hashedPassword, u.salt, u.adresa, u.gjinia, " +
+                "k.dataRegjistrimi, k.statusiProcesit, u.role " +
+                "FROM Kandidatet k " +
+                "JOIN \"User\" u ON k.id = u.id " +
+                "WHERE u.role = 'Kandidat' AND u.id = ?";
+
+        try{
+            PreparedStatement pstm = this.connection.prepareStatement(
+                    query);
+            pstm.setInt(1, id);
+            ResultSet res = pstm.executeQuery();
+            if(res.next()){
+                return this.fromResultSet(res);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 }

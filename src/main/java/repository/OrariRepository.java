@@ -3,6 +3,7 @@ package repository;
 import models.Dto.orari.CreateOrariDto;
 import models.Dto.orari.UpdateOrariDto;
 import models.Orari;
+import models.Pagesat;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -145,6 +146,21 @@ public class OrariRepository extends BaseRepository<Orari, CreateOrariDto, Updat
         }
 
         return numri;
+    }
+    public List<Orari> loadOrariData() {
+        List<Orari> orariList = new ArrayList<>();
+        String query = "SELECT * FROM Orari";
+        try (PreparedStatement stmt = this.connection.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Orari orari = Orari.getInstance(rs);
+                orariList.add(orari);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return orariList;
     }
 
 

@@ -17,14 +17,31 @@
         <PieChart fx:id="statistikatKandidateveChart" layoutX="20.0" layoutY="159.60000610351562" prefHeight="250" prefWidth="400" />
         <VBox layoutX="170.0" layoutY="385.0" />
         <VBox layoutX="958.0" layoutY="350.0" prefHeight="147.0" prefWidth="350.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
-            <Label prefHeight="79.0" prefWidth="330.0" text="Statusi i procesit: Admini mund të ndryshojë statusin e kandidatëve nga &quot;Në proces&quot; në &quot;Përfunduar&quot; ose anasjelltas." textFill="WHITE" />
-        </VBox>
-        <VBox layoutX="661.0" layoutY="546.0" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
+            <TableView fx:id="orariTable" prefWidth="800" prefHeight="400">
+                <columns>
+                    <TableColumn fx:id="idColumn1" text="ID" />
+                    <TableColumn fx:id="idKandidatColumn" text="ID Kandidat" />
+                    <TableColumn fx:id="idStafColumn" text="ID Staf" />
+                    <TableColumn fx:id="dataSesioniColumn" text="Data e Sesionit" />
+                    <TableColumn fx:id="oraFillimitColumn" text="Ora e Fillimit" />
+                    <TableColumn fx:id="oraPerfundimitColumn" text="Ora e Përfundimit" />
+                    <TableColumn fx:id="llojiMesimitColumn" text="Lloji i Mësimit" />
+                    <TableColumn fx:id="statusiColumn" text="Statusi" />
+                    <TableColumn fx:id="idAutomjetColumn" text="ID Automjet" />
+                </columns>
+            </TableView></VBox>
+        <VBox layoutX="417.0" layoutY="272.0" prefHeight="100.0" prefWidth="500.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
             <children>
-                <Label text="8. Menaxhimi i Pagesave:Shikimi i pagesave të kandidatëve: Admini mund të shohë të gjitha informacionet e lidhura me pagesat për kandidatët, duke përfshirë shumën, datën dhe metodën e pagesës.Statusi i pagesës: Admini mund të ndryshojë statusin e pagesave të kandidatëve (paguar, pjesërisht, mbetur)." textFill="WHITE" />
-              <VBox prefHeight="270.0" prefWidth="250.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
-                  <Label text="Lista e dokumenteve të ngarkuara: " textFill="WHITE" />
-              </VBox>
+                <TableView fx:id="tabelaPagesat" layoutX="50" layoutY="50" prefHeight="400" prefWidth="700" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+                    <columns>
+                        <TableColumn fx:id="colId" text="ID" />
+                        <TableColumn fx:id="colIdKandidat" text="ID Kandidat" />
+                        <TableColumn fx:id="colShuma" text="Shuma" />
+                        <TableColumn fx:id="colDataPageses" text="Data e Pagesës" />
+                        <TableColumn fx:id="colMetodaPageses" text="Metoda e Pagesës" />
+                        <TableColumn fx:id="colStatusiPageses" text="Statusi i Pagesës" />
+                    </columns>
+                </TableView>
             </children>
         </VBox>
         <VBox layoutX="1.0" layoutY="90.0" prefHeight="170.0" prefWidth="1306.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">

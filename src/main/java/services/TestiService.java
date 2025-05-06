@@ -4,6 +4,7 @@ import models.Dto.testet.CreateTestetDto;
 import models.Testet;
 import repository.TestetRepository;
 import java.time.LocalDate;
+import java.util.List;
 
 public class TestiService {
 
@@ -75,5 +76,9 @@ public class TestiService {
             e.printStackTrace();
         }
     }
+    public List<Testet> getTestetByKandidatId(int idKandidat) {
+        return testetRepository.getTestetByKandidatId(idKandidat);
+    }
+
 
 }

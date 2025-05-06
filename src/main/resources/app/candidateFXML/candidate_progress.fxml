@@ -1,11 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="620.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="620.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.RaportiProgresitCandidateController">
    <children>
-      <Text layoutX="107.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Progress Page" />
+      <Text layoutX="379.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Progress Report" textAlignment="CENTER" wrappingWidth="504.01878356933594">
+         <font>
+            <Font name="Cambria Bold" size="36.0" />
+         </font>
+      </Text>
+      <AnchorPane layoutX="215.0" layoutY="98.0" prefHeight="507.0" prefWidth="853.0" style="-fx-background-color: #e1e1e1; -fx-border-radius: 4; -fx-background-radius: 4; -fx-border-color: #475779;">
+         <children>
+            <AnchorPane layoutX="31.0" layoutY="86.0" prefHeight="95.0" prefWidth="750.0" style="-fx-background-color: white; -fx-background-radius: 4; -fx-border-radius: 4; -fx-border-color: #475779;">
+               <children>
+                  <TextField fx:id="stafField" focusTraversable="false" layoutX="38.0" layoutY="33.0" prefHeight="26.0" prefWidth="322.0" promptText="Enter Stafi Id" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: #475779; -fx-text-fill: #a0a2ab;">
+                     <font>
+                        <Font name="System Italic" size="14.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="findBtn" layoutX="565.0" layoutY="34.0" mnemonicParsing="false" onAction="#handleFind" prefHeight="26.0" prefWidth="92.0" style="-fx-background-color: #151928; -fx-border-radius: 4; -fx-background-radius: 4;" text="Find" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <TableView fx:id="raportiprogresit" layoutX="33.0" layoutY="289.0" prefHeight="176.0" prefWidth="767.0" style="-fx-background-color: white; -fx-border-radius: 4; -fx-background-radius: 4; -fx-border-color: #475779;">
+               <columns>
+                  <TableColumn fx:id="dateArea" prefWidth="112.00003051757812" text="Date" />
+                  <TableColumn fx:id="theoryPointsArea" minWidth="6.39996337890625" prefWidth="120.79998779296875" text="Theory Points" />
+                  <TableColumn fx:id="practicalPointsArea" prefWidth="115.20001220703125" text="Practical Points" />
+                  <TableColumn fx:id="commentArea" prefWidth="204.79998779296875" text="Comment" />
+                  <TableColumn fx:id="generalPerformanceArea" prefWidth="211.20001220703125" text="General Performance" />
+               </columns>
+            </TableView>
+            <Text layoutX="56.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Find the report issued by Instructor">
+               <font>
+                  <Font name="Cambria Italic" size="18.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <ImageView fx:id="imageView" fitHeight="80.0" fitWidth="122.0" layoutX="1106.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../0.jpg" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

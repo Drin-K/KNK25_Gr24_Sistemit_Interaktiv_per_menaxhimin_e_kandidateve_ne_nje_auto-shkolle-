@@ -6,6 +6,8 @@ import repository.KandidatetRepository;
 import repository.RaportiProgresitRepository;
 import repository.StafiRepository;
 
+import java.util.List;
+
 public class RaportiProgresitService {
 
     private final RaportiProgresitRepository raportiProgresitRepository;
@@ -56,6 +58,9 @@ public class RaportiProgresitService {
         }
 
         return raportiProgresitRepository.create(dto);
+    }
+    public List<RaportiProgresit> getRaportetById(int idStaf,int idKategori){
+        return raportiProgresitRepository.getRaportetByStaf(idStaf,idKategori);
     }
     //ide tjera per ma vone:
     //1. Metodë: Me i llogarit pikët totale të një kandidati në raport progresi

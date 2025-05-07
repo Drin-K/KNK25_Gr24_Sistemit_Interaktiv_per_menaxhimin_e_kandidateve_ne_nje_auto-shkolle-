@@ -3,7 +3,6 @@ package repository;
 import Database.DBConnector;
 import models.Dto.user.CreateUserDto;
 import models.Dto.user.UpdateUserDto;
-import models.Kandidatet;
 import models.User;
 import java.sql.*;
 import java.util.ArrayList;
@@ -44,10 +43,6 @@ public abstract class UserRepository extends BaseRepository<User, CreateUserDto,
             e.printStackTrace();
         }
         return null;
-    }
-    @Override
-    public User fromResultSet(ResultSet result) throws SQLException {
-        return User.getInstance(result);
     }
 
     @Override
@@ -119,7 +114,7 @@ public abstract class UserRepository extends BaseRepository<User, CreateUserDto,
 
         return null;
     }
-//qetu ma vone duhe me bo reduktim te kodit se po perseriten shume rreshta disa here
+    //qetu ma vone duhe me bo reduktim te kodit se po perseriten shume rreshta disa here
 //    public ArrayList<User> findByRole(String role) {
 //        ArrayList<User> userList = new ArrayList<>();
 //        String query = "SELECT * FROM \"User\" WHERE role = ?";//se user osht fjal e rezervume ne postgresql

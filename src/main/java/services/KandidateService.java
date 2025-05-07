@@ -26,7 +26,7 @@ public class KandidateService {
         if (id <= 0) {
             throw new Exception("Id does not exist!");
         }
-        Kandidatet kandidati = (Kandidatet) this.kandidatetRepository.getbyID(id);
+        Kandidatet kandidati = (Kandidatet) this.kandidatetRepository.getById(id);
         if (kandidati == null) throw new Exception("Kandidati nuk u gjet!");
         return kandidati;
     }
@@ -52,9 +52,9 @@ public class KandidateService {
             throw new Exception("Gjinia duhet të jetë Mashkull ose Femer");
         }
         //Validimi i numrit te telefonit permes numriTelefonitRegEx
-//        if (!createDto.getPhoneNumber().matches(numriTelefonitRegEx)) {
-//            throw new Exception("Numri i telefonit nuk është valid");
-//        }
+        if (!createDto.getPhoneNumber().matches(numriTelefonitRegEx)) {
+            throw new Exception("Numri i telefonit nuk është valid");
+        }
         //Validimi i emailit permes emailRegEx
         if (!createDto.getEmail().matches(emailRegEx)) {
             throw new Exception("Emaili nuk është në formatin e duhur");
@@ -66,11 +66,10 @@ public class KandidateService {
         //Data e regjistrimit duhet te jete data e regjistrimit te Kandidatit
         createDto.setDataRegjistrimit(LocalDate.now());
         //Krijimi i Kandidatit ne DB
-        Kandidatet kandidati = kandidatetRepository.create(createDto);
+        Kandidatet kandidati = (Kandidatet) kandidatetRepository.create(createDto);
         if (kandidati == null) {
             throw new Exception("Kandidati nuk u krijua");
         }
-        System.out.println("Kandidati u shtua me sukses!");
         return kandidati;
     }
 
@@ -109,15 +108,15 @@ public class KandidateService {
         // Mund të vendosni logjikën tjetër të biznesit këtu (nëse ka ndonjë)
         patentaRepository.aprovoPatenten(kandidatId);
     }
-//    public boolean verifikoPatentenAprovuar(int idKandidat) throws SQLException{
+    //    public boolean verifikoPatentenAprovuar(int idKandidat) throws SQLException{
 //       // return this.kandidatetRepository.verifikoPatentenAprovuar(idKandidat);
 //    }
-public ArrayList<Kandidatet> getAllKandidatet() {
+    public ArrayList<Kandidatet> getAllKandidatet() {
         return this.kandidatetRepository.getAllKandidatet();
-}
+    }
     public int countKandidatet() {
         return this.kandidatetRepository.countKandidatet();
-  }
+    }
     public HashMap<String, Integer> getKandidatetStatusReport() {
         return this.kandidatetRepository.countKandidatetByStatusiProcesit();
     }

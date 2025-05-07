@@ -23,7 +23,7 @@ public class DokumentService {
     }
 
     // Funksioni për krijimin e dokumentit
-    public Dokumentet create(CreateDokumentetDto createDokumentDto, File file) throws Exception {
+    public Dokumentet create(CreateDokumentetDto createDokumentDto) throws Exception {
         // Validimet bazike për të kontrolluar të dhënat e dokumentit
         if (createDokumentDto.getIdKandidat() <= 0) {
             throw new Exception("ID e Kandidatit nuk është valide.");

@@ -168,7 +168,7 @@ public ArrayList<Dokumentet> getAllDokumentet() {
 }
     public Dokumentet create(CreateDokumentetDto dto, File fileToUpload) throws Exception {
         // Folder where to store files
-        String relativePath = "src/main/resources/uploaded_docs";
+        String relativePath = "src/main/java/utils/uploads";
         File uploadDir = new File(relativePath);
         if (!uploadDir.exists()) {
             uploadDir.mkdirs();

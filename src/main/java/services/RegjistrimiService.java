@@ -16,7 +16,9 @@ public class RegjistrimiService {
         this.kategoritePatentesRepository = new KategoritePatentesRepository();
         this.regjistrimiRepository = new RegjistrimetRepository();
     }
-
+public void mirato(int kandidatiId){
+        this.regjistrimiRepository.mirato(kandidatiId);
+}
     public Regjistrimet create(CreateRegjistrimetDto createDto) throws Exception {
         // Validimi i ID_Kandidat
         if (createDto.getIdKandidat() <= 0 || kandidatRepository.getbyID(createDto.getIdKandidat()) == null) {

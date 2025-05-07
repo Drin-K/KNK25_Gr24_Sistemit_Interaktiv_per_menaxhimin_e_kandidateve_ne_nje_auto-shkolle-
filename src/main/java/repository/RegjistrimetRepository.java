@@ -24,7 +24,24 @@ public class RegjistrimetRepository extends BaseRepository<Regjistrimet, CreateR
     public Regjistrimet fromResultSet(ResultSet result) throws SQLException {
         return Regjistrimet.getInstance(result);
     }
+    public void mirato(int id) {
+        String query = "UPDATE Regjistrimet SET Statusi = 'Përfunduar' WHERE ID_Kandidat = ?";
 
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setInt(1, id); // vendos ID e kandidatit
+            int affectedRows = statement.executeUpdate();
+
+            if (affectedRows > 0) {
+                System.out.println("Statusi u përditësua me sukses në 'Përfunduar'.");
+            } else {
+                System.out.println("Asnjë regjistrim nuk u gjet për ID_Kandidat = " + id);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     public Regjistrimet create(CreateRegjistrimetDto regjistrimetDto) {
         String query = """
                 INSERT INTO 

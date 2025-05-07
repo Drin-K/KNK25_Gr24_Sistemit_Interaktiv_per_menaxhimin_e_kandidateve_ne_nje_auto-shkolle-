@@ -104,8 +104,11 @@
         </VBox>
         <VBox layoutX="18.0" layoutY="271.0" prefHeight="255.0" prefWidth="364.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
             <children>
+                <Button fx:id="btnDeleteDokumenttet" text="Delete" onMouseClicked="#onDeleteDokumentetClick"/>
+                <Button fx:id="btnMiratoDokumentet" text="Verifiko Dokumentet" onMouseClicked="#onMiratoClick"/>
+                <Button fx:id="btnDownloadDokumentet" text="Verifiko Dokumentet" onMouseClicked="#onDownloadClick"/>
                <TableView fx:id="tableViewDokumente" prefHeight="254.0" prefWidth="381.0">
-                   <Button fx:id="btnDeleteDokumenttet" text="Delete" onMouseClicked="#onDeleteDokumentetClick"/>
+
 
                    <columns>
                        <TableColumn fx:id="colEmriSkedari" prefWidth="118.20104217529297" text="Emri i Skedarit" />
@@ -118,6 +121,7 @@
         </VBox>
       <VBox layoutX="458.0" layoutY="378.0" prefHeight="255.0" prefWidth="364.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
          <children>
+             <Button fx:id="btnDeleteTestet" text="Delete" onMouseClicked="#onDeleteTestetClick"/>
              <TableView fx:id="testetTable" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
                  <columns>
                      <TableColumn fx:id="idColumn2" text="ID" prefWidth="50.0"/>

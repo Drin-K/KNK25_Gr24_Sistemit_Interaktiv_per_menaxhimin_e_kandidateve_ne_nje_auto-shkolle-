@@ -1,5 +1,6 @@
 package services;
 
+import models.Dokumentet;
 import models.Dto.testet.CreateTestetDto;
 import models.Kandidatet;
 import models.Testet;
@@ -83,6 +84,16 @@ public class TestiService {
     }
     public List<Testet> getAllTestet() {
         return this.testetRepository.getAllTestet();
+    }
+    public void delete(int Id) throws Exception {
+       Testet ekzistues = testetRepository.getById(Id);
+        if (ekzistues == null) {
+            throw new Exception("Testi me ID " + Id + " nuk ekziston.");
+        }
+        boolean fshirje =testetRepository.delete(Id);
+        if (!fshirje) {
+            throw new Exception("Gabim gjatë fshirjes së testit me ID " + Id);
+        }
     }
 
 }

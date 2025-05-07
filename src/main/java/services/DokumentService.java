@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import models.Dokumentet;
 import models.Dto.dokumentet.CreateDokumentetDto;
 import models.Kandidatet;
+import models.Pagesat;
 import repository.DokumentetRepository;
 import repository.KandidatetRepository;
 
@@ -103,5 +104,15 @@ public class DokumentService {
     }
     public ArrayList<Dokumentet> getAllDokumentet(){
         return this.dokumentRepository.getAllDokumentet();
+    }
+    public void delete(int dokumentId) throws Exception {
+        Dokumentet ekzistues = dokumentRepository.getById(dokumentId);
+        if (ekzistues == null) {
+            throw new Exception("Pagesa me ID " + dokumentId + " nuk ekziston.");
+        }
+        boolean fshirje = dokumentRepository.delete(dokumentId);
+        if (!fshirje) {
+            throw new Exception("Gabim gjatë fshirjes së dokumentit me ID " + dokumentId);
+        }
     }
 }

@@ -15,6 +15,8 @@ import services.*;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class CandidateManagmentController{
@@ -94,6 +96,14 @@ public class CandidateManagmentController{
     @FXML
     private Button btnDeleteOrari;
     @FXML
+    private Button btnDeleteDokumenttet;
+    @FXML
+    private Button btnDeleteTestet;
+    @FXML
+    private Button btnMiratoDokumentet;
+    @FXML
+    private Button btnDownloadDokumentet;
+    @FXML
     private TextField txtEmri, txtMbiemri, txtEmail, txtPhone, txtAdresa, txtStatusiProcesit;
     @FXML
     private DatePicker datePickerDob;
@@ -109,6 +119,7 @@ public class CandidateManagmentController{
     private PagesaService pagesaService=new PagesaService();
     private OrariService orariService=new OrariService();
     private TestiService testiService=new TestiService();
+    private RegjistrimiService regjistrimiService=new RegjistrimiService();
     private void setDokumentetColumnFactories() {
         colEmriSkedari.setCellValueFactory(new PropertyValueFactory<>("emriSkedarit"));
         colLlojiDokumentit.setCellValueFactory(new PropertyValueFactory<>("llojiDokumentit"));
@@ -302,7 +313,83 @@ public class CandidateManagmentController{
             alert.showAndWait();
         }
     }
+    @FXML
+    private void onDeleteDokumentetClick() throws Exception {
+        Dokumentet selectedDokumentet=tableViewDokumente.getSelectionModel().getSelectedItem();
 
+        if (selectedDokumentet != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Konfirmo Fshirjen");
+            alert.setHeaderText(null);
+            alert.setContentText("A dëshironi të fshini dokumentin per kandidatin me id: " +
+                    selectedDokumentet.getIdKandidat() + "?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+
+                tableViewDokumente.getItems().remove(selectedDokumentet);
+
+                this.dokumentService.delete(selectedDokumentet.getId());
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Kujdes");
+            alert.setHeaderText(null);
+            alert.setContentText("Ju lutem zgjidhni një dokument për ta fshirë.");
+            alert.showAndWait();
+        }
+    }
+    @FXML
+    private void onDeleteTestetClick() throws Exception {
+        Testet selectedTest=testetTable.getSelectionModel().getSelectedItem();
+
+        if (selectedTest != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Konfirmo Fshirjen");
+            alert.setHeaderText(null);
+            alert.setContentText("A dëshironi të fshini testin per kandidatin me id: " +
+                    selectedTest.getIdKandidat() + "?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+
+                testetTable.getItems().remove(selectedTest);
+
+                this.testiService.delete(selectedTest.getId());
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Kujdes");
+            alert.setHeaderText(null);
+            alert.setContentText("Ju lutem zgjidhni një test për ta fshirë.");
+            alert.showAndWait();
+        }
+    }
+    @FXML
+    private void onMiratoClick(){
+       List<Dokumentet> selectedRegjistrimi=tableViewDokumente.getSelectionModel().getSelectedItems();
+
+        if (selectedRegjistrimi != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Konfirmo Regjistrimin e Kandidatit");
+            alert.setHeaderText(null);
+            alert.setContentText("A dëshironi të regjistrosh kandidatin me id: " +
+                    selectedRegjistrimi.getFirst().getIdKandidat() + "?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+
+                this.regjistrimiService.mirato( selectedRegjistrimi.getFirst().getIdKandidat());
+
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Kujdes");
+            alert.setHeaderText(null);
+            alert.setContentText("Ju lutem zgjidhni një test për ta fshirë.");
+            alert.showAndWait();
+        }
+    }
     @FXML
     public void initialize(){
         krijoFormenHBox.setVisible(false);

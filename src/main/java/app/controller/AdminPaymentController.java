@@ -90,12 +90,10 @@ public class AdminPaymentController {
     }
     @FXML
     private void updateLineChartData() throws SQLException {
-        // Fshirja e seri-ve të mëparshme
         paguarSeries.getData().clear();
         pjeserishtSeries.getData().clear();
         mbeturSeries.getData().clear();
 
-        // Merrni të dhënat për secilin status nga databaza për periudhën e caktuar
         List<Integer> paguarData = pagesatService.getPagesatDataByStatus("Paguar");
         List<Integer> pjeserishtData = pagesatService.getPagesatDataByStatus("Pjeserisht");
         List<Integer> mbeturData = pagesatService.getPagesatDataByStatus("Mbetur");
@@ -103,20 +101,17 @@ public class AdminPaymentController {
         System.out.println("Pjeserisht Data: " + pjeserishtData);
         System.out.println("Mbetur Data: " + mbeturData);
 
-        // Shtoni të dhënat në seri
         for (int i = 0; i < paguarData.size(); i++) {
             paguarSeries.getData().add(new XYChart.Data<>("Data" + (i + 1), paguarData.get(i)));
             pjeserishtSeries.getData().add(new XYChart.Data<>("Data" + (i + 1), pjeserishtData.get(i)));
             mbeturSeries.getData().add(new XYChart.Data<>("Data" + (i + 1), mbeturData.get(i)));
         }
 
-        // Vendosni seri në grafikon
         PPM.getData().clear();
         PPM.getData().addAll(paguarSeries, pjeserishtSeries, mbeturSeries);
     }
     @FXML
     public void filterPagesatIfValid() throws SQLException {
-        // Merrni vlerat nga fushat e filtrimit
         String name = searchByName.getText();
         String fromDate = from.getValue() != null ? from.getValue().toString() : null;
         String toDate = to.getValue() != null ? to.getValue().toString() : null;
@@ -147,7 +142,6 @@ public class AdminPaymentController {
         int monthCount = pagesatService.countPagesatInMonth(currentMonth);
         int yearCount = pagesatService.countPagesatInYear(todayDate.getYear());
 
-        // Ndrysho ngjyrat sipas kushteve (opsionale)
         today.setFill(todayCount > 0 ? Color.GREEN : Color.LIGHTGRAY);
         month.setFill(monthCount > 0 ? Color.BLUE : Color.LIGHTGRAY);
         year.setFill(yearCount > 0 ? Color.GOLD : Color.LIGHTGRAY);

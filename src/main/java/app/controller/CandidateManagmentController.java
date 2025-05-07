@@ -277,10 +277,7 @@ public class CandidateManagmentController{
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
-                // Fshi nga tabela në GUI
                 orariTable.getItems().remove(selectedOrari);
-
-                // Fshi nga databaza vetëm duke kaluar ID-në
                 this.orariService.delete(selectedOrari.getIdSesioni());
             }
         } else {
@@ -452,9 +449,6 @@ public class CandidateManagmentController{
         setColumnPayments();
         setColumnOrari();
         setColumnTestet();
-//        btnCreateKandidat.setOnAction(event -> handleCreateKandidat());
-//        btnReplaceKandidat.setOnAction(event -> handleReplaceKandidat());
-//        btnDeleteKandidat.setOnAction(event -> handleDeleteKandidat());
 
     }
         public void download(String emriSkedarit) {

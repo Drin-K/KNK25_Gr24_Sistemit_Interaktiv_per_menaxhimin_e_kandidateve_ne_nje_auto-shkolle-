@@ -1,6 +1,7 @@
 package services;
 
 import models.Dto.stafi.CreateStafiDto;
+import models.Kandidatet;
 import models.Stafi;
 import models.User;
 import repository.StafiRepository;
@@ -52,21 +53,30 @@ public class StafiService {
         return stafi;
     }
     public ArrayList<Stafi> getAll() {
-        ArrayList<User> users = stafiRepository.getAll(); // Kthen User
+        ArrayList<User> users = stafiRepository.getAll();
         ArrayList<Stafi> stafiList = new ArrayList<>();
 
         for (User user : users) {
             if (user instanceof Stafi) {
-                stafiList.add((Stafi) user); // safe cast
+                stafiList.add((Stafi) user);
             }
         }
         return stafiList;
     }
     public boolean delete(int id) throws Exception{
-        this.getById(id); // E kontrollojm a ekziston
+        this.getById(id);
         return stafiRepository.delete(id);
     }
     public int countStafi() {
         return this.stafiRepository.countStafi();
+    }
+    public ArrayList<Stafi> getAllStafi() {
+        return this.stafiRepository.getAllStafi();
+    }
+    public String getMostRatedInstructorName() {
+        return this.stafiRepository.getMostRatedInstructorName();
+    }
+    public String getLeastRatedInstructorName() {
+        return this.stafiRepository.getLeastRatedInstructorName();
     }
 }

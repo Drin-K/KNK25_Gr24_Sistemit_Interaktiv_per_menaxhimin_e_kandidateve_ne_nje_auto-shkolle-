@@ -72,4 +72,7 @@ public class PatentaService {
             e.printStackTrace();
         }
     }
+    public boolean aprovoPatenten(int kandidatId) throws SQLException{
+        return this.patentaRepository.aprovoPatenten(kandidatId);
+    }
 }

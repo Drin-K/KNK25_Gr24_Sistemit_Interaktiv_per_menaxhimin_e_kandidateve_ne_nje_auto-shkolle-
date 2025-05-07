@@ -64,6 +64,78 @@ public class StafiRepository extends UserRepository {
         }
         return null;
     }
+    public ArrayList<Stafi> getAllStafi(){
+            ArrayList<Stafi> stafi = new ArrayList<>();
+            String query = "SELECT u.id, u.name, u.surname, u.email, u.phoneNumber, u.dateOfBirth, u.hashedPassword, u.salt, u.adresa, u.gjinia, k.dataRegjistrimi, k.statusiProcesit, u.role " +
+                    "FROM Stafi k " +
+                    "JOIN \"User\" u ON k.id = u.id " +
+                    "WHERE u.role = 'Staf'";
+            try (
+                    PreparedStatement stmt = connection.prepareStatement(query);
+                    ResultSet rs = stmt.executeQuery()) {
+
+                while (rs.next()) {
+
+                    Stafi stafi1 = Stafi.getInstance(rs);
+                    stafi.add(stafi1);
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            return stafi;
+
+    }
+    public String getMostRatedInstructorName() {
+        String query = """
+      SELECT u.name, u.surname
+                  FROM Feedback fb
+                  JOIN "User" u ON fb.ID_Staf = u.id
+                  WHERE fb.Vleresimi = (SELECT MAX(Vleresimi) FROM Feedback)
+                  GROUP BY fb.ID_Staf, u.name, u.surname
+                  ORDER BY COUNT(*) DESC
+                  LIMIT 1;
+                
+    """;
+
+        try (PreparedStatement stmt = this.connection.prepareStatement(query)) {
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                String emri = rs.getString("name");
+                String mbiemri = rs.getString("surname");
+                return emri + " " + mbiemri;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public String getLeastRatedInstructorName() {
+        String query = """
+        SELECT u.name, u.surname
+                            FROM Feedback fb
+                            JOIN "User" u ON fb.ID_Staf = u.id
+                            WHERE fb.Vleresimi = (SELECT MIN(Vleresimi) FROM Feedback)
+                            GROUP BY fb.ID_Staf, u.name, u.surname
+                            ORDER BY COUNT(*) DESC
+                            LIMIT 1;
+                
+    """;
+
+        try (PreparedStatement stmt = this.connection.prepareStatement(query)) {
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                String emri = rs.getString("name");
+                String mbiemri = rs.getString("surname");
+                return emri + " " + mbiemri;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
 
 

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,12 +11,6 @@
       <Text layoutX="567.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 22; -fx-font-family: arial; -fx-font-weight: bold;" text="Payments" />
       <AnchorPane layoutX="383.0" layoutY="137.0" prefHeight="385.0" prefWidth="472.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #475779;">
          <children>
-            <MenuButton layoutX="144.0" layoutY="25.0" mnemonicParsing="false" style="-fx-background-color: #475779;" text="Choose Payment Method" textFill="#f4f4f4">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Cash" />
-                  <MenuItem mnemonicParsing="false" text="Online" />
-               </items>
-            </MenuButton>
             <ImageView fitHeight="26.0" fitWidth="33.0" layoutX="93.0" layoutY="186.0">
                <image>
                   <Image url="@../../images/location.pin.png" />
@@ -25,6 +18,7 @@
             </ImageView>
             <Text layoutX="126.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18px;" text="Shemsi Ahmeti, Mitrovicë 40000" />
             <Text layoutX="143.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18px; -fx-font-family: Arial;" text="Mund të na gjeni tek:" />
+            <Button fx:id="backBttn" layoutX="175.0" layoutY="239.0" mnemonicParsing="false" onAction="#backClick" prefHeight="26.0" prefWidth="104.0" text="Back" />
          </children>
       </AnchorPane>
    </children>

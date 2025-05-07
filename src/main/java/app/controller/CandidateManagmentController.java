@@ -87,9 +87,12 @@ public class CandidateManagmentController{
     @FXML private TableColumn<Testet, Integer> piketColumn;
     @FXML
     private Button btnCreateKandidat;
-
+    @FXML
+    private Button btnDeletePagesat;
     @FXML
     private Button btnDeleteKandidat;
+    @FXML
+    private Button btnDeleteOrari;
     @FXML
     private TextField txtEmri, txtMbiemri, txtEmail, txtPhone, txtAdresa, txtStatusiProcesit;
     @FXML
@@ -242,6 +245,60 @@ public class CandidateManagmentController{
             alert.setTitle("Kujdes");
             alert.setHeaderText(null);
             alert.setContentText("Ju lutem zgjidhni një kandidat për ta fshirë.");
+            alert.showAndWait();
+        }
+    }
+    @FXML
+    private void onDeleteOrariClick() throws Exception {
+        Orari selectedOrari=orariTable.getSelectionModel().getSelectedItem();
+
+        if (selectedOrari != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Konfirmo Fshirjen");
+            alert.setHeaderText(null);
+            alert.setContentText("A dëshironi të fshini orarin per kandidatin me id: " +
+                    selectedOrari.getIdKandidat() + "?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                // Fshi nga tabela në GUI
+                orariTable.getItems().remove(selectedOrari);
+
+                // Fshi nga databaza vetëm duke kaluar ID-në
+                this.orariService.delete(selectedOrari.getIdSesioni());
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Kujdes");
+            alert.setHeaderText(null);
+            alert.setContentText("Ju lutem zgjidhni një orar për ta fshirë.");
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    private void onDeletePagesatClick() throws Exception {
+        Pagesat selectedPagesat=tabelaPagesat.getSelectionModel().getSelectedItem();
+
+        if (selectedPagesat != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Konfirmo Fshirjen");
+            alert.setHeaderText(null);
+            alert.setContentText("A dëshironi të fshini orarin per kandidatin me id: " +
+                    selectedPagesat.getIdKandidat() + "?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+
+                tabelaPagesat.getItems().remove(selectedPagesat);
+
+                this.pagesaService.delete(selectedPagesat.getId());
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Kujdes");
+            alert.setHeaderText(null);
+            alert.setContentText("Ju lutem zgjidhni një orar për ta fshirë.");
             alert.showAndWait();
         }
     }

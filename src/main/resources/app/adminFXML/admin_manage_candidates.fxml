@@ -24,7 +24,7 @@
         <PieChart fx:id="statistikatKandidateveChart" layoutX="20.0" layoutY="159.60000610351562" prefHeight="250" prefWidth="400" />
         <VBox layoutX="170.0" layoutY="385.0" />
         <VBox layoutX="895.0" layoutY="272.0" prefHeight="147.0" prefWidth="418.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
-
+            <Button fx:id="btnDeleteOrari" text="Delete" onMouseClicked="#onDeleteOrariClick"/>
             <TableView fx:id="orariTable" prefHeight="400" prefWidth="800">
                 <columns>
                     <TableColumn fx:id="idColumn1" text="ID" />
@@ -40,6 +40,7 @@
             </TableView></VBox>
         <VBox layoutX="388.0" layoutY="272.0" prefHeight="100.0" prefWidth="500.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
             <children>
+                <Button fx:id="btnDeletePagesat" text="Delete" onMouseClicked="#onDeletePagesatClick"/>
                 <TableView fx:id="tabelaPagesat" layoutX="50" layoutY="50" prefHeight="161.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
                     <columns>
                         <TableColumn fx:id="colId" text="ID" />
@@ -104,6 +105,8 @@
         <VBox layoutX="18.0" layoutY="271.0" prefHeight="255.0" prefWidth="364.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
             <children>
                <TableView fx:id="tableViewDokumente" prefHeight="254.0" prefWidth="381.0">
+                   <Button fx:id="btnDeleteDokumenttet" text="Delete" onMouseClicked="#onDeleteDokumentetClick"/>
+
                    <columns>
                        <TableColumn fx:id="colEmriSkedari" prefWidth="118.20104217529297" text="Emri i Skedarit" />
                        <TableColumn fx:id="colLlojiDokumentit" prefWidth="106.59890747070312" text="Lloji i Dokumentit" />

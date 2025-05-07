@@ -2,6 +2,7 @@ package services;
 
 import javafx.scene.chart.XYChart;
 import models.Dto.pagesat.CreatePagesatDto;
+import models.Orari;
 import models.Pagesat;
 import repository.PagesatRepository;
 
@@ -100,5 +101,15 @@ public class PagesaService {
     }
     public List<Integer> getPagesatDataByStatus(String status) throws SQLException{
         return pagesatRepository.getPagesatDataByStatus(status);
+    }
+    public void delete(int pagesaId) throws Exception {
+        Pagesat ekzistues = pagesatRepository.getById(pagesaId);
+        if (ekzistues == null) {
+            throw new Exception("Pagesa me ID " + pagesaId + " nuk ekziston.");
+        }
+        boolean fshirje = pagesatRepository.delete(pagesaId);
+        if (!fshirje) {
+            throw new Exception("Gabim gjatë fshirjes së pageses me ID " + pagesaId);
+        }
     }
 }

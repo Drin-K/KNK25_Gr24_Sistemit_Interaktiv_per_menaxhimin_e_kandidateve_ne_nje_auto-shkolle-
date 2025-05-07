@@ -167,7 +167,6 @@ public class KandidatetRepository extends UserRepository {
     """;
 
         try {
-            // Krijo përdoruesin në tabelën User dhe merr ID-në
             PreparedStatement psUser = this.connection.prepareStatement(insertUserQuery);
             psUser.setString(1, dto.getName());
             psUser.setString(2, dto.getSurname());

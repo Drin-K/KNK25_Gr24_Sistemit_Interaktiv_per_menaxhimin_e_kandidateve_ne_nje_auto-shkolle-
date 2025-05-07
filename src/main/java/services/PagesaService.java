@@ -59,24 +59,14 @@ public class PagesaService {
         }
         return pagesa;
     }
-    public ArrayList<Pagesat> getAll(){
-        return pagesatRepository.getAll();
-    }
-    public ArrayList<Pagesat> findPagesaByStatus(String statusi) {
-        return pagesatRepository.findByStatus(statusi);
-    }
+
     public XYChart.Series<String, Number> getUnpaidPaymentsChartData() {
         List<Pagesat> pagesatList = pagesatRepository.getUnpaidPayments();
-
-        // Krijoni një seri të re për grafikun
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         series.setName("UnpaidPayments");
-
-        // Për çdo pagesë të papaguar, shto të dhënat në seri
         for (Pagesat pagesa : pagesatList) {
-            series.getData().add(new XYChart.Data<>("Kandidat " + pagesa.getIdKandidat(), pagesa.getShuma()));
+            series.getData().add(new XYChart.Data<>("Candidate " + pagesa.getIdKandidat(), pagesa.getShuma()));
         }
-
         return series;
     }
     public HashMap<String, Integer> getPaymentsLast12Months() {

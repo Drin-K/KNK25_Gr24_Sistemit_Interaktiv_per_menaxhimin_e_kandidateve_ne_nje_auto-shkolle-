@@ -21,30 +21,21 @@ public class RaportiProgresitService {
     }
 
     public RaportiProgresit create(CreateRaportiProgresitDto dto) throws Exception {
-        // Validimi i ID_KANDIDAT
         if (dto.getIdKandidat() <= 0 || kandidatetRepository.getbyID(dto.getIdKandidat()) == null) {
             throw new Exception("ID i kandidatit është i pavlefshëm.");
         }
-
-        // Validimi i ID_STAF
         if (dto.getIdStaf() <= 0 || stafiRepository.getByIDstaf(dto.getIdStaf()) == null) {
             throw new Exception("ID i stafit është i pavlefshëm.");
         }
-        // Validimi i pikëve teorike dhe praktike
         if (dto.getPiketTeorike() < 0 || dto.getPiketTeorike() > 100) {
             throw new Exception("Piket teorike duhet të jenë mes 0 dhe 100.");
         }
         if (dto.getPiketPraktike() < 0 || dto.getPiketPraktike() > 100) {
             throw new Exception("Piket praktike duhet të jenë mes 0 dhe 100.");
         }
-
-        // Validimi i komenteve
         if (dto.getKomentet() != null && dto.getKomentet().length() > 500) {
             throw new Exception("Komentet nuk mund të kalojnë 500 karaktere.");
         }
-
-        // Validimi i performancës së përgjithshme
-        //MA VONE DUHET ME PROVU ME BOO ME ENUM SE MA PROFESIONALE
         String[] validPerformanca = {"Shkëlqyeshëm", "Mirë", "Mesatar", "Dobët"};
         boolean isPerformancaValid = false;
         for (String performanca : validPerformanca) {
@@ -62,10 +53,5 @@ public class RaportiProgresitService {
     public List<RaportiProgresit> getRaportetById(int idStaf,int idKategori){
         return raportiProgresitRepository.getRaportetByStaf(idStaf,idKategori);
     }
-    //ide tjera per ma vone:
-    //1. Metodë: Me i llogarit pikët totale të një kandidati në raport progresi
-    //2. Metodë: Me i marrë të gjithë raportet për një kandidat të caktuar
-    //3. Metodë: Me llogarit mesataren e performancës së një kandidati
-    //Nëse më vonë e konverton PerformancaGjenerale në Enum me vlerë numerike (p.sh. Shkëlqyeshëm = 4, Mirë = 3...), atëherë mundesh me bo diçka të tillë:
 
 }

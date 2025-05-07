@@ -12,11 +12,6 @@ public class KandidatetRepository extends UserRepository {
 
     public KandidatetRepository() {
         super();}
-
-    public ArrayList<Kandidatet> findByRole(String role) {
-        // Filtron përdoruesit me rolin 'kandidat'
-        return this.findByRole("Kandidat");
-    }
     @Override
     public Kandidatet fromResultSet(ResultSet result) throws SQLException {
         return Kandidatet.getInstance(result);
@@ -42,14 +37,6 @@ public class KandidatetRepository extends UserRepository {
         return data;
     }
 
-    public void updateStatusiProcesit(int kandidatId, String statusi) throws SQLException {
-        String sql = "UPDATE Kandidatet SET statusiProcesit = ? WHERE id = ?";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, statusi);
-            statement.setInt(2, kandidatId);
-            statement.executeUpdate();
-        }
-    }
 
     public ArrayList<Kandidatet> getAllKandidatet() {
         ArrayList<Kandidatet> kandidatet = new ArrayList<>();

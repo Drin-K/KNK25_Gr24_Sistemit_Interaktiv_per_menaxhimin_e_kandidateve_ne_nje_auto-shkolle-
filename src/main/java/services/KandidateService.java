@@ -73,17 +73,6 @@ public class KandidateService {
         return kandidati;
     }
 
-    public ArrayList<Kandidatet> getAll() {
-        ArrayList<User> users = kandidatetRepository.getAll(); // Supozojmë se kthen User
-        ArrayList<Kandidatet> kandidatetList = new ArrayList<>();
-
-        for (User user : users) {
-            if (user instanceof Kandidatet) {
-                kandidatetList.add((Kandidatet) user); // Safe cast
-            }
-        }
-        return kandidatetList;
-    }
 
     public boolean delete(int id) throws Exception {
         this.getById(id); // E kontrollojm a ekziston
@@ -97,15 +86,14 @@ public class KandidateService {
             e.printStackTrace();
             return new HashMap<>();
         }
-        //update metet me fol me blendin a duhet me validu edhe update...
 
     }
-
 
     public boolean aprovoPatenten(int kandidatId) throws SQLException {
        return patentaRepository.aprovoPatenten(kandidatId);
     }
-
+//Ketu nuk e perdorim getAll te definuar ne UserRepository per shkak te menyre sse si i kemi kriju
+    //tabelat ne databaze duhet patjeter join permes id-se te Useri dhe te tabela Kandidatet
     public ArrayList<Kandidatet> getAllKandidatet() {
         return this.kandidatetRepository.getAllKandidatet();
     }

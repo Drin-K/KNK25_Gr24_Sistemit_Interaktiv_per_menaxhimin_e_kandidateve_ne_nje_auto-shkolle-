@@ -77,7 +77,7 @@ public class AdminHomeController {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
                 for (Patenta patenta : patentat) {
-                    series.getData().add(new XYChart.Data<>(patenta.getDataLeshimit().format(formatter), 1)); // Përdoreni 1 për të treguar një patentë për datën specifike
+                    series.getData().add(new XYChart.Data<>(patenta.getDataLeshimit().format(formatter), 1));
                 }
 
                 patentatEleshuara.getData().add(series);

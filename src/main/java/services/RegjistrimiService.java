@@ -28,8 +28,6 @@ public class RegjistrimiService {
             return false;
         }
     }
-
-
     public Regjistrimet create(CreateRegjistrimetDto createDto) throws Exception {
         // Validimi i ID_Kandidat
         if (createDto.getIdKandidat() <= 0 || kandidatRepository.getbyID(createDto.getIdKandidat()) == null) {

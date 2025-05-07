@@ -58,27 +58,7 @@ public class TestiService {
 
         return testetRepository.create(dto);
     }
-    //qet pjesen posht pe ruj per kontroller
-//    public void shfaqInformacioniPerKandidatin(CreateTestetDto dto) {
-//        System.out.println("Informacioni për Testin:");
-//        System.out.println("Lloji i testit: " + dto.getLlojiTestit());
-//        System.out.println("Data e testit: " + dto.getDataTestit());
-//        System.out.println("Rezultati: " + dto.getRezultati());
-//        System.out.println("Piket: " + dto.getPiket());
-//    }
 
-    //QETU OSHT IDE SHTESE ME E INTEGRU NI FUNKSION PER PIK MESATARE
-    public void updateRezultatetKandidat(String idKandidatStr, String rezultati) {
-        try {
-            int idKandidat = Integer.parseInt(idKandidatStr);
-            testetRepository.updateRezultatiKandidatit(idKandidat, rezultati);
-        } catch (NumberFormatException e) {
-            System.err.println("ID e kandidatit nuk është numër i vlefshëm.");
-        } catch (Exception e) {
-            System.err.println("Gabim gjatë përditësimit të rezultatit.");
-            e.printStackTrace();
-        }
-    }
     public List<Testet> getTestetByKandidatId(int idKandidat) {
         return testetRepository.getTestetByKandidatId(idKandidat);
     }

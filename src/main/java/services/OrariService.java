@@ -39,11 +39,6 @@ public class OrariService {
         return orariRepository.gjejOraretPerId(id);
     }
 
-    public boolean eshteGatiPerProvim(int idKandidat) {
-        long teori = numeroSesione(idKandidat, "Teori","Përfunduar");
-        long praktike = numeroSesione(idKandidat, "Praktikë","Përfunduar");
-        return teori >= 15 && praktike >= 20;
-    }
     public void delete(int orariId) throws Exception {
         Orari ekzistues = orariRepository.getById(orariId);
         if (ekzistues == null) {
@@ -85,43 +80,34 @@ public class OrariService {
         if (dto.getIdAutomjet() <= 0)
             throw new Exception("ID e automjetit është e pavlefshme.");
 
-        // PËRDITËSIMI NË BAZËN E TË DHËNAVE
-        // Shto ID-në e sesionit në DTO
         dto.setIdSesioni(orariId);
 
         return orariRepository.update(dto);
     }
 
-    // ===================== METODA: Shto sesion të ri =====================
     public Orari create(CreateOrariDto dto) throws Exception {
-        // 1. Validimi i datës së sesionit
+
         if (dto.getDataSesionit() == null) {
             throw new Exception("Data e sesionit nuk mund të jetë bosh.");
         }
         if (dto.getDataSesionit().isBefore(LocalDate.now())) {
             throw new Exception("Data e sesionit duhet të jetë sot ose në të ardhmen.");
         }
-
-        // 2. Validimi i orës së fillimit dhe përfundimit
         if (dto.getOraFillimit() == null || dto.getOraPerfundimit() == null) {
             throw new Exception("Orari i fillimit dhe përfundimit nuk mund të jenë bosh.");
         }
         if (!dto.getOraPerfundimit().isAfter(dto.getOraFillimit())) {
             throw new Exception("Ora e përfundimit duhet të jetë pas orës së fillimit.");
         }
-        // Optional: Validimi për orar jashtë orarit të punës (p.sh., mes 9:00 dhe 17:00)
         if (dto.getOraFillimit().isBefore(LocalTime.of(9, 0)) || dto.getOraPerfundimit().isAfter(LocalTime.of(17, 0))) {
             throw new Exception("Orari duhet të jetë brenda orarit të punës, nga 9:00 deri në 17:00.");
         }
-
-        // 3. Validimi i llojit të mësimit (me insensitive case)
         if (dto.getLlojiMesimit() == null ||
                 !(dto.getLlojiMesimit().equalsIgnoreCase("Teori") ||
                         dto.getLlojiMesimit().equalsIgnoreCase("Praktikë"))) {
             throw new Exception("Lloji i mësimit duhet të jetë 'Teori' ose 'Praktikë'.");
         }
 
-        // 4. Validimi i statusit të sesionit (me insensitive case)
         if (dto.getStatusi() == null ||
                 !(dto.getStatusi().equalsIgnoreCase("Planifikuar") ||
                         dto.getStatusi().equalsIgnoreCase("Përfunduar") ||
@@ -129,20 +115,11 @@ public class OrariService {
             throw new Exception("Statusi duhet të jetë 'Planifikuar', 'Përfunduar' ose 'Anuluar'.");
         }
 
-        // 5. Kontrollo ekzistencën e kandidatit, stafit dhe automjetit përmes BaseRepository -> getById()
-
-
-
-
         Automjetet automjeti = automjetRepository.getById(dto.getIdAutomjet());
         if (automjeti == null) {
             throw new Exception("Automjeti me këtë ID nuk ekziston.");
         }
-
-        // --6. Kontrollo që nuk ka orar të dyfishtë për kandidat, staf dhe automjet--
-        // Për kandidat
         List<Orari> ekzistuesKandidat = shikoOraretPerId(dto.getIdKandidat());
-        // Për staf
         List<Orari> ekzistuesStaf = shikoOraretPerId(dto.getIdStaf());
         //Per automjet
         List<Orari> ekzistuesAutomjet = orariRepository.gjejOraretPerId(dto.getIdAutomjet());
@@ -154,7 +131,6 @@ public class OrariService {
                 errorMessage.append("Kandidati ka një sesion tjetër në këtë orar.\n");
             }
         }
-        // Kontrollo për staf
         for (Orari orar : ekzistuesStaf) {
             if (orar.getDataSesionit().equals(dto.getDataSesionit()) &&
                     (orar.getOraFillimit().isBefore(dto.getOraPerfundimit()) && orar.getOraPerfundimit().isAfter(dto.getOraFillimit()))) {
@@ -168,11 +144,9 @@ public class OrariService {
             }
         }
 
-        // Nëse ka mesazhe gabimi për kandidat ose staf, hedh përjashtimin
         if (!errorMessage.isEmpty()) {
             throw new Exception(errorMessage.toString());
         }
-        // 7. Në fund e shtojmë sesionin përmes OrariRepository
         Orari orari=orariRepository.create(dto);
         return orari;
     }
@@ -184,8 +158,8 @@ public class OrariService {
         return orariRepository.gjejOraretPerDate(data);
     }
     public List<Orari> getSessionsToday() {
-        LocalDate currentDate = LocalDate.now(); // Merr datën e sotme
-        return gjejOraretPerDate(currentDate); // Thërrisni metodën ekzistuese për datën aktuale
+        LocalDate currentDate = LocalDate.now();
+        return gjejOraretPerDate(currentDate);
     }
     public List<Orari> getAllOrari(){
         return this.orariRepository.loadOrariData();

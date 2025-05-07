@@ -5,6 +5,7 @@ import models.FeedBack;
 import repository.FeedBackRepository;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -38,9 +39,15 @@ public class FeedBackService {
         }
         return feedback;
     }
-
+    public boolean delete(int id) throws Exception {
+        this.getById(id); // E kontrollojm a ekziston
+        return this.feedbackRepository.delete(id);
+    }
     public List<FeedBack> getFeedbacksByDate(int instructorId, LocalDate date) {
         return feedbackRepository.getFeedbacksByStaffAndDate(instructorId, date);
+    }
+    public ArrayList<FeedBack>getAll(){
+        return this.feedbackRepository.getAll();
     }
 //PYTJE: A ka nevoj me ba validime kur te boj update te nje repository
 }

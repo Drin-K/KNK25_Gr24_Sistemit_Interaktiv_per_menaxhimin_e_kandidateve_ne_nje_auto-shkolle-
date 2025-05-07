@@ -101,16 +101,11 @@ public class KandidateService {
 
     }
 
-    public List<Kandidatet> gjejKandidatetMeTeDrejte(boolean statusiProcesit, boolean pagesa, boolean testet, boolean regjistrimi) throws SQLException {
-        return this.kandidatetRepository.gjejKandidatetMeTeDrejte(statusiProcesit, pagesa, testet, regjistrimi);
+
+    public boolean aprovoPatenten(int kandidatId) throws SQLException {
+       return patentaRepository.aprovoPatenten(kandidatId);
     }
-    public void aprovoPatenten(int kandidatId) throws SQLException {
-        // Mund të vendosni logjikën tjetër të biznesit këtu (nëse ka ndonjë)
-        patentaRepository.aprovoPatenten(kandidatId);
-    }
-    //    public boolean verifikoPatentenAprovuar(int idKandidat) throws SQLException{
-//       // return this.kandidatetRepository.verifikoPatentenAprovuar(idKandidat);
-//    }
+
     public ArrayList<Kandidatet> getAllKandidatet() {
         return this.kandidatetRepository.getAllKandidatet();
     }
@@ -119,5 +114,11 @@ public class KandidateService {
     }
     public HashMap<String, Integer> getKandidatetStatusReport() {
         return this.kandidatetRepository.countKandidatetByStatusiProcesit();
+    }
+    public List<Kandidatet> shfaqKandidatetMeTeDrejte(){
+        return this.kandidatetRepository.shfaqKandidatetMeTeDrejte();
+    }
+    public List<Kandidatet> shfaqKandidatetMeTeDrejtePaPagesa(){
+        return this.kandidatetRepository.shfaqKandidatetMeTeDrejtePaPagesa();
     }
 }

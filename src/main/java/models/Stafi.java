@@ -10,7 +10,18 @@ public class Stafi extends User{
 
     }
     public static Stafi getInstance(ResultSet result) throws SQLException {
-        User stafi = User.getInstance(result);
-        return new Stafi(stafi.getIdUser(),stafi.getName(),stafi.getSurname(),stafi.getEmail(),stafi.getPhoneNumber(),stafi.getDateOfBirth(),stafi.getHashedPassword(),stafi.getSalt(), stafi.getAdresa(), stafi.getGjinia());
+        int id = result.getInt("id");
+        String name = result.getString("name");
+        String surname = result.getString("surname");
+        String email = result.getString("email");
+        String phoneNumber = result.getString("phoneNumber");
+        LocalDate dateOfBirth = result.getObject("dateOfBirth", LocalDate.class);
+        String hashedPassword = result.getString("hashedPassword");
+        String salt = result.getString("salt");
+        String adresa = result.getString("adresa");
+        String gjinia = result.getString("gjinia");
+        return new Stafi(id, name, surname, email,
+                phoneNumber, dateOfBirth, hashedPassword,
+                salt, adresa, gjinia);
     }
 }

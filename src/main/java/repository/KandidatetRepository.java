@@ -41,48 +41,7 @@ public class KandidatetRepository extends UserRepository {
 
         return data;
     }
-    public List<Kandidatet> gjejKandidatetMeTeDrejte(boolean statusiProcesit, boolean pagesa, boolean testet, boolean regjistrimi) throws SQLException {
-        String sql = """
-            SELECT DISTINCT ON (u.id)
-                   u.id, u.name, u.surname, u.email, u.phoneNumber, u.dateOfBirth,
-                   u.hashedPassword, u.salt, u.role, u.adresa, u.gjinia,
-                   k.dataRegjistrimi, k.statusiProcesit
-            FROM "User" u
-            JOIN Kandidatet k ON u.id = k.id
-            JOIN Pagesat p ON u.id = p.ID_Kandidat
-            JOIN Testet t ON u.id = t.ID_Kandidat
-            JOIN Regjistrimet r ON u.id = r.ID_Kandidat
-            LEFT JOIN Patenta pa ON u.id = pa.ID_Kandidat AND pa.Statusi = 'E lëshuar'
-            WHERE pa.ID_Kandidat IS NULL
-              AND k.statusiProcesit = ?
-              AND p.Statusi_i_Pageses = ?
-              AND t.Rezultati = ?
-              AND r.Statusi = ?
-            ORDER BY u.id;
-            """;
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            // Vendosja e parametrave për filtrim në query
-            stmt.setString(1, statusiProcesit ? "Përfunduar" : "Në proces");
-            stmt.setString(2, pagesa ? "Paguar" : "Mbetur");
-            stmt.setString(3, testet ? "Kaluar" : "Dështuar");
-            stmt.setString(4, regjistrimi ? "Përfunduar" : "Në proces");
 
-            ResultSet rs = stmt.executeQuery();
-            List<Kandidatet> kandidatet =new ArrayList<>();
-
-
-            while (rs.next()) {
-                int id = rs.getInt("id");
-                // Kontrollojmë nëse kandidati është shtuar më parë
-
-                Kandidatet kandidat = Kandidatet.getInstance(rs); // Merr instancën nga ResultSet
-                kandidatet.add(kandidat);
-
-            }
-
-            return kandidatet;
-        }
-    }
     public void updateStatusiProcesit(int kandidatId, String statusi) throws SQLException {
         String sql = "UPDATE Kandidatet SET statusiProcesit = ? WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -149,6 +108,71 @@ public class KandidatetRepository extends UserRepository {
             e.printStackTrace();
         }
         return null;
+    }
+    public List<Kandidatet> shfaqKandidatetMeTeDrejte() {
+        List<Kandidatet> kandidatet = new ArrayList<>();
+        String sql = "SELECT DISTINCT k.id, k.dataRegjistrimi, k.statusiProcesit, " +
+                "u.name, u.surname, u.email, u.phoneNumber, u.dateOfBirth, " +
+                "u.hashedPassword, u.salt, u.adresa, u.gjinia, p1.Statusi AS StatusiPatentes " +
+                "FROM Kandidatet k " +
+                "JOIN \"User\" u ON u.id = k.id " +
+                "JOIN Pagesat p2 ON p2.ID_Kandidat = k.id " +
+                "JOIN Regjistrimet r ON r.ID_Kandidat = k.id " +
+                "JOIN Testet t ON t.ID_Kandidat = k.id " +
+                "JOIN Patenta p1 ON p1.ID_Kandidat = k.id " +
+                "WHERE k.statusiProcesit = 'Përfunduar' " +
+                "AND r.Statusi = 'Përfunduar' " +
+                "AND t.Rezultati = 'Kaluar' " +
+                "AND p1.Statusi = 'Në proces';";
+
+            try (PreparedStatement stmt = connection.prepareStatement(sql);
+                 ResultSet rs = stmt.executeQuery()) {
+
+
+            while (rs.next()) {
+                kandidatet.add(Kandidatet.getInstance(rs));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return kandidatet;
+    }
+    public List<Kandidatet> shfaqKandidatetMeTeDrejtePaPagesa() {
+        List<Kandidatet> kandidatet = new ArrayList<>();
+        String query = """
+                SELECT DISTINCT k.id, k.dataRegjistrimi, k.statusiProcesit,\s
+                                u.name, u.surname, u.email, u.phoneNumber, u.dateOfBirth,\s
+                                u.hashedPassword, u.salt, u.adresa, u.gjinia,\s
+                                p1.Statusi AS StatusiPatentes\s
+                FROM Kandidatet k\s
+                JOIN "User" u ON u.id = k.id\s
+                JOIN Pagesat p2 ON p2.ID_Kandidat = k.id\s
+                JOIN Regjistrimet r ON r.ID_Kandidat = k.id\s
+                JOIN Testet t ON t.ID_Kandidat = k.id\s
+                JOIN Patenta p1 ON p1.ID_Kandidat = k.id\s
+                WHERE k.statusiProcesit = 'Përfunduar'\s
+                AND r.Statusi = 'Përfunduar'\s
+                AND t.Rezultati = 'Kaluar'\s
+                AND p1.Statusi = 'Në proces'
+                AND p2.Statusi_i_Pageses IN ('Mbetur', 'Pjesërisht');
+                
+        """;
+
+        try (PreparedStatement stmt = connection.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+
+
+            while (rs.next()) {
+                kandidatet.add(Kandidatet.getInstance(rs));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return kandidatet;
     }
 
 }

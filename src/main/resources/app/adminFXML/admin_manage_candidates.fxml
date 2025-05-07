@@ -1,89 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.PieChart?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.DatePicker?>
-<?import java.lang.String?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.collections.FXCollections?>
-<?import javafx.scene.control.PasswordField?>
 <AnchorPane maxHeight="699.0" prefHeight="699.0" prefWidth="1314.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.CandidateManagmentController">
     <children>
-        <Label layoutX="20.0" layoutY="20.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Menaxhimi i kandidateve" />
+        <Label layoutX="19.0" layoutY="8.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Candidate Managment" />
 
         <HBox layoutX="20.0" layoutY="75.19999694824219" spacing="20" />
-
-        <PieChart fx:id="statistikatKandidateveChart" layoutX="20.0" layoutY="159.60000610351562" prefHeight="250" prefWidth="400" />
         <VBox layoutX="170.0" layoutY="385.0" />
-        <VBox layoutX="895.0" layoutY="272.0" prefHeight="147.0" prefWidth="418.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
-            <Button fx:id="btnDeleteOrari" text="Delete" onMouseClicked="#onDeleteOrariClick"/>
+        <VBox layoutX="-1.0" layoutY="266.0" prefHeight="147.0" prefWidth="915.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
+         <HBox spacing="350.0">
+            <children>
+                  <Button fx:id="btnDeleteOrari" onMouseClicked="#onDeleteOrariClick" text="Delete" />
+               <Label text="Schedule management" textFill="WHITE" />
+            </children>
+         </HBox>
             <TableView fx:id="orariTable" prefHeight="400" prefWidth="800">
                 <columns>
                     <TableColumn fx:id="idColumn1" text="ID" />
-                    <TableColumn fx:id="idKandidatColumn" text="ID Kandidat" />
-                    <TableColumn fx:id="idStafColumn" text="ID Staf" />
-                    <TableColumn fx:id="dataSesioniColumn" text="Data e Sesionit" />
-                    <TableColumn fx:id="oraFillimitColumn" text="Ora e Fillimit" />
-                    <TableColumn fx:id="oraPerfundimitColumn" text="Ora e Përfundimit" />
-                    <TableColumn fx:id="llojiMesimitColumn" text="Lloji i Mësimit" />
-                    <TableColumn fx:id="statusiColumn" text="Statusi" />
-                    <TableColumn fx:id="idAutomjetColumn" text="ID Automjet" />
+                    <TableColumn fx:id="idKandidatColumn" prefWidth="90.76438903808594" text="Candidate ID" />
+                    <TableColumn fx:id="idStafColumn" prefWidth="69.23558044433594" text="Staf ID" />
+                    <TableColumn fx:id="dataSesioniColumn" prefWidth="101.52880859375" text="Session Date" />
+                    <TableColumn fx:id="oraFillimitColumn" prefWidth="91.99038696289062" text="Start Time" />
+                    <TableColumn fx:id="oraPerfundimitColumn" prefWidth="150.13690185546875" text="End Time" />
+                    <TableColumn fx:id="llojiMesimitColumn" prefWidth="133.863037109375" text="Lesson " />
+                    <TableColumn fx:id="statusiColumn" minWidth="0.0" prefWidth="95.546142578125" text="Status" />
+                    <TableColumn fx:id="idAutomjetColumn" prefWidth="81.28594970703125" text="Vehicle ID" />
                 </columns>
             </TableView></VBox>
-        <VBox layoutX="388.0" layoutY="272.0" prefHeight="100.0" prefWidth="500.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
+        <VBox layoutX="6.0" layoutY="422.0" prefHeight="229.0" prefWidth="508.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
             <children>
-                <Button fx:id="btnDeletePagesat" text="Delete" onMouseClicked="#onDeletePagesatClick"/>
-                <TableView fx:id="tabelaPagesat" layoutX="50" layoutY="50" prefHeight="161.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+            <HBox spacing="140.0">
+               <children>
+                      <Button fx:id="btnDeletePagesat" onMouseClicked="#onDeletePagesatClick" text="Delete" />
+                  <Label text="Payment Managment" textFill="WHITE" />
+               </children>
+            </HBox>
+                <TableView fx:id="tabelaPagesat" layoutX="50" layoutY="50" prefHeight="161.0" prefWidth="598.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
                     <columns>
-                        <TableColumn fx:id="colId" text="ID" />
-                        <TableColumn fx:id="colIdKandidat" text="ID Kandidat" />
-                        <TableColumn fx:id="colShuma" text="Shuma" />
-                        <TableColumn fx:id="colDataPageses" text="Data e Pagesës" />
-                        <TableColumn fx:id="colMetodaPageses" text="Metoda e Pagesës" />
-                        <TableColumn fx:id="colStatusiPageses" text="Statusi i Pagesës" />
+                        <TableColumn fx:id="colId" prefWidth="40.53046417236328" text="ID" />
+                        <TableColumn fx:id="colIdKandidat" prefWidth="73.85340118408203" text="Candidate ID" />
+                        <TableColumn fx:id="colShuma" prefWidth="66.05935668945312" text="Tot. Amount" />
+                        <TableColumn fx:id="colDataPageses" prefWidth="88.56808471679688" text="Payment Date" />
+                        <TableColumn fx:id="colMetodaPageses" prefWidth="108.0830078125" text="Payment Method" />
+                        <TableColumn fx:id="colStatusiPageses" prefWidth="105.11703491210938" text="Payment Status" />
                     </columns>
                 </TableView>
             </children>
         </VBox>
-        <VBox layoutX="1.0" layoutY="90.0" prefHeight="170.0" prefWidth="1306.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
+        <VBox layoutX="1.0" layoutY="46.0" prefHeight="214.0" prefWidth="1306.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
             <children>
-                <HBox spacing="10" alignment="CENTER" style="-fx-padding: 5;">
-                    <Button fx:id="btnCreateKandidat" text="Create" onMouseClicked="#onCreateKandidatClick" />
-                    <Button fx:id="btnDeleteKandidat" text="Delete" onMouseClicked="#onDeleteKandidatClick"/>
+                <HBox alignment="CENTER" prefHeight="68.0" prefWidth="1287.0" spacing="10" style="-fx-padding: 5;">
+                    <Button fx:id="btnCreateKandidat" onMouseClicked="#onCreateKandidatClick" text="Create" />
+                    <Button fx:id="btnDeleteKandidat" onMouseClicked="#onDeleteKandidatClick" text="Delete" />
                 </HBox>
                 <TableView fx:id="kandidatTable" layoutX="20" layoutY="20" prefHeight="422.0" prefWidth="888.0">
                     <columns>
                         <TableColumn fx:id="idColumn" prefWidth="127.47979164123535" text="ID" />
-                        <TableColumn fx:id="nameColumn" prefWidth="122.80007934570312" text="Emri" />
-                        <TableColumn fx:id="surnameColumn" minWidth="0.0" prefWidth="104.66983032226562" text="Mbiemri" />
+                        <TableColumn fx:id="nameColumn" prefWidth="122.80007934570312" text="Name" />
+                        <TableColumn fx:id="surnameColumn" minWidth="0.0" prefWidth="104.66983032226562" text="Surname" />
                         <TableColumn fx:id="emailColumn" prefWidth="89.87393188476562" text="Email" />
-                        <TableColumn fx:id="phoneColumn" prefWidth="107.74200439453125" text="Nr. Tel" />
-                        <TableColumn fx:id="dobColumn" prefWidth="125.4581298828125" text="Datëlindja" />
-                        <TableColumn fx:id="roleColumn" prefWidth="95.0538330078125" text="Roli" />
-                        <TableColumn fx:id="adresaColumn" prefWidth="121.31805419921875" text="Adresa" />
-                        <TableColumn fx:id="gjiniaColumn" prefWidth="103.05615234375" text="Gjinia" />
-                        <TableColumn fx:id="dataRegjistrimiColumn" prefWidth="126.91546630859375" text="Data Regjistrimit" />
-                        <TableColumn fx:id="statusiProcesitColumn" prefWidth="161.18115234375" text="Statusi i Procesit" />
+                        <TableColumn fx:id="phoneColumn" prefWidth="107.74200439453125" text="Phone Number" />
+                        <TableColumn fx:id="dobColumn" prefWidth="125.4581298828125" text="Birthdate" />
+                        <TableColumn fx:id="roleColumn" prefWidth="95.0538330078125" text="Role" />
+                        <TableColumn fx:id="adresaColumn" prefWidth="121.31805419921875" text="Address" />
+                        <TableColumn fx:id="gjiniaColumn" prefWidth="103.05615234375" text="Gender" />
+                        <TableColumn fx:id="dataRegjistrimiColumn" prefWidth="126.91546630859375" text="Registration date" />
+                        <TableColumn fx:id="statusiProcesitColumn" prefWidth="161.18115234375" text="Process Status" />
                     </columns>
                 </TableView>
-                <HBox fx:id="krijoFormenHBox" layoutX="20.0" layoutY="640.0" spacing="10" visible="false"
-                      style="-fx-background-color: #f0f0f0; -fx-padding: 10;" alignment="CENTER">
+                <HBox fx:id="krijoFormenHBox" alignment="CENTER" layoutX="20.0" layoutY="640.0" spacing="10" style="-fx-background-color: #f0f0f0; -fx-padding: 10;" visible="false">
                     <children>
-                        <TextField fx:id="txtEmri" promptText="Emri" />
-                        <TextField fx:id="txtMbiemri" promptText="Mbiemri" />
+                        <TextField fx:id="txtEmri" promptText="Name" />
+                        <TextField fx:id="txtMbiemri" promptText="Surname" />
                         <TextField fx:id="txtEmail" promptText="Email" />
-                        <TextField fx:id="txtPhone" promptText="Nr. Telefonit" />
-                        <DatePicker fx:id="datePickerDob" promptText="Datëlindja" />
-                        <TextField fx:id="txtAdresa" promptText="Adresa" />
-                        <ComboBox fx:id="comboGjinia" promptText="Gjinia">
+                        <TextField fx:id="txtPhone" promptText="Phone No." />
+                        <DatePicker fx:id="datePickerDob" promptText="Birthdate" />
+                        <TextField fx:id="txtAdresa" promptText="Adress" />
+                        <ComboBox fx:id="comboGjinia" promptText="Gender">
                             <items>
                                 <FXCollections fx:factory="observableArrayList">
                                     <String fx:value="M" />
@@ -91,46 +97,55 @@
                                 </FXCollections>
                             </items>
                         </ComboBox>
-                        <TextField fx:id="txtStatusiProcesit" promptText="Statusi i Procesit" />
+                        <TextField fx:id="txtStatusiProcesit" promptText="Process Status" />
 
-                        <PasswordField fx:id="txtPassword" promptText="Fjalëkalimi" />
+                        <PasswordField fx:id="txtPassword" promptText="Password" />
 
 
-                        <Button text="Ruaj" onAction="#ruajKandidatin" />
+                        <Button onAction="#ruajKandidatin" text="Save" />
                     </children>
                 </HBox>
 
             </children>
         </VBox>
-        <VBox layoutX="18.0" layoutY="271.0" prefHeight="255.0" prefWidth="364.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
+        <VBox layoutX="935.0" layoutY="266.0" prefHeight="145.0" prefWidth="358.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
             <children>
-                <Button fx:id="btnDeleteDokumenttet" text="Delete" onMouseClicked="#onDeleteDokumentetClick"/>
-                <Button fx:id="btnMiratoDokumentet" text="Verifiko Dokumentet" onMouseClicked="#onMiratoClick"/>
-                <Button fx:id="btnDownloadDokumentet" text="Download" onMouseClicked="#onDownloadClick"/>
+            <HBox spacing="30.0">
+               <children>
+                      <Button fx:id="btnDeleteDokumenttet" onMouseClicked="#onDeleteDokumentetClick" prefHeight="25.0" prefWidth="64.0" text="Delete" />
+                      <Button fx:id="btnMiratoDokumentet" onMouseClicked="#onMiratoClick" prefHeight="25.0" prefWidth="136.0" text="Verify the document" />
+                      <Button fx:id="btnDownloadDokumentet" onMouseClicked="#onDownloadClick" prefHeight="25.0" prefWidth="106.0" text="Download" />
+               </children>
+            </HBox>
                <TableView fx:id="tableViewDokumente" prefHeight="254.0" prefWidth="381.0">
 
 
                    <columns>
-                       <TableColumn fx:id="colEmriSkedari" prefWidth="118.20104217529297" text="Emri i Skedarit" />
-                       <TableColumn fx:id="colLlojiDokumentit" prefWidth="106.59890747070312" text="Lloji i Dokumentit" />
-                       <TableColumn fx:id="colDataNgarkimit" prefWidth="118.09197998046875" text="Data e Ngarkimit" />
+                       <TableColumn fx:id="colEmriSkedari" prefWidth="118.20104217529297" text="File Name" />
+                       <TableColumn fx:id="colLlojiDokumentit" prefWidth="106.59890747070312" text="Document Type" />
+                       <TableColumn fx:id="colDataNgarkimit" prefWidth="118.09197998046875" text="Upload Date" />
                    </columns>
                </TableView>
                 <HBox />
             </children>
         </VBox>
-      <VBox layoutX="458.0" layoutY="378.0" prefHeight="255.0" prefWidth="364.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
+      <VBox layoutX="522.0" layoutY="423.0" prefHeight="227.0" prefWidth="694.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
          <children>
-             <Button fx:id="btnDeleteTestet" text="Delete" onMouseClicked="#onDeleteTestetClick"/>
-             <TableView fx:id="testetTable" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+            <HBox spacing="250.0">
+               <children>
+                   <Button fx:id="btnDeleteTestet" onMouseClicked="#onDeleteTestetClick" text="Delete" />
+                  <Label text="Test Managment" textFill="WHITE" />
+               </children>
+            </HBox>
+             <TableView fx:id="testetTable" prefHeight="210.0" prefWidth="398.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
                  <columns>
-                     <TableColumn fx:id="idColumn2" text="ID" prefWidth="50.0"/>
-                     <TableColumn fx:id="idKandidatColumn2" text="ID Kandidat" prefWidth="100.0"/>
-                     <TableColumn fx:id="idStafColumn2" text="ID Staf" prefWidth="100.0"/>
-                     <TableColumn fx:id="llojiTestitColumn" text="Lloji i Testit" prefWidth="120.0"/>
-                     <TableColumn fx:id="dataTestitColumn" text="Data e Testit" prefWidth="120.0"/>
-                     <TableColumn fx:id="rezultatiColumn" text="Rezultati" prefWidth="100.0"/>
-                     <TableColumn fx:id="piketColumn" text="Piket" prefWidth="80.0"/>
+                     <TableColumn fx:id="idColumn2" prefWidth="50.0" text="ID" />
+                     <TableColumn fx:id="idKandidatColumn2" prefWidth="100.0" text="Candidate ID" />
+                     <TableColumn fx:id="idStafColumn2" prefWidth="100.0" text="Staf ID" />
+                     <TableColumn fx:id="llojiTestitColumn" prefWidth="120.0" text="Exam Type" />
+                     <TableColumn fx:id="dataTestitColumn" prefWidth="120.0" text="Exam Date" />
+                     <TableColumn fx:id="rezultatiColumn" prefWidth="100.0" text="Result" />
+                     <TableColumn fx:id="piketColumn" prefWidth="80.0" text="Scores" />
                  </columns>
              </TableView>
          </children>

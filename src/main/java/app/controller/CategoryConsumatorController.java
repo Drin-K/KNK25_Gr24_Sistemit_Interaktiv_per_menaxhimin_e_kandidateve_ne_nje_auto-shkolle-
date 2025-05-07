@@ -1,30 +1,20 @@
 package app.controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import models.Dto.kategorite_patentes.CreateKategoritePatentesDto;
 import models.Dto.regjistrimet.CreateRegjistrimetDto;
-import models.KategoritePatentes;
 import models.Regjistrimet;
 import services.*;
 import utils.SceneLocator;
 
-//
-//CreateRegjistrimetDto dto = new CreateRegjistrimetDto(this.kandidatId, /*kategoritePatentesService.getId()*/, statusi);
-////              Regjistrimet result = regjistrimiService.create(dto);
-////              System.out.printf("Category inserted successfuly !");
-////              System.out.println("Kategoria ID: " + result.getId());
-public class categoryConsumatorController {
+public class CategoryConsumatorController {
     private int kategoriId;
     private final RegjistrimiService regjistrimiService;
-    private final KategoritePatentesService kategoritePatentesService;
     private final int kandidatId = UserContext.getUserId();
     private final String statusi = "Në proces";
-    public categoryConsumatorController(){
+    public CategoryConsumatorController(){
         this.regjistrimiService = new RegjistrimiService();
-        this.kategoritePatentesService = new KategoritePatentesService();
     }
     @FXML
     private AnchorPane rightPage;
@@ -63,7 +53,7 @@ public class categoryConsumatorController {
     }
     @FXML
     private void applyClickC(){
-        this.kategoriId = 2;
+        this.kategoriId = 3;
         try{
             CreateRegjistrimetDto dto = new CreateRegjistrimetDto(this.kandidatId,this.kategoriId, statusi);
             Regjistrimet result = regjistrimiService.create(dto);

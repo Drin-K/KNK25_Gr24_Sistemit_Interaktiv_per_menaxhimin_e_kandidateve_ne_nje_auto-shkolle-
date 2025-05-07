@@ -10,11 +10,7 @@ import java.util.Locale;
 public class FrontPageAdminController {
 
     private final LanguageManager languageManager = LanguageManager.getInstance();
-    private void loadLanguage(Locale locale) throws Exception{
-        languageManager.setLocale(locale);
-        SceneManager.reload();
 
-    }
     @FXML
     private AnchorPane rightPage;
 
@@ -47,8 +43,8 @@ public class FrontPageAdminController {
     }
     @FXML
     private void languageClick()throws Exception{
-        languageManager.getInstance().toggleLanguage();
+        languageManager.toggleLanguage();
         SceneManager.reload();
-        SceneManager.load(SceneLocator.getCurrentRightPage(), rightPage);
+
     }
 }

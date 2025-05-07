@@ -12,13 +12,13 @@
 
 <AnchorPane prefHeight="670.0" prefWidth="1313.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.InstructorSchedulerController">
    <children>
-      <AnchorPane layoutX="168.0" layoutY="103.0" prefHeight="462.0" prefWidth="150.0" style="-fx-border-color: #dcdcdc; -fx-border-style: round;">
+      <AnchorPane layoutX="168.0" layoutY="103.0" prefHeight="462.0" prefWidth="150.0" style="-fx-border-color: #475779; -fx-border-radius: 5; -fx-background-radius: 5;">
          <children>
             <Button fx:id="scheduleBttn" layoutX="39.0" layoutY="159.0" mnemonicParsing="false" onAction="#scheduleClick" prefHeight="26.0" prefWidth="72.0" style="-fx-background-color: #07842b;" text="Schedule" textFill="#d4d4d4" />
             <Button fx:id="editBttn" layoutX="39.0" layoutY="213.0" mnemonicParsing="false" onAction="#editClick" prefHeight="26.0" prefWidth="72.0" style="-fx-background-color: #ffffff; -fx-border-color: gray; -fx-border-radius: 3;" text="Edit" textFill="#51b191" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="rightPane" layoutX="360.0" layoutY="104.0" prefHeight="462.0" prefWidth="566.0" style="-fx-border-color: #dcdcdc;">
+      <AnchorPane fx:id="rightPane" layoutX="360.0" layoutY="104.0" prefHeight="462.0" prefWidth="566.0" style="-fx-border-color: #475779; -fx-border-radius: 5; -fx-background-radius: 5;">
          <children>
             <MenuButton fx:id="chooseLessonBttn" layoutX="65.0" layoutY="30.0" mnemonicParsing="false" style="-fx-background-color: #137156;" text="Choose lesson type" textFill="#f4f4f4">
               <items>

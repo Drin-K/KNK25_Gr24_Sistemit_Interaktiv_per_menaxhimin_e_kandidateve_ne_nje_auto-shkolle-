@@ -124,6 +124,28 @@ public class DokumentetRepository extends BaseRepository<Dokumentet, CreateDokum
 //        }
 //        return false;
 //    }
+public int numeroDokumentet(int kandidatiId) {
+    String query = """
+        SELECT COUNT(DISTINCT Lloji_Dokumentit)
+        FROM Dokumentet
+        WHERE ID_Kandidat = ?
+          AND Lloji_Dokumentit IN ('Leternjoftim', 'Certifikate Mjekësore', 'Aplikim', 'Foto')
+    """;
+
+    try (PreparedStatement statement = connection.prepareStatement(query)) {
+        statement.setInt(1, kandidatiId);
+        ResultSet resultSet = statement.executeQuery();
+
+        if (resultSet.next()) {
+            return resultSet.getInt(1); // numri i dokumenteve të ndryshme
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return 0;
+}
 public ArrayList<Dokumentet> getAllDokumentet() {
     ArrayList<Dokumentet> dokumentetList = new ArrayList<>();
     String query = "SELECT d.id, d.ID_Kandidat, d.Lloji_Dokumentit, d.Emri_Skedari, d.Data_Ngarkimit " +

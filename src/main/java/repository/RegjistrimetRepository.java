@@ -42,6 +42,8 @@ public class RegjistrimetRepository extends BaseRepository<Regjistrimet, CreateR
             e.printStackTrace();
         }
     }
+
+
     public Regjistrimet create(CreateRegjistrimetDto regjistrimetDto) {
         String query = """
                 INSERT INTO 

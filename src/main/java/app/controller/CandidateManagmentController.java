@@ -366,29 +366,53 @@ public class CandidateManagmentController{
         }
     }
     @FXML
-    private void onMiratoClick(){
-       List<Dokumentet> selectedRegjistrimi=tableViewDokumente.getSelectionModel().getSelectedItems();
+    private void onMiratoClick() {
+        List<Dokumentet> selectedRegjistrimi = tableViewDokumente.getSelectionModel().getSelectedItems();
 
-        if (selectedRegjistrimi != null) {
+        if (!selectedRegjistrimi.isEmpty()) {
+            int kandidatiId = selectedRegjistrimi.get(0).getIdKandidat();
+
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Konfirmo Regjistrimin e Kandidatit");
             alert.setHeaderText(null);
-            alert.setContentText("A dëshironi të regjistrosh kandidatin me id: " +
-                    selectedRegjistrimi.getFirst().getIdKandidat() + "?");
+            alert.setContentText("A dëshironi të regjistrosh kandidatin me ID: " + kandidatiId + "?");
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
 
-                this.regjistrimiService.mirato( selectedRegjistrimi.getFirst().getIdKandidat());
+                boolean uMiratua = regjistrimiService.mirato(kandidatiId);
 
+                if (uMiratua) {
+                    tableViewDokumente.getItems().removeAll(selectedRegjistrimi);
+
+                    Alert suksesAlert = new Alert(Alert.AlertType.INFORMATION);
+                    suksesAlert.setTitle("Sukses");
+                    suksesAlert.setHeaderText(null);
+                    suksesAlert.setContentText("Kandidati u regjistrua me sukses.");
+                    suksesAlert.showAndWait();
+
+                } else {
+                    tableViewDokumente.getItems().removeAll(selectedRegjistrimi);
+                    Alert mungesAlert = new Alert(Alert.AlertType.WARNING);
+                    mungesAlert.setTitle("Dokumentet mungojnë");
+                    mungesAlert.setHeaderText(null);
+                    mungesAlert.setContentText("Kandidati nuk i ka të gjitha dokumentet e nevojshme:\n" +
+                            "- Leternjoftim\n- Certifikatë Mjekësore\n- Aplikim\n- Foto");
+                    mungesAlert.showAndWait();
+                }
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Kujdes");
             alert.setHeaderText(null);
-            alert.setContentText("Ju lutem zgjidhni një test për ta fshirë.");
+            alert.setContentText("Ju lutem zgjidhni një kandidat për ta miratuar.");
             alert.showAndWait();
         }
+    }
+
+    @FXML
+    private void onDownloadClick(){
+
     }
     @FXML
     public void initialize(){

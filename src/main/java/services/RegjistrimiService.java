@@ -2,6 +2,7 @@ package services;
 
 import models.Dto.regjistrimet.CreateRegjistrimetDto;
 import models.Regjistrimet;
+import repository.DokumentetRepository;
 import repository.KandidatetRepository;
 import repository.KategoritePatentesRepository;
 import repository.RegjistrimetRepository;
@@ -10,15 +11,25 @@ public class RegjistrimiService {
     private KandidatetRepository kandidatRepository;
     private KategoritePatentesRepository kategoritePatentesRepository;
     private RegjistrimetRepository regjistrimiRepository;
+    private DokumentetRepository dokumentetRepository;
 
     public RegjistrimiService() {
         this.kandidatRepository = new KandidatetRepository();
         this.kategoritePatentesRepository = new KategoritePatentesRepository();
         this.regjistrimiRepository = new RegjistrimetRepository();
+        this.dokumentetRepository=new DokumentetRepository();
     }
-public void mirato(int kandidatiId){
-        this.regjistrimiRepository.mirato(kandidatiId);
-}
+    public boolean mirato(int kandidatiId) {
+        int dokumenteCount = dokumentetRepository.numeroDokumentet(kandidatiId);
+        if (dokumenteCount == 4) {
+            regjistrimiRepository.mirato(kandidatiId);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
     public Regjistrimet create(CreateRegjistrimetDto createDto) throws Exception {
         // Validimi i ID_Kandidat
         if (createDto.getIdKandidat() <= 0 || kandidatRepository.getbyID(createDto.getIdKandidat()) == null) {

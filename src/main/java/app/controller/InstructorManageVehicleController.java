@@ -1,17 +1,28 @@
 package app.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuButton;
 import javafx.scene.layout.AnchorPane;
+import models.Automjetet;
+import models.Dto.automjetet.CreateAutomjetetDto;
+import services.AutomjetService;
 import services.SceneManager;
+import services.UserContext;
 import utils.SceneLocator;
 
 
 
 public class InstructorManageVehicleController {
+    private int idStaf = UserContext.getUserId();
+    private final AutomjetService automjetService;
     private String llojiKategorise;
     private String llojiStatusit;
     private int kategoriaId;
+    public InstructorManageVehicleController(){
+        this.automjetService = new AutomjetService();
+    }
     @FXML
     private AnchorPane rightPane;
     @FXML
@@ -21,12 +32,6 @@ public class InstructorManageVehicleController {
     @FXML
     private void onClickPutForService() throws Exception {
         SceneManager.load(SceneLocator.INSTRUCTOR_PUT_SERVICE, rightPane);
-    }
-    @FXML
-    private void onClickAddVehicle(){
-        System.out.println(llojiKategorise); //test
-        System.out.println(llojiStatusit); //test
-        System.out.println(kategoriaId); //test
     }
     @FXML
     private void chooseMotorBike(){
@@ -60,6 +65,24 @@ public class InstructorManageVehicleController {
     private void listOutOfUse(){
         statusi.setText("Out of use");
         this.llojiStatusit = "Jashtë shërbimit";
+    }
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, message, ButtonType.OK);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.showAndWait();
+    }
+    @FXML
+    private void onClickAddVehicle() {
+        try {
+            CreateAutomjetetDto dto = new CreateAutomjetetDto(this.llojiKategorise, this.llojiStatusit, this.idStaf, this.kategoriaId);
+            Automjetet automjetet = automjetService.create(dto);
+            System.out.println("Automjeti u shtua me sukses: " + automjetet.getId());
+            showAlert("Notification","Vehicle inserted succecfuly !");
+        } catch (Exception e) {
+            showAlert("Notification","Problem while inserting vehicle!");
+            e.printStackTrace();
+        }
     }
 
 }

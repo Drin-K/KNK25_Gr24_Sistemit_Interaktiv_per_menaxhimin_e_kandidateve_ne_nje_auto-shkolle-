@@ -42,7 +42,7 @@ public class AutomjetService {
             throw new Exception("Ky lloj i automjetit nuk ekziston");
         }
         //Validimi i statusit te automjetit
-        if(!createDto.getStatusi().equals("Mirëmbajtje")){
+        if(!createDto.getStatusi().equals("Në përdorim")){
             throw new Exception("Automjeti duhet të jetë në statusin 'Mirëmbajtje' për tu krijuar!");
         }
         //Krijimi ne DB

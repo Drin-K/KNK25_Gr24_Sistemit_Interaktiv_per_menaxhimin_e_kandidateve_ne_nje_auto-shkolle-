@@ -6,24 +6,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="670.0" prefWidth="1313.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="670.0" prefWidth="1313.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.InstructorManageVehicleController">
    <children>
-      <AnchorPane layoutX="408.0" layoutY="204.0" prefHeight="234.0" prefWidth="518.0" style="-fx-border-color: #475779; -fx-background-radius: 5; -fx-border-radius: 5;">
+      <AnchorPane fx:id="rightPane" layoutX="408.0" layoutY="204.0" prefHeight="234.0" prefWidth="518.0" style="-fx-border-color: #475779; -fx-background-radius: 5; -fx-border-radius: 5;">
          <children>
             <Text fill="#0c8e39" layoutX="184.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 13; -fx-font-family: arial;" text="Choose a category (e.g car, motorbike, bus/truck)." />
-            <MenuButton layoutX="44.0" layoutY="77.0" mnemonicParsing="false" style="-fx-background-color: #137156;" text="Category" textFill="#f9ffbc">
+            <MenuButton fx:id="category" layoutX="44.0" layoutY="77.0" mnemonicParsing="false" style="-fx-background-color: #137156;" text="Category" textFill="#f9ffbc">
                <items>
-                  <MenuItem fx:id="MotorBike" mnemonicParsing="false" text="MotorBike (A)" />
-                  <MenuItem fx:id="Car" mnemonicParsing="false" text="Car (B)" />
-                  <MenuItem fx:id="Truck" mnemonicParsing="false" text="Truck (C)" />
+                  <MenuItem fx:id="MotorBike" mnemonicParsing="false" onAction="#chooseMotorBike" text="MotorBike (A)" />
+                  <MenuItem fx:id="Car" mnemonicParsing="false" onAction="#chooseCar" text="Car (B)" />
+                  <MenuItem fx:id="Truck" mnemonicParsing="false" onAction="#chooseTruck" text="Truck (C)" />
                </items>
             </MenuButton>
             <Text fill="#0c8e39" layoutX="79.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 13;" />
-            <MenuButton layoutX="43.0" layoutY="133.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="80.0" style="-fx-background-color: #137156;" text=" Statusi" textFill="#f9ffbc">
+            <MenuButton fx:id="statusi" layoutX="43.0" layoutY="133.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="80.0" style="-fx-background-color: #137156;" text=" Statusi" textFill="#f9ffbc">
                <items>
-                  <MenuItem mnemonicParsing="false" text="On use" />
-                  <MenuItem mnemonicParsing="false" text="On service" />
-                  <MenuItem mnemonicParsing="false" text="Out of use" />
+                  <MenuItem fx:id="OnUse" mnemonicParsing="false" onAction="#listOnUse" text="On use" />
+                  <MenuItem fx:id="OnService" mnemonicParsing="false" onAction="#listOnService" text="On service" />
+                  <MenuItem fx:id="OutOfUse" mnemonicParsing="false" onAction="#listOutOfUse" text="Out of use" />
                </items>
             </MenuButton>
             <Text fill="#0c8e39" layoutX="184.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 13; -fx-font-family: arial;" text="Choose the status for the vehicle you want to add. " />
@@ -31,8 +31,8 @@
       </AnchorPane>
       <AnchorPane layoutX="179.0" layoutY="235.0" prefHeight="172.0" prefWidth="146.0" style="-fx-border-color: #475779; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-style: round;">
          <children>
-            <Button layoutX="25.0" layoutY="47.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" style="-fx-background-color: #07842b;" text="Add vehicle" textFill="#efecec" />
-            <Button layoutX="25.0" layoutY="106.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" style="-fx-background-color: #3b47b4;" text="Put for service" textFill="#e4fae7" />
+            <Button fx:id="addVehicleBtn" layoutX="25.0" layoutY="47.0" mnemonicParsing="false" onAction="#onClickAddVehicle" prefHeight="26.0" prefWidth="92.0" style="-fx-background-color: #07842b;" text="Add vehicle" textFill="#efecec" />
+            <Button fx:id="putForService" layoutX="25.0" layoutY="106.0" mnemonicParsing="false" onAction="#onClickPutForService" prefHeight="26.0" prefWidth="92.0" style="-fx-background-color: #3b47b4;" text="Put for service" textFill="#e4fae7" />
          </children>
       </AnchorPane>
       <Text layoutX="403.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: arial; -fx-font-weight: bold; -fx-font-size: 20;" text="Manage vehicles used for lessons and for driving exams" />

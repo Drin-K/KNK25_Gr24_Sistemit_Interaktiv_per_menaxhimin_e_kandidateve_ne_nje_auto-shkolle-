@@ -29,6 +29,7 @@ public class SceneLocator {
     public static final String INSTRUCTOR_PROFILE = "/app/stafiFXML/instructorProfile.fxml";
     public static final String INSTRUCTOR_HOME = "/app/stafiFXML/InstructorHome.fxml";
     public static final String INSTRUCTOR_EDIT="/app/stafiFXML/edit_scheduler.fxml";
+    public static final String INSTRUCTOR_PUT_SERVICE = "/app/stafiFXML/putVehicle_to_service.fxml";
 
     //PER ADMIN!
     public static final String FRONT_PAGE_ADMIN="/app/adminFXML/FrontPage.Admin.fxml";

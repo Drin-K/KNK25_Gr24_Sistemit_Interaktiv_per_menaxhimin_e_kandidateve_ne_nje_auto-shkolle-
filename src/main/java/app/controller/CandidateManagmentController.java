@@ -12,6 +12,11 @@ import models.Dto.kandidatet.CreateKandidatetDto;
 import repository.KandidatetRepository;
 import services.*;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -412,7 +417,27 @@ public class CandidateManagmentController{
 
     @FXML
     private void onDownloadClick(){
+        Dokumentet selectedDokument=tableViewDokumente.getSelectionModel().getSelectedItem();
 
+        if (selectedDokument != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Konfirmo shkarkimin");
+            alert.setHeaderText(null);
+            alert.setContentText("A dëshironi të shkarkoni dokumentin: "+selectedDokument.getEmriSkedarit()
+                    +" per kandidatin me id: " +
+                    selectedDokument.getIdKandidat() + "?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                download(selectedDokument.getEmriSkedarit());
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Kujdes");
+            alert.setHeaderText(null);
+            alert.setContentText("Ju lutem zgjidhni një test për ta fshirë.");
+            alert.showAndWait();
+        }
     }
     @FXML
     public void initialize(){
@@ -432,7 +457,39 @@ public class CandidateManagmentController{
 //        btnDeleteKandidat.setOnAction(event -> handleDeleteKandidat());
 
     }
+        public void download(String emriSkedarit) {
+           final Path UPLOAD_DIR = Paths.get("src", "main", "java", "utils", "uploads");
+            Path sourcePath = UPLOAD_DIR.resolve(emriSkedarit);
+            Path desktop = Paths.get(System.getProperty("user.home"), "Desktop");
+            Path destinationPath = desktop.resolve(emriSkedarit);
+
+            try {
+                if (Files.notExists(UPLOAD_DIR)) {
+                    Files.createDirectories(UPLOAD_DIR);
+                }
+                if (Files.exists(sourcePath)) {
+                    Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+
+                    Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                    successAlert.setTitle("Sukses");
+                    successAlert.setHeaderText(null);
+                    successAlert.setContentText("Dokumenti u shkarkua me sukses në: " + destinationPath.toString());
+                    successAlert.showAndWait();
+                } else {
+                    throw new IOException("Dokumenti nuk ekziston.");
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setTitle("Gabim");
+                errorAlert.setHeaderText("Shkarkimi dështoi");
+                errorAlert.setContentText("Nuk mund të shkarkohet dokumenti: " + e.getMessage());
+                errorAlert.showAndWait();
+            }
+        }
+    }
 
 
 
-}
+

@@ -38,7 +38,7 @@ CREATE TABLE Automjetet (
     Lloji_i_Automjetit VARCHAR(50) CHECK (Lloji_i_Automjetit IN ('Vetura', 'Motoçikletë', 'Kamion')),
     Statusi VARCHAR(50) CHECK (Statusi IN ('Në përdorim', 'Mirëmbajtje', 'Jashtë shërbimit')),
     ID_Staf INT,
-    ID_Kategori INT,
+    ID_Kategori INT,-- id e kategorise e cila mundet me qene A B C edhe pse tek kategoria nuk ka constraint, ne punojme me keto tri sepse nuk jemi t avancuar
     CONSTRAINT fk_Stafi FOREIGN KEY (ID_Staf) REFERENCES Stafi(id)
         ON DELETE CASCADE
         ON UPDATE CASCADE,

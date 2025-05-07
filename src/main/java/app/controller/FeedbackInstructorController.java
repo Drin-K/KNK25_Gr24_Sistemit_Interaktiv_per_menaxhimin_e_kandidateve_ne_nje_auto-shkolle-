@@ -25,7 +25,6 @@ public class FeedbackInstructorController {
     public void initialize() {
         commentArea.setCellValueFactory(new PropertyValueFactory<>("koment"));
         pointsArea.setCellValueFactory(new PropertyValueFactory<>("vlersimi"));
-
         filterBttn.setOnAction(e -> handleFilter());
     }
    @FXML

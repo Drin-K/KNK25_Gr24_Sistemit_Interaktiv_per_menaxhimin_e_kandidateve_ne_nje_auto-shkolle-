@@ -2,10 +2,12 @@ package repository;
 
 import models.Dto.kandidatet.CreateKandidatetDto;
 import models.Dto.kandidatet.UpdateKandidatetDto;
+import models.Dto.user.CreateUserDto;
 import models.Kandidatet;
 import models.User;
 
 import java.sql.*;
+import java.sql.Date;
 import java.util.*;
 
 public class KandidatetRepository extends UserRepository {
@@ -150,5 +152,52 @@ public class KandidatetRepository extends UserRepository {
         }
         return null;
     }
+
+
+    public Kandidatet create(CreateKandidatetDto dto) {
+        String insertUserQuery = """
+        INSERT INTO "User"(name, surname, email, phoneNumber, dateOfBirth, hashedPassword, salt, role, adresa, gjinia)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        RETURNING id;
+    """;
+
+        String insertKandidatQuery = """
+        INSERT INTO Kandidatet(id, dataRegjistrimi, statusiProcesit)
+        VALUES (?, ?, ?);
+    """;
+
+        try {
+            // Krijo përdoruesin në tabelën User dhe merr ID-në
+            PreparedStatement psUser = this.connection.prepareStatement(insertUserQuery);
+            psUser.setString(1, dto.getName());
+            psUser.setString(2, dto.getSurname());
+            psUser.setString(3, dto.getEmail());
+            psUser.setString(4, dto.getPhoneNumber());
+            psUser.setDate(5, Date.valueOf(dto.getDateOfBirth()));
+            psUser.setString(6, dto.getSalt());
+            psUser.setString(7, dto.getSalt());
+            psUser.setString(8, "Kandidat");
+            psUser.setString(9, dto.getAdresa());
+            psUser.setString(10, dto.getGjinia());
+
+            ResultSet rs = psUser.executeQuery();
+            if (rs.next()) {
+                int userId = rs.getInt("id");
+
+                PreparedStatement psKandidat = this.connection.prepareStatement(insertKandidatQuery);
+                psKandidat.setInt(1, userId);
+                psKandidat.setDate(2, Date.valueOf(dto.getDataRegjistrimit()));
+                psKandidat.setString(3, dto.getStatusiProcesit());
+                psKandidat.executeUpdate();
+
+                return this.getbyID(userId);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
 
 }

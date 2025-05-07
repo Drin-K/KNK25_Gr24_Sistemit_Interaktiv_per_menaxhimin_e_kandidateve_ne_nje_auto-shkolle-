@@ -26,7 +26,7 @@ public class KandidateService {
         if (id <= 0) {
             throw new Exception("Id does not exist!");
         }
-        Kandidatet kandidati = (Kandidatet) this.kandidatetRepository.getById(id);
+        Kandidatet kandidati = (Kandidatet) this.kandidatetRepository.getbyID(id);
         if (kandidati == null) throw new Exception("Kandidati nuk u gjet!");
         return kandidati;
     }
@@ -52,9 +52,9 @@ public class KandidateService {
             throw new Exception("Gjinia duhet të jetë Mashkull ose Femer");
         }
         //Validimi i numrit te telefonit permes numriTelefonitRegEx
-        if (!createDto.getPhoneNumber().matches(numriTelefonitRegEx)) {
-            throw new Exception("Numri i telefonit nuk është valid");
-        }
+//        if (!createDto.getPhoneNumber().matches(numriTelefonitRegEx)) {
+//            throw new Exception("Numri i telefonit nuk është valid");
+//        }
         //Validimi i emailit permes emailRegEx
         if (!createDto.getEmail().matches(emailRegEx)) {
             throw new Exception("Emaili nuk është në formatin e duhur");
@@ -66,10 +66,11 @@ public class KandidateService {
         //Data e regjistrimit duhet te jete data e regjistrimit te Kandidatit
         createDto.setDataRegjistrimit(LocalDate.now());
         //Krijimi i Kandidatit ne DB
-        Kandidatet kandidati = (Kandidatet) kandidatetRepository.create(createDto);
+        Kandidatet kandidati = kandidatetRepository.create(createDto);
         if (kandidati == null) {
             throw new Exception("Kandidati nuk u krijua");
         }
+        System.out.println("Kandidati u shtua me sukses!");
         return kandidati;
     }
 

@@ -174,8 +174,8 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
     public List<Pagesat> filterPagesat(String name, String fromDate, String toDate, String metodaPageses, String statusiPageses) throws SQLException {
         String sql = "SELECT * FROM Pagesat p " +
                 "JOIN Kandidatet k ON p.ID_Kandidat = k.id " +
-                "JOIN \"User\" u ON k.id = u.id " +  // Bashkimi me tabelën "User"
-                "WHERE u.name LIKE ? " +  // Përdorimi i "u.name" për emrin
+                "JOIN \"User\" u ON k.id = u.id " +
+                "WHERE u.name LIKE ? " +
                 "AND p.Data_e_Pageses BETWEEN ? AND ? " +
                 "AND p.Metoda_e_Pageses = ? " +
                 "AND p.Statusi_i_Pageses = ?";

@@ -21,14 +21,43 @@ public class Kandidatet extends User{
     public String getStatusiProcesit() {
         return statusiProcesit;
     }
+    //RESULTSETI PER KANDIDTATET
+//    SELECT
+//    u.id,
+//    u.name,
+//    u.surname,
+//    u.email,
+//    u.phoneNumber,
+//    u.dateOfBirth,
+//    u.hashedPassword,
+//    u.salt,
+//    u.role,
+//    u.adresa,
+//    u.gjinia,
+//    k.dataRegjistrimi,
+//    k.statusiProcesit
+//            FROM
+//    "User" u
+//            JOIN
+//    Kandidatet k ON u.id = k.id
+//            WHERE
+//    u.id = ?;
 
     public static Kandidatet getInstance(ResultSet result) throws SQLException {
-        User user = User.getInstance(result);
+        int id = result.getInt("id");
+        String name = result.getString("name");
+        String surname = result.getString("surname");
+        String email = result.getString("email");
+        String phoneNumber = result.getString("phoneNumber");
+        LocalDate dateOfBirth = result.getObject("dateOfBirth", LocalDate.class);
+        String hashedPassword = result.getString("hashedPassword");
+        String salt = result.getString("salt");
+        String adresa = result.getString("adresa");
+        String gjinia = result.getString("gjinia");
         LocalDate dataRegjistrimi = result.getObject("dataRegjistrimi", LocalDate.class);
         String statusiProcesit = result.getString("statusiProcesit");
-        return new Kandidatet(user.getIdUser(), user.getName(), user.getSurname(), user.getEmail(),
-                user.getPhoneNumber(), user.getDateOfBirth(), user.getHashedPassword(),
-                user.getSalt(), user.getAdresa(), user.getGjinia(), dataRegjistrimi, statusiProcesit);
+        return new Kandidatet(id, name, surname, email, phoneNumber, dateOfBirth, hashedPassword, salt,
+                adresa, gjinia, dataRegjistrimi, statusiProcesit);
     }
 }
 

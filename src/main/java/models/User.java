@@ -87,29 +87,32 @@ public abstract class User {
     }
 
 
-    public static User getInstance(ResultSet result) throws SQLException {
-        int id = result.getInt("id");
-        String name = result.getString("name");
-        String surname = result.getString("surname");
-        String email = result.getString("email");
-        String phoneNumber = result.getString("phoneNumber");
-        LocalDate dateOfBirth = result.getObject("dateOfBirth", LocalDate.class);
-        String hashedPassword = result.getString("hashedPassword");
-        String salt = result.getString("salt");
-        String adresa = result.getString("adresa");
-        String gjinia = result.getString("gjinia");
-        String role = result.getString("role");
-        if (role == null) {
-            System.out.println("Role is null for user ID: " + result.getInt("id"));
-        }
-        if ("Kandidat".equals(role)) {
-            LocalDate dataRegjistrimi = result.getObject("dataRegjistrimi", LocalDate.class);
-            String statusiProcesit = result.getString("statusiProcesit");
-            return new Kandidatet(id, name, surname, email, phoneNumber, dateOfBirth, hashedPassword, salt, adresa, gjinia, dataRegjistrimi, statusiProcesit);
-        } else if ("Staf".equals(role)) {
-            return new Stafi(id, name, surname, email, phoneNumber, dateOfBirth, hashedPassword, salt, adresa, gjinia);
-        } else {
-            throw new SQLException("Role i pa njohur: " + role);
-        }
-    }
+//    public static User getInstance(ResultSet result) throws SQLException {
+//        int id = result.getInt("id");
+//        String name = result.getString("name");
+//        String surname = result.getString("surname");
+//        String email = result.getString("email");
+//        String phoneNumber = result.getString("phoneNumber");
+//        LocalDate dateOfBirth = result.getObject("dateOfBirth", LocalDate.class);
+//        String hashedPassword = result.getString("hashedPassword");
+//        String salt = result.getString("salt");
+//        String adresa = result.getString("adresa");
+//        String gjinia = result.getString("gjinia");
+//        String role = result.getString("role");
+//        if (role == null) {
+//            System.out.println("Role is null for user ID: " + result.getInt("id"));
+//        }
+//        if ("Kandidat".equals(role)) {
+//            LocalDate dataRegjistrimi = result.getObject("dataRegjistrimi", LocalDate.class);
+//            String statusiProcesit = result.getString("statusiProcesit");
+//            return new Kandidatet(id, name, surname, email, phoneNumber, dateOfBirth, hashedPassword, salt, adresa, gjinia, dataRegjistrimi, statusiProcesit);
+//        } else if ("Staf".equals(role)) {
+//            return new Stafi(id, name, surname, email, phoneNumber, dateOfBirth, hashedPassword, salt, adresa, gjinia);
+//        } else {
+//            throw new SQLException("Role i pa njohur: " + role);
+//        }
+//    }
+public static User getInstance(ResultSet result) throws SQLException {
+    throw new UnsupportedOperationException("This method should be implemented in subclasses");
+}
 }

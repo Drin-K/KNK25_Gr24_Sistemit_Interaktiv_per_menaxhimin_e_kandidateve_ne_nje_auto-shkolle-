@@ -8,12 +8,14 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import models.*;
+import models.Dto.kandidatet.CreateKandidatetDto;
 import repository.KandidatetRepository;
 import services.*;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Optional;
 
 public class CandidateManagmentController{
     @FXML
@@ -87,16 +89,16 @@ public class CandidateManagmentController{
     private Button btnCreateKandidat;
 
     @FXML
-    private Button btnReplaceKandidat;
-
-    @FXML
     private Button btnDeleteKandidat;
     @FXML
-    private TextField txtEmri, txtMbiemri, txtEmail, txtPhone, txtRoli, txtAdresa, txtStatusiProcesit;
+    private TextField txtEmri, txtMbiemri, txtEmail, txtPhone, txtAdresa, txtStatusiProcesit;
     @FXML
-    private DatePicker datePickerDob, datePickerRegjistrimi;
+    private DatePicker datePickerDob;
     @FXML
     private ComboBox<String> comboGjinia;
+    @FXML
+    private PasswordField txtPassword;
+
 
     private ObservableList<Pagesat> pagesatList = FXCollections.observableArrayList();
     private KandidateService kandidateService=new KandidateService();
@@ -182,6 +184,68 @@ public class CandidateManagmentController{
     private void onCreateKandidatClick() {
         krijoFormenHBox.setVisible(true);
     }
+    @FXML
+    private void ruajKandidatin() throws Exception {
+        // Marrim vlerat nga inputet
+        String emri = txtEmri.getText();
+        String mbiemri = txtMbiemri.getText();
+        String email = txtEmail.getText();
+        String phone = txtPhone.getText();
+        LocalDate datelindja = datePickerDob.getValue();
+        String password=txtPassword.getText();
+        String salt=PasswordHasher.generateSalt();
+        String adresa = txtAdresa.getText();
+        String gjinia = comboGjinia.getValue();
+        String statusiProcesit = txtStatusiProcesit.getText();
+
+        // Validimi: kontrollon nëse ndonjë është i zbrazët
+        if (emri.isEmpty() || mbiemri.isEmpty() || email.isEmpty() || phone.isEmpty() ||
+                datelindja == null  || adresa.isEmpty() || gjinia == null ||
+                statusiProcesit.isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Gabim");
+            alert.setHeaderText("Të dhëna të paplota");
+            alert.setContentText("Ju lutem plotësoni të gjitha fushat përpara se të ruani.");
+            alert.showAndWait();
+            return;
+        }else{
+           CreateKandidatetDto kandidatet=new CreateKandidatetDto(emri,mbiemri,email,phone,datelindja,password,salt,"Kandidat",adresa,gjinia,null,statusiProcesit);
+            this.kandidateService.create(kandidatet);
+            txtEmri.clear(); txtMbiemri.clear(); txtEmail.clear(); txtPhone.clear();
+             txtAdresa.clear(); txtStatusiProcesit.clear();
+            datePickerDob.setValue(null);
+            comboGjinia.setValue(null);
+        }
+    }
+    @FXML
+    private void onDeleteKandidatClick() throws Exception {
+        Kandidatet selectedKandidat = kandidatTable.getSelectionModel().getSelectedItem();
+
+        if (selectedKandidat != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Konfirmo Fshirjen");
+            alert.setHeaderText(null);
+            alert.setContentText("A dëshironi të fshini kandidatin: " +
+                    selectedKandidat.getName() + " " + selectedKandidat.getSurname() + "?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                // Fshi nga tabela në GUI
+                kandidatTable.getItems().remove(selectedKandidat);
+
+                // Fshi nga databaza vetëm duke kaluar ID-në
+                this.kandidateService.delete(selectedKandidat.getIdUser());
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Kujdes");
+            alert.setHeaderText(null);
+            alert.setContentText("Ju lutem zgjidhni një kandidat për ta fshirë.");
+            alert.showAndWait();
+        }
+    }
+
     @FXML
     public void initialize(){
         krijoFormenHBox.setVisible(false);

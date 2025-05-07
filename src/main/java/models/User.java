@@ -11,8 +11,8 @@ public abstract class User {
     protected String email;
     protected String phoneNumber;
     protected LocalDate dateOfBirth;
-    protected String hashedPassword;
-    protected String salt;
+    private String hashedPassword;
+    private String salt;
     protected String role; //  'Kandidat', 'Staf', 'Admin'> adminin do ta bejme vetem nje dhe ai do vendoset direkt
     //nga databaza
     protected String adresa;

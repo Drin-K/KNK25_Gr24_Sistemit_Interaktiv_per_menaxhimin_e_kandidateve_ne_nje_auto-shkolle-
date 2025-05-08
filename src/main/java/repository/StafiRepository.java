@@ -1,7 +1,6 @@
 package repository;
 
-import models.Dto.stafi.CreateStafiDto;
-import models.Dto.stafi.UpdateStafiDto;
+import models.Dto.user.CreateUserDto;
 import models.Kandidatet;
 import models.Stafi;
 import models.User;
@@ -9,13 +8,53 @@ import models.User;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
 public class StafiRepository extends UserRepository {
     public StafiRepository() {
         super();
     }
+    @Override
+    public Stafi create(CreateUserDto dto) {
+        String insertUser = """
+                INSERT INTO "User"(name, surname, email, phoneNumber, dateOfBirth, hashedPassword, salt, role, adresa, gjinia)
+                VALUES (?, ?, ?, ?, ?, ?, ?, 'Staf', ?, ?);
+            """;
+        try {
+            PreparedStatement userStmt = connection.prepareStatement(insertUser, Statement.RETURN_GENERATED_KEYS);
+            userStmt.setString(1, dto.getName());
+            userStmt.setString(2, dto.getSurname());
+            userStmt.setString(3, dto.getEmail());
+            userStmt.setString(4, dto.getPhoneNumber());
+            userStmt.setObject(5, dto.getDateOfBirth());
+            userStmt.setString(6, dto.getPassword());
+            userStmt.setString(7, dto.getSalt());
+            userStmt.setString(8, dto.getAdresa());
+            userStmt.setString(9, dto.getGjinia());
+            userStmt.executeUpdate();
+
+            ResultSet keys = userStmt.getGeneratedKeys();
+            if (keys.next()) {
+                int userId = keys.getInt(1);
+
+                // Shto në tabelën Stafi
+                String insertStaf = """
+                        INSERT INTO Stafi(id)
+                        VALUES (?);
+                    """;
+                PreparedStatement stafStmt = connection.prepareStatement(insertStaf);
+                stafStmt.setInt(1, userId);
+                stafStmt.executeUpdate();
+
+                return getById(userId);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     @Override
     public Stafi fromResultSet(ResultSet result) throws SQLException {
         return Stafi.getInstance(result);
@@ -36,17 +75,17 @@ public class StafiRepository extends UserRepository {
     }
     public Stafi getByIDstaf(int id) {
         String query = """
-        SELECT 
-            u.id, 
-            u.name, 
-            u.surname, 
-            u.email, 
-            u.phoneNumber, 
-            u.dateOfBirth, 
-            u.hashedPassword, 
-            u.salt, 
-            u.adresa, 
-            u.gjinia, 
+        SELECT
+            u.id,
+            u.name,
+            u.surname,
+            u.email,
+            u.phoneNumber,
+            u.dateOfBirth,
+            u.hashedPassword,
+            u.salt,
+            u.adresa,
+            u.gjinia,
             u.role
         FROM Stafi s
         JOIN "User" u ON s.id = u.id
@@ -96,7 +135,7 @@ public class StafiRepository extends UserRepository {
                   GROUP BY fb.ID_Staf, u.name, u.surname
                   ORDER BY COUNT(*) DESC
                   LIMIT 1;
-                
+
     """;
 
         try (PreparedStatement stmt = this.connection.prepareStatement(query)) {
@@ -120,7 +159,6 @@ public class StafiRepository extends UserRepository {
                             GROUP BY fb.ID_Staf, u.name, u.surname
                             ORDER BY COUNT(*) DESC
                             LIMIT 1;
-                
     """;
 
         try (PreparedStatement stmt = this.connection.prepareStatement(query)) {
@@ -155,7 +193,28 @@ public class StafiRepository extends UserRepository {
 
         return null;
     }
+    @Override
+    public Stafi getById(int id){
+        String query = "SELECT u.id, u.name, u.surname, u.email, u.phoneNumber, " +
+                "u.dateOfBirth, u.hashedPassword, u.salt, u.adresa, u.gjinia, " +
+                "k.dataRegjistrimi, k.statusiProcesit, u.role " +
+                "FROM Stafi k " +
+                "JOIN \"User\" u ON k.id = u.id " +
+                "WHERE u.role = 'Staf' AND u.id = ?";
 
+        try{
+            PreparedStatement pstm = this.connection.prepareStatement(
+                    query);
+            pstm.setInt(1, id);
+            ResultSet res = pstm.executeQuery();
+            if(res.next()){
+                return this.fromResultSet(res);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 
 }

@@ -1,6 +1,7 @@
 package services;
 
 import models.Dto.user.CreateUserDto;
+import models.Kandidatet;
 import models.User;
 import repository.KandidatetRepository;
 import repository.StafiRepository;
@@ -35,9 +36,13 @@ public class UserService {
 
             dto.setSalt(salt);
             dto.setPassword(hashedPassword);
+            if (dto.getRole().equalsIgnoreCase("Kandidat")) {
+                kandidatetRepo.create(dto);
+            } else {
+                stafiRepo.create(dto);
+            }
 
-            User created = repo.create(dto);
-            return created != null;
+            return true;
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -47,11 +52,13 @@ public class UserService {
     public static boolean login(String email, String password) {
         try {
             User user;
-
+            String role;
             if (email.toLowerCase().endsWith("@kandidat.com")) {
+                role="Kandidat";
                 user = kandidatetRepo.findByEmail(email);
             } else if (email.toLowerCase().endsWith("@staf.com")) {
                 user = stafiRepo.findByEmail(email);
+                role="Staf";
             } else {
                 System.out.println("The email does not match any role.");
                 return false;
@@ -60,6 +67,7 @@ public class UserService {
                 System.out.println("The user was not found.");
                 return false;
             }
+            UserContext.setUser(role,user.getIdUser());
             return PasswordHasher.compareSaltedHash(password, user.getSalt(), user.getHashedPassword());
         } catch (Exception e) {
             e.printStackTrace();

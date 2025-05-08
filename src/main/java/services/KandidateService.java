@@ -26,7 +26,7 @@ public class KandidateService {
         if (id <= 0) {
             throw new Exception("Id does not exist!");
         }
-        Kandidatet kandidati = this.kandidatetRepository.getbyID(id);
+        Kandidatet kandidati = this.kandidatetRepository.getById(id);
         if (kandidati == null) throw new Exception("Kandidati nuk u gjet!");
         return kandidati;
     }
@@ -66,7 +66,7 @@ public class KandidateService {
         //Data e regjistrimit duhet te jete data e regjistrimit te Kandidatit
         createDto.setDataRegjistrimit(LocalDate.now());
         //Krijimi i Kandidatit ne DB
-        Kandidatet kandidati = (Kandidatet) kandidatetRepository.create(createDto);
+        Kandidatet kandidati = kandidatetRepository.create(createDto);
         if (kandidati == null) {
             throw new Exception("Kandidati nuk u krijua");
         }

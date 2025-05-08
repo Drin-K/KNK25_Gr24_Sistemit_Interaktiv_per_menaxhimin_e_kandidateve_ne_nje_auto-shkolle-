@@ -134,22 +134,7 @@ public abstract class UserRepository extends BaseRepository<User, CreateUserDto,
 //
 //        return userList;
 //    }
-    public User findByEmail(String email) {
-        String query = "SELECT * FROM \"User\" WHERE email = ?";
-        try {
-            PreparedStatement pstm = this.connection.prepareStatement(query);
-            pstm.setString(1, email);
-            ResultSet rs = pstm.executeQuery();
-
-            if (rs.next()) {
-                return fromResultSet(rs); //e kthejna perdorusin qe u gjet nbaz t dhanave
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
+    public abstract User findByEmail(String email);
     public int countByRole(String role) {
         String query = "SELECT COUNT(*) FROM \"User\" WHERE role = ?";
         try {

@@ -76,4 +76,5 @@ public class StafiService {
     public String getLeastRatedInstructorName() {
         return this.stafiRepository.getLeastRatedInstructorName();
     }
+
 }

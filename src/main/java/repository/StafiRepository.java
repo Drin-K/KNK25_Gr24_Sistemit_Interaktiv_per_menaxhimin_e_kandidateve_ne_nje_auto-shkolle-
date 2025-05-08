@@ -135,7 +135,26 @@ public class StafiRepository extends UserRepository {
         }
         return null;
     }
+    @Override
+    public Stafi findByEmail(String email){
+        String query = "SELECT *" +
+                "FROM Stafi s\n" +
+                "JOIN \"User\" u ON s.id = u.id\n" +
+                "WHERE u.email = ?;";
+        try {
+            PreparedStatement pstm = this.connection.prepareStatement(query);
+            pstm.setString(1, email);
+            ResultSet rs = pstm.executeQuery();
 
+            if (rs.next()) {
+                return fromResultSet(rs);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 
 
 

@@ -19,7 +19,7 @@ public class UserContext {
     }
 
     public static int getUserId() {
-        return 1;
+        return 2;
     }
 
     public static void clear() {

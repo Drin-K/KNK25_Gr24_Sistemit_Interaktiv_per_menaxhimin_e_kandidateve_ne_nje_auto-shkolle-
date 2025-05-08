@@ -6,7 +6,9 @@ import javafx.scene.control.*;
 import models.Dto.user.CreateUserDto;
 import services.PasswordHasher;
 
+import services.SceneManager;
 import services.UserService;
+import utils.SceneLocator;
 
 import java.time.LocalDate;
 
@@ -74,7 +76,7 @@ public class SignUpController {
     }
     @FXML
     public void gotoLogIn() throws Exception {
-     //
+        SceneManager.load(SceneLocator.LOGIN_PAGE);
     }
 }
 

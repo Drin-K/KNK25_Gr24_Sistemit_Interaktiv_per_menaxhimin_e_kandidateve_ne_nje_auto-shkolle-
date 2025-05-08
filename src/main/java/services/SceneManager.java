@@ -56,11 +56,11 @@ public class SceneManager {
         Parent parent = getParent(path);
         this.currentPath = path;
         scene.setRoot(parent);
+        scene.getWindow().sizeToScene();
     }
 
     private void loadParent(String path, Pane pane) throws Exception {
         pane.getChildren().clear();
-
         Parent parent = getParent(path);
         pane.getChildren().add(parent);
     }

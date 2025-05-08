@@ -43,5 +43,6 @@
             <Image url="@../images/CarLogo.png" />
          </image>
       </ImageView>
+      <Label fx:id="errorLabel" layoutX="253.0" layoutY="380.0" prefHeight="18.0" prefWidth="190.0" textFill="RED" />
    </children>
 </AnchorPane>

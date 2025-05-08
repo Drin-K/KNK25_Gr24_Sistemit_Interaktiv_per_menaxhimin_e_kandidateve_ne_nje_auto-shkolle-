@@ -39,7 +39,7 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <Button fx:id="loginButton" layoutX="134.0" layoutY="551.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="103.0" style="-fx-background-color: #151928;" text="Log In" textFill="WHITE">
+            <Button fx:id="loginButton" layoutX="134.0" layoutY="551.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="103.0" style="-fx-background-color: #151928;" text="Log In" textFill="WHITE" onAction="#gotoLogIn">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -85,7 +85,7 @@
       <Label layoutX="41.0" layoutY="379.0" text="Gender:" textFill="#a0a2ab" />
       <RadioButton fx:id="maleRadio" text="Male" textFill="#ffffffac" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="390.0">
       </RadioButton>
-      <RadioButton fx:id="femaleRadio" text="Female" textFill="#ffffffa2" toggleGroup="$genderGroup" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="390.0" />
+      <RadioButton fx:id="femaleRadio" text="Female" textFill="#ffffffa2"  AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="390.0" />
 
       <Label fx:id="errorLabel" layoutX="41.0" layoutY="700.0" prefWidth="358.0" textFill="RED" visible="false" />
    </children>

@@ -26,7 +26,7 @@ public class UserService {
 
             UserRepository repo = dto.getRole().equals("Kandidat") ? kandidatetRepo : stafiRepo;
             if (repo.findByEmail(email) != null) {
-                System.out.println("Ky email veç ekziston në sistem.");
+                System.out.println("This email already exists in the system.");
                 return false;
             }
 

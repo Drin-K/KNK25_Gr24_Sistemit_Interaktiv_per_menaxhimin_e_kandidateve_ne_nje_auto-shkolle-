@@ -92,11 +92,18 @@ public class KandidateService {
     public boolean aprovoPatenten(int kandidatId) throws SQLException {
        return patentaRepository.aprovoPatenten(kandidatId);
     }
-//Ketu nuk e perdorim getAll te definuar ne UserRepository per shkak te menyre sse si i kemi kriju
-    //tabelat ne databaze duhet patjeter join permes id-se te Useri dhe te tabela Kandidatet
-    public ArrayList<Kandidatet> getAllKandidatet() {
-        return this.kandidatetRepository.getAllKandidatet();
+
+public ArrayList<Kandidatet> getAll() {
+    ArrayList<User> users = kandidatetRepository.getAll();
+    ArrayList<Kandidatet> kandidatiList = new ArrayList<>();
+
+    for (User user : users) {
+        if (user instanceof Kandidatet) {
+            kandidatiList.add((Kandidatet) user);
+        }
     }
+    return kandidatiList;
+}
     public int countKandidatet() {
         return this.kandidatetRepository.countKandidatet();
     }

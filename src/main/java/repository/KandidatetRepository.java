@@ -1,6 +1,7 @@
 package repository;
 import models.Dto.user.CreateUserDto;
 import models.Kandidatet;
+import models.User;
 
 import java.sql.*;
 import java.util.*;
@@ -73,8 +74,8 @@ public class KandidatetRepository extends UserRepository {
     }
 
 
-    public ArrayList<Kandidatet> getAllKandidatet() {
-        ArrayList<Kandidatet> kandidatet = new ArrayList<>();
+    public ArrayList<User> getAll() {
+        ArrayList<User> kandidatet = new ArrayList<>();
         String query = "SELECT u.id, u.name, u.surname, u.email, u.phoneNumber, u.dateOfBirth, u.hashedPassword, u.salt, u.adresa, u.gjinia, k.dataRegjistrimi, k.statusiProcesit, u.role " +
                 "FROM Kandidatet k " +
                 "JOIN \"User\" u ON k.id = u.id " +

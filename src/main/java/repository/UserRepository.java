@@ -1,6 +1,7 @@
 package repository;
 import models.Dto.user.CreateUserDto;
 import models.Dto.user.UpdateUserDto;
+import models.Stafi;
 import models.User;
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ public abstract class UserRepository extends BaseRepository<User, CreateUserDto,
         super("\"User\"");
     }
 
+    public abstract User fromResultSet(ResultSet result)throws SQLException;
     @Override
     public abstract User create(CreateUserDto createUserDto);
 
@@ -84,8 +86,8 @@ public abstract class UserRepository extends BaseRepository<User, CreateUserDto,
     }
 
     public abstract User findByEmail(String email);
-
     public abstract User getById(int id);
+    public abstract ArrayList<User> getAll();
 
 
 }

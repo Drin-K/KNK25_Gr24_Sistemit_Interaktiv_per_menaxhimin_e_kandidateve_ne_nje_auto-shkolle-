@@ -1,9 +1,7 @@
 package repository;
 
+import models.*;
 import models.Dto.user.CreateUserDto;
-import models.Kandidatet;
-import models.Stafi;
-import models.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,6 +13,7 @@ public class StafiRepository extends UserRepository {
     public StafiRepository() {
         super();
     }
+
     @Override
     public Stafi create(CreateUserDto dto) {
         String insertUser = """
@@ -103,9 +102,13 @@ public class StafiRepository extends UserRepository {
         }
         return null;
     }
-    public ArrayList<Stafi> getAllStafi(){
-            ArrayList<Stafi> stafi = new ArrayList<>();
-            String query = "SELECT u.id, u.name, u.surname, u.email, u.phoneNumber, u.dateOfBirth, u.hashedPassword, u.salt, u.adresa, u.gjinia, k.dataRegjistrimi, k.statusiProcesit, u.role " +
+    //Polimorfizmi
+    //Java nuk lejon qe ni ArrayList<Staf> me u perputh me ni ArrayList<User>,
+    // edhe pse Stafi osht ni nenklase e User
+    @Override
+    public ArrayList<User> getAll(){
+            ArrayList<User> stafi = new ArrayList<>();
+            String query = "SELECT u.id, u.name, u.surname, u.email, u.phoneNumber, u.dateOfBirth, u.hashedPassword, u.salt, u.adresa, u.gjinia, u.role " +
                     "FROM Stafi k " +
                     "JOIN \"User\" u ON k.id = u.id " +
                     "WHERE u.role = 'Staf'";
@@ -197,7 +200,7 @@ public class StafiRepository extends UserRepository {
     public Stafi getById(int id){
         String query = "SELECT u.id, u.name, u.surname, u.email, u.phoneNumber, " +
                 "u.dateOfBirth, u.hashedPassword, u.salt, u.adresa, u.gjinia, " +
-                "k.dataRegjistrimi, k.statusiProcesit, u.role " +
+                "u.role " +
                 "FROM Stafi k " +
                 "JOIN \"User\" u ON k.id = u.id " +
                 "WHERE u.role = 'Staf' AND u.id = ?";

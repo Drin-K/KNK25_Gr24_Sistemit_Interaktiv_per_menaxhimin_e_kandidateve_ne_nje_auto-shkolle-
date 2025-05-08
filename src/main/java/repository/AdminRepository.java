@@ -3,7 +3,6 @@ package repository;
 
 import models.Admin;
 import models.Dto.user.CreateUserDto;
-import models.Kandidatet;
 import models.Stafi;
 import models.User;
 
@@ -90,7 +89,7 @@ public class AdminRepository extends UserRepository {
     public Admin getById(int id){
         String query = "SELECT u.id, u.name, u.surname, u.email, u.phoneNumber, " +
                 "u.dateOfBirth, u.hashedPassword, u.salt, u.adresa, u.gjinia, " +
-                "k.dataRegjistrimi, k.statusiProcesit, u.role " +
+                " u.role " +
                 "FROM Admin k " +
                 "JOIN \"User\" u ON k.id = u.id " +
                 "WHERE u.role = 'Admin' AND u.id = ?";
@@ -107,5 +106,28 @@ public class AdminRepository extends UserRepository {
             e.printStackTrace();
         }
         return null;
+    }
+    public ArrayList<User> getAll(){
+        ArrayList<User> admin = new ArrayList<>();
+        String query = "SELECT u.id, u.name, u.surname, u.email, u.phoneNumber, u.dateOfBirth, u.hashedPassword, u.salt, u.adresa, u.gjinia, u.role " +
+                "FROM Admin k " +
+                "JOIN \"User\" u ON k.id = u.id " +
+                "WHERE u.role = 'Admin'";
+        try (
+                PreparedStatement stmt = connection.prepareStatement(query);
+                ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+
+                Admin admin1 = Admin.getInstance(rs);
+                admin.add(admin1);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return admin;
+
     }
 }

@@ -15,6 +15,7 @@ import services.*;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AdminHomeController extends BaseController {
 
@@ -73,16 +74,30 @@ public class AdminHomeController extends BaseController {
         try {
             XYChart.Series<String, Number> series = createSeries("Licenses Issued");
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
             List<Patenta> licenses = patentaService.getLicensesIssued();
+            Map<String, Integer> dateCountMap = new HashMap<>();
+
             for (Patenta patenta : licenses) {
-                String dateFormatted = patenta.getDataLeshimit().format(formatter);
-                series.getData().add(new XYChart.Data<>(dateFormatted, 1));
+                String date = patenta.getDataLeshimit().format(formatter);
+                if (dateCountMap.containsKey(date)) {
+                    dateCountMap.put(date, dateCountMap.get(date) + 1);
+                } else {
+                    dateCountMap.put(date, 1);
+                }
             }
+
+            for (Map.Entry<String, Integer> entry : dateCountMap.entrySet()) {
+                series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
+            }
+
             updateLineChart(patentaService, patentatEleshuara, series);
+
         } catch (Exception e) {
             showAlert(Alert.AlertType.ERROR, "Error", "Error loading licenses");
         }
     }
+
 
 
     private void loadUnpaidPayments() {

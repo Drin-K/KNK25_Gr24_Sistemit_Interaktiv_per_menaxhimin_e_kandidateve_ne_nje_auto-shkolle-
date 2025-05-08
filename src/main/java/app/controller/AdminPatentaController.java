@@ -49,7 +49,7 @@ public class AdminPatentaController extends BaseController {
 
         try {
             if (kandidatService.aprovoPatenten(kandidat.getIdUser())) {
-                tableKandidatet.refresh();
+                loadCandidateData();
                 showAlert(Alert.AlertType.INFORMATION, "Success!", "The license has been aproved");
             } else {
                 showAlert(Alert.AlertType.ERROR, "Error", "The patent cannot be approved");

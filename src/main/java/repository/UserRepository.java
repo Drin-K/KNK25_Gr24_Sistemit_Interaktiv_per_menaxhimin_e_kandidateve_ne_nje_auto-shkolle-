@@ -1,4 +1,5 @@
 package repository;
+import models.Dto.kandidatet.UpdateKandidatetDto;
 import models.Dto.user.CreateUserDto;
 import models.Dto.user.UpdateUserDto;
 import models.Stafi;
@@ -65,7 +66,8 @@ public abstract class UserRepository extends BaseRepository<User, CreateUserDto,
             return null;
         }
 
-        query.setLength(query.length() - 2); //per me largu  ", "
+        // Heqim ", "
+        query.setLength(query.length() - 2);
         query.append(" WHERE id = ?");
         params.add(updateUserDto.getIdUser());
 
@@ -75,7 +77,16 @@ public abstract class UserRepository extends BaseRepository<User, CreateUserDto,
                 pstm.setObject(i + 1, params.get(i));
             }
             int updated = pstm.executeUpdate();
+
             if (updated == 1) {
+                if ("Kandidat".equals(updateUserDto.getRole())) {
+                    if (updateUserDto instanceof UpdateKandidatetDto) {
+                        UpdateKandidatetDto kandidatetDto = (UpdateKandidatetDto) updateUserDto;
+                        updateKandidatetDetails(kandidatetDto);
+                    } else {
+                        System.err.println("This is an error, the object type is not UpdateKandidatetDto.");
+                    }
+                }
                 return this.getById(updateUserDto.getIdUser());
             }
         } catch (SQLException e) {
@@ -85,9 +96,40 @@ public abstract class UserRepository extends BaseRepository<User, CreateUserDto,
         return null;
     }
 
+    private void updateKandidatetDetails(UpdateKandidatetDto updateUserDto) throws SQLException {
+        StringBuilder kandidatiQuery = new StringBuilder("UPDATE Kandidatet SET ");
+        ArrayList<Object> kandidatiParams = new ArrayList<>();
+
+        if ((updateUserDto.getDataRegjistrimi() != null)){
+            kandidatiQuery.append("dataRegjistrimi=?, ");
+            kandidatiParams.add(updateUserDto.getDataRegjistrimi());
+        }
+        if (updateUserDto.getStatusiProcesit() != null) {
+            kandidatiQuery.append("statusiProcesit=?, ");
+            kandidatiParams.add(updateUserDto.getStatusiProcesit());
+        }
+
+        if (!kandidatiParams.isEmpty()) {
+            kandidatiQuery.setLength(kandidatiQuery.length() - 2); // Heqim ", "
+            kandidatiQuery.append(" WHERE id = ?");
+            kandidatiParams.add(updateUserDto.getIdUser());
+
+            PreparedStatement pstmKandidati = this.connection.prepareStatement(kandidatiQuery.toString());
+            for (int i = 0; i < kandidatiParams.size(); i++) {
+                pstmKandidati.setObject(i + 1, kandidatiParams.get(i));
+            }
+            pstmKandidati.executeUpdate();
+        }
+    }
+
+
+
     public abstract User findByEmail(String email);
     public abstract User getById(int id);
     public abstract ArrayList<User> getAll();
+    //delete nuk ka nevoj te implementohet te stafi, kandidati dhe admini per shkak se
+    //e kemi vendos si constrain ON DELETE CASCADE dhe ne momentin qe fshhet prej userit
+    //do fshihet edhe ne tabela tjera
 
 
 }

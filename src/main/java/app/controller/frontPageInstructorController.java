@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import services.LanguageManager;
 import services.SceneManager;
+import services.UserContext;
 import utils.SceneLocator;
 
 import java.util.Locale;
@@ -46,6 +47,11 @@ public class frontPageInstructorController {
         languageManager.toggleLanguage();
         SceneManager.reload();
 
+    }
+    @FXML
+    private void handleLogOut()throws Exception{
+        SceneManager.load(SceneLocator.LOGIN_PAGE);
+        UserContext.clear();
     }
 
 

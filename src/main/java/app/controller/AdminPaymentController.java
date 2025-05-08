@@ -26,12 +26,8 @@ public class AdminPaymentController {
     @FXML private Text yearText;
     @FXML
     private ComboBox<String> statusiIRiComboBox;
-
     @FXML
     private LineChart<String, Number> PPM;  // LineChart
-
-
-
     @FXML
     private PieChart statistikatKandidateveChart;
     @FXML
@@ -182,7 +178,6 @@ public class AdminPaymentController {
             error.showAndWait();
         }
     }
-
     @FXML
     public void initialize() {
         this.loadTableDatat();

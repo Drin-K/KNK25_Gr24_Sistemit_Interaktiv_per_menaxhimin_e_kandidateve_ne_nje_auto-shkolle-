@@ -8,7 +8,6 @@ import utils.SceneLocator;
 import java.util.Locale;
 
 public class FrontPageAdminController {
-
     private final LanguageManager languageManager = LanguageManager.getInstance();
 
     @FXML
@@ -45,6 +44,5 @@ public class FrontPageAdminController {
     private void languageClick()throws Exception{
         languageManager.toggleLanguage();
         SceneManager.reload();
-
     }
 }

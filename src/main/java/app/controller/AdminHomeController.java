@@ -1,131 +1,136 @@
 package app.controller;
 
+import app.controller.base.BaseController;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import models.Orari;
-import models.Patenta;
 import services.*;
 
-import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
-public class AdminHomeController {
-    @FXML
-    private Label totalKandidat, totalStafi;
-    @FXML
-    private PieChart piechart;
-    @FXML
-    private LineChart<String, Number> patentatEleshuara;
-    @FXML
-    private BarChart<String, Number> pagesaTePapaguara, nrRegjistrimeve, PagesaTeKryera;
-    @FXML
-    private ListView<String> sesionetSot;
-    private final PatentaService patentaService=new PatentaService();
-    private final PagesaService pagesaService=new PagesaService();
-    private final OrariService sesioniService=new OrariService();
-    private final KandidateService kandidateService=new KandidateService();
-    private final StafiService stafiService=new StafiService();
+public class AdminHomeController extends BaseController {
 
+    @FXML private Label totalKandidat, totalStafi;
+    @FXML private PieChart piechart;
+    @FXML private LineChart<String, Number> patentatEleshuara;
+    @FXML private BarChart<String, Number> pagesaTePapaguara, nrRegjistrimeve, PagesaTeKryera;
+    @FXML private ListView<String> sesionetSot;
+
+    private PatentaService patentaService;
+    private PagesaService pagesaService;
+    private OrariService sesioniService;
+    private KandidateService kandidateService;
+    private StafiService stafiService;
+
+    public AdminHomeController() {
+        this.patentaService = new PatentaService();
+        this.pagesaService = new PagesaService();
+        this.sesioniService = new OrariService();
+        this.kandidateService = new KandidateService();
+        this.stafiService = new StafiService();
+    }
 
     @FXML
     public void initialize() {
+        loadDashboardData();
+    }
+
+    private void loadDashboardData() {
         loadTotalCandidates();
         loadTotalStaff();
-        loadInProgressCompleted();
-        loadLicensesIssued();
-        loadUnpaidPayments();
+        loadChartsData();
         loadSessionsToday();
-        loadRegistrationsTopPayments();
     }
+
     private void loadTotalCandidates() {
-        int total = kandidateService.countKandidatet();
-        totalKandidat.setText(String.valueOf(total));
+        totalKandidat.setText(String.valueOf(kandidateService.countKandidatet()));
     }
 
     private void loadTotalStaff() {
-        int total = stafiService.countStafi();
-        totalStafi.setText(String.valueOf(total));
+        totalStafi.setText(String.valueOf(stafiService.countStafi()));
     }
+
+    private void loadChartsData() {
+        loadInProgressCompleted();
+        loadLicensesIssued();
+        loadUnpaidPayments();
+        loadRegistrationsTopPayments();
+    }
+
     private void loadInProgressCompleted() {
-        HashMap<String, Integer> statusReport = kandidateService.getKandidatetStatusReport();
-
-        ArrayList<PieChart.Data> pieChartData = new ArrayList<>();
-
-        for (String status : statusReport.keySet()) {
-            pieChartData.add(new PieChart.Data(status, statusReport.get(status)));
-        }
-
-        piechart.getData().clear();
-        piechart.getData().addAll(pieChartData);
+        updatePieChart(kandidateService.getKandidatetStatusReport());
     }
 
-        private void loadLicensesIssued() {
-            try {
-                List<Patenta> patentat = patentaService.getLicensesIssued();
+    private void loadLicensesIssued() {
+        try {
+            XYChart.Series<String, Number> series = createSeries("Licenses Issued");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-                XYChart.Series<String, Number> series = new XYChart.Series<>();
-                series.setName("Licenses Issued");
-
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-                for (Patenta patenta : patentat) {
-                    series.getData().add(new XYChart.Data<>(patenta.getDataLeshimit().format(formatter), 1));
-                }
-
-                patentatEleshuara.getData().add(series);
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            patentaService.getLicensesIssued().forEach(patenta ->
+                    series.getData().add(new XYChart.Data<>(patenta.getDataLeshimit().format(formatter), 1))
+            );
+            updateLineChart(patentaService, patentatEleshuara, series);
+        } catch (Exception e) {
+            showError("Gabim në ngarkimin e patentave");
         }
+    }
 
     private void loadUnpaidPayments() {
-        XYChart.Series<String, Number> chartData = pagesaService.getUnpaidPaymentsChartData();
-
-
-        pagesaTePapaguara.getData().clear();
-        pagesaTePapaguara.getData().add(chartData);
+        updateBarChart(pagesaService.getUnpaidPaymentsChartData(), pagesaTePapaguara);
     }
+
     private void loadSessionsToday() {
-        List<Orari> sessionsToday = sesioniService.getSessionsToday();
-
-        for (Orari orari : sessionsToday) {
-            sesionetSot.getItems().add(orari.getLlojiMesimit() + ": " + orari.getOraFillimit()+"-"+orari.getOraPerfundimit());
-        }
-    }
-    private void loadRegistrationsTopPayments(){
-
-        HashMap<String, Integer> registrationsData = kandidateService.getRegistrationsLast12Months();
-        XYChart.Series<String, Number> registrationsSeries = new XYChart.Series<>();
-        registrationsSeries.setName("Registrations");
-
-        for (String muaji : registrationsData.keySet()) {
-            registrationsSeries.getData().add(new XYChart.Data<>(muaji, registrationsData.get(muaji)));
-        }
-
-        nrRegjistrimeve.getData().clear();
-        nrRegjistrimeve.getData().add(registrationsSeries);
-
-        // Pagesat
-        HashMap<String, Integer> paymentsData = pagesaService.getPaymentsLast12Months();
-        XYChart.Series<String, Number> paymentsSeries = new XYChart.Series<>();
-        paymentsSeries.setName("Number Of Payments");
-
-        for (String muaji : paymentsData.keySet()) {
-            paymentsSeries.getData().add(new XYChart.Data<>(muaji, paymentsData.get(muaji)));
-        }
-
-        PagesaTeKryera.getData().clear();
-        PagesaTeKryera.getData().add(paymentsSeries);
+        sesionetSot.getItems().clear();
+        sesioniService.getSessionsToday().forEach(orari ->
+                sesionetSot.getItems().add(String.format("%s: %s-%s",
+                        orari.getLlojiMesimit(), orari.getOraFillimit(), orari.getOraPerfundimit())
+                )
+        );
     }
 
+    private void loadRegistrationsTopPayments() {
+        loadChartData(kandidateService.getRegistrationsLast12Months(), nrRegjistrimeve, "Registrations");
+        loadChartData(pagesaService.getPaymentsLast12Months(), PagesaTeKryera, "Number Of Payments");
+    }
 
+    private void loadChartData(HashMap<String, Integer> data, BarChart<String, Number> chart, String seriesName) {
+        XYChart.Series<String, Number> series = createSeries(seriesName);
+        data.forEach((month, value) ->
+                series.getData().add(new XYChart.Data<>(month, value))
+        );
+        updateBarChart(series, chart);
+    }
+
+    private XYChart.Series<String, Number> createSeries(String seriesName) {
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName(seriesName);
+        return series;
+    }
+
+    private void updatePieChart(HashMap<String, Integer> data) {
+        piechart.getData().clear();
+        data.forEach((status, count) ->
+                piechart.getData().add(new PieChart.Data(status, count))
+        );
+    }
+
+    private void updateLineChart(PatentaService service, LineChart<String, Number> chart, XYChart.Series<String, Number> series) {
+        chart.getData().clear();
+        chart.getData().add(series);
+    }
+
+    private void updateBarChart(XYChart.Series<String, Number> series, BarChart<String, Number> chart) {
+        chart.getData().clear();
+        chart.getData().add(series);
+    }
+
+    private void showError(String message) {
+        showAlert(Alert.AlertType.ERROR, "Gabim", message);
+    }
 }

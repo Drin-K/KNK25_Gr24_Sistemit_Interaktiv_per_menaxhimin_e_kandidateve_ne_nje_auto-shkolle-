@@ -20,7 +20,6 @@ public class FeedbackInstructorController {
     @FXML private TableColumn<FeedBack, String> commentArea;
     @FXML private TableColumn<FeedBack, Integer> pointsArea;
     @FXML private Button filterBttn;
-
     @FXML
     public void initialize() {
         commentArea.setCellValueFactory(new PropertyValueFactory<>("koment"));

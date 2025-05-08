@@ -16,23 +16,17 @@ import java.util.List;
 
 public class AdminPatentaController {
 
-
-
     @FXML
     private TableView<Kandidatet> tableKandidatet;
-
     @FXML
-    private TableColumn<Kandidatet, String> colEmri, colMbiemri, colEmail, colTelefoni, colDataRegjistrimit,  colStatusi;
+    private TableColumn<Kandidatet, String> colEmri, colMbiemri, colEmail, colTelefoni, colDataRegjistrimit, colStatusi;
     private final KandidateService kandidatService = new KandidateService();
-
     @FXML
     private TableView<Kandidatet> tableKandidatet1;
-
-
     @FXML
-    private TableColumn<Kandidatet, String> colEmri1, colMbiemri1, colEmail1, colTelefoni1, colDataRegjistrimit1,  colStatusi1;
+    private TableColumn<Kandidatet, String> colEmri1, colMbiemri1, colEmail1, colTelefoni1, colDataRegjistrimit1, colStatusi1;
     @FXML
-    private void initialize()throws SQLException {
+    private void initialize() throws SQLException {
         colEmri.setCellValueFactory(new PropertyValueFactory<>("name"));
         colMbiemri.setCellValueFactory(new PropertyValueFactory<>("surname"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -52,8 +46,8 @@ public class AdminPatentaController {
 
     private void shfaqKandidatetMeTeDrejte() {
         List<Kandidatet> kandidatet = kandidatService.shfaqKandidatetMeTeDrejte();
-            ObservableList<Kandidatet> data = FXCollections.observableArrayList(kandidatet);
-            tableKandidatet.setItems(data);
+        ObservableList<Kandidatet> data = FXCollections.observableArrayList(kandidatet);
+        tableKandidatet.setItems(data);
     }
 
     @FXML
@@ -90,12 +84,12 @@ public class AdminPatentaController {
             alert.showAndWait();
         }
     }
+
     private void shfaqKandidatetMeTeDrejtePaPagesa() {
         List<Kandidatet> kandidatet = kandidatService.shfaqKandidatetMeTeDrejtePaPagesa();
         ObservableList<Kandidatet> data = FXCollections.observableArrayList(kandidatet);
         tableKandidatet1.setItems(data);
     }
-
 
 
 }

@@ -111,14 +111,6 @@ public class PatentaRepository extends BaseRepository<Patenta, CreatePatentaDto,
         }
     }
 
-    public void updateStatusiPatentes(int idKandidat, String statusi) throws SQLException {
-        String sql = "UPDATE Patenta SET Statusi = ? WHERE ID_Kandidat = ?";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, statusi);
-            statement.setInt(2, idKandidat);
-            statement.executeUpdate();
-        }
-    }
 
 }
 

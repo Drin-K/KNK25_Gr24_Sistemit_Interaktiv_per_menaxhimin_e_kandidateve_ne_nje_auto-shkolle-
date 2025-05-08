@@ -62,9 +62,7 @@ public class TestiService {
     public List<Testet> getTestetByKandidatId(int idKandidat) {
         return testetRepository.getTestetByKandidatId(idKandidat);
     }
-    public List<Testet> getAllTestet() {
-        return this.testetRepository.getAllTestet();
-    }
+
     public void delete(int Id) throws Exception {
        Testet ekzistues = testetRepository.getById(Id);
         if (ekzistues == null) {

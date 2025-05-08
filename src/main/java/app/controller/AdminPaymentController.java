@@ -12,6 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import models.Pagesat;
+import repository.PagesatRepository;
 import services.PagesaService;
 
 import java.sql.SQLException;
@@ -33,13 +34,19 @@ public class AdminPaymentController extends BaseController {
     @FXML private TableColumn<Pagesat, String> DataEPagesesCol, MetodaPagesesCol, StatusiPagese;
 
 
-    private final ObservableList<Pagesat> pagesatList = FXCollections.observableArrayList();
+    private final ObservableList<Pagesat> pagesatList;
     private final PagesaService pagesatService;
-    private final XYChart.Series<String, Number> paguarSeries = new XYChart.Series<>();
-    private final XYChart.Series<String, Number> pjeserishtSeries = new XYChart.Series<>();
-    private final XYChart.Series<String, Number> mbeturSeries = new XYChart.Series<>();
+    private final PagesatRepository pagesatRepository;
+    private final XYChart.Series<String, Number> paguarSeries;
+    private final XYChart.Series<String, Number> pjeserishtSeries;
+    private final XYChart.Series<String, Number> mbeturSeries;
 public AdminPaymentController(){
+    this.pagesatList= FXCollections.observableArrayList();
     this.pagesatService=new PagesaService();
+    this.pagesatRepository=new PagesatRepository();
+    this.paguarSeries=new XYChart.Series<>();
+    this.pjeserishtSeries=new XYChart.Series<>();
+    this.mbeturSeries=new XYChart.Series<>();
 }
     @FXML
     public void initialize() {
@@ -58,9 +65,9 @@ public AdminPaymentController(){
     }
 
     private void initializeComboBoxes() {
-        combobox1.setItems(FXCollections.observableArrayList("Cash", "Kartë", "Online"));
-        comboBox2.setItems(FXCollections.observableArrayList("Paguar", "Pjesërisht", "Mbetur"));
-        statusiIRiComboBox.setItems(FXCollections.observableArrayList("Paguar", "Pjeserisht", "Mbetur"));
+        combobox1.getItems().setAll("Cash", "Kartë", "Online");
+        comboBox2.getItems().setAll("Paguar", "Pjesërisht", "Mbetur");
+        statusiIRiComboBox.getItems().setAll("Paguar", "Pjeserisht", "Mbetur");
     }
 
     private void initializeChartsAndIndicators() {
@@ -74,7 +81,7 @@ public AdminPaymentController(){
 
     public void loadTableDatat() {
         pagesatList.clear();
-        pagesatList.addAll(pagesatService.getAllPagesat());
+        pagesatList.addAll(pagesatRepository.getAll());
         pagesatTable.setItems(pagesatList);
     }
 
@@ -124,9 +131,9 @@ public AdminPaymentController(){
         LocalDate todayDate = LocalDate.now();
         YearMonth currentMonth = YearMonth.now();
 
-        int todayCount = pagesatService.countPagesatOnDate(todayDate);
-        int monthCount = pagesatService.countPagesatInMonth(currentMonth);
-        int yearCount = pagesatService.countPagesatInYear(todayDate.getYear());
+        int todayCount = pagesatRepository.countPagesatOnDate(todayDate);
+        int monthCount = pagesatRepository.countPagesatInMonth(currentMonth);
+        int yearCount = pagesatRepository.countPagesatInYear(todayDate.getYear());
 
         today.setFill(todayCount > 0 ? Color.GREEN : Color.LIGHTGRAY);
         month.setFill(monthCount > 0 ? Color.BLUE : Color.LIGHTGRAY);
@@ -146,7 +153,7 @@ public AdminPaymentController(){
             return;
         }
         try {
-            pagesatService.updateStatusiPageses(selectedPagesa.getId(), statusiRi);
+            pagesatRepository.updateStatusiPageses(selectedPagesa.getId(), statusiRi);
             showAlert(Alert.AlertType.INFORMATION, "Success", "Payment status was successfully updated!");
             loadTableDatat();
         } catch (SQLException e) {

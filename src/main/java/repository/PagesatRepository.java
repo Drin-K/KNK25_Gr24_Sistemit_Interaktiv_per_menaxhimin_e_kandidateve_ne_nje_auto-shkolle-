@@ -157,21 +157,6 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
         }
     }
 
-    public List<Pagesat> loadPagesatData() {
-        List<Pagesat> pagesatList = new ArrayList<>();
-        String query = "SELECT * FROM Pagesat";
-        try (PreparedStatement stmt = this.connection.prepareStatement(query);
-             ResultSet rs = stmt.executeQuery()) {
-
-            while (rs.next()) {
-                Pagesat pagesat = Pagesat.getInstance(rs);
-                pagesatList.add(pagesat);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return pagesatList;
-    }
     public List<Pagesat> filterPagesat(String name, String fromDate, String toDate, String metodaPageses, String statusiPageses) throws SQLException {
         String sql = "SELECT * FROM Pagesat p " +
                 "JOIN Kandidatet k ON p.ID_Kandidat = k.id " +
@@ -203,7 +188,7 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
         }
     }
     public int countPagesatOnDate(LocalDate date) throws SQLException {
-        String sql = "SELECT COUNT(*) FROM pagesat WHERE data_e_pageses = ?";
+        String sql = "SELECT COUNT(*) FROM Pagesat WHERE Data_e_Pageses = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setDate(1, Date.valueOf(date));
             ResultSet rs = stmt.executeQuery();

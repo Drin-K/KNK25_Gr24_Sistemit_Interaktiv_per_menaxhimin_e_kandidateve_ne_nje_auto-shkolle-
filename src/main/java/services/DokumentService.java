@@ -93,18 +93,6 @@ public class DokumentService {
         dokumentRepository.create(dto,file);
     }
 
-    public ObservableList<Dokumentet> getDokumenteByKandidatId(String kandidatId) {
-        try {
-            ArrayList<Dokumentet> dokumentetList = dokumentRepository.getDokumenteByKandidatId(kandidatId);
-            return FXCollections.observableArrayList(dokumentetList);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return FXCollections.observableArrayList();
-        }
-    }
-    public ArrayList<Dokumentet> getAllDokumentet(){
-        return this.dokumentRepository.getAllDokumentet();
-    }
     public void delete(int dokumentId) throws Exception {
         Dokumentet ekzistues = dokumentRepository.getById(dokumentId);
         if (ekzistues == null) {

@@ -58,7 +58,5 @@ public class PatentaService {
         this.getById(id); // E kontrollojm a ekziston
         return patentaRepository.delete(id);
     }
-    public List<Patenta> getLicensesIssued() throws SQLException {
-        return patentaRepository.getLicensesIssued();
-    }
+
 }

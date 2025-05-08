@@ -14,21 +14,9 @@ import java.util.List;
 
 public class OrariService {
     private final OrariRepository orariRepository;
-    private final KandidatetRepository kandidatRepository;
-    private final StafiRepository stafiRepository;
     private final AutomjetetRepository automjetRepository;
-
-    public OrariService(OrariRepository orariRepository, KandidatetRepository kandidatRepository,
-                        StafiRepository stafiRepository, AutomjetetRepository automjetRepository) {
-        this.orariRepository = orariRepository;
-        this.kandidatRepository = kandidatRepository;
-        this.stafiRepository = stafiRepository;
-        this.automjetRepository = automjetRepository;
-    }
     public OrariService() {
         this.orariRepository = new OrariRepository();
-        this.kandidatRepository = new KandidatetRepository();
-        this.stafiRepository = new StafiRepository();
         this.automjetRepository = new AutomjetetRepository();
     }
     public Orari getById(int idSesioni) {
@@ -154,14 +142,8 @@ public class OrariService {
     public long numeroSesione(int idKandidat, String llojiMesimit, String statusi){
         return orariRepository.numeroSesione(idKandidat,llojiMesimit,statusi);
     }
-    public List<Orari> gjejOraretPerDate(LocalDate data){
-        return orariRepository.gjejOraretPerDate(data);
-    }
     public List<Orari> getSessionsToday() {
         LocalDate currentDate = LocalDate.now();
-        return gjejOraretPerDate(currentDate);
-    }
-    public List<Orari> getAllOrari(){
-        return this.orariRepository.loadOrariData();
+        return orariRepository.gjejOraretPerDate(currentDate);
     }
 }

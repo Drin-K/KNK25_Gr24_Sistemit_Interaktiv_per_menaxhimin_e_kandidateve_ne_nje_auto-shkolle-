@@ -5,13 +5,13 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Orari;
+import repository.OrariRepository;
 import services.OrariService;
 import services.UserContext;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-
 public class OrariKandidatiController {
 
     @FXML private TableView<Orari> orariTable;
@@ -21,11 +21,16 @@ public class OrariKandidatiController {
     @FXML private TableColumn<Orari, String> llojiColumn;
     @FXML private TableColumn<Orari, String> statusiColumn;
     @FXML private DatePicker dataPicker;
-    @FXML private Button kerkoButton;
     @FXML private PieChart progresiChart;
 
-    private final OrariService orariService = new OrariService();
-    private final int kandidatId = UserContext.getUserId();
+    private final OrariService orariService;
+    private final int kandidatId;
+    public final OrariRepository orariRepository;
+    public OrariKandidatiController(){
+        this.orariService=new OrariService();
+        this.kandidatId=UserContext.getUserId();
+        this.orariRepository=new OrariRepository();
+    }
 
     @FXML
     public void initialize() {
@@ -64,7 +69,7 @@ public class OrariKandidatiController {
             showAlert("Gabim", "Zgjidhni një datë.");
             return;
         }
-        List<Orari> teGjithaOraret = orariService.gjejOraretPerDate(dataZgjedhur);
+        List<Orari> teGjithaOraret = orariRepository.gjejOraretPerDate(dataZgjedhur);
         List<Orari> oraretEFiltruara = new ArrayList<>();
 
         for (Orari o : teGjithaOraret) {

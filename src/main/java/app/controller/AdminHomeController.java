@@ -10,6 +10,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import models.Patenta;
+import repository.KandidatetRepository;
+import repository.PatentaRepository;
 import services.*;
 
 import java.time.format.DateTimeFormatter;
@@ -25,18 +27,20 @@ public class AdminHomeController extends BaseController {
     @FXML private BarChart<String, Number> pagesaTePapaguara, nrRegjistrimeve, PagesaTeKryera;
     @FXML private ListView<String> sesionetSot;
 
-    private PatentaService patentaService;
     private PagesaService pagesaService;
     private OrariService sesioniService;
     private KandidateService kandidateService;
     private StafiService stafiService;
+    private KandidatetRepository kandidatetRepository;
+    private PatentaRepository patentaRepository;
 
     public AdminHomeController() {
-        this.patentaService = new PatentaService();
         this.pagesaService = new PagesaService();
         this.sesioniService = new OrariService();
         this.kandidateService = new KandidateService();
         this.stafiService = new StafiService();
+        this.kandidatetRepository=new KandidatetRepository();
+        this.patentaRepository=new PatentaRepository();
     }
 
     @FXML
@@ -67,7 +71,7 @@ public class AdminHomeController extends BaseController {
     }
 
     private void loadInProgressCompleted() {
-        updatePieChart(kandidateService.getKandidatetStatusReport());
+        updatePieChart(this.kandidatetRepository.countKandidatetByStatusiProcesit());
     }
 
     private void loadLicensesIssued() {
@@ -75,7 +79,7 @@ public class AdminHomeController extends BaseController {
             XYChart.Series<String, Number> series = createSeries("Licenses Issued");
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-            List<Patenta> licenses = patentaService.getLicensesIssued();
+            List<Patenta> licenses = patentaRepository.getLicensesIssued();
             Map<String, Integer> dateCountMap = new HashMap<>();
 
             for (Patenta patenta : licenses) {
@@ -91,7 +95,7 @@ public class AdminHomeController extends BaseController {
                 series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
             }
 
-            updateLineChart(patentaService, patentatEleshuara, series);
+            updateLineChart(patentatEleshuara, series);
 
         } catch (Exception e) {
             showAlert(Alert.AlertType.ERROR, "Error", "Error loading licenses");
@@ -139,7 +143,7 @@ public class AdminHomeController extends BaseController {
         );
     }
 
-    private void updateLineChart(PatentaService service, LineChart<String, Number> chart, XYChart.Series<String, Number> series) {
+    private void updateLineChart(LineChart<String, Number> chart, XYChart.Series<String, Number> series) {
         chart.getData().clear();
         chart.getData().add(series);
     }

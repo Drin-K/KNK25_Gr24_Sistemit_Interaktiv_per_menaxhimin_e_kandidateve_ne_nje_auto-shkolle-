@@ -75,7 +75,7 @@ public class KandidateService {
 
 
     public boolean delete(int id) throws Exception {
-        //this.getById(id); // E kontrollojm a ekziston
+        this.getById(id); // E kontrollojm a ekziston
         return kandidatetRepository.delete(id);
     }
 
@@ -89,9 +89,6 @@ public class KandidateService {
 
     }
 
-    public boolean aprovoPatenten(int kandidatId) throws SQLException {
-       return patentaRepository.aprovoPatenten(kandidatId);
-    }
 
 public ArrayList<Kandidatet> getAll() {
     ArrayList<User> users = kandidatetRepository.getAll();
@@ -107,13 +104,6 @@ public ArrayList<Kandidatet> getAll() {
     public int countKandidatet() {
         return this.kandidatetRepository.countKandidatet();
     }
-    public HashMap<String, Integer> getKandidatetStatusReport() {
-        return this.kandidatetRepository.countKandidatetByStatusiProcesit();
-    }
-    public List<Kandidatet> shfaqKandidatetMeTeDrejte(){
-        return this.kandidatetRepository.shfaqKandidatetMeTeDrejte();
-    }
-    public List<Kandidatet> shfaqKandidatetMeTeDrejtePaPagesa(){
-        return this.kandidatetRepository.shfaqKandidatetMeTeDrejtePaPagesa();
-    }
+
+
 }

@@ -73,23 +73,11 @@ public class PagesaService {
     public HashMap<String, Integer> getPaymentsLast12Months() {
         return pagesatRepository.getPaymentsLast12Months();
     }
-    public void updateStatusiPageses(int pagesaId, String statusiRi) throws SQLException{
-      pagesatRepository.updateStatusiPageses(pagesaId,statusiRi);
-    }
-    public List<Pagesat> getAllPagesat() {
-        return pagesatRepository.loadPagesatData();  }
+
     public List<Pagesat> getFilteredPagesat(String name, String fromDate, String toDate, String metodaPageses, String statusiPageses) throws SQLException, SQLException {
         return pagesatRepository.filterPagesat(name, fromDate, toDate, metodaPageses, statusiPageses);
     }
-    public int countPagesatOnDate(LocalDate date) throws SQLException{
-        return pagesatRepository.countPagesatOnDate(date);
-    }
-    public int countPagesatInMonth(YearMonth month) throws SQLException{
-        return pagesatRepository.countPagesatInMonth(month);
-    }
-    public int countPagesatInYear(int year) throws SQLException {
-        return pagesatRepository.countPagesatInYear(year);
-    }
+
     public Map<String, Integer> getPagesatCountByStatus() throws SQLException{
         return pagesatRepository.getPagesatCountByStatus();
     }

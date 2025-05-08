@@ -8,6 +8,10 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import models.*;
 import models.Dto.kandidatet.CreateKandidatetDto;
+import repository.DokumentetRepository;
+import repository.OrariRepository;
+import repository.PagesatRepository;
+import repository.TestetRepository;
 import services.*;
 
 import java.io.IOException;
@@ -51,6 +55,10 @@ public class CandidateManagmentController extends BaseController {
     private final OrariService orariService;
     private final TestiService testiService;
     private final RegjistrimiService regjistrimiService;
+    private final TestetRepository testiRepository;
+    private final DokumentetRepository dokumentetRepository;
+    private final PagesatRepository pagesatRepository;
+    private final OrariRepository orariRepository;
 
     public CandidateManagmentController() {
         this.kandidateService = new KandidateService();
@@ -59,6 +67,10 @@ public class CandidateManagmentController extends BaseController {
         this.orariService = new OrariService();
         this.testiService = new TestiService();
         this.regjistrimiService = new RegjistrimiService();
+        this.testiRepository=new TestetRepository();
+        this.dokumentetRepository=new DokumentetRepository();
+        this.pagesatRepository=new PagesatRepository();
+        this.orariRepository=new OrariRepository();
     }
     @FXML
     public void initialize() {
@@ -123,16 +135,16 @@ public class CandidateManagmentController extends BaseController {
         kandidatTable.setItems(FXCollections.observableArrayList(kandidateService.getAll()));
     }
     private void loadDokumentetData() {
-        tableViewDokumente.setItems(FXCollections.observableArrayList(dokumentService.getAllDokumentet()));
+        tableViewDokumente.setItems(FXCollections.observableArrayList(dokumentetRepository.getAll()));
     }
     private void loadPagesatData() {
-        tabelaPagesat.setItems(FXCollections.observableArrayList(pagesaService.getAllPagesat()));
+        tabelaPagesat.setItems(FXCollections.observableArrayList(pagesatRepository.getAll()));
     }
     private void loadOrariData() {
-        orariTable.setItems(FXCollections.observableArrayList(orariService.getAllOrari()));
+        orariTable.setItems(FXCollections.observableArrayList(orariRepository.getAll()));
     }
     private void loadTestetData() {
-        testetTable.setItems(FXCollections.observableArrayList(testiService.getAllTestet()));
+        testetTable.setItems(FXCollections.observableArrayList(testiRepository.getAll()));
     }
 
     @FXML

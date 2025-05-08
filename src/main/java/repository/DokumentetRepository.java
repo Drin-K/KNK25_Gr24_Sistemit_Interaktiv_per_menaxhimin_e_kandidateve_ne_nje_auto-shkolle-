@@ -15,8 +15,6 @@ public class DokumentetRepository extends BaseRepository<Dokumentet, CreateDokum
     public DokumentetRepository() {
         super("Dokumentet");
     }
-    private KandidateService kandidateService;
-    private DokumentService dokumentService;
     public Dokumentet fromResultSet(ResultSet result) throws SQLException {
         return Dokumentet.getInstance(result);
     }
@@ -82,21 +80,7 @@ public class DokumentetRepository extends BaseRepository<Dokumentet, CreateDokum
         }
         return null;
     }
-    public ArrayList<Dokumentet> getDokumenteByKandidatId(String kandidatId) throws SQLException {
-        ArrayList<Dokumentet> dokumentetList = new ArrayList<>();
-        String query = "SELECT * FROM Dokumentet WHERE ID_Kandidat = ?";
 
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setString(1, kandidatId);
-            ResultSet resultSet = statement.executeQuery();
-
-            while (resultSet.next()) {
-                dokumentetList.add(Dokumentet.getInstance(resultSet));
-            }
-        }
-
-        return dokumentetList;
-    }
 
 public int numeroDokumentet(int kandidatiId) {
     String query = """
@@ -111,7 +95,7 @@ public int numeroDokumentet(int kandidatiId) {
         ResultSet resultSet = statement.executeQuery();
 
         if (resultSet.next()) {
-            return resultSet.getInt(1); // numri i dokumenteve të ndryshme
+            return resultSet.getInt(1);
         }
 
     } catch (SQLException e) {
@@ -120,26 +104,7 @@ public int numeroDokumentet(int kandidatiId) {
 
     return 0;
 }
-public ArrayList<Dokumentet> getAllDokumentet() {
-    ArrayList<Dokumentet> dokumentetList = new ArrayList<>();
-    String query = "SELECT d.id, d.ID_Kandidat, d.Lloji_Dokumentit, d.Emri_Skedari, d.Data_Ngarkimit " +
-            "FROM Dokumentet d";
 
-    try (
-            PreparedStatement stmt = connection.prepareStatement(query);
-            ResultSet rs = stmt.executeQuery()
-    ) {
-        while (rs.next()) {
-            Dokumentet dokument = Dokumentet.getInstance(rs);
-            dokumentetList.add(dokument);
-        }
-
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
-
-    return dokumentetList;
-}
     public Dokumentet create(CreateDokumentetDto dto, File fileToUpload) throws Exception {
         String relativePath = "src/main/java/utils/uploads";
         File uploadDir = new File(relativePath);

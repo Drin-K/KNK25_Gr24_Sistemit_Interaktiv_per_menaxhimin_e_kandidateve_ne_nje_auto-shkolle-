@@ -96,14 +96,6 @@ public class TestetRepository extends BaseRepository<Testet, CreateTestetDto, Up
                 }
                 return null;
          }
-    public void updateRezultatiKandidatit(int idKandidat, String rezultati) throws SQLException {
-        String sql = "UPDATE Testet SET Rezultati = ? WHERE ID_Kandidat = ?";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, rezultati);
-            statement.setInt(2, idKandidat);
-            statement.executeUpdate();
-        }
-    }
     public List<Testet> getTestetByKandidatId(int idKandidat) {
         List<Testet> testetList = new ArrayList<>();
         String sql = "SELECT * FROM Testet WHERE ID_Kandidat = ?";
@@ -112,21 +104,6 @@ public class TestetRepository extends BaseRepository<Testet, CreateTestetDto, Up
             ResultSet result = statement.executeQuery();
             while (result.next()) {
                 testetList.add(fromResultSet(result));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return testetList;
-    }
-    public List<Testet> getAllTestet() {
-        List<Testet> testetList = new ArrayList<>();
-        String query = "SELECT * FROM Testet";
-        try (PreparedStatement stmt = this.connection.prepareStatement(query);
-             ResultSet rs = stmt.executeQuery()) {
-
-            while (rs.next()) {
-                Testet testet = Testet.getInstance(rs);
-                testetList.add(testet);
             }
         } catch (SQLException e) {
             e.printStackTrace();

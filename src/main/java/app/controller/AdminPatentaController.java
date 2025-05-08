@@ -6,7 +6,8 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import models.Kandidatet;
-import services.KandidateService;
+import repository.KandidatetRepository;
+import repository.PatentaRepository;
 
 import java.util.List;
 
@@ -16,8 +17,12 @@ public class AdminPatentaController extends BaseController {
     @FXML private TableColumn<Kandidatet, String> colEmri, colMbiemri, colEmail, colTelefoni, colDataRegjistrimit, colStatusi;
     @FXML private TableColumn<Kandidatet, String> colEmri1, colMbiemri1, colEmail1, colTelefoni1, colDataRegjistrimit1, colStatusi1;
 
-    private final KandidateService kandidatService = new KandidateService();
-
+    private final KandidatetRepository kandidatetRepository;
+    private final PatentaRepository patentaRepository;
+public AdminPatentaController(){
+    this.patentaRepository=new PatentaRepository();
+    this.kandidatetRepository=new KandidatetRepository();
+}
     @FXML
     public void initialize() {
         configureTables(tableKandidatet, List.of(colEmri, colMbiemri, colEmail, colTelefoni, colDataRegjistrimit, colStatusi),
@@ -34,8 +39,8 @@ public class AdminPatentaController extends BaseController {
     }
 
     private void loadCandidateData() {
-        tableKandidatet.setItems(FXCollections.observableArrayList(kandidatService.shfaqKandidatetMeTeDrejte()));
-        tableKandidatet1.setItems(FXCollections.observableArrayList(kandidatService.shfaqKandidatetMeTeDrejtePaPagesa()));
+        tableKandidatet.setItems(FXCollections.observableArrayList(kandidatetRepository.shfaqKandidatetMeTeDrejte()));
+        tableKandidatet1.setItems(FXCollections.observableArrayList(kandidatetRepository.shfaqKandidatetMeTeDrejtePaPagesa()));
     }
 
     @FXML
@@ -48,11 +53,11 @@ public class AdminPatentaController extends BaseController {
         }
 
         try {
-            if (kandidatService.aprovoPatenten(kandidat.getIdUser())) {
+            if (this.patentaRepository.aprovoPatenten(kandidat.getIdUser())) {
                 loadCandidateData();
                 showAlert(Alert.AlertType.INFORMATION, "Success!", "The license has been aproved");
             } else {
-                showAlert(Alert.AlertType.ERROR, "Error", "The patent cannot be approved");
+                showAlert(Alert.AlertType.ERROR, "Error", "The license cannot be approved");
             }
         } catch (Exception e) {
             showAlert(Alert.AlertType.ERROR, "Error", "Database-related error");

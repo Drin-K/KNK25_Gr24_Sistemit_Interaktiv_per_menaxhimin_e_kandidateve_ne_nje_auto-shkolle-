@@ -8,6 +8,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import models.*;
 import models.Dto.stafi.CreateStafiDto;
+import repository.OrariRepository;
+import repository.StafiRepository;
 import services.FeedBackService;
 import services.OrariService;
 import services.PasswordHasher;
@@ -49,9 +51,18 @@ public class StafManagmentController extends BaseController {
     @FXML private TableColumn<Orari, LocalTime> oraFillimitColumn, oraPerfundimitColumn;
     @FXML private TableColumn<Orari, String> llojiMesimitColumn, statusiColumn;
 
-    private final StafiService stafiService = new StafiService();
-    private final OrariService orariService = new OrariService();
-    private final FeedBackService feedBackService = new FeedBackService();
+    private final StafiService stafiService;
+    private final OrariService orariService;
+    private final FeedBackService feedBackService;
+    private final StafiRepository stafiRepository;
+    private final OrariRepository orariRepository;
+    public StafManagmentController(){
+        this.stafiService=new StafiService();
+        this.orariService=new OrariService();
+        this.feedBackService=new FeedBackService();
+        this.stafiRepository=new StafiRepository();
+        this.orariRepository=new OrariRepository();
+    }
 
     @FXML
     public void initialize() {
@@ -99,8 +110,8 @@ public class StafManagmentController extends BaseController {
     }
 
     private void showTopAndBottomInstructors() {
-        high.setText(stafiService.getMostRatedInstructorName());
-        low.setText(stafiService.getLeastRatedInstructorName());
+        high.setText(stafiRepository.getMostRatedInstructorName());
+        low.setText(stafiRepository.getLeastRatedInstructorName());
     }
 
     private void loadStafData() {
@@ -112,7 +123,7 @@ public class StafManagmentController extends BaseController {
     }
 
     private void loadOrariData() {
-        orariTable.setItems(FXCollections.observableArrayList(orariService.getAllOrari()));
+        orariTable.setItems(FXCollections.observableArrayList(orariRepository.getAll()));
     }
     private boolean checkAndConfirm(Object selected, String confirmMessage, String warningMessage) {
         if (selected == null) {
@@ -188,7 +199,10 @@ public class StafManagmentController extends BaseController {
 
         CreateStafiDto stafi = new CreateStafiDto(emri, mbiemri, email, phone, datelindja, password, salt, "Staf", adresa, gjinia);
         stafiService.create(stafi);
+        clear();
 
+    }
+    public void clear(){
         txtEmri.clear();
         txtMbiemri.clear();
         txtEmail.clear();

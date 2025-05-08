@@ -105,6 +105,7 @@ public class StafiRepository extends UserRepository {
     //Polimorfizmi
     //Java nuk lejon qe ni ArrayList<Staf> me u perputh me ni ArrayList<User>,
     // edhe pse Stafi osht ni nenklase e User
+    //e kemi modifiku te serviset qe me mujt me kthy t tipit Staf
     @Override
     public ArrayList<User> getAll(){
             ArrayList<User> stafi = new ArrayList<>();

@@ -147,21 +147,7 @@ public class OrariRepository extends BaseRepository<Orari, CreateOrariDto, Updat
 
         return numri;
     }
-    public List<Orari> loadOrariData() {
-        List<Orari> orariList = new ArrayList<>();
-        String query = "SELECT * FROM Orari";
-        try (PreparedStatement stmt = this.connection.prepareStatement(query);
-             ResultSet rs = stmt.executeQuery()) {
 
-            while (rs.next()) {
-                Orari orari = Orari.getInstance(rs);
-                orariList.add(orari);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return orariList;
-    }
 
 
 }

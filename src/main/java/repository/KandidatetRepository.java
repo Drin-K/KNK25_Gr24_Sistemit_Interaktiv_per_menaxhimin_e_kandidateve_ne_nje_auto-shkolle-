@@ -136,6 +136,7 @@ public class KandidatetRepository extends UserRepository {
         }
         return null;
     }
+
     public List<Kandidatet> shfaqKandidatetMeTeDrejte() {
         List<Kandidatet> kandidatet = new ArrayList<>();
         String sql = """
@@ -226,13 +227,15 @@ public class KandidatetRepository extends UserRepository {
 
         return null;
     }
+    //e kam perdor te AdminHomeController me percaktu numrin e kandidateve sipas statusit te procesit
+    //sa jane me status 'Në proces' e sa 'Përfunduar'
     public HashMap<String, Integer> countKandidatetByStatusiProcesit() {
         HashMap<String, Integer> result = new HashMap<>();
         String query = "SELECT statusiProcesit, COUNT(*) as total FROM Kandidatet GROUP BY statusiProcesit";
 
-        try (PreparedStatement stmt = this.connection.prepareStatement(query);
-             ResultSet rs = stmt.executeQuery();){
-
+        try{
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 String status = rs.getString("statusiProcesit");
                 int count = rs.getInt("total");

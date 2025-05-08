@@ -70,11 +70,6 @@ public class StafiService {
     public int countStafi() {
         return this.stafiRepository.countStafi();
     }
-    public String getMostRatedInstructorName() {
-        return this.stafiRepository.getMostRatedInstructorName();
-    }
-    public String getLeastRatedInstructorName() {
-        return this.stafiRepository.getLeastRatedInstructorName();
-    }
+
 
 }

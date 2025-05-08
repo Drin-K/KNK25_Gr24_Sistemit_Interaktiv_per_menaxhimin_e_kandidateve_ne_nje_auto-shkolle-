@@ -11,18 +11,18 @@
 
 <AnchorPane prefHeight="620.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.FeedbackConsumatorController">
    <children>
-      <Text layoutX="345.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%feedback.title" textAlignment="CENTER" wrappingWidth="504.01878356933594">
+      <Text layoutX="379.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%feedback.title" textAlignment="CENTER" wrappingWidth="504.01878356933594">
          <font>
             <Font name="Cambria Bold" size="36.0" />
          </font>
       </Text>
       <TextArea fx:id="commentField" layoutX="92.0" layoutY="171.0" prefHeight="336.0" prefWidth="357.0" promptText="%feedback.promptComment" style="-fx-border-radius: 4; -fx-border-width: 4; -fx-border-color: #475779;" />
-      <Text layoutX="122.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%feedback.instruction.comment" textAlignment="CENTER" wrappingWidth="297.6188507080078">
+      <Text layoutX="102.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%feedback.instruction.comment" textAlignment="CENTER" wrappingWidth="336.8188018798828">
          <font>
             <Font name="Cambria Bold" size="18.0" />
          </font>
       </Text>
-      <Text layoutX="860.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%feedback.instruction.rating" textAlignment="CENTER" wrappingWidth="320.01893615722656">
+      <Text layoutX="878.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%feedback.instruction.rating" textAlignment="CENTER" wrappingWidth="364.81886291503906">
          <font>
             <Font name="Cambria Bold" size="18.0" />
          </font>
@@ -66,11 +66,11 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Text layoutX="537.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%feedback.instruction.selectInstructor" textAlignment="CENTER" wrappingWidth="297.6188507080078">
+      <Text layoutX="523.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%feedback.instruction.selectInstructor" textAlignment="CENTER" wrappingWidth="336.8188018798827">
          <font>
             <Font name="Cambria Bold" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="instructorId" layoutX="608.0" layoutY="172.0" prefHeight="26.0" prefWidth="41.0" />
+      <TextField fx:id="instructorId" layoutX="662.0" layoutY="171.0" prefHeight="26.0" prefWidth="41.0" />
    </children>
 </AnchorPane>

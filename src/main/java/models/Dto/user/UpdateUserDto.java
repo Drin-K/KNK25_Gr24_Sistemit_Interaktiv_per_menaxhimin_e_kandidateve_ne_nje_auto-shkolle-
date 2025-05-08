@@ -12,6 +12,7 @@ public class UpdateUserDto {
     private String role;
     private String adresa;
     private String gjinia;
+    public UpdateUserDto() {} //Shtimi i nje konstruktori pa parametra na sherben per te ndrruar passwordin
 //disa prej features per update duhet me i shiku edhe njehere p.sh gjinia :)
     public UpdateUserDto(int id,String name, String surname, String email, String phoneNumber, LocalDate dateOfBirth, String password, String salt, String role, String adresa, String gjinia) {
         this.idUser=id;
@@ -72,4 +73,8 @@ public class UpdateUserDto {
     public String getGjinia() {
         return gjinia;
     }
+
+    public void setPassword(String password) {this.password = password;}
+
+    public void setSalt(String salt) {this.salt = salt;}
 }

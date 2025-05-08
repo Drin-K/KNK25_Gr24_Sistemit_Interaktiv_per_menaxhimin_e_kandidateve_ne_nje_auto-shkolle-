@@ -2,6 +2,7 @@ package services;
 
 import models.Automjetet;
 import models.Dto.automjetet.CreateAutomjetetDto;
+import models.Dto.automjetet.UpdateAutomjetetDto;
 import repository.AutomjetetRepository;
 import repository.KategoritePatentesRepository;
 import repository.StafiRepository;
@@ -70,6 +71,36 @@ public class AutomjetService {
 
         throw new Exception("Asnjë automjet i lirë nuk është i disponueshëm për llojin: " + llojiAutomjetit);
     }
+    public Automjetet updateStatusByIdLlojiAndKategori(int id, String llojiAutomjetit, int idKategori, String newStatus, int idStaf) throws Exception {
+
+        if (id <= 0) {
+            throw new Exception("ID e automjetit nuk është valide.");
+        }
+        if (llojiAutomjetit == null || llojiAutomjetit.isEmpty()) {
+            throw new Exception("Lloji i automjetit nuk është i dhënë.");
+        }
+        if (idKategori <= 0) {
+            throw new Exception("Kategoria nuk është valide.");
+        }
+        if (newStatus == null || newStatus.isEmpty()) {
+            throw new Exception("Statusi i ri nuk është i dhënë.");
+        }
+        if (idStaf <= 0 || stafiRepository.getById(idStaf) == null) {
+            throw new Exception("Stafi nuk ekziston.");
+        }
+
+        Automjetet automjeti = automjetetRepository.getById(id);
+        if (automjeti == null) {
+            throw new Exception("Automjeti nuk u gjet.");
+        }
+        if (!automjeti.getLlojiAutomjetit().equals(llojiAutomjetit) || automjeti.getIdKategori() != idKategori) {
+            throw new Exception("Automjeti nuk i përket llojit ose kategorisë së dhënë.");
+        }
+
+        UpdateAutomjetetDto dto = new UpdateAutomjetetDto(id, newStatus, idStaf);
+        return automjetetRepository.update(dto);
+    }
+
     public ArrayList<Automjetet> findByLloji(String lloji){
         return automjetetRepository.getByLloji(lloji);
     }

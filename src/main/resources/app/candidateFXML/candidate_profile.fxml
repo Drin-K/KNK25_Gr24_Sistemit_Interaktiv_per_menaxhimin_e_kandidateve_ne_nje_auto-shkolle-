@@ -6,9 +6,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="620.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="620.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.CandidateChangePassController">
    <children>
-      <AnchorPane layoutX="324.0" layoutY="74.0" prefHeight="499.0" prefWidth="622.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #390eb5;">
+      <AnchorPane fx:id="pane" layoutX="324.0" layoutY="74.0" prefHeight="499.0" prefWidth="622.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #390eb5;">
          <children>
             <AnchorPane layoutX="30.0" layoutY="42.0" prefHeight="339.0" prefWidth="178.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #390eb5;">
                <children>
@@ -61,7 +61,7 @@
                </children>
             </AnchorPane>
             <Text fill="#390eb5" layoutX="32.0" layoutY="443.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 14; -fx-font-weight: bold;" text="Want to change your password?-&gt;click here" wrappingWidth="302.3441162109375" />
-            <Button layoutX="391.0" layoutY="424.0" mnemonicParsing="false" text="Change pass" />
+            <Button fx:id="changePassBttn" layoutX="391.0" layoutY="424.0" mnemonicParsing="false" onAction="#changePassClick" text="Change pass" />
          </children>
       </AnchorPane>
       <Text fill="#390eb5" layoutX="566.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-weight: bold;" text="Your Profile " />

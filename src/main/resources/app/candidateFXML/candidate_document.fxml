@@ -8,37 +8,37 @@
 
 <AnchorPane prefHeight="620.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.DokumentetKandidatiController">
    <children>
-      <Text layoutX="533.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Documents">
+      <Text layoutX="533.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%text.documents" textAlignment="CENTER">
          <font>
             <Font name="Cambria" size="36.0" />
          </font>
       </Text>
-      <Button fx:id="uploadBtn" layoutX="582.0" layoutY="474.0" mnemonicParsing="false" onAction="#handleUploadDokument" prefHeight="34.0" prefWidth="75.0" style="-fx-background-color: #151928;" text="Upload" textFill="WHITE">
+      <Button fx:id="uploadBtn" layoutX="582.0" layoutY="474.0" mnemonicParsing="false" onAction="#handleUploadDokument" prefHeight="34.0" prefWidth="75.0" style="-fx-background-color: #151928;" text="%btn.upload" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Text layoutX="49.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="In this section we upload the documents needed for registration.  The files needed to upload are:" wrappingWidth="1352.114013671875">
+      <Text layoutX="49.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%text.documentInstructions" wrappingWidth="1352.114013671875">
          <font>
             <Font name="Cambria" size="18.0" />
          </font>
       </Text>
-      <Text layoutX="104.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Card Id" wrappingWidth="67.31407165527344">
+      <Text layoutX="104.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%text.cardId" wrappingWidth="123.31410217285156">
          <font>
             <Font name="Cambria" size="18.0" />
          </font>
       </Text>
-      <Text layoutX="104.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Medical Certificate" wrappingWidth="183.3140411376953">
+      <Text layoutX="104.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%text.medicalCert" wrappingWidth="183.3140411376953">
          <font>
             <Font name="Cambria" size="18.0" />
          </font>
       </Text>
-      <Text layoutX="104.0" layoutY="352.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Apply Form" wrappingWidth="183.3140411376953">
+      <Text layoutX="104.0" layoutY="352.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%text.applyForm" wrappingWidth="183.3140411376953">
          <font>
             <Font name="Cambria" size="18.0" />
          </font>
       </Text>
-      <Text layoutX="104.0" layoutY="441.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Photo" wrappingWidth="183.3140411376953">
+      <Text layoutX="104.0" layoutY="441.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%text.photo" wrappingWidth="183.3140411376953">
          <font>
             <Font name="Cambria" size="18.0" />
          </font>
@@ -63,11 +63,11 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Text>
-      <Text layoutX="984.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select the document type:" wrappingWidth="210.51412963867188">
+      <Text layoutX="985.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%text.selectDocumentLabel" wrappingWidth="226.51412963867188">
          <font>
             <Font name="Cambria" size="18.0" />
          </font>
       </Text>
-      <ComboBox fx:id="chooseDocumentType" layoutX="1014.0" layoutY="192.0" prefWidth="150.0" promptText="Choose type" />
+      <ComboBox fx:id="chooseDocumentType" layoutX="1014.0" layoutY="192.0" prefWidth="150.0" promptText="%text.selectDocument" />
    </children>
 </AnchorPane>

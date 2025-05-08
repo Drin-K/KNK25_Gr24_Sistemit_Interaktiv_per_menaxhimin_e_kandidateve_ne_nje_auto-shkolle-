@@ -1,10 +1,6 @@
 package repository;
-
-import models.Dto.kandidatet.CreateKandidatetDto;
-import models.Dto.kandidatet.UpdateKandidatetDto;
+import models.Dto.user.CreateUserDto;
 import models.Kandidatet;
-import models.Stafi;
-import models.User;
 
 import java.sql.*;
 import java.util.*;
@@ -13,6 +9,44 @@ public class KandidatetRepository extends UserRepository {
 
     public KandidatetRepository() {
         super();}
+    @Override
+    public Kandidatet create(CreateUserDto dto) {
+        String insertUser = """
+            INSERT INTO "User"(name, surname, email, phoneNumber, dateOfBirth, hashedPassword, salt, role, adresa, gjinia)
+            VALUES (?, ?, ?, ?, ?, ?, ?, 'Kandidat', ?, ?);
+        """;
+        try {
+            PreparedStatement userStmt = connection.prepareStatement(insertUser, Statement.RETURN_GENERATED_KEYS);
+            userStmt.setString(1, dto.getName());
+            userStmt.setString(2, dto.getSurname());
+            userStmt.setString(3, dto.getEmail());
+            userStmt.setString(4, dto.getPhoneNumber());
+            userStmt.setObject(5, dto.getDateOfBirth());
+            userStmt.setString(6, dto.getPassword());
+            userStmt.setString(7, dto.getSalt());
+            userStmt.setString(8, dto.getAdresa());
+            userStmt.setString(9, dto.getGjinia());
+            userStmt.executeUpdate();
+
+            ResultSet keys = userStmt.getGeneratedKeys();
+            if (keys.next()) {
+                int userId = keys.getInt(1);
+
+                String insertKandidat = """
+                    INSERT INTO Kandidatet(id, dataRegjistrimi, statusiProcesit)
+                    VALUES (?, DEFAULT, 'Në proces');
+                """;
+                PreparedStatement kandidatStmt = connection.prepareStatement(insertKandidat);
+                kandidatStmt.setInt(1, userId);
+                kandidatStmt.executeUpdate();
+                return getById(userId);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     @Override
     public Kandidatet fromResultSet(ResultSet result) throws SQLException {
         return Kandidatet.getInstance(result);
@@ -76,7 +110,11 @@ public class KandidatetRepository extends UserRepository {
         }
         return 0;
     }
-    public Kandidatet getbyID(int id){
+    //Shembull perfekt se qysh ni metod joabstrakte-> e kthejme ne metode abstrakte ne
+    //userrepository dhe me pas e implementojme ne stafirepository !!!
+    // !!!!!Isolating Specific Logic!!!!     :) :) :)
+    @Override
+    public Kandidatet getById(int id){
         String query = "SELECT u.id, u.name, u.surname, u.email, u.phoneNumber, " +
                 "u.dateOfBirth, u.hashedPassword, u.salt, u.adresa, u.gjinia, " +
                 "k.dataRegjistrimi, k.statusiProcesit, u.role " +
@@ -187,6 +225,23 @@ public class KandidatetRepository extends UserRepository {
 
         return null;
     }
+    public HashMap<String, Integer> countKandidatetByStatusiProcesit() {
+        HashMap<String, Integer> result = new HashMap<>();
+        String query = "SELECT statusiProcesit, COUNT(*) as total FROM Kandidatet GROUP BY statusiProcesit";
 
+        try (PreparedStatement stmt = this.connection.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery();){
+
+            while (rs.next()) {
+                String status = rs.getString("statusiProcesit");
+                int count = rs.getInt("total");
+                result.put(status, count);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
 
 }

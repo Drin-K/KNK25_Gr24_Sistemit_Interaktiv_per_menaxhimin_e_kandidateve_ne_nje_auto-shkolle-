@@ -4,7 +4,7 @@ import javafx.scene.layout.Pane;
 
 public class SceneLocator {
     //Kandidati
-    public static final String LOGIN_PAGE="/app/login_in.fxml";
+    public static final String LOGIN_PAGE="/app/log_in.fxml";
     public static final String SIGNUP_PAGE="/app/sign_up.fxml";
     public static final String FRONT_PAGE= "/app/candidateFXML/FrontPage.Konsumator.fxml";
     public static final String CATEGORY_PAGE= "/app/candidateFXML/candidate_category.fxml";

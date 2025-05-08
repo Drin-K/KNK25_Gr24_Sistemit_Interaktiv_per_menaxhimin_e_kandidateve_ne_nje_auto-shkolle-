@@ -85,7 +85,7 @@ public class DokumentService {
             throw new Exception("Lloji i dokumentit është i gabuar.");
         }
 
-        Kandidatet kandidati = kandidatRepository.getbyID(dto.getIdKandidat());
+        Kandidatet kandidati = kandidatRepository.getById(dto.getIdKandidat());
         if (kandidati == null) {
             throw new Exception("Kandidati nuk ekziston.");
         }

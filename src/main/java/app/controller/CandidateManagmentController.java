@@ -175,57 +175,72 @@ public class CandidateManagmentController extends BaseController {
     private void onDeleteKandidatClick() throws Exception {
         Kandidatet selected = kandidatTable.getSelectionModel().getSelectedItem();
 
-        if (kontrolloDheKonfirmo(selected,
-                "Do you want to delete the candidate: " + selected.getName() + " " + selected.getSurname() + "?")) {
+        String confirmMsg = (selected != null)
+                ? "Do you want to delete the candidate: " + selected.getName() + " " + selected.getSurname() + "?"
+                : "";
 
+        if (kontrolloDheKonfirmo(selected, confirmMsg)) {
             kandidatTable.getItems().remove(selected);
             kandidateService.delete(selected.getIdUser());
         }
     }
+
     @FXML
     private void onDeleteOrariClick() throws Exception {
         Orari selected = orariTable.getSelectionModel().getSelectedItem();
 
-        if (kontrolloDheKonfirmo(selected,
-                "Do you want to delete the schedule for the candidate with ID: " + selected.getIdKandidat() + "?")) {
+        String confirmMsg = (selected != null)
+                ? "Do you want to delete the schedule for the candidate with ID: " + selected.getIdKandidat() + "?"
+                : "";
 
+        if (kontrolloDheKonfirmo(selected, confirmMsg)) {
             orariTable.getItems().remove(selected);
             orariService.delete(selected.getIdSesioni());
         }
     }
+
     @FXML
     private void onDeletePagesatClick() throws Exception {
         Pagesat selected = tabelaPagesat.getSelectionModel().getSelectedItem();
 
-        if (kontrolloDheKonfirmo(selected,
-                "Do you want to delete the payment for the candidate with ID: " + selected.getIdKandidat() + "?")) {
+        String confirmMsg = (selected != null)
+                ? "Do you want to delete the payment for the candidate with ID: " + selected.getIdKandidat() + "?"
+                : "";
 
+        if (kontrolloDheKonfirmo(selected, confirmMsg)) {
             tabelaPagesat.getItems().remove(selected);
             pagesaService.delete(selected.getId());
         }
     }
+
     @FXML
     private void onDeleteDokumentetClick() throws Exception {
         Dokumentet selected = tableViewDokumente.getSelectionModel().getSelectedItem();
 
-        if (kontrolloDheKonfirmo(selected,
-                "Do you want to delete the document for the candidate with ID: " + selected.getIdKandidat() + "?")) {
+        String confirmMsg = (selected != null)
+                ? "Do you want to delete the document for the candidate with ID: " + selected.getIdKandidat() + "?"
+                : "";
 
+        if (kontrolloDheKonfirmo(selected, confirmMsg)) {
             tableViewDokumente.getItems().remove(selected);
             dokumentService.delete(selected.getId());
         }
     }
+
     @FXML
     private void onDeleteTestetClick() throws Exception {
         Testet selected = testetTable.getSelectionModel().getSelectedItem();
 
-        if (kontrolloDheKonfirmo(selected,
-                "Do you want to delete the test for the candidate with ID: " + selected.getIdKandidat() + "?")) {
+        String confirmMsg = (selected != null)
+                ? "Do you want to delete the test for the candidate with ID: " + selected.getIdKandidat() + "?"
+                : "";
 
+        if (kontrolloDheKonfirmo(selected, confirmMsg)) {
             testetTable.getItems().remove(selected);
             testiService.delete(selected.getId());
         }
     }
+
 
     @FXML private void onMiratoClick() {
         List<Dokumentet> selected = tableViewDokumente.getSelectionModel().getSelectedItems();
@@ -234,7 +249,7 @@ public class CandidateManagmentController extends BaseController {
             return;
         }
 
-        int kandidatiId = selected.get(0).getIdKandidat();
+        int kandidatiId = selected.getFirst().getIdKandidat();
         if (showConfirmationDialog("Confirm Registration",
                 "Do you want to register the candidate with ID: " + kandidatiId + "?")) {
             boolean uMiratua = regjistrimiService.mirato(kandidatiId);

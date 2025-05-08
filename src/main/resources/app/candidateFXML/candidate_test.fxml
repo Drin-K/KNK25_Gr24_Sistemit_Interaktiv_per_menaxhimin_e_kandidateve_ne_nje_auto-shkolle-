@@ -7,21 +7,21 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="620.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.TestResultsCandidateController">
-   <children>
-      <Text fill="#475779" layoutX="567.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 22; -fx-font-family: arial; -fx-font-weight: bold;" text=" Test Results And Information" />
-      <AnchorPane layoutX="258.0" layoutY="108.0" prefHeight="450.0" prefWidth="874.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #475779;">
-         <children>
-            <TableView fx:id="overallResults" layoutX="32.0" layoutY="163.0" prefHeight="211.0" prefWidth="794.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #475779;">
-              <columns>
-                <TableColumn fx:id="pointsView" prefWidth="197.5999755859375" style="-fx-background-radius: 5;" text="Points" />
-                  <TableColumn fx:id="examType" prefWidth="190.39996337890625" style="-fx-background-radius: 5;" text="Exam type" />
-                  <TableColumn fx:id="dateHeld" prefWidth="188.0" style="-fx-background-radius: 5;" text="Date Held" />
-                  <TableColumn fx:id="resultStatus" prefWidth="213.5999755859375" style="-fx-background-radius: 5;" text="Result Status" />
-              </columns>
-            </TableView>
-            <Button fx:id="seeResultBttn" layoutX="35.0" layoutY="110.0" mnemonicParsing="false" onAction="#resultClick" prefHeight="26.0" prefWidth="73.0" style="-fx-background-color: #475779;" text="See results" textFill="WHITE" />
-            <Text fill="#3e9a9c" layoutX="152.0" layoutY="128.0" opacity="0.55" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 15; -fx-font-family: arial; -fx-font-weight: bold;" text="Click to see results" />
-         </children>
-      </AnchorPane>
-   </children>
+    <children>
+        <Text fx:id="resultsTitle" fill="#475779" layoutX="510.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 22; -fx-font-family: arial; -fx-font-weight: bold;" text="%text.testResultsTitle" textAlignment="CENTER" wrappingWidth="409.415283203125" />
+        <AnchorPane layoutX="258.0" layoutY="108.0" prefHeight="450.0" prefWidth="874.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #475779;">
+            <children>
+                <TableView fx:id="overallResults" layoutX="32.0" layoutY="163.0" prefHeight="211.0" prefWidth="794.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #475779;">
+                    <columns>
+                        <TableColumn fx:id="pointsView" prefWidth="197.6" style="-fx-background-radius: 5;" text="%table.points" />
+                        <TableColumn fx:id="examType" prefWidth="190.4" style="-fx-background-radius: 5;" text="%table.examType" />
+                        <TableColumn fx:id="dateHeld" prefWidth="188.0" style="-fx-background-radius: 5;" text="%table.dateHeld" />
+                        <TableColumn fx:id="resultStatus" prefWidth="213.6" style="-fx-background-radius: 5;" text="%table.resultStatus" />
+                    </columns>
+                </TableView>
+                <Button fx:id="seeResultBttn" layoutX="35.0" layoutY="110.0" mnemonicParsing="false" onAction="#resultClick" prefHeight="26.0" prefWidth="88.0" style="-fx-background-color: #475779;" text="%btn.seeResults" textFill="WHITE" />
+                <Text fx:id="clickTip" fill="#3e9a9c" layoutX="171.0" layoutY="128.0" opacity="0.55" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 15; -fx-font-family: arial; -fx-font-weight: bold;" text="%text.clickToSeeResults" />
+            </children>
+        </AnchorPane>
+    </children>
 </AnchorPane>

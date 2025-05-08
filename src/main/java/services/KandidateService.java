@@ -26,7 +26,7 @@ public class KandidateService {
         if (id <= 0) {
             throw new Exception("Id does not exist!");
         }
-        Kandidatet kandidati = (Kandidatet) this.kandidatetRepository.getById(id);
+        Kandidatet kandidati = this.kandidatetRepository.getbyID(id);
         if (kandidati == null) throw new Exception("Kandidati nuk u gjet!");
         return kandidati;
     }
@@ -75,7 +75,7 @@ public class KandidateService {
 
 
     public boolean delete(int id) throws Exception {
-        this.getById(id); // E kontrollojm a ekziston
+        //this.getById(id); // E kontrollojm a ekziston
         return kandidatetRepository.delete(id);
     }
 

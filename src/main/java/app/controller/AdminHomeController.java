@@ -77,7 +77,7 @@ public class AdminHomeController extends BaseController {
             );
             updateLineChart(patentaService, patentatEleshuara, series);
         } catch (Exception e) {
-            showError("Gabim në ngarkimin e patentave");
+            showAlert(Alert.AlertType.ERROR, "Error", "Error loading licenses");
         }
     }
 
@@ -130,7 +130,4 @@ public class AdminHomeController extends BaseController {
         chart.getData().add(series);
     }
 
-    private void showError(String message) {
-        showAlert(Alert.AlertType.ERROR, "Gabim", message);
-    }
 }

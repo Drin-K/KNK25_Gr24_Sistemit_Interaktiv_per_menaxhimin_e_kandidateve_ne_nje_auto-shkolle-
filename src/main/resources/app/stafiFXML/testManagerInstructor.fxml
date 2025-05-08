@@ -13,30 +13,31 @@
    <children>
       <AnchorPane layoutX="124.0" layoutY="199.0" prefHeight="200.0" prefWidth="154.0" style="-fx-border-color: #475779; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-style: ;">
          <children>
-            <Button fx:id="setResultBttn" layoutX="40.0" layoutY="87.0" mnemonicParsing="false" onAction="#setResultClick" prefHeight="26.0" prefWidth="73.0" style="-fx-background-color: #07842b;" text="Set Result" textFill="#d4d4d4" />
+            <Button fx:id="setResultBttn" layoutX="40.0" layoutY="87.0" mnemonicParsing="false" onAction="#setResultClick" prefHeight="26.0" prefWidth="73.0" style="-fx-background-color: #07842b;" text="%btn.setResult" textFill="#d4d4d4" />
          </children>
       </AnchorPane>
-      <Text layoutX="408.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="Create and manage tests" />
+      <Text layoutX="408.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 20;" text="%text.createManageTests" />
       <AnchorPane layoutX="316.0" layoutY="126.0" prefHeight="346.0" prefWidth="736.0" style="-fx-border-color: #475779; -fx-background-radius: 5; -fx-border-radius: 5;">
          <children>
-            <Text layoutX="308.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: arial; -fx-font-size: 15;" text=" Choose driving/theory exam, add the date, choose the candidate and write the result" wrappingWidth="345.215576171875" />
-            <SplitMenuButton layoutX="55.0" layoutY="32.0" mnemonicParsing="false" text="Choose exam type">
-              <items>
-                <MenuItem fx:id="teoriBttn" mnemonicParsing="false" onAction="#teoriClick" text="Teori" />
-                <MenuItem fx:id="praktikBttn" mnemonicParsing="false" onAction="#praktikClick" text="Praktikë" />
-              </items>
+            <Text layoutX="308.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: arial; -fx-font-size: 15;" text="%text.chooseExamAddDate" wrappingWidth="345.215576171875" />
+            <SplitMenuButton layoutX="55.0" layoutY="32.0" mnemonicParsing="false" text="%btn.chooseExamType">
+               <items>
+                  <MenuItem fx:id="teoriBttn" mnemonicParsing="false" onAction="#teoriClick" text="%menuItem.teori" />
+                  <MenuItem fx:id="praktikBttn" mnemonicParsing="false" onAction="#praktikClick" text="%menuItem.praktik" />
+               </items>
             </SplitMenuButton>
-            <TextField fx:id="txtCandidateId" focusTraversable="false" layoutX="52.0" layoutY="133.0" prefHeight="26.0" prefWidth="322.0" promptText="Enter Candidate ID" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;">
+            <TextField fx:id="txtCandidateId" focusTraversable="false" layoutX="52.0" layoutY="133.0" prefHeight="26.0" prefWidth="322.0" promptText="%text.enterCandidateId" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font>
             </TextField>
             <DatePicker fx:id="setDate" layoutX="415.0" layoutY="150.0" />
-            <TextField fx:id="txtPiket" focusTraversable="false" layoutX="53.0" layoutY="213.0" prefHeight="26.0" prefWidth="322.0" promptText="Enter Points" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;">
+            <TextField fx:id="txtPiket" focusTraversable="false" layoutX="53.0" layoutY="213.0" prefHeight="26.0" prefWidth="322.0" promptText="%text.enterPoints" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font>
             </TextField>
-         </children></AnchorPane>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

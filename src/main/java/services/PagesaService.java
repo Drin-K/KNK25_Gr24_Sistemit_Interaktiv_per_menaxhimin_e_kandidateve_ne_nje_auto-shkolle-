@@ -13,6 +13,7 @@ import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PagesaService {
     private PagesatRepository pagesatRepository;
@@ -89,8 +90,8 @@ public class PagesaService {
     public int countPagesatInYear(int year) throws SQLException {
         return pagesatRepository.countPagesatInYear(year);
     }
-    public List<Integer> getPagesatDataByStatus(String status) throws SQLException{
-        return pagesatRepository.getPagesatDataByStatus(status);
+    public Map<String, Integer> getPagesatCountByStatus() throws SQLException{
+        return pagesatRepository.getPagesatCountByStatus();
     }
     public void delete(int pagesaId) throws Exception {
         Pagesat ekzistues = pagesatRepository.getById(pagesaId);

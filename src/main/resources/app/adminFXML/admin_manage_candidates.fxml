@@ -102,7 +102,7 @@
                         <PasswordField fx:id="txtPassword" promptText="Password" />
 
 
-                        <Button onAction="#ruajKandidatin" text="Save" />
+                        <Button onAction="#saveClick" text="Save" />
                     </children>
                 </HBox>
 

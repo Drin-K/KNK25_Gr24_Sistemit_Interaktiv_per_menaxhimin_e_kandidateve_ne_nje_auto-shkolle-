@@ -9,10 +9,12 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import models.Patenta;
 import services.*;
 
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.List;
 
 public class AdminHomeController extends BaseController {
 
@@ -71,15 +73,17 @@ public class AdminHomeController extends BaseController {
         try {
             XYChart.Series<String, Number> series = createSeries("Licenses Issued");
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-            patentaService.getLicensesIssued().forEach(patenta ->
-                    series.getData().add(new XYChart.Data<>(patenta.getDataLeshimit().format(formatter), 1))
-            );
+            List<Patenta> licenses = patentaService.getLicensesIssued();
+            for (Patenta patenta : licenses) {
+                String dateFormatted = patenta.getDataLeshimit().format(formatter);
+                series.getData().add(new XYChart.Data<>(dateFormatted, 1));
+            }
             updateLineChart(patentaService, patentatEleshuara, series);
         } catch (Exception e) {
             showAlert(Alert.AlertType.ERROR, "Error", "Error loading licenses");
         }
     }
+
 
     private void loadUnpaidPayments() {
         updateBarChart(pagesaService.getUnpaidPaymentsChartData(), pagesaTePapaguara);

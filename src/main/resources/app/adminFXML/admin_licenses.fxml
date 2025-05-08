@@ -21,7 +21,7 @@
       
                     <!-- Filtrat -->
                     <HBox spacing="15">
-                        <Button onAction="#aprovoPatenten" text="Approve the License" />
+                        <Button onAction="#aprovoPatentenClick" text="Approve the License" />
 
                     </HBox>
       

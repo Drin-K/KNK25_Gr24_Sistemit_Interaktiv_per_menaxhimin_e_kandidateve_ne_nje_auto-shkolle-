@@ -11,6 +11,7 @@ import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto, UpdatePagesatDto>{
@@ -232,17 +233,17 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
         }
     }
 
-    public List<Integer> getPagesatDataByStatus(String status) throws SQLException {
-        List<Integer> result = new ArrayList<>();
-        String query = "SELECT COUNT(*) FROM Pagesat WHERE Statusi_i_Pageses = ?";
+    public Map<String, Integer> getPagesatCountByStatus() throws SQLException {
+        Map<String, Integer> result = new HashMap<>();
+        String query = "SELECT Statusi_i_Pageses, COUNT(*) AS total FROM Pagesat GROUP BY Statusi_i_Pageses";
 
         try (PreparedStatement statement = connection.prepareStatement(query)) {
-
-            statement.setString(1, status);
             ResultSet resultSet = statement.executeQuery();
-
-            if (resultSet.next()) {
-                result.add(resultSet.getInt(1)); }
+            while (resultSet.next()) {
+                String status = resultSet.getString("Statusi_i_Pageses");
+                int count = resultSet.getInt("total");
+                result.put(status, count);
+            }
         }
         return result;
     }

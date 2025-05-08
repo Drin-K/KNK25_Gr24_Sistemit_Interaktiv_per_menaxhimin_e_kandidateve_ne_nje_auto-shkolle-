@@ -141,7 +141,7 @@ public class CandidateManagmentController extends BaseController {
     }
 
     @FXML
-    private void ruajKandidatin() throws Exception {
+    private void saveClick() throws Exception {
         String emri = txtEmri.getText(), mbiemri = txtMbiemri.getText(), email = txtEmail.getText(),
                 phone = txtPhone.getText(), adresa = txtAdresa.getText(),
                 gjinia = comboGjinia.getValue(), password = txtPassword.getText(),
@@ -158,12 +158,18 @@ public class CandidateManagmentController extends BaseController {
                 emri, mbiemri, email, phone, datelindja, password, PasswordHasher.generateSalt(),
                 "Kandidat", adresa, gjinia, null, statusiProcesit);
         kandidateService.create(kandidatet);
-
-        txtEmri.clear(); txtMbiemri.clear(); txtEmail.clear(); txtPhone.clear();
-        txtAdresa.clear(); txtStatusiProcesit.clear();
-        datePickerDob.setValue(null); comboGjinia.setValue(null);
+       clearData();
     }
-
+private void clearData(){
+    txtEmri.clear();
+    txtMbiemri.clear();
+    txtEmail.clear();
+    txtPhone.clear();
+    txtAdresa.clear();
+    txtStatusiProcesit.clear();
+    datePickerDob.setValue(null);
+    comboGjinia.setValue(null);
+}
     private boolean kontrolloDheKonfirmo(Object selected, String konfirmoMesazhi) {
         if (selected == null) {
             showAlert(Alert.AlertType.WARNING, "Warning","Please select a candidate.");
@@ -277,7 +283,6 @@ public class CandidateManagmentController extends BaseController {
             download(selected.getEmriSkedarit());
         }
     }
-
     public void download(String emriSkedarit) {
         Path uploadDir = Paths.get("src", "main", "java", "utils", "uploads");
         Path sourcePath = uploadDir.resolve(emriSkedarit);

@@ -39,7 +39,7 @@ public class AdminPatentaController extends BaseController {
     }
 
     @FXML
-    private void aprovoPatenten() {
+    private void aprovoPatentenClick() {
         Kandidatet kandidat = tableKandidatet.getSelectionModel().getSelectedItem();
 
         if (kandidat == null) {

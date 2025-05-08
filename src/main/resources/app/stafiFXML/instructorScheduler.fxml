@@ -10,44 +10,70 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="670.0" prefWidth="1313.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.InstructorSchedulerController">
+<AnchorPane prefHeight="670.0" prefWidth="1313.0" xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="app.controller.InstructorSchedulerController">
    <children>
-      <AnchorPane layoutX="168.0" layoutY="103.0" prefHeight="462.0" prefWidth="150.0" style="-fx-border-color: #475779; -fx-border-radius: 5; -fx-background-radius: 5;">
+      <AnchorPane layoutX="168.0" layoutY="103.0" prefHeight="462.0" prefWidth="150.0"
+                  style="-fx-border-color: #475779; -fx-border-radius: 5; -fx-background-radius: 5;">
          <children>
-            <Button fx:id="scheduleBttn" layoutX="39.0" layoutY="159.0" mnemonicParsing="false" onAction="#scheduleClick" prefHeight="26.0" prefWidth="72.0" style="-fx-background-color: #07842b;" text="Schedule" textFill="#d4d4d4" />
-            <Button fx:id="editBttn" layoutX="39.0" layoutY="213.0" mnemonicParsing="false" onAction="#editClick" prefHeight="26.0" prefWidth="72.0" style="-fx-background-color: #ffffff; -fx-border-color: gray; -fx-border-radius: 3;" text="Edit" textFill="#51b191" />
+            <Button fx:id="scheduleBttn" layoutX="39.0" layoutY="159.0" mnemonicParsing="false"
+                    onAction="#scheduleClick" prefHeight="26.0" prefWidth="72.0"
+                    style="-fx-background-color: #07842b;" text="%btn.apply" textFill="#d4d4d4"/>
+            <Button fx:id="editBttn" layoutX="39.0" layoutY="213.0" mnemonicParsing="false"
+                    onAction="#editClick" prefHeight="26.0" prefWidth="72.0"
+                    style="-fx-background-color: #ffffff; -fx-border-color: gray; -fx-border-radius: 3;"
+                    text="%btn.edit" textFill="#51b191"/>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="rightPane" layoutX="360.0" layoutY="104.0" prefHeight="462.0" prefWidth="566.0" style="-fx-border-color: #475779; -fx-border-radius: 5; -fx-background-radius: 5;">
+      <AnchorPane fx:id="rightPane" layoutX="360.0" layoutY="104.0" prefHeight="462.0" prefWidth="566.0"
+                  style="-fx-border-color: #475779; -fx-border-radius: 5; -fx-background-radius: 5;">
          <children>
-            <MenuButton fx:id="chooseLessonBttn" layoutX="65.0" layoutY="30.0" mnemonicParsing="false" style="-fx-background-color: #137156;" text="Choose lesson type" textFill="#f4f4f4">
-              <items>
-                <MenuItem fx:id="teoriBttn" mnemonicParsing="false" onAction="#teoriClick" text="Teori" />
-                <MenuItem fx:id="praktikBttn" mnemonicParsing="false" onAction="#praktikClick" text="Praktik" />
-              </items>
+            <MenuButton fx:id="chooseLessonBttn" layoutX="65.0" layoutY="30.0" mnemonicParsing="false"
+                        style="-fx-background-color: #137156;" text="%text.selectLessonType"
+                        textFill="#f4f4f4">
+               <items>
+                  <MenuItem fx:id="teoriBttn" mnemonicParsing="false" onAction="#teoriClick"
+                            text="%table.theoryPoints"/>
+                  <MenuItem fx:id="praktikBttn" mnemonicParsing="false" onAction="#praktikClick"
+                            text="%table.practicalPoints"/>
+               </items>
             </MenuButton>
-            <TextField fx:id="candidateId" focusTraversable="false" layoutX="63.0" layoutY="88.0" prefHeight="26.0" prefWidth="322.0" promptText="Candidate id" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;">
+            <TextField fx:id="candidateId" focusTraversable="false" layoutX="63.0" layoutY="88.0"
+                       prefHeight="26.0" prefWidth="322.0" promptText="%text.enterCandidateId"
+                       style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;">
                <font>
-                  <Font name="System Italic" size="14.0" />
+                  <Font name="System Italic" size="14.0"/>
                </font>
             </TextField>
-            <TextField fx:id="txtStart" focusTraversable="false" layoutX="65.0" layoutY="208.0" prefHeight="30.0" prefWidth="98.0" promptText="Start time" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;">
+            <DatePicker fx:id="dateForLesson" layoutX="64.0" layoutY="157.0" prefHeight="26.0"
+                        prefWidth="322.0" promptText="%text.date"/>
+            <TextField fx:id="txtStart" focusTraversable="false" layoutX="65.0" layoutY="208.0"
+                       prefHeight="30.0" prefWidth="98.0" promptText="%table.startTime"
+                       style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;">
                <font>
-                  <Font name="System Italic" size="14.0" />
+                  <Font name="System Italic" size="14.0"/>
                </font>
             </TextField>
-            <Text fill="#2cafc9" layoutX="63.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose a category for the lesson" />
-            <RadioButton fx:id="Abttn" layoutX="63.0" layoutY="330.0" mnemonicParsing="false" onAction="#AClick" text="A" />
-            <RadioButton fx:id="Bbttn" layoutX="192.0" layoutY="331.0" mnemonicParsing="false" onAction="#BClick" text="B" />
-            <RadioButton fx:id="Cbttn" layoutX="306.0" layoutY="330.0" mnemonicParsing="false" onAction="#CClick" text="C" />
-            <DatePicker fx:id="dateForLesson" layoutX="64.0" layoutY="157.0" prefHeight="26.0" prefWidth="322.0" promptText="Enter the date for the lesson" />
-            <TextField fx:id="txtEnd" focusTraversable="false" layoutX="287.0" layoutY="208.0" prefHeight="30.0" prefWidth="98.0" promptText="End time" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;">
+            <TextField fx:id="txtEnd" focusTraversable="false" layoutX="287.0" layoutY="208.0"
+                       prefHeight="30.0" prefWidth="98.0" promptText="%table.endTime"
+                       style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;">
                <font>
-                  <Font name="System Italic" size="14.0" />
+                  <Font name="System Italic" size="14.0"/>
                </font>
             </TextField>
+            <Text fill="#2cafc9" layoutX="63.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                  text="%text.chooseLessonCategory"/>
+            <RadioButton fx:id="Abttn" layoutX="63.0" layoutY="330.0" mnemonicParsing="false"
+                         onAction="#AClick" text="%category.motorcycles"/>
+            <RadioButton fx:id="Bbttn" layoutX="192.0" layoutY="331.0" mnemonicParsing="false"
+                         onAction="#BClick" text="%category.cars"/>
+            <RadioButton fx:id="Cbttn" layoutX="306.0" layoutY="330.0" mnemonicParsing="false"
+                         onAction="#CClick" text="%category.trucks"/>
          </children>
       </AnchorPane>
-      <Text layoutX="403.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: arial; -fx-font-weight: bold; -fx-font-size: 20;" text="Here you can create a schedule date for lessons " />
+      <Text layoutX="403.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0"
+            style="-fx-font-family: arial; -fx-font-weight: bold; -fx-font-size: 20;"
+            text="%text.scheduleManagement"/>
    </children>
 </AnchorPane>

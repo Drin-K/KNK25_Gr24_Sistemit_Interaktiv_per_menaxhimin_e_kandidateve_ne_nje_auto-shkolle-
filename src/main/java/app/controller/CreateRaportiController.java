@@ -1,6 +1,7 @@
 package app.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -10,6 +11,8 @@ import services.RaportiProgresitService;
 import services.UserContext;
 
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class CreateRaportiController {
@@ -20,17 +23,29 @@ public class CreateRaportiController {
         this.raportiProgresitService=new RaportiProgresitService();
     }
     @FXML
-    private void saveClick(){
-        try{
+    private void saveClick() {
+        try {
             RaportiProgresit raportiProgresit = this.raportiProgresitService.create(this.getInput());
-            System.out.println("Raporti inserted successfully!");
-            System.out.println("Raporti Id: " + raportiProgresit.getId());
             this.cleanFields();
-        }catch (Exception e){
+
+            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+            successAlert.setTitle("Success");
+            successAlert.setHeaderText(null);
+            successAlert.setContentText("Raporti was inserted successfully!\nID: " + raportiProgresit.getId());
+            successAlert.showAndWait();
+
+        } catch (Exception e) {
+
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setTitle("Error");
+            errorAlert.setHeaderText("Failed to insert Raporti");
+            errorAlert.setContentText(e.getMessage());
+            errorAlert.showAndWait();
+
             System.out.println("Error inserting raporti. " + e.getMessage());
         }
-
     }
+
     private CreateRaportiProgresitDto getInput(){
         int kandId = Integer.parseInt(this.txtID.getText().trim());
         int stafiId= UserContext.getUserId();
@@ -47,7 +62,6 @@ public class CreateRaportiController {
         txtPracticePoints.setText("");
         txtPerformanca.setText("");
         txtComment.setText("");
-
     }
 
 

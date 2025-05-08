@@ -120,7 +120,7 @@ public class CandidateManagmentController extends BaseController {
 
 
     private void loadKandidatetData() {
-        kandidatTable.setItems(FXCollections.observableArrayList(kandidateService.getAllKandidatet()));
+        kandidatTable.setItems(FXCollections.observableArrayList(kandidateService.getAll()));
     }
     private void loadDokumentetData() {
         tableViewDokumente.setItems(FXCollections.observableArrayList(dokumentService.getAllDokumentet()));

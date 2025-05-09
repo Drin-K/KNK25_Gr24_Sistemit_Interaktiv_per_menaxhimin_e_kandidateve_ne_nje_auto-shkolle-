@@ -15,84 +15,74 @@
 
 <AnchorPane maxHeight="699.0" prefHeight="699.0" prefWidth="1314.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.AdminHomeController">
     <children>
-        <Label layoutX="48.0" layoutY="36.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Main Panel" />
+        <Label layoutX="48.0" layoutY="36.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="%label.mainPanel" />
 
         <HBox layoutX="20.0" layoutY="75.19999694824219" spacing="20" />
 
-              <PieChart fx:id="statistikatKandidateveChart" layoutX="20.0" layoutY="159.60000610351562" prefHeight="250.0" prefWidth="400.0" />
+        <PieChart fx:id="statistikatKandidateveChart" layoutX="20.0" layoutY="159.60000610351562" prefHeight="250.0" prefWidth="400.0" />
+
         <VBox layoutX="170.0" layoutY="385.0" />
+
         <VBox layoutX="895.0" layoutY="96.0" prefHeight="240.0" prefWidth="329.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
-            <Label text="Unpaid Payments" textFill="WHITE" />
-         <BarChart fx:id="pagesaTePapaguara" prefHeight="211.0" prefWidth="292.0">
-           <xAxis>
-             <CategoryAxis side="BOTTOM" />
-           </xAxis>
-           <yAxis>
-             <NumberAxis side="LEFT" />
-           </yAxis>
-         </BarChart>
+            <Label text="%label.unpaidPayments" textFill="WHITE" />
+            <BarChart fx:id="pagesaTePapaguara" prefHeight="211.0" prefWidth="292.0">
+                <xAxis><CategoryAxis side="BOTTOM" /></xAxis>
+                <yAxis><NumberAxis side="LEFT" /></yAxis>
+            </BarChart>
         </VBox>
+
         <VBox layoutX="66.0" layoutY="392.0" prefHeight="275.0" prefWidth="398.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
-            <Label text="Licenses Issued" textFill="WHITE" />
-         <LineChart fx:id="patentatEleshuara">
-           <xAxis>
-             <CategoryAxis side="BOTTOM" />
-           </xAxis>
-           <yAxis>
-             <NumberAxis side="LEFT" />
-           </yAxis>
-         </LineChart>
+            <Label text="%label.licensesIssued" textFill="WHITE" />
+            <LineChart fx:id="patentatEleshuara">
+                <xAxis><CategoryAxis side="BOTTOM" /></xAxis>
+                <yAxis><NumberAxis side="LEFT" /></yAxis>
+            </LineChart>
         </VBox>
+
         <VBox layoutX="538.0" layoutY="97.0" prefHeight="238.0" prefWidth="332.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
             <children>
-                <Label text="Sessions Today" textFill="WHITE" />
-            <ListView fx:id="sesionetSot" prefHeight="200.0" prefWidth="200.0" />
+                <Label text="%label.sessionsToday" textFill="WHITE" />
+                <ListView fx:id="sesionetSot" prefHeight="200.0" prefWidth="200.0" />
             </children>
         </VBox>
+
         <VBox layoutX="47.0" layoutY="114.0" prefHeight="156.0" prefWidth="250.0" style="-fx-background-color: #00cddf; -fx-padding: 10;">
             <children>
-                <Label text="In Progress/Completed" textFill="WHITE" />
-            <PieChart fx:id="piechart" />
+                <Label text="%label.inProgressCompleted" textFill="WHITE" />
+                <PieChart fx:id="piechart" />
             </children>
         </VBox>
+
         <VBox layoutX="553.0" layoutY="386.0" prefHeight="289.0" prefWidth="672.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
             <children>
-                <Label text="Registrations / Top Payments" textFill="WHITE" />
-            <HBox>
-               <children>
-                      <BarChart fx:id="nrRegjistrimeve">
-                          <xAxis>
-                              <CategoryAxis side="BOTTOM" />
-                          </xAxis>
-                          <yAxis>
-                              <NumberAxis side="LEFT" />
-                          </yAxis>
-                      </BarChart>
-                      <BarChart fx:id="PagesaTeKryera">
-                          <xAxis>
-                              <CategoryAxis side="BOTTOM" />
-                          </xAxis>
-                          <yAxis>
-                              <NumberAxis side="LEFT" />
-                          </yAxis>
-                      </BarChart>
-               </children>
-            </HBox>
+                <Label text="%label.registrationsPayments" textFill="WHITE" />
+                <HBox>
+                    <children>
+                        <BarChart fx:id="nrRegjistrimeve">
+                            <xAxis><CategoryAxis side="BOTTOM" /></xAxis>
+                            <yAxis><NumberAxis side="LEFT" /></yAxis>
+                        </BarChart>
+                        <BarChart fx:id="PagesaTeKryera">
+                            <xAxis><CategoryAxis side="BOTTOM" /></xAxis>
+                            <yAxis><NumberAxis side="LEFT" /></yAxis>
+                        </BarChart>
+                    </children>
+                </HBox>
             </children>
         </VBox>
-      <Circle fill="#8ce77e" layoutX="407.0" layoutY="165.0" radius="56.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-      <Label layoutX="361.0" layoutY="141.0" text="Total Candidates" textFill="WHITE" />
-      <Label fx:id="totalKandidat" alignment="CENTER" contentDisplay="CENTER" layoutX="386.0" layoutY="161.0" prefHeight="29.0" prefWidth="40.0" textFill="WHITE">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Circle fill="#8ce77e" layoutX="407.0" layoutY="302.0" radius="56.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-      <Label layoutX="378.0" layoutY="276.0" text="Total Staff" textFill="WHITE" />
-      <Label fx:id="totalStafi" alignment="CENTER" layoutX="387.0" layoutY="298.0" prefHeight="29.0" prefWidth="40.0" textFill="WHITE">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
+
+        <Circle fill="#8ce77e" layoutX="407.0" layoutY="165.0" radius="56.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+        <Label layoutX="361.0" layoutY="141.0" text="%label.totalCandidates" textFill="WHITE" />
+
+        <Label fx:id="totalKandidat" alignment="CENTER" contentDisplay="CENTER" layoutX="386.0" layoutY="161.0" prefHeight="29.0" prefWidth="40.0" textFill="WHITE">
+            <font><Font size="20.0" /></font>
+        </Label>
+
+        <Circle fill="#8ce77e" layoutX="407.0" layoutY="302.0" radius="56.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+        <Label layoutX="378.0" layoutY="276.0" text="%label.totalStaff" textFill="WHITE" />
+
+        <Label fx:id="totalStafi" alignment="CENTER" layoutX="387.0" layoutY="298.0" prefHeight="29.0" prefWidth="40.0" textFill="WHITE">
+            <font><Font size="20.0" /></font>
+        </Label>
     </children>
 </AnchorPane>

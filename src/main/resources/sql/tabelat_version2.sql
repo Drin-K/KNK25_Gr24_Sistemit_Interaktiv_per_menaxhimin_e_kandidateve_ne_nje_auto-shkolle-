@@ -80,13 +80,9 @@ ID_Kandidat INT REFERENCES Kandidatet(id) ON DELETE CASCADE ON UPDATE CASCADE,
 Shuma DECIMAL(10,2) NOT NULL,
 Numri_Xhirollogarise INT,
 Data_e_Pageses DATE DEFAULT CURRENT_DATE,
-Metoda_e_Pageses VARCHAR(50) CHECK (Metoda_e_Pageses IN ('Cash', 'Kartë', 'Online')),
+Metoda_e_Pageses VARCHAR(50) CHECK (Metoda_e_Pageses IN ('Cash','Online')),
 Statusi_i_Pageses VARCHAR(50) CHECK (Statusi_i_Pageses IN ('Paguar', 'Pjesërisht', 'Mbetur'))
 );
-
-
-
-
 
 CREATE TABLE Regjistrimet (
     id SERIAL PRIMARY KEY,
@@ -119,12 +115,12 @@ CREATE TABLE Raporti_Progresit (
     Piket_Teorike INT CHECK (Piket_Teorike BETWEEN 0 AND 100),
     Piket_Praktike INT CHECK (Piket_Praktike BETWEEN 0 AND 100),
     Komentet TEXT,
-    Performanca_Gjenerale VARCHAR(50) CHECK (Performanca_Gjenerale IN ('Shkëlqyeshëm', 'Mirë', 'Mesatar', 'Dobët'))
+    Performanca_Gjenerale VARCHAR(50) CHECK (Performanca_Gjenerale IN ('Shkelqyeshem', 'Mire', 'Mesatar', 'Dobet'))
 );
 CREATE TABLE Dokumentet (
     id SERIAL PRIMARY KEY,
     ID_Kandidat INT NOT NULL REFERENCES Kandidatet(id) ON DELETE CASCADE,
-    Lloji_Dokumentit VARCHAR(100) NOT NULL CHECK (Lloji_Dokumentit IN ('Leternjoftim', 'Certifikate Mjekësore', 'Aplikim', 'Foto')),
+    Lloji_Dokumentit VARCHAR(100) NOT NULL CHECK (Lloji_Dokumentit IN ('Leternjoftim', 'Certifikate Mjekesore', 'Aplikim', 'Foto')),
     Emri_Skedari VARCHAR(255),
     Data_Ngarkimit DATE DEFAULT CURRENT_DATE
 );

@@ -8,7 +8,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1540.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.frontPageConsumatorController">
    <children>
-      <AnchorPane fx:id="profileBtt" layoutX="88.0" maxHeight="151.0" prefHeight="145.0" prefWidth="1440.0" style="-fx-background-color: #2D3447;" AnchorPane.bottomAnchor="665.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="profileBtt" maxHeight="151.0" prefHeight="145.0" prefWidth="1440.0" style="-fx-background-color: #2D3447;" AnchorPane.bottomAnchor="664.8" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="119.0" fitWidth="247.0" layoutX="-10.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -17,20 +17,19 @@
             </ImageView>
             <Button fx:id="profileBttn" layoutX="1265.0" layoutY="14.0" mnemonicParsing="false" onAction="#profileClick" prefHeight="26.0" prefWidth="78.0" style="-fx-background-color: #2D3447; -fx-border-width: 0 0 1 0; -fx-border-color: gray;" text="%btn.profile" textFill="WHITE" AnchorPane.leftAnchor="1265.0" AnchorPane.rightAnchor="198.20000000000005" />
             <Button fx:id="logOutBttn" layoutX="1450.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleLogOut" prefHeight="26.0" prefWidth="66.0" style="-fx-background-color: #2D3447; -fx-border-width: 0 0 1 0; -fx-border-color: gray;" text="%btn.logout" textFill="WHITE" AnchorPane.leftAnchor="1450.0" AnchorPane.rightAnchor="24.0" />
-            <Button fx:id="languageBttn" layoutX="1364.0" layoutY="14.0" mnemonicParsing="false" onAction="#languageClick" prefHeight="26.0" prefWidth="66.0" AnchorPane.leftAnchor="1364.0" AnchorPane.rightAnchor="110.0" />
             <ImageView fitHeight="42.0" fitWidth="41.0" layoutX="1211.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/User.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="" fitHeight="33.0" fitWidth="56.0" layoutX="1368.0" layoutY="11.0">
-               <image>
-                  <Image url="@../../images/language.icon.png" />
-               </image>
-            </ImageView>
             <ImageView fitHeight="152.0" fitWidth="190.0" layoutX="19.0" layoutY="19.0">
                <image>
                   <Image url="@../../images/emri.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="41.0" layoutX="1383.0" layoutY="8.0" onMouseClicked="#languageClick" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/language.png" />
                </image>
             </ImageView>
          </children>

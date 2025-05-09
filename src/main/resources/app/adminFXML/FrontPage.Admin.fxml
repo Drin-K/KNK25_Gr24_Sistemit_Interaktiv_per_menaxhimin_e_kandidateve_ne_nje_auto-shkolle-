@@ -16,17 +16,16 @@
                     </image>
                 </ImageView>
                 <Button fx:id="logOutBttn" layoutX="1450.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleLogOut" prefHeight="26.0" prefWidth="66.0" style="-fx-background-color: #2D3447; -fx-border-width: 0 0 1 0; -fx-border-color: gray;" text="%btn.logout" textFill="WHITE" AnchorPane.leftAnchor="1450.0" AnchorPane.rightAnchor="24.0" />
-                <Button fx:id="languageBttn" layoutX="1364.0" layoutY="14.0" mnemonicParsing="false" onAction="#languageClick" prefHeight="26.0" prefWidth="66.0" AnchorPane.leftAnchor="1364.0" AnchorPane.rightAnchor="110.0" />
-                <ImageView fx:id="" fitHeight="33.0" fitWidth="56.0" layoutX="1368.0" layoutY="11.0">
-                    <image>
-                        <Image url="@../../images/language.icon.png" />
-                    </image>
-                </ImageView>
                 <ImageView fitHeight="152.0" fitWidth="190.0" layoutX="19.0" layoutY="19.0">
                     <image>
                         <Image url="@../../images/emri.png" />
                     </image>
                 </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="41.0" layoutX="1381.0" layoutY="10.0" onMouseClicked="#languageClick" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/language.png" />
+               </image>
+            </ImageView>
             </children>
         </AnchorPane>
         <AnchorPane layoutX="7.0" layoutY="213.0" prefHeight="664.0" prefWidth="226.0" style="-fx-background-color: #2D3447;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
@@ -39,7 +38,7 @@
                 <Button fx:id="homeBttn" alignment="TOP_LEFT" layoutX="5.0" layoutY="94.0" mnemonicParsing="false" onAction="#homeAdminClick" prefHeight="34.0" prefWidth="226.0" style="-fx-font-weight: bold; -fx-background-color: #2D3447; -fx-border-width: 0 0 1 0; -fx-border-color: gray;" text="%btn.home" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="rightPage" layoutX="228.0" layoutY="136.0" prefHeight="620.0" prefWidth="1263.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="228.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="136.0">
+        <AnchorPane fx:id="rightPage" layoutX="228.0" layoutY="136.0" onMouseClicked="#languageClick" prefHeight="620.0" prefWidth="1263.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="228.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="136.0">
             <children>
                 <Text layoutX="27.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 30; -fx-font-weight: bold;" text="Welcome Admin!" wrappingWidth="938.9366455078125" />
                 <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="58.0" layoutY="581.0">

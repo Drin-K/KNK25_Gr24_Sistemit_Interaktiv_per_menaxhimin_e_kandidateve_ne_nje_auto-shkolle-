@@ -132,10 +132,11 @@
         </VBox>
       <VBox layoutX="522.0" layoutY="423.0" prefHeight="227.0" prefWidth="694.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
          <children>
-            <HBox spacing="250.0">
+            <HBox spacing="100.0">
                <children>
                    <Button fx:id="btnDeleteTestet" onMouseClicked="#onDeleteTestetClick" text="Delete" />
-                  <Label text="Test Managment" textFill="WHITE" />
+                   <Button fx:id="btnShfaqRaportin" onAction="#onShfaqRaportinClick" prefHeight="25.0" prefWidth="314.0" text="Show the performance report" />
+                   <Label text="Test Managment" textFill="WHITE" />
                </children>
             </HBox>
              <TableView fx:id="testetTable" prefHeight="210.0" prefWidth="398.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">

@@ -304,6 +304,22 @@ private void clearData(){
             download(selected.getEmriSkedarit());
         }
     }
+    @FXML
+    private void onShfaqRaportinClick() throws Exception {
+        Testet selected = testetTable.getSelectionModel().getSelectedItem();
+        if (selected != null) {
+            int kandidatId = selected.getIdKandidat();
+            int stafId=selected.getIdStaf();
+            ProgressReportController controller = SceneManager.loadWithController(
+                    SceneLocator.PROGRESS_ADMIN_REPORT_PAGE, this.rightPage, kandidatId, stafId
+            );
+            controller.shfaqRaportin();
+        } else {
+            showAlert(Alert.AlertType.WARNING, "Warning", "Please select a row.");
+        }
+    }
+
+
     public void download(String emriSkedarit) {
         Path uploadDir = Paths.get("src", "main", "java", "utils", "uploads");
         Path sourcePath = uploadDir.resolve(emriSkedarit);

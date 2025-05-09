@@ -17,11 +17,6 @@ private TextField emailField;
 private PasswordField passwordField;
 
 @FXML
-private Button loginButton;
-
-@FXML
-private Button signupButton;
-@FXML
 private Label errorLabel;
 
 

@@ -76,13 +76,7 @@ public class PagesaService {
         return pagesatRepository.getPaymentsLast12Months();
     }
 
-    public List<Pagesat> getFilteredPagesat(String name, String fromDate, String toDate, String metodaPageses, String statusiPageses) throws SQLException, SQLException {
-        return pagesatRepository.filterPagesat(name, fromDate, toDate, metodaPageses, statusiPageses);
-    }
 
-    public Map<String, Integer> getPagesatCountByStatus() throws SQLException{
-        return pagesatRepository.getPagesatCountByStatus();
-    }
     public void delete(int pagesaId) throws Exception {
         Pagesat ekzistues = pagesatRepository.getById(pagesaId);
         if (ekzistues == null) {

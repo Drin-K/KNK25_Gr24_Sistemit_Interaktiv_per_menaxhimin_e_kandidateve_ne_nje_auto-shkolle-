@@ -35,14 +35,12 @@ public class AdminPaymentController extends BaseController {
 
 
     private final ObservableList<Pagesat> pagesatList;
-    private final PagesaService pagesatService;
     private final PagesatRepository pagesatRepository;
     private final XYChart.Series<String, Number> paguarSeries;
     private final XYChart.Series<String, Number> pjeserishtSeries;
     private final XYChart.Series<String, Number> mbeturSeries;
 public AdminPaymentController(){
     this.pagesatList= FXCollections.observableArrayList();
-    this.pagesatService=new PagesaService();
     this.pagesatRepository=new PagesatRepository();
     this.paguarSeries=new XYChart.Series<>();
     this.pjeserishtSeries=new XYChart.Series<>();
@@ -65,7 +63,7 @@ public AdminPaymentController(){
     }
 
     private void initializeComboBoxes() {
-        combobox1.getItems().setAll("Cash", "Kartë", "Online");
+        combobox1.getItems().setAll("Cash", "Online");
         comboBox2.getItems().setAll("Paguar", "Pjesërisht", "Mbetur");
         statusiIRiComboBox.getItems().setAll("Paguar", "Pjeserisht", "Mbetur");
     }
@@ -91,7 +89,7 @@ public AdminPaymentController(){
         pjeserishtSeries.getData().clear();
         mbeturSeries.getData().clear();
 
-        Map<String, Integer> pagesatCount = pagesatService.getPagesatCountByStatus();
+        Map<String, Integer> pagesatCount = pagesatRepository.getPagesatCountByStatus();
 
         if (pagesatCount.containsKey("Paguar")) {
             paguarSeries.getData().add(new XYChart.Data<>("Paguar", pagesatCount.get("Paguar")));
@@ -120,7 +118,7 @@ public AdminPaymentController(){
             return;
         }
 
-        List<Pagesat> filteredPagesat = pagesatService.getFilteredPagesat(name, fromDate, toDate, metodaPageses, statusiPageses);
+        List<Pagesat> filteredPagesat = pagesatRepository.filterPagesat(name, fromDate, toDate, metodaPageses, statusiPageses);
         pagesatList.clear();
         pagesatList.addAll(filteredPagesat);
         pagesatTable.setItems(pagesatList);

@@ -15,58 +15,51 @@
         <VBox layoutX="285.0" layoutY="55.0" prefHeight="279.0" prefWidth="800.0" style="-fx-background-color: #ffffff; -fx-border-color: #ff7900; -fx-padding: 10;">
             <children>
                 <VBox prefHeight="327.0" prefWidth="790.0" spacing="15" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="20">
-      
-                    <!-- Titulli -->
-                    <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="List of Candidates Eligible to Receive the License" />
-      
-                    <!-- Filtrat -->
+                    <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="%label.eligibleList" />
                     <HBox spacing="15">
-                        <Button onAction="#aprovoPatentenClick" text="Approve the License" />
-
+                        <Button onAction="#aprovoPatentenClick" text="%button.approveLicense" />
                     </HBox>
-      
-                    <!-- Tabela e Kandidatëve -->
                     <TableView fx:id="tableKandidatet" prefHeight="500">
                         <columns>
-                            <TableColumn fx:id="colEmri" prefWidth="120" text="Name" />
-                            <TableColumn fx:id="colMbiemri" prefWidth="120" text="Surname" />
-                            <TableColumn fx:id="colEmail" prefWidth="180" text="Email" />
-                            <TableColumn fx:id="colTelefoni" prefWidth="120" text="Phone Number" />
-                            <TableColumn fx:id="colDataRegjistrimit" prefWidth="140" text="Registration Date" />
-                            <TableColumn fx:id="colStatusi" prefWidth="100" text="Status" />
+                            <TableColumn fx:id="colEmri" prefWidth="120" text="%column.name" />
+                            <TableColumn fx:id="colMbiemri" prefWidth="120" text="%column.surname" />
+                            <TableColumn fx:id="colEmail" prefWidth="180" text="%column.email" />
+                            <TableColumn fx:id="colTelefoni" prefWidth="120" text="%column.phone" />
+                            <TableColumn fx:id="colDataRegjistrimit" prefWidth="140" text="%column.registrationDate" />
+                            <TableColumn fx:id="colStatusi" prefWidth="100" text="%column.status" />
                         </columns>
                     </TableView>
-      
                 </VBox>
             </children>
         </VBox>
-        <Label layoutX="475.0" layoutY="-14.0" prefHeight="100.0" prefWidth="364.0" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="License Management">
+
+        <Label layoutX="475.0" layoutY="-14.0" prefHeight="100.0" prefWidth="364.0" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="%label.licenseManagement">
             <padding>
                 <Insets left="100.0" />
             </padding>
         </Label>
-      <VBox layoutX="249.0" layoutY="357.0" prefHeight="277.0" prefWidth="875.0" style="-fx-background-color: #ffffff; -fx-border-color: #ff7900; -fx-padding: 10;">
-         <children>
-            <VBox prefHeight="327.0" prefWidth="790.0" spacing="15" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="20">
-               <children>
-                  <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="List of Candidates who are eligible to receive the license but have not completed the payment in full">
-                     <font>
-                        <Font size="1.0" />
-                     </font></Label>
-                  <HBox spacing="15" />
-                  <TableView fx:id="tableKandidatet1" prefHeight="500">
-                     <columns>
-                        <TableColumn fx:id="colEmri1" prefWidth="120" text="Name" />
-                        <TableColumn fx:id="colMbiemri1" prefWidth="120" text="Surname" />
-                        <TableColumn fx:id="colEmail1" prefWidth="160.20811462402344" text="Email" />
-                        <TableColumn fx:id="colTelefoni1" prefWidth="139.7918701171875" text="Phone Number" />
-                        <TableColumn fx:id="colDataRegjistrimit1" prefWidth="189.479736328125" text="Registration Date" />
-                        <TableColumn fx:id="colStatusi1" prefWidth="122.520263671875" text="Status" />
-                     </columns>
-                  </TableView>
-               </children>
-            </VBox>
-         </children>
-      </VBox>
+
+        <VBox layoutX="249.0" layoutY="357.0" prefHeight="277.0" prefWidth="875.0" style="-fx-background-color: #ffffff; -fx-border-color: #ff7900; -fx-padding: 10;">
+            <children>
+                <VBox prefHeight="327.0" prefWidth="790.0" spacing="15" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="20">
+                    <children>
+                        <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="%label.eligibleButUnpaid">
+                            <font><Font size="1.0" /></font>
+                        </Label>
+                        <HBox spacing="15" />
+                        <TableView fx:id="tableKandidatet1" prefHeight="500">
+                            <columns>
+                                <TableColumn fx:id="colEmri1" prefWidth="120" text="%column.name" />
+                                <TableColumn fx:id="colMbiemri1" prefWidth="120" text="%column.surname" />
+                                <TableColumn fx:id="colEmail1" prefWidth="160.208" text="%column.email" />
+                                <TableColumn fx:id="colTelefoni1" prefWidth="139.791" text="%column.phone" />
+                                <TableColumn fx:id="colDataRegjistrimit1" prefWidth="189.480" text="%column.registrationDate" />
+                                <TableColumn fx:id="colStatusi1" prefWidth="122.520" text="%column.status" />
+                            </columns>
+                        </TableView>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
     </children>
 </AnchorPane>

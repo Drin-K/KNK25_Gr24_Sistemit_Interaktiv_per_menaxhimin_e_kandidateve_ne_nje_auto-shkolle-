@@ -139,9 +139,7 @@ public class OrariService {
         return orari;
     }
 
-    public long numeroSesione(int idKandidat, String llojiMesimit, String statusi){
-        return orariRepository.numeroSesione(idKandidat,llojiMesimit,statusi);
-    }
+
     public List<Orari> getSessionsToday() {
         LocalDate currentDate = LocalDate.now();
         return orariRepository.gjejOraretPerDate(currentDate);

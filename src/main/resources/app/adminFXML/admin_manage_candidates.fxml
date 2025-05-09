@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="699.0" prefHeight="699.0" prefWidth="1314.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.CandidateManagmentController">
+<AnchorPane fx:id="rightPage" maxHeight="699.0" prefHeight="699.0" prefWidth="1314.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.CandidateManagmentController">
     <children>
         <Label layoutX="19.0" layoutY="8.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Candidate Managment" />
 
@@ -65,6 +65,7 @@
                 <HBox alignment="CENTER" prefHeight="68.0" prefWidth="1287.0" spacing="10" style="-fx-padding: 5;">
                     <Button fx:id="btnCreateKandidat" onMouseClicked="#onCreateKandidatClick" text="Create" />
                     <Button fx:id="btnDeleteKandidat" onMouseClicked="#onDeleteKandidatClick" text="Delete" />
+                    <Button fx:id="btnUpdateKandidat" onMouseClicked="#onUpdateKandidatClick" text="Update" />
                 </HBox>
                 <TableView fx:id="kandidatTable" layoutX="20" layoutY="20" prefHeight="422.0" prefWidth="888.0">
                     <columns>

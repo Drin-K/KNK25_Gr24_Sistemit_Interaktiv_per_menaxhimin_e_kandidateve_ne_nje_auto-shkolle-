@@ -38,7 +38,7 @@ public class SceneLocator {
     public static final String CANDIDATES_PAGE="/app/adminFXML/admin_manage_candidates.fxml";
     public static final String PAYMENTS_MANAGE_PAGE="/app/adminFXML/admin_payments.fxml";
     public static final String ADMIN_HOME_PAGE="/app/adminFXML/admin_home.fxml";
-
+    public static final String UPDATE_ADMIN_CANDIDATE_PAGE="/app/adminFXML/update_candidate_or_staf.fxml";
 
     // Over all
     public static final String CHANGE_PASSWORD= "/app/changePass.fxml";

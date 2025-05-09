@@ -17,7 +17,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="699.0" prefHeight="620.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.StafManagmentController">
+<AnchorPane  fx:id="rightPage" maxHeight="699.0" prefHeight="620.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.StafManagmentController">
     <children>
         <Label layoutX="20.0" layoutY="20.0" prefHeight="35.0" prefWidth="234.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Staf Managment" />
 
@@ -28,6 +28,7 @@
                 <HBox alignment="CENTER" prefHeight="68.0" prefWidth="1287.0" spacing="10" style="-fx-padding: 5;">
                     <Button onMouseClicked="#onCreateStafiClick" text="Create" />
                     <Button onMouseClicked="#onDeleteStafiClick" text="Delete" />
+                    <Button fx:id="btnUpdateStaf" onMouseClicked="#onUpdateStafClick" text="Update" />
                 </HBox>
                 <TableView fx:id="tableStafi" prefHeight="400.0" prefWidth="735.0">
                     <columns>

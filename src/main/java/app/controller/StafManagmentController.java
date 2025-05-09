@@ -5,15 +5,14 @@ import app.controller.components.CommonTables;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import models.*;
 import models.Dto.stafi.CreateStafiDto;
 import repository.OrariRepository;
 import repository.StafiRepository;
-import services.FeedBackService;
-import services.OrariService;
-import services.PasswordHasher;
-import services.StafiService;
+import services.*;
+import utils.SceneLocator;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -50,6 +49,8 @@ public class StafManagmentController extends BaseController {
     @FXML private TableColumn<Orari, LocalDate> dataSesioniColumn;
     @FXML private TableColumn<Orari, LocalTime> oraFillimitColumn, oraPerfundimitColumn;
     @FXML private TableColumn<Orari, String> llojiMesimitColumn, statusiColumn;
+    @FXML
+    private AnchorPane rightPage;
 
     private final StafiService stafiService;
     private final OrariService orariService;
@@ -211,5 +212,8 @@ public class StafManagmentController extends BaseController {
         txtPassword.clear();
         datePickerDob.setValue(null);
         comboGjinia.setValue(null);
+    }
+    public void onUpdateStafClick() throws Exception {
+        SceneManager.load(SceneLocator.UPDATE_ADMIN_CANDIDATE_PAGE,this.rightPage);
     }
 }

@@ -9,10 +9,6 @@ import javafx.scene.control.ButtonType;
 
 public abstract class BaseController {
 
-    protected <T, S> void configureColumn(TableColumn<T, S> column, String property) {
-        column.setCellValueFactory(new PropertyValueFactory<>(property));
-    }
-
     protected void showAlert(AlertType type, String title, String message) {
         Alert alert = new Alert(type);
         alert.setTitle(title);

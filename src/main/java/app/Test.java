@@ -7,7 +7,7 @@ import utils.SceneLocator;
 
 public class Test extends Application{
     public void start(Stage stage){
-    SceneManager sceneManager = SceneManager.getInstance(SceneLocator.LOGIN_PAGE);
+    SceneManager sceneManager = SceneManager.getInstance(SceneLocator.CANDIDATES_PAGE);
         stage.setScene(sceneManager.getScene());
         stage.show();}
 }

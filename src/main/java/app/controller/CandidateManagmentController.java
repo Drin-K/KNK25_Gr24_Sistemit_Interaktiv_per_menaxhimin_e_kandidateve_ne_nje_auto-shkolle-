@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import models.*;
 import models.Dto.kandidatet.CreateKandidatetDto;
@@ -13,6 +14,7 @@ import repository.OrariRepository;
 import repository.PagesatRepository;
 import repository.TestetRepository;
 import services.*;
+import utils.SceneLocator;
 
 import java.io.IOException;
 import java.nio.file.*;
@@ -49,6 +51,8 @@ public class CandidateManagmentController extends BaseController {
     @FXML private DatePicker datePickerDob;
     @FXML private ComboBox<String> comboGjinia;
     @FXML private PasswordField txtPassword;
+    @FXML
+    private AnchorPane rightPage;
     private final KandidateService kandidateService;
     private final DokumentService dokumentService;
     private final PagesaService pagesaService;
@@ -59,6 +63,7 @@ public class CandidateManagmentController extends BaseController {
     private final DokumentetRepository dokumentetRepository;
     private final PagesatRepository pagesatRepository;
     private final OrariRepository orariRepository;
+
 
     public CandidateManagmentController() {
         this.kandidateService = new KandidateService();
@@ -281,6 +286,10 @@ private void clearData(){
                         "The candidate is missing the following documents:\\n- ID Card\\n- Medical Certificate\\n- Application\\n- Photo");
             }
         }
+    }
+    @FXML
+    private void onUpdateKandidatClick() throws Exception {
+        SceneManager.load(SceneLocator.UPDATE_ADMIN_CANDIDATE_PAGE,this.rightPage);
     }
 
     @FXML private void onDownloadClick() {

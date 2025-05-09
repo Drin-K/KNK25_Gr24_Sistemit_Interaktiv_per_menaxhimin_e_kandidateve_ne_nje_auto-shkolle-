@@ -25,8 +25,8 @@ public AdminPatentaController(){
 }
     @FXML
     public void initialize() {
-        configureTables(tableKandidatet, List.of(colEmri, colMbiemri, colEmail, colTelefoni, colDataRegjistrimit, colStatusi),
-                new String[]{"name", "surname", "email", "phoneNumber", "dataRegjistrimit", "statusiProcesit"});
+      configureTables(tableKandidatet, List.of(colEmri, colMbiemri, colEmail, colTelefoni, colDataRegjistrimit, colStatusi),
+           new String[]{"name", "surname", "email", "phoneNumber", "dataRegjistrimit", "statusiProcesit"});
 
         configureTables(tableKandidatet1, List.of(colEmri1, colMbiemri1, colEmail1, colTelefoni1, colDataRegjistrimit1, colStatusi1),
                 new String[]{"name", "surname", "email", "phoneNumber", "dataRegjistrimit", "statusiProcesit"});
@@ -39,8 +39,8 @@ public AdminPatentaController(){
     }
 
     private void loadCandidateData() {
-        tableKandidatet.setItems(FXCollections.observableArrayList(kandidatetRepository.shfaqKandidatetMeTeDrejte()));
-        tableKandidatet1.setItems(FXCollections.observableArrayList(kandidatetRepository.shfaqKandidatetMeTeDrejtePaPagesa()));
+    tableKandidatet.setItems(FXCollections.observableArrayList(kandidatetRepository.shfaqKandidatetMeTeDrejte()));
+     tableKandidatet1.setItems(FXCollections.observableArrayList(kandidatetRepository.shfaqKandidatetMeTeDrejtePaPagesa()));
     }
 
     @FXML

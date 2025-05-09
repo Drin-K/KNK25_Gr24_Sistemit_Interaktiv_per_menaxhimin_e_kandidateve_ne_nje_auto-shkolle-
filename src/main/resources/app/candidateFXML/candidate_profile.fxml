@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="620.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.CandidateProfileController">
    <children>
-      <AnchorPane fx:id="pane" layoutX="324.0" layoutY="74.0" prefHeight="514.0" prefWidth="622.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #390eb5;">
+      <AnchorPane fx:id="pane" layoutX="210.0" layoutY="74.0" prefHeight="514.0" prefWidth="889.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #390eb5;">
          <children>
-            <AnchorPane layoutX="30.0" layoutY="42.0" prefHeight="391.0" prefWidth="198.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #390eb5;">
+            <AnchorPane layoutX="255.0" layoutY="42.0" prefHeight="391.0" prefWidth="198.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #390eb5;">
                <children>
                   <Text fill="#6493cc" layoutX="15.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-weight: bold;" text="%label.name" wrappingWidth="119.5230712890625" />
                   <Text fill="#6493cc" layoutX="13.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-weight: bold;" text="%label.phone" wrappingWidth="161.12307739257812" />
@@ -20,7 +22,7 @@
                   <Text fill="#6493cc" layoutX="10.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-weight: bold;" text="%label.birthDate" wrappingWidth="177.92312622070312" />
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="232.0" layoutY="42.0" prefHeight="391.0" prefWidth="376.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #390eb5;">
+            <AnchorPane layoutX="476.0" layoutY="42.0" prefHeight="391.0" prefWidth="376.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #390eb5;">
                <children>
                   <Text fx:id="nameField" layoutX="20.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-weight: bold;" text="Text" wrappingWidth="302.3441162109373" />
                   <Text fx:id="surnameField" layoutX="20.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-weight: bold;" text="Text" wrappingWidth="302.3441162109373" />
@@ -32,10 +34,16 @@
                   <Text fx:id="genderField" layoutX="20.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-weight: bold;" text="Text" wrappingWidth="302.3441162109373" />
                </children>
             </AnchorPane>
-            <Text fill="#390eb5" layoutX="30.0" layoutY="479.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 14; -fx-font-weight: bold;" text="%label.change.password.prompt" wrappingWidth="359.94415283203125" />
-            <Button fx:id="changePassBttn" layoutX="390.0" layoutY="460.0" mnemonicParsing="false" onAction="#changePassClick" text="%button.change.pass" />
+            <Text fill="#390eb5" layoutX="273.0" layoutY="469.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 14; -fx-font-weight: bold;" text="%label.change.password.prompt" wrappingWidth="359.94415283203125" />
+            <Button fx:id="changePassBttn" layoutX="615.0" layoutY="451.0" mnemonicParsing="false" onAction="#changePassClick" text="%button.change.pass" />
+            <ImageView fx:id="profilePicture" fitHeight="150.0" fitWidth="150.0" layoutX="51.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
+            <Text fill="#6493cc" layoutX="7.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%label.profilePicture" textAlignment="CENTER" wrappingWidth="237.9053955078125">
+               <font>
+                  <Font name="System Bold Italic" size="24.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
-      <Text fill="#390eb5" layoutX="539.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 22; -fx-font-weight: bold;" text="%label.profile.title" />
+      <Text fill="#390eb5" layoutX="577.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 22; -fx-font-weight: bold;" text="%label.profile.title" />
    </children>
 </AnchorPane>

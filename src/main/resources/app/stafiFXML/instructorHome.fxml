@@ -7,16 +7,16 @@
 
 <AnchorPane fx:id="rightPage" prefHeight="620.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text layoutX="45.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 30;" text="Welcome, Instructor!" wrappingWidth="304.992919921875" />
-      <Text layoutX="45.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="Your dashboard is designed to streamline every aspect of driver training. Here, you can: " />
-      <Text layoutX="85.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="-Schedule lessons with candidates in just a few clicks." />
-      <Text layoutX="86.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="-Manage tests on theory and practical skills." />
-      <Text layoutX="86.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="-Create reports for events while on lessons." />
-      <Text layoutX="85.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="-Manage vehicles and resources efficiently." />
-      <Text layoutX="45.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="This platform empowers you to focus on what matters most: " />
-      <Text layoutX="86.0" layoutY="394.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="-Shaping safe, confident drivers." />
-      <Text layoutX="86.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="-Review “Feedback” to improve your coaching approach." />
-      <Text layoutX="45.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: arial; -fx-font-size: 18;" text="Welcome to the Autoshkolla Tigri platform — a smart, all-in-one solution designed specifically for modern driving schools. Whether you're managing lessons, tracking candidate progress, or organizing resources, our platform helps you do it all quickly and efficiently." wrappingWidth="705.3750000000001" />
+      <Text layoutX="45.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 30;" text="%text.welcomeInstructor" wrappingWidth="404.992919921875" />
+      <Text layoutX="45.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="%text.dashboardDescription1" />
+      <Text layoutX="85.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="%text.feature1" />
+      <Text layoutX="86.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="%text.feature2" />
+      <Text layoutX="86.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="%text.feature3" />
+      <Text layoutX="85.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="%text.feature4" />
+      <Text layoutX="45.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="%text.dashboardDescription2" />
+      <Text layoutX="86.0" layoutY="394.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="%text.benefit1" />
+      <Text layoutX="86.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="%text.benefit2" />
+      <Text layoutX="45.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: arial; -fx-font-size: 18;" text="%text.platformDescription" wrappingWidth="705.3750000000001" />
       <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="58.0" layoutY="581.0">
          <image>
             <Image url="@../../images/location.pin.png" />

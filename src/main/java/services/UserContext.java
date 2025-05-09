@@ -18,8 +18,9 @@ public class UserContext {
         return currentRole;
     }
 
+
     public static int getUserId() {
-        return 2;
+        return 3;
     }
 
     public static void clear() {

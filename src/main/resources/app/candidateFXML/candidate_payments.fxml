@@ -8,34 +8,33 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="620.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="rightPane" prefHeight="620.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.PagesatHandleController">
    <children>
       <Text fill="#475779" layoutX="567.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 22; -fx-font-family: arial; -fx-font-weight: bold;" text="Payments" />
-      <AnchorPane layoutX="383.0" layoutY="140.0" prefHeight="385.0" prefWidth="472.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #475779;">
+      <AnchorPane layoutX="383.0" layoutY="140.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="385.0" prefWidth="472.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #475779;">
          <children>
-            <MenuButton fx:id="chooseMethod" layoutX="88.0" layoutY="25.0" mnemonicParsing="false" style="-fx-background-color: #475779;" text="Choose Payment Method" textFill="#f4f4f4">
+            <MenuButton fx:id="choosePayment" layoutX="88.0" layoutY="25.0" mnemonicParsing="false" style="-fx-background-color: #475779;" text="Change Paymet Method" textFill="#f4f4f4">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Cash" />
-                  <MenuItem mnemonicParsing="false" text="Online" />
+                  <MenuItem fx:id="cashOption" mnemonicParsing="false" onAction="#cashClick" text="Cash" />
+
                </items>
             </MenuButton>
-            <TextField fx:id="enterShuma" focusTraversable="false" layoutX="88.0" layoutY="119.0" prefHeight="26.0" prefWidth="322.0" promptText="Enter the amount" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-width: 0 0 1 0; -fx-border-color: #475779; -fx-text-fill: #a0a2ab;">
+            <TextField fx:id="shumaTxt" focusTraversable="false" layoutX="88.0" layoutY="96.0" prefHeight="26.0" prefWidth="322.0" promptText="Enter the amount" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-width: 0 0 1 0; -fx-border-color: #475779; -fx-text-fill: #a0a2ab;">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="numriBankes" focusTraversable="false" layoutX="88.0" layoutY="167.0" prefHeight="26.0" prefWidth="322.0" promptText="Enter bank number" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-width: 0 0 1 0; -fx-border-color: #475779; -fx-text-fill: #a0a2ab;">
+            <TextField fx:id="bankNumTxt" focusTraversable="false" layoutX="88.0" layoutY="140.0" prefHeight="26.0" prefWidth="322.0" promptText="Enter bank number" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-width: 0 0 1 0; -fx-border-color: #475779; -fx-text-fill: #a0a2ab;">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="idKandidati" focusTraversable="false" layoutX="88.0" layoutY="214.0" prefHeight="26.0" prefWidth="322.0" promptText="Enter you'r ID" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-width: 0 0 1 0; -fx-border-color: #475779; -fx-text-fill: #a0a2ab;">
+            <TextField fx:id="idKand" focusTraversable="false" layoutX="88.0" layoutY="185.0" prefHeight="26.0" prefWidth="322.0" promptText="Enter your ID" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-width: 0 0 1 0; -fx-border-color: #475779; -fx-text-fill: #a0a2ab;">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font>
             </TextField>
-            <Text layoutX="90.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Duhet edhe ca detaje tjera &lt;3" />
-            <Button fx:id="saveBttn" layoutX="88.0" layoutY="272.0" mnemonicParsing="false" onAction="#saveClick" prefWidth="161.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #475779;" text="Save" textFill="#2722a3" />
+            <Button layoutX="88.0" layoutY="272.0" mnemonicParsing="false" onAction="#saveClick" prefWidth="161.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #475779;" text="Save" textFill="#2722a3" />
          </children>
       </AnchorPane>
    </children>

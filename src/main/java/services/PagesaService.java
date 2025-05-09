@@ -32,10 +32,10 @@ public class PagesaService {
     }
     public Pagesat create(CreatePagesatDto createDto) throws Exception{
         //Validimi i shumes
-        if(createDto.getShuma() <= 0){
+        if(createDto.getShuma() <= 0 && createDto.getShuma()>500){
             throw new Exception("Shuma duhet të jetë më e madhe se 0!");
         }
-        if(createDto.getNumriXhirollogarise().length() <= 0 || createDto.getNumriXhirollogarise().length()>10 ){
+        if(createDto.getNumriXhirollogarise().length() <= 0 && createDto.getNumriXhirollogarise().length()>10 ){
             throw new Exception("numri i xhirollogarise duhet të jetë 10 shifra !");
         }
         //Validimi i dates se pageses
@@ -44,9 +44,8 @@ public class PagesaService {
         }
         // Validimi i metodës së pagesës
         if (!createDto.getMetodaPageses().equals("Cash") &&
-                !createDto.getMetodaPageses().equals("Kartë") &&
                 !createDto.getMetodaPageses().equals("Online")) {
-            throw new Exception("Metoda e pagesës duhet të jetë Cash, Kartë ose Online!");
+            throw new Exception("Metoda e pagesës duhet të jetë Cash ose Online!");
         }
 
         // Validimi i statusit të pagesës

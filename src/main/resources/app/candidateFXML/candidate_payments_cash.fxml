@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="620.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="620.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.PagesatHandleController">
    <children>
-      <Text layoutX="567.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 22; -fx-font-family: arial; -fx-font-weight: bold;" text="Payments" />
-      <AnchorPane layoutX="383.0" layoutY="137.0" prefHeight="385.0" prefWidth="472.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #475779;">
+      <Text fill="#475779" layoutX="567.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 22; -fx-font-family: arial; -fx-font-weight: bold;" text="Payments" />
+      <AnchorPane layoutX="383.0" layoutY="140.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="385.0" prefWidth="472.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #475779;">
          <children>
-            <ImageView fitHeight="26.0" fitWidth="33.0" layoutX="93.0" layoutY="186.0">
+            <ImageView fitHeight="35.0" fitWidth="38.0" layoutX="31.0" layoutY="189.0">
                <image>
                   <Image url="@../../images/location.pin.png" />
                </image>
             </ImageView>
-            <Text layoutX="126.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18px;" text="Shemsi Ahmeti, Mitrovicë 40000" />
-            <Text layoutX="143.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18px; -fx-font-family: Arial;" text="Mund të na gjeni tek:" />
-            <Button fx:id="backBttn" layoutX="175.0" layoutY="239.0" mnemonicParsing="false" onAction="#backClick" prefHeight="26.0" prefWidth="104.0" text="Back" />
+            <Text fill="#475779" layoutX="69.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 14; -fx-font-family: arial; -fx-font-weight: bold;" text="You can find us at : Shemsi Ahmeti, Mitrovice 40000" wrappingWidth="357.11712646484375" />
          </children>
       </AnchorPane>
    </children>

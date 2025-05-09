@@ -27,8 +27,8 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
     public Pagesat create(CreatePagesatDto pagesatDto){
         String query = """
                 INSERT INTO 
-                Pagesat(ID_Kandidat,Numri_Xhirollogarise ,Shuma, Data_e_Pageses, Medota_e_Pageses, Statusi_i_Pageses)
-                VALUES (?,?,?, ?, ?, ?);
+                Pagesat(ID_Kandidat,Numri_Xhirollogarise,Shuma,Data_e_Pageses,Metoda_e_Pageses,Statusi_i_Pageses)
+                VALUES (?,?,?,?,?,?);
                 """;
         try{
 

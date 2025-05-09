@@ -12,6 +12,8 @@ public class SceneLocator {
     public static final String SCHEDULER_PAGE= "/app/candidateFXML/candidate_scheduler.fxml";
     public static final String TESTS_PAGE= "/app/candidateFXML/candidate_test.fxml";
     public static final String PAYMENTS_PAGE= "/app/candidateFXML/candidate_payments.fxml";
+    public static final String PAYMENTS_CASH= "/app/candidateFXML/candidate_payments_cash.fxml";
+
     public static final String PROGRESS_PAGE= "/app/candidateFXML/candidate_progress.fxml";
     public static final String FEEDBACK_PAGE= "/app/candidateFXML/candidate_feedback.fxml";
     public static final String PROFILE_PAGE= "/app/candidateFXML/candidate_profile.fxml";

@@ -35,6 +35,9 @@ public class PagesaService {
         if(createDto.getShuma() <= 0){
             throw new Exception("Shuma duhet të jetë më e madhe se 0!");
         }
+        if(createDto.getNumriXhirollogarise().length() <= 0 || createDto.getNumriXhirollogarise().length()>10 ){
+            throw new Exception("numri i xhirollogarise duhet të jetë 10 shifra !");
+        }
         //Validimi i dates se pageses
         if(createDto.getDataPageses() == null){
             createDto.setDataPageses(LocalDate.now()); //Nese mungon data default osht data sot

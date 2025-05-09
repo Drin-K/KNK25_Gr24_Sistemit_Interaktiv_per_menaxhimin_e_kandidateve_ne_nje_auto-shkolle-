@@ -8,14 +8,16 @@ import java.time.LocalDate;
 public class Pagesat {
     private int id;
     private int idKandidat;
+    private String numriXhirollogaris;
     private double shuma;
     private LocalDate dataPageses;
     private String metodaPageses;
     private String statusiPageses;
 
 
-    private Pagesat(int id, int idKandidat, double shuma, LocalDate dataPageses, String metodaPageses, String statusiPageses) {
+    private Pagesat(int id, int idKandidat,String numriXhirollogaris, double shuma, LocalDate dataPageses, String metodaPageses, String statusiPageses) {
         this.id = id;
+        this.numriXhirollogaris=numriXhirollogaris;
         this.idKandidat = idKandidat;
         this.shuma = shuma;
         this.dataPageses = dataPageses;
@@ -26,11 +28,12 @@ public class Pagesat {
     public static Pagesat getInstance(ResultSet resultSet) throws SQLException {
 int id=resultSet.getInt("id");
 int idKandidat=resultSet.getInt("ID_Kandidat");
+String numriXhirollogarise=resultSet.getString("Numri_Xhirollogarise");
 double shuma=resultSet.getDouble("Shuma");
 LocalDate dataPageses=resultSet.getObject("Data_e_Pageses",LocalDate.class);
 String metodaPageses=resultSet.getString("Metoda_e_Pageses");
 String statusiPageses=resultSet.getString("Statusi_i_Pageses");
-return new Pagesat(id,idKandidat,shuma,dataPageses,metodaPageses,statusiPageses);
+return new Pagesat(id,idKandidat,numriXhirollogarise,shuma,dataPageses,metodaPageses,statusiPageses);
     }
 
     public int getId() {
@@ -43,6 +46,10 @@ return new Pagesat(id,idKandidat,shuma,dataPageses,metodaPageses,statusiPageses)
 
     public double getShuma() {
         return shuma;
+    }
+
+    public String getNumriXhirollogaris(){
+        return numriXhirollogaris;
     }
 
     public LocalDate getDataPageses() {

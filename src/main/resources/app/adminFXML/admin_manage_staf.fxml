@@ -17,43 +17,43 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane  fx:id="rightPage" maxHeight="699.0" prefHeight="620.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.StafManagmentController">
+<AnchorPane fx:id="rightPage" maxHeight="699.0" prefHeight="620.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.StafManagmentController">
     <children>
-        <Label layoutX="20.0" layoutY="20.0" prefHeight="35.0" prefWidth="234.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Staf Managment" />
+        <Label layoutX="20.0" layoutY="20.0" prefHeight="35.0" prefWidth="234.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="%stafManagementTitle" />
 
         <HBox layoutX="20.0" layoutY="75.19999694824219" spacing="20" />
         <VBox layoutX="170.0" layoutY="385.0" />
         <VBox layoutX="15.0" layoutY="66.0" prefHeight="354.0" prefWidth="759.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
             <children>
                 <HBox alignment="CENTER" prefHeight="68.0" prefWidth="1287.0" spacing="10" style="-fx-padding: 5;">
-                    <Button onMouseClicked="#onCreateStafiClick" text="Create" />
-                    <Button onMouseClicked="#onDeleteStafiClick" text="Delete" />
-                    <Button fx:id="btnUpdateStaf" onMouseClicked="#onUpdateStafClick" text="Update" />
+                    <Button onMouseClicked="#onCreateStafiClick" text="%create" />
+                    <Button onMouseClicked="#onDeleteStafiClick" text="%delete" />
+                    <Button fx:id="btnUpdateStaf" onMouseClicked="#onUpdateStafClick" text="%update" />
                 </HBox>
                 <TableView fx:id="tableStafi" prefHeight="400.0" prefWidth="735.0">
                     <columns>
-                        <TableColumn fx:id="idColumn" prefWidth="22.99885368347168" text="ID" />
-                        <TableColumn fx:id="nameColumn" prefWidth="55.698368072509766" text="Name" />
-                        <TableColumn fx:id="surnameColumn" prefWidth="66.50920104980469" text="Surname" />
-                        <TableColumn fx:id="emailColumn" prefWidth="67.02053833007812" text="Email" />
-                        <TableColumn fx:id="phoneColumn" prefWidth="98.62055969238281" text="Phone Number" />
-                        <TableColumn fx:id="dobColumn" prefWidth="84.9510498046875" text="Date of Birth" />
-                        <TableColumn fx:id="hashedPasswordColumn" prefWidth="113.94284057617188" text="Hashed Password" />
-                        <TableColumn fx:id="saltColumn" prefWidth="45.00042724609375" text="Salt" />
-                        <TableColumn fx:id="roleColumn" prefWidth="49.195556640625" text="Role" />
-                        <TableColumn fx:id="adresaColumn" prefWidth="81.72723388671875" text="Address" />
-                        <TableColumn fx:id="gjiniaColumn" prefWidth="46.0875244140625" text="Gender" />
+                        <TableColumn fx:id="idColumn" prefWidth="22.99" text="%id" />
+                        <TableColumn fx:id="nameColumn" prefWidth="55.69" text="%name" />
+                        <TableColumn fx:id="surnameColumn" prefWidth="66.50" text="%surname" />
+                        <TableColumn fx:id="emailColumn" prefWidth="67.02" text="%email" />
+                        <TableColumn fx:id="phoneColumn" prefWidth="98.62" text="%phone" />
+                        <TableColumn fx:id="dobColumn" prefWidth="84.95" text="%dob" />
+                        <TableColumn fx:id="hashedPasswordColumn" prefWidth="113.94" text="%hashedPassword" />
+                        <TableColumn fx:id="saltColumn" prefWidth="45.00" text="Salt" />
+                        <TableColumn fx:id="roleColumn" prefWidth="49.19" text="%role" />
+                        <TableColumn fx:id="adresaColumn" prefWidth="81.72" text="%address" />
+                        <TableColumn fx:id="gjiniaColumn" prefWidth="46.08" text="%gender" />
                     </columns>
                 </TableView>
                 <HBox fx:id="krijoFormenHBox" alignment="CENTER" layoutX="20.0" layoutY="640.0" spacing="10" style="-fx-background-color: #f0f0f0; -fx-padding: 10;" visible="false">
                     <children>
-                        <TextField fx:id="txtEmri" promptText="Name" />
-                        <TextField fx:id="txtMbiemri" promptText="Surname" />
-                        <TextField fx:id="txtEmail" promptText="Email" />
-                        <TextField fx:id="txtPhone" promptText="Phone No." />
-                        <DatePicker fx:id="datePickerDob" promptText="Birthdate" />
-                        <TextField fx:id="txtAdresa" promptText="Adress" />
-                        <ComboBox fx:id="comboGjinia" promptText="Gender">
+                        <TextField fx:id="txtEmri" promptText="%name" />
+                        <TextField fx:id="txtMbiemri" promptText="%surname" />
+                        <TextField fx:id="txtEmail" promptText="%email" />
+                        <TextField fx:id="txtPhone" promptText="%phone" />
+                        <DatePicker fx:id="datePickerDob" promptText="%birthdate" />
+                        <TextField fx:id="txtAdresa" promptText="%address" />
+                        <ComboBox fx:id="comboGjinia" promptText="%gender">
                             <items>
                                 <FXCollections fx:factory="observableArrayList">
                                     <String fx:value="M" />
@@ -61,68 +61,67 @@
                                 </FXCollections>
                             </items>
                         </ComboBox>
-
-                        <PasswordField fx:id="txtPassword" promptText="Password" />
-
-
-                        <Button onAction="#ruajStafin" text="Save" />
+                        <PasswordField fx:id="txtPassword" promptText="%password" />
+                        <Button onAction="#ruajStafin" text="%save" />
                     </children>
-                </HBox></children>
+                </HBox>
+            </children>
         </VBox>
         <VBox layoutX="778.0" layoutY="86.0" prefHeight="174.0" prefWidth="401.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
             <children>
-            <HBox spacing="80.0">
-               <children>
-                      <Button onMouseClicked="#onDeleteFeedBackClick" text="Delete" />
-                  <Label text="FeedBack Managment" textFill="WHITE" />
-               </children>
-            </HBox>
+                <HBox spacing="80.0">
+                    <children>
+                        <Button onMouseClicked="#onDeleteFeedBackClick" text="%delete" />
+                        <Label text="%feedbackManagementTitle" textFill="WHITE" />
+                    </children>
+                </HBox>
                 <TableView fx:id="feedbackTable" prefHeight="129.0" prefWidth="412.0">
                     <columns>
-                        <TableColumn fx:id="colId" prefWidth="26.0108642578125" text="ID" />
-                        <TableColumn fx:id="colIdKandidat" prefWidth="86.19891357421875" text="ID Candidate" />
-                        <TableColumn fx:id="colIdStaf" prefWidth="50.0396728515625" text="ID Staf" />
-                        <TableColumn fx:id="colDataFeedback" prefWidth="97.4937744140625" text="Feedback date" />
-                        <TableColumn fx:id="colVleresimi" prefWidth="50.3955078125" text="Rate" />
-                        <TableColumn fx:id="colKoment" prefWidth="70.2640380859375" text="Comment" />
+                        <TableColumn fx:id="colId" prefWidth="26.01" text="%id" />
+                        <TableColumn fx:id="colIdKandidat" prefWidth="86.19" text="%idCandidate" />
+                        <TableColumn fx:id="colIdStaf" prefWidth="50.03" text="%idStaf" />
+                        <TableColumn fx:id="colDataFeedback" prefWidth="97.49" text="%feedbackDate" />
+                        <TableColumn fx:id="colVleresimi" prefWidth="50.39" text="%rate" />
+                        <TableColumn fx:id="colKoment" prefWidth="70.26" text="%comment" />
                     </columns>
                 </TableView>
-
             </children>
         </VBox>
-         <VBox layoutX="18.0" layoutY="442.0" prefHeight="217.0" prefWidth="729.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
-         <HBox spacing="250.0">
-            <children>
-                   <Button onMouseClicked="#onDeleteOrariClick" text="Delete" />
-               <Label text="Session Managment" textFill="WHITE" />
-            </children>
-         </HBox>
-             <TableView fx:id="orariTable" prefHeight="172.0" prefWidth="747.0">
-                 <columns>
-                     <TableColumn fx:id="idColumn1" prefWidth="51.31708526611328" text="ID" />
-                     <TableColumn fx:id="idKandidatColumn" prefWidth="77.43731689453125" text="ID Candidate" />
-                     <TableColumn fx:id="idStafColumn" prefWidth="55.29833984375" text="ID Staf" />
-                     <TableColumn fx:id="dataSesioniColumn" prefWidth="78.43609619140625" text="Session Day" />
-                     <TableColumn fx:id="oraFillimitColumn" prefWidth="69.81198120117188" text="From" />
-                     <TableColumn fx:id="oraPerfundimitColumn" prefWidth="81.18109130859375" text="To" />
-                     <TableColumn fx:id="llojiMesimitColumn" prefWidth="97.08059692382812" text="Lesson" />
-                     <TableColumn fx:id="statusiColumn" minWidth="0.0" prefWidth="86.4339599609375" text="Status" />
-                     <TableColumn fx:id="idAutomjetColumn" prefWidth="103.8712158203125" text="ID Vehicle" />
-                 </columns>
-             </TableView>
-      </VBox>
-      <Circle fill="#00cdac" layoutX="877.0" layoutY="399.0" radius="100.0" stroke="WHITE" strokeType="INSIDE" />
-      <Circle fill="#cc8300" layoutX="1043.0" layoutY="555.0" radius="100.0" stroke="WHITE" strokeType="INSIDE" />
-      <Label layoutX="839.0" layoutY="337.0" text="BEST RATED" textFill="WHITE" />
-      <Label layoutX="1000.0" layoutY="489.0" text="WORST RATED" textFill="WHITE" />
-      <Line endX="257.459716796875" endY="-242.30099487304688" layoutX="921.0" layoutY="506.0" startX="-173.42718505859375" startY="162.656494140625" stroke="#820101" />
-      <Label fx:id="high" alignment="CENTER" layoutX="787.0" layoutY="386.0" prefHeight="25.0" prefWidth="181.0" textFill="WHITE">
-         <font>
-            <Font name="Calibri" size="22.0" />
-         </font></Label>
-      <Label fx:id="low" alignment="CENTER" layoutX="952.0" layoutY="551.0" prefHeight="32.0" prefWidth="181.0" textFill="WHITE">
-         <font>
-            <Font size="22.0" />
-         </font></Label>
+        <VBox layoutX="18.0" layoutY="442.0" prefHeight="217.0" prefWidth="729.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
+            <HBox spacing="250.0">
+                <children>
+                    <Button onMouseClicked="#onDeleteOrariClick" text="%delete" />
+                    <Label text="%sessionManagementTitle" textFill="WHITE" />
+                </children>
+            </HBox>
+            <TableView fx:id="orariTable" prefHeight="172.0" prefWidth="747.0">
+                <columns>
+                    <TableColumn fx:id="idColumn1" prefWidth="51.31" text="%id" />
+                    <TableColumn fx:id="idKandidatColumn" prefWidth="77.43" text="%idCandidate" />
+                    <TableColumn fx:id="idStafColumn" prefWidth="55.29" text="%idStaf" />
+                    <TableColumn fx:id="dataSesioniColumn" prefWidth="78.43" text="%sessionDay" />
+                    <TableColumn fx:id="oraFillimitColumn" prefWidth="69.81" text="%from" />
+                    <TableColumn fx:id="oraPerfundimitColumn" prefWidth="81.18" text="%to" />
+                    <TableColumn fx:id="llojiMesimitColumn" prefWidth="97.08" text="%lesson" />
+                    <TableColumn fx:id="statusiColumn" prefWidth="86.43" text="%status" />
+                    <TableColumn fx:id="idAutomjetColumn" prefWidth="103.87" text="%idVehicle" />
+                </columns>
+            </TableView>
+        </VBox>
+        <Circle fill="#00cdac" layoutX="877.0" layoutY="399.0" radius="100.0" stroke="WHITE" strokeType="INSIDE" />
+        <Circle fill="#cc8300" layoutX="1043.0" layoutY="555.0" radius="100.0" stroke="WHITE" strokeType="INSIDE" />
+        <Label layoutX="839.0" layoutY="337.0" text="%bestRated" textFill="WHITE" />
+        <Label layoutX="1000.0" layoutY="489.0" text="%worstRated" textFill="WHITE" />
+        <Line endX="257.4597" endY="-242.301" layoutX="921.0" layoutY="506.0" startX="-173.4271" startY="162.656" stroke="#820101" />
+        <Label fx:id="high" alignment="CENTER" layoutX="787.0" layoutY="386.0" prefHeight="25.0" prefWidth="181.0" textFill="WHITE">
+            <font>
+                <Font name="Calibri" size="22.0" />
+            </font>
+        </Label>
+        <Label fx:id="low" alignment="CENTER" layoutX="952.0" layoutY="551.0" prefHeight="32.0" prefWidth="181.0" textFill="WHITE">
+            <font>
+                <Font size="22.0" />
+            </font>
+        </Label>
     </children>
 </AnchorPane>

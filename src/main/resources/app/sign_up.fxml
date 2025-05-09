@@ -6,7 +6,6 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -16,30 +15,20 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="739.0" prefWidth="805.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.SignUpController">
 
    <children>
-      <Label layoutX="165.0" layoutY="14.0" prefHeight="54.0" prefWidth="142.0" text="Sign Up" textFill="#aeb0b9">
-         <font>
-            <Font name="System Bold Italic" size="36.0" />
-         </font>
-      </Label>
 
       <AnchorPane layoutX="433.0" prefHeight="739.0" prefWidth="372.0" style="-fx-background-color: white;">
          <children>
-            <Label layoutX="126.0" layoutY="176.0" prefHeight="70.0" prefWidth="120.0" text="Hello">
-               <font>
-                  <Font name="System Bold" size="48.0" />
-               </font>
-            </Label>
-            <Text layoutX="32.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter your personal details and start the journey with us" textAlignment="CENTER" wrappingWidth="308.1898193359375">
+            <Text layoutX="32.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%signup.description" textAlignment="CENTER" wrappingWidth="308.1898193359375">
                <font>
                   <Font size="24.0" />
                </font>
             </Text>
-            <Text layoutX="32.0" layoutY="495.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Already have an account ?" textAlignment="CENTER" wrappingWidth="308.1898193359375">
+            <Text layoutX="32.0" layoutY="495.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%signup.haveAccount" textAlignment="CENTER" wrappingWidth="308.1898193359375">
                <font>
                   <Font size="24.0" />
                </font>
             </Text>
-            <Button fx:id="loginButton" layoutX="134.0" layoutY="551.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="103.0" style="-fx-background-color: #151928;" text="Log In" textFill="WHITE" onAction="#gotoLogIn">
+            <Button fx:id="loginButton" layoutX="134.0" layoutY="551.0" mnemonicParsing="false" onAction="#gotoLogIn" prefHeight="44.0" prefWidth="103.0" style="-fx-background-color: #151928;" text="%signup.login" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -50,43 +39,58 @@
                </image>
             </ImageView>
             <Label fx:id="messageLabel" layoutX="14.0" layoutY="601.0" prefHeight="132.0" prefWidth="344.0" textFill="GREEN" visible="false" />
+            <Text layoutX="14.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%signup.hello" textAlignment="CENTER" wrappingWidth="344.0">
+               <font>
+                  <Font name="System Bold" size="48.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
 
-      <DatePicker fx:id="dobPicker" layoutX="41.0" layoutY="497.0" />
-      <Label layoutX="41.0" layoutY="469.0" text="Date of birth" textFill="#a0a2ab" />
+      <DatePicker fx:id="dobPicker" layoutX="42.0" layoutY="507.0" />
+      <Label layoutX="41.0" layoutY="478.0" text="%signup.dob" textFill="#a0a2ab" />
 
-      <ImageView fitHeight="92.0" fitWidth="103.0" layoutX="182.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="92.0" fitWidth="103.0" layoutX="178.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/User.png" />
          </image>
       </ImageView>
 
-      <TextField fx:id="nameField" layoutX="41.0" layoutY="193.0" prefHeight="30.0" prefWidth="358.0" promptText="Name" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;" />
+      <TextField fx:id="nameField" layoutX="41.0" layoutY="167.0" prefHeight="30.0" prefWidth="358.0" promptText="%signup.name" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;" />
 
-      <TextField fx:id="surnameField" layoutX="41.0" layoutY="240.0" prefHeight="30.0" prefWidth="358.0" promptText="Surname" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;" />
+      <TextField fx:id="surnameField" layoutX="41.0" layoutY="219.0" prefHeight="30.0" prefWidth="358.0" promptText="%signup.surname" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;" />
 
-      <TextField fx:id="phoneField" layoutX="41.0" layoutY="551.0" prefHeight="30.0" prefWidth="358.0" promptText="Phone Number" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;" />
+      <TextField fx:id="phoneField" layoutX="41.0" layoutY="565.0" prefHeight="30.0" prefWidth="358.0" promptText="%signup.phone" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;" />
 
-      <TextField fx:id="emailField" layoutX="41.0" layoutY="609.0" prefHeight="30.0" prefWidth="358.0" promptText="Email Address" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;" />
+      <TextField fx:id="emailField" layoutX="41.0" layoutY="618.0" prefHeight="30.0" prefWidth="358.0" promptText="%signup.email" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;" />
 
-      <Button fx:id="signUpButton" layoutX="176.0" layoutY="673.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="103.0" style="-fx-background-color: #151928;" text="Sign Up" textFill="WHITE" onAction="#handleSave">
+      <Button fx:id="signUpButton" layoutX="176.0" layoutY="673.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="44.0" prefWidth="103.0" style="-fx-background-color: #151928;" text="%signup.signup" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
 
-      <PasswordField fx:id="passwordField" layoutX="41.0" layoutY="286.0" prefHeight="26.0" prefWidth="358.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab" />
+      <PasswordField fx:id="passwordField" layoutX="41.0" layoutY="271.0" prefHeight="26.0" prefWidth="358.0" promptText="%signup.password" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab" />
 
-      <PasswordField fx:id="confirmPasswordField" layoutX="41.0" layoutY="331.0" prefHeight="26.0" prefWidth="358.0" promptText="Confirm Password" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab" />
+      <PasswordField fx:id="confirmPasswordField" layoutX="41.0" layoutY="323.0" prefHeight="26.0" prefWidth="358.0" promptText="%signup.confirmPassword" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab" />
 
-      <TextField fx:id="addressField" layoutX="41.0" layoutY="412.0" prefHeight="30.0" prefWidth="358.0" promptText="Address" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;" />
+      <TextField fx:id="addressField" layoutX="38.0" layoutY="426.0" prefHeight="30.0" prefWidth="358.0" promptText="%signup.address" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;" />
 
-      <Label layoutX="41.0" layoutY="379.0" text="Gender:" textFill="#a0a2ab" />
-      <RadioButton fx:id="maleRadio" text="Male" textFill="#ffffffac" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="390.0">
-      </RadioButton>
-      <RadioButton fx:id="femaleRadio" text="Female" textFill="#ffffffa2"  AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="390.0" />
+      <Label layoutX="41.0" layoutY="379.0" text="%signup.gender" textFill="#a0a2ab" />
+      <RadioButton fx:id="maleRadio" text="%signup.male" textFill="#ffffffac" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="390.0" />
+      <RadioButton fx:id="femaleRadio" text="%signup.female" textFill="#ffffffa2" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="390.0" />
 
       <Label fx:id="errorLabel" layoutX="41.0" layoutY="700.0" prefWidth="358.0" textFill="RED" visible="false" />
+
+      <ImageView fitHeight="40.0" fitWidth="41.0" layoutX="41.0" layoutY="28.0" onMouseClicked="#languageClick" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/language.png" />
+         </image>
+      </ImageView>
+      <Text fill="#aeb0b9" layoutX="77.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%signup.title" textAlignment="CENTER" wrappingWidth="300.1898193359377">
+         <font>
+            <Font name="System Bold Italic" size="36.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

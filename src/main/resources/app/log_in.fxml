@@ -8,41 +8,55 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="511.0" prefWidth="750.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.LogInController">
+
    <children>
-      <TextField fx:id="emailField" focusTraversable="false" layoutX="232.0" layoutY="267.0" prefHeight="26.0" prefWidth="322.0" promptText="Enter Your Email" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;">
+      <TextField fx:id="emailField" focusTraversable="false" layoutX="232.0" layoutY="267.0" prefHeight="26.0" prefWidth="322.0" promptText="%login.emailPrompt" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;">
          <font>
             <Font name="System Italic" size="14.0" />
          </font>
       </TextField>
-      <PasswordField fx:id="passwordField" focusTraversable="false" layoutX="232.0" layoutY="313.0" prefHeight="26.0" prefWidth="322.0" promptText="Enter Your Password" style="-fx-background-color: transparent; -fx-border-color: gray; -fx-border-width: 0 0 1 0; -fx-text-fill: #a0a2ab; -fx-font-style: italic;">
+
+      <PasswordField fx:id="passwordField" focusTraversable="false" layoutX="232.0" layoutY="313.0" prefHeight="26.0" prefWidth="322.0" promptText="%login.passwordPrompt" style="-fx-background-color: transparent; -fx-border-color: gray; -fx-border-width: 0 0 1 0; -fx-text-fill: #a0a2ab; -fx-font-style: italic;">
          <font>
             <Font size="14.0" />
          </font>
       </PasswordField>
-      <Button fx:id="signupButton" layoutX="616.0" layoutY="43.0" mnemonicParsing="false" onAction="#handleSignup" prefHeight="35.0" prefWidth="85.0" style="-fx-background-color: #151928;" text="Sign Up" textFill="#a0a2ab" />
-      <Button fx:id="loginButton" layoutX="468.0" layoutY="372.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="35.0" prefWidth="85.0" style="-fx-background-color: #151928;" text="Login" textFill="#a0a2ab" />
-      <Label layoutX="191.0" layoutY="25.0" prefHeight="70.0" prefWidth="404.0" style="-fx-font-family: Garamond;" text="Auto Shkolla Tigri" textFill="#a0a2ab">
-         <font>
-            <Font name="System Bold" size="48.0" />
-         </font>
-      </Label>
+
+      <Button fx:id="signupButton" layoutX="616.0" layoutY="43.0" mnemonicParsing="false" onAction="#handleSignup" prefHeight="35.0" prefWidth="85.0" style="-fx-background-color: #151928;" text="%login.signup" textFill="#a0a2ab" />
+
+      <Button fx:id="loginButton" layoutX="468.0" layoutY="372.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="35.0" prefWidth="85.0" style="-fx-background-color: #151928;" text="%login.login" textFill="#a0a2ab" />
+
       <ImageView fitHeight="30.0" fitWidth="46.0" layoutX="168.0" layoutY="315.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Key.png" />
          </image>
       </ImageView>
+
       <ImageView fitHeight="35.0" fitWidth="52.0" layoutX="165.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/UserLogo.png" />
          </image>
       </ImageView>
+
       <ImageView fitHeight="134.0" fitWidth="228.0" layoutX="253.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/CarLogo.png" />
          </image>
       </ImageView>
+
       <Label fx:id="errorLabel" layoutX="253.0" layoutY="380.0" prefHeight="18.0" prefWidth="190.0" textFill="RED" />
+      <ImageView fitHeight="40.0" fitWidth="41.0" layoutX="60.0" layoutY="43.0" onMouseClicked="#languageClick" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/language.png" />
+         </image>
+      </ImageView>
+      <Text fill="#a0a2ab" layoutX="146.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Garamond;" text="%login.title" textAlignment="CENTER" wrappingWidth="458.49212646484375">
+         <font>
+            <Font name="System Bold" size="48.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

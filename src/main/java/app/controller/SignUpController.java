@@ -4,6 +4,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import models.Dto.user.CreateUserDto;
+import services.LanguageManager;
 import services.PasswordHasher;
 
 import services.SceneManager;
@@ -13,6 +14,7 @@ import utils.SceneLocator;
 import java.time.LocalDate;
 
 public class SignUpController {
+    private final LanguageManager languageManager = LanguageManager.getInstance();
     @FXML private TextField nameField;
     @FXML private TextField surnameField;
     @FXML private TextField phoneField;
@@ -77,6 +79,11 @@ public class SignUpController {
     @FXML
     public void gotoLogIn() throws Exception {
         SceneManager.load(SceneLocator.LOGIN_PAGE);
+    }
+    @FXML
+    private void languageClick() throws Exception{
+        languageManager.toggleLanguage();
+        SceneManager.reload();
     }
 }
 

@@ -21,106 +21,100 @@
 
 <AnchorPane maxHeight="880.0" prefHeight="880.0" prefWidth="1199.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.AdminPaymentController">
     <children>
-        <Label layoutX="20.0" layoutY="20.0" prefHeight="35.0" prefWidth="361.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Menaxhimi i pagesave" />
-
+        <Label layoutX="20.0" layoutY="20.0" prefHeight="35.0" prefWidth="361.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="%title.payment.management" />
         <HBox layoutX="20.0" layoutY="75.19999694824219" spacing="20" />
-
         <PieChart fx:id="statistikatKandidateveChart" layoutX="20.0" layoutY="159.60000610351562" prefHeight="250" prefWidth="400" />
         <VBox layoutX="170.0" layoutY="385.0" />
         <VBox layoutX="464.0" layoutY="91.0" prefHeight="244.0" prefWidth="596.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
-            <Label text="Search By Name:" textFill="WHITE" />
-         <TextField fx:id="searchByName" />
-         <HBox spacing="100.0">
-            <children>
-               <VBox>
-                  <children>
-                     <Label text="From: " textFill="WHITE" />
-                     <DatePicker fx:id="from" />
-                  </children>
-               </VBox>
-               <VBox>
-                  <children>
-                     <Label text="To:" textFill="WHITE" />
-                     <DatePicker fx:id="to" />
-                  </children>
-               </VBox>
-            </children>
-         </HBox>
-         <Label text="Payment Method:" textFill="WHITE" />
-         <ComboBox fx:id="combobox1" prefWidth="150.0" />
-         <Label text="Payment Status:" textFill="WHITE" />
-         <ComboBox fx:id="comboBox2" prefWidth="150.0" />
-            <Button fx:id="btnFilter" onAction="#filterPagesatIfValid" text="Filtro" />
-
+            <Label text="%label.search.name" textFill="WHITE" />
+            <TextField fx:id="searchByName" />
+            <HBox spacing="100.0">
+                <children>
+                    <VBox>
+                        <children>
+                            <Label text="%label.from" textFill="WHITE" />
+                            <DatePicker fx:id="from" />
+                        </children>
+                    </VBox>
+                    <VBox>
+                        <children>
+                            <Label text="%label.to" textFill="WHITE" />
+                            <DatePicker fx:id="to" />
+                        </children>
+                    </VBox>
+                </children>
+            </HBox>
+            <Label text="%label.payment.method" textFill="WHITE" />
+            <ComboBox fx:id="combobox1" prefWidth="150.0" />
+            <Label text="%label.payment.status" textFill="WHITE" />
+            <ComboBox fx:id="comboBox2" prefWidth="150.0" />
+            <Button fx:id="btnFilter" onAction="#filterPagesatIfValid" text="%button.filter" />
         </VBox>
         <VBox layoutX="27.0" layoutY="92.0" prefHeight="250.0" prefWidth="350.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
-         <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0">
-            <children>
-                <StackPane>
-                    <Circle fx:id="today" fill="LIGHTGRAY" radius="40" />
-                    <Text fx:id="todayText" text="0" />
-                </StackPane>
-
-                <StackPane>
-                    <Circle fx:id="month" fill="LIGHTGRAY" radius="40" />
-                    <Text fx:id="monthText" text="0" />
-                </StackPane>
-
-                <StackPane>
-                    <Circle fx:id="year" fill="LIGHTGRAY" radius="40" />
-                    <Text fx:id="yearText" text="0" />
-                </StackPane>
-            </children>
-         </HBox>
-         <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
-            <children>
-               <Label alignment="CENTER" prefHeight="97.0" prefWidth="110.0" text="Today" textAlignment="CENTER" textFill="WHITE" />
-               <Label contentDisplay="CENTER" prefHeight="100.0" prefWidth="96.0" text="Current Month" textFill="WHITE" />
-               <Label alignment="CENTER" prefHeight="106.0" prefWidth="119.0" text="Current Year" textFill="WHITE" />
-            </children>
-         </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+                <children>
+                    <StackPane>
+                        <Circle fx:id="today" fill="LIGHTGRAY" radius="40" />
+                        <Text fx:id="todayText" text="0" />
+                    </StackPane>
+                    <StackPane>
+                        <Circle fx:id="month" fill="LIGHTGRAY" radius="40" />
+                        <Text fx:id="monthText" text="0" />
+                    </StackPane>
+                    <StackPane>
+                        <Circle fx:id="year" fill="LIGHTGRAY" radius="40" />
+                        <Text fx:id="yearText" text="0" />
+                    </StackPane>
+                </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                <children>
+                    <Label alignment="CENTER" prefHeight="97.0" prefWidth="110.0" text="%label.today" textAlignment="CENTER" textFill="WHITE" />
+                    <Label contentDisplay="CENTER" prefHeight="100.0" prefWidth="96.0" text="%label.current.month" textFill="WHITE" />
+                    <Label alignment="CENTER" prefHeight="106.0" prefWidth="119.0" text="%label.current.year" textFill="WHITE" />
+                </children>
+            </HBox>
         </VBox>
         <VBox layoutX="619.0" layoutY="388.0" prefHeight="316.0" prefWidth="445.0" style="-fx-background-color: #151e3d; -fx-padding: 10;">
             <children>
-            <VBox prefHeight="279.0" prefWidth="345.0" spacing="30.0">
-               <children>
-                  <HBox spacing="100.0">
-                     <children>
-                        <Label prefHeight="24.0" prefWidth="76.0" text="PAGUAR    " textFill="#ef0000" />
-                        <Label layoutX="10.0" layoutY="10.0" prefHeight="24.0" prefWidth="76.0" text="MBETUR" textFill="#20ed00" />
-                        <Label layoutX="86.0" layoutY="10.0" prefHeight="24.0" prefWidth="76.0" text="PJESERISHT" textFill="#edcd00" />
-                     </children>
-                  </HBox>
-                  <LineChart fx:id="PPM" prefHeight="236.0" prefWidth="425.0">
-                    <xAxis>
-                      <CategoryAxis side="BOTTOM" />
-                    </xAxis>
-                    <yAxis>
-                      <NumberAxis side="LEFT" />
-                    </yAxis>
-                  </LineChart>
-                  <Label fx:id="paguar" layoutX="10.0" layoutY="10.0" textFill="WHITE" />
-                  <Label fx:id="Pjeserisht" layoutX="10.0" layoutY="44.0" textFill="WHITE" />
-                  <Label fx:id="Mbetur" layoutX="10.0" layoutY="79.0" textFill="WHITE" />
-
-               </children>
-               <VBox.margin>
-                  <Insets bottom="50.0" />
-               </VBox.margin>
-            </VBox>
+                <VBox prefHeight="279.0" prefWidth="345.0" spacing="30.0">
+                    <children>
+                        <HBox spacing="100.0">
+                            <children>
+                                <Label prefHeight="24.0" prefWidth="76.0" text="%label.paid" textFill="#ef0000" />
+                                <Label layoutX="10.0" layoutY="10.0" prefHeight="24.0" prefWidth="76.0" text="%label.unpaid" textFill="#20ed00" />
+                                <Label layoutX="86.0" layoutY="10.0" prefHeight="24.0" prefWidth="76.0" text="%label.partial" textFill="#edcd00" />
+                            </children>
+                        </HBox>
+                        <LineChart fx:id="PPM" prefHeight="236.0" prefWidth="425.0">
+                            <xAxis>
+                                <CategoryAxis side="BOTTOM" />
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis side="LEFT" />
+                            </yAxis>
+                        </LineChart>
+                        <Label fx:id="paguar" layoutX="10.0" layoutY="10.0" textFill="WHITE" />
+                        <Label fx:id="Pjeserisht" layoutX="10.0" layoutY="44.0" textFill="WHITE" />
+                        <Label fx:id="Mbetur" layoutX="10.0" layoutY="79.0" textFill="WHITE" />
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="50.0" />
+                    </VBox.margin>
+                </VBox>
             </children>
         </VBox>
-      <TableView fx:id="pagesatTable" layoutX="17.0" layoutY="392.0" prefHeight="303.0" prefWidth="574.0">
-        <columns>
-          <TableColumn fx:id="IdCol" prefWidth="75.0" text="ID" />
-          <TableColumn fx:id="idCandidatCol" prefWidth="94.40003204345703" text="ID_CANDIDATE" />
-            <TableColumn fx:id="ShumaCol" prefWidth="50.0" text="SUM" />
-            <TableColumn fx:id="DataEPagesesCol" prefWidth="117.5999755859375" text="PAYMENT_DATE" />
-            <TableColumn fx:id="MetodaPagesesCol" prefWidth="120.4000244140625" text="PAYMENT_METHOD" />
-            <TableColumn fx:id="StatusiPagese" prefWidth="115.59994506835938" text="PAYMENT_STATUS" />
-        </columns>
-      </TableView>
-       <Button layoutX="27.0" layoutY="359.0" onAction="#ndryshoStatusin" text="Ndrysho Statusin" />
-       <ComboBox fx:id="statusiIRiComboBox" layoutX="147.0" layoutY="360.0" prefWidth="150" />
+        <TableView fx:id="pagesatTable" layoutX="17.0" layoutY="392.0" prefHeight="303.0" prefWidth="574.0">
+            <columns>
+                <TableColumn fx:id="IdCol" prefWidth="75.0" text="%column.id" />
+                <TableColumn fx:id="idCandidatCol" prefWidth="94.40003204345703" text="%column.id.candidate" />
+                <TableColumn fx:id="ShumaCol" prefWidth="50.0" text="%column.sum" />
+                <TableColumn fx:id="DataEPagesesCol" prefWidth="117.5999755859375" text="%column.payment.date" />
+                <TableColumn fx:id="MetodaPagesesCol" prefWidth="120.4000244140625" text="%column.payment.method" />
+                <TableColumn fx:id="StatusiPagese" prefWidth="115.59994506835938" text="%column.payment.status" />
+            </columns>
+        </TableView>
+        <Button layoutX="27.0" layoutY="359.0" onAction="#ndryshoStatusin" text="%button.change.status" />
+        <ComboBox fx:id="statusiIRiComboBox" layoutX="147.0" layoutY="360.0" prefWidth="150" />
     </children>
 </AnchorPane>

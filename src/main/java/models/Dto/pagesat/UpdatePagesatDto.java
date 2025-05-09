@@ -5,16 +5,26 @@ import java.time.LocalDate;
 public class UpdatePagesatDto {
     private int id;
     private int idKandidat;
+    private String numriXhirollogarise;
     private double shuma;
     private String metodaPageses;
     private String statusiPageses;
 
-    public UpdatePagesatDto(int id, int idKandidat, double shuma, LocalDate dataPageses, String metodaPageses, String statusiPageses) {
+    public UpdatePagesatDto(int id, String numriXhirollogarise,int idKandidat, double shuma, LocalDate dataPageses, String metodaPageses, String statusiPageses) {
         this.id = id;
+        this.numriXhirollogarise=numriXhirollogarise;
         this.idKandidat = idKandidat;
         this.shuma = shuma;
         this.metodaPageses = metodaPageses;
         this.statusiPageses = statusiPageses;
+    }
+
+    public String getNumriXhirollogarise() {
+        return numriXhirollogarise;
+    }
+
+    public void setNumriXhirollogarise(String numriXhirollogarise) {
+        this.numriXhirollogarise = numriXhirollogarise;
     }
 
     public int getId() {

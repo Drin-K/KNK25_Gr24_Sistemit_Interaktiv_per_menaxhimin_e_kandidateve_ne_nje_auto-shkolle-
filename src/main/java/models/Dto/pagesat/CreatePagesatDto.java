@@ -4,17 +4,27 @@ import java.time.LocalDate;
 
 public class CreatePagesatDto {
     private int idKandidat;
+    private String numriXhirollogarise;
     private double shuma;
     private LocalDate dataPageses;
     private String metodaPageses;
     private String statusiPageses;
 
-    public CreatePagesatDto(int idKandidat, double shuma, LocalDate dataPageses, String metodaPageses, String statusiPageses) {
+    public CreatePagesatDto(int idKandidat, String numriXhirollogarise,double shuma, LocalDate dataPageses, String metodaPageses, String statusiPageses) {
         this.idKandidat = idKandidat;
+        this.numriXhirollogarise= numriXhirollogarise;
         this.shuma = shuma;
         this.dataPageses = dataPageses;
         this.metodaPageses = metodaPageses;
         this.statusiPageses = statusiPageses;
+    }
+
+    public String getNumriXhirollogarise() {
+        return numriXhirollogarise;
+    }
+
+    public void setNumriXhirollogarise(String numriXhirollogarise) {
+        this.numriXhirollogarise = numriXhirollogarise;
     }
 
     public int getIdKandidat() {

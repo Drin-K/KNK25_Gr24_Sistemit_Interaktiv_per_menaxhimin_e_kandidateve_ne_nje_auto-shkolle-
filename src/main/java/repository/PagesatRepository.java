@@ -27,8 +27,8 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
     public Pagesat create(CreatePagesatDto pagesatDto){
         String query = """
                 INSERT INTO 
-                Pagesat(ID_Kandidat, Shuma, Data_e_Pageses, Medota_e_Pageses, Statusi_i_Pageses)
-                VALUES (?, ?, ?, ?, ?);
+                Pagesat(ID_Kandidat,Numri_Xhirollogarise ,Shuma, Data_e_Pageses, Medota_e_Pageses, Statusi_i_Pageses)
+                VALUES (?,?,?, ?, ?, ?);
                 """;
         try{
 
@@ -36,10 +36,11 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
                     this.connection.prepareStatement(
                             query, Statement.RETURN_GENERATED_KEYS);
             pstm.setInt(1, pagesatDto.getIdKandidat());
-            pstm.setDouble(2, pagesatDto.getShuma());
-            pstm.setObject(3, pagesatDto.getDataPageses());
-            pstm.setString(4, pagesatDto.getMetodaPageses());
-            pstm.setString(5, pagesatDto.getStatusiPageses());
+            pstm.setString(2, pagesatDto.getNumriXhirollogarise());
+            pstm.setDouble(3, pagesatDto.getShuma());
+            pstm.setObject(4, pagesatDto.getDataPageses());
+            pstm.setString(5, pagesatDto.getMetodaPageses());
+            pstm.setString(6, pagesatDto.getStatusiPageses());
             pstm.execute();
             ResultSet res = pstm.getGeneratedKeys();
             if(res.next()){
@@ -58,6 +59,10 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
         if (pagesatDto.getShuma() !=0){
             query.append("Shuma=?, ");
             params.add(pagesatDto.getShuma());
+        }//////////// a ka nevoj me shtu ktu numrin e xhirollogarise
+        if (pagesatDto.getNumriXhirollogarise()!=null){
+            query.append("Numri_Xhirollogarise=?, ");
+            params.add(pagesatDto.getNumriXhirollogarise());
         }
         if (pagesatDto.getMetodaPageses()!=null){
             query.append("Metoda_e_Pageses=?, ");

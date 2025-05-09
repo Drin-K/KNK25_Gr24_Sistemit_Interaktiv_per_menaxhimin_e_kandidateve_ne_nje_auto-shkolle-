@@ -12,52 +12,40 @@
          <children>
             <AnchorPane layoutX="30.0" layoutY="42.0" prefHeight="339.0" prefWidth="178.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #390eb5;">
                <children>
-                  <Text fill="#6493cc" layoutX="16.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Name :" wrappingWidth="79.5230712890625" />
-                  <Text fill="#6493cc" layoutX="15.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Phone-Number :" wrappingWidth="161.12307739257812" />
-                  <Text fill="#6493cc" layoutX="15.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Surname :" wrappingWidth="97.12310791015625" />
-                  <Text fill="#6493cc" layoutX="16.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Email :" wrappingWidth="79.5230712890625" />
-                  <Text fill="#6493cc" layoutX="14.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Data e regjistrimit :" wrappingWidth="161.12307739257812" />
-                  <Text fill="#6493cc" layoutX="13.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Gjinia :" wrappingWidth="161.12307739257812" />
+                  <Text fill="#6493cc" layoutX="16.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="%label.name" wrappingWidth="79.5230712890625" />
+                  <Text fill="#6493cc" layoutX="15.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="%label.phone" wrappingWidth="161.12307739257812" />
+                  <Text fill="#6493cc" layoutX="15.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="%label.surname" wrappingWidth="97.12310791015625" />
+                  <Text fill="#6493cc" layoutX="16.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="%label.email" wrappingWidth="79.5230712890625" />
+                  <Text fill="#6493cc" layoutX="14.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="%label.registrationDate" wrappingWidth="161.12307739257812" />
+                  <Text fill="#6493cc" layoutX="13.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="%label.gender" wrappingWidth="161.12307739257812" />
                </children>
             </AnchorPane>
             <AnchorPane layoutX="219.0" layoutY="42.0" prefHeight="339.0" prefWidth="376.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #390eb5;">
                <children>
                   <TextField focusTraversable="false" layoutX="29.0" layoutY="18.0" prefHeight="26.0" prefWidth="322.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-width: 0 0 1 0; -fx-border-color: #390eb5; -fx-text-fill: #a0a2ab;">
-                     <font>
-                        <Font name="System Italic" size="14.0" />
-                     </font>
+                     <font><Font name="System Italic" size="14.0" /></font>
                   </TextField>
                   <TextField focusTraversable="false" layoutX="29.0" layoutY="65.0" prefHeight="26.0" prefWidth="322.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-width: 0 0 1 0; -fx-border-color: #390eb5; -fx-text-fill: #a0a2ab;">
-                     <font>
-                        <Font name="System Italic" size="14.0" />
-                     </font>
+                     <font><Font name="System Italic" size="14.0" /></font>
                   </TextField>
                   <TextField focusTraversable="false" layoutX="29.0" layoutY="113.0" prefHeight="26.0" prefWidth="322.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-width: 0 0 1 0; -fx-border-color: #390eb5; -fx-text-fill: #a0a2ab;">
-                     <font>
-                        <Font name="System Italic" size="14.0" />
-                     </font>
+                     <font><Font name="System Italic" size="14.0" /></font>
                   </TextField>
                   <TextField focusTraversable="false" layoutX="29.0" layoutY="161.0" prefHeight="26.0" prefWidth="322.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-width: 0 0 1 0; -fx-border-color: #390eb5; -fx-text-fill: #a0a2ab;">
-                     <font>
-                        <Font name="System Italic" size="14.0" />
-                     </font>
+                     <font><Font name="System Italic" size="14.0" /></font>
                   </TextField>
                   <TextField focusTraversable="false" layoutX="29.0" layoutY="208.0" prefHeight="26.0" prefWidth="322.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-width: 0 0 1 0; -fx-border-color: #390eb5; -fx-text-fill: #a0a2ab;">
-                     <font>
-                        <Font name="System Italic" size="14.0" />
-                     </font>
+                     <font><Font name="System Italic" size="14.0" /></font>
                   </TextField>
                   <TextField focusTraversable="false" layoutX="29.0" layoutY="255.0" prefHeight="26.0" prefWidth="322.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-width: 0 0 1 0; -fx-border-color: #390eb5; -fx-text-fill: #a0a2ab;">
-                     <font>
-                        <Font name="System Italic" size="14.0" />
-                     </font>
+                     <font><Font name="System Italic" size="14.0" /></font>
                   </TextField>
                </children>
             </AnchorPane>
-            <Text fill="#1e98b4" layoutX="32.0" layoutY="443.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 14; -fx-font-weight: bold;" text="Want to change your password?-&gt;click here" wrappingWidth="302.3441162109375" />
-            <Button fx:id="changePassBttn" layoutX="391.0" layoutY="424.0" mnemonicParsing="false" onAction="#changePassClick" style="-fx-background-color: #1e98b4;" text="Change pass" textFill="WHITE" />
+            <Text fill="#1e98b4" layoutX="32.0" layoutY="443.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 14; -fx-font-weight: bold;" text="%label.changePasswordPrompt" wrappingWidth="302.3441162109375" />
+            <Button fx:id="changePassBttn" layoutX="391.0" layoutY="424.0" mnemonicParsing="false" onAction="#changePassClick" style="-fx-background-color: #1e98b4;" text="%button.changePassword" textFill="WHITE" />
          </children>
       </AnchorPane>
-      <Text fill="#390eb5" layoutX="566.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-weight: bold;" text="Your Profile " />
+      <Text fill="#390eb5" layoutX="566.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-weight: bold;" text="%label.profileTitle" />
    </children>
 </AnchorPane>

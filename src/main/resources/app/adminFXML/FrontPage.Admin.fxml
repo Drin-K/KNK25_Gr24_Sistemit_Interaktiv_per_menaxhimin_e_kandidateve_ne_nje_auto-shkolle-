@@ -21,45 +21,45 @@
                         <Image url="@../../images/emri.png" />
                     </image>
                 </ImageView>
-            <ImageView fitHeight="40.0" fitWidth="41.0" layoutX="1381.0" layoutY="10.0" onMouseClicked="#languageClick" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../images/language.png" />
-               </image>
-            </ImageView>
+                <ImageView fitHeight="40.0" fitWidth="41.0" layoutX="1381.0" layoutY="10.0" onMouseClicked="#languageClick" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../images/language.png" />
+                    </image>
+                </ImageView>
             </children>
         </AnchorPane>
         <AnchorPane layoutX="7.0" layoutY="213.0" prefHeight="664.0" prefWidth="226.0" style="-fx-background-color: #2D3447;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
             <children>
-                <Button fx:id="licensesBttn" alignment="TOP_LEFT" layoutY="188.0" mnemonicParsing="false" onAction="#licensesClick" prefHeight="34.0" prefWidth="226.0" style="-fx-font-weight: bold; -fx-background-color: #2D3447; -fx-border-width: 0 0 1 0; -fx-border-color: gray;" text="%btn.license" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                <Button fx:id="manageCandidatesBttn" alignment="TOP_LEFT" layoutX="-1.0" layoutY="253.0" mnemonicParsing="false" onAction="#manageUsersClick" prefHeight="34.0" prefWidth="226.0" style="-fx-font-weight: bold; -fx-background-color: #2D3447; -fx-border-width: 0 0 1 0; -fx-border-color: gray;" text="%btn.manageCandidates" textFill="WHITE" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" />
-                 <Button fx:id="manageStafBttn" alignment="TOP_LEFT" layoutX="-1.0" layoutY="315.0" mnemonicParsing="false" onAction="#manageStafClick" prefHeight="34.0" prefWidth="226.0" style="-fx-font-weight: bold; -fx-background-color: #2D3447; -fx-border-width: 0 0 1 0; -fx-border-color: gray;" text="%btn.manageStaf" textFill="WHITE" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" />
-               <Button fx:id="managePaymentsBttn" alignment="TOP_LEFT" layoutY="373.0" mnemonicParsing="false" onAction="#managePaymentsClick" prefHeight="34.0" prefWidth="226.0" style="-fx-font-weight: bold; -fx-background-color: #2D3447; -fx-border-width: 0 0 1 0; -fx-border-color: gray;" text="%btn.managePayments" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                <Text fill="WHITE" layoutX="59.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 22px;" text="Admin" wrappingWidth="107.73675537109375" />
-                <Button fx:id="homeBttn" alignment="TOP_LEFT" layoutX="5.0" layoutY="94.0" mnemonicParsing="false" onAction="#homeAdminClick" prefHeight="34.0" prefWidth="226.0" style="-fx-font-weight: bold; -fx-background-color: #2D3447; -fx-border-width: 0 0 1 0; -fx-border-color: gray;" text="%btn.home" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                <Button fx:id="licensesBttn" alignment="TOP_LEFT" layoutY="188.0" mnemonicParsing="false" onAction="#licensesClick" prefHeight="34.0" prefWidth="226.0" style="-fx-font-weight: bold; -fx-background-color: #2D3447; -fx-border-width: 0 0 1 0; -fx-border-color: gray;" text="%btn.license" textFill="WHITE" />
+                <Button fx:id="manageCandidatesBttn" alignment="TOP_LEFT" layoutX="-1.0" layoutY="253.0" mnemonicParsing="false" onAction="#manageUsersClick" prefHeight="34.0" prefWidth="226.0" style="-fx-font-weight: bold; -fx-background-color: #2D3447; -fx-border-width: 0 0 1 0; -fx-border-color: gray;" text="%btn.manageCandidates" textFill="WHITE" />
+                <Button fx:id="manageStafBttn" alignment="TOP_LEFT" layoutX="-1.0" layoutY="315.0" mnemonicParsing="false" onAction="#manageStafClick" prefHeight="34.0" prefWidth="226.0" style="-fx-font-weight: bold; -fx-background-color: #2D3447; -fx-border-width: 0 0 1 0; -fx-border-color: gray;" text="%btn.manageStaf" textFill="WHITE" />
+                <Button fx:id="managePaymentsBttn" alignment="TOP_LEFT" layoutY="373.0" mnemonicParsing="false" onAction="#managePaymentsClick" prefHeight="34.0" prefWidth="226.0" style="-fx-font-weight: bold; -fx-background-color: #2D3447; -fx-border-width: 0 0 1 0; -fx-border-color: gray;" text="%btn.managePayments" textFill="WHITE" />
+                <Text fill="WHITE" layoutX="59.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 22px;" text="%label.admin" />
+                <Button fx:id="homeBttn" alignment="TOP_LEFT" layoutX="5.0" layoutY="94.0" mnemonicParsing="false" onAction="#homeAdminClick" prefHeight="34.0" prefWidth="226.0" style="-fx-font-weight: bold; -fx-background-color: #2D3447; -fx-border-width: 0 0 1 0; -fx-border-color: gray;" text="%btn.home" textFill="WHITE" />
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="rightPage" layoutX="228.0" layoutY="136.0" onMouseClicked="#languageClick" prefHeight="620.0" prefWidth="1263.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="228.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="136.0">
+        <AnchorPane fx:id="rightPage" layoutX="228.0" layoutY="136.0"  prefHeight="620.0" prefWidth="1263.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="228.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="136.0">
             <children>
-                <Text layoutX="27.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 30; -fx-font-weight: bold;" text="Welcome Admin!" wrappingWidth="938.9366455078125" />
+                <Text layoutX="27.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 30; -fx-font-weight: bold;" text="%label.welcomeAdmin" />
                 <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="58.0" layoutY="581.0">
                     <image>
                         <Image url="@../../images/location.pin.png" />
                     </image>
                 </ImageView>
                 <Text layoutX="114.0" layoutY="608.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18px;" text="Shemsi Ahmeti, Mitrovicë 40000" />
-                <Text layoutX="58.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18px; -fx-font-family: arial;" text="Autoshkolla Tigri is your comprehensive administrative platform designed to give you full control over the driving school operations! " wrappingWidth="715.7999267578125" />
+                <Text layoutX="58.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="%label.description1" wrappingWidth="1004.2199096679688" />
                 <ImageView fitHeight="41.0" fitWidth="41.0" layoutX="1039.0" layoutY="579.0">
                     <image>
                         <Image url="@../../images/phone-icon.png" />
                     </image>
                 </ImageView>
                 <Text layoutX="1094.0" layoutY="607.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18;" text="+383 44 595 708" />
-                <Text layoutX="58.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="As an admin, you can effortlessly manage users, schedule sessions, oversee payments, and handle licenses. All the tools you need to ensure the smooth operation of the driving school are at your disposal." wrappingWidth="576.5367431640625" />
-                <Text layoutX="58.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="The admin dashboard is your control center for managing users, scheduling sessions, overseeing payments, and more. With a streamlined interface and powerful tools, you’ll ensure the system runs smoothly and efficiently. Let’s drive success forward together!" wrappingWidth="715.7999267578125" />
-                <Text layoutX="47.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 25; -fx-font-weight: bold;" text=" Why Use This App?" />
-                <Text layoutX="58.0" layoutY="399.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="Managing a driving school can be challenging, especially with all the responsibilities of overseeing users, schedules, payments, and progress. " />
-                <Text layoutX="58.0" layoutY="436.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="Our platform simplifies the process by providing clear organization and real-time updates. With everything in one place, you'll always be on top of tasks and ready for the next step toward success." wrappingWidth="889.875" />
-                <Text layoutX="58.0" layoutY="492.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="Autoshkolla Tigri enables you to manage all aspects of the platform with ease, ensuring smooth operations and progress tracking for candidates." />
+                <Text layoutX="58.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="%label.description2" wrappingWidth="1004.2199096679688" />
+                <Text layoutX="58.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="%label.description3" wrappingWidth="1004.2199096679688" />
+                <Text layoutX="47.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 25; -fx-font-weight: bold;" text="%label.whyUse" />
+                <Text layoutX="58.0" layoutY="399.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="%label.reason1" wrappingWidth="1004.2199096679688" />
+                <Text layoutX="58.0" layoutY="448.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="%label.reason2" wrappingWidth="1004.2199096679688" />
+                <Text layoutX="58.0" layoutY="504.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18; -fx-font-family: arial;" text="%label.reason3" wrappingWidth="1004.2199096679688" />
             </children>
         </AnchorPane>
     </children>

@@ -78,7 +78,7 @@ CREATE TABLE Pagesat(
 id SERIAL PRIMARY KEY,
 ID_Kandidat INT REFERENCES Kandidatet(id) ON DELETE CASCADE ON UPDATE CASCADE,
 Shuma DECIMAL(10,2) NOT NULL,
-Numri_Xhirollogarise INT,
+Numri_Xhirollogarise varchar(10),
 Data_e_Pageses DATE DEFAULT CURRENT_DATE,
 Metoda_e_Pageses VARCHAR(50) CHECK (Metoda_e_Pageses IN ('Cash','Online')),
 Statusi_i_Pageses VARCHAR(50) CHECK (Statusi_i_Pageses IN ('Paguar', 'Pjesërisht', 'Mbetur'))

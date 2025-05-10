@@ -53,7 +53,14 @@ public class PagesatHandleController {
         double shuma = Double.parseDouble(this.shumaTxt.getText().trim());
         String nrXhirollog = this.bankNumTxt.getText().trim();
         LocalDate data = LocalDate.now();
-        return new CreatePagesatDto(this.userContext.getUserId(), nrXhirollog, shuma, data,"Online" , "Paguar");
+        String Statusi="";
+        if (shuma<500.0){
+            Statusi="Pjesërisht";
+        } else if (shuma==500) {
+            Statusi="Paguar";
+        }
+        else Statusi="Mbetur";
+        return new CreatePagesatDto(this.userContext.getUserId(), nrXhirollog, shuma, data,"Online" , Statusi);
     }
 
     @FXML

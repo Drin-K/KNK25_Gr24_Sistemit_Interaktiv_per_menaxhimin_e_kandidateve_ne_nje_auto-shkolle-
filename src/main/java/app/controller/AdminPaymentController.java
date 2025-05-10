@@ -1,7 +1,6 @@
 package app.controller;
 
 import app.controller.base.BaseController;
-import app.controller.components.CommonTables;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

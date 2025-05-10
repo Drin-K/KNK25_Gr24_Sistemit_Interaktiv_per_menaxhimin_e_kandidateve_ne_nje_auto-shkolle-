@@ -53,7 +53,7 @@
             <Image url="@../images/language.png" />
          </image>
       </ImageView>
-      <Text fill="#a0a2ab" layoutX="146.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Garamond;" text="%login.title" textAlignment="CENTER" wrappingWidth="458.49212646484375">
+      <Text fill="#a0a2ab" layoutX="146.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Garamond;" text="Auto Shkolla Tigri" textAlignment="CENTER" wrappingWidth="458.49212646484375">
          <font>
             <Font name="System Bold" size="48.0" />
          </font>

@@ -6,6 +6,7 @@ import models.Dto.dokumentet.UpdateDokumentetDto;
 import models.Kandidatet;
 import services.DokumentService;
 import services.KandidateService;
+import services.UserContext;
 
 import java.io.*;
 import java.sql.*;
@@ -153,7 +154,28 @@ public int numeroDokumentet(int kandidatiId) {
             throw new Exception("Gabim në DB.");
         }
     }
+    public String getFotoFileNameForCurrentUser() {
+        int currentUserId = UserContext.getUserId();
+        String query = """
+        SELECT Emri_Skedari
+        FROM Dokumentet
+        WHERE ID_Kandidat = ? AND Lloji_Dokumentit = 'Foto'
+        LIMIT 1
+    """;
 
+        try (PreparedStatement pstm = connection.prepareStatement(query)) {
+            pstm.setInt(1, currentUserId);
+            ResultSet rs = pstm.executeQuery();
+
+            if (rs.next()) {
+                return rs.getString("Emri_Skedari");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 
 }
 

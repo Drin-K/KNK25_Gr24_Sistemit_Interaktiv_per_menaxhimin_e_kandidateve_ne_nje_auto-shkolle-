@@ -80,7 +80,7 @@ public class StafManagmentController extends BaseController {
     }
 
     private void configureStafiTable() {
-        CommonTables.configureTable(
+      configureTable(
                 tableStafi,
                 List.of(idColumn, nameColumn, surnameColumn, emailColumn, phoneColumn, dobColumn,
                         hashedPasswordColumn, saltColumn, roleColumn, adresaColumn, gjiniaColumn),
@@ -89,14 +89,14 @@ public class StafManagmentController extends BaseController {
     }
 
     private void configureFeedbackTable() {
-        CommonTables.configureTable(
+       configureTable(
                 feedbackTable,
                 List.of(colId, colIdKandidat, colIdStaf, colDataFeedback, colVleresimi, colKoment),
                 new String[]{"id", "idKandidat", "idStaf", "dataFeedback", "vlersimi", "koment"});
     }
 
     private void configureOrariTable() {
-        CommonTables.configureTable(
+       configureTable(
                 orariTable,
                 List.of(idColumn1, idKandidatColumn, idStafColumn, dataSesioniColumn,
                         oraFillimitColumn, oraPerfundimitColumn, llojiMesimitColumn, statusiColumn, idAutomjetColumn),

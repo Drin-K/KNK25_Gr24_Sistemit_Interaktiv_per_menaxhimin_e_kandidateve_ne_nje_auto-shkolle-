@@ -55,7 +55,7 @@ public AdminPaymentController(){
     }
 
     private void configurePagesatTable() {
-        CommonTables.configureTable(
+        configureTable(
                 pagesatTable,
                 List.of(IdCol, idCandidatCol, ShumaCol, DataEPagesesCol, MetodaPagesesCol, StatusiPagese),
                 new String[]{"id", "idKandidat", "shuma", "dataPageses", "metodaPageses", "statusiPageses"}

@@ -35,7 +35,7 @@ public AdminPatentaController(){
     }
 
     private void configureTables(TableView<Kandidatet> table, List<TableColumn<Kandidatet, ?>> columns, String[] propertyNames) {
-        CommonTables.configureTable(table, columns, propertyNames);
+        configureTable(table, columns, propertyNames);
     }
 
     private void loadCandidateData() {

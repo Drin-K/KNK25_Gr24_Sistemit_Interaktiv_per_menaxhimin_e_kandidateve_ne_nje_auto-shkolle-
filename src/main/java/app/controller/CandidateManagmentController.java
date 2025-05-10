@@ -22,7 +22,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-import static app.controller.components.CommonTables.configureTable;
 
 public class CandidateManagmentController extends BaseController {
     @FXML private TableView<Kandidatet> kandidatTable;

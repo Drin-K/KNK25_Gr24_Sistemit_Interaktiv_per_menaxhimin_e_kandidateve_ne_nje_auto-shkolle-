@@ -2,21 +2,14 @@ package app.controller;
 
 import app.controller.base.BaseController;
 import javafx.fxml.FXML;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.PieChart;
-import javafx.scene.chart.XYChart;
+import javafx.scene.chart.*;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import models.Patenta;
 import repository.KandidatetRepository;
-import repository.PatentaRepository;
 import services.*;
 
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class AdminHomeController extends BaseController {
@@ -27,21 +20,12 @@ public class AdminHomeController extends BaseController {
     @FXML private BarChart<String, Number> pagesaTePapaguara, nrRegjistrimeve, PagesaTeKryera;
     @FXML private ListView<String> sesionetSot;
 
-    private PagesaService pagesaService;
-    private OrariService sesioniService;
-    private KandidateService kandidateService;
-    private StafiService stafiService;
-    private KandidatetRepository kandidatetRepository;
-    private PatentaRepository patentaRepository;
-
-    public AdminHomeController() {
-        this.pagesaService = new PagesaService();
-        this.sesioniService = new OrariService();
-        this.kandidateService = new KandidateService();
-        this.stafiService = new StafiService();
-        this.kandidatetRepository=new KandidatetRepository();
-        this.patentaRepository=new PatentaRepository();
-    }
+    private final PagesaService pagesaService = new PagesaService();
+    private final OrariService sesioniService = new OrariService();
+    private final KandidateService kandidateService = new KandidateService();
+    private final StafiService stafiService = new StafiService();
+    private final KandidatetRepository kandidatetRepository = new KandidatetRepository();
+    private final PatentaService patentaService=new PatentaService();
 
     @FXML
     public void initialize() {
@@ -49,98 +33,31 @@ public class AdminHomeController extends BaseController {
     }
 
     private void loadDashboardData() {
-        loadTotalCandidates();
-        loadTotalStaff();
-        loadChartsData();
-        loadSessionsToday();
-    }
-
-    private void loadTotalCandidates() {
         totalKandidat.setText(String.valueOf(kandidateService.countKandidatet()));
-    }
-
-    private void loadTotalStaff() {
         totalStafi.setText(String.valueOf(stafiService.countStafi()));
+        updatePieChart(kandidatetRepository.countKandidatetByStatusiProcesit());
+        updateLineChart(patentatEleshuara, getLicensesIssuedSeries());
+        updateBarChart(pagesaService.getUnpaidPaymentsChartData(), pagesaTePapaguara);
+        updateBarChart(getChartSeries(kandidateService.getRegistrationsLast12Months(), "Registrations"), nrRegjistrimeve);
+        updateBarChart(getChartSeries(pagesaService.getPaymentsLast12Months(), "Number Of Payments"), PagesaTeKryera);
+        updateSessionsToday();
     }
 
-    private void loadChartsData() {
-        loadInProgressCompleted();
-        loadLicensesIssued();
-        loadUnpaidPayments();
-        loadRegistrationsTopPayments();
-    }
-
-    private void loadInProgressCompleted() {
-        updatePieChart(this.kandidatetRepository.countKandidatetByStatusiProcesit());
-    }
-
-    private void loadLicensesIssued() {
+    private XYChart.Series<String, Number> getLicensesIssuedSeries() {
         try {
-            XYChart.Series<String, Number> series = createSeries("Licenses Issued");
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-            List<Patenta> licenses = patentaRepository.getLicensesIssued();
-            Map<String, Integer> dateCountMap = new HashMap<>();
-
-            for (Patenta patenta : licenses) {
-                String date = patenta.getDataLeshimit().format(formatter);
-                if (dateCountMap.containsKey(date)) {
-                    dateCountMap.put(date, dateCountMap.get(date) + 1);
-                } else {
-                    dateCountMap.put(date, 1);
-                }
-            }
-
-            for (Map.Entry<String, Integer> entry : dateCountMap.entrySet()) {
-                series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
-            }
-
-            updateLineChart(patentatEleshuara, series);
-
+            Map<String, Integer> data = patentaService.getLicensesIssuedCountPerDate();
+            return getChartSeries(new HashMap<>(data), "Licenses Issued");
         } catch (Exception e) {
             showAlert(Alert.AlertType.ERROR, "Error", "Error loading licenses");
+            return new XYChart.Series<>();
         }
-    }
-
-
-
-    private void loadUnpaidPayments() {
-        updateBarChart(pagesaService.getUnpaidPaymentsChartData(), pagesaTePapaguara);
-    }
-
-    private void loadSessionsToday() {
-        sesionetSot.getItems().clear();
-        sesioniService.getSessionsToday().forEach(orari ->
-                sesionetSot.getItems().add(String.format("%s: %s-%s",
-                        orari.getLlojiMesimit(), orari.getOraFillimit(), orari.getOraPerfundimit())
-                )
-        );
-    }
-
-    private void loadRegistrationsTopPayments() {
-        loadChartData(kandidateService.getRegistrationsLast12Months(), nrRegjistrimeve, "Registrations");
-        loadChartData(pagesaService.getPaymentsLast12Months(), PagesaTeKryera, "Number Of Payments");
-    }
-
-    private void loadChartData(HashMap<String, Integer> data, BarChart<String, Number> chart, String seriesName) {
-        XYChart.Series<String, Number> series = createSeries(seriesName);
-        data.forEach((month, value) ->
-                series.getData().add(new XYChart.Data<>(month, value))
-        );
-        updateBarChart(series, chart);
-    }
-
-    private XYChart.Series<String, Number> createSeries(String seriesName) {
-        XYChart.Series<String, Number> series = new XYChart.Series<>();
-        series.setName(seriesName);
-        return series;
     }
 
     private void updatePieChart(HashMap<String, Integer> data) {
         piechart.getData().clear();
-        data.forEach((status, count) ->
-                piechart.getData().add(new PieChart.Data(status, count))
-        );
+        for (Map.Entry<String, Integer> entry : data.entrySet()) {
+            piechart.getData().add(new PieChart.Data(entry.getKey(), entry.getValue()));
+        }
     }
 
     private void updateLineChart(LineChart<String, Number> chart, XYChart.Series<String, Number> series) {
@@ -153,4 +70,11 @@ public class AdminHomeController extends BaseController {
         chart.getData().add(series);
     }
 
+    private void updateSessionsToday() {
+        sesionetSot.getItems().clear();
+        for (var orari : sesioniService.getSessionsToday()) {
+            String item = orari.getLlojiMesimit() + ": " + orari.getOraFillimit() + "-" + orari.getOraPerfundimit();
+            sesionetSot.getItems().add(item);
+        }
+    }
 }

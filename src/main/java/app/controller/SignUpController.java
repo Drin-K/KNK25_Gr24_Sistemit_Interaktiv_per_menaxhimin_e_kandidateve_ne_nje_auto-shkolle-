@@ -23,8 +23,6 @@ public class SignUpController {
     @FXML private PasswordField passwordField;
     @FXML private PasswordField confirmPasswordField;
     @FXML private DatePicker dobPicker;
-    @FXML private Button signUpButton;
-    @FXML private Button loginButton;
     @FXML private Label messageLabel;
     @FXML private Label errorLabel;
     @FXML private RadioButton maleRadio;

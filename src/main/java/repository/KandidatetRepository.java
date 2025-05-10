@@ -27,7 +27,7 @@ public class KandidatetRepository extends UserRepository {
             userStmt.setString(7, dto.getSalt());
             userStmt.setString(8, dto.getAdresa());
             userStmt.setString(9, dto.getGjinia());
-            userStmt.executeUpdate();
+            userStmt.execute();
 
             ResultSet keys = userStmt.getGeneratedKeys();
             if (keys.next()) {
@@ -39,7 +39,7 @@ public class KandidatetRepository extends UserRepository {
                 """;
                 PreparedStatement kandidatStmt = connection.prepareStatement(insertKandidat);
                 kandidatStmt.setInt(1, userId);
-                kandidatStmt.executeUpdate();
+                kandidatStmt.execute();
                 return getById(userId);
             }
         } catch (SQLException e) {
@@ -102,7 +102,6 @@ public class KandidatetRepository extends UserRepository {
         try {
             PreparedStatement pstm = this.connection.prepareStatement(query);
             ResultSet rs = pstm.executeQuery();
-
             if (rs.next()) {
                 return rs.getInt(1);
             }

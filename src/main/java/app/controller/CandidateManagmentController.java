@@ -24,39 +24,62 @@ import java.util.List;
 
 
 public class CandidateManagmentController extends BaseController {
-    @FXML private TableView<Kandidatet> kandidatTable;
-    @FXML private HBox krijoFormenHBox;
-    @FXML private TableColumn<Kandidatet, Integer> idColumn;
-    @FXML private TableColumn<Kandidatet, String> nameColumn, surnameColumn, emailColumn, phoneColumn;
-    @FXML private TableColumn<Kandidatet, String> dobColumn, roleColumn, adresaColumn, gjiniaColumn;
-    @FXML private TableColumn<Kandidatet, String> dataRegjistrimiColumn, statusiProcesitColumn;
-    @FXML private TableView<Dokumentet> tableViewDokumente;
-    @FXML private TableColumn<Dokumentet, String> colEmriSkedari, colLlojiDokumentit, colDataNgarkimit;
-    @FXML private TableView<Pagesat> tabelaPagesat;
-    @FXML private TableColumn<Pagesat, Integer> colId, colIdKandidat;
-    @FXML private TableColumn<Pagesat, Double> colShuma;
-    @FXML private TableColumn<Pagesat, LocalDate> colDataPageses;
-    @FXML private TableColumn<Pagesat, String> colMetodaPageses, colStatusiPageses;
-    @FXML private TableView<Orari> orariTable;
-    @FXML private TableColumn<Orari, Integer> idColumn1, idKandidatColumn, idStafColumn, idAutomjetColumn;
-    @FXML private TableColumn<Orari, LocalDate> dataSesioniColumn;
-    @FXML private TableColumn<Orari, LocalTime> oraFillimitColumn, oraPerfundimitColumn;
-    @FXML private TableColumn<Orari, String> llojiMesimitColumn, statusiColumn;
-    @FXML private TableView<Testet> testetTable;
-    @FXML private TableColumn<Testet, Integer> idColumn2, idKandidatColumn2, idStafColumn2, piketColumn;
-    @FXML private TableColumn<Testet, String> llojiTestitColumn, rezultatiColumn;
-    @FXML private TableColumn<Testet, LocalDate> dataTestitColumn;
-    @FXML private TextField txtEmri, txtMbiemri, txtEmail, txtPhone, txtAdresa, txtStatusiProcesit;
-    @FXML private DatePicker datePickerDob;
-    @FXML private ComboBox<String> comboGjinia;
-    @FXML private PasswordField txtPassword;
+    @FXML
+    private TableView<Kandidatet> kandidatTable;
+    @FXML
+    private HBox krijoFormenHBox;
+    @FXML
+    private TableColumn<Kandidatet, Integer> idColumn;
+    @FXML
+    private TableColumn<Kandidatet, String> nameColumn, surnameColumn, emailColumn, phoneColumn;
+    @FXML
+    private TableColumn<Kandidatet, String> dobColumn, roleColumn, adresaColumn, gjiniaColumn;
+    @FXML
+    private TableColumn<Kandidatet, String> dataRegjistrimiColumn, statusiProcesitColumn;
+    @FXML
+    private TableView<Dokumentet> tableViewDokumente;
+    @FXML
+    private TableColumn<Dokumentet, String> colEmriSkedari, colLlojiDokumentit, colDataNgarkimit;
+    @FXML
+    private TableView<Pagesat> tabelaPagesat;
+    @FXML
+    private TableColumn<Pagesat, Integer> colId, colIdKandidat;
+    @FXML
+    private TableColumn<Pagesat, Double> colShuma;
+    @FXML
+    private TableColumn<Pagesat, LocalDate> colDataPageses;
+    @FXML
+    private TableColumn<Pagesat, String> colMetodaPageses, colStatusiPageses;
+    @FXML
+    private TableView<Orari> orariTable;
+    @FXML
+    private TableColumn<Orari, Integer> idColumn1, idKandidatColumn, idStafColumn, idAutomjetColumn;
+    @FXML
+    private TableColumn<Orari, LocalDate> dataSesioniColumn;
+    @FXML
+    private TableColumn<Orari, LocalTime> oraFillimitColumn, oraPerfundimitColumn;
+    @FXML
+    private TableColumn<Orari, String> llojiMesimitColumn, statusiColumn;
+    @FXML
+    private TableView<Testet> testetTable;
+    @FXML
+    private TableColumn<Testet, Integer> idColumn2, idKandidatColumn2, idStafColumn2, piketColumn;
+    @FXML
+    private TableColumn<Testet, String> llojiTestitColumn, rezultatiColumn;
+    @FXML
+    private TableColumn<Testet, LocalDate> dataTestitColumn;
+    @FXML
+    private TextField txtEmri, txtMbiemri, txtEmail, txtPhone, txtAdresa, txtStatusiProcesit;
+    @FXML
+    private DatePicker datePickerDob;
+    @FXML
+    private ComboBox<String> comboGjinia;
+    @FXML
+    private PasswordField txtPassword;
     @FXML
     private AnchorPane rightPage;
     private final KandidateService kandidateService;
-    private final DokumentService dokumentService;
-    private final PagesaService pagesaService;
     private final OrariService orariService;
-    private final TestiService testiService;
     private final RegjistrimiService regjistrimiService;
     private final TestetRepository testiRepository;
     private final DokumentetRepository dokumentetRepository;
@@ -66,88 +89,63 @@ public class CandidateManagmentController extends BaseController {
 
     public CandidateManagmentController() {
         this.kandidateService = new KandidateService();
-        this.dokumentService = new DokumentService();
-        this.pagesaService = new PagesaService();
         this.orariService = new OrariService();
-        this.testiService = new TestiService();
         this.regjistrimiService = new RegjistrimiService();
-        this.testiRepository=new TestetRepository();
-        this.dokumentetRepository=new DokumentetRepository();
-        this.pagesatRepository=new PagesatRepository();
-        this.orariRepository=new OrariRepository();
+        this.testiRepository = new TestetRepository();
+        this.dokumentetRepository = new DokumentetRepository();
+        this.pagesatRepository = new PagesatRepository();
+        this.orariRepository = new OrariRepository();
     }
+
     @FXML
     public void initialize() {
         krijoFormenHBox.setVisible(false);
-
-        setupKandidatTable();
-        setupDokumentetTable();
-        setupPagesatTable();
-        setupOrariTable();
-        setupTestetTable();
-
-        loadKandidatetData();
-        loadDokumentetData();
-        loadPagesatData();
-        loadOrariData();
-        loadTestetData();
+        setupTables();
+        loadData();
     }
-    private void setupKandidatTable() {
+
+    private void setupTables() {
+        //kandidatet
         configureTable(kandidatTable, List.of(
                         idColumn, nameColumn, surnameColumn, emailColumn, phoneColumn,
                         roleColumn, adresaColumn, gjiniaColumn, statusiProcesitColumn),
                 new String[]{"idUser", "name", "surname", "email", "phoneNumber", "role", "adresa", "gjinia", "statusiProcesit"});
-
         dobColumn.setCellValueFactory(c ->
                 new SimpleStringProperty(c.getValue().getDateOfBirth().toString()));
         dataRegjistrimiColumn.setCellValueFactory(c ->
                 new SimpleStringProperty(c.getValue().getDataRegjistrimit().toString()));
-    }
-
-    private void setupDokumentetTable() {
+        //dokumentet
         configureTable(tableViewDokumente,
                 List.of(colEmriSkedari, colLlojiDokumentit),
                 new String[]{"emriSkedarit", "llojiDokumentit"});
 
         colDataNgarkimit.setCellValueFactory(c ->
                 new SimpleStringProperty(c.getValue().getDataNgarkimit().toString()));
-    }
-
-    private void setupPagesatTable() {
+        //pagesat
         configureTable(tabelaPagesat,
                 List.of(colId, colIdKandidat, colShuma, colDataPageses, colMetodaPageses, colStatusiPageses),
                 new String[]{"id", "idKandidat", "shuma", "dataPageses", "metodaPageses", "statusiPageses"});
-    }
-
-    private void setupOrariTable() {
+        //orari
         configureTable(orariTable,
                 List.of(idColumn1, idKandidatColumn, idStafColumn, dataSesioniColumn,
                         oraFillimitColumn, oraPerfundimitColumn, llojiMesimitColumn, statusiColumn, idAutomjetColumn),
                 new String[]{"idSesioni", "idKandidat", "idStaf", "dataSesionit", "oraFillimit", "oraPerfundimit",
                         "llojiMesimit", "statusi", "idAutomjet"});
-    }
+        //testet
 
-    private void setupTestetTable() {
         configureTable(testetTable,
                 List.of(idColumn2, idKandidatColumn2, idStafColumn2, llojiTestitColumn,
                         dataTestitColumn, rezultatiColumn, piketColumn),
                 new String[]{"id", "idKandidat", "idStaf", "llojiTestit", "dataTestit", "rezultati", "piket"});
+
+
     }
 
-
-    private void loadKandidatetData() {
+    private void loadData() {
         kandidatTable.setItems(FXCollections.observableArrayList(kandidateService.getAll()));
-    }
-    private void loadDokumentetData() {
         tableViewDokumente.setItems(FXCollections.observableArrayList(dokumentetRepository.getAll()));
-    }
-    private void loadPagesatData() {
         tabelaPagesat.setItems(FXCollections.observableArrayList(pagesatRepository.getAll()));
-    }
-    private void loadOrariData() {
         orariTable.setItems(FXCollections.observableArrayList(orariRepository.getAll()));
-    }
-    private void loadTestetData() {
         testetTable.setItems(FXCollections.observableArrayList(testiRepository.getAll()));
     }
 
@@ -174,34 +172,32 @@ public class CandidateManagmentController extends BaseController {
                 emri, mbiemri, email, phone, datelindja, password, PasswordHasher.generateSalt(),
                 "Kandidat", adresa, gjinia, null, statusiProcesit);
         kandidateService.create(kandidatet);
-       clearData();
+        clearData();
     }
-private void clearData(){
-    txtEmri.clear();
-    txtMbiemri.clear();
-    txtEmail.clear();
-    txtPhone.clear();
-    txtAdresa.clear();
-    txtStatusiProcesit.clear();
-    datePickerDob.setValue(null);
-    comboGjinia.setValue(null);
-}
+
+    private void clearData() {
+        txtEmri.clear();
+        txtMbiemri.clear();
+        txtEmail.clear();
+        txtPhone.clear();
+        txtAdresa.clear();
+        txtStatusiProcesit.clear();
+        datePickerDob.setValue(null);
+        comboGjinia.setValue(null);
+    }
+
     private boolean kontrolloDheKonfirmo(Object selected, String konfirmoMesazhi) {
         if (selected == null) {
-            showAlert(Alert.AlertType.WARNING, "Warning","Please select a candidate.");
+            showAlert(Alert.AlertType.WARNING, "Warning", "Please select an item.");
             return false;
         }
         return showConfirmationDialog("Confirm Deletion", konfirmoMesazhi);
     }
+
     @FXML
     private void onDeleteKandidatClick() throws Exception {
         Kandidatet selected = kandidatTable.getSelectionModel().getSelectedItem();
-
-        String confirmMsg = (selected != null)
-                ? "Do you want to delete the candidate: " + selected.getName() + " " + selected.getSurname() + "?"
-                : "";
-
-        if (kontrolloDheKonfirmo(selected, confirmMsg)) {
+        if (kontrolloDheKonfirmo(selected, "Delete candidate: " + selected.getName() + " " + selected.getSurname() + "?")) {
             kandidatTable.getItems().remove(selected);
             kandidateService.delete(selected.getIdUser());
         }
@@ -210,61 +206,42 @@ private void clearData(){
     @FXML
     private void onDeleteOrariClick() throws Exception {
         Orari selected = orariTable.getSelectionModel().getSelectedItem();
-
-        String confirmMsg = (selected != null)
-                ? "Do you want to delete the schedule for the candidate with ID: " + selected.getIdKandidat() + "?"
-                : "";
-
-        if (kontrolloDheKonfirmo(selected, confirmMsg)) {
+        if (kontrolloDheKonfirmo(selected, "Delete schedule for candidate ID: " + selected.getIdKandidat() + "?")) {
             orariTable.getItems().remove(selected);
             orariService.delete(selected.getIdSesioni());
         }
     }
 
     @FXML
-    private void onDeletePagesatClick() throws Exception {
+    private void onDeletePagesatClick(){
         Pagesat selected = tabelaPagesat.getSelectionModel().getSelectedItem();
-
-        String confirmMsg = (selected != null)
-                ? "Do you want to delete the payment for the candidate with ID: " + selected.getIdKandidat() + "?"
-                : "";
-
-        if (kontrolloDheKonfirmo(selected, confirmMsg)) {
+        if (kontrolloDheKonfirmo(selected, "Delete payment with ID: " + selected.getId() + "?")) {
             tabelaPagesat.getItems().remove(selected);
-            pagesaService.delete(selected.getId());
+            pagesatRepository.delete(selected.getId());
         }
     }
 
     @FXML
-    private void onDeleteDokumentetClick() throws Exception {
-        Dokumentet selected = tableViewDokumente.getSelectionModel().getSelectedItem();
-
-        String confirmMsg = (selected != null)
-                ? "Do you want to delete the document for the candidate with ID: " + selected.getIdKandidat() + "?"
-                : "";
-
-        if (kontrolloDheKonfirmo(selected, confirmMsg)) {
-            tableViewDokumente.getItems().remove(selected);
-            dokumentService.delete(selected.getId());
-        }
-    }
-
-    @FXML
-    private void onDeleteTestetClick() throws Exception {
+    private void onDeleteTestetClick(){
         Testet selected = testetTable.getSelectionModel().getSelectedItem();
-
-        String confirmMsg = (selected != null)
-                ? "Do you want to delete the test for the candidate with ID: " + selected.getIdKandidat() + "?"
-                : "";
-
-        if (kontrolloDheKonfirmo(selected, confirmMsg)) {
+        if (kontrolloDheKonfirmo(selected, "Delete test with ID: " + selected.getId() + "?")) {
             testetTable.getItems().remove(selected);
-            testiService.delete(selected.getId());
+            testiRepository.delete(selected.getId());
+        }
+    }
+
+    @FXML
+    private void onDeleteDokumentetClick() {
+        Dokumentet selected = tableViewDokumente.getSelectionModel().getSelectedItem();
+        if (kontrolloDheKonfirmo(selected, "Delete document: " + selected.getEmriSkedarit() + "?")) {
+            tableViewDokumente.getItems().remove(selected);
+            dokumentetRepository.delete(selected.getId());
         }
     }
 
 
-    @FXML private void onMiratoClick() {
+    @FXML
+    private void onMiratoClick() {
         List<Dokumentet> selected = tableViewDokumente.getSelectionModel().getSelectedItems();
         if (selected.isEmpty()) {
             showAlert(Alert.AlertType.WARNING, "Warning", "Please select a candidate.");
@@ -286,12 +263,14 @@ private void clearData(){
             }
         }
     }
+
     @FXML
     private void onUpdateKandidatClick() throws Exception {
-        SceneManager.load(SceneLocator.UPDATE_ADMIN_CANDIDATE_PAGE,this.rightPage);
+        SceneManager.load(SceneLocator.UPDATE_ADMIN_CANDIDATE_PAGE, this.rightPage);
     }
 
-    @FXML private void onDownloadClick() {
+    @FXML
+    private void onDownloadClick() {
         Dokumentet selected = tableViewDokumente.getSelectionModel().getSelectedItem();
         if (selected == null) {
             showAlert(Alert.AlertType.WARNING, "Warning", "Please select a document.");
@@ -303,12 +282,13 @@ private void clearData(){
             download(selected.getEmriSkedarit());
         }
     }
+
     @FXML
     private void onShfaqRaportinClick() throws Exception {
         Testet selected = testetTable.getSelectionModel().getSelectedItem();
         if (selected != null) {
             int kandidatId = selected.getIdKandidat();
-            int stafId=selected.getIdStaf();
+            int stafId = selected.getIdStaf();
             ProgressReportController controller = SceneManager.loadWithController(
                     SceneLocator.PROGRESS_ADMIN_REPORT_PAGE, this.rightPage, kandidatId, stafId
             );
@@ -317,7 +297,6 @@ private void clearData(){
             showAlert(Alert.AlertType.WARNING, "Warning", "Please select a row.");
         }
     }
-
 
     public void download(String emriSkedarit) {
         Path uploadDir = Paths.get("src", "main", "java", "utils", "uploads");

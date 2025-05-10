@@ -26,7 +26,7 @@ public class AdminRepository extends UserRepository {
     """;
 
         try {
-            PreparedStatement userStmt = this.connection.prepareStatement(insertUser, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement userStmt = this.connection.prepareStatement(insertUser, PreparedStatement.RETURN_GENERATED_KEYS);
             userStmt.setString(1, dto.getName());
             userStmt.setString(2, dto.getSurname());
             userStmt.setString(3, dto.getEmail());
@@ -37,9 +37,7 @@ public class AdminRepository extends UserRepository {
             userStmt.setString(8, dto.getRole());
             userStmt.setString(9, dto.getAdresa());
             userStmt.setString(10, dto.getGjinia());
-
-            userStmt.executeUpdate();
-
+            userStmt.execute();
             ResultSet res = userStmt.getGeneratedKeys();
             if (res.next()) {
                 int userId = res.getInt(1);
@@ -48,7 +46,7 @@ public class AdminRepository extends UserRepository {
                     String insertAdmin = "INSERT INTO Admin(id) VALUES (?);";
                     PreparedStatement adminStmt = this.connection.prepareStatement(insertAdmin);
                     adminStmt.setInt(1, userId);
-                    adminStmt.executeUpdate();
+                    adminStmt.execute();
                 }
 
                 return this.getById(userId);

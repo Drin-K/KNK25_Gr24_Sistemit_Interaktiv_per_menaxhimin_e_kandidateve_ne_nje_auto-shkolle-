@@ -158,7 +158,7 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, statusiRi);
             statement.setInt(2, pagesaId);
-            statement.executeUpdate();
+            statement.execute();
         }
     }
 

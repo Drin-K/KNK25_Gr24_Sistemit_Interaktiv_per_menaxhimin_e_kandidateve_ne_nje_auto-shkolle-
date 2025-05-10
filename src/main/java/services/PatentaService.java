@@ -7,8 +7,11 @@ import repository.PatentaRepository;
 
 
 import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PatentaService {
     private PatentaRepository patentaRepository;
@@ -58,5 +61,22 @@ public class PatentaService {
         this.getById(id); // E kontrollojm a ekziston
         return patentaRepository.delete(id);
     }
+    public Map<String, Integer> getLicensesIssuedCountPerDate() throws SQLException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        Map<String, Integer> dateCountMap = new HashMap<>();
+
+        for (Patenta patenta : patentaRepository.getLicensesIssued()) {
+            String date = patenta.getDataLeshimit().format(formatter);
+            if (dateCountMap.containsKey(date)) {
+                int count = dateCountMap.get(date);
+                dateCountMap.put(date, count + 1);
+            } else {
+                dateCountMap.put(date, 1);
+            }
+        }
+
+        return dateCountMap;
+    }
+
 
 }

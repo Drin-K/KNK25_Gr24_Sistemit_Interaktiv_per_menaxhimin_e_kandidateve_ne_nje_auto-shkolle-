@@ -12,20 +12,25 @@ import java.util.List;
 
 public class AdminPatentaController extends BaseController {
 
-    @FXML private TableView<Kandidatet> tableKandidatet, tableKandidatet1;
-    @FXML private TableColumn<Kandidatet, String> colEmri, colMbiemri, colEmail, colTelefoni, colDataRegjistrimit, colStatusi;
-    @FXML private TableColumn<Kandidatet, String> colEmri1, colMbiemri1, colEmail1, colTelefoni1, colDataRegjistrimit1, colStatusi1;
+    @FXML
+    private TableView<Kandidatet> tableKandidatet, tableKandidatet1;
+    @FXML
+    private TableColumn<Kandidatet, String> colEmri, colMbiemri, colEmail, colTelefoni, colDataRegjistrimit, colStatusi;
+    @FXML
+    private TableColumn<Kandidatet, String> colEmri1, colMbiemri1, colEmail1, colTelefoni1, colDataRegjistrimit1, colStatusi1;
 
     private final KandidatetRepository kandidatetRepository;
     private final PatentaRepository patentaRepository;
-public AdminPatentaController(){
-    this.patentaRepository=new PatentaRepository();
-    this.kandidatetRepository=new KandidatetRepository();
-}
+
+    public AdminPatentaController() {
+        this.patentaRepository = new PatentaRepository();
+        this.kandidatetRepository = new KandidatetRepository();
+    }
+
     @FXML
     public void initialize() {
-      configureTables(tableKandidatet, List.of(colEmri, colMbiemri, colEmail, colTelefoni, colDataRegjistrimit, colStatusi),
-           new String[]{"name", "surname", "email", "phoneNumber", "dataRegjistrimit", "statusiProcesit"});
+        configureTables(tableKandidatet, List.of(colEmri, colMbiemri, colEmail, colTelefoni, colDataRegjistrimit, colStatusi),
+                new String[]{"name", "surname", "email", "phoneNumber", "dataRegjistrimit", "statusiProcesit"});
 
         configureTables(tableKandidatet1, List.of(colEmri1, colMbiemri1, colEmail1, colTelefoni1, colDataRegjistrimit1, colStatusi1),
                 new String[]{"name", "surname", "email", "phoneNumber", "dataRegjistrimit", "statusiProcesit"});
@@ -38,8 +43,8 @@ public AdminPatentaController(){
     }
 
     private void loadCandidateData() {
-    tableKandidatet.setItems(FXCollections.observableArrayList(kandidatetRepository.shfaqKandidatetMeTeDrejte()));
-     tableKandidatet1.setItems(FXCollections.observableArrayList(kandidatetRepository.shfaqKandidatetMeTeDrejtePaPagesa()));
+        tableKandidatet.setItems(FXCollections.observableArrayList(kandidatetRepository.shfaqKandidatetMeTeDrejte()));
+        tableKandidatet1.setItems(FXCollections.observableArrayList(kandidatetRepository.shfaqKandidatetMeTeDrejtePaPagesa()));
     }
 
     @FXML

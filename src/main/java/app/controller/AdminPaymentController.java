@@ -12,8 +12,6 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import models.Pagesat;
 import repository.PagesatRepository;
-import services.PagesaService;
-
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -35,15 +33,9 @@ public class AdminPaymentController extends BaseController {
 
     private final ObservableList<Pagesat> pagesatList;
     private final PagesatRepository pagesatRepository;
-    private final XYChart.Series<String, Number> paguarSeries;
-    private final XYChart.Series<String, Number> pjeserishtSeries;
-    private final XYChart.Series<String, Number> mbeturSeries;
 public AdminPaymentController(){
     this.pagesatList= FXCollections.observableArrayList();
     this.pagesatRepository=new PagesatRepository();
-    this.paguarSeries=new XYChart.Series<>();
-    this.pjeserishtSeries=new XYChart.Series<>();
-    this.mbeturSeries=new XYChart.Series<>();
 }
     @FXML
     public void initialize() {
@@ -84,25 +76,22 @@ public AdminPaymentController(){
 
     @FXML
     private void updateLineChartData() throws SQLException {
-        paguarSeries.getData().clear();
-        pjeserishtSeries.getData().clear();
-        mbeturSeries.getData().clear();
-
         Map<String, Integer> pagesatCount = pagesatRepository.getPagesatCountByStatus();
 
-        if (pagesatCount.containsKey("Paguar")) {
-            paguarSeries.getData().add(new XYChart.Data<>("Paguar", pagesatCount.get("Paguar")));
-        }
-        if (pagesatCount.containsKey("Pjeserisht")) {
-            pjeserishtSeries.getData().add(new XYChart.Data<>("Pjeserisht", pagesatCount.get("Pjeserisht")));
-        }
-        if (pagesatCount.containsKey("Mbetur")) {
-            mbeturSeries.getData().add(new XYChart.Data<>("Mbetur", pagesatCount.get("Mbetur")));
-        }
         PPM.getData().clear();
-        PPM.getData().addAll(paguarSeries, pjeserishtSeries, mbeturSeries);
+        for (String status : List.of("Paguar", "Pjeserisht", "Mbetur")) {
+            Integer count = pagesatCount.getOrDefault(status, 0);
+            XYChart.Series<String, Number> series = getChartSeries(Map.of(status, count), status);
+            PPM.getData().add(series);
+        }
     }
-
+    private boolean areDatesValid(LocalDate fromDate, LocalDate toDate) {
+        if (fromDate.isAfter(toDate)) {
+            showAlert(Alert.AlertType.WARNING, "Warning", "The 'from' date cannot be after the 'to' date.");
+            return false;
+        }
+        return true;
+    }
 
     @FXML
     public void filterPagesatIfValid() throws SQLException {
@@ -111,12 +100,14 @@ public AdminPaymentController(){
         String toDate = to.getValue() != null ? to.getValue().toString() : null;
         String metodaPageses = combobox1.getValue();
         String statusiPageses = comboBox2.getValue();
-
         if (name.isEmpty() || fromDate == null || toDate == null || metodaPageses == null || statusiPageses == null) {
             showAlert(Alert.AlertType.WARNING, "Warning", "All fields must be filled!");
             return;
         }
-
+        if (from.getValue().isAfter(to.getValue())) {
+            showAlert(Alert.AlertType.WARNING, "Warning", "The 'from' date cannot be after the 'to' date.");
+            return;
+        }
         List<Pagesat> filteredPagesat = pagesatRepository.filterPagesat(name, fromDate, toDate, metodaPageses, statusiPageses);
         pagesatList.clear();
         pagesatList.addAll(filteredPagesat);

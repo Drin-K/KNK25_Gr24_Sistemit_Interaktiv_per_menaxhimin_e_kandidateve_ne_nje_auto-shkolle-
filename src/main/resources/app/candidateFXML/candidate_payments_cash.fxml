@@ -7,15 +7,21 @@
 
 <AnchorPane prefHeight="620.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.PagesatHandleController">
    <children>
-      <Text fill="#475779" layoutX="567.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 22; -fx-font-family: arial; -fx-font-weight: bold;" text="Payments" />
-      <AnchorPane layoutX="383.0" layoutY="140.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="385.0" prefWidth="472.0" style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #475779;">
+      <Text fill="#475779" layoutX="567.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0"
+            style="-fx-font-size: 22; -fx-font-family: arial; -fx-font-weight: bold;"
+            text="%payments.title" />
+      <AnchorPane layoutX="383.0" layoutY="140.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                  minHeight="-Infinity" minWidth="-Infinity" prefHeight="385.0" prefWidth="472.0"
+                  style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #475779;">
          <children>
             <ImageView fitHeight="35.0" fitWidth="38.0" layoutX="31.0" layoutY="189.0">
                <image>
                   <Image url="@../../images/location.pin.png" />
                </image>
             </ImageView>
-            <Text fill="#475779" layoutX="69.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 14; -fx-font-family: arial; -fx-font-weight: bold;" text="You can find us at : Shemsi Ahmeti, Mitrovice 40000" wrappingWidth="357.11712646484375" />
+            <Text fill="#475779" layoutX="69.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                  style="-fx-font-size: 14; -fx-font-family: arial; -fx-font-weight: bold;"
+                  text="%payments.location.info" wrappingWidth="357.11712646484375" />
          </children>
       </AnchorPane>
    </children>

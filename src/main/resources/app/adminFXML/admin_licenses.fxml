@@ -12,12 +12,12 @@
 
 <AnchorPane maxHeight="699.0" prefHeight="699.0" prefWidth="1314.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.AdminPatentaController">
     <children>
-        <VBox layoutX="285.0" layoutY="55.0" prefHeight="279.0" prefWidth="800.0" style="-fx-background-color: #ffffff; -fx-border-color: #ff7900; -fx-padding: 10;">
+        <VBox layoutX="285.0" layoutY="55.0" prefHeight="279.0" prefWidth="800.0" style="-fx-background-color: #eb9e34; -fx-padding: 10;">
             <children>
-                <VBox prefHeight="327.0" prefWidth="790.0" spacing="15" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="20">
-                    <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="%label.eligibleList" />
+                <VBox prefHeight="327.0" prefWidth="790.0" spacing="15" style="-fx-background-color: #0f2657;" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="20">
+                    <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="%label.eligibleList" textFill="WHITE" />
                     <HBox spacing="15">
-                        <Button onAction="#aprovoPatentenClick" text="%button.approveLicense" />
+                        <Button onAction="#aprovoPatentenClick" style="-fx-background-color: #eb9e34;" text="%button.approveLicense" textFill="WHITE" />
                     </HBox>
                     <TableView fx:id="tableKandidatet" prefHeight="500">
                         <columns>
@@ -33,17 +33,17 @@
             </children>
         </VBox>
 
-        <Label layoutX="475.0" layoutY="-14.0" prefHeight="100.0" prefWidth="364.0" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="%label.licenseManagement">
+        <Label layoutX="475.0" layoutY="-14.0" prefHeight="100.0" prefWidth="364.0" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="%label.licenseManagement" textFill="#101c5f">
             <padding>
                 <Insets left="100.0" />
             </padding>
         </Label>
 
-        <VBox layoutX="249.0" layoutY="357.0" prefHeight="277.0" prefWidth="875.0" style="-fx-background-color: #ffffff; -fx-border-color: #ff7900; -fx-padding: 10;">
+        <VBox layoutX="249.0" layoutY="357.0" prefHeight="277.0" prefWidth="875.0" style="-fx-background-color: #eb9e34; -fx-border-color: #ff7900; -fx-padding: 10;">
             <children>
-                <VBox prefHeight="327.0" prefWidth="790.0" spacing="15" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="20">
+                <VBox prefHeight="327.0" prefWidth="790.0" spacing="15" style="-fx-background-color: #0f2657;" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="20">
                     <children>
-                        <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="%label.eligibleButUnpaid">
+                        <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="%label.eligibleButUnpaid" textFill="WHITE">
                             <font><Font size="1.0" /></font>
                         </Label>
                         <HBox spacing="15" />

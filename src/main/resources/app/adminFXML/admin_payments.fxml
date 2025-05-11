@@ -114,7 +114,7 @@
                 <TableColumn fx:id="StatusiPagese" prefWidth="115.59994506835938" text="%column.payment.status" />
             </columns>
         </TableView>
-        <Button layoutX="27.0" layoutY="359.0" onAction="#ndryshoStatusin" text="%button.change.status" />
-        <ComboBox fx:id="statusiIRiComboBox" layoutX="147.0" layoutY="360.0" prefWidth="150" />
+        <Button layoutX="27.0" layoutY="359.0" onAction="#ndryshoStatusin" style="-fx-background-color: #eb9e34;" text="%button.change.status" />
+        <ComboBox fx:id="statusiIRiComboBox" layoutX="191.0" layoutY="359.0" prefWidth="150" promptText="Status" style="-fx-background-color: #eb9e34;" />
     </children>
 </AnchorPane>

@@ -2,10 +2,12 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 
 <AnchorPane prefHeight="620.0" prefWidth="1263.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.ProgressReportController">
     <children>
-         <Label fx:id="idLabel" layoutX="308.0" layoutY="18.0" maxHeight="166.0" maxWidth="610.0" prefHeight="150.0" prefWidth="610.0" style="-fx-background-color: #FFBE98; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-min-width: 150px; -fx-min-height: 150px; -fx-max-width: 15px; -fx-max-height: 150px; -fx-background-radius: 75px; -fx-border-radius: 75px; -fx-border-width: 3px; -fx-alignment: center;" text="ID: " textFill="#070303" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2d3447" height="647.0" layoutX="-25.0" layoutY="-3.0" stroke="BLACK" strokeType="INSIDE" width="1299.0" />
+         <Label fx:id="idLabel" layoutX="308.0" layoutY="12.0" maxHeight="166.0" maxWidth="610.0" prefHeight="150.0" prefWidth="610.0" style="-fx-background-color: #FFBE98; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-min-width: 150px; -fx-min-height: 150px; -fx-max-width: 15px; -fx-max-height: 150px; -fx-background-radius: 75px; -fx-border-radius: 75px; -fx-border-width: 3px; -fx-alignment: center;" text="ID: " textFill="#070303" />
          <Label fx:id="kandidatIdLabel" layoutX="554.0" layoutY="18.0" style="-fx-background-color: #BB2649; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-min-width: 150px; -fx-min-height: 150px; -fx-max-width: 150px; -fx-max-height: 150px; -fx-background-radius: 75px; -fx-border-radius: 75px; -fx-border-width: 3px; -fx-alignment: center;" text="Candidate ID:" />
          <Label fx:id="stafIdLabel" layoutX="790.0" layoutY="17.0" style="-fx-background-color: #6667AB; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-min-width: 150px; -fx-min-height: 150px; -fx-max-width: 150px; -fx-max-height: 150px; -fx-background-radius: 75px; -fx-border-radius: 75px; -fx-border-width: 3px; -fx-alignment: center;" text="Staf ID:" />
          <Label fx:id="dataRaportitLabel" layoutX="230.0" layoutY="173.0" maxWidth="200.0" minHeight="94.0" prefHeight="94.0" prefWidth="500.0" style="-fx-background-color: #4CAF#88B04B50; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-min-width: 150px; -fx-min-height: 150px; -fx-max-width: 300px; -fx-max-height: 150px; -fx-background-radius: 75px; -fx-border-radius: 75px; -fx-border-width: 3px; -fx-alignment: center;" text="Report Date:" />

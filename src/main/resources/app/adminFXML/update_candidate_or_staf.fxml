@@ -14,9 +14,9 @@
 
 <AnchorPane maxHeight="699.0" prefHeight="699.0" prefWidth="1314.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.UpdateUserController">
     <children>
-        <VBox layoutX="285.0" layoutY="55.0" prefHeight="279.0" prefWidth="800.0" style="-fx-background-color: #ffffff; -fx-border-color: #1656ad; -fx-padding: 10;">
-            <VBox prefHeight="327.0" prefWidth="790.0" spacing="15" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="20">
-                <Label text="%updateUserTitle" textFill="#062d9a">
+        <VBox layoutX="285.0" layoutY="55.0" prefHeight="279.0" prefWidth="800.0" style="-fx-background-color: #0f2657; -fx-border-color: #1656ad; -fx-padding: 10;">
+            <VBox prefHeight="327.0" prefWidth="790.0" spacing="15" style="-fx-background-color: #0f2657;" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="20">
+                <Label text="%updateUserTitle" textFill="WHITE">
                     <font>
                         <Font size="21.0" />
                     </font>
@@ -32,7 +32,7 @@
                 <TextField fx:id="saltField" promptText="Salt" />
                 <TextField fx:id="addressField" promptText="%address" />
 
-                <ComboBox fx:id="genderCombo" promptText="%gender">
+                <ComboBox fx:id="genderCombo" promptText="%gender" style="-fx-background-color: #d1a347;">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
                             <String fx:value="M" />
@@ -41,7 +41,7 @@
                     </items>
                 </ComboBox>
 
-                <ComboBox fx:id="roleCombo" promptText="%role">
+                <ComboBox fx:id="roleCombo" promptText="%role" style="-fx-background-color: #d1a347;">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
                             <String fx:value="Kandidat" />
@@ -62,7 +62,7 @@
                     <DatePicker fx:id="dataRegjistrimiPicker" promptText="%registrationDate" />
                 </VBox>
 
-                <Button onAction="#handleUpdate" text="%update" />
+                <Button onAction="#handleUpdate" style="-fx-background-color: #47d163;" text="%update" />
             </VBox>
         </VBox>
     </children>

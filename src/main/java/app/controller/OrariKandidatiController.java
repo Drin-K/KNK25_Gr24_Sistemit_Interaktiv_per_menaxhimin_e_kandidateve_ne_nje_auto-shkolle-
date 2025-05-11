@@ -90,8 +90,8 @@ public class OrariKandidatiController {
 
     private void updateProgresiChart() {
         try {
-            long teori = orariRepository.numeroSesione(kandidatId, "Teori", "Përfunduar");
-            long praktike = orariRepository.numeroSesione(kandidatId, "Praktikë", "Përfunduar");
+            int teori = orariService.numeroSesione(kandidatId, "Teori", "Përfunduar");
+            int praktike = orariService.numeroSesione(kandidatId, "Praktikë", "Përfunduar");
 
             progresiChart.getData().setAll(
                     new PieChart.Data("Teori (" + teori + "/15)", teori),

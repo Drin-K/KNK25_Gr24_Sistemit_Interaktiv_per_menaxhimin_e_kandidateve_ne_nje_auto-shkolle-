@@ -20,7 +20,7 @@ public class UserContext {
 
 
     public static int getUserId() {
-        return 3;
+        return currentUserId;
     }
 
     public static void clear() {

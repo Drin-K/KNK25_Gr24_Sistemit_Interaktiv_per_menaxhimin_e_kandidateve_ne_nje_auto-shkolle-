@@ -53,7 +53,7 @@ public class DokumentetRepository extends BaseRepository<Dokumentet, CreateDokum
             params.add(dokumentetDto.getIdKandidat());
         }
         if (dokumentetDto.getEmriSkedarit() != null) {
-            query.append("Emri_Skeadri = ?, ");
+            query.append("Emri_Skedari = ?, ");
             params.add(dokumentetDto.getEmriSkedarit());
         }
         if (dokumentetDto.getLlojiDokumentit() != null) {

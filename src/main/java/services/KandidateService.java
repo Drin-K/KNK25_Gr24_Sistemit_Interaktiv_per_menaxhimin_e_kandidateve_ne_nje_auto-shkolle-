@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class KandidateService {
+    private static final int MAX_KANDIDATE = 500;
     private KandidatetRepository kandidatetRepository;
     private PatentaRepository patentaRepository;
     private String emailRegEx = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$"; //RegEx i thjesht i emailit
@@ -102,7 +103,11 @@ public ArrayList<Kandidatet> getAll() {
     return kandidatiList;
 }
     public int countKandidatet() {
-        return this.kandidatetRepository.countKandidatet();
+        int count=this.kandidatetRepository.countKandidatet();
+        if (count >= MAX_KANDIDATE) {
+            throw new IllegalStateException("Limiti maksimal i kandidatëve është arritur!");
+        }
+        return count;
     }
 
 

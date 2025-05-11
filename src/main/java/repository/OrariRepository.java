@@ -128,9 +128,9 @@ public class OrariRepository extends BaseRepository<Orari, CreateOrariDto, Updat
         return oraret;
     }
 
-    public long numeroSesione(int idKandidat, String llojiMesimit, String statusi) {
+    public int numeroSesione(int idKandidat, String llojiMesimit, String statusi) {
         String query = "SELECT COUNT(*) FROM Orari WHERE ID_Kandidat = ? AND Lloji_i_Mesimit = ? AND Statusi = ?";
-        long numri = 0;
+        int numri = 0;
 
         try (PreparedStatement pstm = this.connection.prepareStatement(query)) {
             pstm.setInt(1, idKandidat);
@@ -139,7 +139,7 @@ public class OrariRepository extends BaseRepository<Orari, CreateOrariDto, Updat
             ResultSet res = pstm.executeQuery();
 
             if (res.next()) {
-                numri = res.getLong(1); // Lexon rezultatin e COUNT(*)
+                numri = res.getInt(1);
             }
         } catch (SQLException e) {
             throw new RuntimeException("Gabim gjatë numërimit të sesioneve për kandidat: " + idKandidat, e);

@@ -144,4 +144,12 @@ public class OrariService {
         LocalDate currentDate = LocalDate.now();
         return orariRepository.gjejOraretPerDate(currentDate);
     }
+    public int numeroSesione(int idKandidat, String llojiMesimit, String statusi){
+     int numriSesioneve= this.orariRepository.numeroSesione(idKandidat,llojiMesimit,statusi);
+        if (numriSesioneve > 20) {
+            throw new IllegalStateException("Kandidati ka kaluar limitin maksimal të sesioneve për këtë lloj mësimi dhe status!");
+        }
+        return numriSesioneve;
+
+    }
 }

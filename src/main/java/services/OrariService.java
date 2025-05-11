@@ -10,6 +10,7 @@ import repository.AutomjetetRepository;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrariService {
@@ -26,7 +27,17 @@ public class OrariService {
     public List<Orari> shikoOraretPerId(int id) {
         return orariRepository.gjejOraretPerId(id);
     }
+    public List<Orari> gjejOraretPerKandidat(LocalDate dataZgjedhur, int kandidatId) {
+        List<Orari> teGjithaOraret = orariRepository.gjejOraretPerDate(dataZgjedhur);
+        List<Orari> oraretEFiltruara = new ArrayList<>();
 
+        for (Orari o : teGjithaOraret) {
+            if (o.getIdKandidat() == kandidatId) {
+                oraretEFiltruara.add(o);
+            }
+        }
+        return oraretEFiltruara;
+    }
     public void delete(int orariId) throws Exception {
         Orari ekzistues = orariRepository.getById(orariId);
         if (ekzistues == null) {
@@ -152,4 +163,16 @@ public class OrariService {
         return numriSesioneve;
 
     }
+    public String getPershkrimiSesionit(Orari orari) {
+        return orari.getLlojiMesimit()+ ": " + orari.getOraFillimit() + "-" + orari.getOraPerfundimit();
+    }
+    public List<String> getPershkrimetESesioneveTeSotme() {
+        List<String> pershkrimet = new ArrayList<>();
+        for (var orari : getSessionsToday()) {
+            pershkrimet.add(getPershkrimiSesionit(orari));
+        }
+        return pershkrimet;
+    }
+
+
 }

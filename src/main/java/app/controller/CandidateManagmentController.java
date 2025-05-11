@@ -85,6 +85,7 @@ public class CandidateManagmentController extends BaseController {
     private final DokumentetRepository dokumentetRepository;
     private final PagesatRepository pagesatRepository;
     private final OrariRepository orariRepository;
+    private final DokumentService dokumentService;
 
 
     public CandidateManagmentController() {
@@ -95,6 +96,7 @@ public class CandidateManagmentController extends BaseController {
         this.dokumentetRepository = new DokumentetRepository();
         this.pagesatRepository = new PagesatRepository();
         this.orariRepository = new OrariRepository();
+        this.dokumentService=new DokumentService();
     }
 
     @FXML
@@ -213,7 +215,7 @@ public class CandidateManagmentController extends BaseController {
     }
 
     @FXML
-    private void onDeletePagesatClick(){
+    private void onDeletePagesatClick() {
         Pagesat selected = tabelaPagesat.getSelectionModel().getSelectedItem();
         if (kontrolloDheKonfirmo(selected, "Delete payment with ID: " + selected.getId() + "?")) {
             tabelaPagesat.getItems().remove(selected);
@@ -222,7 +224,7 @@ public class CandidateManagmentController extends BaseController {
     }
 
     @FXML
-    private void onDeleteTestetClick(){
+    private void onDeleteTestetClick() {
         Testet selected = testetTable.getSelectionModel().getSelectedItem();
         if (kontrolloDheKonfirmo(selected, "Delete test with ID: " + selected.getId() + "?")) {
             testetTable.getItems().remove(selected);
@@ -270,7 +272,7 @@ public class CandidateManagmentController extends BaseController {
     }
 
     @FXML
-    private void onDownloadClick() {
+    private void onDownloadClick() throws IOException {
         Dokumentet selected = tableViewDokumente.getSelectionModel().getSelectedItem();
         if (selected == null) {
             showAlert(Alert.AlertType.WARNING, "Warning", "Please select a document.");
@@ -279,7 +281,7 @@ public class CandidateManagmentController extends BaseController {
 
         if (showConfirmationDialog("Confirm Download",
                 "Do you want to download the document: " + selected.getEmriSkedarit() + "?")) {
-            download(selected.getEmriSkedarit());
+            dokumentService.download(selected.getEmriSkedarit());
         }
     }
 
@@ -298,22 +300,5 @@ public class CandidateManagmentController extends BaseController {
         }
     }
 
-    public void download(String emriSkedarit) {
-        Path uploadDir = Paths.get("src", "main", "java", "utils", "uploads");
-        Path sourcePath = uploadDir.resolve(emriSkedarit);
-        Path destinationPath = Paths.get(System.getProperty("user.home"), "Desktop").resolve(emriSkedarit);
-
-        try {
-            if (Files.notExists(uploadDir)) Files.createDirectories(uploadDir);
-            if (Files.exists(sourcePath)) {
-                Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
-                showAlert(Alert.AlertType.INFORMATION, "Success", "The document was successfully downloaded to: " + destinationPath);
-            } else {
-                throw new IOException("The document does not exist.");
-            }
-        } catch (IOException e) {
-            showAlert(Alert.AlertType.ERROR, "Error", "The document could not be downloaded: " + e.getMessage());
-        }
-    }
 }
 

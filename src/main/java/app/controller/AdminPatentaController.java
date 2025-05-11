@@ -5,8 +5,8 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import models.Kandidatet;
-import repository.KandidatetRepository;
-import repository.PatentaRepository;
+import services.KandidateService;
+import services.PatentaService;
 
 import java.util.List;
 
@@ -19,12 +19,12 @@ public class AdminPatentaController extends BaseController {
     @FXML
     private TableColumn<Kandidatet, String> colEmri1, colMbiemri1, colEmail1, colTelefoni1, colDataRegjistrimit1, colStatusi1;
 
-    private final KandidatetRepository kandidatetRepository;
-    private final PatentaRepository patentaRepository;
+    private final KandidateService kandidateService;
+    private final PatentaService patentaService;
 
     public AdminPatentaController() {
-        this.patentaRepository = new PatentaRepository();
-        this.kandidatetRepository = new KandidatetRepository();
+        this.patentaService=new PatentaService();
+        this.kandidateService=new KandidateService();
     }
 
     @FXML
@@ -43,8 +43,8 @@ public class AdminPatentaController extends BaseController {
     }
 
     private void loadCandidateData() {
-        tableKandidatet.setItems(FXCollections.observableArrayList(kandidatetRepository.shfaqKandidatetMeTeDrejte()));
-        tableKandidatet1.setItems(FXCollections.observableArrayList(kandidatetRepository.shfaqKandidatetMeTeDrejtePaPagesa()));
+        tableKandidatet.setItems(FXCollections.observableArrayList(kandidateService.shfaqKandidatetMeTeDrejte()));
+        tableKandidatet1.setItems(FXCollections.observableArrayList(kandidateService.shfaqKandidatetMeTeDrejtePaPagesa()));
     }
 
     @FXML
@@ -56,7 +56,7 @@ public class AdminPatentaController extends BaseController {
             return;
         }
         try {
-            if (this.patentaRepository.aprovoPatenten(kandidat.getIdUser())) {
+            if (this.patentaService.aprovoPatenten(kandidat.getIdUser())) {
                 loadCandidateData();
                 showAlert(Alert.AlertType.INFORMATION, "Success!", "The license has been aproved");
             } else {

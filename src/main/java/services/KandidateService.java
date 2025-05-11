@@ -4,6 +4,7 @@ import models.*;
 import models.Dto.kandidatet.CreateKandidatetDto;
 import repository.KandidatetRepository;
 import repository.PatentaRepository;
+
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
@@ -109,6 +110,14 @@ public ArrayList<Kandidatet> getAll() {
         }
         return count;
     }
-
+    public HashMap<String, Integer> countKandidatetByStatusiProcesit(){
+        return this.kandidatetRepository.countKandidatetByStatusiProcesit();
+    }
+    public List<Kandidatet> shfaqKandidatetMeTeDrejte(){
+        return this.kandidatetRepository.shfaqKandidatetMeTeDrejte();
+    }
+    public List<Kandidatet> shfaqKandidatetMeTeDrejtePaPagesa(){
+        return this.kandidatetRepository.shfaqKandidatetMeTeDrejtePaPagesa();
+    }
 
 }

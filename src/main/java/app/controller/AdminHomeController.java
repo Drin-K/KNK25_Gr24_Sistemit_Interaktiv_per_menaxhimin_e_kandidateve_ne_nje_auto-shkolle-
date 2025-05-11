@@ -3,14 +3,14 @@ package app.controller;
 import app.controller.base.BaseController;
 import javafx.fxml.FXML;
 import javafx.scene.chart.*;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import repository.KandidatetRepository;
 import services.*;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static services.ChartDataService.getChartSeries;
 
 public class AdminHomeController extends BaseController {
 
@@ -24,7 +24,6 @@ public class AdminHomeController extends BaseController {
     private final OrariService sesioniService = new OrariService();
     private final KandidateService kandidateService = new KandidateService();
     private final StafiService stafiService = new StafiService();
-    private final KandidatetRepository kandidatetRepository = new KandidatetRepository();
     private final PatentaService patentaService=new PatentaService();
 
     @FXML
@@ -35,22 +34,12 @@ public class AdminHomeController extends BaseController {
     private void loadDashboardData() {
         totalKandidat.setText(String.valueOf(kandidateService.countKandidatet()));
         totalStafi.setText(String.valueOf(stafiService.countStafi()));
-        updatePieChart(kandidatetRepository.countKandidatetByStatusiProcesit());
-        updateLineChart(patentatEleshuara, getLicensesIssuedSeries());
+        updatePieChart(this.kandidateService.countKandidatetByStatusiProcesit());
+        updateLineChart(patentatEleshuara, patentaService.getLicensesIssuedSeries());
         updateBarChart(pagesaService.getUnpaidPaymentsChartData(), pagesaTePapaguara);
         updateBarChart(getChartSeries(kandidateService.getAllRegistrationsGroupedByMonth(), "Registrations"), nrRegjistrimeve);
         updateBarChart(getChartSeries(pagesaService.getPayments(), "Number Of Payments"), PagesaTeKryera);
         updateSessionsToday();
-    }
-
-    private XYChart.Series<String, Number> getLicensesIssuedSeries() {
-        try {
-            Map<String, Integer> data = patentaService.getLicensesIssuedCountPerDate();
-            return getChartSeries(new HashMap<>(data), "Licenses Issued");
-        } catch (Exception e) {
-            showAlert(Alert.AlertType.ERROR, "Error", "Error loading licenses");
-            return new XYChart.Series<>();
-        }
     }
 
     private void updatePieChart(HashMap<String, Integer> data) {
@@ -71,10 +60,7 @@ public class AdminHomeController extends BaseController {
     }
 
     private void updateSessionsToday() {
-        sesionetSot.getItems().clear();
-        for (var orari : sesioniService.getSessionsToday()) {
-            String item = orari.getLlojiMesimit() + ": " + orari.getOraFillimit() + "-" + orari.getOraPerfundimit();
-            sesionetSot.getItems().add(item);
-        }
+        sesionetSot.getItems().setAll(sesioniService.getPershkrimetESesioneveTeSotme());
     }
+
 }

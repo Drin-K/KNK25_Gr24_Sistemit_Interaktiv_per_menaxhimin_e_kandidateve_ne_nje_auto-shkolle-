@@ -1,4 +1,5 @@
 package app.controller;
+import app.controller.base.BaseController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
@@ -10,9 +11,8 @@ import services.OrariService;
 import services.UserContext;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
-public class OrariKandidatiController {
+public class OrariKandidatiController extends BaseController {
 
     @FXML private TableView<Orari> orariTable;
     @FXML private TableColumn<Orari, String> dataColumn;
@@ -61,22 +61,14 @@ public class OrariKandidatiController {
         statusiColumn.setCellValueFactory(new PropertyValueFactory<>("statusi"));
     }
 
-
     @FXML
     private void kerkoOraretPerDate() {
-       LocalDate dataZgjedhur = dataPicker.getValue();
+        LocalDate dataZgjedhur = dataPicker.getValue();
         if (dataZgjedhur == null) {
-            showAlert("Gabim", "Zgjidhni një datë.");
+            showAlert(Alert.AlertType.ERROR,"Gabim", "Zgjidhni një datë.");
             return;
         }
-        List<Orari> teGjithaOraret = orariRepository.gjejOraretPerDate(dataZgjedhur);
-        List<Orari> oraretEFiltruara = new ArrayList<>();
-
-        for (Orari o : teGjithaOraret) {
-            if (o.getIdKandidat() == kandidatId) {
-                oraretEFiltruara.add(o);
-            }
-        }
+        List<Orari> oraretEFiltruara = orariService.gjejOraretPerKandidat(dataZgjedhur, kandidatId);
         shfaqOraret(oraretEFiltruara);
     }
 
@@ -84,7 +76,7 @@ public class OrariKandidatiController {
     private void shfaqOraret(List<Orari> oraret) {
         orariTable.getItems().setAll(oraret);
         if (oraret.isEmpty()) {
-            showAlert("Informacion", "Nuk u gjetën orare.");
+            showAlert(Alert.AlertType.INFORMATION,"Informacion", "Nuk u gjetën orare.");
         }
     }
 
@@ -102,14 +94,9 @@ public class OrariKandidatiController {
             progresiChart.setTitle("Progresi i Mësimeve\nStatus: " + status);
 
         } catch (Exception e) {
-            showAlert("Gabim", "Gabim gjatë ngarkimit të progresit: " + e.getMessage());
+            showAlert(Alert.AlertType.INFORMATION,"Gabim", "Gabim gjatë ngarkimit të progresit.");
         }
     }
 
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, message, ButtonType.OK);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.showAndWait();
-    }
+
 }

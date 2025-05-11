@@ -55,7 +55,6 @@ public class AdminPatentaController extends BaseController {
             showAlert(Alert.AlertType.WARNING, "Attention", "Please select a candidate");
             return;
         }
-
         try {
             if (this.patentaRepository.aprovoPatenten(kandidat.getIdUser())) {
                 loadCandidateData();

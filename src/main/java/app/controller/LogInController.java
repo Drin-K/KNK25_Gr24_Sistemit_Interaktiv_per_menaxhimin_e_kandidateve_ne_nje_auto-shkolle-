@@ -48,11 +48,4 @@ private void languageClick() throws Exception{
     languageManager.toggleLanguage();
     SceneManager.reload();
 }
-
-private void showAlert(String title, String message, Alert.AlertType type) {
-    Alert alert = new Alert(type);
-    alert.setTitle(title);
-    alert.setHeaderText(null);
-    alert.setContentText(message);
-    alert.showAndWait();
-}}
+}

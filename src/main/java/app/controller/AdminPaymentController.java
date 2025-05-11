@@ -85,13 +85,6 @@ public AdminPaymentController(){
             PPM.getData().add(series);
         }
     }
-    private boolean areDatesValid(LocalDate fromDate, LocalDate toDate) {
-        if (fromDate.isAfter(toDate)) {
-            showAlert(Alert.AlertType.WARNING, "Warning", "The 'from' date cannot be after the 'to' date.");
-            return false;
-        }
-        return true;
-    }
 
     @FXML
     public void filterPagesatIfValid() throws SQLException {

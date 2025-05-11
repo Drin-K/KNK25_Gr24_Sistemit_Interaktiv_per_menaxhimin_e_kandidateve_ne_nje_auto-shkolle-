@@ -78,7 +78,7 @@ public class FeedBackRepository extends BaseRepository<FeedBack, CreateFeedBackD
 
         String query = """
         SELECT * FROM FeedBack 
-        WHERE Id_Staf = ? 
+        WHERE ID_Staf = ? 
         AND DATE(Data_Feedback) = ?
         """;
 

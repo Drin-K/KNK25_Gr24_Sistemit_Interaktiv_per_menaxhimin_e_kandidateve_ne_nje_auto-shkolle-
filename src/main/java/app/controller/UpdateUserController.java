@@ -5,7 +5,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import models.Dto.kandidatet.UpdateKandidatetDto;
 import models.Dto.user.UpdateUserDto;

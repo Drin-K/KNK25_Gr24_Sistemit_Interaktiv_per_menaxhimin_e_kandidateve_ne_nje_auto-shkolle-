@@ -79,9 +79,9 @@ public class KandidateService {
         return kandidatetRepository.delete(id);
     }
 
-    public HashMap<String, Integer> getRegistrationsLast12Months() {
+    public HashMap<String, Integer> getAllRegistrationsGroupedByMonth() {
         try {
-            return kandidatetRepository.getRegistrationsLast12Months();
+            return kandidatetRepository.getAllRegistrationsGroupedByMonth();
         } catch (SQLException e) {
             e.printStackTrace();
             return new HashMap<>();

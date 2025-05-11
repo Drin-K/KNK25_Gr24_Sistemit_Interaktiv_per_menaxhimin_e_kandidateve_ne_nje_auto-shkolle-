@@ -128,31 +128,30 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
 
         return pagesat;
     }
-    public HashMap<String, Integer> getPaymentsLast12Months() {
+    public HashMap<String, Integer> getPayments() {
         HashMap<String, Integer> data = new HashMap<>();
 
         String sql = "SELECT TO_CHAR(Data_e_Pageses, 'YYYY-MM') AS month, COUNT(*) AS total " +
                 "FROM Pagesat " +
-                "WHERE Data_e_Pageses >= CURRENT_DATE - INTERVAL '12 MONTH' " +
                 "GROUP BY TO_CHAR(Data_e_Pageses, 'YYYY-MM') " +
                 "ORDER BY month ASC";
 
         try (
-             PreparedStatement stmt = this.connection.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
-
+                PreparedStatement stmt = this.connection.prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery()
+        ) {
             while (rs.next()) {
                 String month = rs.getString("month");
                 int total = rs.getInt("total");
                 data.put(month, total);
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
         return data;
     }
+
     public void updateStatusiPageses(int pagesaId, String statusiRi) throws SQLException {
         String sql = "UPDATE Pagesat SET Statusi_i_Pageses = ? WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {

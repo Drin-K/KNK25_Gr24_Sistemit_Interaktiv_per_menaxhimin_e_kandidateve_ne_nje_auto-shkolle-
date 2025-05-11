@@ -72,8 +72,8 @@ public class PagesaService {
         }
         return series;
     }
-    public HashMap<String, Integer> getPaymentsLast12Months() {
-        return pagesatRepository.getPaymentsLast12Months();
+    public HashMap<String, Integer> getPayments() {
+        return pagesatRepository.getPayments();
     }
 
 

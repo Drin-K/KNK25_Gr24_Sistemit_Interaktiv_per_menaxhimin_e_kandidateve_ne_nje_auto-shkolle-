@@ -38,8 +38,8 @@ public class AdminHomeController extends BaseController {
         updatePieChart(kandidatetRepository.countKandidatetByStatusiProcesit());
         updateLineChart(patentatEleshuara, getLicensesIssuedSeries());
         updateBarChart(pagesaService.getUnpaidPaymentsChartData(), pagesaTePapaguara);
-        updateBarChart(getChartSeries(kandidateService.getRegistrationsLast12Months(), "Registrations"), nrRegjistrimeve);
-        updateBarChart(getChartSeries(pagesaService.getPaymentsLast12Months(), "Number Of Payments"), PagesaTeKryera);
+        updateBarChart(getChartSeries(kandidateService.getAllRegistrationsGroupedByMonth(), "Registrations"), nrRegjistrimeve);
+        updateBarChart(getChartSeries(pagesaService.getPayments(), "Number Of Payments"), PagesaTeKryera);
         updateSessionsToday();
     }
 

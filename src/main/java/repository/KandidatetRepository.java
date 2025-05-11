@@ -52,12 +52,11 @@ public class KandidatetRepository extends UserRepository {
     public Kandidatet fromResultSet(ResultSet result) throws SQLException {
         return Kandidatet.getInstance(result);
     }
-    public HashMap<String, Integer> getRegistrationsLast12Months() throws SQLException {
+    public HashMap<String, Integer> getAllRegistrationsGroupedByMonth() throws SQLException {
         HashMap<String, Integer> data = new HashMap<>();
 
         String query = "SELECT TO_CHAR(dataRegjistrimi, 'YYYY-MM') AS month, COUNT(*) AS total " +
                 "FROM Kandidatet " +
-                "WHERE dataRegjistrimi >= CURRENT_DATE - INTERVAL '12 MONTH' " +
                 "GROUP BY TO_CHAR(dataRegjistrimi, 'YYYY-MM') " +
                 "ORDER BY month ASC";
 
@@ -72,6 +71,7 @@ public class KandidatetRepository extends UserRepository {
 
         return data;
     }
+
 
 
     public ArrayList<User> getAll() {

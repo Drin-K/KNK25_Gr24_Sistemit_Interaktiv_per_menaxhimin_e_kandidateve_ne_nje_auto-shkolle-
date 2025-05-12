@@ -1,18 +1,29 @@
 package app.controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
+import models.Kandidatet;
+import repository.KandidatetRepository;
 import services.LanguageManager;
 import services.SceneManager;
 import services.UserContext;
 import utils.SceneLocator;
 
+import java.net.URL;
 import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class frontPageConsumatorController {
 
     private final LanguageManager languageManager = LanguageManager.getInstance();
-
+    private KandidatetRepository user=new KandidatetRepository();
+    private Kandidatet kandidatet;
+    @FXML
+    private Text kandidatiName;
+    @FXML
+    private Text kandidatiSurname;
     @FXML
     private AnchorPane rightPage;
 
@@ -22,7 +33,12 @@ public class frontPageConsumatorController {
         SceneManager.load(SceneLocator.CATEGORY_PAGE, this.rightPage);
 
     }
-
+    @FXML
+    public void initialize(){
+        this.kandidatet = user.getById(UserContext.getUserId());
+        this.kandidatiName.setText(kandidatet.getName());
+        this.kandidatiSurname.setText(kandidatet.getSurname());
+    }
     @FXML
     private void homeClick() throws Exception {
         SceneManager.load(SceneLocator.HOME_PAGE, this.rightPage);

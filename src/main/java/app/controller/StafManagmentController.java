@@ -171,6 +171,7 @@ public class StafManagmentController extends BaseController {
         if (checkAndConfirm(selected, confirmMsg, "Please select a feedback to delete.")) {
             feedbackTable.getItems().remove(selected);
             feedBackService.delete(selected.getId());
+            showBestAndWorstInstructors();
         }
     }
 

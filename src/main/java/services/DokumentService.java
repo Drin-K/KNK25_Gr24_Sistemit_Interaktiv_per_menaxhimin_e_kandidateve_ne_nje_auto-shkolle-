@@ -112,7 +112,6 @@ public class DokumentService {
         Path uploadDir = Paths.get("src", "main", "java", "utils", "uploads");
         Path sourcePath = uploadDir.resolve(emriSkedarit);
         Path destinationPath = Paths.get(System.getProperty("user.home"), "Desktop").resolve(emriSkedarit);
-
         if (Files.notExists(uploadDir)) Files.createDirectories(uploadDir);
         if (Files.exists(sourcePath)) {
             Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);

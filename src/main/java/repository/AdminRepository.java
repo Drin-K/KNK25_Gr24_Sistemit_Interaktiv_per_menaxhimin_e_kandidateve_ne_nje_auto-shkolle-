@@ -3,13 +3,11 @@ package repository;
 
 import models.Admin;
 import models.Dto.user.CreateUserDto;
-import models.Stafi;
 import models.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 public class AdminRepository extends UserRepository {

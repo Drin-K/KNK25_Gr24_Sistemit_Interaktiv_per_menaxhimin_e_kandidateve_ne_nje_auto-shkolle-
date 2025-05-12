@@ -29,28 +29,36 @@ public class AdminPatentaController extends BaseController {
 
     @FXML
     public void initialize() {
-        configureTables(tableKandidatet, List.of(colEmri, colMbiemri, colEmail, colTelefoni, colDataRegjistrimit, colStatusi),
+        configureTable(tableKandidatet, List.of(colEmri, colMbiemri, colEmail, colTelefoni, colDataRegjistrimit, colStatusi),
                 new String[]{"name", "surname", "email", "phoneNumber", "dataRegjistrimit", "statusiProcesit"});
 
-        configureTables(tableKandidatet1, List.of(colEmri1, colMbiemri1, colEmail1, colTelefoni1, colDataRegjistrimit1, colStatusi1),
+        configureTable(tableKandidatet1, List.of(colEmri1, colMbiemri1, colEmail1, colTelefoni1, colDataRegjistrimit1, colStatusi1),
                 new String[]{"name", "surname", "email", "phoneNumber", "dataRegjistrimit", "statusiProcesit"});
 
         loadCandidateData();
     }
 
-    private void configureTables(TableView<Kandidatet> table, List<TableColumn<Kandidatet, ?>> columns, String[] propertyNames) {
-        configureTable(table, columns, propertyNames);
-    }
+
 
     private void loadCandidateData() {
-        tableKandidatet.setItems(FXCollections.observableArrayList(kandidateService.shfaqKandidatetMeTeDrejte()));
-        tableKandidatet1.setItems(FXCollections.observableArrayList(kandidateService.shfaqKandidatetMeTeDrejtePaPagesa()));
+        try {
+            List<Kandidatet> lista1 = kandidateService.shfaqKandidatetMeTeDrejte();
+            tableKandidatet.setItems(FXCollections.observableArrayList(lista1));
+        } catch (IllegalStateException ex) {
+            showAlert(Alert.AlertType.WARNING,"Kujdes!" ,ex.getMessage());
+        }
+        try {
+            List<Kandidatet> lista2 = kandidateService.shfaqKandidatetMeTeDrejtePaPagesa();
+            tableKandidatet1.setItems(FXCollections.observableArrayList(lista2));
+        } catch (IllegalStateException ex) {
+            showAlert(Alert.AlertType.WARNING,"Kujdes!" ,ex.getMessage());
+        }
     }
+
 
     @FXML
     private void aprovoPatentenClick() {
         Kandidatet kandidat = tableKandidatet.getSelectionModel().getSelectedItem();
-
         if (kandidat == null) {
             showAlert(Alert.AlertType.WARNING, "Attention", "Please select a candidate");
             return;
@@ -63,7 +71,7 @@ public class AdminPatentaController extends BaseController {
                 showAlert(Alert.AlertType.ERROR, "Error", "The license cannot be approved");
             }
         } catch (Exception e) {
-            showAlert(Alert.AlertType.ERROR, "Error", "Database-related error");
+            showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
         }
     }
 }

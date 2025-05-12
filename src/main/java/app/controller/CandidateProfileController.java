@@ -15,7 +15,6 @@ import services.UserContext;
 import utils.SceneLocator;
 
 import java.io.File;
-import java.net.URL;
 
 public class CandidateProfileController {
     DokumentetRepository dokumentetRepository = new DokumentetRepository();

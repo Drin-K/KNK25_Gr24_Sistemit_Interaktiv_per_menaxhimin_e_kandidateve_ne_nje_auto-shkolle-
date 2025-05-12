@@ -151,10 +151,7 @@ public class OrariService {
     }
 
 
-    public List<Orari> getSessionsToday() {
-        LocalDate currentDate = LocalDate.now();
-        return orariRepository.gjejOraretPerDate(currentDate);
-    }
+
     public int numeroSesione(int idKandidat, String llojiMesimit, String statusi){
      int numriSesioneve= this.orariRepository.numeroSesione(idKandidat,llojiMesimit,statusi);
         if (numriSesioneve > 20) {
@@ -163,12 +160,16 @@ public class OrariService {
         return numriSesioneve;
 
     }
+    public List<Orari> getSessionsToday() {
+        LocalDate currentDate = LocalDate.now();
+        return orariRepository.gjejOraretPerDate(currentDate);
+    }
     public String getPershkrimiSesionit(Orari orari) {
         return orari.getLlojiMesimit()+ ": " + orari.getOraFillimit() + "-" + orari.getOraPerfundimit();
     }
     public List<String> getPershkrimetESesioneveTeSotme() {
         List<String> pershkrimet = new ArrayList<>();
-        for (var orari : getSessionsToday()) {
+        for (Orari orari : getSessionsToday()) {
             pershkrimet.add(getPershkrimiSesionit(orari));
         }
         return pershkrimet;

@@ -15,9 +15,7 @@ import repository.PagesatRepository;
 import repository.TestetRepository;
 import services.*;
 import utils.SceneLocator;
-
 import java.io.IOException;
-import java.nio.file.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -172,8 +170,11 @@ public class CandidateManagmentController extends BaseController {
 
         CreateKandidatetDto kandidatet = new CreateKandidatetDto(
                 emri, mbiemri, email, phone, datelindja, password, PasswordHasher.generateSalt(),
-                "Kandidat", adresa, gjinia, null, statusiProcesit);
-        kandidateService.create(kandidatet);
+                 adresa, gjinia, null, statusiProcesit);
+      try{  kandidateService.create(kandidatet);}
+      catch (Exception e){
+          showAlert(Alert.AlertType.ERROR,"Error",e.getMessage());
+      }
         clearData();
     }
 
@@ -278,7 +279,6 @@ public class CandidateManagmentController extends BaseController {
             showAlert(Alert.AlertType.WARNING, "Warning", "Please select a document.");
             return;
         }
-
         if (showConfirmationDialog("Confirm Download",
                 "Do you want to download the document: " + selected.getEmriSkedarit() + "?")) {
             dokumentService.download(selected.getEmriSkedarit());

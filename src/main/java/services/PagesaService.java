@@ -75,8 +75,22 @@ public class PagesaService {
         return series;
     }
     public HashMap<String, Integer> getPayments() {
-        return pagesatRepository.getPayments();
+        HashMap<String, Integer> data = pagesatRepository.getPayments();
+        if (data == null) {
+            throw new IllegalStateException("Të dhënat e pagesave janë null!");
+        }
+        if (data.isEmpty()) {
+            throw new IllegalStateException("Nuk u gjetën pagesa në sistem!");
+        }
+        for (Map.Entry<String, Integer> entry : data.entrySet()) {
+            if (entry.getValue() < 0) {
+                throw new IllegalStateException("Vlera negative për muajin: " + entry.getKey());
+            }
+        }
+
+        return data;
     }
+
 
 
     public void delete(int pagesaId) throws Exception {

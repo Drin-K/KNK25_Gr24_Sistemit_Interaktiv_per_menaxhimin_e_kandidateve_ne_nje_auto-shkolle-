@@ -65,7 +65,7 @@ public class SignUpController {
         boolean signupSuccess = UserService.signup(dto);
 
         if (signupSuccess) {
-            messageLabel.setText("User successfully signed up!");
+            messageLabel.setText("Successfully signed up!");
             messageLabel.setVisible(true);
             errorLabel.setVisible(false);
         } else {

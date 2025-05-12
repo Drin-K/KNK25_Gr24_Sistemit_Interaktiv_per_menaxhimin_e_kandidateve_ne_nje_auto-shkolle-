@@ -55,7 +55,7 @@ public class AdminPaymentController extends BaseController {
     public void initialize() {
         configurePagesatTable();
         initializeComboBoxes();
-        loadTableDatat();
+        loadTableData();
         initializeChartsAndIndicators();
     }
 
@@ -82,7 +82,7 @@ public class AdminPaymentController extends BaseController {
         }
     }
 
-    public void loadTableDatat() {
+    public void loadTableData() {
         pagesatList.clear();
         pagesatList.addAll(pagesatRepository.getAll());
         pagesatTable.setItems(pagesatList);
@@ -143,7 +143,7 @@ public class AdminPaymentController extends BaseController {
         try {
             pagesatRepository.updateStatusiPageses(selectedPagesa.getId(), statusiRi);
             showAlert(Alert.AlertType.INFORMATION, "Success", "Payment status was successfully updated!");
-            loadTableDatat();
+            loadTableData();
         } catch (SQLException e) {
             e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Error", "An error occurred while updating the payment status.");

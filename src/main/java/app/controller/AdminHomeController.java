@@ -3,6 +3,7 @@ package app.controller;
 import app.controller.base.BaseController;
 import javafx.fxml.FXML;
 import javafx.scene.chart.*;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import services.*;
@@ -32,16 +33,43 @@ public class AdminHomeController extends BaseController {
     }
 
     private void loadDashboardData() {
-        totalKandidat.setText(String.valueOf(kandidateService.countKandidatet()));
-        totalStafi.setText(String.valueOf(stafiService.countStafi()));
-        updatePieChart(this.kandidateService.countKandidatetByStatusiProcesit());
+        updateTotalKandidat();
+        updateTotalStaf();
+        updatePieChart();
         updateLineChart(patentatEleshuara, patentaService.getLicensesIssuedSeries());
         updateBarChart(pagesaService.getUnpaidPaymentsChartData(), pagesaTePapaguara);
         updateBarChart(getChartSeries(kandidateService.getAllRegistrationsGroupedByMonth(), "Registrations"), nrRegjistrimeve);
-        updateBarChart(getChartSeries(pagesaService.getPayments(), "Number Of Payments"), PagesaTeKryera);
+        updateBarChart();
         updateSessionsToday();
     }
-
+    public void updateTotalKandidat() {
+        try {
+            totalKandidat.setText(String.valueOf(kandidateService.countKandidatet()));
+        } catch (IllegalStateException e) {
+            showAlert(Alert.AlertType.ERROR, "Gabim", e.getMessage());
+        }
+    }
+    public void updateBarChart(){
+        try{
+            updateBarChart(getChartSeries(pagesaService.getPayments(), "Number Of Payments"), PagesaTeKryera);
+        }catch(IllegalStateException e){
+            showAlert(Alert.AlertType.ERROR, "Gabim", e.getMessage());
+        }
+    }
+    public void updateTotalStaf() {
+        try {
+            totalStafi.setText(String.valueOf(stafiService.countStafi()));
+        } catch (IllegalStateException e) {
+            showAlert(Alert.AlertType.ERROR, "Gabim", e.getMessage());
+        }
+    }
+    private void updatePieChart(){
+        try {
+            updatePieChart(this.kandidateService.countKandidatetByStatusiProcesit());
+        } catch (IllegalStateException e) {
+            showAlert(Alert.AlertType.ERROR, "Gabim", e.getMessage());
+        }
+    }
     private void updatePieChart(HashMap<String, Integer> data) {
         piechart.getData().clear();
         for (Map.Entry<String, Integer> entry : data.entrySet()) {

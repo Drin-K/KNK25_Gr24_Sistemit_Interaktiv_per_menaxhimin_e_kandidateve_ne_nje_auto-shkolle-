@@ -136,66 +136,29 @@ public class KandidatetRepository extends UserRepository {
         return null;
     }
 
-    public List<Kandidatet> shfaqKandidatetMeTeDrejte() {
+    public List<Kandidatet> shfaqKandidatetMeKushtPagesa(String kushtiPageses) {
         List<Kandidatet> kandidatet = new ArrayList<>();
+
         String sql = """
-                SELECT DISTINCT k.id, k.dataRegjistrimi, k.statusiProcesit,\s
-                                u.name, u.surname, u.email, u.phoneNumber, u.dateOfBirth,\s
-                                u.hashedPassword, u.salt, u.adresa, u.gjinia,\s
-                                p1.Statusi AS StatusiPatentes\s
-                FROM Kandidatet k\s
-                JOIN "User" u ON u.id = k.id\s
-                JOIN Pagesat p2 ON p2.ID_Kandidat = k.id\s
-                JOIN Regjistrimet r ON r.ID_Kandidat = k.id\s
-                JOIN Testet t ON t.ID_Kandidat = k.id\s
-                JOIN Patenta p1 ON p1.ID_Kandidat = k.id\s
-                WHERE k.statusiProcesit = 'Përfunduar'\s
-                AND r.Statusi = 'Përfunduar'\s
-                AND t.Rezultati = 'Kaluar'\s
-                AND p1.Statusi = 'Në proces'
-                AND p2.Statusi_i_Pageses IN ('Paguar');
-                
-        """;
+            SELECT DISTINCT k.id, k.dataRegjistrimi, k.statusiProcesit,
+                            u.name, u.surname, u.email, u.phoneNumber, u.dateOfBirth,
+                            u.hashedPassword, u.salt, u.adresa, u.gjinia,
+                            p1.Statusi AS StatusiPatentes
+            FROM Kandidatet k
+            JOIN "User" u ON u.id = k.id
+            JOIN Pagesat p2 ON p2.ID_Kandidat = k.id
+            JOIN Regjistrimet r ON r.ID_Kandidat = k.id
+            JOIN Testet t ON t.ID_Kandidat = k.id
+            JOIN Patenta p1 ON p1.ID_Kandidat = k.id
+            WHERE k.statusiProcesit = 'Përfunduar'
+            AND r.Statusi = 'Përfunduar'
+            AND t.Rezultati = 'Kaluar'
+            AND p1.Statusi = 'Në proces'
+            AND p2.Statusi_i_Pageses IN (""" + kushtiPageses + ")";
 
-            try (PreparedStatement stmt = connection.prepareStatement(sql);
-                 ResultSet rs = stmt.executeQuery()) {
-
-
-            while (rs.next()) {
-                kandidatet.add(Kandidatet.getInstance(rs));
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return kandidatet;
-    }
-    public List<Kandidatet> shfaqKandidatetMeTeDrejtePaPagesa() {
-        List<Kandidatet> kandidatet = new ArrayList<>();
-        String query = """
-                SELECT DISTINCT k.id, k.dataRegjistrimi, k.statusiProcesit,\s
-                                u.name, u.surname, u.email, u.phoneNumber, u.dateOfBirth,\s
-                                u.hashedPassword, u.salt, u.adresa, u.gjinia,\s
-                                p1.Statusi AS StatusiPatentes\s
-                FROM Kandidatet k\s
-                JOIN "User" u ON u.id = k.id\s
-                JOIN Pagesat p2 ON p2.ID_Kandidat = k.id\s
-                JOIN Regjistrimet r ON r.ID_Kandidat = k.id\s
-                JOIN Testet t ON t.ID_Kandidat = k.id\s
-                JOIN Patenta p1 ON p1.ID_Kandidat = k.id\s
-                WHERE k.statusiProcesit = 'Përfunduar'\s
-                AND r.Statusi = 'Përfunduar'\s
-                AND t.Rezultati = 'Kaluar'\s
-                AND p1.Statusi = 'Në proces'
-                AND p2.Statusi_i_Pageses IN ('Mbetur', 'Pjesërisht');
-                
-        """;
-
-        try (PreparedStatement stmt = connection.prepareStatement(query);
+        try (PreparedStatement stmt = connection.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
-
             while (rs.next()) {
                 kandidatet.add(Kandidatet.getInstance(rs));
             }
@@ -206,6 +169,7 @@ public class KandidatetRepository extends UserRepository {
 
         return kandidatet;
     }
+
     @Override
     public Kandidatet findByEmail(String email){
         String query = "SELECT *" +

@@ -69,7 +69,7 @@ public class StafManagmentController extends BaseController {
         krijoFormenHBox.setVisible(false);
         configureAllTables();
         loadAllData();
-        showTopAndBottomInstructors();
+        showBestAndWorstInstructors();
     }
 
     private void configureAllTables() {
@@ -109,7 +109,7 @@ public class StafManagmentController extends BaseController {
         loadOrariData();
     }
 
-    private void showTopAndBottomInstructors() {
+    private void showBestAndWorstInstructors() {
         high.setText(stafiRepository.getMostRatedInstructorName());
         low.setText(stafiRepository.getLeastRatedInstructorName());
     }
@@ -171,6 +171,7 @@ public class StafManagmentController extends BaseController {
         if (checkAndConfirm(selected, confirmMsg, "Please select a feedback to delete.")) {
             feedbackTable.getItems().remove(selected);
             feedBackService.delete(selected.getId());
+            showBestAndWorstInstructors();
         }
     }
 

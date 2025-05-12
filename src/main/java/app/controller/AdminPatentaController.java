@@ -5,8 +5,8 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import models.Kandidatet;
-import repository.KandidatetRepository;
-import repository.PatentaRepository;
+import services.KandidateService;
+import services.PatentaService;
 
 import java.util.List;
 
@@ -19,51 +19,59 @@ public class AdminPatentaController extends BaseController {
     @FXML
     private TableColumn<Kandidatet, String> colEmri1, colMbiemri1, colEmail1, colTelefoni1, colDataRegjistrimit1, colStatusi1;
 
-    private final KandidatetRepository kandidatetRepository;
-    private final PatentaRepository patentaRepository;
+    private final KandidateService kandidateService;
+    private final PatentaService patentaService;
 
     public AdminPatentaController() {
-        this.patentaRepository = new PatentaRepository();
-        this.kandidatetRepository = new KandidatetRepository();
+        this.patentaService=new PatentaService();
+        this.kandidateService=new KandidateService();
     }
 
     @FXML
     public void initialize() {
-        configureTables(tableKandidatet, List.of(colEmri, colMbiemri, colEmail, colTelefoni, colDataRegjistrimit, colStatusi),
+        configureTable(tableKandidatet, List.of(colEmri, colMbiemri, colEmail, colTelefoni, colDataRegjistrimit, colStatusi),
                 new String[]{"name", "surname", "email", "phoneNumber", "dataRegjistrimit", "statusiProcesit"});
 
-        configureTables(tableKandidatet1, List.of(colEmri1, colMbiemri1, colEmail1, colTelefoni1, colDataRegjistrimit1, colStatusi1),
+        configureTable(tableKandidatet1, List.of(colEmri1, colMbiemri1, colEmail1, colTelefoni1, colDataRegjistrimit1, colStatusi1),
                 new String[]{"name", "surname", "email", "phoneNumber", "dataRegjistrimit", "statusiProcesit"});
 
         loadCandidateData();
     }
 
-    private void configureTables(TableView<Kandidatet> table, List<TableColumn<Kandidatet, ?>> columns, String[] propertyNames) {
-        configureTable(table, columns, propertyNames);
-    }
+
 
     private void loadCandidateData() {
-        tableKandidatet.setItems(FXCollections.observableArrayList(kandidatetRepository.shfaqKandidatetMeTeDrejte()));
-        tableKandidatet1.setItems(FXCollections.observableArrayList(kandidatetRepository.shfaqKandidatetMeTeDrejtePaPagesa()));
+        try {
+            List<Kandidatet> lista1 = kandidateService.shfaqKandidatetMeTeDrejte();
+            tableKandidatet.setItems(FXCollections.observableArrayList(lista1));
+        } catch (IllegalStateException ex) {
+            showAlert(Alert.AlertType.WARNING,"Kujdes!" ,ex.getMessage());
+        }
+        try {
+            List<Kandidatet> lista2 = kandidateService.shfaqKandidatetMeTeDrejtePaPagesa();
+            tableKandidatet1.setItems(FXCollections.observableArrayList(lista2));
+        } catch (IllegalStateException ex) {
+            showAlert(Alert.AlertType.WARNING,"Kujdes!" ,ex.getMessage());
+        }
     }
+
 
     @FXML
     private void aprovoPatentenClick() {
         Kandidatet kandidat = tableKandidatet.getSelectionModel().getSelectedItem();
-
         if (kandidat == null) {
             showAlert(Alert.AlertType.WARNING, "Attention", "Please select a candidate");
             return;
         }
         try {
-            if (this.patentaRepository.aprovoPatenten(kandidat.getIdUser())) {
+            if (this.patentaService.aprovoPatenten(kandidat.getIdUser())) {
                 loadCandidateData();
                 showAlert(Alert.AlertType.INFORMATION, "Success!", "The license has been aproved");
             } else {
                 showAlert(Alert.AlertType.ERROR, "Error", "The license cannot be approved");
             }
         } catch (Exception e) {
-            showAlert(Alert.AlertType.ERROR, "Error", "Database-related error");
+            showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
         }
     }
 }

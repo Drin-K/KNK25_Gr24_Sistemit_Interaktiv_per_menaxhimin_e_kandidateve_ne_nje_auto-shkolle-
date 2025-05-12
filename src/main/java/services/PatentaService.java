@@ -1,5 +1,7 @@
 package services;
 
+import javafx.scene.chart.XYChart;
+import javafx.scene.control.Alert;
 import models.Dto.patenta.CreatePatentaDto;
 import models.Patenta;
 import models.Stafi;
@@ -12,6 +14,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static services.ChartDataService.getChartSeries;
 
 public class PatentaService {
     private PatentaRepository patentaRepository;
@@ -77,6 +81,22 @@ public class PatentaService {
 
         return dateCountMap;
     }
+    public boolean aprovoPatenten(int kandidatId) throws SQLException{
+        if (kandidatId <= 0) {
+            throw new IllegalArgumentException("ID e kandidatit është e pavlefshme.");
+        }
+        return this.patentaRepository.aprovoPatenten(kandidatId);
+    }
+    public XYChart.Series<String, Number> getLicensesIssuedSeries() {
+        try {
+            Map<String, Integer> data = getLicensesIssuedCountPerDate();
+            return getChartSeries(new HashMap<>(data), "Licenses Issued");
+        } catch (Exception e) {
+            System.out.println("Error loading licenses");
+            return new XYChart.Series<>();
+        }
+    }
+
 
 
 }

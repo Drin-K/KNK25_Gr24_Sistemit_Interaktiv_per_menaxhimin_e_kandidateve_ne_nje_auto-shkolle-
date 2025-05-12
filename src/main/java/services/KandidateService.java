@@ -4,6 +4,7 @@ import models.*;
 import models.Dto.kandidatet.CreateKandidatetDto;
 import repository.KandidatetRepository;
 import repository.PatentaRepository;
+
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
@@ -104,11 +105,35 @@ public ArrayList<Kandidatet> getAll() {
 }
     public int countKandidatet() {
         int count=this.kandidatetRepository.countKandidatet();
-        if (count >= MAX_KANDIDATE) {
+        if (count > MAX_KANDIDATE) {
             throw new IllegalStateException("Limiti maksimal i kandidatëve është arritur!");
         }
         return count;
     }
+    public HashMap<String, Integer> countKandidatetByStatusiProcesit() {
+        HashMap<String, Integer> result = this.kandidatetRepository.countKandidatetByStatusiProcesit();
 
+        if (result == null || result.isEmpty()) {
+            throw new IllegalStateException("Nuk u gjetën të dhëna për statuset e kandidatëve!");
+        }
+
+        return result;
+    }
+
+    public List<Kandidatet> shfaqKandidatetMeTeDrejte() {
+        List<Kandidatet> lista = this.kandidatetRepository.shfaqKandidatetMeKushtPagesa("'Paguar'");
+        if (lista == null || lista.isEmpty()) {
+            throw new IllegalStateException("Nuk u gjet asnjë kandidat që i plotëson kriteret për patentë.");
+        }
+        return lista;
+    }
+
+    public List<Kandidatet> shfaqKandidatetMeTeDrejtePaPagesa(){
+        List<Kandidatet> lista= this.kandidatetRepository.shfaqKandidatetMeKushtPagesa("'Mbetur', 'Pjesërisht'");
+        if (lista == null || lista.isEmpty()) {
+            throw new IllegalStateException("Nuk u gjet asnjë kandidat që i plotëson kriteret për patentë por pa pagesë të kryer.");
+        }
+        return lista;
+    }
 
 }

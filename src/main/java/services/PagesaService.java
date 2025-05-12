@@ -15,6 +15,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static services.ChartDataService.getChartSeries;
+
 public class PagesaService {
     private PagesatRepository pagesatRepository;
     public PagesaService(){
@@ -73,8 +75,22 @@ public class PagesaService {
         return series;
     }
     public HashMap<String, Integer> getPayments() {
-        return pagesatRepository.getPayments();
+        HashMap<String, Integer> data = pagesatRepository.getPayments();
+        if (data == null) {
+            throw new IllegalStateException("Të dhënat e pagesave janë null!");
+        }
+        if (data.isEmpty()) {
+            throw new IllegalStateException("Nuk u gjetën pagesa në sistem!");
+        }
+        for (Map.Entry<String, Integer> entry : data.entrySet()) {
+            if (entry.getValue() < 0) {
+                throw new IllegalStateException("Vlera negative për muajin: " + entry.getKey());
+            }
+        }
+
+        return data;
     }
+
 
 
     public void delete(int pagesaId) throws Exception {
@@ -85,6 +101,15 @@ public class PagesaService {
         boolean fshirje = pagesatRepository.delete(pagesaId);
         if (!fshirje) {
             throw new Exception("Gabim gjatë fshirjes së pageses me ID " + pagesaId);
+        }
+    }
+    public void updateLineChartData(XYChart<String, Number> chart) throws SQLException {
+        Map<String, Integer> pagesatCount = this.pagesatRepository.getPagesatCountByStatus();
+        chart.getData().clear();
+        for (String status : List.of("Paguar", "Pjeserisht", "Mbetur")) {
+            Integer count = pagesatCount.getOrDefault(status, 0);
+            XYChart.Series<String, Number> series = getChartSeries(Map.of(status, count), status);
+            chart.getData().add(series);
         }
     }
 

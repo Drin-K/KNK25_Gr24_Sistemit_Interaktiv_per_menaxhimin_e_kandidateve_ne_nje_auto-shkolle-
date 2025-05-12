@@ -215,8 +215,8 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
         LocalDate end = LocalDate.of(year, 12, 31);
         String sql = "SELECT COUNT(*) FROM pagesat WHERE data_e_pageses BETWEEN ? AND ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setDate(1, java.sql.Date.valueOf(start));
-            stmt.setDate(2, java.sql.Date.valueOf(end));
+            stmt.setDate(1, Date.valueOf(start));
+            stmt.setDate(2, Date.valueOf(end));
             ResultSet rs = stmt.executeQuery();
             return rs.next() ? rs.getInt(1) : 0;
         }

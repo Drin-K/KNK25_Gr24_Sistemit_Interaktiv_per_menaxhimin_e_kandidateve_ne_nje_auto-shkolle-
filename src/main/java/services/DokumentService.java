@@ -10,6 +10,11 @@ import repository.DokumentetRepository;
 import repository.KandidatetRepository;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -103,4 +108,16 @@ public class DokumentService {
             throw new Exception("Gabim gjatë fshirjes së dokumentit me ID " + dokumentId);
         }
     }
+    public void download(String emriSkedarit) throws IOException {
+        Path uploadDir = Paths.get("src", "main", "java", "utils", "uploads");
+        Path sourcePath = uploadDir.resolve(emriSkedarit);
+        Path destinationPath = Paths.get(System.getProperty("user.home"), "Desktop").resolve(emriSkedarit);
+        if (Files.notExists(uploadDir)) Files.createDirectories(uploadDir);
+        if (Files.exists(sourcePath)) {
+            Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+        } else {
+            throw new IOException("The document does not exist.");
+        }
+    }
+
 }

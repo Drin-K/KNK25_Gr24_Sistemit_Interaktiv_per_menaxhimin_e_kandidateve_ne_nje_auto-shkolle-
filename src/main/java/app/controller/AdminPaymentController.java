@@ -70,7 +70,7 @@ public class AdminPaymentController extends BaseController {
     private void initializeComboBoxes() {
         combobox1.getItems().setAll("Cash", "Online");
         comboBox2.getItems().setAll("Paguar", "Pjesërisht", "Mbetur");
-        statusiIRiComboBox.getItems().setAll("Paguar", "Pjeserisht", "Mbetur");
+        statusiIRiComboBox.getItems().setAll("Paguar", "Pjesërisht", "Mbetur");
     }
 
     private void initializeChartsAndIndicators() {
@@ -144,6 +144,7 @@ public class AdminPaymentController extends BaseController {
             pagesatRepository.updateStatusiPageses(selectedPagesa.getId(), statusiRi);
             showAlert(Alert.AlertType.INFORMATION, "Success", "Payment status was successfully updated!");
             loadTableData();
+            updateLineChartData();
         } catch (SQLException e) {
             e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Error", "An error occurred while updating the payment status.");

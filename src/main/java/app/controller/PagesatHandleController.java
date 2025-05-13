@@ -54,12 +54,21 @@ public class PagesatHandleController {
         String nrXhirollog = this.bankNumTxt.getText().trim();
         LocalDate data = LocalDate.now();
         String Statusi="";
-        if (shuma<500.0){
-            Statusi="Pjesërisht";
-        } else if (shuma==500) {
-            Statusi="Paguar";
+        try {
+            if (shuma < 500.0) {Statusi = "Pjesërisht";}
+            else if (shuma == 500) {Statusi = "Paguar";}
+            else if(shuma==0){ Statusi = "Mbetur";}
+            else {
+                Alert errorAlert = new Alert(AlertType.ERROR);
+                errorAlert.setTitle("Error");
+                errorAlert.setHeaderText("Something went wrong");
+                errorAlert.setContentText("Enter a money value bigger than 0 and smaller than 500");
+                errorAlert.showAndWait();
+            }
         }
-        else Statusi="Mbetur";
+        catch (Exception e){
+            System.out.println("Ka ndodhur nje problem gjate pageses");
+        }
         return new CreatePagesatDto(this.userContext.getUserId(), nrXhirollog, shuma, data,"Online" , Statusi);
     }
 

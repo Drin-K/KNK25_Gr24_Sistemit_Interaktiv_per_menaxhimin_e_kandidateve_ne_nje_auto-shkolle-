@@ -6,7 +6,7 @@ public class UpdatePatentaDto {
     private int id;
     private int idKandidat;//// ka mundesi duhet me hjek
     private int idKategori;
-    private LocalDate dataLeshimit;
+    private LocalDate dataLeshimit; //
     private String statusi;
 
     public UpdatePatentaDto(int id, int idKandidat, int idKategori, LocalDate dataLeshimit, String statusi) {

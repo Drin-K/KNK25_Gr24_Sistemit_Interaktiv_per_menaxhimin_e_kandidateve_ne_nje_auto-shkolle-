@@ -2,16 +2,16 @@ package models.Dto.user;
 import java.time.LocalDate;
 public class UpdateUserDto {
     private int idUser;
-    private String name;
-    private String surname;
+    private String name;//
+    private String surname;//
     private String email;
     private String phoneNumber;
-    private LocalDate dateOfBirth;
+    private LocalDate dateOfBirth;//
     private String password; // Opcionale: e shikojm serish nese dojna me mundsu me perditsu passwordin
     private String salt; // Opcionale: gjithashtu si me lart
-    private String role;
+    private String role;//
     private String adresa;
-    private String gjinia;
+    private String gjinia;//
     public UpdateUserDto() {} //Shtimi i nje konstruktori pa parametra na sherben per te ndrruar passwordin
 //disa prej features per update duhet me i shiku edhe njehere p.sh gjinia :)
     public UpdateUserDto(int id,String name, String surname, String email, String phoneNumber, LocalDate dateOfBirth, String password, String salt, String role, String adresa, String gjinia) {

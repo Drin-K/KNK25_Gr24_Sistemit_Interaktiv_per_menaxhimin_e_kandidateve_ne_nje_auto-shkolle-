@@ -5,7 +5,7 @@ import models.Dto.user.UpdateUserDto;
 import java.time.LocalDate;
 
 public class UpdateKandidatetDto extends UpdateUserDto {
-    private LocalDate dataRegjistrimi;
+    private LocalDate dataRegjistrimi;//
     private String statusiProcesit;
 
     public UpdateKandidatetDto (int id, String name, String surname, String email, String phoneNumber, LocalDate dateOfBirth, String password, String salt, String role, String adresa, String gjinia, LocalDate dataRegjistrimi, String statusiProcesit) {

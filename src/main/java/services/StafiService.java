@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 
 public class StafiService {
+    public static final int MAX_STAF=50;
     private StafiRepository stafiRepository;
     private String emailRegEx = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$"; //RegEx i thjesht i emailit
     private String numriTelefonitRegEx = "\\d{8,15}";// nga bardhi idea. Shikoni KandidatetService per me shum info :)
@@ -68,7 +69,11 @@ public class StafiService {
         return stafiRepository.delete(id);
     }
     public int countStafi() {
-        return this.stafiRepository.countStafi();
+        int count=this.stafiRepository.countStafi();
+        if (count>MAX_STAF) {
+            throw new IllegalStateException("Limiti maksimal i stafit është arritur!");
+        }
+        return count;
     }
 
 

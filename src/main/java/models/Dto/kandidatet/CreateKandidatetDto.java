@@ -10,7 +10,7 @@ public class CreateKandidatetDto extends CreateUserDto {
     private String statusiProcesit;
 
     public CreateKandidatetDto(String name, String surname, String email, String phoneNumber, LocalDate dateOfBirth,
-                               String password, String salt, String role, String adresa, String gjinia,
+                               String password, String salt, String adresa, String gjinia,
                                LocalDate dataRegjistrimit, String statusiProcesit) {
         super(name, surname, email, phoneNumber, dateOfBirth, password, salt, "Kandidat", adresa, gjinia);
         this.dataRegjistrimit = dataRegjistrimit;

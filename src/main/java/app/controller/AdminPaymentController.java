@@ -5,43 +5,57 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import models.Pagesat;
 import repository.PagesatRepository;
+import services.PagesaService;
+
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.List;
-import java.util.Map;
 
 public class AdminPaymentController extends BaseController {
-    @FXML private Text todayText, monthText, yearText;
-    @FXML private ComboBox<String> statusiIRiComboBox, combobox1, comboBox2;
-    @FXML private LineChart<String, Number> PPM;
-    @FXML private TextField searchByName;
-    @FXML private DatePicker from, to;
-    @FXML private Circle today, month, year;
-    @FXML private TableView<Pagesat> pagesatTable;
-    @FXML private TableColumn<Pagesat, Integer> IdCol, idCandidatCol;
-    @FXML private TableColumn<Pagesat, Double> ShumaCol;
-    @FXML private TableColumn<Pagesat, String> DataEPagesesCol, MetodaPagesesCol, StatusiPagese;
+    @FXML
+    private Text todayText, monthText, yearText;
+    @FXML
+    private ComboBox<String> statusiIRiComboBox, combobox1, comboBox2;
+    @FXML
+    private LineChart<String, Number> PPM;
+    @FXML
+    private TextField searchByName;
+    @FXML
+    private DatePicker from, to;
+    @FXML
+    private Circle today, month, year;
+    @FXML
+    private TableView<Pagesat> pagesatTable;
+    @FXML
+    private TableColumn<Pagesat, Integer> IdCol, idCandidatCol;
+    @FXML
+    private TableColumn<Pagesat, Double> ShumaCol;
+    @FXML
+    private TableColumn<Pagesat, String> DataEPagesesCol, MetodaPagesesCol, StatusiPagese;
 
 
     private final ObservableList<Pagesat> pagesatList;
+    private final PagesaService pagesatService;
     private final PagesatRepository pagesatRepository;
-public AdminPaymentController(){
-    this.pagesatList= FXCollections.observableArrayList();
-    this.pagesatRepository=new PagesatRepository();
-}
+
+    public AdminPaymentController() {
+        this.pagesatList = FXCollections.observableArrayList();
+        this.pagesatService = new PagesaService();
+        this.pagesatRepository = new PagesatRepository();
+    }
+
     @FXML
     public void initialize() {
         configurePagesatTable();
         initializeComboBoxes();
-        loadTableDatat();
+        loadTableData();
         initializeChartsAndIndicators();
     }
 
@@ -56,7 +70,7 @@ public AdminPaymentController(){
     private void initializeComboBoxes() {
         combobox1.getItems().setAll("Cash", "Online");
         comboBox2.getItems().setAll("Paguar", "Pjesërisht", "Mbetur");
-        statusiIRiComboBox.getItems().setAll("Paguar", "Pjeserisht", "Mbetur");
+        statusiIRiComboBox.getItems().setAll("Paguar", "Pjesërisht", "Mbetur");
     }
 
     private void initializeChartsAndIndicators() {
@@ -68,7 +82,7 @@ public AdminPaymentController(){
         }
     }
 
-    public void loadTableDatat() {
+    public void loadTableData() {
         pagesatList.clear();
         pagesatList.addAll(pagesatRepository.getAll());
         pagesatTable.setItems(pagesatList);
@@ -76,14 +90,7 @@ public AdminPaymentController(){
 
     @FXML
     private void updateLineChartData() throws SQLException {
-        Map<String, Integer> pagesatCount = pagesatRepository.getPagesatCountByStatus();
-
-        PPM.getData().clear();
-        for (String status : List.of("Paguar", "Pjeserisht", "Mbetur")) {
-            Integer count = pagesatCount.getOrDefault(status, 0);
-            XYChart.Series<String, Number> series = getChartSeries(Map.of(status, count), status);
-            PPM.getData().add(series);
-        }
+        pagesatService.updateLineChartData(PPM);
     }
 
     @FXML
@@ -136,7 +143,8 @@ public AdminPaymentController(){
         try {
             pagesatRepository.updateStatusiPageses(selectedPagesa.getId(), statusiRi);
             showAlert(Alert.AlertType.INFORMATION, "Success", "Payment status was successfully updated!");
-            loadTableDatat();
+            loadTableData();
+            updateLineChartData();
         } catch (SQLException e) {
             e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Error", "An error occurred while updating the payment status.");

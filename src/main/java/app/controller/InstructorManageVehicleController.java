@@ -77,12 +77,6 @@ public class InstructorManageVehicleController extends BaseController {
         statusi.setText("Out of use");
         this.llojiStatusit = "Jashtë shërbimit";
     }
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, message, ButtonType.OK);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.showAndWait();
-    }
     @FXML
     private void chooseServiceMotorBike(){
         this.kategoriaserviceId=1;
@@ -112,21 +106,17 @@ public class InstructorManageVehicleController extends BaseController {
                 return;
             }
 
-
             if (this.llojiKategoriseService == null || this.kategoriaserviceId == 0) {
                 showAlert(Alert.AlertType.WARNING,"Error","Please select a vehicle category.");
                 return;
             }
 
-
             String newStatus = "Mirëmbajtje";
 
-            // 4. Call the service method
             Automjetet updated = automjetService.updateStatusByIdLlojiAndKategori(
                     automjetId, this.llojiKategoriseService, this.kategoriaserviceId, newStatus, this.idStaf
             );
 
-            // 5. Notify the user
             if (updated != null) {
                 showAlert(Alert.AlertType.INFORMATION,"Success","Vehicle status updated to 'Në servisim'.");
             } else {

@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.controller.base.BaseController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
@@ -17,8 +18,7 @@ import utils.SceneLocator;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class InstructorSchedulerController {
-    // Services & context
+public class InstructorSchedulerController extends BaseController {
     private final OrariService orariService;
     private final AutomjetService automjetService;
     private Integer vehicleId;
@@ -33,7 +33,7 @@ public class InstructorSchedulerController {
 
     // Lesson type and vehicle type
     private String llojiMesimit;
-    private String selectedVehicleType;  // Stores "Motoçikletë", "Vetura", or "Kamion"
+    private String selectedVehicleType;
 
     public InstructorSchedulerController() {
         this.orariService = new OrariService();
@@ -47,25 +47,13 @@ public class InstructorSchedulerController {
             CreateOrariDto dto = this.getScheduleInputData();
             Orari orari = this.orariService.create(dto);
 
-            // Success alert
-            Alert success = new Alert(Alert.AlertType.INFORMATION);
-            success.setTitle("Sukses");
-            success.setHeaderText(null);
-            success.setContentText("Orari u krijua me sukses! ID e sesionit: " + orari.getIdSesioni());
-            success.showAndWait();
-
+            this.showAlert(Alert.AlertType.INFORMATION,"Suksess","Orari u krijua me sukses! ID e sesionit: " + orari.getIdSesioni());
             this.cleanFields();
 
         } catch (IllegalArgumentException iae) {
-
-            Alert warn = new Alert(Alert.AlertType.WARNING);
-            warn.setTitle("Vërejtje");
-            warn.setHeaderText("Të dhëna të paplota ose të pavlefshme");
-            warn.setContentText(iae.getMessage());
-            warn.showAndWait();
+            this.showAlert(Alert.AlertType.WARNING,"Vërejtje","Të dhëna të paplota ose të pavlefshme"+iae.getMessage());
 
         } catch (Exception e) {
-            // Everything else (service or repository errors)
             Alert error = new Alert(Alert.AlertType.ERROR);
             error.setTitle("Gabim");
             error.setHeaderText("Nuk mund të krijohej orari");

@@ -15,13 +15,11 @@ public class SceneManager {
     private LanguageManager languageManager;
     private String currentPath;
     private String childPath;
-    private Pane currentPane;
 
     private SceneManager(String currentpath) {
         this.languageManager = LanguageManager.getInstance();
         this.currentPath = currentpath;
         this.childPath = null;
-        this.currentPane = null;
         this.scene = this.initScene();
     }
 
@@ -51,7 +49,7 @@ public class SceneManager {
         if (sceneManager == null) {
             throw new Exception("Scene manager is not initialized yet!");
         }
-        sceneManager.childPath = path; // <--- Save the current rightPage
+        sceneManager.childPath = path;
         sceneManager.loadParent(path, pane);
     }
 

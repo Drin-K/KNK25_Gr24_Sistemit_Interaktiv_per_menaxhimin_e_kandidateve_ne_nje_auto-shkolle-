@@ -25,7 +25,7 @@
          </font>
       </PasswordField>
 
-      <Button fx:id="signupButton" layoutX="616.0" layoutY="43.0" mnemonicParsing="false" onAction="#handleSignup" prefHeight="35.0" prefWidth="85.0" style="-fx-background-color: #151928;" text="%login.signup" textFill="#a0a2ab" />
+      <Button fx:id="signupButton" layoutX="616.0" layoutY="43.0" mnemonicParsing="false" onAction="#handleSignup" prefHeight="35.0" prefWidth="85.0" style="-fx-background-color: #151928;" text="%login.signup" defaultButton="true" textFill="#a0a2ab" />
 
       <Button fx:id="loginButton" layoutX="468.0" layoutY="372.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="35.0" prefWidth="85.0" style="-fx-background-color: #151928;" text="%login.login" textFill="#a0a2ab" />
 

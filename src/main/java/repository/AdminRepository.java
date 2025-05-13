@@ -32,9 +32,8 @@ public class AdminRepository extends UserRepository {
             userStmt.setObject(5, dto.getDateOfBirth());
             userStmt.setString(6, dto.getPassword());
             userStmt.setString(7, dto.getSalt());
-            userStmt.setString(8, dto.getRole());
-            userStmt.setString(9, dto.getAdresa());
-            userStmt.setString(10, dto.getGjinia());
+            userStmt.setString(8, dto.getAdresa());
+            userStmt.setString(9, dto.getGjinia());
             userStmt.execute();
             ResultSet res = userStmt.getGeneratedKeys();
             if (res.next()) {

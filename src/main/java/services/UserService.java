@@ -3,6 +3,7 @@ package services;
 import models.Dto.user.CreateUserDto;
 import models.Kandidatet;
 import models.User;
+import repository.AdminRepository;
 import repository.KandidatetRepository;
 import repository.StafiRepository;
 import repository.UserRepository;
@@ -11,6 +12,7 @@ public class UserService {
 
     private static final UserRepository kandidatetRepo = new KandidatetRepository();
     private static final UserRepository stafiRepo = new StafiRepository();
+    private static final UserRepository adminRepo=new AdminRepository();
 
     public static boolean signup(CreateUserDto dto) {
         try {
@@ -59,7 +61,10 @@ public class UserService {
             } else if (email.toLowerCase().endsWith("@staf.com")) {
                 user = stafiRepo.findByEmail(email);
                 role="Staf";
-            } else {
+            } else if (email.toLowerCase().endsWith("@admin.com")) {
+                user=adminRepo.findByEmail(email);
+                role="Admin";
+            }else {
                 System.out.println("The email does not match any role.");
                 return false;
             }

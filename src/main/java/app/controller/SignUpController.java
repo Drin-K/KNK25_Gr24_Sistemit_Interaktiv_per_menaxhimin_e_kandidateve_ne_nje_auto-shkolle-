@@ -73,6 +73,8 @@ public class SignUpController {
             errorLabel.setVisible(true);
             messageLabel.setVisible(false);
         }
+        this.clearFields();
+
     }
     @FXML
     public void gotoLogIn() throws Exception {
@@ -83,5 +85,19 @@ public class SignUpController {
         languageManager.toggleLanguage();
         SceneManager.reload();
     }
+
+    public void clearFields() {
+        nameField.clear();
+        surnameField.clear();
+        phoneField.clear();
+        emailField.clear();
+        addressField.clear();
+        passwordField.clear();
+        confirmPasswordField.clear();
+        dobPicker.setValue(null);
+        genderGroup.selectToggle(null);
+
+    }
+
 }
 

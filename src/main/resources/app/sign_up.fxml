@@ -62,7 +62,7 @@
 
       <TextField fx:id="phoneField" layoutX="41.0" layoutY="565.0" prefHeight="30.0" prefWidth="358.0" promptText="%signup.phone" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;" />
 
-      <TextField fx:id="emailField" layoutX="41.0" layoutY="618.0" prefHeight="30.0" prefWidth="358.0" promptText="%signup.email" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;" />
+      <TextField fx:id="emailField" layoutX="41.0" layoutY="618.0" prefHeight="30.0" prefWidth="358.0" promptText="%signup.email" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-color: gray; -fx-text-fill: #a0a2ab;" text="\@kandidat.com" />
 
       <Button fx:id="signUpButton" layoutX="176.0" layoutY="673.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="44.0" prefWidth="103.0" style="-fx-background-color: #151928;" text="%signup.signup" textFill="WHITE">
          <font>

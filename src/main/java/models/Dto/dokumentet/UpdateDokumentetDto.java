@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class UpdateDokumentetDto {
     private int id;
     private int idKandidat;
-    private String llojiDokumentit;//
+    private String llojiDokumentit;
     private String emriSkedarit;
     // sjom e sigurt!  private LocalDate dataNgarkimit;
 

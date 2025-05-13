@@ -46,28 +46,28 @@ public class AdminHomeController extends BaseController {
         try {
             totalKandidat.setText(String.valueOf(kandidateService.countKandidatet()));
         } catch (IllegalStateException e) {
-            showAlert(Alert.AlertType.ERROR, "Gabim", e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
         }
     }
     public void updateBarChart(){
         try{
             updateBarChart(getChartSeries(pagesaService.getPayments(), "Number Of Payments"), PagesaTeKryera);
         }catch(IllegalStateException e){
-            showAlert(Alert.AlertType.ERROR, "Gabim", e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
         }
     }
     public void updateTotalStaf() {
         try {
             totalStafi.setText(String.valueOf(stafiService.countStafi()));
         } catch (IllegalStateException e) {
-            showAlert(Alert.AlertType.ERROR, "Gabim", e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
         }
     }
     private void updatePieChart(){
         try {
             updatePieChart(this.kandidateService.countKandidatetByStatusiProcesit());
         } catch (IllegalStateException e) {
-            showAlert(Alert.AlertType.ERROR, "Gabim", e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
         }
     }
     private void updatePieChart(HashMap<String, Integer> data) {

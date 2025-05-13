@@ -68,8 +68,6 @@ public class ChangePasswordController extends BaseController {
             UpdateUserDto updateDto = new UpdateUserDto();
             updateDto.setIdUser(userId);
             updateDto.setPassword(newHashedPassword);
-            updateDto.setSalt(newSalt);
-
             userRepository.update(updateDto);
 
             System.out.println("Password successfully changed.");

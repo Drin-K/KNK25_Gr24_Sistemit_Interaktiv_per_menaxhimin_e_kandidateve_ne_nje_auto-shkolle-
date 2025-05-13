@@ -23,32 +23,10 @@
                 </Label>
 
                 <TextField fx:id="idField" promptText="%userId" />
-                <TextField fx:id="nameField" promptText="%name" />
-                <TextField fx:id="surnameField" promptText="%surname" />
                 <TextField fx:id="emailField" promptText="%email" />
                 <TextField fx:id="phoneField" promptText="%phoneNumber" />
-                <DatePicker fx:id="dobPicker" promptText="%birthdate" />
                 <PasswordField fx:id="passwordField" promptText="%password" />
-                <TextField fx:id="saltField" promptText="Salt" />
                 <TextField fx:id="addressField" promptText="%address" />
-
-                <ComboBox fx:id="genderCombo" promptText="%gender" style="-fx-background-color: #d1a347;">
-                    <items>
-                        <FXCollections fx:factory="observableArrayList">
-                            <String fx:value="M" />
-                            <String fx:value="F" />
-                        </FXCollections>
-                    </items>
-                </ComboBox>
-
-                <ComboBox fx:id="roleCombo" promptText="%role" style="-fx-background-color: #d1a347;">
-                    <items>
-                        <FXCollections fx:factory="observableArrayList">
-                            <String fx:value="Kandidat" />
-                            <String fx:value="Staf" />
-                        </FXCollections>
-                    </items>
-                </ComboBox>
 
                 <VBox fx:id="kandidatExtraFields" managed="false" spacing="8" visible="false">
                     <ComboBox fx:id="statusiProcesitCombo" promptText="%processStatus">

@@ -4,8 +4,8 @@ import java.time.LocalDate;
 
 public class UpdateRaportiProgresitDto {
     private int id;
-    private int piketTeorike;//
-    private int piketPraktike;//
+    private int piketTeorike;
+    private int piketPraktike;
     private String komentet;
     private String performancaGjenerale;
 

@@ -5,11 +5,11 @@ import models.Dto.user.UpdateUserDto;
 import java.time.LocalDate;
 
 public class UpdateKandidatetDto extends UpdateUserDto {
-    private LocalDate dataRegjistrimi;//
+    private LocalDate dataRegjistrimi;
     private String statusiProcesit;
 
-    public UpdateKandidatetDto (int id, String name, String surname, String email, String phoneNumber, LocalDate dateOfBirth, String password, String salt, String role, String adresa, String gjinia, LocalDate dataRegjistrimi, String statusiProcesit) {
-       super(id,name,surname,email,phoneNumber,dateOfBirth,password,salt,role,adresa,gjinia);
+    public UpdateKandidatetDto (int id, String email, String phoneNumber, String password,String adresa, LocalDate dataRegjistrimi, String statusiProcesit) {
+       super(id,email,phoneNumber,password,adresa);
        this.dataRegjistrimi=dataRegjistrimi;
        this.statusiProcesit=statusiProcesit;
     }

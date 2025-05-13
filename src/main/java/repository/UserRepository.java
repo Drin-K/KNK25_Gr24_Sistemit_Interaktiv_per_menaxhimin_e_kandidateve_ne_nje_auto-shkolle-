@@ -21,14 +21,6 @@ public abstract class UserRepository extends BaseRepository<User, CreateUserDto,
         StringBuilder query = new StringBuilder("UPDATE \"User\" SET ");
         ArrayList<Object> params = new ArrayList<>();
 
-        if (updateUserDto.getName() != null) {
-            query.append("name=?, ");
-            params.add(updateUserDto.getName());
-        }
-        if (updateUserDto.getSurname() != null) {
-            query.append("surname=?, ");
-            params.add(updateUserDto.getSurname());
-        }
         if (updateUserDto.getEmail() != null) {
             query.append("email=?, ");
             params.add(updateUserDto.getEmail());
@@ -37,31 +29,14 @@ public abstract class UserRepository extends BaseRepository<User, CreateUserDto,
             query.append("phoneNumber=?, ");
             params.add(updateUserDto.getPhoneNumber());
         }
-        if (updateUserDto.getDateOfBirth() != null) {
-            query.append("dateOfBirth=?, ");
-            params.add(updateUserDto.getDateOfBirth());
-        }
         if (updateUserDto.getPassword() != null) {
             query.append("hashedPassword=?, ");
             params.add(updateUserDto.getPassword());
-        }
-        if (updateUserDto.getSalt() != null) {
-            query.append("salt=?, ");
-            params.add(updateUserDto.getSalt());
-        }
-        if (updateUserDto.getRole() != null) {
-            query.append("role=?, ");
-            params.add(updateUserDto.getRole());
         }
         if (updateUserDto.getAdresa() != null) {
             query.append("adresa=?, ");
             params.add(updateUserDto.getAdresa());
         }
-        if (updateUserDto.getGjinia() != null) {
-            query.append("gjinia=?, ");
-            params.add(updateUserDto.getGjinia());
-        }
-
         if (params.isEmpty()) {
             return null;
         }
@@ -79,7 +54,7 @@ public abstract class UserRepository extends BaseRepository<User, CreateUserDto,
             int updated = pstm.executeUpdate();
 
             if (updated == 1) {
-                if ("Kandidat".equals(updateUserDto.getRole())) {
+                if (updateUserDto.getEmail().endsWith("@kandidat.com")) {
                     if (updateUserDto instanceof UpdateKandidatetDto) {
                         UpdateKandidatetDto kandidatetDto = (UpdateKandidatetDto) updateUserDto;
                         updateKandidatetDetails(kandidatetDto);

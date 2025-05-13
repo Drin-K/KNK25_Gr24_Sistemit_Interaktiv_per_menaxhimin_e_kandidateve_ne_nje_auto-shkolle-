@@ -1,4 +1,5 @@
 package app.controller;
+
 import app.controller.base.BaseController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -13,46 +14,44 @@ import repository.StafiRepository;
 import repository.UserRepository;
 
 public class UpdateUserController extends BaseController {
-
     @FXML
-    private TextField idField, nameField, surnameField, emailField, phoneField, passwordField, saltField, addressField;
-    @FXML private DatePicker dobPicker, dataRegjistrimiPicker;
-    @FXML private ComboBox<String> genderCombo, roleCombo, statusiProcesitCombo;
+    private TextField idField, emailField, phoneField, passwordField, addressField;
+    @FXML private DatePicker dataRegjistrimiPicker;
+    @FXML private ComboBox<String> statusiProcesitCombo;
     @FXML private VBox kandidatExtraFields;
 
     @FXML
     private void initialize() {
-        roleCombo.setOnAction(event -> updateKandidatExtraFields());
+        emailField.textProperty().addListener((observable, oldValue, newValue) -> {
+            toggleKandidatExtraFields(newValue);
+        });
     }
 
-    @FXML
-    private void updateKandidatExtraFields() {
-        String role = roleCombo.getValue();
-        boolean isKandidat = "Kandidat".equals(role);
-        kandidatExtraFields.setVisible(isKandidat);
-        kandidatExtraFields.setManaged(isKandidat);
+    private void toggleKandidatExtraFields(String email) {
+        if (email != null && email.toLowerCase().endsWith("@kandidat.com")) {
+            kandidatExtraFields.setVisible(true);
+            kandidatExtraFields.setManaged(true);
+        } else {
+            kandidatExtraFields.setVisible(false);
+            kandidatExtraFields.setManaged(false);
+        }
     }
 
     @FXML
     private void handleUpdate() {
-        String role = roleCombo.getValue();
+        String email = emailField.getText();
         int id = Integer.parseInt(idField.getText());
         UserRepository userRepository;
         UpdateUserDto userDto;
 
-        if ("Kandidat".equals(role)) {
+        // Përdorimi i logjikës për të krijuar DTO-në dhe repository-n përkatëse
+        if (email != null && email.toLowerCase().endsWith("@kandidat.com")) {
             userDto = new UpdateKandidatetDto(
                     id,
-                    nameField.getText(),
-                    surnameField.getText(),
-                    emailField.getText(),
+                    email,
                     phoneField.getText(),
-                    dobPicker.getValue(),
                     passwordField.getText(),
-                    saltField.getText(),
-                    role,
                     addressField.getText(),
-                    genderCombo.getValue(),
                     dataRegjistrimiPicker.getValue(),
                     statusiProcesitCombo.getValue()
             );
@@ -60,16 +59,10 @@ public class UpdateUserController extends BaseController {
         } else {
             userDto = new UpdateUserDto(
                     id,
-                    nameField.getText(),
-                    surnameField.getText(),
-                    emailField.getText(),
+                    email,
                     phoneField.getText(),
-                    dobPicker.getValue(),
                     passwordField.getText(),
-                    saltField.getText(),
-                    role,
-                    addressField.getText(),
-                    genderCombo.getValue()
+                    addressField.getText()
             );
             userRepository = new StafiRepository();
         }

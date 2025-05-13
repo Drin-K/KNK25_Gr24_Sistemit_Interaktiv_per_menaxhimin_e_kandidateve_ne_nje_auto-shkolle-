@@ -45,13 +45,13 @@ public class AdminPatentaController extends BaseController {
             List<Kandidatet> lista1 = kandidateService.shfaqKandidatetMeTeDrejte();
             tableKandidatet.setItems(FXCollections.observableArrayList(lista1));
         } catch (IllegalStateException ex) {
-            showAlert(Alert.AlertType.WARNING,"Kujdes!" ,ex.getMessage());
+            showAlert(Alert.AlertType.WARNING,"Warning!" ,ex.getMessage());
         }
         try {
             List<Kandidatet> lista2 = kandidateService.shfaqKandidatetMeTeDrejtePaPagesa();
             tableKandidatet1.setItems(FXCollections.observableArrayList(lista2));
         } catch (IllegalStateException ex) {
-            showAlert(Alert.AlertType.WARNING,"Kujdes!" ,ex.getMessage());
+            showAlert(Alert.AlertType.WARNING,"Warning!" ,ex.getMessage());
         }
     }
 

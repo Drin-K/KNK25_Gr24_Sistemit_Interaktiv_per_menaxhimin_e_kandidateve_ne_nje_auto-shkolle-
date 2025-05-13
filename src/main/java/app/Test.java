@@ -8,7 +8,7 @@ import utils.SceneLocator;
 
 public class Test extends Application{
     public void start(Stage stage){
-    SceneManager sceneManager = SceneManager.getInstance(SceneLocator.LOGIN_PAGE);
+    SceneManager sceneManager = SceneManager.getInstance(SceneLocator.SIGNUP_PAGE);
         stage.setScene(sceneManager.getScene());
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/Tiger-Logo.jpg")));
         stage.show();

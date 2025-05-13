@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.controller.base.BaseController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -16,7 +17,7 @@ import utils.SceneLocator;
 
 
 
-public class InstructorManageVehicleController {
+public class InstructorManageVehicleController extends BaseController {
     private int idStaf = UserContext.getUserId();
     private final AutomjetService automjetService;
     private String llojiKategorise;
@@ -107,13 +108,13 @@ public class InstructorManageVehicleController {
             int automjetId = Integer.parseInt(this.vehicleId.getText());
 
             if (automjetId == 0) {
-                showAlert("Error", "Please enter a vehicle ID.");
+                showAlert(Alert.AlertType.ERROR,"Error","Please enter a vehicle ID.");
                 return;
             }
 
 
             if (this.llojiKategoriseService == null || this.kategoriaserviceId == 0) {
-                showAlert("Error", "Please select a vehicle category.");
+                showAlert(Alert.AlertType.WARNING,"Error","Please select a vehicle category.");
                 return;
             }
 
@@ -127,16 +128,15 @@ public class InstructorManageVehicleController {
 
             // 5. Notify the user
             if (updated != null) {
-                showAlert("Success", "Vehicle status updated to 'Në servisim'.");
+                showAlert(Alert.AlertType.INFORMATION,"Success","Vehicle status updated to 'Në servisim'.");
             } else {
-                showAlert("Error", "Vehicle not found or update failed.");
+                showAlert(Alert.AlertType.WARNING,"Error","Vehicle not found or update failed.");
             }
 
         } catch (NumberFormatException e) {
-            showAlert("Error", "Invalid vehicle ID format.");
+            showAlert(Alert.AlertType.WARNING,"Error","Invalid vehicle ID format.");
         } catch (Exception e) {
-            e.printStackTrace();
-            showAlert("Error", "An unexpected error occurred.");
+            showAlert(Alert.AlertType.WARNING,"Error","An unexpected error occurred.");
         }
     }
     @FXML
@@ -145,10 +145,9 @@ public class InstructorManageVehicleController {
             CreateAutomjetetDto dto = new CreateAutomjetetDto(this.llojiKategorise, this.llojiStatusit, this.idStaf, this.kategoriaId);
             Automjetet automjetet = automjetService.create(dto);
             System.out.println("Automjeti u shtua me sukses: " + automjetet.getId());
-            showAlert("Notification","Vehicle inserted succecfuly !");
+            showAlert(Alert.AlertType.INFORMATION,"Notification","Vehicle inserted succecfuly !");
         } catch (Exception e) {
-            showAlert("Notification","Problem while inserting vehicle!");
-            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR,"Notification","Problem while inserting vehicle!");
         }
     }
 

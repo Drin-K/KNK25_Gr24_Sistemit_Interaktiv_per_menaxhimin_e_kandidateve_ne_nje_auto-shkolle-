@@ -28,14 +28,14 @@ public class FeedBackService {
 
     public FeedBack create(CreateFeedBackDto feedbackDto) throws Exception {
         if (feedbackDto.getVlersimi() < 1 || feedbackDto.getVlersimi() > 5) {
-            throw new Exception("Vlerësimi duhet të jetë midis 1 dhe 5!");
+            throw new Exception("Select a rating !");
         }
         if (feedbackDto.getKoment().length() > 500) {
-            throw new Exception("Komentet nuk mund të jenë më të gjata se 500 karaktere!");
+            throw new Exception("Comments cannot be longer than 500 characters !");
         }
         FeedBack feedback = this.feedbackRepository.create(feedbackDto);
         if (feedback == null) {
-            throw new Exception("Feedback nuk u krijua!");
+            throw new Exception("Feedback wasn't created !");
         }
         return feedback;
     }

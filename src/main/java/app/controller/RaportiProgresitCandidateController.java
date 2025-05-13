@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.controller.base.BaseController;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -12,7 +13,7 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
-public class RaportiProgresitCandidateController {
+public class RaportiProgresitCandidateController extends BaseController {
 
     private final RaportiProgresitService raportiService = new RaportiProgresitService();
     @FXML
@@ -53,7 +54,7 @@ public class RaportiProgresitCandidateController {
             List<RaportiProgresit> raportet = raportiService.getRaportetById(staffID,candidateId);
 
             if (raportet.isEmpty()) {
-                showAlert("No progress reports found for your ID.");
+                showAlert(Alert.AlertType.WARNING,"Warning","No progress reports found for your ID.");
             } else {
                 raportet.forEach(r -> System.out.println(
                         "Staf ID: " + r.getIdStaf() +
@@ -67,15 +68,8 @@ public class RaportiProgresitCandidateController {
             raportiprogresit.getItems().setAll(raportet);
 
         } catch (Exception e) {
-            showAlert("Error loading progress reports: " + e.getMessage());
+            showAlert(Alert.AlertType.WARNING,"Warning",e.getMessage());
             e.printStackTrace();
         }
-    }
-    private void showAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Warning");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.show();
     }
 }

@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.controller.base.BaseController;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import models.Dto.feedBack.CreateFeedBackDto;
@@ -9,7 +10,7 @@ import services.UserContext;
 
 import java.time.LocalDate;
 
-public class FeedbackConsumatorController {
+public class FeedbackConsumatorController extends BaseController {
     private int idKandidat = UserContext.getUserId();
     private final FeedBackService feedBackService;
     private LocalDate date = LocalDate.now();
@@ -41,16 +42,10 @@ public class FeedbackConsumatorController {
             CreateFeedBackDto dto = new CreateFeedBackDto(idKandidat,idinstructor, date,selectedRating,commentField.getText());
             FeedBack result = feedBackService.create(dto);
             System.out.println("U krijua me sukses " + result.getId());
-            showAlert("Notification","Feedback u ruajt me sukses !");
+            showAlert(Alert.AlertType.INFORMATION,"Notification","FeedBack created successfully");
         }
         catch (Exception e){
-            e.printStackTrace();
+            showAlert(Alert.AlertType.WARNING,"Warning",e.getMessage());
         }
-    }
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, message, ButtonType.OK);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.showAndWait();
     }
 }

@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.controller.base.BaseController;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
@@ -8,7 +9,7 @@ import models.Regjistrimet;
 import services.*;
 import utils.SceneLocator;
 
-public class CategoryConsumatorController {
+public class CategoryConsumatorController extends BaseController {
     private int kategoriId;
     private final RegjistrimiService regjistrimiService;
     private final int kandidatId = UserContext.getUserId();
@@ -26,13 +27,13 @@ public class CategoryConsumatorController {
               Regjistrimet result = regjistrimiService.create(dto);
               System.out.printf("Category inserted successfuly !");
               System.out.println("Kategoria ID: " + result.getId());
-              showAlert("Notification","Kategoria A u ruajt me sukses");
+              showAlert(Alert.AlertType.INFORMATION,"Notification","Category A successfully saved");
               SceneManager.load(SceneLocator.DOCUMENTS_PAGE_A,this.rightPage);
 
         }
         catch (Exception e){
             System.out.println("Kategoria nuk u ruajt me sukses !");
-            showAlert("Notification","Kategoria A nuk u ruajt me sukses");
+            showAlert(Alert.AlertType.ERROR,"Notification","Error while saving category A");
         }
     }
     @FXML
@@ -43,12 +44,12 @@ public class CategoryConsumatorController {
             Regjistrimet result = regjistrimiService.create(dto);
             System.out.printf("Category inserted successfuly !");
             System.out.println("Kategoria ID: " + result.getId());
-            showAlert("Notification","Kategoria B u ruajt me sukses");
+            showAlert(Alert.AlertType.INFORMATION,"Notification","Category B successfully saved");
             SceneManager.load(SceneLocator.DOCUMENTS_PAGE_A,this.rightPage);
         }
         catch (Exception e){
             System.out.println("Kategoria nuk u ruajt me sukses !");
-            showAlert("Notification","Kategoria B nuk u ruajt me sukses");
+            showAlert(Alert.AlertType.ERROR,"Notification","Error while saving category B");
         }
     }
     @FXML
@@ -59,19 +60,12 @@ public class CategoryConsumatorController {
             Regjistrimet result = regjistrimiService.create(dto);
             System.out.printf("Category inserted successfuly !");
             System.out.println("Kategoria ID: " + result.getId());
-            showAlert("Notification","Kategoria C u ruajt me sukses");
+            showAlert(Alert.AlertType.INFORMATION,"Notification","Category C successfully saved");
             SceneManager.load(SceneLocator.DOCUMENTS_PAGE_A,this.rightPage);
         }
         catch (Exception e){
             System.out.println("Kategoria nuk u ruajt me sukses !");
-            showAlert("Notification","Kategoria C nuk u ruajt me sukses");
+            showAlert(Alert.AlertType.ERROR,"Notification","Error while saving category C");
         }
-    }
-
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, message, ButtonType.OK);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.showAndWait();
     }
 }

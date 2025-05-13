@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.controller.base.BaseController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,7 +20,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-public class DokumentetKandidatiController implements Initializable {
+public class DokumentetKandidatiController extends BaseController implements Initializable {
     @FXML
     private ComboBox<String> chooseDocumentType;
     Stage stage = (Stage) SceneManager.getInstance(SceneLocator.getCurrentRightPage()).getScene().getWindow();
@@ -49,18 +50,12 @@ public class DokumentetKandidatiController implements Initializable {
 
             try {
                 dokumentService.uploadDokument(dto, selectedFile);
-                showAlert("Notification","File u ngarkua me sukses");
+                showAlert(Alert.AlertType.INFORMATION,"Notification","File uploaded successfully");
                 System.out.println("Dokumenti u ngarkua me sukses!");
             } catch (Exception e) {
                 System.err.println("Gabim gjatë ngarkimit: " + e.getMessage());
+                showAlert(Alert.AlertType.ERROR,"Error","Error while uploading the files !");
             }
         }
     }
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, message, ButtonType.OK);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.showAndWait();
-    }
-
 }

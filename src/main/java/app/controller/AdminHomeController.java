@@ -11,7 +11,7 @@ import services.*;
 import java.util.HashMap;
 import java.util.Map;
 
-import static services.ChartDataService.getChartSeries;
+import static utils.ChartData.getChartSeries;
 
 public class AdminHomeController extends BaseController {
 

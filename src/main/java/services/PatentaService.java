@@ -1,10 +1,8 @@
 package services;
 
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Alert;
 import models.Dto.patenta.CreatePatentaDto;
 import models.Patenta;
-import models.Stafi;
 import repository.PatentaRepository;
 
 
@@ -12,10 +10,9 @@ import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import static services.ChartDataService.getChartSeries;
+import static utils.ChartData.getChartSeries;
 
 public class PatentaService {
     private PatentaRepository patentaRepository;

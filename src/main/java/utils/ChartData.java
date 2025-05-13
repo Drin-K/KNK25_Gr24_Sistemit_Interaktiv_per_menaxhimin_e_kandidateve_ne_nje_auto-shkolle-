@@ -1,10 +1,10 @@
-package services;
+package utils;
 
 import javafx.scene.chart.XYChart;
 
 import java.util.Map;
 
-public class ChartDataService {
+public class ChartData {
     public static XYChart.Series<String, Number> getChartSeries(Map<String, Integer> data, String name) {
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         series.setName(name);

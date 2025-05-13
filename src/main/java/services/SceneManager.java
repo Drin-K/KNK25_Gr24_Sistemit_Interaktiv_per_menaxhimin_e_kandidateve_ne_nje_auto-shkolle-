@@ -1,6 +1,5 @@
 package services;
 
-import app.controller.ProgressReportController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -81,18 +80,7 @@ public class SceneManager {
             right.getChildren().setAll(sceneManager.getParent(sceneManager.childPath));
         }
     }
-    public static <T> T loadWithController(String path, Pane pane, int kandidatId, int stafId) throws IOException {
-        FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource(path));
-        loader.setResources(sceneManager.languageManager.getResourceBundle());
-        Parent parent = loader.load();
-        pane.getChildren().clear();
-        pane.getChildren().add(parent);
-        T controller = loader.getController();
-        if (controller instanceof ProgressReportController) {
-            ((ProgressReportController) controller).setKandidatId(kandidatId, stafId);
-        }
-        return controller;
-    }
+
 
 
     public Scene getScene() {

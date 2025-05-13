@@ -173,25 +173,12 @@ public class CandidateManagmentController extends BaseController {
                  adresa, gjinia, null, statusiProcesit);
       try{  kandidateService.create(kandidatet);
           showAlert(Alert.AlertType.INFORMATION, "Success", "The candidate was created successfully!");
-
+          SceneManager.reload();
       }
       catch (Exception e){
           showAlert(Alert.AlertType.ERROR,"Error",e.getMessage());
       }
-        clearData();
     }
-
-    private void clearData() {
-        txtEmri.clear();
-        txtMbiemri.clear();
-        txtEmail.clear();
-        txtPhone.clear();
-        txtAdresa.clear();
-        txtStatusiProcesit.clear();
-        datePickerDob.setValue(null);
-        comboGjinia.setValue(null);
-    }
-
     private boolean kontrolloDheKonfirmo(Object selected, String konfirmoMesazhi) {
         if (selected == null) {
             showAlert(Alert.AlertType.WARNING, "Warning", "Please select an item.");
@@ -289,20 +276,7 @@ public class CandidateManagmentController extends BaseController {
         }
     }
 
-    @FXML
-    private void onShfaqRaportinClick() throws Exception {
-        Testet selected = testetTable.getSelectionModel().getSelectedItem();
-        if (selected != null) {
-            int kandidatId = selected.getIdKandidat();
-            int stafId = selected.getIdStaf();
-            ProgressReportController controller = SceneManager.loadWithController(
-                    SceneLocator.PROGRESS_ADMIN_REPORT_PAGE, this.rightPage, kandidatId, stafId
-            );
-            controller.shfaqRaportin();
-        } else {
-            showAlert(Alert.AlertType.WARNING, "Warning", "Please select a row.");
-        }
-    }
+
 
 }
 

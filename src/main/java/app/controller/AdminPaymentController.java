@@ -96,8 +96,8 @@ public class AdminPaymentController extends BaseController {
     @FXML
     public void filterPagesatIfValid() throws SQLException {
         String name = searchByName.getText();
-        String fromDate = from.getValue() != null ? from.getValue().toString() : null;
-        String toDate = to.getValue() != null ? to.getValue().toString() : null;
+        LocalDate fromDate = from != null ? from.getValue() : null;
+        LocalDate toDate = to != null ? to.getValue() : null;
         String metodaPageses = combobox1.getValue();
         String statusiPageses = comboBox2.getValue();
         if (name.isEmpty() || fromDate == null || toDate == null || metodaPageses == null || statusiPageses == null) {

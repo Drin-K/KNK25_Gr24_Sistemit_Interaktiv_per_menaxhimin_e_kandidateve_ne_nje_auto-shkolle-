@@ -161,7 +161,7 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
         }
     }
 
-    public List<Pagesat> filterPagesat(String name, String fromDate, String toDate, String metodaPageses, String statusiPageses) throws SQLException {
+    public List<Pagesat> filterPagesat(String name, LocalDate fromDate, LocalDate toDate, String metodaPageses, String statusiPageses) throws SQLException {
         String sql = "SELECT * FROM Pagesat p " +
                 "JOIN Kandidatet k ON p.ID_Kandidat = k.id " +
                 "JOIN \"User\" u ON k.id = u.id " +
@@ -170,10 +170,10 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
                 "AND p.Metoda_e_Pageses = ? " +
                 "AND p.Statusi_i_Pageses = ?";
 
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        try  {PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, "%" + name + "%");
-            statement.setDate(2, Date.valueOf(fromDate));
-            statement.setDate(3, Date.valueOf(toDate));
+            statement.setObject(2, fromDate);
+            statement.setObject(3, toDate);
             statement.setString(4, metodaPageses);
             statement.setString(5, statusiPageses);
 

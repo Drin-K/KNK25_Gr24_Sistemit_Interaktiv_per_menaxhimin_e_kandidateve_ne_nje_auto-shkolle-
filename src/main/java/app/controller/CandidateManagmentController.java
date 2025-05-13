@@ -171,7 +171,10 @@ public class CandidateManagmentController extends BaseController {
         CreateKandidatetDto kandidatet = new CreateKandidatetDto(
                 emri, mbiemri, email, phone, datelindja, password, PasswordHasher.generateSalt(),
                  adresa, gjinia, null, statusiProcesit);
-      try{  kandidateService.create(kandidatet);}
+      try{  kandidateService.create(kandidatet);
+          showAlert(Alert.AlertType.INFORMATION, "Success", "The candidate was created successfully!");
+
+      }
       catch (Exception e){
           showAlert(Alert.AlertType.ERROR,"Error",e.getMessage());
       }
@@ -281,6 +284,8 @@ public class CandidateManagmentController extends BaseController {
         if (showConfirmationDialog("Confirm Download",
                 "Do you want to download the document: " + selected.getEmriSkedarit() + "?")) {
             dokumentService.download(selected.getEmriSkedarit());
+            showAlert(Alert.AlertType.INFORMATION, "Download Completed",
+                    "The document has been saved to your Desktop successfully.");
         }
     }
 

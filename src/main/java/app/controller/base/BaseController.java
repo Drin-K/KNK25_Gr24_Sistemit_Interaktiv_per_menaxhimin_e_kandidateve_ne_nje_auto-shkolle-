@@ -29,7 +29,6 @@ public abstract class BaseController {
             columns.get(i).setCellValueFactory(new PropertyValueFactory<>(propertyNames[i]));
         }
     }
-
     protected boolean showConfirmationDialog(String title, String message) {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle(title);

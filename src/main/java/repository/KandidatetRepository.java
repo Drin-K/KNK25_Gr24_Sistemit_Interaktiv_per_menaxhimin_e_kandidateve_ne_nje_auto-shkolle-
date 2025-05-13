@@ -8,7 +8,7 @@ import java.util.*;
 
 public class KandidatetRepository extends UserRepository {
 
-    public KandidatetRepository() {
+    public KandidatetRepository(){
         super();}
     @Override
     public Kandidatet create(CreateUserDto dto) {

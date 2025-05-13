@@ -38,10 +38,6 @@ public class FrontPageAdminController {
     }
 
     @FXML
-    private void profileClick()throws Exception{
-        SceneManager.load(SceneLocator.PROFILE_PAGE,this.rightPage);
-    }
-    @FXML
     private void languageClick()throws Exception{
         languageManager.toggleLanguage();
         SceneManager.reload();

@@ -1,8 +1,8 @@
 package app.controller;
 
+import app.controller.base.BaseController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import models.Dto.raporti_progresit.CreateRaportiProgresitDto;
@@ -11,11 +11,10 @@ import services.RaportiProgresitService;
 import services.UserContext;
 
 
-import java.io.FileWriter;
-import java.io.IOException;
+
 import java.time.LocalDate;
 
-public class CreateRaportiController {
+public class CreateRaportiController extends BaseController {
     private RaportiProgresitService raportiProgresitService;
     @FXML private TextField txtID, txtTeoriPoints, txtPracticePoints, txtPerformanca;
     @FXML private TextArea txtComment;
@@ -27,20 +26,11 @@ public class CreateRaportiController {
         try {
             RaportiProgresit raportiProgresit = this.raportiProgresitService.create(this.getInput());
             this.cleanFields();
-
-            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-            successAlert.setTitle("Success");
-            successAlert.setHeaderText(null);
-            successAlert.setContentText("Raporti was inserted successfully!\nID: " + raportiProgresit.getId());
-            successAlert.showAndWait();
+            String mesazhi="Raporti was inserted successfully! ID:"+raportiProgresit.getId();
+            this.showAlert(Alert.AlertType.INFORMATION,"Success",mesazhi);
 
         } catch (Exception e) {
-
-            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-            errorAlert.setTitle("Error");
-            errorAlert.setHeaderText("Failed to insert Raporti");
-            errorAlert.setContentText(e.getMessage());
-            errorAlert.showAndWait();
+             this.showAlert(Alert.AlertType.ERROR,"Error","Failed to insert Raporti");
 
             System.out.println("Error inserting raporti. " + e.getMessage());
         }

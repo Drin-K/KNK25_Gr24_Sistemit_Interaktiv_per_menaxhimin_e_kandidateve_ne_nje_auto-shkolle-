@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.controller.base.BaseController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -7,7 +8,7 @@ import models.Dto.orari.UpdateOrariDto;
 import models.Orari;
 import services.OrariService;
 
-public class EditScheduleController {
+public class EditScheduleController extends BaseController {
     @FXML private TextField sessionId;
 
     private final OrariService orariService = new OrariService();
@@ -23,12 +24,12 @@ public class EditScheduleController {
     }
 
     private void changeStatus(String newStatus) {
-        // 1) Parse session ID
+
         int sessionId1;
         try {
             sessionId1 = Integer.parseInt(sessionId.getText().trim());
         } catch (NumberFormatException e) {
-            alertError("ID e sesionit duhet të jetë një numër i vlefshëm.");
+            this.showAlert(Alert.AlertType.ERROR,null,"ID e sesionit duhet të jetë një numër i vlefshëm.");
             return;
         }
 
@@ -36,7 +37,7 @@ public class EditScheduleController {
 
             Orari existing = orariService.getById(sessionId1);
             if (existing == null) {
-                alertError("Nuk u gjet orari me ID " + sessionId1);
+                this.showAlert(Alert.AlertType.ERROR,null,"Nuk u gjet orari me ID " + sessionId1);
                 return;
             }
 
@@ -56,23 +57,14 @@ public class EditScheduleController {
 
             Orari updated = orariService.update(sessionId1, dto);
 
-
-            alertInfo("Orari u përditësua me sukses. Statusi i ri: " + updated.getStatusi());
+             this.showAlert(Alert.AlertType.INFORMATION,null,"Orari u përditësua me sukses. Statusi i ri: " + updated.getStatusi());
+             this.sessionId.setText("");
 
         } catch (Exception ex) {
-            alertError("Gabim gjatë përditësimit: " + ex.getMessage());
+            this.showAlert(Alert.AlertType.ERROR,null,"Gabim gjatë përditësimit: " + ex.getMessage());
+
         }
     }
 
-    private void alertInfo(String msg) {
-        Alert a = new Alert(Alert.AlertType.INFORMATION, msg);
-        a.setHeaderText(null);
-        a.showAndWait();
-    }
 
-    private void alertError(String msg) {
-        Alert a = new Alert(Alert.AlertType.ERROR, msg);
-        a.setHeaderText(null);
-        a.showAndWait();
-    }
 }

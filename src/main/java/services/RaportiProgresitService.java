@@ -36,7 +36,7 @@ public class RaportiProgresitService {
         if (dto.getKomentet() != null && dto.getKomentet().length() > 500) {
             throw new Exception("Komentet nuk mund të kalojnë 500 karaktere.");
         }
-        String[] validPerformanca = {"Shkëlqyeshëm", "Mirë", "Mesatar", "Dobët"};
+        String[] validPerformanca = {"Shkelqyeshem", "Mire", "Mesatar", "Dobet"};
         boolean isPerformancaValid = false;
         for (String performanca : validPerformanca) {
             if (dto.getPerformancaGjenerale().equals(performanca)) {
@@ -45,7 +45,7 @@ public class RaportiProgresitService {
             }
         }
         if (!isPerformancaValid) {
-            throw new Exception("Performanca duhet të jetë një nga vlerat: Shkëlqyeshëm, Mirë, Mesatar, Dobët.");
+            throw new Exception("Performanca duhet të jetë një nga vlerat: Shkelqyeshem, Mire, Mesatar, Dobet.");
         }
 
         return raportiProgresitRepository.create(dto);

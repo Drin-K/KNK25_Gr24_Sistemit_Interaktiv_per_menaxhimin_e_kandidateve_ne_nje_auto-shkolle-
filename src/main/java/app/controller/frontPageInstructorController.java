@@ -2,6 +2,11 @@ package app.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
+import models.Kandidatet;
+import models.Stafi;
+import repository.KandidatetRepository;
+import repository.StafiRepository;
 import services.LanguageManager;
 import services.SceneManager;
 import services.UserContext;
@@ -11,9 +16,20 @@ import java.util.Locale;
 
 public class frontPageInstructorController {
     private final LanguageManager languageManager = LanguageManager.getInstance();
-
+    private StafiRepository user=new StafiRepository();
+    private Stafi stafi;
+    @FXML
+    private Text emriInstructor;
+    @FXML
+    private Text mbiemriInstructor;
     @FXML
     private AnchorPane rightPage;
+    @FXML
+    public void initialize(){
+        this.stafi = user.getById(UserContext.getUserId());
+        this.emriInstructor.setText(stafi.getName());
+        this.mbiemriInstructor.setText(stafi.getSurname());
+    }
     @FXML
     private void homeClick()throws Exception{
         SceneManager.load(SceneLocator.INSTRUCTOR_HOME,this.rightPage);

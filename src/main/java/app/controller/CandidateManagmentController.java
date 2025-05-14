@@ -161,6 +161,7 @@ public class CandidateManagmentController extends BaseController {
                 gjinia = comboGjinia.getValue(), password = txtPassword.getText(),
                 statusiProcesit = txtStatusiProcesit.getText();
         LocalDate datelindja = datePickerDob.getValue();
+        String salt=PasswordHasher.generateSalt();
 
         if (emri.isEmpty() || mbiemri.isEmpty() || email.isEmpty() || phone.isEmpty()
                 || datelindja == null || adresa.isEmpty() || gjinia == null || statusiProcesit.isEmpty()) {
@@ -169,7 +170,7 @@ public class CandidateManagmentController extends BaseController {
         }
 
         CreateKandidatetDto kandidatet = new CreateKandidatetDto(
-                emri, mbiemri, email, phone, datelindja, password, PasswordHasher.generateSalt(),
+                emri, mbiemri, email, phone, datelindja, PasswordHasher.generateSaltedHash(password, salt), salt,
                  adresa, gjinia, null, statusiProcesit);
       try{  kandidateService.create(kandidatet);
           showAlert(Alert.AlertType.INFORMATION, "Success", "The candidate was created successfully!");

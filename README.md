@@ -128,5 +128,5 @@ Faqja e kandidatit është vendi në të cilin kandidatët mund të aplikojnë d
 - **Bardh Tahiri**
 - **Mehmet Mehmeti**
 
-[⬆️ **Kthehu në fillim**](#përmbledhje-e-projektit)
+<a href="#top">⬆️ <b>Kthehu në fillim </b> </a>
 

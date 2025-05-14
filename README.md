@@ -128,5 +128,5 @@ Faqja e kandidatit është vendi në të cilin kandidatët mund të aplikojnë d
 - **Bardh Tahiri**
 - **Mehmet Mehmeti**
 
-[⬆️ **Kthehu në fillim**](#sistemi-për-menaxhimin-e-kandidatëve-në-një-auto-shkollë)
+[⬆️ **Kthehu në fillim**](#përmbledhje-e-projektit)
 

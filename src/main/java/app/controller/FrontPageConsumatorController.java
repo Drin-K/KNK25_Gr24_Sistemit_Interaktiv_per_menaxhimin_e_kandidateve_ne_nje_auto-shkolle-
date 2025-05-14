@@ -1,7 +1,6 @@
 package app.controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import models.Kandidatet;
@@ -11,11 +10,7 @@ import services.SceneManager;
 import services.UserContext;
 import utils.SceneLocator;
 
-import java.net.URL;
-import java.util.Locale;
-import java.util.ResourceBundle;
-
-public class frontPageConsumatorController {
+public class FrontPageConsumatorController {
 
     private final LanguageManager languageManager = LanguageManager.getInstance();
     private KandidatetRepository user=new KandidatetRepository();

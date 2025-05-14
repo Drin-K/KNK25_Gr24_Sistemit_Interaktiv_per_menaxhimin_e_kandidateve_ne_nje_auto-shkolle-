@@ -3,18 +3,14 @@ package app.controller;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import models.Kandidatet;
 import models.Stafi;
-import repository.KandidatetRepository;
 import repository.StafiRepository;
 import services.LanguageManager;
 import services.SceneManager;
 import services.UserContext;
 import utils.SceneLocator;
 
-import java.util.Locale;
-
-public class frontPageInstructorController {
+public class FrontPageInstructorController {
     private final LanguageManager languageManager = LanguageManager.getInstance();
     private StafiRepository user=new StafiRepository();
     private Stafi stafi;

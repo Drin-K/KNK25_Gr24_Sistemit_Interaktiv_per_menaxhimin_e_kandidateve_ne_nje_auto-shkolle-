@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import utils.SceneLocator;
 
 import java.io.IOException;
@@ -53,10 +54,17 @@ public class SceneManager {
     }
 
     private void loadParent(String path) throws Exception {
+        Stage stage = (Stage) scene.getWindow();
         Parent parent = getParent(path);
         this.currentPath = path;
         scene.setRoot(parent);
-        scene.getWindow().sizeToScene();
+        stage.sizeToScene();
+        if (path.equals(SceneLocator.LOGIN_PAGE) || path.equals(SceneLocator.SIGNUP_PAGE)) {
+            stage.setResizable(false);
+        } else {
+            stage.setResizable(true);
+        }
+        stage.centerOnScreen();
     }
 
     private void loadParent(String path, Pane pane) throws Exception {
@@ -80,8 +88,6 @@ public class SceneManager {
             right.getChildren().setAll(sceneManager.getParent(sceneManager.childPath));
         }
     }
-
-
 
     public Scene getScene() {
         return scene;

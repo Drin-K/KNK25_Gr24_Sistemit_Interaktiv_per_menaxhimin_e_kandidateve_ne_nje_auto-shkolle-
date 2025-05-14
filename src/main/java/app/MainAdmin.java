@@ -14,6 +14,5 @@ public class MainAdmin extends Application {
         stage.setScene(sceneManager.getScene());
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/Tiger-Logo.jpg")));
         stage.show();
-        stage.show();
     }
 }

@@ -192,13 +192,14 @@ public class StafManagmentController extends BaseController {
         String adresa = txtAdresa.getText();
         String gjinia = comboGjinia.getValue();
 
+
         if (emri.isEmpty() || mbiemri.isEmpty() || email.isEmpty() || phone.isEmpty() ||
                 datelindja == null || adresa.isEmpty() || gjinia == null) {
             showAlert(Alert.AlertType.ERROR, "Error", "Please fill in all fields before saving.");
             return;
         }
 
-        CreateStafiDto stafi = new CreateStafiDto(emri, mbiemri, email, phone, datelindja, password, salt, "Staf", adresa, gjinia);
+        CreateStafiDto stafi = new CreateStafiDto(emri, mbiemri, email, phone, datelindja,  PasswordHasher.generateSaltedHash(password, salt), salt, "Staf", adresa, gjinia);
         stafiService.create(stafi);
         clear();
 

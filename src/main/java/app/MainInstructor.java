@@ -9,11 +9,8 @@ import utils.SceneLocator;
 import java.io.IOException;
 
 public class MainInstructor extends Application {
-    public void start(Stage stage) throws IOException {
-        SceneManager sceneManager = SceneManager.getInstance(SceneLocator.INSTRUCTOR_FRONT_PAGE);
-        stage.setScene(sceneManager.getScene());
-        stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/Tiger-Logo.jpg")));
-        stage.show();
-        stage.show();
+    public void start(Stage stage) throws Exception {
+        SceneManager.mainLoad(SceneLocator.INSTRUCTOR_FRONT_PAGE,stage);
+
     }
 }

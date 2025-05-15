@@ -37,8 +37,8 @@ public class FeedbackConsumatorController extends BaseController {
     }
     @FXML
     private void submitbtn(){
-        int idinstructor = Integer.parseInt(instructorId.getText().trim());
         try{
+            int idinstructor = Integer.parseInt(instructorId.getText().trim());
             CreateFeedBackDto dto = new CreateFeedBackDto(idKandidat,idinstructor, date,selectedRating,commentField.getText());
             FeedBack result = feedBackService.create(dto);
             System.out.println("U krijua me sukses " + result.getId());

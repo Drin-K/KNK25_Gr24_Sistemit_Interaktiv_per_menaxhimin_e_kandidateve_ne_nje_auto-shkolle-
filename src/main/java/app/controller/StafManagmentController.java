@@ -201,6 +201,7 @@ public class StafManagmentController extends BaseController {
 
         CreateStafiDto stafi = new CreateStafiDto(emri, mbiemri, email, phone, datelindja,  PasswordHasher.generateSaltedHash(password, salt), salt, "Staf", adresa, gjinia);
         stafiService.create(stafi);
+        SceneManager.reload();
         clear();
 
     }

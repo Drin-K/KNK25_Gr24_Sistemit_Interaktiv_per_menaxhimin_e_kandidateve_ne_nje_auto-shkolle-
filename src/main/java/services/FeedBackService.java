@@ -45,7 +45,7 @@ public class FeedBackService {
         this.getById(id); // E kontrollojm a ekziston
         return this.feedbackRepository.delete(id);
     }
-    public List<FeedBack> getFeedbacksByDate(int instructorId, LocalDate date) {
+    public List<FeedBack> getFeedbacks(int instructorId, LocalDate date) {
         return feedbackRepository.getFeedbacksByStaffAndDate(instructorId, date);
     }
     public ArrayList<FeedBack>getAll(){

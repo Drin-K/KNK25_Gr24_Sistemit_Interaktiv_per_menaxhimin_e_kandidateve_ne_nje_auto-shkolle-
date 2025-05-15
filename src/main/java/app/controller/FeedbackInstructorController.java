@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.controller.base.BaseController;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -8,9 +9,11 @@ import services.FeedBackService;
 import services.UserContext;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 
-public class FeedbackInstructorController {
+
+public class FeedbackInstructorController extends BaseController {
 
     private final UserContext userContext = new UserContext();
     private final FeedBackService feedBackService = new FeedBackService();
@@ -21,12 +24,18 @@ public class FeedbackInstructorController {
     @FXML private TableColumn<FeedBack, Integer> pointsArea;
     @FXML private Button filterBttn;
     @FXML
-    public void initialize() {
-        commentArea.setCellValueFactory(new PropertyValueFactory<>("koment"));
-        pointsArea.setCellValueFactory(new PropertyValueFactory<>("vlersimi"));
+    private void initialize() {
+        // Configure table columns using the utility method
+        configureTable(
+                feedback,
+                Arrays.asList(commentArea, pointsArea),
+                new String[]{"koment", "vlersimi"}
+        );
+
         filterBttn.setOnAction(e -> handleFilter());
     }
-   @FXML
+
+    @FXML
     private void handleFilter() {
         LocalDate selectedDate = dateField.getValue();
 
@@ -40,11 +49,11 @@ public class FeedbackInstructorController {
             System.out.println("UserContext returned staffId: " + staffId);
             System.out.println("Filtering feedback for date: " + selectedDate);
 
-            List<FeedBack> feedbacks = feedBackService.getFeedbacksByDate(staffId, selectedDate);
+            List<FeedBack> feedbacks = feedBackService.getFeedbacks(staffId, selectedDate);
 
             if (feedbacks.isEmpty()) {
                 showAlert("No feedbacks found for selected date.");
-            } else {
+            } else {// a po funksionon mir
                 feedbacks.forEach(fb -> System.out.println(
                         "Feedback ID: " + fb.getId() +
                                 " | Staff: " + fb.getIdStaf() +
@@ -61,11 +70,12 @@ public class FeedbackInstructorController {
             e.printStackTrace();
         }
 //        System.out.println("Selected Date (raw): " + selectedDate);
-//        System.out.println("Staff ID from UserContext: " + staffId);
+//        System.out.println("Staff ID from UserContext: " + staffId); // per debugim i kom lan si komente
+
 
     }
 
-    private void showAlert(String message) {
+    private void showAlert(String message) {// mu ka nevojit nje alert customized
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning");
         alert.setHeaderText(null);

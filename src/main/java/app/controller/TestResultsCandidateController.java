@@ -1,10 +1,8 @@
 package app.controller;
 
 
-import app.controller.base.BaseController;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -15,7 +13,8 @@ import services.UserContext;
 import java.time.LocalDate;
 import java.util.List;
 
-public class TestResultsCandidateController extends BaseController {
+public class TestResultsCandidateController {
+    public  UserContext userContext;
     private final TestiService testiService = new TestiService();
 
 
@@ -27,19 +26,16 @@ public class TestResultsCandidateController extends BaseController {
 
     @FXML
     private void initialize() {
+        // Set the cell value factories
         pointsView.setCellValueFactory(new PropertyValueFactory<>("piket"));
         examType.setCellValueFactory(new PropertyValueFactory<>("llojiTestit"));
         dateHeld.setCellValueFactory(new PropertyValueFactory<>("dataTestit"));
         resultStatus.setCellValueFactory(new PropertyValueFactory<>("rezultati"));
     }
     @FXML
-    private void resultClick() throws Exception {
-        try {
-            List<Testet> testResults = testiService.getTestetByKandidatId(UserContext.getUserId());
-            overallResults.setItems(FXCollections.observableArrayList(testResults));
-        }
-        catch (Exception e){
-            showAlert(Alert.AlertType.WARNING,"Notification",e.getMessage());
-        }
+    private void resultClick() throws  Exception{
+        userContext.getUserId(); // Replace with dynamic ID logic if needed
+        List<Testet> testResults = testiService.getTestetByKandidatId(userContext.getUserId());
+        overallResults.setItems(FXCollections.observableArrayList(testResults));
     }
 }

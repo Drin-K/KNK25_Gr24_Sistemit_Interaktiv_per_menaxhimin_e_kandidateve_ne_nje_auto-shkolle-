@@ -36,6 +36,4 @@ public abstract class BaseController {
         Optional<ButtonType> result = alert.showAndWait();
         return result.isPresent() && result.get() == ButtonType.OK;
     }
-
-
 }

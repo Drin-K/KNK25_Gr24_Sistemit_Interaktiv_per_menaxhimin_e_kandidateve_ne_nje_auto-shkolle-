@@ -14,7 +14,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class TestResultsCandidateController {
-    public  UserContext userContext;
     private final TestiService testiService = new TestiService();
 
 
@@ -26,7 +25,6 @@ public class TestResultsCandidateController {
 
     @FXML
     private void initialize() {
-        // Set the cell value factories
         pointsView.setCellValueFactory(new PropertyValueFactory<>("piket"));
         examType.setCellValueFactory(new PropertyValueFactory<>("llojiTestit"));
         dateHeld.setCellValueFactory(new PropertyValueFactory<>("dataTestit"));
@@ -34,8 +32,7 @@ public class TestResultsCandidateController {
     }
     @FXML
     private void resultClick() throws  Exception{
-        userContext.getUserId(); // Replace with dynamic ID logic if needed
-        List<Testet> testResults = testiService.getTestetByKandidatId(userContext.getUserId());
+        List<Testet> testResults = testiService.getTestetByKandidatId(UserContext.getUserId());
         overallResults.setItems(FXCollections.observableArrayList(testResults));
     }
 }

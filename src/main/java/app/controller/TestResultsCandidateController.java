@@ -33,7 +33,7 @@ public class TestResultsCandidateController {
         resultStatus.setCellValueFactory(new PropertyValueFactory<>("rezultati"));
     }
     @FXML
-    private void resultClick() {
+    private void resultClick() throws  Exception{
         userContext.getUserId(); // Replace with dynamic ID logic if needed
         List<Testet> testResults = testiService.getTestetByKandidatId(userContext.getUserId());
         overallResults.setItems(FXCollections.observableArrayList(testResults));

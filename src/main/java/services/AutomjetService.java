@@ -8,6 +8,7 @@ import repository.KategoritePatentesRepository;
 import repository.StafiRepository;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AutomjetService {
     private AutomjetetRepository automjetetRepository;
@@ -101,7 +102,10 @@ public class AutomjetService {
         return automjetetRepository.update(dto);
     }
 
-    public ArrayList<Automjetet> findByLloji(String lloji){
-        return automjetetRepository.getByLloji(lloji);
+    public List<Automjetet> findByStatusiAndStafi(int id, String statusi) throws Exception {
+        if(automjetetRepository.getByLlojiAndStafi(statusi,id).isEmpty()){
+            throw new Exception("No active Vehicle found !");
+        }
+        return automjetetRepository.getByLlojiAndStafi(statusi,id);
     }
 }

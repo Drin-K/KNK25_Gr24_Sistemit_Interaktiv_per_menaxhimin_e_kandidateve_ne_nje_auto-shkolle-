@@ -1,11 +1,10 @@
 package app.controller;
 
 import app.controller.base.BaseController;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import models.Automjetet;
 import models.Dto.automjetet.CreateAutomjetetDto;
@@ -15,6 +14,8 @@ import services.SceneManager;
 import services.UserContext;
 import utils.SceneLocator;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class InstructorManageVehicleController extends BaseController {
@@ -34,12 +35,33 @@ public class InstructorManageVehicleController extends BaseController {
     private MenuButton category;
     @FXML
     private MenuButton statusi;
-
     @FXML
     private MenuButton chooseCategory;
     @FXML
     private TextField vehicleId;
-
+    @FXML
+    private TableView<Automjetet> automjetiTable;
+    @FXML
+    private TableColumn<Automjetet,Integer> automjetId;
+    @FXML
+    private TableColumn<Automjetet,String> llojiAutomjetit;
+    @FXML
+    public void initialize(){
+        if(automjetId == null){
+            return;
+        }
+        automjetId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        llojiAutomjetit.setCellValueFactory(new PropertyValueFactory<>("llojiAutomjetit"));
+    }
+    @FXML
+    private void listAutomjetet() {
+        try {
+            List<Automjetet> automjetet = automjetService.findByStatusiAndStafi(UserContext.getUserId(), "Në përdorim");
+            automjetiTable.setItems(FXCollections.observableArrayList(automjetet));
+        } catch (Exception e) {
+            showAlert(Alert.AlertType.WARNING,"Warning",e.getMessage());
+        }
+    }
     @FXML
     private void onClickPutForService() throws Exception {
         SceneManager.load(SceneLocator.INSTRUCTOR_PUT_SERVICE, rightPane);

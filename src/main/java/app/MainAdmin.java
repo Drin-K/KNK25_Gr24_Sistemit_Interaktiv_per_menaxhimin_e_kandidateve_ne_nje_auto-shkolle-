@@ -9,10 +9,7 @@ import utils.SceneLocator;
 import java.io.IOException;
 
 public class MainAdmin extends Application {
-    public void start(Stage stage) throws IOException {
-        SceneManager sceneManager = SceneManager.getInstance(SceneLocator.FRONT_PAGE_ADMIN);
-        stage.setScene(sceneManager.getScene());
-        stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/Tiger-Logo.jpg")));
-        stage.show();
+    public void start(Stage stage) throws Exception {
+        SceneManager.mainLoad(SceneLocator.FRONT_PAGE_ADMIN,stage);
     }
 }

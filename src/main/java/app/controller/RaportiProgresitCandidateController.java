@@ -46,11 +46,10 @@ public class RaportiProgresitCandidateController extends BaseController {
 
     @FXML
     private void handleFind() {
-        int candidateId = UserContext.getUserId();
-        int staffID = Integer.parseInt(stafField.getText());
-        System.out.println("Finding progress report for candidate ID: " + staffID);
 
         try {
+            int candidateId = UserContext.getUserId();
+            int staffID = Integer.parseInt(stafField.getText());
             List<RaportiProgresit> raportet = raportiService.getRaportetById(staffID,candidateId);
 
             if (raportet.isEmpty()) {

@@ -16,7 +16,7 @@
             <Font name="Cambria Bold" size="36.0" />
          </font>
       </Text>
-      <TextArea fx:id="commentField" layoutX="92.0" layoutY="171.0" prefHeight="336.0" prefWidth="357.0" promptText="%feedback.promptComment" style="-fx-border-radius: 4; -fx-border-width: 4; -fx-border-color: #475779;" />
+      <TextArea fx:id="commentField" layoutX="92.0" layoutY="171.0" prefHeight="336.0" prefWidth="357.0" promptText="%feedback.promptComment" style="-fx-border-radius: 4; -fx-border-width: 4; -fx-border-color: #475779;" wrapText="true" />
       <Text layoutX="102.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%feedback.instruction.comment" textAlignment="CENTER" wrappingWidth="336.8188018798828">
          <font>
             <Font name="Cambria Bold" size="18.0" />

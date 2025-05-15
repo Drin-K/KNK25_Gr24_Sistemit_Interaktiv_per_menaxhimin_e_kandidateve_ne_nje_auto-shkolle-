@@ -2,12 +2,11 @@ package app;
 
 import models.Dto.user.CreateUserDto;
 import repository.AdminRepository;
-import repository.StafiRepository;
 import services.PasswordHasher;
 
 import java.time.LocalDate;
 
-public class InsertS {
+public class adminInsert {
     public static void main(String[] args) {
     String name = "Drin";
     String surname = "Kurti";

@@ -7,10 +7,7 @@ import services.SceneManager;
 import utils.SceneLocator;
 
 public class Test extends Application{
-    public void start(Stage stage){
-    SceneManager sceneManager = SceneManager.getInstance(SceneLocator.LOGIN_PAGE);
-        stage.setScene(sceneManager.getScene());
-        stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/Tiger-Logo.jpg")));
-        stage.show();
-        stage.show();}
+    public void start(Stage stage)throws Exception{
+        SceneManager.mainLoad(SceneLocator.LOGIN_PAGE,stage);
+    }
 }

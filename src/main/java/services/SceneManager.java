@@ -52,6 +52,12 @@ public class SceneManager {
         sceneManager.childPath = path;
         sceneManager.loadParent(path, pane);
     }
+    public static void mainLoad(String path, Stage stage)throws Exception{
+        SceneManager.getInstance(path);
+        stage.setScene(sceneManager.getScene());
+        stage.show();
+        sceneManager.loadParent(path);
+    }
 
     private void loadParent(String path) throws Exception {
         Stage stage = (Stage) scene.getWindow();

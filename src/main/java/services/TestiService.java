@@ -59,8 +59,13 @@ public class TestiService {
         return testetRepository.create(dto);
     }
 
-    public List<Testet> getTestetByKandidatId(int idKandidat) {
-        return testetRepository.getTestetByKandidatId(idKandidat);
+    public List<Testet> getTestetByKandidatId(int idKandidat) throws Exception{
+        List<Testet> testet;
+        testet = testetRepository.getTestetByKandidatId(idKandidat);
+        if(testet.isEmpty()){
+            throw new Exception("No test results !");
+        }
+        return testet;
     }
 
     public void delete(int Id) throws Exception {

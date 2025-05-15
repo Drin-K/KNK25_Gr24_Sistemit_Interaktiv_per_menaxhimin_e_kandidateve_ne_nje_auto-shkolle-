@@ -6,7 +6,6 @@ import repository.FeedBackRepository;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class FeedBackService {
@@ -27,6 +26,9 @@ public class FeedBackService {
     }
 
     public FeedBack create(CreateFeedBackDto feedbackDto) throws Exception {
+        if(feedbackDto.getKoment().isEmpty()){
+            throw new Exception("Write a comment to submit!");
+        }
         if (feedbackDto.getVlersimi() < 1 || feedbackDto.getVlersimi() > 5) {
             throw new Exception("Select a rating !");
         }

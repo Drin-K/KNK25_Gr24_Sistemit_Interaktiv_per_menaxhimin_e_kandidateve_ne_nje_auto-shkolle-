@@ -4,11 +4,9 @@ import models.Automjetet;
 import models.Dto.automjetet.CreateAutomjetetDto;
 import models.Dto.automjetet.UpdateAutomjetetDto;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Time;
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class AutomjetetRepository extends BaseRepository<Automjetet, CreateAutomjetetDto, UpdateAutomjetetDto>{
     public AutomjetetRepository() {super("Automjetet");}
@@ -109,4 +107,22 @@ public class AutomjetetRepository extends BaseRepository<Automjetet, CreateAutom
         return automjetetList;
     }
 
+    public List<Automjetet> getByLlojiAndStafi(String statusi, int id){
+        List<Automjetet> automjetet = new ArrayList<>();
+        String query = "SELECT * FROM AUTOMJETET WHERE ID_STAF = ? AND  STATUSI = ?";
+        try {
+
+            PreparedStatement pstm = this.connection.prepareStatement(query);
+            pstm.setInt(1, id);
+            pstm.setString(2, statusi);
+            ResultSet result = pstm.executeQuery();
+            while (result.next()) {
+                automjetet.add(fromResultSet(result));
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return automjetet;
+    }
 }

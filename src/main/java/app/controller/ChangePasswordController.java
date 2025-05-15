@@ -68,10 +68,11 @@ public class ChangePasswordController extends BaseController {
             UpdateUserDto updateDto = new UpdateUserDto();
             updateDto.setIdUser(userId);
             updateDto.setPassword(newHashedPassword);
+            updateDto.setSalt(newSalt);
             userRepository.update(updateDto);
 
             System.out.println("Password successfully changed.");
-            showAlert(Alert.AlertType.CONFIRMATION,"Notfication","Changed password succesfuly !");
+            showAlert(Alert.AlertType.INFORMATION,"Notfication","Changed password succesfuly !");
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Failed to change password.");

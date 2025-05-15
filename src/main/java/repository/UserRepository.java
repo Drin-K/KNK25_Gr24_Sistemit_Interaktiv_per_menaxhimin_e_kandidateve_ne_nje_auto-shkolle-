@@ -33,6 +33,10 @@ public abstract class UserRepository extends BaseRepository<User, CreateUserDto,
             query.append("hashedPassword=?, ");
             params.add(updateUserDto.getPassword());
         }
+        if (updateUserDto.getSalt() != null) {
+            query.append("salt=?, ");
+            params.add(updateUserDto.getSalt());
+        }
         if (updateUserDto.getAdresa() != null) {
             query.append("adresa=?, ");
             params.add(updateUserDto.getAdresa());

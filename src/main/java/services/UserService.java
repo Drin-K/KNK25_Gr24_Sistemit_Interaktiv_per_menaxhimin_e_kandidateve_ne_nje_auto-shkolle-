@@ -72,7 +72,7 @@ public class UserService {
                 System.out.println("The user was not found.");
                 return false;
             }
-            UserContext.setUser(role,user.getIdUser());
+            UserContext.setUser(role,user.getIdUser(),user.getEmail());
             return PasswordHasher.compareSaltedHash(password, user.getSalt(), user.getHashedPassword());
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,12 +1,17 @@
 package models.Dto.user;
+import services.UserContext;
+
 import java.time.LocalDate;
 public class UpdateUserDto {
     private int idUser;
     private String email;
     private String phoneNumber;
     private String password;
+    private String salt;
     private String adresa;
-    public UpdateUserDto() {} //Shtimi i nje konstruktori pa parametra na sherben per te ndrruar passwordin
+    public UpdateUserDto() {
+        email = UserContext.getEmail(); // Na sherben per ta dalluar a eshte kandidat apo staf
+    } //Shtimi i nje konstruktori pa parametra na sherben per te ndrruar passwordin
 //disa prej features per update duhet me i shiku edhe njehere p.sh gjinia :)
     public UpdateUserDto(int id,String email, String phoneNumber, String password, String adresa) {
         this.idUser=id;
@@ -14,7 +19,6 @@ public class UpdateUserDto {
         this.phoneNumber = phoneNumber;
         this.password = password;
         this.adresa = adresa;
-
     }
     public int getIdUser(){
         return idUser;
@@ -45,5 +49,11 @@ public class UpdateUserDto {
 
 
     public void setPassword(String password) {this.password = password;}
+
+
+    public void setSalt(String salt) {this.salt = salt;}
+
+
+    public String getSalt(){return this.salt;}
 
 }

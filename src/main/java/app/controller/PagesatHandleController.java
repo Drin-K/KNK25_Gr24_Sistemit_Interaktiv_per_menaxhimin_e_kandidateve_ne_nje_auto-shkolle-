@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.controller.base.BaseController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -18,7 +19,7 @@ import utils.SceneLocator;
 
 import java.time.LocalDate;
 
-public class PagesatHandleController {
+public class PagesatHandleController extends BaseController {
 
     private final UserContext userContext;
     private final PagesaService pagesaService;
@@ -59,11 +60,12 @@ public class PagesatHandleController {
             else if (shuma == 500) {Statusi = "Paguar";}
             else if(shuma==0){ Statusi = "Mbetur";}
             else {
-                Alert errorAlert = new Alert(AlertType.ERROR);
-                errorAlert.setTitle("Error");
-                errorAlert.setHeaderText("Something went wrong");
-                errorAlert.setContentText("Enter a money value bigger than 0 and smaller than 500");
-                errorAlert.showAndWait();
+//                Alert errorAlert = new Alert(AlertType.ERROR);
+//                errorAlert.setTitle("Error");
+//                errorAlert.setHeaderText("Something went wrong");
+//                errorAlert.setContentText("Enter a money value bigger than 0 and smaller than 500");
+//                errorAlert.showAndWait();
+                this.showAlert(AlertType.ERROR, "Error", "Enter a money value bigger than 0 and smaller than 500");
             }
         }
         catch (Exception e){
@@ -78,29 +80,16 @@ public class PagesatHandleController {
             // Build the DTO from the input data
             CreatePagesatDto dto = this.getPagesaInputData();
             Pagesat pagesat = this.pagesaService.create(dto);
-
             clearFields();
-            // Optionally, you can display a success message if needed
-            Alert successAlert = new Alert(AlertType.INFORMATION);
-            successAlert.setTitle("Success");
-            successAlert.setHeaderText(null);
-            successAlert.setContentText("Payment saved successfully!");
-            successAlert.showAndWait();
-
+            showAlert(AlertType.INFORMATION, "Success", "Payment saved successfully!");
         } catch (Exception e) {
-            // Handle the exception and display an alert
+
             e.printStackTrace();
-            Alert errorAlert = new Alert(AlertType.ERROR);
-            errorAlert.setTitle("Error");
-            errorAlert.setHeaderText("Something went wrong");
-            errorAlert.setContentText("An error occurred while saving the payment data. Please try again.");
-            errorAlert.showAndWait();
+
+            //showAlert(AlertType.ERROR,"Error","An error occurred while saving the payment data. Please try again.");
         }
     }
 
-    /**
-     * Clears the input fields.
-     */
     private void clearFields() {
         idKand.clear();
         bankNumTxt.clear();

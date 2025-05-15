@@ -1,6 +1,7 @@
 package app.controller;
 
 
+import app.controller.base.BaseController;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -11,9 +12,10 @@ import services.TestiService;
 import services.UserContext;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 
-public class TestResultsCandidateController {
+public class TestResultsCandidateController extends BaseController {
     public  UserContext userContext;
     private final TestiService testiService = new TestiService();
 
@@ -26,12 +28,13 @@ public class TestResultsCandidateController {
 
     @FXML
     private void initialize() {
-        // Set the cell value factories
-        pointsView.setCellValueFactory(new PropertyValueFactory<>("piket"));
-        examType.setCellValueFactory(new PropertyValueFactory<>("llojiTestit"));
-        dateHeld.setCellValueFactory(new PropertyValueFactory<>("dataTestit"));
-        resultStatus.setCellValueFactory(new PropertyValueFactory<>("rezultati"));
+        configureTable(
+               overallResults, // assuming your TableView is named `examTable`
+                Arrays.asList(pointsView, examType, dateHeld, resultStatus),
+                new String[] { "piket", "llojiTestit", "dataTestit", "rezultati" }
+        );
     }
+
     @FXML
     private void resultClick() {
         userContext.getUserId(); // Replace with dynamic ID logic if needed

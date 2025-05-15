@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="670.0" prefWidth="1313.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controller.InstructorManageVehicleController">
    <children>
-      <AnchorPane fx:id="rightPane" layoutX="408.0" layoutY="204.0" prefHeight="234.0" prefWidth="518.0" style="-fx-border-color: #475779; -fx-background-radius: 5; -fx-border-radius: 5;">
+      <AnchorPane fx:id="rightPane" layoutX="359.0" layoutY="204.0" prefHeight="234.0" prefWidth="518.0" style="-fx-border-color: #475779; -fx-background-radius: 5; -fx-border-radius: 5;">
          <children>
             <Text fill="#0c8e39" layoutX="184.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 13; -fx-font-family: arial;" text="%chooseCategory" />
             <MenuButton fx:id="category" layoutX="44.0" layoutY="77.0" mnemonicParsing="false" style="-fx-background-color: #137156;" text="%category" textFill="#f9ffbc">
@@ -31,20 +31,20 @@
             <Text fill="#0c8e39" layoutX="184.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 13; -fx-font-family: arial;" text="%chooseStatus" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="179.0" layoutY="235.0" prefHeight="172.0" prefWidth="146.0" style="-fx-border-color: #475779; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-style: round;">
+      <AnchorPane layoutX="154.0" layoutY="237.0" prefHeight="172.0" prefWidth="146.0" style="-fx-border-color: #475779; -fx-background-radius: 5; -fx-border-radius: 5;">
          <children>
             <Button fx:id="addVehicleBtn" layoutX="25.0" layoutY="47.0" mnemonicParsing="false" onAction="#onClickAddVehicle" prefHeight="26.0" prefWidth="92.0" style="-fx-background-color: #07842b;" text="%addVehicle" textFill="#efecec" />
             <Button fx:id="putForService" layoutX="25.0" layoutY="106.0" mnemonicParsing="false" onAction="#onClickPutForService" prefHeight="26.0" prefWidth="92.0" style="-fx-background-color: #3b47b4;" text="%putForService" textFill="#e4fae7" />
          </children>
       </AnchorPane>
-      <Text layoutX="403.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: arial; -fx-font-weight: bold; -fx-font-size: 20;" text="%manageVehiclesTitle" />
-      <TableView fx:id="automjetiTable" layoutX="1009.0" layoutY="204.0" prefHeight="238.0" prefWidth="248.0">
+      <Text layoutX="426.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: arial; -fx-font-weight: bold; -fx-font-size: 20;" text="%manageVehiclesTitle" />
+      <TableView fx:id="automjetiTable" layoutX="995.0" layoutY="203.0" prefHeight="238.0" prefWidth="248.0">
         <columns>
           <TableColumn fx:id="automjetId" prefWidth="78.4000244140625" text="id" />
           <TableColumn fx:id="llojiAutomjetit" prefWidth="168.7999267578125" text="%activevehicletype" />
         </columns>
       </TableView>
-      <Button layoutX="1093.0" layoutY="463.0" mnemonicParsing="false" onAction="#listAutomjetet" prefHeight="34.0" prefWidth="80.0" style="-fx-background-color: green;" text="%viewactivevehicles" textFill="WHITE" />
-      <Text layoutX="1053.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: arial; -fx-font-weight: bold; -fx-font-size: 20;" text="%activeVehicleLabel" textAlignment="CENTER" />
+      <Button layoutX="1079.0" layoutY="460.0" mnemonicParsing="false" onAction="#listAutomjetet" prefHeight="34.0" prefWidth="80.0" style="-fx-background-color: green;" text="%viewactivevehicles" textFill="WHITE" />
+      <Text layoutX="1039.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: arial; -fx-font-weight: bold; -fx-font-size: 20;" text="%activeVehicleLabel" textAlignment="CENTER" />
    </children>
 </AnchorPane>

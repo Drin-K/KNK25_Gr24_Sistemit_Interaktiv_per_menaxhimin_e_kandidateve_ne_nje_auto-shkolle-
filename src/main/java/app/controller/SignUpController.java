@@ -36,9 +36,6 @@ public class SignUpController {
     }
     @FXML
     public void handleSave() {
-        genderGroup = new ToggleGroup();
-        maleRadio.setToggleGroup(genderGroup);
-        femaleRadio.setToggleGroup(genderGroup);
         String name = nameField.getText();
         String surname = surnameField.getText();
         String email = emailField.getText();

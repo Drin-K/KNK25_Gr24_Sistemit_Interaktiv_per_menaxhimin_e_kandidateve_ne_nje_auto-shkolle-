@@ -20,12 +20,18 @@ public class AdminHomeController extends BaseController {
     @FXML private BarChart<String, Number> pagesaTePapaguara, nrRegjistrimeve, PagesaTeKryera;
     @FXML private ListView<String> sesionetSot;
 
-    private final PagesaService pagesaService = new PagesaService();
-    private final OrariService sesioniService = new OrariService();
-    private final KandidateService kandidateService = new KandidateService();
-    private final StafiService stafiService = new StafiService();
-    private final PatentaService patentaService=new PatentaService();
-
+    private final PagesaService pagesaService;
+    private final OrariService sesioniService;
+    private final KandidateService kandidateService;
+    private final StafiService stafiService;
+    private final PatentaService patentaService;
+public AdminHomeController(){
+    this.pagesaService=new PagesaService();
+    this.sesioniService=new OrariService();
+    this.kandidateService=new KandidateService();
+    this.stafiService=new StafiService();
+    this.patentaService=new PatentaService();
+}
     @FXML
     public void initialize() {
         loadDashboardData();

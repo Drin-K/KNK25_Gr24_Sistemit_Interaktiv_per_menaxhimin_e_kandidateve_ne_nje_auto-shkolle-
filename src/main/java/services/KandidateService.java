@@ -61,12 +61,6 @@ public class KandidateService {
         if (!createDto.getEmail().matches(emailRegEx)) {
             throw new Exception("Emaili nuk është në formatin e duhur");
         }
-        //Validimi i statusit të procesit
-        if (!createDto.getStatusiProcesit().equals("Në proces") && !createDto.getStatusiProcesit().equals("Përfunduar")) {
-            throw new Exception("Statusi i procesit duhet të jetë Në proces ose Përfunduar");
-        }
-        //Data e regjistrimit duhet te jete data e regjistrimit te Kandidatit
-        createDto.setDataRegjistrimit(LocalDate.now());
         //Krijimi i Kandidatit ne DB
         Kandidatet kandidati = kandidatetRepository.create(createDto);
         if (kandidati == null) {

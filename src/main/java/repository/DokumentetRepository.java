@@ -163,7 +163,7 @@ public int numeroDokumentet(int kandidatiId) {
         LIMIT 1
     """;
 
-        try (PreparedStatement pstm = connection.prepareStatement(query)) {
+        try {PreparedStatement pstm = connection.prepareStatement(query);
             pstm.setInt(1, currentUserId);
             ResultSet rs = pstm.executeQuery();
 

@@ -176,14 +176,14 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
             statement.setString(4, metodaPageses);
             statement.setString(5, statusiPageses);
 
-            try (ResultSet rs = statement.executeQuery()) {
+            ResultSet rs = statement.executeQuery();
                 List<Pagesat> pagesatList = new ArrayList<>();
                 while (rs.next()) {
                     Pagesat pagesat = Pagesat.getInstance(rs);
                     pagesatList.add(pagesat);
                 }
                 return pagesatList;
-            }
+
         } catch (SQLException e) {
             System.err.println("Gabim gjatë ekzekutimit të kërkesës SQL: " + e.getMessage());
             e.printStackTrace();

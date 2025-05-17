@@ -8,6 +8,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import models.Dto.kandidatet.UpdateKandidatetDto;
+import models.Dto.stafi.UpdateStafiDto;
 import models.Dto.user.UpdateUserDto;
 import repository.KandidatetRepository;
 import repository.StafiRepository;
@@ -44,7 +45,6 @@ public class UpdateUserController extends BaseController {
         UserRepository userRepository;
         UpdateUserDto userDto;
 
-        // Përdorimi i logjikës për të krijuar DTO-në dhe repository-n përkatëse
         if (email != null && email.toLowerCase().endsWith("@kandidat.com")) {
             userDto = new UpdateKandidatetDto(
                     id,
@@ -57,7 +57,7 @@ public class UpdateUserController extends BaseController {
             );
             userRepository = new KandidatetRepository();
         } else {
-            userDto = new UpdateUserDto(
+            userDto = new UpdateStafiDto(
                     id,
                     email,
                     phoneField.getText(),

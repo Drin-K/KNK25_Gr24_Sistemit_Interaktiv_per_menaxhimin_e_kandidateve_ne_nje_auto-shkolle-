@@ -102,7 +102,6 @@
                                 </FXCollections>
                             </items>
                         </ComboBox>
-                        <TextField fx:id="txtStatusiProcesit" promptText="%processStatus" />
                         <PasswordField fx:id="txtPassword" promptText="%password" />
                         <Button onAction="#saveClick" text="%save" />
                     </children>

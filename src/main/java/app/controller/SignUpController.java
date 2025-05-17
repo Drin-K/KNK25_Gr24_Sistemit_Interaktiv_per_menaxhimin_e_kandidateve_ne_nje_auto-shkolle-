@@ -3,6 +3,7 @@ import javafx.scene.control.ToggleGroup;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import models.Dto.kandidatet.CreateKandidatetDto;
 import models.Dto.user.CreateUserDto;
 import services.LanguageManager;
 import services.PasswordHasher;
@@ -56,11 +57,9 @@ public class SignUpController {
             errorLabel.setVisible(true);
             return;
         }
-
-        CreateUserDto dto = new CreateUserDto(name, surname, email, phone, dob, password, PasswordHasher.generateSalt(),"Kandidat", address, gender);
-
+        //kemi mundsu qe veq kandidati me mujt me u bo signup, instruktoret shtohen veq permes adminit
+        CreateKandidatetDto dto = new CreateKandidatetDto(name, surname, email, phone, dob, password, PasswordHasher.generateSalt(), address, gender);
         boolean signupSuccess = UserService.signup(dto);
-
         if (signupSuccess) {
             messageLabel.setText("Successfully signed up!");
             messageLabel.setVisible(true);

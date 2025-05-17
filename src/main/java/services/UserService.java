@@ -1,5 +1,6 @@
 package services;
 
+import models.Dto.kandidatet.CreateKandidatetDto;
 import models.Dto.user.CreateUserDto;
 import models.Kandidatet;
 import models.User;
@@ -14,38 +15,18 @@ public class UserService {
     private static final UserRepository stafiRepo = new StafiRepository();
     private static final UserRepository adminRepo=new AdminRepository();
 
-    public static boolean signup(CreateUserDto dto) {
+    public static boolean signup(CreateKandidatetDto dto) {
         try {
             String email = dto.getEmail().toLowerCase();
-
-            if (email.endsWith("@kandidat.com")) {
-                dto.setRole("Kandidat");
-            } else if (email.endsWith("@staf.com")) {
-                dto.setRole("Staf");
-            } else {
-                System.out.println("The email must end with @kandidat.com or @staf.com.");
-                return false;
-            }
-
-            UserRepository repo = dto.getRole().equals("Kandidat") ? kandidatetRepo : stafiRepo;
-            if (repo.findByEmail(email) != null) {
+            if (kandidatetRepo.findByEmail(email) != null) {
                 System.out.println("This email already exists in the system.");
                 return false;
             }
-
-            String salt = PasswordHasher.generateSalt();
+            String salt = dto.getSalt();
             String hashedPassword = PasswordHasher.generateSaltedHash(dto.getPassword(), salt);
-
-            dto.setSalt(salt);
             dto.setPassword(hashedPassword);
-            if (dto.getRole().equalsIgnoreCase("Kandidat")) {
-                kandidatetRepo.create(dto);
-            } else {
-                stafiRepo.create(dto);
-            }
-
+            kandidatetRepo.create(dto);
             return true;
-
         } catch (Exception e) {
             e.printStackTrace();
             return false;

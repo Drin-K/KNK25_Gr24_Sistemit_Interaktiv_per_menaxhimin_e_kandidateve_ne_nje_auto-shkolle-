@@ -11,7 +11,7 @@ import repository.UserRepository;
 
 public class UserService {
 
-    private static final UserRepository kandidatetRepo = new KandidatetRepository();
+    private static final KandidatetRepository kandidatetRepo = new KandidatetRepository();
     private static final UserRepository stafiRepo = new StafiRepository();
     private static final UserRepository adminRepo=new AdminRepository();
 
@@ -25,7 +25,11 @@ public class UserService {
             String salt = dto.getSalt();
             String hashedPassword = PasswordHasher.generateSaltedHash(dto.getPassword(), salt);
             dto.setPassword(hashedPassword);
-            kandidatetRepo.create(dto);
+            Kandidatet created = kandidatetRepo.create(dto);
+            if (created == null) {
+                System.out.println("Failed to create candidate.");
+                return false;
+            }
             return true;
         } catch (Exception e) {
             e.printStackTrace();

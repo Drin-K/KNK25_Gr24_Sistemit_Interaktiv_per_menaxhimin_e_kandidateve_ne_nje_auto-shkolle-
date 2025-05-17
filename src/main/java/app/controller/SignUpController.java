@@ -4,7 +4,6 @@ import javafx.scene.control.ToggleGroup;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import models.Dto.kandidatet.CreateKandidatetDto;
-import models.Dto.user.CreateUserDto;
 import services.LanguageManager;
 import services.PasswordHasher;
 

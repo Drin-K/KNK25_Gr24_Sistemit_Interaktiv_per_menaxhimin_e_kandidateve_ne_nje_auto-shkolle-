@@ -2,7 +2,6 @@ package app.controller;
 import app.controller.base.BaseController;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import models.Dto.user.CreateUserDto;
 import services.LanguageManager;
 import services.SceneManager;
 import services.UserContext;
@@ -19,6 +18,7 @@ private PasswordField passwordField;
 
 @FXML
 private Label errorLabel;
+
 
 @FXML
 private void handleLogin() throws Exception {
@@ -40,18 +40,14 @@ private void handleLogin() throws Exception {
         return;
     }
 
-    String[] emailParts = email.split("@");
-    String domain = emailParts[1];
-
-    if (domain.equals("staf.com")) {
+    if (UserContext.getRole().equals("Staf")) {
         SceneManager.load(SceneLocator.INSTRUCTOR_FRONT_PAGE);
-    } else if (domain.equals("kandidat.com")) {
+    } else if (UserContext.getRole().equals("Kandidat")) {
         SceneManager.load(SceneLocator.FRONT_PAGE);
-    } else if (domain.equals("admin.com")) {
+    } else if (UserContext.getRole().equals("Admin")) {
         SceneManager.load(SceneLocator.FRONT_PAGE_ADMIN);
     }
 }
-
 
 @FXML
 private void handleSignup()throws Exception {

@@ -136,10 +136,9 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
                 "GROUP BY TO_CHAR(Data_e_Pageses, 'YYYY-MM') " +
                 "ORDER BY month ASC";
 
-        try (
+        try{
                 PreparedStatement stmt = this.connection.prepareStatement(sql);
-                ResultSet rs = stmt.executeQuery()
-        ) {
+                ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 String month = rs.getString("month");
                 int total = rs.getInt("total");

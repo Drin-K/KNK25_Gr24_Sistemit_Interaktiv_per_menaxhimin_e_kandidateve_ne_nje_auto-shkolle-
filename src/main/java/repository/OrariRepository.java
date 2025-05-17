@@ -93,7 +93,7 @@ public class OrariRepository extends BaseRepository<Orari, CreateOrariDto, Updat
         String query = "SELECT * FROM ORARI WHERE Data_e_Sesionit = ?";
         List<Orari> oraret = new ArrayList<>();
 
-        try (PreparedStatement pstm = this.connection.prepareStatement(query)) {
+        try{ PreparedStatement pstm = this.connection.prepareStatement(query);
             pstm.setObject(1, data);
             ResultSet res = pstm.executeQuery();
 

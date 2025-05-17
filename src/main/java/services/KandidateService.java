@@ -80,7 +80,7 @@ public class KandidateService {
             return kandidatetRepository.getAllRegistrationsGroupedByMonth();
         } catch (SQLException e) {
             e.printStackTrace();
-            return new HashMap<>();
+            return null;
         }
 
     }

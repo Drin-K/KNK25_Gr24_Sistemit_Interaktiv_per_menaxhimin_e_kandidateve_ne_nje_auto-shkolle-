@@ -62,9 +62,26 @@ public class PatentaService {
         this.getById(id); // E kontrollojm a ekziston
         return patentaRepository.delete(id);
     }
-    public Map<String, Integer> getLicensesIssuedCountPerDate() throws SQLException {
+
+    public boolean aprovoPatenten(int kandidatId) throws SQLException{
+        if (kandidatId <= 0) {
+            throw new IllegalArgumentException("ID e kandidatit është e pavlefshme.");
+        }
+        return this.patentaRepository.aprovoPatenten(kandidatId);
+    }
+
+    public XYChart.Series<String, Number> getLicensesIssuedSeries() {
+        try {
+            HashMap<String, Integer> data = getLicensesIssuedCountPerDate();
+            return getChartSeries(data, "Licenses Issued");
+        } catch (Exception e) {
+            System.out.println("Error loading licenses");
+            return new XYChart.Series<>();
+        }
+    }
+    public HashMap<String, Integer> getLicensesIssuedCountPerDate() throws SQLException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        Map<String, Integer> dateCountMap = new HashMap<>();
+        HashMap<String, Integer> dateCountMap = new HashMap<>();
 
         for (Patenta patenta : patentaRepository.getLicensesIssued()) {
             String date = patenta.getDataLeshimit().format(formatter);
@@ -78,22 +95,6 @@ public class PatentaService {
 
         return dateCountMap;
     }
-    public boolean aprovoPatenten(int kandidatId) throws SQLException{
-        if (kandidatId <= 0) {
-            throw new IllegalArgumentException("ID e kandidatit është e pavlefshme.");
-        }
-        return this.patentaRepository.aprovoPatenten(kandidatId);
-    }
-    public XYChart.Series<String, Number> getLicensesIssuedSeries() {
-        try {
-            Map<String, Integer> data = getLicensesIssuedCountPerDate();
-            return getChartSeries(new HashMap<>(data), "Licenses Issued");
-        } catch (Exception e) {
-            System.out.println("Error loading licenses");
-            return new XYChart.Series<>();
-        }
-    }
-
 
 
 }

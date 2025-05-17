@@ -9,29 +9,35 @@ import javafx.scene.control.ListView;
 import services.*;
 import java.util.HashMap;
 import java.util.Map;
-
 import static utils.ChartData.getChartSeries;
 
 public class AdminHomeController extends BaseController {
 
-    @FXML private Label totalKandidat, totalStafi;
-    @FXML private PieChart piechart;
-    @FXML private LineChart<String, Number> patentatEleshuara;
-    @FXML private BarChart<String, Number> pagesaTePapaguara, nrRegjistrimeve, PagesaTeKryera;
-    @FXML private ListView<String> sesionetSot;
+    @FXML
+    private Label totalKandidat, totalStafi;
+    @FXML
+    private PieChart piechart;
+    @FXML
+    private LineChart<String, Number> patentatEleshuara;
+    @FXML
+    private BarChart<String, Number> pagesaTePapaguara, nrRegjistrimeve, PagesaTeKryera;
+    @FXML
+    private ListView<String> sesionetSot;
 
     private final PagesaService pagesaService;
     private final OrariService sesioniService;
     private final KandidateService kandidateService;
     private final StafiService stafiService;
     private final PatentaService patentaService;
-public AdminHomeController(){
-    this.pagesaService=new PagesaService();
-    this.sesioniService=new OrariService();
-    this.kandidateService=new KandidateService();
-    this.stafiService=new StafiService();
-    this.patentaService=new PatentaService();
-}
+
+    public AdminHomeController() {
+        this.pagesaService = new PagesaService();
+        this.sesioniService = new OrariService();
+        this.kandidateService = new KandidateService();
+        this.stafiService = new StafiService();
+        this.patentaService = new PatentaService();
+    }
+
     @FXML
     public void initialize() {
         loadDashboardData();
@@ -40,13 +46,14 @@ public AdminHomeController(){
     private void loadDashboardData() {
         updateTotalKandidat();
         updateTotalStaf();
-        updatePieChart();
+        updatePieChart(this.kandidateService.countKandidatetByStatusiProcesit());
         updateLineChart(patentatEleshuara, patentaService.getLicensesIssuedSeries());
         updateBarChart(pagesaService.getUnpaidPaymentsChartData(), pagesaTePapaguara);
         updateBarChart(getChartSeries(kandidateService.getAllRegistrationsGroupedByMonth(), "Registrations"), nrRegjistrimeve);
-        updateBarChart();
+        updateBarChart(getChartSeries(pagesaService.getPayments(), "Number Of Payments"), PagesaTeKryera);
         updateSessionsToday();
     }
+
     public void updateTotalKandidat() {
         try {
             totalKandidat.setText(String.valueOf(kandidateService.countKandidatet()));
@@ -54,13 +61,7 @@ public AdminHomeController(){
             showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
         }
     }
-    public void updateBarChart(){
-        try{
-            updateBarChart(getChartSeries(pagesaService.getPayments(), "Number Of Payments"), PagesaTeKryera);
-        }catch(IllegalStateException e){
-            showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
-        }
-    }
+
     public void updateTotalStaf() {
         try {
             totalStafi.setText(String.valueOf(stafiService.countStafi()));
@@ -68,17 +69,15 @@ public AdminHomeController(){
             showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
         }
     }
-    private void updatePieChart(){
+
+    private void updatePieChart(HashMap<String, Integer> data) {
         try {
-            updatePieChart(this.kandidateService.countKandidatetByStatusiProcesit());
+            piechart.getData().clear();
+            for (Map.Entry<String, Integer> entry : data.entrySet()) {
+                piechart.getData().add(new PieChart.Data(entry.getKey(), entry.getValue()));
+            }
         } catch (IllegalStateException e) {
             showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
-        }
-    }
-    private void updatePieChart(HashMap<String, Integer> data) {
-        piechart.getData().clear();
-        for (Map.Entry<String, Integer> entry : data.entrySet()) {
-            piechart.getData().add(new PieChart.Data(entry.getKey(), entry.getValue()));
         }
     }
 

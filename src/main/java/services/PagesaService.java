@@ -7,6 +7,7 @@ import repository.PagesatRepository;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -86,8 +87,6 @@ public class PagesaService {
 
         return data;
     }
-
-
 
     public void delete(int pagesaId) throws Exception {
         Pagesat ekzistues = pagesatRepository.getById(pagesaId);

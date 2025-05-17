@@ -72,37 +72,8 @@ public class StafiRepository extends UserRepository {
         }
         return 0;
     }
-    public Stafi getByIDstaf(int id) {
-        String query = """
-        SELECT
-            u.id,
-            u.name,
-            u.surname,
-            u.email,
-            u.phoneNumber,
-            u.dateOfBirth,
-            u.hashedPassword,
-            u.salt,
-            u.adresa,
-            u.gjinia,
-            u.role
-        FROM Stafi s
-        JOIN "User" u ON s.id = u.id
-        WHERE u.role = 'Staf' AND u.id = ?
-    """;
-        try {
-            PreparedStatement stmt = connection.prepareStatement(query);
-            stmt.setInt(1, id);
-            ResultSet result = stmt.executeQuery();
-            if (result.next()) {
-                return Stafi.getInstance(result);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-    //Polimorfizmi
+
+    //Shenim nga Albena: Polimorfizmi
     //Java nuk lejon qe ni ArrayList<Staf> me u perputh me ni ArrayList<User>,
     // edhe pse Stafi osht ni nenklase e User
     //e kemi modifiku te serviset qe me mujt me kthy t tipit Staf

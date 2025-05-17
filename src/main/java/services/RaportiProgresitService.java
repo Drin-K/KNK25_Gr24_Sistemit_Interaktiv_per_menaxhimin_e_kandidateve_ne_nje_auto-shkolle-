@@ -24,7 +24,7 @@ public class RaportiProgresitService {
         if (dto.getIdKandidat() <= 0 || kandidatetRepository.getById(dto.getIdKandidat()) == null) {
             throw new Exception("ID i kandidatit është i pavlefshëm.");
         }
-        if (dto.getIdStaf() <= 0 || stafiRepository.getByIDstaf(dto.getIdStaf()) == null) {
+        if (dto.getIdStaf() <= 0 || stafiRepository.getById(dto.getIdStaf()) == null) {
             throw new Exception("ID i stafit është i pavlefshëm.");
         }
         if (dto.getPiketTeorike() < 0 || dto.getPiketTeorike() > 100) {

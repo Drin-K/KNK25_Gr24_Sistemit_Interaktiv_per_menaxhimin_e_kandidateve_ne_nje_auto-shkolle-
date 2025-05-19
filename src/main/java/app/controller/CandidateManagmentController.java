@@ -9,10 +9,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import models.*;
 import models.Dto.kandidatet.CreateKandidatetDto;
-import repository.DokumentetRepository;
-import repository.OrariRepository;
-import repository.PagesatRepository;
-import repository.TestetRepository;
 import services.*;
 import utils.SceneLocator;
 import java.io.IOException;
@@ -79,22 +75,18 @@ public class CandidateManagmentController extends BaseController {
     private final KandidateService kandidateService;
     private final OrariService orariService;
     private final RegjistrimiService regjistrimiService;
-    private final TestetRepository testiRepository;
-    private final DokumentetRepository dokumentetRepository;
-    private final PagesatRepository pagesatRepository;
-    private final OrariRepository orariRepository;
     private final DokumentService dokumentService;
+    private final PagesaService pagesaService;
+    private final TestiService testiService;
 
 
     public CandidateManagmentController() {
         this.kandidateService = new KandidateService();
         this.orariService = new OrariService();
         this.regjistrimiService = new RegjistrimiService();
-        this.testiRepository = new TestetRepository();
-        this.dokumentetRepository = new DokumentetRepository();
-        this.pagesatRepository = new PagesatRepository();
-        this.orariRepository = new OrariRepository();
         this.dokumentService=new DokumentService();
+        this.pagesaService=new PagesaService();
+        this.testiService=new TestiService();
     }
 
     @FXML
@@ -143,10 +135,10 @@ public class CandidateManagmentController extends BaseController {
 
     private void loadData() {
         kandidatTable.setItems(FXCollections.observableArrayList(kandidateService.getAll()));
-        tableViewDokumente.setItems(FXCollections.observableArrayList(dokumentetRepository.getAll()));
-        tabelaPagesat.setItems(FXCollections.observableArrayList(pagesatRepository.getAll()));
-        orariTable.setItems(FXCollections.observableArrayList(orariRepository.getAll()));
-        testetTable.setItems(FXCollections.observableArrayList(testiRepository.getAll()));
+        tableViewDokumente.setItems(FXCollections.observableArrayList(dokumentService.getAll()));
+        tabelaPagesat.setItems(FXCollections.observableArrayList(pagesaService.getAll()));
+        orariTable.setItems(FXCollections.observableArrayList(orariService.getAll()));
+        testetTable.setItems(FXCollections.observableArrayList(testiService.getAll()));
     }
 
     @FXML
@@ -206,29 +198,29 @@ public class CandidateManagmentController extends BaseController {
     }
 
     @FXML
-    private void onDeletePagesatClick() {
+    private void onDeletePagesatClick() throws Exception {
         Pagesat selected = tabelaPagesat.getSelectionModel().getSelectedItem();
         if (kontrolloDheKonfirmo(selected, "Delete payment with ID: " + selected.getId() + "?")) {
             tabelaPagesat.getItems().remove(selected);
-            pagesatRepository.delete(selected.getId());
+            pagesaService.delete(selected.getId());
         }
     }
 
     @FXML
-    private void onDeleteTestetClick() {
+    private void onDeleteTestetClick() throws Exception {
         Testet selected = testetTable.getSelectionModel().getSelectedItem();
         if (kontrolloDheKonfirmo(selected, "Delete test with ID: " + selected.getId() + "?")) {
             testetTable.getItems().remove(selected);
-            testiRepository.delete(selected.getId());
+            testiService.delete(selected.getId());
         }
     }
 
     @FXML
-    private void onDeleteDokumentetClick() {
+    private void onDeleteDokumentetClick() throws Exception {
         Dokumentet selected = tableViewDokumente.getSelectionModel().getSelectedItem();
         if (kontrolloDheKonfirmo(selected, "Delete document: " + selected.getEmriSkedarit() + "?")) {
             tableViewDokumente.getItems().remove(selected);
-            dokumentetRepository.delete(selected.getId());
+            dokumentService.delete(selected.getId());
         }
     }
 

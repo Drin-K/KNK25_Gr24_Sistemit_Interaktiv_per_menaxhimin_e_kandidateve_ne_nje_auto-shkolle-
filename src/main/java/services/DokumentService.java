@@ -17,6 +17,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DokumentService {
     private DokumentetRepository dokumentRepository;
@@ -118,6 +119,17 @@ public class DokumentService {
         } else {
             throw new IOException("The document does not exist.");
         }
+    }
+    public List<Dokumentet> getAll() {
+        List<Dokumentet> dokumentetList = dokumentRepository.getAll();
+        List<Dokumentet> validDocuments = new ArrayList<>();
+
+        for (Dokumentet d : dokumentetList) {
+            if (d.getId() > 0 && d.getIdKandidat() > 0) {
+                validDocuments.add(d);
+            }
+        }
+        return validDocuments;
     }
 
 }

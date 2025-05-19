@@ -85,9 +85,9 @@ public class StafiRepository extends UserRepository {
                 "FROM Stafi k " +
                 "JOIN \"User\" u ON k.id = u.id " +
                 "WHERE u.role = 'Staf'";
-        try (
+        try {
                 PreparedStatement stmt = connection.prepareStatement(query);
-                ResultSet rs = stmt.executeQuery()) {
+                ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
 
@@ -113,22 +113,16 @@ public class StafiRepository extends UserRepository {
         ORDER BY COUNT(*) DESC
         LIMIT 1;
     """, extremum);
-
-        try (PreparedStatement stmt = this.connection.prepareStatement(query);
-             ResultSet rs = stmt.executeQuery()) {
-
+        try {PreparedStatement stmt = this.connection.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 return rs.getString("name") + " " + rs.getString("surname");
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return null;
     }
-
-
 
     @Override
     public Stafi findByEmail(String email) {

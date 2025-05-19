@@ -99,7 +99,7 @@ public class TestetRepository extends BaseRepository<Testet, CreateTestetDto, Up
     public List<Testet> getTestetByKandidatId(int idKandidat) {
         List<Testet> testetList = new ArrayList<>();
         String sql = "SELECT * FROM Testet WHERE ID_Kandidat = ?";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        try{ PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, idKandidat);
             ResultSet result = statement.executeQuery();
             while (result.next()) {

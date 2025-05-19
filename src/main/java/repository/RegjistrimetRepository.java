@@ -27,9 +27,8 @@ public class RegjistrimetRepository extends BaseRepository<Regjistrimet, CreateR
     public void mirato(int id) {
         String query = "UPDATE Regjistrimet SET Statusi = 'Përfunduar' WHERE ID_Kandidat = ?";
 
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
-
-            statement.setInt(1, id); // vendos ID e kandidatit
+        try {PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, id);
             int affectedRows = statement.executeUpdate();
 
             if (affectedRows > 0) {
@@ -52,9 +51,7 @@ public class RegjistrimetRepository extends BaseRepository<Regjistrimet, CreateR
                 """;
         try {
 
-            PreparedStatement pstm =
-                    this.connection.prepareStatement(
-                            query, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             pstm.setInt(1, regjistrimetDto.getIdKandidat());
             pstm.setInt(2, regjistrimetDto.getIdKategori());
             pstm.setString(3, regjistrimetDto.getStatusi());

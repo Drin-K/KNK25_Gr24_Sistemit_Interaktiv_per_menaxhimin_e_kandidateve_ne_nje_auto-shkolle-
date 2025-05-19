@@ -100,13 +100,10 @@ public class PatentaRepository extends BaseRepository<Patenta, CreatePatentaDto,
     public boolean aprovoPatenten(int kandidatId) throws SQLException {
         String query = "UPDATE Patenta SET Statusi = 'E lëshuar' WHERE ID_Kandidat = ?";
         try {PreparedStatement stmt = connection.prepareStatement(query);
-
             stmt.setInt(1, kandidatId);
             int rowsAffected = stmt.executeUpdate();
-
             return rowsAffected > 0;
         } catch (SQLException e) {
-            e.printStackTrace();
             throw new SQLException("Error approving the license.", e);
         }
     }

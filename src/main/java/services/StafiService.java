@@ -1,5 +1,6 @@
 package services;
 
+import javafx.scene.text.Text;
 import models.Dto.stafi.CreateStafiDto;
 import models.Kandidatet;
 import models.Stafi;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 public class StafiService {
     public static final int MAX_STAF=50;
     private StafiRepository stafiRepository;
+    private Stafi instruktori;
     private String emailRegEx = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$"; //RegEx i thjesht i emailit
     private String numriTelefonitRegEx = "\\d{8,15}";// nga bardhi idea. Shikoni KandidatetService per me shum info :)
     public StafiService() {
@@ -86,5 +88,13 @@ public class StafiService {
         return (name != null && !name.isBlank()) ? name : "No instructor";
     }
 
-
+    public void getStafiInfo(Text name,Text surname,Text email,Text number,Text data,Text gjinia){
+        this.instruktori = stafiRepository.getById(UserContext.getUserId());
+        name.setText(instruktori.getName());
+        surname.setText(instruktori.getSurname());
+        email.setText(instruktori.getEmail());
+        number.setText(instruktori.getPhoneNumber());
+        data.setText(instruktori.getDateOfBirth().toString());
+        gjinia.setText(instruktori.getGjinia());
+    }
 }

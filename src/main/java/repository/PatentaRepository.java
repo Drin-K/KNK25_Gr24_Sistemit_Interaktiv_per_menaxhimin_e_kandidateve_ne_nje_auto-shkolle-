@@ -82,7 +82,7 @@ public class PatentaRepository extends BaseRepository<Patenta, CreatePatentaDto,
                 return this.getById(patentaDto.getId());
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Gabim gjatë përditësimit të patentes", e);
+            throw new RuntimeException("Error updating the license.", e);
         }
         return null;}
     public List<Patenta> getLicensesIssued() throws SQLException {
@@ -92,14 +92,14 @@ public class PatentaRepository extends BaseRepository<Patenta, CreatePatentaDto,
         ResultSet resultSet = statement.executeQuery(query);
 
         while (resultSet.next()) {
-            patentat.add(Patenta.getInstance(resultSet));
+            patentat.add(fromResultSet(resultSet));
         }
 
         return patentat;
     }
     public boolean aprovoPatenten(int kandidatId) throws SQLException {
         String query = "UPDATE Patenta SET Statusi = 'E lëshuar' WHERE ID_Kandidat = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+        try {PreparedStatement stmt = connection.prepareStatement(query);
 
             stmt.setInt(1, kandidatId);
             int rowsAffected = stmt.executeUpdate();
@@ -107,7 +107,7 @@ public class PatentaRepository extends BaseRepository<Patenta, CreatePatentaDto,
             return rowsAffected > 0;
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new SQLException("Gabim gjatë aprovimit të patentës", e);
+            throw new SQLException("Error approving the license.", e);
         }
     }
 

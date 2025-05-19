@@ -44,8 +44,9 @@ public class KandidatetRepository extends UserRepository {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+
         }
-        return null;
+       return null;
     }
 
     @Override
@@ -57,18 +58,20 @@ public class KandidatetRepository extends UserRepository {
 
         String query = "SELECT TO_CHAR(dataRegjistrimi, 'YYYY-MM') AS month, COUNT(*) AS total " +
                 "FROM Kandidatet " +
-                "GROUP BY TO_CHAR(dataRegjistrimi, 'YYYY-MM') " +
+                "GROUP BY month " +
                 "ORDER BY month ASC";
 
-        try (Statement stmt = connection.createStatement()) {
+        try {
+            Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
                 String muaji = rs.getString("month");
                 int totali = rs.getInt("total");
                 data.put(muaji, totali);
             }
+        } catch (SQLException e) {
+           e.printStackTrace();
         }
-
         return data;
     }
 
@@ -156,11 +159,11 @@ public class KandidatetRepository extends UserRepository {
             AND p1.Statusi = 'Në proces'
             AND p2.Statusi_i_Pageses IN (""" + kushtiPageses + ")";
 
-        try (PreparedStatement stmt = connection.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
+        try{ PreparedStatement stmt = connection.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                kandidatet.add(Kandidatet.getInstance(rs));
+                kandidatet.add(fromResultSet(rs));
             }
 
         } catch (SQLException e) {

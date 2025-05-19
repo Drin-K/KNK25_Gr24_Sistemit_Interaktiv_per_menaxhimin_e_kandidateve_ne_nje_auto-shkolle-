@@ -7,6 +7,7 @@ import repository.PagesatRepository;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,17 +25,17 @@ public class PagesaService {
         }
         Pagesat pagesa = this.pagesatRepository.getById(id);
         if (pagesa == null) {
-            throw new Exception("Pagesa me ID " + id + " nuk ekziston!");
+            throw new Exception("The payment with ID " + id + " does not exist!");
         }
         return pagesa;
     }
     public Pagesat create(CreatePagesatDto createDto) throws Exception{
         //Validimi i shumes
         if(createDto.getShuma() <= 0 && createDto.getShuma()>500){
-            throw new Exception("Shuma duhet të jetë më e madhe se 0!");
+            throw new Exception("The amount must be greater than 0.!");
         }
         if(createDto.getNumriXhirollogarise().length() <= 0 && createDto.getNumriXhirollogarise().length()>10 ){
-            throw new Exception("numri i xhirollogarise duhet të jetë 10 shifra !");
+            throw new Exception("The bank account number must be 10 digits long!");
         }
         //Validimi i dates se pageses
         if(createDto.getDataPageses() == null){
@@ -43,20 +44,20 @@ public class PagesaService {
         // Validimi i metodës së pagesës
         if (!createDto.getMetodaPageses().equals("Cash") &&
                 !createDto.getMetodaPageses().equals("Online")) {
-            throw new Exception("Metoda e pagesës duhet të jetë Cash ose Online!");
+            throw new Exception("The payment method must be Cash or Online!");
         }
 
         // Validimi i statusit të pagesës
         if (!createDto.getStatusiPageses().equals("Paguar") &&
                 !createDto.getStatusiPageses().equals("Pjesërisht") &&
                 !createDto.getStatusiPageses().equals("Mbetur")) {
-            throw new Exception("Statusi i pagesës duhet të jetë Paguar, Pjesërisht ose Mbetur!");
+            throw new Exception("The payment status must be Paid, Partial, or Remaining!");
         }
 
         // Krijimi i pagesës në databazë
         Pagesat pagesa = pagesatRepository.create(createDto);
         if (pagesa == null) {
-            throw new Exception("Pagesa nuk u krijua!");
+            throw new Exception("The payment was not created!");
         }
         return pagesa;
     }
@@ -73,30 +74,28 @@ public class PagesaService {
     public HashMap<String, Integer> getPayments() {
         HashMap<String, Integer> data = pagesatRepository.getPayments();
         if (data == null) {
-            throw new IllegalStateException("Të dhënat e pagesave janë null!");
+            throw new IllegalStateException("The payment data is null!");
         }
         if (data.isEmpty()) {
-            throw new IllegalStateException("Nuk u gjetën pagesa në sistem!");
+            throw new IllegalStateException("No payments were found in the system!");
         }
         for (Map.Entry<String, Integer> entry : data.entrySet()) {
             if (entry.getValue() < 0) {
-                throw new IllegalStateException("Vlera negative për muajin: " + entry.getKey());
+                throw new IllegalStateException("Negative value for month: " + entry.getKey());
             }
         }
 
         return data;
     }
 
-
-
     public void delete(int pagesaId) throws Exception {
         Pagesat ekzistues = pagesatRepository.getById(pagesaId);
         if (ekzistues == null) {
-            throw new Exception("Pagesa me ID " + pagesaId + " nuk ekziston.");
+            throw new Exception("The payment with ID " + pagesaId + " does not exist.");
         }
         boolean fshirje = pagesatRepository.delete(pagesaId);
         if (!fshirje) {
-            throw new Exception("Gabim gjatë fshirjes së pageses me ID " + pagesaId);
+            throw new Exception("Error while deleting the payment with ID " + pagesaId);
         }
     }
     public void updateLineChartData(XYChart<String, Number> chart) throws SQLException {

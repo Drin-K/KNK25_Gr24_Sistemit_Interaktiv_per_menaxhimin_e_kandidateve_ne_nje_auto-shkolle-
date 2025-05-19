@@ -84,7 +84,7 @@ public class OrariRepository extends BaseRepository<Orari, CreateOrariDto, Updat
                 return this.getById(orariDto.getIdSesioni());
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Gabim gjatë përditësimit të orarit", e);
+            throw new RuntimeException("Error updating the schedule.", e);
         }
         return null;}
 
@@ -93,7 +93,7 @@ public class OrariRepository extends BaseRepository<Orari, CreateOrariDto, Updat
         String query = "SELECT * FROM ORARI WHERE Data_e_Sesionit = ?";
         List<Orari> oraret = new ArrayList<>();
 
-        try (PreparedStatement pstm = this.connection.prepareStatement(query)) {
+        try{ PreparedStatement pstm = this.connection.prepareStatement(query);
             pstm.setObject(1, data);
             ResultSet res = pstm.executeQuery();
 
@@ -102,7 +102,7 @@ public class OrariRepository extends BaseRepository<Orari, CreateOrariDto, Updat
                 oraret.add(orar);
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Gabim gjatë kërkimit të orareve për datën: " + data, e);
+            throw new RuntimeException("Error searching for schedules on date: " + data, e);
         }
 
         return oraret;
@@ -122,7 +122,7 @@ public class OrariRepository extends BaseRepository<Orari, CreateOrariDto, Updat
                 oraret.add(orar);
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Nuk mund të lexohen oraret nga databaza për kolonën me ID: " + id, e);
+            throw new RuntimeException("Schedules could not be read from the database for the column with ID: " + id, e);
         }
 
         return oraret;
@@ -142,7 +142,7 @@ public class OrariRepository extends BaseRepository<Orari, CreateOrariDto, Updat
                 numri = res.getInt(1);
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Gabim gjatë numërimit të sesioneve për kandidat: " + idKandidat, e);
+            throw new RuntimeException("Error counting sessions for candidate: " + idKandidat, e);
         }
 
         return numri;

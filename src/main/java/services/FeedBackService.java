@@ -51,5 +51,4 @@ public class FeedBackService {
     public ArrayList<FeedBack>getAll(){
         return this.feedbackRepository.getAll();
     }
-//PYTJE: A ka nevoj me ba validime kur te boj update te nje repository
 }

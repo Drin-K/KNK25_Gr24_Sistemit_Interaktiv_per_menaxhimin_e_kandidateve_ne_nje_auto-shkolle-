@@ -21,39 +21,39 @@ public class TestiService {
 
         // Validimi i idKandidat
         if (dto.getIdKandidat() <= 0) {
-            throw new Exception("ID e kandidatit duhet të jetë pozitive dhe të vlefshme.");
+            throw new Exception("The candidate ID must be positive and valid.");
         }
 
         // Validimi i idStaf
         if (dto.getIdStaf() <= 0) {
-            throw new Exception("ID e stafit duhet të jetë pozitive dhe të vlefshme.");
+            throw new Exception("The staff ID must be positive and valid.");
         }
 
         // Validimi i llojit të testit
         if (dto.getLlojiTestit() == null) {
-            throw new Exception("Lloji i testit nuk mund të jetë null.");
+            throw new Exception("The test type cannot be null.");
         }
         if(!dto.getLlojiTestit().equals("Teori") && !dto.getLlojiTestit().equals("Praktikë")){
-            throw new Exception("Lloji i testit duhet të jetë 'Teori' ose 'Praktikë'.");
+            throw new Exception("The test type must be 'Theory' or 'Practical'.");
         }
 
         // Validimi i datës së testit
         if (dto.getDataTestit() == null || dto.getDataTestit().isAfter(LocalDate.now().plusYears(1))) {
-            throw new Exception("Data e testit duhet të jetë një datë valide dhe jo shumë larg në të ardhmen.");
+            throw new Exception("The test date must be a valid date and not too far in the future.");
         }
 
         // Validimi i rezultatit të testit
         if (dto.getRezultati() == null) {
-            throw new Exception("Rezultati nuk mund të jetë null.");
+            throw new Exception("The result cannot be null.");
         }
 
         if(!dto.getRezultati().equals("Kaluar") && !dto.getRezultati().equals("Dështuar")){
-            throw new Exception("Rezultati duhet të jetë 'Kaluar' ose 'Dështuar'.");
+            throw new Exception("The result must be 'Kaluar' or 'Dështuar'.");
         }
 
         // Validimi i pikëve
         if (dto.getPiket() < 0 || dto.getPiket() > 100) {
-            throw new Exception("Piket duhet të jetë mes 0 dhe 100.");
+            throw new Exception("The points must be between 0 and 100.");
         }
 
         return testetRepository.create(dto);
@@ -71,11 +71,11 @@ public class TestiService {
     public void delete(int Id) throws Exception {
        Testet ekzistues = testetRepository.getById(Id);
         if (ekzistues == null) {
-            throw new Exception("Testi me ID " + Id + " nuk ekziston.");
+            throw new Exception("The exam with id " + Id + " does not exist.");
         }
         boolean fshirje =testetRepository.delete(Id);
         if (!fshirje) {
-            throw new Exception("Gabim gjatë fshirjes së testit me ID " + Id);
+            throw new Exception("Error occurred while deleting the test with ID " + Id);
         }
     }
 

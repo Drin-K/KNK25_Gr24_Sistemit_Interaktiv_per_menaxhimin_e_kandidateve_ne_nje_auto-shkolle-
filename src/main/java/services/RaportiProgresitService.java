@@ -22,19 +22,19 @@ public class RaportiProgresitService {
 
     public RaportiProgresit create(CreateRaportiProgresitDto dto) throws Exception {
         if (dto.getIdKandidat() <= 0 || kandidatetRepository.getById(dto.getIdKandidat()) == null) {
-            throw new Exception("ID i kandidatit është i pavlefshëm.");
+            throw new Exception("The candidate's ID is invalid.");
         }
-        if (dto.getIdStaf() <= 0 || stafiRepository.getByIDstaf(dto.getIdStaf()) == null) {
-            throw new Exception("ID i stafit është i pavlefshëm.");
+        if (dto.getIdStaf() <= 0 || stafiRepository.getById(dto.getIdStaf()) == null) {
+            throw new Exception("The staf's ID is invalid.");
         }
         if (dto.getPiketTeorike() < 0 || dto.getPiketTeorike() > 100) {
-            throw new Exception("Piket teorike duhet të jenë mes 0 dhe 100.");
+            throw new Exception("Theoritical points must be between 0 and 100.");
         }
         if (dto.getPiketPraktike() < 0 || dto.getPiketPraktike() > 100) {
-            throw new Exception("Piket praktike duhet të jenë mes 0 dhe 100.");
+            throw new Exception("Practical points must be between 0 and 100.");
         }
         if (dto.getKomentet() != null && dto.getKomentet().length() > 500) {
-            throw new Exception("Komentet nuk mund të kalojnë 500 karaktere.");
+            throw new Exception("Comments cannot exceed 500 characters.");
         }
         String[] validPerformanca = {"Shkelqyeshem", "Mire", "Mesatar", "Dobet"};
         boolean isPerformancaValid = false;
@@ -45,7 +45,7 @@ public class RaportiProgresitService {
             }
         }
         if (!isPerformancaValid) {
-            throw new Exception("Performanca duhet të jetë një nga vlerat: Shkelqyeshem, Mire, Mesatar, Dobet.");
+            throw new Exception("The performance should be one from these values: Shkelqyeshem, Mire, Mesatar, Dobet.");
         }
 
         return raportiProgresitRepository.create(dto);

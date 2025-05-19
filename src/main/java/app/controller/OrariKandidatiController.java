@@ -57,15 +57,14 @@ public class OrariKandidatiController extends BaseController {
             String ora = cellData.getValue().getOraPerfundimit().format(timeFmt);
             return new SimpleStringProperty(ora);
         });
-        llojiColumn.setCellValueFactory(new PropertyValueFactory<>("llojiMesimit"));
-        statusiColumn.setCellValueFactory(new PropertyValueFactory<>("statusi"));
+        configureTable(orariTable,List.of(llojiColumn,statusiColumn),new String[]{"llojiMesimit","statusi"});
     }
 
     @FXML
     private void kerkoOraretPerDate() {
         LocalDate dataZgjedhur = dataPicker.getValue();
         if (dataZgjedhur == null) {
-            showAlert(Alert.AlertType.ERROR,"Gabim", "Zgjidhni një datë.");
+            showAlert(Alert.AlertType.ERROR,"Error", "Please select a date.");
             return;
         }
         List<Orari> oraretEFiltruara = orariService.gjejOraretPerKandidat(dataZgjedhur, kandidatId);
@@ -76,7 +75,7 @@ public class OrariKandidatiController extends BaseController {
     private void shfaqOraret(List<Orari> oraret) {
         orariTable.getItems().setAll(oraret);
         if (oraret.isEmpty()) {
-            showAlert(Alert.AlertType.INFORMATION,"Informacion", "Nuk u gjetën orare.");
+            showAlert(Alert.AlertType.INFORMATION,"Information", "No schedules were found.");
         }
     }
 
@@ -86,15 +85,15 @@ public class OrariKandidatiController extends BaseController {
             int praktike = orariService.numeroSesione(kandidatId, "Praktikë", "Përfunduar");
 
             progresiChart.getData().setAll(
-                    new PieChart.Data("Teori (" + teori + "/15)", teori),
-                    new PieChart.Data("Praktikë (" + praktike + "/20)", praktike)
+                    new PieChart.Data("Theory (" + teori + "/15)", teori),
+                    new PieChart.Data("Practice (" + praktike + "/20)", praktike)
             );
 
-            String status = (teori >= 15 && praktike >= 20) ? "GATI PËR PROVIM" : "NUK JENI GATI PËR PROVIM";
-            progresiChart.setTitle("Progresi i Mësimeve\nStatus: " + status);
+            String status = (teori >= 15 && praktike >= 20) ? "READY FOR THE EXAM" : "YOU ARE NOT READY FOR THE EXAM";
+            progresiChart.setTitle("Lesson Progress\nStatus: " + status);
 
         } catch (Exception e) {
-            showAlert(Alert.AlertType.INFORMATION,"Gabim", "Gabim gjatë ngarkimit të progresit.");
+            showAlert(Alert.AlertType.INFORMATION,"Error", "Error while loading progress.");
         }
     }
 

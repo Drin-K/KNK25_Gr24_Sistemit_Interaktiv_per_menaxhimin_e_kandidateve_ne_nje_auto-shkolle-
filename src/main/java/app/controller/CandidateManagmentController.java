@@ -67,7 +67,7 @@ public class CandidateManagmentController extends BaseController {
     @FXML
     private TableColumn<Testet, LocalDate> dataTestitColumn;
     @FXML
-    private TextField txtEmri, txtMbiemri, txtEmail, txtPhone, txtAdresa, txtStatusiProcesit;
+    private TextField txtEmri, txtMbiemri, txtEmail, txtPhone, txtAdresa;
     @FXML
     private DatePicker datePickerDob;
     @FXML
@@ -158,20 +158,19 @@ public class CandidateManagmentController extends BaseController {
     private void saveClick() throws Exception {
         String emri = txtEmri.getText(), mbiemri = txtMbiemri.getText(), email = txtEmail.getText(),
                 phone = txtPhone.getText(), adresa = txtAdresa.getText(),
-                gjinia = comboGjinia.getValue(), password = txtPassword.getText(),
-                statusiProcesit = txtStatusiProcesit.getText();
+                gjinia = comboGjinia.getValue(), password = txtPassword.getText();
         LocalDate datelindja = datePickerDob.getValue();
         String salt=PasswordHasher.generateSalt();
 
         if (emri.isEmpty() || mbiemri.isEmpty() || email.isEmpty() || phone.isEmpty()
-                || datelindja == null || adresa.isEmpty() || gjinia == null || statusiProcesit.isEmpty()) {
+                || datelindja == null || adresa.isEmpty() || gjinia == null) {
             showAlert(Alert.AlertType.ERROR, "Error", "Incomplete data. Please fill in all fields.");
             return;
         }
 
         CreateKandidatetDto kandidatet = new CreateKandidatetDto(
                 emri, mbiemri, email, phone, datelindja, PasswordHasher.generateSaltedHash(password, salt), salt,
-                 adresa, gjinia, null, statusiProcesit);
+                 adresa, gjinia);
       try{  kandidateService.create(kandidatet);
           showAlert(Alert.AlertType.INFORMATION, "Success", "The candidate was created successfully!");
           SceneManager.reload();

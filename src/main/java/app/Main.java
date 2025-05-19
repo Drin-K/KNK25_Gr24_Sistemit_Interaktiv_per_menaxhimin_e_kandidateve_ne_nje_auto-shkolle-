@@ -6,11 +6,9 @@ import javafx.stage.Stage;
 import services.SceneManager;
 import utils.SceneLocator;
 
-import java.io.IOException;
-
-public class MainInstructor extends Application {
+public class  Main extends Application {
     public void start(Stage stage) throws Exception {
-        SceneManager.mainLoad(SceneLocator.INSTRUCTOR_FRONT_PAGE,stage);
-
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/Tiger-Logo.jpg")));
+        SceneManager.mainLoad(SceneLocator.LOGIN_PAGE,stage);
     }
 }

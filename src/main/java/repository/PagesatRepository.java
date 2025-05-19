@@ -87,7 +87,7 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
                 return this.getById(pagesatDto.getId());
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Gabim gjatë përditësimit të pagesave", e);
+            throw new RuntimeException("Error updating the payments.", e);
         }
         return null;
     }
@@ -119,7 +119,7 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             ResultSet resultSet = stmt.executeQuery();
             while (resultSet.next()) {
-                Pagesat pagesa = Pagesat.getInstance(resultSet);
+                Pagesat pagesa = fromResultSet(resultSet);
                 pagesat.add(pagesa);
             }
         } catch (SQLException e) {
@@ -136,10 +136,9 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
                 "GROUP BY TO_CHAR(Data_e_Pageses, 'YYYY-MM') " +
                 "ORDER BY month ASC";
 
-        try (
+        try{
                 PreparedStatement stmt = this.connection.prepareStatement(sql);
-                ResultSet rs = stmt.executeQuery()
-        ) {
+                ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 String month = rs.getString("month");
                 int total = rs.getInt("total");
@@ -177,16 +176,16 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
             statement.setString(4, metodaPageses);
             statement.setString(5, statusiPageses);
 
-            try (ResultSet rs = statement.executeQuery()) {
+            ResultSet rs = statement.executeQuery();
                 List<Pagesat> pagesatList = new ArrayList<>();
                 while (rs.next()) {
-                    Pagesat pagesat = Pagesat.getInstance(rs);
+                    Pagesat pagesat = fromResultSet(rs);
                     pagesatList.add(pagesat);
                 }
                 return pagesatList;
-            }
+
         } catch (SQLException e) {
-            System.err.println("Gabim gjatë ekzekutimit të kërkesës SQL: " + e.getMessage());
+            System.err.println("Error executing the SQL query: " + e.getMessage());
             e.printStackTrace();
             throw e;
         }
@@ -202,7 +201,7 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
     public int countPagesatInMonth(YearMonth month) throws SQLException {
         LocalDate start = month.atDay(1);
         LocalDate end = month.atEndOfMonth();
-        String sql = "SELECT COUNT(*) FROM pagesat WHERE data_e_pageses BETWEEN ? AND ?";
+        String sql = "SELECT COUNT(*) FROM Pagesat WHERE Data_e_Pageses BETWEEN ? AND ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setDate(1, Date.valueOf(start));
             stmt.setDate(2, Date.valueOf(end));
@@ -213,7 +212,7 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
     public int countPagesatInYear(int year) throws SQLException {
         LocalDate start = LocalDate.of(year, 1, 1);
         LocalDate end = LocalDate.of(year, 12, 31);
-        String sql = "SELECT COUNT(*) FROM pagesat WHERE data_e_pageses BETWEEN ? AND ?";
+        String sql = "SELECT COUNT(*) FROM Pagesat WHERE Data_e_Pageses BETWEEN ? AND ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setDate(1, Date.valueOf(start));
             stmt.setDate(2, Date.valueOf(end));

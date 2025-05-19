@@ -1,6 +1,6 @@
 package repository;
 
-import app.Test;
+
 import models.Dto.testet.CreateTestetDto;
 import models.Dto.testet.UpdateTestetDto;
 import models.Orari;
@@ -92,7 +92,7 @@ public class TestetRepository extends BaseRepository<Testet, CreateTestetDto, Up
                         return this.getById(testetDto.getIdTest());
                     }
                 } catch (SQLException e) {
-                    throw new RuntimeException("Gabim gjatë përditësimit të testeve", e);
+                    throw new RuntimeException("Error updating the tests.", e);
                 }
                 return null;
          }

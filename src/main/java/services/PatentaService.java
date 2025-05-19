@@ -29,29 +29,29 @@ public class PatentaService {
             throw new Exception("Id does not exist!");
         }
         Patenta patenta = this.patentaRepository.getById(id);
-        if (patenta == null) throw new Exception("Stafi nuk u gjet!");
+        if (patenta == null) throw new Exception("The Staf was not found!");
         return patenta;
     }
     public Patenta create(CreatePatentaDto createDto) throws Exception{
 
         if (createDto.getIdKandidat() <= 0) {
-            throw new IllegalArgumentException("ID e kandidatit është e pavlefshme!");
+            throw new IllegalArgumentException("The candidate ID is invalid!");
         }
         if (createDto.getIdKategori() <= 0) {
-            throw new IllegalArgumentException("ID e kategorisë është e pavlefshme!");
+            throw new IllegalArgumentException("The category ID is invalid!");
         }
         if (createDto.getDataLeshimit() == null) {
-            throw new IllegalArgumentException("Data e lëshimit është e detyrueshme!");
+            throw new IllegalArgumentException("The issue date is required!");
         }
         if (createDto.getStatusi() == null || createDto.getStatusi().isBlank()) {
-            throw new IllegalArgumentException("Statusi është i detyrueshëm!");
+            throw new IllegalArgumentException("Status is required!");
         }
         if (!isValidStatus(createDto.getStatusi())) {
-            throw new IllegalArgumentException("Statusi i patentës nuk është i vlefshëm!");
+            throw new IllegalArgumentException("The license status is invalid!");
         }
        Patenta patenta = patentaRepository.create(createDto);
         if(patenta == null){
-            throw new Exception("Patenta nuk u krijua");
+            throw new Exception("The license was not created!");
         }
         return patenta;
     }
@@ -62,9 +62,26 @@ public class PatentaService {
         this.getById(id); // E kontrollojm a ekziston
         return patentaRepository.delete(id);
     }
-    public Map<String, Integer> getLicensesIssuedCountPerDate() throws SQLException {
+
+    public boolean aprovoPatenten(int kandidatId) throws SQLException{
+        if (kandidatId <= 0) {
+            throw new IllegalArgumentException("The candidate ID is invalid.");
+        }
+        return this.patentaRepository.aprovoPatenten(kandidatId);
+    }
+
+    public XYChart.Series<String, Number> getLicensesIssuedSeries() {
+        try {
+            HashMap<String, Integer> data = getLicensesIssuedCountPerDate();
+            return getChartSeries(data, "Licenses Issued");
+        } catch (Exception e) {
+            System.out.println("Error loading licenses");
+            return new XYChart.Series<>();
+        }
+    }
+    public HashMap<String, Integer> getLicensesIssuedCountPerDate() throws SQLException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        Map<String, Integer> dateCountMap = new HashMap<>();
+        HashMap<String, Integer> dateCountMap = new HashMap<>();
 
         for (Patenta patenta : patentaRepository.getLicensesIssued()) {
             String date = patenta.getDataLeshimit().format(formatter);
@@ -78,22 +95,6 @@ public class PatentaService {
 
         return dateCountMap;
     }
-    public boolean aprovoPatenten(int kandidatId) throws SQLException{
-        if (kandidatId <= 0) {
-            throw new IllegalArgumentException("ID e kandidatit është e pavlefshme.");
-        }
-        return this.patentaRepository.aprovoPatenten(kandidatId);
-    }
-    public XYChart.Series<String, Number> getLicensesIssuedSeries() {
-        try {
-            Map<String, Integer> data = getLicensesIssuedCountPerDate();
-            return getChartSeries(new HashMap<>(data), "Licenses Issued");
-        } catch (Exception e) {
-            System.out.println("Error loading licenses");
-            return new XYChart.Series<>();
-        }
-    }
-
 
 
 }

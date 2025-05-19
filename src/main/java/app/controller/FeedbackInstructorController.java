@@ -40,7 +40,7 @@ public class FeedbackInstructorController extends BaseController {
         LocalDate selectedDate = dateField.getValue();
 
         if (selectedDate == null) {
-            showAlert("Please select a date first.");
+            showAlert(Alert.AlertType.WARNING,"Warning","Please select a date first.");
             return;
         }
 
@@ -52,7 +52,7 @@ public class FeedbackInstructorController extends BaseController {
             List<FeedBack> feedbacks = feedBackService.getFeedbacks(staffId, selectedDate);
 
             if (feedbacks.isEmpty()) {
-                showAlert("No feedbacks found for selected date.");
+                showAlert(Alert.AlertType.WARNING,"Warning","No feedbacks found for selected date.");
             } else {// a po funksionon mir
                 feedbacks.forEach(fb -> System.out.println(
                         "Feedback ID: " + fb.getId() +
@@ -66,7 +66,7 @@ public class FeedbackInstructorController extends BaseController {
             feedback.getItems().setAll(feedbacks);
 
         } catch (Exception e) {
-            showAlert("Error loading feedbacks: " + e.getMessage());
+            showAlert(Alert.AlertType.WARNING,"Warning","Error loading feedbacks: " + e.getMessage());
             e.printStackTrace();
         }
 //        System.out.println("Selected Date (raw): " + selectedDate);
@@ -74,10 +74,10 @@ public class FeedbackInstructorController extends BaseController {
 
 
     }
-
-    private void showAlert(String message) {// mu ka nevojit nje alert customized
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Warning");
+@Override
+    public void showAlert(Alert.AlertType alertType,String title,String message) {// mu ka nevojit nje alert customized
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.show();

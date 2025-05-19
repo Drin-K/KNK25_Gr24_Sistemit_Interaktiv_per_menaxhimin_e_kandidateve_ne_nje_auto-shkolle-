@@ -78,7 +78,7 @@ public class RaportiProgresitRepository extends BaseRepository<RaportiProgresit,
             }
         }
         catch (SQLException e){
-            throw new RuntimeException("Gabim gjatë përditësimit të raportit të progresit",e);
+            throw new RuntimeException("Error updating the progress report.",e);
         }
         return null;
     }

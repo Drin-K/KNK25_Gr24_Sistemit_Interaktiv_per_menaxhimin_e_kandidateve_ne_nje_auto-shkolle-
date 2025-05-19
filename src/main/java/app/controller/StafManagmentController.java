@@ -141,8 +141,9 @@ public class StafManagmentController extends BaseController {
                 : "";
 
         if (checkAndConfirm(selected, confirmMsg, "Please select a staff member to delete.")) {
-            tableStafi.getItems().remove(selected);
             stafiService.delete(selected.getIdUser());
+            tableStafi.getItems().remove(selected);
+
         }
     }
 

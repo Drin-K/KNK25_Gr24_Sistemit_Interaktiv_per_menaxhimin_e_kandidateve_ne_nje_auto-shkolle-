@@ -8,7 +8,6 @@ import utils.SceneLocator;
 
 public class  Main extends Application {
     public void start(Stage stage) throws Exception {
-        stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/Tiger-Logo.jpg")));
         SceneManager.mainLoad(SceneLocator.LOGIN_PAGE,stage);
     }
 }

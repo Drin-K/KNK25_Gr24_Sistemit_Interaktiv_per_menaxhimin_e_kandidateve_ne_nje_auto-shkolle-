@@ -1,5 +1,6 @@
 package services;
 
+import javafx.scene.control.Alert;
 import models.Dto.kandidatet.CreateKandidatetDto;
 import models.Dto.user.CreateUserDto;
 import models.Kandidatet;
@@ -8,6 +9,9 @@ import repository.AdminRepository;
 import repository.KandidatetRepository;
 import repository.StafiRepository;
 import repository.UserRepository;
+
+import java.time.LocalDate;
+import java.time.Period;
 
 public class UserService {
 
@@ -25,6 +29,12 @@ public class UserService {
             String salt = dto.getSalt();
             String hashedPassword = PasswordHasher.generateSaltedHash(dto.getPassword(), salt);
             dto.setPassword(hashedPassword);
+            int mosha = Period.between(dto.getDateOfBirth(), LocalDate.now()).getYears();
+            if(mosha<18){
+                Alert alert= new Alert(Alert.AlertType.ERROR);
+                alert.showAndWait();
+                return false;
+            }
             Kandidatet created = kandidatetRepo.create(dto);
             if (created == null) {
                 System.out.println("Failed to create candidate.");

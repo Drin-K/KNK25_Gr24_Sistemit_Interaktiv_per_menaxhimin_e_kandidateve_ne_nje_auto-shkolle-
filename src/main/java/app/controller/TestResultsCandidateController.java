@@ -1,11 +1,9 @@
 package app.controller;
-
-
+import app.controller.base.BaseController;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import models.Testet;
 import services.TestiService;
 import services.UserContext;
@@ -13,7 +11,7 @@ import services.UserContext;
 import java.time.LocalDate;
 import java.util.List;
 
-public class TestResultsCandidateController {
+public class TestResultsCandidateController extends BaseController {
     private final TestiService testiService = new TestiService();
 
 
@@ -25,10 +23,7 @@ public class TestResultsCandidateController {
 
     @FXML
     private void initialize() {
-        pointsView.setCellValueFactory(new PropertyValueFactory<>("piket"));
-        examType.setCellValueFactory(new PropertyValueFactory<>("llojiTestit"));
-        dateHeld.setCellValueFactory(new PropertyValueFactory<>("dataTestit"));
-        resultStatus.setCellValueFactory(new PropertyValueFactory<>("rezultati"));
+        configureTable(overallResults,List.of(pointsView,examType,dateHeld,resultStatus),new String[]{"piket","llojiTestit","dataTestit","rezultati"});
     }
     @FXML
     private void resultClick() throws  Exception{

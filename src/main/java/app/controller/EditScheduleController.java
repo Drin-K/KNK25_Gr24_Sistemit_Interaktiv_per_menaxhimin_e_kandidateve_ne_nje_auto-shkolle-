@@ -29,7 +29,7 @@ public class EditScheduleController extends BaseController {
         try {
             sessionId1 = Integer.parseInt(sessionId.getText().trim());
         } catch (NumberFormatException e) {
-            this.showAlert(Alert.AlertType.ERROR,null,"ID e sesionit duhet të jetë një numër i vlefshëm.");
+            this.showAlert(Alert.AlertType.ERROR,null,"The session ID must be a valid number.");
             return;
         }
 
@@ -37,7 +37,7 @@ public class EditScheduleController extends BaseController {
 
             Orari existing = orariService.getById(sessionId1);
             if (existing == null) {
-                this.showAlert(Alert.AlertType.ERROR,null,"Nuk u gjet orari me ID " + sessionId1);
+                this.showAlert(Alert.AlertType.ERROR,null,"Schedule with the given ID was not found." + sessionId1);
                 return;
             }
 
@@ -57,11 +57,11 @@ public class EditScheduleController extends BaseController {
 
             Orari updated = orariService.update(sessionId1, dto);
 
-             this.showAlert(Alert.AlertType.INFORMATION,null,"Orari u përditësua me sukses. Statusi i ri: " + updated.getStatusi());
+             this.showAlert(Alert.AlertType.INFORMATION,null,"The schedule was successfully updated. New status:" + updated.getStatusi());
              this.sessionId.setText("");
 
         } catch (Exception ex) {
-            this.showAlert(Alert.AlertType.ERROR,null,"Gabim gjatë përditësimit: " + ex.getMessage());
+            this.showAlert(Alert.AlertType.ERROR,null,"Error during update: " + ex.getMessage());
 
         }
     }

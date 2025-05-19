@@ -44,17 +44,17 @@ public class TestManagerController {
 
             // Success alert
             Alert info = new Alert(Alert.AlertType.INFORMATION);
-            info.setTitle("Test Result");
-            info.setHeaderText("Sukses");
-            info.setContentText("Testi u regjistrua me ID: " + saved.getId());
+            info.setTitle("Exam Result");
+            info.setHeaderText("Success");
+            info.setContentText("Exam was registed with ID: " + saved.getId());
             info.showAndWait();
 
             cleanFields();
         } catch (Exception ex) {
             // Error alert
             Alert err = new Alert(Alert.AlertType.ERROR);
-            err.setTitle("Gabim");
-            err.setHeaderText("Nuk mund të regjistrohet testi");
+            err.setTitle("Error");
+            err.setHeaderText("The exam could not be registered.");
             err.setContentText(ex.getMessage());
             err.showAndWait();
         }

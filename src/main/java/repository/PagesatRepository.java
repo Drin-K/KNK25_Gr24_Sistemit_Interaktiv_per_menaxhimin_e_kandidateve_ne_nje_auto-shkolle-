@@ -153,10 +153,12 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
 
     public void updateStatusiPageses(int pagesaId, String statusiRi) throws SQLException {
         String sql = "UPDATE Pagesat SET Statusi_i_Pageses = ? WHERE id = ?";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        try{ PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, statusiRi);
             statement.setInt(2, pagesaId);
             statement.execute();
+        }catch (SQLException e){
+            e.printStackTrace();
         }
     }
 
@@ -221,17 +223,19 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
         }
     }
 
-    public Map<String, Integer> getPagesatCountByStatus() throws SQLException {
+    public Map<String, Integer> getPagesatCountByStatus(){
         Map<String, Integer> result = new HashMap<>();
         String query = "SELECT Statusi_i_Pageses, COUNT(*) AS total FROM Pagesat GROUP BY Statusi_i_Pageses";
 
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
+        try {PreparedStatement statement = connection.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 String status = resultSet.getString("Statusi_i_Pageses");
                 int count = resultSet.getInt("total");
                 result.put(status, count);
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return result;
     }

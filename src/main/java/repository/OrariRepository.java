@@ -113,7 +113,7 @@ public class OrariRepository extends BaseRepository<Orari, CreateOrariDto, Updat
         String query = "SELECT * FROM Orari WHERE ID_Kandidat = ?";
         List<Orari> oraret = new ArrayList<>();
 
-        try (PreparedStatement pstm = this.connection.prepareStatement(query)) {
+        try {PreparedStatement pstm = this.connection.prepareStatement(query);
             pstm.setInt(1, id);
             ResultSet res = pstm.executeQuery();
 
@@ -132,7 +132,7 @@ public class OrariRepository extends BaseRepository<Orari, CreateOrariDto, Updat
         String query = "SELECT COUNT(*) FROM Orari WHERE ID_Kandidat = ? AND Lloji_i_Mesimit = ? AND Statusi = ?";
         int numri = 0;
 
-        try (PreparedStatement pstm = this.connection.prepareStatement(query)) {
+        try{ PreparedStatement pstm = this.connection.prepareStatement(query);
             pstm.setInt(1, idKandidat);
             pstm.setString(2, llojiMesimit);
             pstm.setString(3, statusi);

@@ -44,8 +44,9 @@ public class KandidatetRepository extends UserRepository {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+
         }
-        return null;
+       return null;
     }
 
     @Override

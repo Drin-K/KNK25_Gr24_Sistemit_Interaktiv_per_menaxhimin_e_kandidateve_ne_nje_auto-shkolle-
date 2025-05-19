@@ -21,12 +21,10 @@ import java.time.LocalDate;
 
 public class PagesatHandleController extends BaseController {
 
-    private final UserContext userContext;
     private final PagesaService pagesaService;
 
 
     public PagesatHandleController() {
-        this.userContext = new UserContext();
         this.pagesaService = new PagesaService();
     }
     @FXML
@@ -50,9 +48,16 @@ public class PagesatHandleController extends BaseController {
 
 
     public CreatePagesatDto getPagesaInputData() {
-        int kandidatId = Integer.parseInt(this.idKand.getText().trim());
-        double shuma = Double.parseDouble(this.shumaTxt.getText().trim());
+        String idText = this.idKand.getText().trim();
+        String shumaText = this.shumaTxt.getText().trim();
         String nrXhirollog = this.bankNumTxt.getText().trim();
+
+        if (idText.isEmpty() || shumaText.isEmpty() || nrXhirollog.isEmpty()) {
+            this.showAlert(AlertType.ERROR, "Empty Fields", "Please fill in all the fields!");
+            return null;
+        }
+        int kandidatId = Integer.parseInt(idText);
+        double shuma = Double.parseDouble(nrXhirollog);
         LocalDate data = LocalDate.now();
         String Statusi="";
         try {
@@ -71,7 +76,7 @@ public class PagesatHandleController extends BaseController {
         catch (Exception e){
             System.out.println("Ka ndodhur nje problem gjate pageses");
         }
-        return new CreatePagesatDto(this.userContext.getUserId(), nrXhirollog, shuma, data,"Online" , Statusi);
+        return new CreatePagesatDto(UserContext.getUserId(), nrXhirollog, shuma, data,"Online" , Statusi);
     }
 
     @FXML

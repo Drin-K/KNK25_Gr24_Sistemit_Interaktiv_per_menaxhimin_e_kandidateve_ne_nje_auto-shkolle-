@@ -92,7 +92,7 @@ public class PatentaRepository extends BaseRepository<Patenta, CreatePatentaDto,
         ResultSet resultSet = statement.executeQuery(query);
 
         while (resultSet.next()) {
-            patentat.add(Patenta.getInstance(resultSet));
+            patentat.add(fromResultSet(resultSet));
         }
 
         return patentat;

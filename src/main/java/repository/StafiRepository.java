@@ -17,9 +17,9 @@ public class StafiRepository extends UserRepository {
     @Override
     public Stafi create(CreateUserDto dto) {
         String insertUser = """
-                INSERT INTO "User"(name, surname, email, phoneNumber, dateOfBirth, hashedPassword, salt, role, adresa, gjinia)
-                VALUES (?, ?, ?, ?, ?, ?, ?, 'Staf', ?, ?);
-            """;
+                    INSERT INTO "User"(name, surname, email, phoneNumber, dateOfBirth, hashedPassword, salt, role, adresa, gjinia)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, 'Staf', ?, ?);
+                """;
         try {
             PreparedStatement userStmt = connection.prepareStatement(insertUser, Statement.RETURN_GENERATED_KEYS);
             userStmt.setString(1, dto.getName());
@@ -39,9 +39,9 @@ public class StafiRepository extends UserRepository {
 
                 // Shto në tabelën Stafi
                 String insertStaf = """
-                        INSERT INTO Stafi(id)
-                        VALUES (?);
-                    """;
+                            INSERT INTO Stafi(id)
+                            VALUES (?);
+                        """;
                 PreparedStatement stafStmt = connection.prepareStatement(insertStaf);
                 stafStmt.setInt(1, userId);
                 stafStmt.executeUpdate();
@@ -58,6 +58,7 @@ public class StafiRepository extends UserRepository {
     public Stafi fromResultSet(ResultSet result) throws SQLException {
         return Stafi.getInstance(result);
     }
+
     public int countStafi() {
         String query = "SELECT COUNT(*) FROM Stafi";
         try {
@@ -78,42 +79,44 @@ public class StafiRepository extends UserRepository {
     // edhe pse Stafi osht ni nenklase e User
     //e kemi modifiku te serviset qe me mujt me kthy t tipit Staf
     @Override
-    public ArrayList<User> getAll(){
-            ArrayList<User> stafi = new ArrayList<>();
-            String query = "SELECT u.id, u.name, u.surname, u.email, u.phoneNumber, u.dateOfBirth, u.hashedPassword, u.salt, u.adresa, u.gjinia, u.role " +
-                    "FROM Stafi k " +
-                    "JOIN \"User\" u ON k.id = u.id " +
-                    "WHERE u.role = 'Staf'";
-            try (
-                    PreparedStatement stmt = connection.prepareStatement(query);
-                    ResultSet rs = stmt.executeQuery()) {
+    public ArrayList<User> getAll() {
+        ArrayList<User> stafi = new ArrayList<>();
+        String query = "SELECT u.id, u.name, u.surname, u.email, u.phoneNumber, u.dateOfBirth, u.hashedPassword, u.salt, u.adresa, u.gjinia, u.role " +
+                "FROM Stafi k " +
+                "JOIN \"User\" u ON k.id = u.id " +
+                "WHERE u.role = 'Staf'";
+        try (
+                PreparedStatement stmt = connection.prepareStatement(query);
+                ResultSet rs = stmt.executeQuery()) {
 
-                while (rs.next()) {
+            while (rs.next()) {
 
-                    Stafi stafi1 = Stafi.getInstance(rs);
-                    stafi.add(stafi1);
-                }
-
-            } catch (SQLException e) {
-                e.printStackTrace();
+                Stafi stafi1 = Stafi.getInstance(rs);
+                stafi.add(stafi1);
             }
 
-            return stafi;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return stafi;
 
     }
+
     public String getMostRatedInstructorName() {
         String query = """
-      SELECT u.name, u.surname
-                  FROM Feedback fb
-                  JOIN "User" u ON fb.ID_Staf = u.id
-                  WHERE fb.Vleresimi = (SELECT MAX(Vleresimi) FROM Feedback)
-                  GROUP BY fb.ID_Staf, u.name, u.surname
-                  ORDER BY COUNT(*) DESC
-                  LIMIT 1;
+                  SELECT u.name, u.surname
+                              FROM Feedback fb
+                              JOIN "User" u ON fb.ID_Staf = u.id
+                              WHERE fb.Vleresimi = (SELECT MAX(Vleresimi) FROM Feedback)
+                              GROUP BY fb.ID_Staf, u.name, u.surname
+                              ORDER BY COUNT(*) DESC
+                              LIMIT 1;
+                
+                """;
 
-    """;
-
-        try (PreparedStatement stmt = this.connection.prepareStatement(query)) {
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 String emri = rs.getString("name");
@@ -125,18 +128,20 @@ public class StafiRepository extends UserRepository {
         }
         return null;
     }
+
     public String getLeastRatedInstructorName() {
         String query = """
-        SELECT u.name, u.surname
-                            FROM Feedback fb
-                            JOIN "User" u ON fb.ID_Staf = u.id
-                            WHERE fb.Vleresimi = (SELECT MIN(Vleresimi) FROM Feedback)
-                            GROUP BY fb.ID_Staf, u.name, u.surname
-                            ORDER BY COUNT(*) DESC
-                            LIMIT 1;
-    """;
+                    SELECT u.name, u.surname
+                                        FROM Feedback fb
+                                        JOIN "User" u ON fb.ID_Staf = u.id
+                                        WHERE fb.Vleresimi = (SELECT MIN(Vleresimi) FROM Feedback)
+                                        GROUP BY fb.ID_Staf, u.name, u.surname
+                                        ORDER BY COUNT(*) DESC
+                                        LIMIT 1;
+                """;
 
-        try (PreparedStatement stmt = this.connection.prepareStatement(query)) {
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 String emri = rs.getString("name");
@@ -148,8 +153,9 @@ public class StafiRepository extends UserRepository {
         }
         return null;
     }
+
     @Override
-    public Stafi findByEmail(String email){
+    public Stafi findByEmail(String email) {
         String query = "SELECT *" +
                 "FROM Stafi s\n" +
                 "JOIN \"User\" u ON s.id = u.id\n" +
@@ -168,8 +174,9 @@ public class StafiRepository extends UserRepository {
 
         return null;
     }
+
     @Override
-    public Stafi getById(int id){
+    public Stafi getById(int id) {
         String query = "SELECT u.id, u.name, u.surname, u.email, u.phoneNumber, " +
                 "u.dateOfBirth, u.hashedPassword, u.salt, u.adresa, u.gjinia, " +
                 "u.role " +
@@ -177,15 +184,14 @@ public class StafiRepository extends UserRepository {
                 "JOIN \"User\" u ON k.id = u.id " +
                 "WHERE u.role = 'Staf' AND u.id = ?";
 
-        try{
-            PreparedStatement pstm = this.connection.prepareStatement(
-                    query);
+        try {
+            PreparedStatement pstm = this.connection.prepareStatement(query);
             pstm.setInt(1, id);
             ResultSet res = pstm.executeQuery();
-            if(res.next()){
+            if (res.next()) {
                 return this.fromResultSet(res);
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;

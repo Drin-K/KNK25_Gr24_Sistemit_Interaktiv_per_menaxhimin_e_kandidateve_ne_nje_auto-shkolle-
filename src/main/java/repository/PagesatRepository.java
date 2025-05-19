@@ -119,7 +119,7 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             ResultSet resultSet = stmt.executeQuery();
             while (resultSet.next()) {
-                Pagesat pagesa = Pagesat.getInstance(resultSet);
+                Pagesat pagesa = fromResultSet(resultSet);
                 pagesat.add(pagesa);
             }
         } catch (SQLException e) {
@@ -179,7 +179,7 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
             ResultSet rs = statement.executeQuery();
                 List<Pagesat> pagesatList = new ArrayList<>();
                 while (rs.next()) {
-                    Pagesat pagesat = Pagesat.getInstance(rs);
+                    Pagesat pagesat = fromResultSet(rs);
                     pagesatList.add(pagesat);
                 }
                 return pagesatList;
@@ -201,7 +201,7 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
     public int countPagesatInMonth(YearMonth month) throws SQLException {
         LocalDate start = month.atDay(1);
         LocalDate end = month.atEndOfMonth();
-        String sql = "SELECT COUNT(*) FROM pagesat WHERE data_e_pageses BETWEEN ? AND ?";
+        String sql = "SELECT COUNT(*) FROM Pagesat WHERE Data_e_Pageses BETWEEN ? AND ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setDate(1, Date.valueOf(start));
             stmt.setDate(2, Date.valueOf(end));
@@ -212,7 +212,7 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
     public int countPagesatInYear(int year) throws SQLException {
         LocalDate start = LocalDate.of(year, 1, 1);
         LocalDate end = LocalDate.of(year, 12, 31);
-        String sql = "SELECT COUNT(*) FROM pagesat WHERE data_e_pageses BETWEEN ? AND ?";
+        String sql = "SELECT COUNT(*) FROM Pagesat WHERE Data_e_Pageses BETWEEN ? AND ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setDate(1, Date.valueOf(start));
             stmt.setDate(2, Date.valueOf(end));

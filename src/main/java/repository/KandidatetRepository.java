@@ -83,13 +83,13 @@ public class KandidatetRepository extends UserRepository {
                 "FROM Kandidatet k " +
                 "JOIN \"User\" u ON k.id = u.id " +
                 "WHERE u.role = 'Kandidat'";
-        try (
+        try{
                 PreparedStatement stmt = connection.prepareStatement(query);
-                ResultSet rs = stmt.executeQuery()) {
+                ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
 
-                Kandidatet kandidat = Kandidatet.getInstance(rs);
+                Kandidatet kandidat = fromResultSet(rs);
                 kandidatet.add(kandidat);
             }
 

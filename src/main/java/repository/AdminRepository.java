@@ -90,8 +90,7 @@ public class AdminRepository extends UserRepository {
                 "WHERE u.role = 'Admin' AND u.id = ?";
 
         try{
-            PreparedStatement pstm = this.connection.prepareStatement(
-                    query);
+            PreparedStatement pstm = this.connection.prepareStatement(query);
             pstm.setInt(1, id);
             ResultSet res = pstm.executeQuery();
             if(res.next()){
@@ -108,13 +107,11 @@ public class AdminRepository extends UserRepository {
                 "FROM Admin k " +
                 "JOIN \"User\" u ON k.id = u.id " +
                 "WHERE u.role = 'Admin'";
-        try (
-                PreparedStatement stmt = connection.prepareStatement(query);
-                ResultSet rs = stmt.executeQuery()) {
-
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+                ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-
-                Admin admin1 = Admin.getInstance(rs);
+                Admin admin1 = fromResultSet(rs);
                 admin.add(admin1);
             }
 

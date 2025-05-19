@@ -91,7 +91,7 @@ public int numeroDokumentet(int kandidatiId) {
           AND Lloji_Dokumentit IN ('Leternjoftim', 'Certifikate Mjekësore', 'Aplikim', 'Foto')
     """;
 
-    try (PreparedStatement statement = connection.prepareStatement(query)) {
+    try {PreparedStatement statement = connection.prepareStatement(query);
         statement.setInt(1, kandidatiId);
         ResultSet resultSet = statement.executeQuery();
 

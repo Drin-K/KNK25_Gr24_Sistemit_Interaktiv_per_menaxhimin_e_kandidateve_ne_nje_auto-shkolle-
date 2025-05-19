@@ -3,6 +3,7 @@ package services;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import utils.SceneLocator;
@@ -55,6 +56,7 @@ public class SceneManager {
     public static void mainLoad(String path, Stage stage)throws Exception{
         SceneManager.getInstance(path);
         stage.setScene(sceneManager.getScene());
+        stage.getIcons().add(new Image(sceneManager.getClass().getResourceAsStream("/images/Tiger-Logo.jpg")));
         stage.show();
         sceneManager.loadParent(path);
     }

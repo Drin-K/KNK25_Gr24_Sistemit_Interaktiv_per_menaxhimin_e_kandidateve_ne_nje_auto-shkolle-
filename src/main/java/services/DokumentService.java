@@ -128,7 +128,7 @@ public class DokumentService {
         List<Dokumentet> validDocuments = new ArrayList<>();
 
         for (Dokumentet d : dokumentetList) {
-            if (d.getId() > 0 && d.getIdKandidat() > 0) {
+            if (d.getId() > 0 && d.getIdKandidat() > 0 && isValidDokumentType(d.getLlojiDokumentit())) {
                 validDocuments.add(d);
             }
         }

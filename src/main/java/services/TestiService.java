@@ -19,43 +19,30 @@ public class TestiService {
 
     public Testet regjistroTestin(CreateTestetDto dto) throws Exception {
 
-        // Validimi i idKandidat
         if (dto.getIdKandidat() <= 0) {
             throw new Exception("The candidate ID must be positive and valid.");
         }
-
-        // Validimi i idStaf
         if (dto.getIdStaf() <= 0) {
             throw new Exception("The staff ID must be positive and valid.");
         }
-
-        // Validimi i llojit të testit
         if (dto.getLlojiTestit() == null) {
             throw new Exception("The test type cannot be null.");
         }
         if(!dto.getLlojiTestit().equals("Teori") && !dto.getLlojiTestit().equals("Praktikë")){
             throw new Exception("The test type must be 'Theory' or 'Practical'.");
         }
-
-        // Validimi i datës së testit
         if (dto.getDataTestit() == null || dto.getDataTestit().isAfter(LocalDate.now().plusYears(1))) {
             throw new Exception("The test date must be a valid date and not too far in the future.");
         }
-
-        // Validimi i rezultatit të testit
         if (dto.getRezultati() == null) {
             throw new Exception("The result cannot be null.");
         }
-
         if(!dto.getRezultati().equals("Kaluar") && !dto.getRezultati().equals("Dështuar")){
             throw new Exception("The result must be 'Kaluar' or 'Dështuar'.");
         }
-
-        // Validimi i pikëve
         if (dto.getPiket() < 0 || dto.getPiket() > 100) {
             throw new Exception("The points must be between 0 and 100.");
         }
-
         return testetRepository.create(dto);
     }
 

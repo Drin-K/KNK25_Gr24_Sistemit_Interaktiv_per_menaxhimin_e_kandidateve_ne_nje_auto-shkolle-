@@ -54,7 +54,6 @@ public class OrariService {
             throw new Exception("The schedule with ID " + orariId + " does not exist.");
         }
 
-        // VALIDIME TE ZAKONSHME
         if (dto.getIdKandidat() <= 0)
             throw new Exception("The candidate ID is invalid.");
 
@@ -120,10 +119,8 @@ public class OrariService {
         }
         List<Orari> ekzistuesKandidat = shikoOraretPerId(dto.getIdKandidat());
         List<Orari> ekzistuesStaf = shikoOraretPerId(dto.getIdStaf());
-        //Per automjet
         List<Orari> ekzistuesAutomjet = orariRepository.gjejOraretPerId(dto.getIdAutomjet());
-        StringBuilder errorMessage = new StringBuilder(); // Për të mbajtur mesazhet e gabimit
-        // Kontrollo për kandidat
+        StringBuilder errorMessage = new StringBuilder();
         for (Orari orar : ekzistuesKandidat) {
             if (orar.getDataSesionit().equals(dto.getDataSesionit()) &&
                     (orar.getOraFillimit().isBefore(dto.getOraPerfundimit()) && orar.getOraPerfundimit().isAfter(dto.getOraFillimit()))) {

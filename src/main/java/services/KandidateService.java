@@ -77,15 +77,14 @@ public class KandidateService {
         return kandidatetRepository.delete(id);
     }
 
-    public HashMap<String, Integer> getAllRegistrationsGroupedByMonth() {
-        try {
-            return kandidatetRepository.getAllRegistrationsGroupedByMonth();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
+    public HashMap<String, Integer> getAllRegistrationsGroupedByMonthWithValidation() throws SQLException {
+        HashMap<String, Integer> data = kandidatetRepository.getAllRegistrationsGroupedByMonth();
+        if (data.isEmpty()) {
+            throw new IllegalStateException("Nuk ka regjistrime për t'u shfaqur.");
         }
-
+        return data;
     }
+
 
     public void getKandidatiInfo(Text name,Text surname,Text email,Text number,Text birth,Text registerDate,Text status,Text genderField){
         this.kandidatet = kandidatetRepository.getById(UserContext.getUserId());

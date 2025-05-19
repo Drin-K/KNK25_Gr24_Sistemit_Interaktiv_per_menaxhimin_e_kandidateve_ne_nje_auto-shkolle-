@@ -29,27 +29,27 @@ public class DokumentService {
     public Dokumentet create(CreateDokumentetDto createDokumentDto) throws Exception {
         // Validimet bazike për të kontrolluar të dhënat e dokumentit
         if (createDokumentDto.getIdKandidat() <= 0) {
-            throw new Exception("ID e Kandidatit nuk është valide.");
+            throw new Exception("The candidate ID is not valid.");
         }
 
         if (createDokumentDto.getLlojiDokumentit() == null || createDokumentDto.getLlojiDokumentit().isEmpty()) {
-            throw new Exception("Lloji i dokumentit është i detyrueshëm.");
+            throw new Exception("The document type is required.");
         }
 
         if (!isValidDokumentType(createDokumentDto.getLlojiDokumentit())) {
-            throw new Exception("Lloji i dokumentit duhet të jetë 'Leternjoftim', 'Certifikate Mjekësore', 'Aplikim', ose 'Foto'.");
+            throw new Exception("The document type must be 'Identification Card', 'Medical Certificate', 'Application', or 'Photo'.");
         }
 
         // Kontrollojmë nëse kandidati ekziston
         Kandidatet kandidati =(Kandidatet) this.kandidatRepository.getById(createDokumentDto.getIdKandidat());
         if (kandidati == null) {
-            throw new Exception("Kandidati me ID: " + createDokumentDto.getIdKandidat() + " nuk ekziston.");
+            throw new Exception("The Candidate with ID: " + createDokumentDto.getIdKandidat() + " does not exist");
         }
 
         // Krijo dokumentin
         Dokumentet dokument = this.dokumentRepository.create(createDokumentDto);
         if (dokument == null) {
-            throw new Exception("Dokumenti nuk u krijua me sukses.");
+            throw new Exception("The document was created successfully");
         }
 
         return dokument;
@@ -57,12 +57,12 @@ public class DokumentService {
     // Funksioni për të marrë dokumentin me ID
     public Dokumentet getById(int id) throws Exception {
         if (id <= 0) {
-            throw new Exception("ID e dokumentit nuk është valide.");
+            throw new Exception("The document ID is not valid");
         }
 
         Dokumentet dokument = this.dokumentRepository.getById(id);
         if (dokument == null) {
-            throw new Exception("Nuk u gjet dokumenti me ID: " + id);
+            throw new Exception("The document with ID: " + id+" was not found.");
         }
 
         return dokument;
@@ -77,20 +77,20 @@ public class DokumentService {
     }
     public void uploadDokument(CreateDokumentetDto dto, File file) throws Exception {
         if (dto.getIdKandidat() <= 0) {
-            throw new Exception("ID e Kandidatit nuk është valide.");
+            throw new Exception("The candidate id is not valid.");
         }
 
         if (dto.getLlojiDokumentit() == null || dto.getLlojiDokumentit().isEmpty()) {
-            throw new Exception("Lloji i dokumentit është i detyrueshëm.");
+            throw new Exception("The document type is mandatory.");
         }
 
         if (!isValidDokumentType(dto.getLlojiDokumentit())) {
-            throw new Exception("Lloji i dokumentit është i gabuar.");
+            throw new Exception("The document type is incorrect.");
         }
 
         Kandidatet kandidati = kandidatRepository.getById(dto.getIdKandidat());
         if (kandidati == null) {
-            throw new Exception("Kandidati nuk ekziston.");
+            throw new Exception("The candidate does not exist.");
         }
 
         dokumentRepository.create(dto,file);
@@ -99,11 +99,11 @@ public class DokumentService {
     public void delete(int dokumentId) throws Exception {
         Dokumentet ekzistues = dokumentRepository.getById(dokumentId);
         if (ekzistues == null) {
-            throw new Exception("Pagesa me ID " + dokumentId + " nuk ekziston.");
+            throw new Exception("The payment with ID " + dokumentId + " does not exist.");
         }
         boolean fshirje = dokumentRepository.delete(dokumentId);
         if (!fshirje) {
-            throw new Exception("Gabim gjatë fshirjes së dokumentit me ID " + dokumentId);
+            throw new Exception("Error deleting the document with ID " + dokumentId);
         }
     }
     public void download(String emriSkedarit) throws IOException {

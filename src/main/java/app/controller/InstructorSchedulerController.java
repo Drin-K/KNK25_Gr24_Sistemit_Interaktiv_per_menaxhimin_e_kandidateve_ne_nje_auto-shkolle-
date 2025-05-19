@@ -47,19 +47,14 @@ public class InstructorSchedulerController extends BaseController {
             CreateOrariDto dto = this.getScheduleInputData();
             Orari orari = this.orariService.create(dto);
 
-            this.showAlert(Alert.AlertType.INFORMATION,"Suksess","Orari u krijua me sukses! ID e sesionit: " + orari.getIdSesioni());
+            this.showAlert(Alert.AlertType.INFORMATION,"Sucess","The schedule was successfully created! Session ID: " + orari.getIdSesioni());
             this.cleanFields();
 
         } catch (IllegalArgumentException iae) {
-            this.showAlert(Alert.AlertType.WARNING,"Vërejtje","Të dhëna të paplota ose të pavlefshme"+iae.getMessage());
+            this.showAlert(Alert.AlertType.WARNING,"Warning","Incomplete or invalid data"+iae.getMessage());
 
         } catch (Exception e) {
-            Alert error = new Alert(Alert.AlertType.ERROR);
-            error.setTitle("Gabim");
-            error.setHeaderText("Nuk mund të krijohej orari");
-            error.setContentText(e.getMessage());
-            error.showAndWait();
-
+            showAlert(Alert.AlertType.ERROR,"Error","The schedule could not be created.");
             e.printStackTrace();
         }
     }

@@ -94,7 +94,7 @@ public class RegjistrimetRepository extends BaseRepository<Regjistrimet, CreateR
                 return this.getById(regjistrtimetDto.getIdRegjistrim());
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Gabim gjatë përditësimit të testeve", e);
+            throw new RuntimeException("Error updating the exams.", e);
         }
         return null;
     }

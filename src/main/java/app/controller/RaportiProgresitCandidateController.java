@@ -35,12 +35,7 @@ public class RaportiProgresitCandidateController extends BaseController {
 
     @FXML
     private void initialize() {
-        dateArea.setCellValueFactory(new PropertyValueFactory<>("dataRaportit"));
-        theoryPointsArea.setCellValueFactory(new PropertyValueFactory<>("piketTeorike"));
-        practicalPointsArea.setCellValueFactory(new PropertyValueFactory<>("piketPraktike"));
-        commentArea.setCellValueFactory(new PropertyValueFactory<>("komentet"));
-        generalPerformanceArea.setCellValueFactory(new PropertyValueFactory<>("performancaGjenerale"));
-
+        configureTable(raportiprogresit,List.of(dateArea,theoryPointsArea,practicalPointsArea,commentArea,generalPerformanceArea),new String[]{"dataRaportit","piketTeorike","piketPraktike","komentet","performancaGjenerale"});
         findBtn.setOnAction(e -> handleFind());
     }
 

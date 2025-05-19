@@ -69,7 +69,7 @@ public class FeedBackRepository extends BaseRepository<FeedBack, CreateFeedBackD
                     return this.getById(updateFeedBackDto.getId());
                 }
             } catch (SQLException e) {
-                throw new RuntimeException("Gabim gjatë përditësimit të FeedBack", e);
+                throw new RuntimeException("Error updating the feedback.", e);
             }
             return null;
     }

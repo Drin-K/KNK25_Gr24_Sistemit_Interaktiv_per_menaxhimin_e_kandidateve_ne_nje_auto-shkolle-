@@ -56,7 +56,7 @@ public class KategoritePatentesRepository extends BaseRepository<KategoritePaten
             }
         }
         catch (SQLException e){
-            throw new RuntimeException("Gabim gjatë përditësimit të kategorisë së patentës",e);
+            throw new RuntimeException("Error updating the license category.",e);
         }
         return null;
     }

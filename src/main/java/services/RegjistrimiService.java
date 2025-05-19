@@ -31,23 +31,23 @@ public class RegjistrimiService {
     public Regjistrimet create(CreateRegjistrimetDto createDto) throws Exception {
         // Validimi i ID_Kandidat
         if (createDto.getIdKandidat() <= 0 || kandidatRepository.getById(createDto.getIdKandidat()) == null) {
-            throw new Exception("Kandidati nuk ekziston!");
+            throw new Exception("The candidate does not exist!");
         }
 
         // Validimi i ID_Kategori
         if (createDto.getIdKategori() <= 0 || kategoritePatentesRepository.getById(createDto.getIdKategori()) == null) {
-            throw new Exception("Kategoria e patentës nuk ekziston!");
+            throw new Exception("The license category does not exist!");
         }
 
         // Validimi i Statusit
         if (!createDto.getStatusi().equals("Në proces") && !createDto.getStatusi().equals("Përfunduar")) {
-            throw new Exception("Statusi duhet të jetë 'Në proces' ose 'Përfunduar'!");
+            throw new Exception("Status must be 'Në proces' or 'Përfunduar'!");
         }
 
         // Krijimi në DB
         Regjistrimet regjistrimi = regjistrimiRepository.create(createDto);
         if (regjistrimi == null) {
-            throw new Exception("Regjistrimi nuk u krijua!");
+            throw new Exception("The registration was not created!");
         }
 
         return regjistrimi;

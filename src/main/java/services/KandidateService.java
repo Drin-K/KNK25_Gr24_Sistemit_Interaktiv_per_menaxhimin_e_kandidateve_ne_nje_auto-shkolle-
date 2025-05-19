@@ -29,7 +29,7 @@ public class KandidateService {
             throw new Exception("Id does not exist!");
         }
         Kandidatet kandidati = this.kandidatetRepository.getById(id);
-        if (kandidati == null) throw new Exception("Kandidati nuk u gjet!");
+        if (kandidati == null) throw new Exception("The candidate was not found!");
         return kandidati;
     }
 
@@ -40,31 +40,31 @@ public class KandidateService {
         //Emri dhe mbiemri nuk duhet te jete bosh -> createDto.getEmri()/getMbiemri() == null
         //Emri dhe mbiemri duhet te kete se paku nje karakter -> createDto.getEmri()/getMbiemri().trim().isEmpty()
         if (createDto.getName() == null || createDto.getName().trim().isEmpty()) {
-            throw new Exception("Emri nuk duhet të jetë bosh!");
+            throw new Exception("The name must not be empty!");
         }
         if (createDto.getSurname() == null || createDto.getSurname().trim().isEmpty()) {
-            throw new Exception("Mbiemri nuk duhet të jetë bosh!");
+            throw new Exception("The surname must not be empty!");
         }
         //Validimi i moshes per krijimin e kandidatit
         if (mosha < 18) {
-            throw new Exception("Kandidati duhet të jetë mbi 18 vjeç!");
+            throw new Exception("The candidate must be over 18 years old!");
         }
         //Validimi i gjinise
         if (!createDto.getGjinia().equals("M") && !createDto.getGjinia().equals("F")) {
-            throw new Exception("Gjinia duhet të jetë Mashkull ose Femer");
+            throw new Exception("Gender must be Male or Female.");
         }
         //Validimi i numrit te telefonit permes numriTelefonitRegEx
         if (!createDto.getPhoneNumber().matches(numriTelefonitRegEx)) {
-            throw new Exception("Numri i telefonit nuk është valid");
+            throw new Exception("The phonenumber is not valid");
         }
         //Validimi i emailit permes emailRegEx
         if (!createDto.getEmail().matches(emailRegEx)) {
-            throw new Exception("Emaili nuk është në formatin e duhur");
+            throw new Exception("The email is not in the correct format.");
         }
         //Krijimi i Kandidatit ne DB
         Kandidatet kandidati = kandidatetRepository.create(createDto);
         if (kandidati == null) {
-            throw new Exception("Kandidati nuk u krijua");
+            throw new Exception("The candidate was not created.");
         }
         return kandidati;
     }
@@ -100,7 +100,7 @@ public ArrayList<Kandidatet> getAll() {
     public int countKandidatet() {
         int count=this.kandidatetRepository.countKandidatet();
         if (count > MAX_KANDIDATE) {
-            throw new IllegalStateException("Limiti maksimal i kandidatëve është arritur!");
+            throw new IllegalStateException("The maximum limit of candidates has been reached!");
         }
         return count;
     }
@@ -108,7 +108,7 @@ public ArrayList<Kandidatet> getAll() {
         HashMap<String, Integer> result = this.kandidatetRepository.countKandidatetByStatusiProcesit();
 
         if (result == null || result.isEmpty()) {
-            throw new IllegalStateException("Nuk u gjetën të dhëna për statuset e kandidatëve!");
+            throw new IllegalStateException("No data was found for candidate statuses!");
         }
 
         return result;
@@ -117,7 +117,7 @@ public ArrayList<Kandidatet> getAll() {
     public List<Kandidatet> shfaqKandidatetMeTeDrejte() {
         List<Kandidatet> lista = this.kandidatetRepository.shfaqKandidatetMeKushtPagesa("'Paguar'");
         if (lista == null || lista.isEmpty()) {
-            throw new IllegalStateException("Nuk u gjet asnjë kandidat që i plotëson kriteret për patentë.");
+            throw new IllegalStateException("No candidate meeting the license criteria was found.");
         }
         return lista;
     }
@@ -125,7 +125,7 @@ public ArrayList<Kandidatet> getAll() {
     public List<Kandidatet> shfaqKandidatetMeTeDrejtePaPagesa(){
         List<Kandidatet> lista= this.kandidatetRepository.shfaqKandidatetMeKushtPagesa("'Mbetur', 'Pjesërisht'");
         if (lista == null || lista.isEmpty()) {
-            throw new IllegalStateException("Nuk u gjet asnjë kandidat që i plotëson kriteret për patentë por pa pagesë të kryer.");
+            throw new IllegalStateException("No candidate meeting the license criteria was found without completed payment.");
         }
         return lista;
     }

@@ -26,31 +26,31 @@ public class AutomjetService {
         Automjetet automjeti = this.automjetetRepository.getById(id);
         if (automjeti == null)
         {
-            throw new Exception("Automjeti nuk ekziston!");
+            throw new Exception("The vehicle does not exist!");
         }
         return automjeti;
     }
     public Automjetet create(CreateAutomjetetDto createDto) throws Exception{
         //Validimi i ID_Stafi
         if(createDto.getIdStaf() <= 0 || stafiRepository.getById(createDto.getIdStaf()) == null){
-            throw new Exception("Stafi nuk ekziston!");
+            throw new Exception("The staff does not exist!");
         }
         //Validimi i ID_Kategori
         if(createDto.getIdKategori() <= 0 || kategoritePatentesRepository.getById(createDto.getIdKategori()) == null){
-            throw new Exception("Kategoria nuk ekziston!");
+            throw new Exception("The category does not exist!");
         }
         //Validimi i llojit te automjetit
         if(!createDto.getLlojiAutomjetit().equals("Vetura") && !createDto.getLlojiAutomjetit().equals("Motoçikletë") && !createDto.getLlojiAutomjetit().equals("Kamion")){
-            throw new Exception("Ky lloj i automjetit nuk ekziston");
+            throw new Exception("This type of vehicle does not exist.");
         }
         //Validimi i statusit te automjetit
         if(!createDto.getStatusi().equals("Në përdorim")){
-            throw new Exception("Automjeti duhet të jetë në statusin 'Mirëmbajtje' për tu krijuar!");
+            throw new Exception("The vehicle must be in 'Maintenance' status to be created!");
         }
         //Krijimi ne DB
         Automjetet automjeti = automjetetRepository.create(createDto);
         if(automjeti == null){
-            throw new Exception("Automjeti nuk u krijua!");
+            throw new Exception("The vehicle was not created!");
         }
         return automjeti;
     }
@@ -60,7 +60,7 @@ public class AutomjetService {
     }
     public Integer getFirstAvailableVehicleIdByLloji(String llojiAutomjetit) throws Exception {
         if (!llojiAutomjetit.equals("Vetura") && !llojiAutomjetit.equals("Motoçikletë") && !llojiAutomjetit.equals("Kamion")) {
-            throw new Exception("Lloji i automjetit nuk është valid!");
+            throw new Exception("The vehicle type is not valid!");
         }
 
         ArrayList<Automjetet> automjetet = automjetetRepository.getByStatus(llojiAutomjetit);
@@ -70,32 +70,32 @@ public class AutomjetService {
             }
         }
 
-        throw new Exception("Asnjë automjet i lirë nuk është i disponueshëm për llojin: " + llojiAutomjetit);
+        throw new Exception("No available vehicle is free for the type:" + llojiAutomjetit);
     }
     public Automjetet updateStatusByIdLlojiAndKategori(int id, String llojiAutomjetit, int idKategori, String newStatus, int idStaf) throws Exception {
 
         if (id <= 0) {
-            throw new Exception("ID e automjetit nuk është valide.");
+            throw new Exception("The vehicle ID is not valid.");
         }
         if (llojiAutomjetit == null || llojiAutomjetit.isEmpty()) {
-            throw new Exception("Lloji i automjetit nuk është i dhënë.");
+            throw new Exception("The vehicle type is not specified.");
         }
         if (idKategori <= 0) {
-            throw new Exception("Kategoria nuk është valide.");
+            throw new Exception("The category is not valid.");
         }
         if (newStatus == null || newStatus.isEmpty()) {
-            throw new Exception("Statusi i ri nuk është i dhënë.");
+            throw new Exception("The new status is not specified.");
         }
         if (idStaf <= 0 || stafiRepository.getById(idStaf) == null) {
-            throw new Exception("Stafi nuk ekziston.");
+            throw new Exception("The staff does not exist.");
         }
 
         Automjetet automjeti = automjetetRepository.getById(id);
         if (automjeti == null) {
-            throw new Exception("Automjeti nuk u gjet.");
+            throw new Exception("The vehicle was not found");
         }
         if (!automjeti.getLlojiAutomjetit().equals(llojiAutomjetit) || automjeti.getIdKategori() != idKategori) {
-            throw new Exception("Automjeti nuk i përket llojit ose kategorisë së dhënë.");
+            throw new Exception("The vehicle does not belong to the specified type or category.");
         }
 
         UpdateAutomjetetDto dto = new UpdateAutomjetetDto(id, newStatus, idStaf);

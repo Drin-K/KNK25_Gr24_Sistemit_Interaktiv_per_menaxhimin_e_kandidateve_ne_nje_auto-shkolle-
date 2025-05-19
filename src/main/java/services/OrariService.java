@@ -41,43 +41,43 @@ public class OrariService {
     public void delete(int orariId) throws Exception {
         Orari ekzistues = orariRepository.getById(orariId);
         if (ekzistues == null) {
-            throw new Exception("Orari me ID " + orariId + " nuk ekziston.");
+            throw new Exception("The schedule with ID " + orariId + " does not exist.");
         }
         boolean fshirje = orariRepository.delete(orariId);
         if (!fshirje) {
-            throw new Exception("Gabim gjatë fshirjes së orarit me ID " + orariId);
+            throw new Exception("Error deleting the schedule with ID " + orariId);
         }
     }
     public Orari update(int orariId, UpdateOrariDto dto) throws Exception {
         Orari ekzistues = orariRepository.getById(orariId);
         if (ekzistues == null) {
-            throw new Exception("Orari me ID " + orariId + " nuk ekziston.");
+            throw new Exception("The schedule with ID " + orariId + " does not exist.");
         }
 
         // VALIDIME TE ZAKONSHME
         if (dto.getIdKandidat() <= 0)
-            throw new Exception("ID e kandidatit është e pavlefshme.");
+            throw new Exception("The candidate ID is invalid.");
 
         if (dto.getIdStaf() <= 0)
-            throw new Exception("ID e stafit është e pavlefshme.");
+            throw new Exception("The staff ID is invalid.");
 
         if (dto.getDataSesionit() == null)
-            throw new Exception("Data e sesionit nuk mund të jetë null.");
+            throw new Exception("The session date cannot be null.");
 
         if (dto.getOraFillimit() == null || dto.getOraPerfundimit() == null)
-            throw new Exception("Ora e fillimit dhe përfundimit janë të detyrueshme.");
+            throw new Exception("The start and end times are mandatory.");
 
         if (dto.getOraFillimit().isAfter(dto.getOraPerfundimit()))
-            throw new Exception("Ora e fillimit nuk mund të jetë pas orës së përfundimit.");
+            throw new Exception("The start time cannot be after the end time.");
 
         if (dto.getLlojiMesimit() == null || dto.getLlojiMesimit().isBlank())
-            throw new Exception("Lloji i mësimit është i detyrueshëm.");
+            throw new Exception("The lesson type is required.");
 
         if (dto.getStatusi() == null || dto.getStatusi().isBlank())
-            throw new Exception("Statusi është i detyrueshëm.");
+            throw new Exception("The status is required.");
 
         if (dto.getIdAutomjet() <= 0)
-            throw new Exception("ID e automjetit është e pavlefshme.");
+            throw new Exception("The vehicle ID is invalid.");
 
         dto.setIdSesioni(orariId);
 
@@ -87,36 +87,36 @@ public class OrariService {
     public Orari create(CreateOrariDto dto) throws Exception {
 
         if (dto.getDataSesionit() == null) {
-            throw new Exception("Data e sesionit nuk mund të jetë bosh.");
+            throw new Exception("The session date cannot be empty.");
         }
         if (dto.getDataSesionit().isBefore(LocalDate.now())) {
-            throw new Exception("Data e sesionit duhet të jetë sot ose në të ardhmen.");
+            throw new Exception("The session date must be today or in the future.");
         }
         if (dto.getOraFillimit() == null || dto.getOraPerfundimit() == null) {
-            throw new Exception("Orari i fillimit dhe përfundimit nuk mund të jenë bosh.");
+            throw new Exception("The start and end schedule times cannot be empty.");
         }
         if (!dto.getOraPerfundimit().isAfter(dto.getOraFillimit())) {
-            throw new Exception("Ora e përfundimit duhet të jetë pas orës së fillimit.");
+            throw new Exception("The end time must be after the start time.");
         }
         if (dto.getOraFillimit().isBefore(LocalTime.of(9, 0)) || dto.getOraPerfundimit().isAfter(LocalTime.of(17, 0))) {
-            throw new Exception("Orari duhet të jetë brenda orarit të punës, nga 9:00 deri në 17:00.");
+            throw new Exception("The schedule must be within working hours, from 9:00 to 17:00.");
         }
         if (dto.getLlojiMesimit() == null ||
                 !(dto.getLlojiMesimit().equalsIgnoreCase("Teori") ||
                         dto.getLlojiMesimit().equalsIgnoreCase("Praktikë"))) {
-            throw new Exception("Lloji i mësimit duhet të jetë 'Teori' ose 'Praktikë'.");
+            throw new Exception("The lesson type must be 'Teori' or 'Praktikë'.");
         }
 
         if (dto.getStatusi() == null ||
                 !(dto.getStatusi().equalsIgnoreCase("Planifikuar") ||
                         dto.getStatusi().equalsIgnoreCase("Përfunduar") ||
                         dto.getStatusi().equalsIgnoreCase("Anuluar"))) {
-            throw new Exception("Statusi duhet të jetë 'Planifikuar', 'Përfunduar' ose 'Anuluar'.");
+            throw new Exception("The status must be 'Planifikuar', 'Përfunduar' or 'Anuluar'.");
         }
 
         Automjetet automjeti = automjetRepository.getById(dto.getIdAutomjet());
         if (automjeti == null) {
-            throw new Exception("Automjeti me këtë ID nuk ekziston.");
+            throw new Exception("The vehicle with this ID does not exist.");
         }
         List<Orari> ekzistuesKandidat = shikoOraretPerId(dto.getIdKandidat());
         List<Orari> ekzistuesStaf = shikoOraretPerId(dto.getIdStaf());
@@ -127,19 +127,19 @@ public class OrariService {
         for (Orari orar : ekzistuesKandidat) {
             if (orar.getDataSesionit().equals(dto.getDataSesionit()) &&
                     (orar.getOraFillimit().isBefore(dto.getOraPerfundimit()) && orar.getOraPerfundimit().isAfter(dto.getOraFillimit()))) {
-                errorMessage.append("Kandidati ka një sesion tjetër në këtë orar.\n");
+                errorMessage.append("The candidate has another session at this time.");
             }
         }
         for (Orari orar : ekzistuesStaf) {
             if (orar.getDataSesionit().equals(dto.getDataSesionit()) &&
                     (orar.getOraFillimit().isBefore(dto.getOraPerfundimit()) && orar.getOraPerfundimit().isAfter(dto.getOraFillimit()))) {
-                errorMessage.append("Stafi ka një sesion tjetër në këtë orar.\n");
+                errorMessage.append("The staff has another session at this time.");
             }
         }
         for (Orari orar : ekzistuesAutomjet) {
             if (orar.getDataSesionit().equals(dto.getDataSesionit()) &&
                     (orar.getOraFillimit().isBefore(dto.getOraPerfundimit()) && orar.getOraPerfundimit().isAfter(dto.getOraFillimit()))) {
-                errorMessage.append("Automjeti është i zënë në këtë orar.\n");
+                errorMessage.append("The vehicle is occupied at this time.");
             }
         }
 
@@ -155,7 +155,7 @@ public class OrariService {
     public int numeroSesione(int idKandidat, String llojiMesimit, String statusi){
      int numriSesioneve= this.orariRepository.numeroSesione(idKandidat,llojiMesimit,statusi);
         if (numriSesioneve > 20) {
-            throw new IllegalStateException("Kandidati ka kaluar limitin maksimal të sesioneve për këtë lloj mësimi dhe status!");
+            throw new IllegalStateException("The candidate has exceeded the maximum limit of sessions for this type of lesson and status!");
         }
         return numriSesioneve;
 

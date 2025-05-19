@@ -16,24 +16,24 @@ public class KategoritePatentesService {
             throw new Exception("Id does not exist!");
         }
         KategoritePatentes kategoritePatentes = this.kategoriteRepository.getById(id);
-        if (kategoritePatentes == null) throw new Exception("Stafi nuk u gjet!");
+            if (kategoritePatentes == null) throw new Exception("The staf was not found!");
         return kategoritePatentes;
     }
 
     public KategoritePatentes create(CreateKategoritePatentesDto createDto) throws Exception{
 
         if (createDto.getKategoria()== null || createDto.getKategoria().isBlank()) {
-            throw new IllegalArgumentException("Emri i kategorisë është i nevojshëm!");
+            throw new IllegalArgumentException("The category name is required!");
         }
 
         if (!createDto.getKategoria().matches("^[A-Za-z0-9]+$")) {
-            throw new IllegalArgumentException("Emri i kategorisë duhet të ketë vetëm shkronja dhe numra!");
+            throw new IllegalArgumentException("The category name must contain only letters and numbers!");
         }
 
 
         KategoritePatentes kategoritePatentes = kategoriteRepository.create(createDto);
         if(kategoritePatentes == null){
-            throw new Exception("Kategoria nuk u krijua");
+            throw new Exception("The category was not created.");
         }
         return kategoritePatentes;
     }

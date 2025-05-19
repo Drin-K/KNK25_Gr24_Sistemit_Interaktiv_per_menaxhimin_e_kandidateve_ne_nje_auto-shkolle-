@@ -23,7 +23,7 @@ public class StafiService {
         }
 
         Stafi stafi =(Stafi)this.stafiRepository.getById(id);
-        if (stafi == null) throw new Exception("Stafi nuk u gjet!");
+        if (stafi == null) throw new Exception("The staf was not found!");
         return stafi;
     }
     public Stafi create(CreateStafiDto createDto) throws Exception{
@@ -32,24 +32,24 @@ public class StafiService {
         //Emri dhe mbiemri nuk duhet te jete bosh -> createDto.getEmri()/getMbiemri() == null
         //Emri dhe mbiemri duhet te kete se paku nje karakter -> createDto.getEmri()/getMbiemri().trim().isEmpty()
         if(createDto.getName()== null || createDto.getName().trim().isEmpty()){
-            throw new Exception("Emri nuk duhet të jetë bosh!");
+            throw new Exception("The name must not be empty!");
         }
         if(createDto.getSurname() == null || createDto.getSurname().trim().isEmpty()){
-            throw new Exception("Mbiemri nuk duhet të jetë bosh!");
+            throw new Exception("The surname must not be empty!");
         }
 
         //Validimi i numrit te telefonit permes numriTelefonitRegEx
         if(!createDto.getPhoneNumber().matches(numriTelefonitRegEx)){
-            throw new Exception("Numri i telefonit nuk është valid");
+            throw new Exception("The phonenumber is not valid!");
         }
         //Validimi i emailit permes emailRegEx
         if(!createDto.getEmail().matches(emailRegEx)){
-            throw new Exception("Emaili nuk është në formatin e duhur");
+            throw new Exception("The email is not in the correct format.");
         }
         //Krijimi i Kandidatit ne DB
         Stafi stafi = (Stafi)stafiRepository.create(createDto);
         if(stafi == null){
-            throw new Exception("Stafi nuk u krijua");
+            throw new Exception("The staf was not created.");
         }
         return stafi;
     }
@@ -71,7 +71,7 @@ public class StafiService {
     public int countStafi() {
         int count=this.stafiRepository.countStafi();
         if (count>MAX_STAF) {
-            throw new IllegalStateException("Limiti maksimal i stafit është arritur!");
+            throw new IllegalStateException("The maximum staff limit has been reached!");
         }
         return count;
     }

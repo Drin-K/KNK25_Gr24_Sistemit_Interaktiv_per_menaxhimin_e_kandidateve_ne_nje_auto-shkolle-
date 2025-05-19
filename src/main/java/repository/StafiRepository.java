@@ -103,56 +103,32 @@ public class StafiRepository extends UserRepository {
 
     }
 
-    public String getMostRatedInstructorName() {
-        String query = """
-                  SELECT u.name, u.surname
-                              FROM Feedback fb
-                              JOIN "User" u ON fb.ID_Staf = u.id
-                              WHERE fb.Vleresimi = (SELECT MAX(Vleresimi) FROM Feedback)
-                              GROUP BY fb.ID_Staf, u.name, u.surname
-                              ORDER BY COUNT(*) DESC
-                              LIMIT 1;
-                
-                """;
+    public String getInstructorNameByRatingExtremum(String extremum) {
+        String query = String.format("""
+        SELECT u.name, u.surname
+        FROM Feedback fb
+        JOIN "User" u ON fb.ID_Staf = u.id
+        WHERE fb.Vleresimi = (SELECT %s(Vleresimi) FROM Feedback)
+        GROUP BY fb.ID_Staf, u.name, u.surname
+        ORDER BY COUNT(*) DESC
+        LIMIT 1;
+    """, extremum);
 
-        try {
-            PreparedStatement stmt = this.connection.prepareStatement(query);
-            ResultSet rs = stmt.executeQuery();
+        try (PreparedStatement stmt = this.connection.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+
             if (rs.next()) {
-                String emri = rs.getString("name");
-                String mbiemri = rs.getString("surname");
-                return emri + " " + mbiemri;
+                return rs.getString("name") + " " + rs.getString("surname");
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return null;
     }
 
-    public String getLeastRatedInstructorName() {
-        String query = """
-                    SELECT u.name, u.surname
-                                        FROM Feedback fb
-                                        JOIN "User" u ON fb.ID_Staf = u.id
-                                        WHERE fb.Vleresimi = (SELECT MIN(Vleresimi) FROM Feedback)
-                                        GROUP BY fb.ID_Staf, u.name, u.surname
-                                        ORDER BY COUNT(*) DESC
-                                        LIMIT 1;
-                """;
 
-        try {
-            PreparedStatement stmt = this.connection.prepareStatement(query);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                String emri = rs.getString("name");
-                String mbiemri = rs.getString("surname");
-                return emri + " " + mbiemri;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 
     @Override
     public Stafi findByEmail(String email) {

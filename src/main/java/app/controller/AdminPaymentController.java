@@ -10,7 +10,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import models.Pagesat;
-import repository.PagesatRepository;
 import services.PagesaService;
 
 import java.sql.SQLException;
@@ -43,12 +42,10 @@ public class AdminPaymentController extends BaseController {
 
     private final ObservableList<Pagesat> pagesatList;
     private final PagesaService pagesatService;
-    private final PagesatRepository pagesatRepository;
 
     public AdminPaymentController() {
         this.pagesatList = FXCollections.observableArrayList();
         this.pagesatService = new PagesaService();
-        this.pagesatRepository = new PagesatRepository();
     }
 
     @FXML
@@ -84,7 +81,7 @@ public class AdminPaymentController extends BaseController {
 
     public void loadTableData() {
         pagesatList.clear();
-        pagesatList.addAll(pagesatRepository.getAll());
+        pagesatList.addAll(pagesatService.getAll());
         pagesatTable.setItems(pagesatList);
     }
 
@@ -104,11 +101,7 @@ public class AdminPaymentController extends BaseController {
             showAlert(Alert.AlertType.WARNING, "Warning", "All fields must be filled!");
             return;
         }
-        if (from.getValue().isAfter(to.getValue())) {
-            showAlert(Alert.AlertType.WARNING, "Warning", "The 'from' date cannot be after the 'to' date.");
-            return;
-        }
-        List<Pagesat> filteredPagesat = pagesatRepository.filterPagesat(name, fromDate, toDate, metodaPageses, statusiPageses);
+        List<Pagesat> filteredPagesat = pagesatService.filterPagesat(name, fromDate, toDate, metodaPageses, statusiPageses);
         pagesatList.clear();
         pagesatList.addAll(filteredPagesat);
         pagesatTable.setItems(pagesatList);
@@ -119,9 +112,9 @@ public class AdminPaymentController extends BaseController {
         LocalDate todayDate = LocalDate.now();
         YearMonth currentMonth = YearMonth.now();
 
-        int todayCount = pagesatRepository.countPagesatOnDate(todayDate);
-        int monthCount = pagesatRepository.countPagesatInMonth(currentMonth);
-        int yearCount = pagesatRepository.countPagesatInYear(todayDate.getYear());
+        int todayCount = pagesatService.countPagesatOnDate(todayDate);
+        int monthCount = pagesatService.countPagesatInMonth(currentMonth);
+        int yearCount = pagesatService.countPagesatInYear(todayDate.getYear());
 
         today.setFill(todayCount > 0 ? Color.GREEN : Color.LIGHTGRAY);
         month.setFill(monthCount > 0 ? Color.BLUE : Color.LIGHTGRAY);
@@ -141,7 +134,7 @@ public class AdminPaymentController extends BaseController {
             return;
         }
         try {
-            pagesatRepository.updateStatusiPageses(selectedPagesa.getId(), statusiRi);
+            pagesatService.updateStatusiPageses(selectedPagesa.getId(), statusiRi);
             showAlert(Alert.AlertType.INFORMATION, "Success", "Payment status was successfully updated!");
             loadTableData();
             updateLineChartData();

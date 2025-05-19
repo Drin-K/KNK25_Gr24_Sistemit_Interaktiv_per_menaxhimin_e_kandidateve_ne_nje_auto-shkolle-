@@ -4,9 +4,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import models.Orari;
-import repository.OrariRepository;
 import services.OrariService;
 import services.UserContext;
 import java.time.LocalDate;
@@ -25,11 +23,9 @@ public class OrariKandidatiController extends BaseController {
 
     private final OrariService orariService;
     private final int kandidatId;
-    public final OrariRepository orariRepository;
     public OrariKandidatiController(){
         this.orariService=new OrariService();
         this.kandidatId=UserContext.getUserId();
-        this.orariRepository=new OrariRepository();
     }
 
     @FXML

@@ -174,6 +174,21 @@ public class OrariService {
         }
         return pershkrimet;
     }
+    public List<Orari> getAll() {
+        List<Orari> lista = orariRepository.getAll();
+        List<Orari> validList = new ArrayList<>();
+
+        for (Orari o : lista) {
+            if (o.getIdSesioni() > 0
+                    && o.getIdKandidat() > 0
+                    && o.getOraFillimit() != null
+                    && o.getOraPerfundimit() != null
+                    && o.getOraFillimit().isBefore(o.getOraPerfundimit())) {
+                validList.add(o);
+            }
+        }
+        return validList;
+    }
 
 
 }

@@ -7,6 +7,8 @@ import repository.PagesatRepository;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.Year;
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -107,5 +109,75 @@ public class PagesaService {
             chart.getData().add(series);
         }
     }
+    public ArrayList<Pagesat> getAll() {
+        ArrayList<Pagesat> all = pagesatRepository.getAll();
+        ArrayList<Pagesat> valid = new ArrayList<>();
+        for (Pagesat p : all) {
+            if (p.getShuma() > 0) {
+                valid.add(p);
+            } else {
+                System.out.println("Invalid amount for the payment with ID:" + p.getId());
+            }
+        }
+        return valid;
+    }
+    public List<Pagesat> filterPagesat(String name, LocalDate fromDate, LocalDate toDate, String metodaPageses, String statusiPageses) throws SQLException {
+        if (name == null || name.trim().length() < 2) {
+            throw new IllegalArgumentException("Name must be at least 2 characters long.");
+        }
+        if (fromDate == null || toDate == null) {
+            throw new IllegalArgumentException("Both fromDate and toDate must be provided.");
+        }
+        if (toDate.isBefore(fromDate)) {
+            throw new IllegalArgumentException("toDate cannot be before fromDate.");
+        }
+        List<String> metodaValide = List.of("Cash", "Online");
+        if (!metodaValide.contains(metodaPageses)) {
+            throw new IllegalArgumentException("Invalid payment method: " + metodaPageses);
+        }
+        List<String> statusetValide = List.of("Paguar", "Pjesërisht", "Mbetur");
+        if (!statusetValide.contains(statusiPageses)) {
+            throw new IllegalArgumentException("Invalid payment status: " + statusiPageses);
+        }
+        return pagesatRepository.filterPagesat(name, fromDate, toDate, metodaPageses, statusiPageses);
+    }
+    public int countPagesatOnDate(LocalDate date) throws SQLException {
+        if (date == null)
+            throw new IllegalArgumentException("Date cannot be null");
 
+        if (date.isAfter(LocalDate.now())) {
+            throw new IllegalArgumentException("Date cannot be in the future.");
+        }
+        return pagesatRepository.countPagesatOnDate(date);
+    }
+
+    public int countPagesatInMonth(YearMonth month) throws SQLException {
+        if (month == null)
+            throw new IllegalArgumentException("Month cannot be null");
+
+        if (month.isAfter(YearMonth.now())) {
+            throw new IllegalArgumentException("Month cannot be in the future.");
+        }
+        return pagesatRepository.countPagesatInMonth(month);
+    }
+
+    public int countPagesatInYear(int year) throws SQLException {
+        if (year > Year.now().getValue()) {
+            throw new IllegalArgumentException("Year cannot be in the future.");
+        }
+        return pagesatRepository.countPagesatInYear(year);
+    }
+    public void updateStatusiPageses(int pagesaId, String statusiRi) throws SQLException {
+        if (pagesaId <= 0) {
+            throw new IllegalArgumentException("The payment ID must be a positive number.");
+        }
+        if (statusiRi == null || statusiRi.trim().isEmpty()) {
+            throw new IllegalArgumentException("The new payment status cannot be empty.");
+        }
+        List<String> validStatuset = List.of("Paguar", "Pjesërisht", "Mbetur");
+        if (!validStatuset.contains(statusiRi)) {
+            throw new IllegalArgumentException("The new status is not valid. Accepted value: " + validStatuset);
+        }
+        pagesatRepository.updateStatusiPageses(pagesaId, statusiRi);
+    }
 }

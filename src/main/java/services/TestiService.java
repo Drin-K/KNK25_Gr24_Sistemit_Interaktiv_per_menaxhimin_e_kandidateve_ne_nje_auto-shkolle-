@@ -78,5 +78,21 @@ public class TestiService {
             throw new Exception("Error occurred while deleting the test with ID " + Id);
         }
     }
+    public List<Testet> getAll() {
+        List<Testet> lista = testetRepository.getAll();
+        List<Testet> validList = new ArrayList<>();
+
+        for (Testet t : lista) {
+            if (t.getId() > 0
+                    && t.getIdKandidat() > 0
+                    && t.getIdStaf() > 0
+                    && t.getDataTestit() != null
+                    && t.getPiket() >= 0 && t.getPiket() <= 100) {
+                validList.add(t);
+            }
+        }
+
+        return validList;
+    }
 
 }

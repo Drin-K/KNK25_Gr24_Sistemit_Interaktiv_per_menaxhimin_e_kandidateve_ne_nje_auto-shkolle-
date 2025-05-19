@@ -1,11 +1,11 @@
 package services;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.shape.Circle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import models.Dokumentet;
 import models.Dto.dokumentet.CreateDokumentetDto;
 import models.Kandidatet;
+import models.Pagesat;
 import repository.DokumentetRepository;
 import repository.KandidatetRepository;
 
@@ -15,6 +15,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class DokumentService {
     private DokumentetRepository dokumentRepository;
@@ -116,31 +118,6 @@ public class DokumentService {
         } else {
             throw new IOException("The document does not exist.");
         }
-    }
-    public void getProfilePicture(ImageView profilePicture){
-        String filename = dokumentRepository.getFotoFileNameForCurrentUser();
-
-        if (filename != null && !filename.isBlank()) {
-            File imageFile = new File("src/main/java/utils/uploads", filename);
-
-            if (imageFile.exists()) {
-                Image profileImage = new Image(imageFile.toURI().toString());
-                profilePicture.setImage(profileImage);
-            } else {
-                System.err.println("File not found: " + imageFile.getAbsolutePath());
-            }
-        } else {
-            File defaultProfilePicture = new File("src/main/resources/images/Default Profile Picture.jpg");
-            Image defaultPicture = new Image(defaultProfilePicture.toURI().toString());
-            profilePicture.setImage(defaultPicture);
-            System.err.println("No filename found for profile picture.");
-        }
-        Circle clip = new Circle(
-                profilePicture.getFitWidth() / 2,
-                profilePicture.getFitHeight() / 2,
-                Math.min(profilePicture.getFitWidth(), profilePicture.getFitHeight()) / 2
-        ); // Qe ta bejme foton e profilit ne form rrethore
-        profilePicture.setClip(clip);
     }
 
 }

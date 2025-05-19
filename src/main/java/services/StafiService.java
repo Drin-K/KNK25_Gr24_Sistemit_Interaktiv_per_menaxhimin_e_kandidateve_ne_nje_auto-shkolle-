@@ -76,5 +76,15 @@ public class StafiService {
         return count;
     }
 
+    public String getMostRatedInstructorName() {
+        String name = stafiRepository.getInstructorNameByRatingExtremum("MAX");
+        return (name != null && !name.isBlank()) ? name : "No instructor";
+    }
+
+    public String getLeastRatedInstructorName() {
+        String name = stafiRepository.getInstructorNameByRatingExtremum("MIN");
+        return (name != null && !name.isBlank()) ? name : "No instructor";
+    }
+
 
 }

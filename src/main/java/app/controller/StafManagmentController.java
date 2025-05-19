@@ -54,14 +54,10 @@ public class StafManagmentController extends BaseController {
     private final StafiService stafiService;
     private final OrariService orariService;
     private final FeedBackService feedBackService;
-    private final StafiRepository stafiRepository;
-    private final OrariRepository orariRepository;
     public StafManagmentController(){
         this.stafiService=new StafiService();
         this.orariService=new OrariService();
         this.feedBackService=new FeedBackService();
-        this.stafiRepository=new StafiRepository();
-        this.orariRepository=new OrariRepository();
     }
 
     @FXML
@@ -110,8 +106,8 @@ public class StafManagmentController extends BaseController {
     }
 
     private void showBestAndWorstInstructors() {
-        high.setText(stafiRepository.getMostRatedInstructorName());
-        low.setText(stafiRepository.getLeastRatedInstructorName());
+        high.setText(stafiService.getMostRatedInstructorName());
+        low.setText(stafiService.getLeastRatedInstructorName());
     }
 
     private void loadStafData() {
@@ -123,7 +119,7 @@ public class StafManagmentController extends BaseController {
     }
 
     private void loadOrariData() {
-        orariTable.setItems(FXCollections.observableArrayList(orariRepository.getAll()));
+        orariTable.setItems(FXCollections.observableArrayList(orariService.getAll()));
     }
     private boolean checkAndConfirm(Object selected, String confirmMessage, String warningMessage) {
         if (selected == null) {

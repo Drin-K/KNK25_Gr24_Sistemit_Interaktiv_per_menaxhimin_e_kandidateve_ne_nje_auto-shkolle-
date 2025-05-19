@@ -1,20 +1,19 @@
 package app.controller;
+import app.controller.base.BaseController;
 import javafx.scene.control.ToggleGroup;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import models.Dto.kandidatet.CreateKandidatetDto;
-import services.LanguageManager;
-import services.PasswordHasher;
+import services.*;
 
-import services.SceneManager;
-import services.UserService;
 import utils.SceneLocator;
 
 import java.time.LocalDate;
 
-public class SignUpController {
+public class SignUpController extends BaseController {
     private final LanguageManager languageManager = LanguageManager.getInstance();
+    private final KandidateService kandidateService= new KandidateService();
     @FXML private TextField nameField;
     @FXML private TextField surnameField;
     @FXML private TextField phoneField;
@@ -34,6 +33,7 @@ public class SignUpController {
         maleRadio.setToggleGroup(genderGroup);
         femaleRadio.setToggleGroup(genderGroup);
     }
+
     @FXML
     public void handleSave() {
         String name = nameField.getText();
@@ -45,6 +45,7 @@ public class SignUpController {
         String confirmPassword = confirmPasswordField.getText();
         String gender = maleRadio.isSelected() ? "M" : femaleRadio.isSelected() ? "F" : "";
         LocalDate dob = dobPicker.getValue();
+
         if (name.isEmpty() || surname.isEmpty() || email.isEmpty() || phone.isEmpty() || address.isEmpty() || password.isEmpty()) {
             errorLabel.setText("All fields must be filled!");
             errorLabel.setVisible(true);
@@ -58,6 +59,7 @@ public class SignUpController {
         }
         //kemi mundsu qe veq kandidati me mujt me u bo signup, instruktoret shtohen veq permes adminit
         CreateKandidatetDto dto = new CreateKandidatetDto(name, surname, email, phone, dob, password, PasswordHasher.generateSalt(), address, gender);
+
         boolean signupSuccess = UserService.signup(dto);
         if (signupSuccess) {
             messageLabel.setText("Successfully signed up!");

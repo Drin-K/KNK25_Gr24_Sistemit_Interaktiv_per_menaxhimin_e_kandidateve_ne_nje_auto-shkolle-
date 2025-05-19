@@ -159,5 +159,4 @@ public class DokumentService {
         ); // Qe ta bejme foton e profilit ne form rrethore
         profilePicture.setClip(clip);
     }
-
 }

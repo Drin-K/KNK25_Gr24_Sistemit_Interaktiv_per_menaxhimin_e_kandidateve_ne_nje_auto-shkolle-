@@ -1,5 +1,6 @@
 package services;
 
+import javafx.scene.text.Text;
 import models.*;
 import models.Dto.kandidatet.CreateKandidatetDto;
 import repository.KandidatetRepository;
@@ -15,6 +16,7 @@ import java.util.List;
 public class KandidateService {
     private static final int MAX_KANDIDATE = 500;
     private KandidatetRepository kandidatetRepository;
+    private Kandidatet kandidatet;
     private PatentaRepository patentaRepository;
     private String emailRegEx = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$"; //RegEx i thjesht i emailit
     private String numriTelefonitRegEx = "\\d{8,15}"; //E kqyri a me specifiku veq per numra tKS -> qitash osht veq minimumi mi pas 8 deri 15 numra
@@ -85,6 +87,17 @@ public class KandidateService {
 
     }
 
+    public void getKandidatiInfo(Text name,Text surname,Text email,Text number,Text birth,Text registerDate,Text status,Text genderField){
+        this.kandidatet = kandidatetRepository.getById(UserContext.getUserId());
+        name.setText(kandidatet.getName());
+        surname.setText(kandidatet.getSurname());
+        email.setText(kandidatet.getEmail());
+        number.setText(kandidatet.getPhoneNumber());
+        birth.setText(kandidatet.getDateOfBirth().toString());
+        registerDate.setText(kandidatet.getDataRegjistrimit().toString());
+        status.setText(kandidatet.getStatusiProcesit());
+        genderField.setText(kandidatet.getGjinia());
+    }
 
 public ArrayList<Kandidatet> getAll() {
     ArrayList<User> users = kandidatetRepository.getAll();

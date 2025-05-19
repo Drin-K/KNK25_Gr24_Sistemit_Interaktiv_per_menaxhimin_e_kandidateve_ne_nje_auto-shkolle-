@@ -21,12 +21,12 @@ import java.time.LocalDate;
 
 public class PagesatHandleController extends BaseController {
 
-    private final UserContext userContext;
+
     private final PagesaService pagesaService;
 
 
     public PagesatHandleController() {
-        this.userContext = new UserContext();
+
         this.pagesaService = new PagesaService();
     }
     @FXML
@@ -50,7 +50,7 @@ public class PagesatHandleController extends BaseController {
 
 
     public CreatePagesatDto getPagesaInputData() {
-        int kandidatId = Integer.parseInt(this.idKand.getText().trim());
+//        int kandidatId = Integer.parseInt(this.idKand.getText().trim());
         double shuma = Double.parseDouble(this.shumaTxt.getText().trim());
         String nrXhirollog = this.bankNumTxt.getText().trim();
         LocalDate data = LocalDate.now();
@@ -60,24 +60,19 @@ public class PagesatHandleController extends BaseController {
             else if (shuma == 500) {Statusi = "Paguar";}
             else if(shuma==0){ Statusi = "Mbetur";}
             else {
-//                Alert errorAlert = new Alert(AlertType.ERROR);
-//                errorAlert.setTitle("Error");
-//                errorAlert.setHeaderText("Something went wrong");
-//                errorAlert.setContentText("Enter a money value bigger than 0 and smaller than 500");
-//                errorAlert.showAndWait();
                 this.showAlert(AlertType.ERROR, "Error", "Enter a money value bigger than 0 and smaller than 500");
             }
         }
         catch (Exception e){
             System.out.println("Ka ndodhur nje problem gjate pageses");
         }
-        return new CreatePagesatDto(this.userContext.getUserId(), nrXhirollog, shuma, data,"Online" , Statusi);
+        return new CreatePagesatDto(UserContext.getUserId(), nrXhirollog, shuma, data,"Online" , Statusi);
     }
 
     @FXML
     private void saveClick() {
         try {
-            // Build the DTO from the input data
+
             CreatePagesatDto dto = this.getPagesaInputData();
             Pagesat pagesat = this.pagesaService.create(dto);
             clearFields();
@@ -85,8 +80,7 @@ public class PagesatHandleController extends BaseController {
         } catch (Exception e) {
 
             e.printStackTrace();
-
-            //showAlert(AlertType.ERROR,"Error","An error occurred while saving the payment data. Please try again.");
+            showAlert(AlertType.ERROR,"Error","An error occurred while saving the payment data. Please try again.");
         }
     }
 

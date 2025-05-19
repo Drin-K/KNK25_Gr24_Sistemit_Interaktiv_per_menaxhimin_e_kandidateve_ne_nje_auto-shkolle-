@@ -87,7 +87,7 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
                 return this.getById(pagesatDto.getId());
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Gabim gjatë përditësimit të pagesave", e);
+            throw new RuntimeException("Error updating the payments.", e);
         }
         return null;
     }
@@ -185,7 +185,7 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
                 return pagesatList;
 
         } catch (SQLException e) {
-            System.err.println("Gabim gjatë ekzekutimit të kërkesës SQL: " + e.getMessage());
+            System.err.println("Error executing the SQL query: " + e.getMessage());
             e.printStackTrace();
             throw e;
         }

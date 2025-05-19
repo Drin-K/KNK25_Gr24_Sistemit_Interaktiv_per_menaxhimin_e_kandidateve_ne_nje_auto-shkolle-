@@ -38,7 +38,7 @@ public class DokumentetRepository extends BaseRepository<Dokumentet, CreateDokum
             }
 
         } catch (SQLException e) {
-            throw new RuntimeException("Gabim gjatë krijimit të dokumentit", e);
+            throw new RuntimeException("Error while creating the document", e);
         }
         return null;
     }
@@ -124,7 +124,7 @@ public int numeroDokumentet(int kandidatiId) {
                 fos.write(buffer, 0, length);
             }
         } catch (IOException e) {
-            throw new Exception("Gabim gjatë ruajtjes së skedarit.", e);
+            throw new Exception("Error while saving the file.", e);
         }
         System.out.println("Inserting: " + dto.getIdKandidat() + ", " +
                 dto.getLlojiDokumentit() + ", " +
@@ -146,12 +146,12 @@ public int numeroDokumentet(int kandidatiId) {
                 return new Dokumentet(id, dto.getIdKandidat(), dto.getLlojiDokumentit(),
                         dto.getEmriSkedarit(), dto.getDataNgarkimit());
             } else {
-                throw new Exception("Dokumenti nuk u ruajt në DB.");
+                throw new Exception("The document was not saved to the database.");
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new Exception("Gabim në DB.");
+            throw new Exception("Database error.");
         }
     }
     public String getFotoFileNameForCurrentUser() {

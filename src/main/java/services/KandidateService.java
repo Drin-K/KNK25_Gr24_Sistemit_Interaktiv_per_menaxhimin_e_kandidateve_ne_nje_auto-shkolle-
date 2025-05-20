@@ -77,13 +77,20 @@ public class KandidateService {
         return kandidatetRepository.delete(id);
     }
 
-    public HashMap<String, Integer> getAllRegistrationsGroupedByMonthWithValidation() throws SQLException {
-        HashMap<String, Integer> data = kandidatetRepository.getAllRegistrationsGroupedByMonth();
-        if (data.isEmpty()) {
-            throw new IllegalStateException("Nuk ka regjistrime për t'u shfaqur.");
+    public HashMap<String, Integer> getAllRegistrationsGroupedByMonth() {
+        HashMap<String, Integer> data = new HashMap<>();
+        try {
+            data = kandidatetRepository.getAllRegistrationsGroupedByMonth();
+            if (data.isEmpty()) {
+                throw new IllegalStateException("There are no registrations to be shown.");
+            }
+        } catch (SQLException e) {
+            System.err.println("Gabim gjatë marrjes së regjistrimeve: " + e.getMessage());
+            throw new RuntimeException("Couldn't read registrations from database", e);
         }
         return data;
     }
+
 
 
     public void getKandidatiInfo(Text name,Text surname,Text email,Text number,Text birth,Text registerDate,Text status,Text genderField){

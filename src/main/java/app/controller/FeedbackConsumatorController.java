@@ -44,7 +44,7 @@ public class FeedbackConsumatorController extends BaseController {
     private void submitbtn(){
         try{
             int idinstructor = Integer.parseInt(instructorId.getText().trim());
-            if (!ekzistonStafiMeId(idinstructor)){
+            if (!stafiService.ekzistonStafiMeId(idinstructor)){
                 showAlert(Alert.AlertType.ERROR,"Error","The staf with this ID doesn't exist!");
             }else {
             CreateFeedBackDto dto = new CreateFeedBackDto(idKandidat,idinstructor, date,selectedRating,commentField.getText());
@@ -63,16 +63,6 @@ public class FeedbackConsumatorController extends BaseController {
         ratingInstructor.selectToggle(null);
         selectedRating = 0;
     }
-    public boolean ekzistonStafiMeId(int idQeKerkohet) {
-        ArrayList<Stafi> listaStafit = stafiService.getAll();
 
-        for (Stafi stafi : listaStafit) {
-            if (stafi.getIdUser() == idQeKerkohet) {
-                return true; // E gjetëm
-            }
-        }
-
-        return false; // Nuk u gjet
-    }
 
 }

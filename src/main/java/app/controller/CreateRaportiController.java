@@ -24,19 +24,28 @@ public class CreateRaportiController extends BaseController {
     @FXML
     private void saveClick() {
         try {
+            if (this.getInput()==null){
+                throw new Exception("You must fill all the fields!");
+            }
             RaportiProgresit raportiProgresit = this.raportiProgresitService.create(this.getInput());
-            this.cleanFields();
-            String mesazhi="Raporti was inserted successfully! ID:"+raportiProgresit.getId();
-            this.showAlert(Alert.AlertType.INFORMATION,"Success",mesazhi);
+                this.cleanFields();
+                String mesazhi = "Raporti was inserted successfully! ID:" + raportiProgresit.getId();
+                this.showAlert(Alert.AlertType.INFORMATION, "Success", mesazhi);
 
         } catch (Exception e) {
-             this.showAlert(Alert.AlertType.ERROR,"Error","Failed to insert Raporti");
-
-            System.out.println("Error inserting raporti. " + e.getMessage());
+             this.showAlert(Alert.AlertType.ERROR,"Error","Failed to insert Raporti: "+e.getMessage());
         }
     }
 
     private CreateRaportiProgresitDto getInput(){
+        if (txtID.getText().trim().isEmpty() ||
+                txtTeoriPoints.getText().trim().isEmpty() ||
+                txtPracticePoints.getText().trim().isEmpty() ||
+                txtPerformanca.getText().trim().isEmpty() ||
+                txtComment.getText().trim().isEmpty()) {
+                return null;
+        }
+      else {
         int kandId = Integer.parseInt(this.txtID.getText().trim());
         int stafiId= UserContext.getUserId();
         int piketTeori=Integer.parseInt(this.txtTeoriPoints.getText().trim());
@@ -45,7 +54,7 @@ public class CreateRaportiController extends BaseController {
         String Komenti=txtComment.getText();
         LocalDate date = LocalDate.now();
         return new CreateRaportiProgresitDto(kandId,stafiId,date,piketTeori,piketPraktik,Komenti,performancaGjenerale);
-    }
+    }}
     private void cleanFields() {
         txtID.setText("");
         txtTeoriPoints.setText("");

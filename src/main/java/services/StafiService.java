@@ -97,4 +97,15 @@ public class StafiService {
         data.setText(instruktori.getDateOfBirth().toString());
         gjinia.setText(instruktori.getGjinia());
     }
+    public boolean ekzistonStafiMeId(int idQeKerkohet) {
+        ArrayList<Stafi> listaStafit = this.getAll();
+
+        for (Stafi stafi : listaStafit) {
+            if (stafi.getIdUser() == idQeKerkohet) {
+                return true; // E gjetëm
+            }
+        }
+
+        return false; // Nuk u gjet
+    }
 }

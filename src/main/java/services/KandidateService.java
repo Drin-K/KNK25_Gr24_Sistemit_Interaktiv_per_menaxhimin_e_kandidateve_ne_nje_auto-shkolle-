@@ -148,5 +148,15 @@ public ArrayList<Kandidatet> getAll() {
         }
         return lista;
     }
+    public boolean ekzistonKandidatMeId(int idQeKerkohet) {
+        ArrayList<Kandidatet> listaKandidat = this.getAll();
 
+        for (Kandidatet kandidatet : listaKandidat) {
+            if (kandidatet.getIdUser() == idQeKerkohet) {
+                return true; // E gjetëm
+            }
+        }
+
+        return false; // Nuk u gjet
+    }
 }

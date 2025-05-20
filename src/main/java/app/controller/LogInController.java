@@ -18,7 +18,26 @@ private PasswordField passwordField;
 
 @FXML
 private Label errorLabel;
+    @FXML
+    public void initialize() {
+        // Bind Enter key in password field
+        passwordField.setOnAction(event -> {
+            try {
+                handleLogin();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
 
+        // Optional: Also trigger login when Enter is pressed in email field
+        emailField.setOnAction(event -> {
+            try {
+                handleLogin();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
 
 @FXML
 private void handleLogin() throws Exception {

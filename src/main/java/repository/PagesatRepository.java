@@ -57,10 +57,14 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
         if (pagesatDto.getShuma() !=0){
             query.append("Shuma=?, ");
             params.add(pagesatDto.getShuma());
-        }//////////// a ka nevoj me shtu ktu numrin e xhirollogarise
+        }
         if (pagesatDto.getNumriXhirollogarise()!=null){
             query.append("Numri_Xhirollogarise=?, ");
             params.add(pagesatDto.getNumriXhirollogarise());
+        }
+        if (pagesatDto.getIdKandidat()!=0){
+            query.append("ID_Kandidat=?, ");
+            params.add(pagesatDto.getIdKandidat());
         }
         if (pagesatDto.getMetodaPageses()!=null){
             query.append("Metoda_e_Pageses=?, ");

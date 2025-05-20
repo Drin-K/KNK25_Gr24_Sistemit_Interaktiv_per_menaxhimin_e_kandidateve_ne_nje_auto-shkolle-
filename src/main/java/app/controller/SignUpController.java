@@ -13,7 +13,6 @@ import java.time.LocalDate;
 
 public class SignUpController extends BaseController {
     private final LanguageManager languageManager = LanguageManager.getInstance();
-    private final KandidateService kandidateService= new KandidateService();
     @FXML private TextField nameField;
     @FXML private TextField surnameField;
     @FXML private TextField phoneField;
@@ -59,7 +58,7 @@ public class SignUpController extends BaseController {
         }
         //kemi mundsu qe veq kandidati me mujt me u bo signup, instruktoret shtohen veq permes adminit
         CreateKandidatetDto dto = new CreateKandidatetDto(name, surname, email, phone, dob, password, PasswordHasher.generateSalt(), address, gender);
-
+        try{
         boolean signupSuccess = UserService.signup(dto);
         if (signupSuccess) {
             messageLabel.setText("Successfully signed up!");
@@ -70,7 +69,10 @@ public class SignUpController extends BaseController {
             errorLabel.setVisible(true);
             messageLabel.setVisible(false);
         }
-        this.clearFields();
+        this.clearFields();}
+        catch (Exception e) {
+            showAlert(Alert.AlertType.ERROR,"Error",e.getMessage());
+        }
 
     }
     @FXML

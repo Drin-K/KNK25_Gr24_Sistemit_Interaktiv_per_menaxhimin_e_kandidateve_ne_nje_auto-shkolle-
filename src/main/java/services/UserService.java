@@ -1,8 +1,6 @@
 package services;
 
-import javafx.scene.control.Alert;
 import models.Dto.kandidatet.CreateKandidatetDto;
-import models.Dto.user.CreateUserDto;
 import models.Kandidatet;
 import models.User;
 import repository.AdminRepository;
@@ -10,16 +8,15 @@ import repository.KandidatetRepository;
 import repository.StafiRepository;
 import repository.UserRepository;
 
-import java.time.LocalDate;
-import java.time.Period;
 
 public class UserService {
 
     private static final KandidatetRepository kandidatetRepo = new KandidatetRepository();
+    private static final KandidateService kandidatService=new KandidateService();
     private static final UserRepository stafiRepo = new StafiRepository();
     private static final UserRepository adminRepo=new AdminRepository();
 
-    public static boolean signup(CreateKandidatetDto dto) {
+    public static boolean signup(CreateKandidatetDto dto)throws Exception {
         try {
             String email = dto.getEmail().toLowerCase();
             if (kandidatetRepo.findByEmail(email) != null) {
@@ -29,21 +26,14 @@ public class UserService {
             String salt = dto.getSalt();
             String hashedPassword = PasswordHasher.generateSaltedHash(dto.getPassword(), salt);
             dto.setPassword(hashedPassword);
-            int mosha = Period.between(dto.getDateOfBirth(), LocalDate.now()).getYears();
-            if(mosha<18){
-                Alert alert= new Alert(Alert.AlertType.ERROR);
-                alert.showAndWait();
-                return false;
-            }
-            Kandidatet created = kandidatetRepo.create(dto);
+            Kandidatet created = kandidatService.create(dto);
             if (created == null) {
                 System.out.println("Failed to create candidate.");
                 return false;
             }
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
-            return false;
+            throw new Exception(e.getMessage());
         }
     }
     public static boolean login(String email, String password) {

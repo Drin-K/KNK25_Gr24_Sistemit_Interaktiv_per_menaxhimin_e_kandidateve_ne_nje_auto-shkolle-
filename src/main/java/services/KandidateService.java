@@ -18,7 +18,7 @@ public class KandidateService {
     private KandidatetRepository kandidatetRepository;
     private Kandidatet kandidatet;
     private PatentaRepository patentaRepository;
-    private String emailRegEx = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$"; //RegEx i thjesht i emailit
+    private String emailRegEx = "^[a-zA-Z0-9._%+-]+@kandidat\\.com$"; //RegEx i thjesht i emailit
     private String numriTelefonitRegEx = "\\d{8,15}"; //E kqyri a me specifiku veq per numra tKS -> qitash osht veq minimumi mi pas 8 deri 15 numra
 
     public KandidateService() {

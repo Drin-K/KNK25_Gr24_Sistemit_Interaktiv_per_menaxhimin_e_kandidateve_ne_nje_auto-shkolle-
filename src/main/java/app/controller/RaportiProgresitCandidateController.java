@@ -62,8 +62,7 @@ public class RaportiProgresitCandidateController extends BaseController {
             raportiprogresit.getItems().setAll(raportet);
 
         } catch (Exception e) {
-            showAlert(Alert.AlertType.WARNING,"Warning",e.getMessage());
-            e.printStackTrace();
+            showAlert(Alert.AlertType.WARNING,"Warning","Set the stafID!");
         }
     }
 }

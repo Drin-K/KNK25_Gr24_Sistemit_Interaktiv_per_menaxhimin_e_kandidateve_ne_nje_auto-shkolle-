@@ -102,15 +102,21 @@ public class DokumentService {
         }
     }
     public void download(String emriSkedarit) throws IOException {
-        Path source = Paths.get("src/main/java/utils/uploads", emriSkedarit);
-        Path destination = Paths.get(System.getProperty("user.home"), "Desktop", emriSkedarit);
-        Files.createDirectories(source.getParent());
-        if (Files.exists(source)) {
-            Files.copy(source, destination, StandardCopyOption.REPLACE_EXISTING);
-        } else {
-            throw new IOException("The document does not exist.");
-        }
-    }
+        Path uploadDir = Paths.get("src", "main", "java", "utils", "uploads");
+        Path sourcePath = uploadDir.resolve(emriSkedarit);
+        Path destinationPath = Paths.get(System.getProperty("user.home"), "Desktop").resolve(emriSkedarit);
+        if (Files.notExists(uploadDir)) Files.createDirectories(uploadDir);
+        if (Files.exists(sourcePath)) {
+            Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+            Path source = Paths.get("src/main/java/utils/uploads", emriSkedarit);
+            Path destination = Paths.get(System.getProperty("user.home"), "Desktop", emriSkedarit);
+            Files.createDirectories(source.getParent());
+            if (Files.exists(source)) {
+                Files.copy(source, destination, StandardCopyOption.REPLACE_EXISTING);
+            } else {
+                throw new IOException("The document does not exist.");
+            }
+        }}
 
     public List<Dokumentet> getAll() {
         List<Dokumentet> dokumentetList = dokumentRepository.getAll();

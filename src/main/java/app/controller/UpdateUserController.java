@@ -70,5 +70,17 @@ public class UpdateUserController extends BaseController {
         userRepository.update(userDto);
 
         showAlert(Alert.AlertType.INFORMATION, "Updated", "The user was successfully updated!");
+        this.clearFields();
+    }
+    private void clearFields() {
+        idField.setText("");
+        emailField.setText("");
+        phoneField.setText("");
+        passwordField.setText("");
+        addressField.setText("");
+        dataRegjistrimiPicker.setValue(null);
+        statusiProcesitCombo.getSelectionModel().clearSelection();
+
+        // If there are additional fields inside kandidatExtraFields, clear them here too if necessary.
     }
 }

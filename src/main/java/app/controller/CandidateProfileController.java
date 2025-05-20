@@ -11,7 +11,7 @@ import utils.SceneLocator;
 
 
 public class CandidateProfileController {
-    DokumentService dokumentService = new DokumentService();
+    private final DokumentService dokumentService = new DokumentService();
     private final KandidateService kandidateService = new KandidateService();
     @FXML
     private AnchorPane pane;

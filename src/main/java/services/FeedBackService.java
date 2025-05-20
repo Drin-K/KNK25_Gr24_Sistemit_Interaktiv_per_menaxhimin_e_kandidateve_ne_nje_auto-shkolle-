@@ -42,7 +42,7 @@ public class FeedBackService {
         return feedback;
     }
     public boolean delete(int id) throws Exception {
-        this.getById(id); // a ekziston?
+        this.getById(id);
         return this.feedbackRepository.delete(id);
     }
     public List<FeedBack> getFeedbacks(int instructorId, LocalDate date) {

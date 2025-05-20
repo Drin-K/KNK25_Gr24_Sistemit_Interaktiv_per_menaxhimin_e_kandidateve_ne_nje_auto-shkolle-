@@ -109,12 +109,12 @@ public class OrariRepository extends BaseRepository<Orari, CreateOrariDto, Updat
     }
 
 
-    public List<Orari> gjejOraretPerId(int id) {
+    public List<Orari> gjejOraretPerId(int kandidatId) {
         String query = "SELECT * FROM Orari WHERE ID_Kandidat = ?";
         List<Orari> oraret = new ArrayList<>();
 
         try {PreparedStatement pstm = this.connection.prepareStatement(query);
-            pstm.setInt(1, id);
+            pstm.setInt(1, kandidatId);
             ResultSet res = pstm.executeQuery();
 
             while (res.next()) {
@@ -122,7 +122,7 @@ public class OrariRepository extends BaseRepository<Orari, CreateOrariDto, Updat
                 oraret.add(orar);
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Schedules could not be read from the database for the column with ID: " + id, e);
+            throw new RuntimeException("Schedules could not be read from the database for the column with ID: " + kandidatId, e);
         }
 
         return oraret;

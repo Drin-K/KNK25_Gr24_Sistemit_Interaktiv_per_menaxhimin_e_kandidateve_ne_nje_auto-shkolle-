@@ -32,12 +32,9 @@ public class StafiRepository extends UserRepository {
             userStmt.setString(8, dto.getAdresa());
             userStmt.setString(9, dto.getGjinia());
             userStmt.executeUpdate();
-
             ResultSet keys = userStmt.getGeneratedKeys();
             if (keys.next()) {
                 int userId = keys.getInt(1);
-
-                // Shto në tabelën Stafi
                 String insertStaf = """
                             INSERT INTO Stafi(id)
                             VALUES (?);
@@ -88,19 +85,14 @@ public class StafiRepository extends UserRepository {
         try {
                 PreparedStatement stmt = connection.prepareStatement(query);
                 ResultSet rs = stmt.executeQuery();
-
             while (rs.next()) {
-
-                Stafi stafi1 = Stafi.getInstance(rs);
+                Stafi stafi1 = fromResultSet(rs);
                 stafi.add(stafi1);
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return stafi;
-
     }
 
     public String getInstructorNameByRatingExtremum(String extremum) {

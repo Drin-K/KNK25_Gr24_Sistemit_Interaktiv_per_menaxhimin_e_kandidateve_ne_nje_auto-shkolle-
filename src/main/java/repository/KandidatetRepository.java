@@ -126,8 +126,7 @@ public class KandidatetRepository extends UserRepository {
                 "WHERE u.role = 'Kandidat' AND u.id = ?";
 
         try{
-            PreparedStatement pstm = this.connection.prepareStatement(
-                    query);
+            PreparedStatement pstm = this.connection.prepareStatement(query);
             pstm.setInt(1, id);
             ResultSet res = pstm.executeQuery();
             if(res.next()){
@@ -161,7 +160,6 @@ public class KandidatetRepository extends UserRepository {
 
         try{ PreparedStatement stmt = connection.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery();
-
             while (rs.next()) {
                 kandidatet.add(fromResultSet(rs));
             }

@@ -90,11 +90,9 @@ public class PatentaRepository extends BaseRepository<Patenta, CreatePatentaDto,
         String query = "SELECT * FROM Patenta WHERE Statusi = 'E lëshuar'";
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(query);
-
         while (resultSet.next()) {
             patentat.add(fromResultSet(resultSet));
         }
-
         return patentat;
     }
     public boolean aprovoPatenten(int kandidatId) throws SQLException {

@@ -32,9 +32,7 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
                 """;
         try{
 
-            PreparedStatement pstm =
-                    this.connection.prepareStatement(
-                            query, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             pstm.setInt(1, pagesatDto.getIdKandidat());
             pstm.setString(2, pagesatDto.getNumriXhirollogarise());
             pstm.setDouble(3, pagesatDto.getShuma());
@@ -192,35 +190,32 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
             throw e;
         }
     }
-    public int countPagesatOnDate(LocalDate date) throws SQLException {
+    public int countPagesatOnDate(LocalDate date)throws SQLException{
         String sql = "SELECT COUNT(*) FROM Pagesat WHERE Data_e_Pageses = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setDate(1, Date.valueOf(date));
             ResultSet rs = stmt.executeQuery();
             return rs.next() ? rs.getInt(1) : 0;
-        }
     }
     public int countPagesatInMonth(YearMonth month) throws SQLException {
         LocalDate start = month.atDay(1);
         LocalDate end = month.atEndOfMonth();
         String sql = "SELECT COUNT(*) FROM Pagesat WHERE Data_e_Pageses BETWEEN ? AND ?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setDate(1, Date.valueOf(start));
             stmt.setDate(2, Date.valueOf(end));
             ResultSet rs = stmt.executeQuery();
             return rs.next() ? rs.getInt(1) : 0;
-        }
     }
     public int countPagesatInYear(int year) throws SQLException {
         LocalDate start = LocalDate.of(year, 1, 1);
         LocalDate end = LocalDate.of(year, 12, 31);
         String sql = "SELECT COUNT(*) FROM Pagesat WHERE Data_e_Pageses BETWEEN ? AND ?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setDate(1, Date.valueOf(start));
             stmt.setDate(2, Date.valueOf(end));
             ResultSet rs = stmt.executeQuery();
             return rs.next() ? rs.getInt(1) : 0;
-        }
     }
 
     public Map<String, Integer> getPagesatCountByStatus(){

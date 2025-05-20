@@ -1,6 +1,8 @@
 package services;
 
+import javafx.scene.control.Alert;
 import models.Dto.kandidatet.CreateKandidatetDto;
+import models.Dto.user.UpdateUserDto;
 import models.Kandidatet;
 import models.User;
 import repository.AdminRepository;
@@ -64,5 +66,60 @@ public class UserService {
             return false;
         }
     }
+    public static void changePassword(String current,String newPass,String confirm){
+        int userId = UserContext.getUserId();
+        String role = UserContext.getRole();
+        if(role.equals("Kandidat")){
+            try {
+                User user = kandidatetRepo.getById(userId);
+                if (user == null) {
+                    throw new Exception("User does not exists!");
+                }
+                if (current.isEmpty() || newPass.isEmpty() || confirm.isEmpty()) {
+                    throw new Exception("All fields must be filled.");
+                }
+                if (!newPass.equals(confirm)) {
+                    throw new Exception("New password and confirmation do not match.");
+                }
+                if (!PasswordHasher.compareSaltedHash(current, user.getSalt(), user.getHashedPassword())) {
+                    throw new Exception("Current password is incorrect !");
+                }
+                String newSalt = PasswordHasher.generateSalt();
+                String newHashedPassword = PasswordHasher.generateSaltedHash(newPass, newSalt);
 
+                UpdateUserDto updateDto = new UpdateUserDto();
+                updateDto.setIdUser(userId);
+                updateDto.setPassword(newHashedPassword);
+                updateDto.setSalt(newSalt);
+                kandidatetRepo.update(updateDto);
+                System.out.println("Password successfully changed.");
+            }
+            catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+        else{
+            try {
+                User user = stafiRepo.getById(userId);
+                if(user == null){
+                    throw new Exception("User does not exists!");
+                }
+                if (!PasswordHasher.compareSaltedHash(current, user.getSalt(), user.getHashedPassword())) {
+                    throw new Exception("Current password is incorrect !");
+                }
+                String newSalt = PasswordHasher.generateSalt();
+                String newHashedPassword = PasswordHasher.generateSaltedHash(newPass, newSalt);
+
+                UpdateUserDto updateDto = new UpdateUserDto();
+                updateDto.setIdUser(userId);
+                updateDto.setPassword(newHashedPassword);
+                updateDto.setSalt(newSalt);
+                stafiRepo.update(updateDto);
+                System.out.println("Password successfully changed.");
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+    }
 }

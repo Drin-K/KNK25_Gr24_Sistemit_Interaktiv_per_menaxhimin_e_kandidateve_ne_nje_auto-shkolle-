@@ -8,41 +8,37 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import models.Dto.orari.CreateOrariDto;
+import models.Kandidatet;
 import models.Orari;
-import services.AutomjetService;
-import services.OrariService;
-import services.UserContext;
-import services.SceneManager;
+import services.*;
 import utils.SceneLocator;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 public class InstructorSchedulerController extends BaseController {
     private final OrariService orariService;
     private final AutomjetService automjetService;
+    private final KandidateService kandidateService;
     private Integer vehicleId;
 
+    // Form fields
+    @FXML private AnchorPane rightPane;
+    @FXML private MenuButton chooseLessonBttn;
+    @FXML private TextField candidateId;
+    @FXML private DatePicker dateForLesson;
+    @FXML private TextField txtStart;
+    @FXML private TextField txtEnd;
 
-    @FXML
-    private AnchorPane rightPane;
-    @FXML
-    private MenuButton chooseLessonBttn;
-    @FXML
-    private TextField candidateId;
-    @FXML
-    private DatePicker dateForLesson;
-    @FXML
-    private TextField txtStart;
-    @FXML
-    private TextField txtEnd;
-
+    // Lesson type and vehicle type
     private String llojiMesimit;
     private String selectedVehicleType;
 
     public InstructorSchedulerController() {
         this.orariService = new OrariService();
         this.automjetService = new AutomjetService();
+        this.kandidateService=new KandidateService();
     }
 
 
@@ -50,17 +46,19 @@ public class InstructorSchedulerController extends BaseController {
     private void scheduleClick() {
         try {
             CreateOrariDto dto = this.getScheduleInputData();
+            if(!kandidateService.ekzistonKandidatMeId(dto.getIdKandidat())) {
+                showAlert(Alert.AlertType.ERROR, "Error", "The candidate with this id doesn't exist.");
+            }else{
             Orari orari = this.orariService.create(dto);
 
-            this.showAlert(Alert.AlertType.INFORMATION, "Sucess", "The schedule was successfully created! Session ID: " + orari.getIdSesioni());
-            this.cleanFields();
+            this.showAlert(Alert.AlertType.INFORMATION,"Sucess","The schedule was successfully created! Session ID: " + orari.getIdSesioni());
+            this.cleanFields();}
 
         } catch (IllegalArgumentException iae) {
-            this.showAlert(Alert.AlertType.WARNING, "Warning", "Incomplete or invalid data" + iae.getMessage());
+            this.showAlert(Alert.AlertType.WARNING,"Warning","Incomplete or invalid data"+iae.getMessage());
 
         } catch (Exception e) {
-            showAlert(Alert.AlertType.ERROR, "Error", "The schedule could not be created.");
-            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR,"Error","The schedule could not be created."+e.getMessage());
         }
     }
 
@@ -101,14 +99,12 @@ public class InstructorSchedulerController extends BaseController {
     }
 
 
-    @FXML
-    private void teoriClick() {
+    @FXML private void teoriClick()   {
         this.llojiMesimit = "Teori";
         chooseLessonBttn.setText("Teori");
     }
 
-    @FXML
-    private void praktikClick() {
+    @FXML private void praktikClick() {
         this.llojiMesimit = "Praktikë";
         chooseLessonBttn.setText("Praktikë");
     }
@@ -117,7 +113,7 @@ public class InstructorSchedulerController extends BaseController {
     @FXML
     private void AClick() {
         this.selectedVehicleType = "Motoçikletë";
-        fetchVehicleId();
+        fetchVehicleId();  // Initialize vehicleId AFTER selecting the type
     }
 
     @FXML
@@ -145,4 +141,5 @@ public class InstructorSchedulerController extends BaseController {
     private void editClick() throws Exception {
         SceneManager.load(SceneLocator.INSTRUCTOR_EDIT, rightPane);
     }
+
 }

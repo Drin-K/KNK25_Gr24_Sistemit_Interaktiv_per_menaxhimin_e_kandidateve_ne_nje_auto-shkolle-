@@ -77,8 +77,6 @@ public class PagesatHandleController extends BaseController {
             clearFields();
             showAlert(AlertType.INFORMATION, "Success", "Payment saved successfully!");
         } catch (Exception e) {
-
-            e.printStackTrace();
             showAlert(AlertType.ERROR, "Error", "An error occurred while saving the payment data. Please try again.");
         }
     }

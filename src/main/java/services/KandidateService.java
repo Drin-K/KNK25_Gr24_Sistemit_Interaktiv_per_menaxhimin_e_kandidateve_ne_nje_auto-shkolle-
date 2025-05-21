@@ -149,5 +149,15 @@ public class KandidateService {
         }
         return lista;
     }
+    public boolean ekzistonKandidatMeId(int idQeKerkohet) {
+        ArrayList<Kandidatet> listaKandidat = this.getAll();
 
+        for (Kandidatet kandidatet : listaKandidat) {
+            if (kandidatet.getIdUser() == idQeKerkohet) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

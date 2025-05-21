@@ -21,7 +21,7 @@ public class RaportiProgresitCandidateController extends BaseController {
     @FXML
     private TableView<RaportiProgresit> raportiprogresit;
     @FXML
-    private TableColumn<RaportiProgresit, Date> dateArea;
+    private TableColumn<RaportiProgresit,Date> dateArea;
     @FXML
     private TableColumn<RaportiProgresit, Integer> theoryPointsArea;
     @FXML
@@ -35,7 +35,7 @@ public class RaportiProgresitCandidateController extends BaseController {
 
     @FXML
     private void initialize() {
-        configureTable(raportiprogresit, List.of(dateArea, theoryPointsArea, practicalPointsArea, commentArea, generalPerformanceArea), new String[]{"dataRaportit", "piketTeorike", "piketPraktike", "komentet", "performancaGjenerale"});
+        configureTable(raportiprogresit,List.of(dateArea,theoryPointsArea,practicalPointsArea,commentArea,generalPerformanceArea),new String[]{"dataRaportit","piketTeorike","piketPraktike","komentet","performancaGjenerale"});
         findBtn.setOnAction(e -> handleFind());
     }
 
@@ -45,10 +45,10 @@ public class RaportiProgresitCandidateController extends BaseController {
         try {
             int candidateId = UserContext.getUserId();
             int staffID = Integer.parseInt(stafField.getText());
-            List<RaportiProgresit> raportet = raportiService.getRaportetById(staffID, candidateId);
+            List<RaportiProgresit> raportet = raportiService.getRaportetById(staffID,candidateId);
 
             if (raportet.isEmpty()) {
-                showAlert(Alert.AlertType.WARNING, "Warning", "No progress reports found for your ID.");
+                showAlert(Alert.AlertType.WARNING,"Warning","No progress reports found for your ID.");
             } else {
                 raportet.forEach(r -> System.out.println(
                         "Staf ID: " + r.getIdStaf() +
@@ -62,8 +62,7 @@ public class RaportiProgresitCandidateController extends BaseController {
             raportiprogresit.getItems().setAll(raportet);
 
         } catch (Exception e) {
-            showAlert(Alert.AlertType.WARNING, "Warning", e.getMessage());
-            e.printStackTrace();
+            showAlert(Alert.AlertType.WARNING,"Warning","Set the stafID!");
         }
     }
 }

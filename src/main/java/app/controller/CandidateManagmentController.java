@@ -243,7 +243,7 @@ public class CandidateManagmentController extends BaseController {
                 showAlert(Alert.AlertType.INFORMATION, "Success", "The candidate was successfully registered.");
             } else {
                 showAlert(Alert.AlertType.WARNING, "Documents Missing",
-                        "The candidate is missing the following documents:\\n- ID Card\\n- Medical Certificate\\n- Application\\n- Photo");
+                        "The candidate hasn't uploaded all documents.");
             }
         }
     }

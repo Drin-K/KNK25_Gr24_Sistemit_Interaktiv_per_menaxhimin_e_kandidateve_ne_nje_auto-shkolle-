@@ -53,7 +53,6 @@ private void handleLogin() throws Exception {
     boolean isLoggedIn = UserService.login(email, password);
     if (!isLoggedIn) {
         showAlert(Alert.AlertType.ERROR, "Login Failed", "Invalid email or password!");
-
         emailField.clear();
         passwordField.clear();
         return;

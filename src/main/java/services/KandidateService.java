@@ -153,10 +153,10 @@ public ArrayList<Kandidatet> getAll() {
 
         for (Kandidatet kandidatet : listaKandidat) {
             if (kandidatet.getIdUser() == idQeKerkohet) {
-                return true; // E gjetëm
+                return true;
             }
         }
 
-        return false; // Nuk u gjet
+        return false;
     }
 }

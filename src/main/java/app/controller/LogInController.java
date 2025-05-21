@@ -1,4 +1,5 @@
 package app.controller;
+
 import app.controller.base.BaseController;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -10,14 +11,15 @@ import utils.SceneLocator;
 
 public class LogInController extends BaseController {
     private final LanguageManager languageManager = LanguageManager.getInstance();
-@FXML
-private TextField emailField;
+    @FXML
+    private TextField emailField;
 
-@FXML
-private PasswordField passwordField;
+    @FXML
+    private PasswordField passwordField;
 
-@FXML
-private Label errorLabel;
+    @FXML
+    private Label errorLabel;
+
     @FXML
     public void initialize() {
         // Bind Enter key in password field
@@ -39,41 +41,42 @@ private Label errorLabel;
         });
     }
 
-@FXML
-private void handleLogin() throws Exception {
-    String email = emailField.getText().toLowerCase();
-    String password = passwordField.getText();
+    @FXML
+    private void handleLogin() throws Exception {
+        String email = emailField.getText().toLowerCase();
+        String password = passwordField.getText();
 
-    if (email.isEmpty() || password.isEmpty()) {
-        errorLabel.setText("All fields must be filled!");
-        errorLabel.setVisible(true);
-        return;
+        if (email.isEmpty() || password.isEmpty()) {
+            errorLabel.setText("All fields must be filled!");
+            errorLabel.setVisible(true);
+            return;
+        }
+
+        boolean isLoggedIn = UserService.login(email, password);
+        if (!isLoggedIn) {
+            showAlert(Alert.AlertType.ERROR, "Login Failed", "Invalid email or password!");
+            emailField.clear();
+            passwordField.clear();
+            return;
+        }
+
+        if (UserContext.getRole().equals("Staf")) {
+            SceneManager.load(SceneLocator.INSTRUCTOR_FRONT_PAGE);
+        } else if (UserContext.getRole().equals("Kandidat")) {
+            SceneManager.load(SceneLocator.FRONT_PAGE);
+        } else if (UserContext.getRole().equals("Admin")) {
+            SceneManager.load(SceneLocator.FRONT_PAGE_ADMIN);
+        }
     }
 
-    boolean isLoggedIn = UserService.login(email, password);
-    if (!isLoggedIn) {
-        showAlert(Alert.AlertType.ERROR, "Login Failed", "Invalid email or password!");
-        emailField.clear();
-        passwordField.clear();
-        return;
+    @FXML
+    private void handleSignup() throws Exception {
+        SceneManager.load(SceneLocator.SIGNUP_PAGE);
     }
 
-    if (UserContext.getRole().equals("Staf")) {
-        SceneManager.load(SceneLocator.INSTRUCTOR_FRONT_PAGE);
-    } else if (UserContext.getRole().equals("Kandidat")) {
-        SceneManager.load(SceneLocator.FRONT_PAGE);
-    } else if (UserContext.getRole().equals("Admin")) {
-        SceneManager.load(SceneLocator.FRONT_PAGE_ADMIN);
+    @FXML
+    private void languageClick() throws Exception {
+        languageManager.toggleLanguage();
+        SceneManager.reload();
     }
-}
-
-@FXML
-private void handleSignup()throws Exception {
-    SceneManager.load(SceneLocator.SIGNUP_PAGE);
-}
-@FXML
-private void languageClick() throws Exception{
-    languageManager.toggleLanguage();
-    SceneManager.reload();
-}
 }

@@ -11,6 +11,7 @@ import models.*;
 import models.Dto.kandidatet.CreateKandidatetDto;
 import services.*;
 import utils.SceneLocator;
+
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -84,9 +85,9 @@ public class CandidateManagmentController extends BaseController {
         this.kandidateService = new KandidateService();
         this.orariService = new OrariService();
         this.regjistrimiService = new RegjistrimiService();
-        this.dokumentService=new DokumentService();
-        this.pagesaService=new PagesaService();
-        this.testiService=new TestiService();
+        this.dokumentService = new DokumentService();
+        this.pagesaService = new PagesaService();
+        this.testiService = new TestiService();
     }
 
     @FXML
@@ -152,7 +153,7 @@ public class CandidateManagmentController extends BaseController {
                 phone = txtPhone.getText(), adresa = txtAdresa.getText(),
                 gjinia = comboGjinia.getValue(), password = txtPassword.getText();
         LocalDate datelindja = datePickerDob.getValue();
-        String salt=PasswordHasher.generateSalt();
+        String salt = PasswordHasher.generateSalt();
 
         if (emri.isEmpty() || mbiemri.isEmpty() || email.isEmpty() || phone.isEmpty()
                 || datelindja == null || adresa.isEmpty() || gjinia == null) {
@@ -162,15 +163,16 @@ public class CandidateManagmentController extends BaseController {
 
         CreateKandidatetDto kandidatet = new CreateKandidatetDto(
                 emri, mbiemri, email, phone, datelindja, PasswordHasher.generateSaltedHash(password, salt), salt,
-                 adresa, gjinia);
-      try{  kandidateService.create(kandidatet);
-          showAlert(Alert.AlertType.INFORMATION, "Success", "The candidate was created successfully!");
-          SceneManager.reload();
-      }
-      catch (Exception e){
-          showAlert(Alert.AlertType.ERROR,"Error",e.getMessage());
-      }
+                adresa, gjinia);
+        try {
+            kandidateService.create(kandidatet);
+            showAlert(Alert.AlertType.INFORMATION, "Success", "The candidate was created successfully!");
+            SceneManager.reload();
+        } catch (Exception e) {
+            showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
+        }
     }
+
     private boolean kontrolloDheKonfirmo(Object selected, String konfirmoMesazhi) {
         if (selected == null) {
             showAlert(Alert.AlertType.WARNING, "Warning", "Please select an item.");
@@ -267,7 +269,6 @@ public class CandidateManagmentController extends BaseController {
                     "The document has been saved to your Desktop successfully.");
         }
     }
-
 
 
 }

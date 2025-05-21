@@ -23,8 +23,8 @@ public class AdminPatentaController extends BaseController {
     private final PatentaService patentaService;
 
     public AdminPatentaController() {
-        this.patentaService=new PatentaService();
-        this.kandidateService=new KandidateService();
+        this.patentaService = new PatentaService();
+        this.kandidateService = new KandidateService();
     }
 
     @FXML
@@ -39,19 +39,18 @@ public class AdminPatentaController extends BaseController {
     }
 
 
-
     private void loadCandidateData() {
         try {
             List<Kandidatet> lista1 = kandidateService.shfaqKandidatetMeTeDrejte();
             tableKandidatet.setItems(FXCollections.observableArrayList(lista1));
         } catch (IllegalStateException ex) {
-            showAlert(Alert.AlertType.WARNING,"Warning!" ,ex.getMessage());
+            showAlert(Alert.AlertType.WARNING, "Warning!", ex.getMessage());
         }
         try {
             List<Kandidatet> lista2 = kandidateService.shfaqKandidatetMeTeDrejtePaPagesa();
             tableKandidatet1.setItems(FXCollections.observableArrayList(lista2));
         } catch (IllegalStateException ex) {
-            showAlert(Alert.AlertType.WARNING,"Warning!" ,ex.getMessage());
+            showAlert(Alert.AlertType.WARNING, "Warning!", ex.getMessage());
         }
     }
 

@@ -139,7 +139,6 @@ public class AdminPaymentController extends BaseController {
             loadTableData();
             updateLineChartData();
         } catch (SQLException e) {
-            e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Error", "An error occurred while updating the payment status.");
         }
     }

@@ -90,7 +90,7 @@ public class DokumentetRepository extends BaseRepository<Dokumentet, CreateDokum
                     SELECT COUNT(DISTINCT Lloji_Dokumentit)
                     FROM Dokumentet
                     WHERE ID_Kandidat = ?
-                      AND Lloji_Dokumentit IN ('Leternjoftim', 'Certifikate Mjekësore', 'Aplikim', 'Foto')
+                      AND Lloji_Dokumentit IN ('Leternjoftim', 'Certifikate Mjekesore', 'Aplikim', 'Foto')
                 """;
 
         try {

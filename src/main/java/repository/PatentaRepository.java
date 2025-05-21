@@ -51,11 +51,6 @@ public class PatentaRepository extends BaseRepository<Patenta, CreatePatentaDto,
     public Patenta update(UpdatePatentaDto patentaDto) {
         StringBuilder query = new StringBuilder("Update Patenta SET ");
         ArrayList<Object> params = new ArrayList<>();
-// private int id;
-//    private int idKandidat;//// ka mundesi duhet me hjek
-//    private int idKategori;
-//    private LocalDate dataLeshimit;
-//    private String statusi;
         if (patentaDto.getIdKandidat() != 0) {
             query.append("ID_Kandidat=?, ");
             params.add(patentaDto.getIdKandidat());

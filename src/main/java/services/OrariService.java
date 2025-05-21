@@ -102,9 +102,6 @@ public class OrariService {
         if (!dto.getOraPerfundimit().isAfter(dto.getOraFillimit())) {
             throw new Exception("The end time must be after the start time.");
         }
-        if (dto.getOraFillimit().isBefore(LocalTime.of(9, 0)) || dto.getOraPerfundimit().isAfter(LocalTime.of(17, 0))) {
-            throw new Exception("The schedule must be within working hours, from 9:00 to 17:00.");
-        }
         if (dto.getLlojiMesimit() == null ||
                 !(dto.getLlojiMesimit().equalsIgnoreCase("Teori") ||
                         dto.getLlojiMesimit().equalsIgnoreCase("Praktikë"))) {

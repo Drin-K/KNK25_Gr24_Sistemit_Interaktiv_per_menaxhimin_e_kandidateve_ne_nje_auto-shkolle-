@@ -39,9 +39,6 @@ public class PagesaService {
         if (createDto.getShuma() <= 0 && createDto.getShuma() > 500) {
             throw new Exception("The amount must be greater than 0.!");
         }
-        if (createDto.getNumriXhirollogarise().length() <= 0 && createDto.getNumriXhirollogarise().length() > 10) {
-            throw new Exception("The bank account number must be 10 digits long!");
-        }
         //Validimi i dates se pageses
         if (createDto.getDataPageses() == null) {
             createDto.setDataPageses(LocalDate.now()); //Nese mungon data default osht data sot
@@ -56,7 +53,7 @@ public class PagesaService {
         if (!createDto.getStatusiPageses().equals("Paguar") &&
                 !createDto.getStatusiPageses().equals("Pjesërisht") &&
                 !createDto.getStatusiPageses().equals("Mbetur")) {
-            throw new Exception("The payment status must be Paid, Partial, or Remaining!");
+            throw new Exception("The payment status must be Paguar, Pjesërisht, or Mbetur!");
         }
 
         // Krijimi i pagesës në databazë
@@ -105,7 +102,7 @@ public class PagesaService {
         }
     }
 
-    public void updateLineChartData(XYChart<String, Number> chart) throws SQLException {
+    public void updateLineChartData(XYChart<String, Number> chart) {
         Map<String, Integer> pagesatCount = this.pagesatRepository.getPagesatCountByStatus();
         chart.getData().clear();
         for (String status : List.of("Paguar", "Pjeserisht", "Mbetur")) {
@@ -176,7 +173,7 @@ public class PagesaService {
         return pagesatRepository.countPagesatInYear(year);
     }
 
-    public void updateStatusiPageses(int pagesaId, String statusiRi) throws SQLException {
+    public void updateStatusiPageses(int pagesaId, String statusiRi){
         if (pagesaId <= 0) {
             throw new IllegalArgumentException("The payment ID must be a positive number.");
         }

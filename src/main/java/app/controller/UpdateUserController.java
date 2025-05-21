@@ -85,6 +85,5 @@ public class UpdateUserController extends BaseController {
         dataRegjistrimiPicker.setValue(null);
         statusiProcesitCombo.getSelectionModel().clearSelection();
 
-        // If there are additional fields inside kandidatExtraFields, clear them here too if necessary.
     }
 }

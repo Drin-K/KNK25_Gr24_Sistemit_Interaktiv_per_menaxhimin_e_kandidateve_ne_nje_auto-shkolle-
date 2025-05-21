@@ -13,6 +13,7 @@ public class KandidatetRepository extends UserRepository {
         super();
     }
 
+    //Class Table Inheritance
     @Override
     public Kandidatet create(CreateUserDto dto) {
         String insertUser = """
@@ -142,7 +143,6 @@ public class KandidatetRepository extends UserRepository {
 
     public List<Kandidatet> shfaqKandidatetMeKushtPagesa(String kushtiPageses) {
         List<Kandidatet> kandidatet = new ArrayList<>();
-
         String sql = """
                 SELECT DISTINCT k.id, k.dataRegjistrimi, k.statusiProcesit,
                                 u.name, u.surname, u.email, u.phoneNumber, u.dateOfBirth,

@@ -32,9 +32,7 @@ public class TestetRepository extends BaseRepository<Testet, CreateTestetDto, Up
                 VALUES (?, ?, ?, ?, ?, ?)
                 """;
         try {
-            PreparedStatement pstm = this.connection.prepareStatement(
-                    query, Statement.RETURN_GENERATED_KEYS
-            );
+            PreparedStatement pstm = this.connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             pstm.setInt(1, testetDto.getIdKandidat());
             pstm.setInt(2, testetDto.getIdStaf());
             pstm.setString(3, testetDto.getLlojiTestit());
@@ -67,7 +65,6 @@ public class TestetRepository extends BaseRepository<Testet, CreateTestetDto, Up
             query.append("Data_e_testit = ?, ");
             params.add(testetDto.getDataTestit());
         }
-
         if (testetDto.getRezultati() != null) {
             query.append("Rezultati = ?, ");
             params.add(testetDto.getRezultati());

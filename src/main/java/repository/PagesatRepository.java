@@ -95,32 +95,12 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
         return null;
     }
 
-    public ArrayList<Pagesat> findByStatus(String statusi) {
-        //Funksion i cili gjen te gjitha pagesat ne baze te statusit
-        ArrayList<Pagesat> pagesatList = new ArrayList<>();
-        String query = "SELECT * FROM Pagesat WHERE Statusi_i_Pageses = ?";
-
-        try {
-            PreparedStatement pstm = this.connection.prepareStatement(query);
-            pstm.setString(1, statusi);
-            ResultSet rs = pstm.executeQuery();
-
-            while (rs.next()) {
-                Pagesat pagesa = fromResultSet(rs);
-                pagesatList.add(pagesa);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return pagesatList;
-    }
 
     public List<Pagesat> getUnpaidPayments() {
         List<Pagesat> pagesat = new ArrayList<>();
         String query = "SELECT * FROM Pagesat WHERE Statusi_i_Pageses = 'Mbetur'";
 
-        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+        try{PreparedStatement stmt = connection.prepareStatement(query);
             ResultSet resultSet = stmt.executeQuery();
             while (resultSet.next()) {
                 Pagesat pagesa = fromResultSet(resultSet);
@@ -156,7 +136,7 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
         return data;
     }
 
-    public void updateStatusiPageses(int pagesaId, String statusiRi) throws SQLException {
+    public void updateStatusiPageses(int pagesaId, String statusiRi){
         String sql = "UPDATE Pagesat SET Statusi_i_Pageses = ? WHERE id = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -203,7 +183,7 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
     public int countPagesatOnDate(LocalDate date) throws SQLException {
         String sql = "SELECT COUNT(*) FROM Pagesat WHERE Data_e_Pageses = ?";
         PreparedStatement stmt = connection.prepareStatement(sql);
-        stmt.setDate(1, Date.valueOf(date));
+        stmt.setObject(1,date);
         ResultSet rs = stmt.executeQuery();
         return rs.next() ? rs.getInt(1) : 0;
     }
@@ -213,8 +193,8 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
         LocalDate end = month.atEndOfMonth();
         String sql = "SELECT COUNT(*) FROM Pagesat WHERE Data_e_Pageses BETWEEN ? AND ?";
         PreparedStatement stmt = connection.prepareStatement(sql);
-        stmt.setDate(1, Date.valueOf(start));
-        stmt.setDate(2, Date.valueOf(end));
+        stmt.setObject(1, start);
+        stmt.setObject(2, end);
         ResultSet rs = stmt.executeQuery();
         return rs.next() ? rs.getInt(1) : 0;
     }
@@ -224,8 +204,8 @@ public class PagesatRepository extends BaseRepository<Pagesat, CreatePagesatDto,
         LocalDate end = LocalDate.of(year, 12, 31);
         String sql = "SELECT COUNT(*) FROM Pagesat WHERE Data_e_Pageses BETWEEN ? AND ?";
         PreparedStatement stmt = connection.prepareStatement(sql);
-        stmt.setDate(1, Date.valueOf(start));
-        stmt.setDate(2, Date.valueOf(end));
+        stmt.setObject(1, start);
+        stmt.setObject(2, end);
         ResultSet rs = stmt.executeQuery();
         return rs.next() ? rs.getInt(1) : 0;
     }

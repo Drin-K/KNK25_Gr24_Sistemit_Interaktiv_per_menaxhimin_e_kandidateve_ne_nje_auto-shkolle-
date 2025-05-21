@@ -70,6 +70,18 @@ public class OrariRepository extends BaseRepository<Orari, CreateOrariDto, Updat
             query.append("Lloji_i_Mesimit=?, ");
             params.add(orariDto.getLlojiMesimit());
         }
+        if (orariDto.getIdStaf() != 0) {
+            query.append("ID_Staf=?, ");
+            params.add(orariDto.getIdStaf());
+        }
+        if (orariDto.getIdKandidat() != 0) {
+            query.append("ID_Kandidat=?, ");
+            params.add(orariDto.getIdKandidat());
+        }
+        if (orariDto.getIdAutomjet() != 0) {
+            query.append("ID_Automjet=?, ");
+            params.add(orariDto.getIdAutomjet());
+        }
         if (orariDto.getStatusi() != null) {
             query.append("Statusi=?, ");
             params.add(orariDto.getStatusi());
@@ -95,9 +107,8 @@ public class OrariRepository extends BaseRepository<Orari, CreateOrariDto, Updat
         return null;
     }
 
-    //na duhet te service ->
     public List<Orari> gjejOraretPerDate(LocalDate data) {
-        String query = "SELECT * FROM ORARI WHERE Data_e_Sesionit = ?";
+        String query = "SELECT * FROM Orari WHERE Data_e_Sesionit = ?";
         List<Orari> oraret = new ArrayList<>();
 
         try {

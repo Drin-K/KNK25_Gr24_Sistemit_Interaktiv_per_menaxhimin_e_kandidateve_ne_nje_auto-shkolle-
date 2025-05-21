@@ -42,7 +42,7 @@ public class DokumentService {
         if (!isValidDokumentType(createDokumentDto.getLlojiDokumentit())) {
             throw new Exception("The document type must be 'Identification Card', 'Medical Certificate', 'Application', or 'Photo'.");
         }
-        Kandidatet kandidati = (Kandidatet) this.kandidatRepository.getById(createDokumentDto.getIdKandidat());
+        Kandidatet kandidati = this.kandidatRepository.getById(createDokumentDto.getIdKandidat());
         if (kandidati == null) {
             throw new Exception("The Candidate with ID: " + createDokumentDto.getIdKandidat() + " does not exist");
         }
@@ -68,7 +68,7 @@ public class DokumentService {
 
     private boolean isValidDokumentType(String llojiDokumentit) {
         return llojiDokumentit.equals("Leternjoftim") ||
-                llojiDokumentit.equals("Certifikate Mjekësore") ||
+                llojiDokumentit.equals("Certifikate Mjekesore") ||
                 llojiDokumentit.equals("Aplikim") ||
                 llojiDokumentit.equals("Foto");
     }

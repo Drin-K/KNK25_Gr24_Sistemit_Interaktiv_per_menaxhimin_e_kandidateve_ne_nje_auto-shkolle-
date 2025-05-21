@@ -35,8 +35,6 @@ public class Kandidatet extends User {
         String gjinia = result.getString("gjinia");
         LocalDate dataRegjistrimi = result.getObject("dataRegjistrimi", LocalDate.class);
         String statusiProcesit = result.getString("statusiProcesit");
-        return new Kandidatet(id, name, surname, email,
-                phoneNumber, dateOfBirth, hashedPassword,
-                salt, adresa, gjinia, dataRegjistrimi, statusiProcesit);
+        return new Kandidatet(id, name, surname, email, phoneNumber, dateOfBirth, hashedPassword, salt, adresa, gjinia, dataRegjistrimi, statusiProcesit);
     }
 }

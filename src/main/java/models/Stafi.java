@@ -21,8 +21,6 @@ public class Stafi extends User {
         String salt = result.getString("salt");
         String adresa = result.getString("adresa");
         String gjinia = result.getString("gjinia");
-        return new Stafi(id, name, surname, email,
-                phoneNumber, dateOfBirth, hashedPassword,
-                salt, adresa, gjinia);
+        return new Stafi(id, name, surname, email, phoneNumber, dateOfBirth, hashedPassword, salt, adresa, gjinia);
     }
 }

@@ -26,7 +26,7 @@ public class StafiService {
             throw new Exception("Id does not exist!");
         }
 
-        Stafi stafi = (Stafi) this.stafiRepository.getById(id);
+        Stafi stafi = this.stafiRepository.getById(id);
         if (stafi == null) throw new Exception("The staf was not found!");
         return stafi;
     }
@@ -49,7 +49,7 @@ public class StafiService {
             throw new Exception("The email is not in the correct format.");
         }
         //Krijimi i Kandidatit ne DB
-        Stafi stafi = (Stafi) stafiRepository.create(createDto);
+        Stafi stafi =stafiRepository.create(createDto);
         if (stafi == null) {
             throw new Exception("The staf was not created.");
         }

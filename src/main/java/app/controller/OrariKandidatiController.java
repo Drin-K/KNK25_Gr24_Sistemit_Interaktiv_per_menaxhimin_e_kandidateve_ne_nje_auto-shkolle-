@@ -96,7 +96,7 @@ public class OrariKandidatiController extends BaseController {
                     new PieChart.Data("Practice (" + praktike + "/20)", praktike)
             );
 
-            String status = (teori >= 15 && praktike >= 20) ? "READY FOR THE EXAM" : "YOU ARE NOT READY FOR THE EXAM";
+            String status = (teori >= 15 && praktike >= 20) ? "READY FOR THE EXAM" : "NOT READY FOR THE EXAM";
             progresiChart.setTitle("Lesson Progress\nStatus: " + status);
 
         } catch (Exception e) {

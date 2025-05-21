@@ -61,10 +61,10 @@ public class InstructorSchedulerController extends BaseController {
             }
 
         } catch (IllegalArgumentException iae) {
-            this.showAlert(Alert.AlertType.WARNING, "Warning", "Incomplete or invalid data" + iae.getMessage());
+            this.showAlert(Alert.AlertType.WARNING, "Warning", "Incomplete or invalid data. " + iae.getMessage());
 
         } catch (Exception e) {
-            showAlert(Alert.AlertType.ERROR, "Error", "The schedule could not be created." + e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Error",  e.getMessage());
         }
     }
 

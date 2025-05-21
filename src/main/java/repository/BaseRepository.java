@@ -20,8 +20,7 @@ abstract class BaseRepository<Model, CreateModelDto, UpdateModelDto> {
     public Model getById(int id) {
         String query = "SELECT * FROM " + this.tableName + " WHERE id = ?";
         try {
-            PreparedStatement pstm = this.connection.prepareStatement(
-                    query);
+            PreparedStatement pstm = this.connection.prepareStatement(query);
             pstm.setInt(1, id);
             ResultSet res = pstm.executeQuery();
             if (res.next()) {
@@ -51,8 +50,7 @@ abstract class BaseRepository<Model, CreateModelDto, UpdateModelDto> {
     public boolean delete(int id) {
         String query = "DELETE FROM " + this.tableName + " WHERE id = ?";
         try {
-            PreparedStatement pstm =
-                    this.connection.prepareStatement(query);
+            PreparedStatement pstm = this.connection.prepareStatement(query);
             pstm.setInt(1, id);
             return pstm.executeUpdate() == 1;
         } catch (SQLException e) {

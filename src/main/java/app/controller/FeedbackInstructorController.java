@@ -31,7 +31,6 @@ public class FeedbackInstructorController extends BaseController {
 
     @FXML
     private void initialize() {
-        // Configure table columns using the utility method
         configureTable(
                 feedback,
                 Arrays.asList(commentArea, pointsArea),
@@ -75,8 +74,6 @@ public class FeedbackInstructorController extends BaseController {
             showAlert(Alert.AlertType.WARNING, "Warning", "Error loading feedbacks: " + e.getMessage());
             e.printStackTrace();
         }
-//        System.out.println("Selected Date (raw): " + selectedDate);
-//        System.out.println("Staff ID from UserContext: " + staffId); // per debugim
     }
 
     @Override

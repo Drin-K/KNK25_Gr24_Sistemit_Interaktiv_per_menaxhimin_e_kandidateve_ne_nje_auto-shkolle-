@@ -44,7 +44,6 @@ public class FeedBackService {
     }
 
     public boolean delete(int id) throws Exception {
-        this.getById(id);
         return this.feedbackRepository.delete(id);
     }
 

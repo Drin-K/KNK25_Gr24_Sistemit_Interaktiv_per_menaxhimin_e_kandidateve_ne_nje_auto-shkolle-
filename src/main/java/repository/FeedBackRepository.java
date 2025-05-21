@@ -49,7 +49,7 @@ public class FeedBackRepository extends BaseRepository<FeedBack, CreateFeedBackD
     }
 
     public FeedBack update(UpdateFeedBackDto updateFeedBackDto) {
-        StringBuilder query = new StringBuilder("UPDATE Feedback SET");
+        StringBuilder query = new StringBuilder("UPDATE Feedback SET ");
         ArrayList<Object> params = new ArrayList<>();
         if (updateFeedBackDto.getVlersimi() != 0) {
             query.append("Vleresimi=?, ");
@@ -58,6 +58,14 @@ public class FeedBackRepository extends BaseRepository<FeedBack, CreateFeedBackD
         if (updateFeedBackDto.getKoment() != null) {
             query.append("Koment=?, ");
             params.add(updateFeedBackDto.getKoment());
+        }
+        if (updateFeedBackDto.getIdKandidat() != 0) {
+            query.append("ID_Kandidat=?, ");
+            params.add(updateFeedBackDto.getIdKandidat());
+        }
+        if (updateFeedBackDto.getIdStaf() != 0) {
+            query.append("ID_Staf=?, ");
+            params.add(updateFeedBackDto.getIdStaf());
         }
         if (params.isEmpty()) {
             return getById(updateFeedBackDto.getId());

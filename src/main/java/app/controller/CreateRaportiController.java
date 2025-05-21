@@ -36,7 +36,7 @@ public class CreateRaportiController extends BaseController {
             this.showAlert(Alert.AlertType.INFORMATION, "Success", mesazhi);
 
         } catch (Exception e) {
-            this.showAlert(Alert.AlertType.ERROR, "Error", "Failed to insert Raporti: " + e.getMessage());
+            this.showAlert(Alert.AlertType.ERROR, "Error",  e.getMessage());
         }
     }
 

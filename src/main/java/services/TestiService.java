@@ -1,8 +1,6 @@
 package services;
 
-import models.Dokumentet;
 import models.Dto.testet.CreateTestetDto;
-import models.Kandidatet;
 import models.Testet;
 import repository.TestetRepository;
 

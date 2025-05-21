@@ -1,6 +1,5 @@
 package models.Dto.raporti_progresit;
 
-import java.time.LocalDate;
 
 public class UpdateRaportiProgresitDto {
     private int id;
@@ -9,7 +8,7 @@ public class UpdateRaportiProgresitDto {
     private String komentet;
     private String performancaGjenerale;
 
-    public UpdateRaportiProgresitDto(int id, LocalDate dataRaportit, int piketTeorike, int piketPraktike, String komentet, String performancaGjenerale) {
+    public UpdateRaportiProgresitDto(int id, int piketTeorike, int piketPraktike, String komentet, String performancaGjenerale) {
         this.id = id;
         this.piketTeorike = piketTeorike;
         this.piketPraktike = piketPraktike;

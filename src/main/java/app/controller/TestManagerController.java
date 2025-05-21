@@ -19,10 +19,7 @@ import utils.SceneLocator;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-//SELECT setval(
-//  pg_get_serial_sequence('Testet','id'),
-//  (SELECT MAX(id) FROM Testet) + 1
-//);
+
 public class TestManagerController extends BaseController {
     private TestiService testiService;
     private String llojiTestit;

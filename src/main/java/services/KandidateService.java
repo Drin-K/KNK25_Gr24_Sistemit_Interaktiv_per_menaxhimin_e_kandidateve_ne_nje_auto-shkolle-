@@ -75,14 +75,14 @@ public class KandidateService {
     }
 
     public HashMap<String, Integer> getAllRegistrationsGroupedByMonth() {
-        HashMap<String, Integer> data = new HashMap<>();
+        HashMap<String, Integer> data =new HashMap<>();
         try {
             data = kandidatetRepository.getAllRegistrationsGroupedByMonth();
             if (data.isEmpty()) {
                 throw new IllegalStateException("There are no registrations to be shown.");
             }
         } catch (SQLException e) {
-            System.err.println("Gabim gjatë marrjes së regjistrimeve: " + e.getMessage());
+            System.out.println("Gabim gjatë marrjes së regjistrimeve: " + e.getMessage());
             throw new RuntimeException("Couldn't read registrations from database", e);
         }
         return data;

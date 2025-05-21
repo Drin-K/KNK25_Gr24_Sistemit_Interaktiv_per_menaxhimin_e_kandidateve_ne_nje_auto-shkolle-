@@ -1,6 +1,5 @@
 package services;
 
-import javafx.scene.control.Alert;
 import models.Dto.kandidatet.CreateKandidatetDto;
 import models.Dto.user.UpdateUserDto;
 import models.Kandidatet;

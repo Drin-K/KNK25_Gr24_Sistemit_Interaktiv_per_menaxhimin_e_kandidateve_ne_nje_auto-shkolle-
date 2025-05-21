@@ -23,9 +23,7 @@ public class Admin extends User {
         String salt = result.getString("salt");
         String adresa = result.getString("adresa");
         String gjinia = result.getString("gjinia");
-        return new Admin(id, name, surname, email,
-                phoneNumber, dateOfBirth, hashedPassword,
-                salt, adresa, gjinia);
+        return new Admin(id, name, surname, email, phoneNumber, dateOfBirth, hashedPassword, salt, adresa, gjinia);
     }
 
 }

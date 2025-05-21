@@ -14,9 +14,7 @@ public class CreateUserDto {
     private String adresa;
     private String gjinia;
 
-    public CreateUserDto(String name, String surname, String email, String phoneNumber,
-                         LocalDate dateOfBirth, String password, String salt,
-                         String role, String adresa, String gjinia) {
+    public CreateUserDto(String name, String surname, String email, String phoneNumber, LocalDate dateOfBirth, String password, String salt, String role, String adresa, String gjinia) {
         this.name = name;
         this.surname = surname;
         this.email = email;

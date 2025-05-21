@@ -1,14 +1,17 @@
 package models.Dto.dokumentet;
 
-import java.time.LocalDate;
 
 public class UpdateDokumentetDto {
     private int id;
     private int idKandidat;
     private String llojiDokumentit;
     private String emriSkedarit;
-    // sjom e sigurt!  private LocalDate dataNgarkimit;
-
+    public UpdateDokumentetDto(int id, int idKandidat, String llojiDokumentit, String emriSkedarit) {
+        this.id = id;
+        this.idKandidat = idKandidat;
+        this.llojiDokumentit = llojiDokumentit;
+        this.emriSkedarit = emriSkedarit;
+    }
     public int getId() {
         return id;
     }

@@ -1,7 +1,5 @@
 package models;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.time.LocalDate;
 
 public abstract class User {
@@ -13,8 +11,7 @@ public abstract class User {
     protected LocalDate dateOfBirth;
     protected String hashedPassword;
     protected String salt;
-    protected String role; //  'Kandidat', 'Staf', 'Admin'> adminin do ta bejme vetem nje dhe ai do vendoset direkt
-    //nga databaza
+    protected String role; //  'Kandidat', 'Staf', 'Admin'>
     protected String adresa;
     protected String gjinia; //('M', 'F')
 

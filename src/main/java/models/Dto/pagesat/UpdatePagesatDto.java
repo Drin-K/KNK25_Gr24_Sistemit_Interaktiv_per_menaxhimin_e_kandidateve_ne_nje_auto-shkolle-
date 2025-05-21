@@ -10,9 +10,9 @@ public class UpdatePagesatDto {
     private String metodaPageses;
     private String statusiPageses;
 
-    public UpdatePagesatDto(int id, String numriXhirollogarise,int idKandidat, double shuma, LocalDate dataPageses, String metodaPageses, String statusiPageses) {
+    public UpdatePagesatDto(int id, String numriXhirollogarise, int idKandidat, double shuma, String metodaPageses, String statusiPageses) {
         this.id = id;
-        this.numriXhirollogarise=numriXhirollogarise;
+        this.numriXhirollogarise = numriXhirollogarise;
         this.idKandidat = idKandidat;
         this.shuma = shuma;
         this.metodaPageses = metodaPageses;

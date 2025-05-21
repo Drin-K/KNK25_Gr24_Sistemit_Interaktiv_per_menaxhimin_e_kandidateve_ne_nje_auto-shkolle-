@@ -32,11 +32,11 @@ public class FeedBackRepository extends BaseRepository<FeedBack, CreateFeedBackD
             PreparedStatement pstm = this.connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
             pstm.setInt(1, createFeedBackDto.getIdKandidat());
             pstm.setInt(2, createFeedBackDto.getIdStaf());
-            pstm.setObject(3, createFeedBackDto.getDataFeedback());// bon edhe me kan Date.valueOf(); edhe n fillim aty me kan setDate.
+            pstm.setObject(3, createFeedBackDto.getDataFeedback());
             pstm.setInt(4, createFeedBackDto.getVlersimi());
             pstm.setString(5, createFeedBackDto.getKoment());
             pstm.execute();
-            ResultSet res = pstm.getGeneratedKeys();// i bohet id'se assing key i cili u merr prej return generated keys
+            ResultSet res = pstm.getGeneratedKeys();
             if (res.next()) {
                 int id = res.getInt(1);
                 return this.getById(id);
@@ -62,7 +62,7 @@ public class FeedBackRepository extends BaseRepository<FeedBack, CreateFeedBackD
         if (params.isEmpty()) {
             return getById(updateFeedBackDto.getId());
         }
-        query.setLength(query.length() - 2);//me largu ", "->se paraqet gabim ne sintakse
+        query.setLength(query.length() - 2);
         query.append(" WHERE id = ?");
         params.add(updateFeedBackDto.getId());
         try {
@@ -91,7 +91,7 @@ public class FeedBackRepository extends BaseRepository<FeedBack, CreateFeedBackD
 
         try (PreparedStatement stmt = this.connection.prepareStatement(query)) {
             stmt.setInt(1, instructorId);
-            stmt.setObject(2, java.sql.Date.valueOf(date));//////////////////
+            stmt.setObject(2, java.sql.Date.valueOf(date));
 
             System.out.println("Running query with instructorId=" + instructorId + " and date=" + date);
 

@@ -80,7 +80,7 @@ public class RegjistrimetRepository extends BaseRepository<Regjistrimet, CreateR
         if (params.isEmpty()) {
             return getById(regjistrtimetDto.getIdRegjistrim());
         }
-        query.setLength(query.length() - 2);//me largu "? "->se paraqet gabim ne sintakse
+        query.setLength(query.length() - 2);
         query.append(" WHERE id = ?");
         params.add(regjistrtimetDto.getIdRegjistrim());
         try {

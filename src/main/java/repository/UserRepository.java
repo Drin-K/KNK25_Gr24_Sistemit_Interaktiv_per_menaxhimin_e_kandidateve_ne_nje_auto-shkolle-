@@ -93,7 +93,7 @@ public abstract class UserRepository extends BaseRepository<User, CreateUserDto,
         }
 
         if (!kandidatiParams.isEmpty()) {
-            kandidatiQuery.setLength(kandidatiQuery.length() - 2); // Heqim ", "
+            kandidatiQuery.setLength(kandidatiQuery.length() - 2);
             kandidatiQuery.append(" WHERE id = ?");
             kandidatiParams.add(updateUserDto.getIdUser());
 
@@ -111,9 +111,5 @@ public abstract class UserRepository extends BaseRepository<User, CreateUserDto,
     public abstract User getById(int id);
 
     public abstract ArrayList<User> getAll();
-    //delete nuk ka nevoj te implementohet te stafi, kandidati dhe admini per shkak se
-    //e kemi vendos si constrain ON DELETE CASCADE dhe ne momentin qe fshhet prej userit
-    //do fshihet edhe ne tabela tjera
-
 
 }

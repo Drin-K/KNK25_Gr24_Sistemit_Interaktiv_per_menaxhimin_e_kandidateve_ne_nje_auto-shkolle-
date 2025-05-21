@@ -117,9 +117,7 @@ public class KandidatetRepository extends UserRepository {
         return 0;
     }
 
-    //Shembull perfekt se qysh ni metod joabstrakte-> e kthejme ne metode abstrakte ne
-    //userrepository dhe me pas e implementojme ne stafirepository !!!
-    // !!!!!Isolating Specific Logic!!!!     :) :) :)
+
     @Override
     public Kandidatet getById(int id) {
         String query = "SELECT u.id, u.name, u.surname, u.email, u.phoneNumber, " +
@@ -197,8 +195,7 @@ public class KandidatetRepository extends UserRepository {
         return null;
     }
 
-    //e kam perdor te AdminHomeController me percaktu numrin e kandidateve sipas statusit te procesit
-    //sa jane me status 'Në proces' e sa 'Përfunduar'
+
     public HashMap<String, Integer> countKandidatetByStatusiProcesit() {
         HashMap<String, Integer> result = new HashMap<>();
         String query = "SELECT statusiProcesit, COUNT(*) as total FROM Kandidatet GROUP BY statusiProcesit";

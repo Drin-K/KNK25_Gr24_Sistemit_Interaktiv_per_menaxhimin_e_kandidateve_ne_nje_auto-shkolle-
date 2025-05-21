@@ -23,7 +23,7 @@ public class InstructorSchedulerController extends BaseController {
     private final KandidateService kandidateService;
     private Integer vehicleId;
 
-    // Form fields
+
     @FXML private AnchorPane rightPane;
     @FXML private MenuButton chooseLessonBttn;
     @FXML private TextField candidateId;
@@ -31,7 +31,6 @@ public class InstructorSchedulerController extends BaseController {
     @FXML private TextField txtStart;
     @FXML private TextField txtEnd;
 
-    // Lesson type and vehicle type
     private String llojiMesimit;
     private String selectedVehicleType;
 
@@ -113,7 +112,7 @@ public class InstructorSchedulerController extends BaseController {
     @FXML
     private void AClick() {
         this.selectedVehicleType = "Motoçikletë";
-        fetchVehicleId();  // Initialize vehicleId AFTER selecting the type
+        fetchVehicleId();
     }
 
     @FXML

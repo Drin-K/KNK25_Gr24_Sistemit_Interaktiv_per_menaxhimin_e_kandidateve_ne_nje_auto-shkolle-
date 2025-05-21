@@ -61,7 +61,7 @@ public class TestManagerController extends BaseController {
 
             cleanFields();}
         } catch (Exception ex) {
-            // Error alert
+
             Alert err = new Alert(Alert.AlertType.ERROR);
             err.setTitle("Error");
             err.setHeaderText("The exam could not be registered.");

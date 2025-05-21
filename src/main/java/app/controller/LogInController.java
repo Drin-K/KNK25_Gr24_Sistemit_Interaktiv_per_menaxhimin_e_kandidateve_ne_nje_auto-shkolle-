@@ -20,7 +20,7 @@ private PasswordField passwordField;
 private Label errorLabel;
     @FXML
     public void initialize() {
-        // Bind Enter key in password field
+
         passwordField.setOnAction(event -> {
             try {
                 handleLogin();
@@ -28,8 +28,6 @@ private Label errorLabel;
                 e.printStackTrace();
             }
         });
-
-        // Optional: Also trigger login when Enter is pressed in email field
         emailField.setOnAction(event -> {
             try {
                 handleLogin();

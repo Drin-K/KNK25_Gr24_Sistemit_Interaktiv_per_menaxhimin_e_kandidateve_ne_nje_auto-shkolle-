@@ -22,7 +22,7 @@ public class FeedbackConsumatorController extends BaseController {
         this.feedBackService = new FeedBackService();
         this.stafiService=new StafiService();
     }
-    private int selectedRating = 0; //Ruan rating nga kandidati
+    private int selectedRating = 0;
     @FXML
     private TextArea commentField;
     @FXML

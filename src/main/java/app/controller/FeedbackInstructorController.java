@@ -76,13 +76,11 @@ public class FeedbackInstructorController extends BaseController {
             e.printStackTrace();
         }
 //        System.out.println("Selected Date (raw): " + selectedDate);
-//        System.out.println("Staff ID from UserContext: " + staffId); // per debugim i kom lan si komente
-
-
+//        System.out.println("Staff ID from UserContext: " + staffId); // per debugim
     }
 
     @Override
-    public void showAlert(Alert.AlertType alertType, String title, String message) {// mu ka nevojit nje alert customized
+    public void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
         alert.setHeaderText(null);

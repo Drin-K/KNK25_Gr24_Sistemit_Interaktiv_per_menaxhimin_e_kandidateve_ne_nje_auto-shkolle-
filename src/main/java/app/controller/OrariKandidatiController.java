@@ -48,8 +48,6 @@ public class OrariKandidatiController extends BaseController {
         updateProgresiChart();
     }
 
-    //SimpleStringProperty thjesht i tregon JavaFX-it se kjo është një vlerë
-// që mund të vendoset në qeliza të tabelës si tekst.
     private void configureTableColumns() {
 
         DateTimeFormatter dateFmt = DateTimeFormatter.ofPattern("dd.MM.yyyy");

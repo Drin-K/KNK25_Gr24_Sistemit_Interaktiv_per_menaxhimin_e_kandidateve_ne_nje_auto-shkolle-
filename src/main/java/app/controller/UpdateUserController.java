@@ -75,6 +75,7 @@ public class UpdateUserController extends BaseController {
         showAlert(Alert.AlertType.INFORMATION, "Updated", "The user was successfully updated!");
         this.clearFields();
     }
+
     private void clearFields() {
         idField.setText("");
         emailField.setText("");

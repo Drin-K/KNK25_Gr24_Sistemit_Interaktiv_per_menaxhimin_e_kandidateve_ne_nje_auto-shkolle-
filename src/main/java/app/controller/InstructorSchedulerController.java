@@ -24,12 +24,18 @@ public class InstructorSchedulerController extends BaseController {
     private Integer vehicleId;
 
 
-    @FXML private AnchorPane rightPane;
-    @FXML private MenuButton chooseLessonBttn;
-    @FXML private TextField candidateId;
-    @FXML private DatePicker dateForLesson;
-    @FXML private TextField txtStart;
-    @FXML private TextField txtEnd;
+    @FXML
+    private AnchorPane rightPane;
+    @FXML
+    private MenuButton chooseLessonBttn;
+    @FXML
+    private TextField candidateId;
+    @FXML
+    private DatePicker dateForLesson;
+    @FXML
+    private TextField txtStart;
+    @FXML
+    private TextField txtEnd;
 
     private String llojiMesimit;
     private String selectedVehicleType;
@@ -37,7 +43,7 @@ public class InstructorSchedulerController extends BaseController {
     public InstructorSchedulerController() {
         this.orariService = new OrariService();
         this.automjetService = new AutomjetService();
-        this.kandidateService=new KandidateService();
+        this.kandidateService = new KandidateService();
     }
 
 
@@ -45,19 +51,20 @@ public class InstructorSchedulerController extends BaseController {
     private void scheduleClick() {
         try {
             CreateOrariDto dto = this.getScheduleInputData();
-            if(!kandidateService.ekzistonKandidatMeId(dto.getIdKandidat())) {
+            if (!kandidateService.ekzistonKandidatMeId(dto.getIdKandidat())) {
                 showAlert(Alert.AlertType.ERROR, "Error", "The candidate with this id doesn't exist.");
-            }else{
-            Orari orari = this.orariService.create(dto);
+            } else {
+                Orari orari = this.orariService.create(dto);
 
-            this.showAlert(Alert.AlertType.INFORMATION,"Sucess","The schedule was successfully created! Session ID: " + orari.getIdSesioni());
-            this.cleanFields();}
+                this.showAlert(Alert.AlertType.INFORMATION, "Sucess", "The schedule was successfully created! Session ID: " + orari.getIdSesioni());
+                this.cleanFields();
+            }
 
         } catch (IllegalArgumentException iae) {
-            this.showAlert(Alert.AlertType.WARNING,"Warning","Incomplete or invalid data"+iae.getMessage());
+            this.showAlert(Alert.AlertType.WARNING, "Warning", "Incomplete or invalid data" + iae.getMessage());
 
         } catch (Exception e) {
-            showAlert(Alert.AlertType.ERROR,"Error","The schedule could not be created."+e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Error", "The schedule could not be created." + e.getMessage());
         }
     }
 
@@ -98,12 +105,14 @@ public class InstructorSchedulerController extends BaseController {
     }
 
 
-    @FXML private void teoriClick()   {
+    @FXML
+    private void teoriClick() {
         this.llojiMesimit = "Teori";
         chooseLessonBttn.setText("Teori");
     }
 
-    @FXML private void praktikClick() {
+    @FXML
+    private void praktikClick() {
         this.llojiMesimit = "Praktikë";
         chooseLessonBttn.setText("Praktikë");
     }

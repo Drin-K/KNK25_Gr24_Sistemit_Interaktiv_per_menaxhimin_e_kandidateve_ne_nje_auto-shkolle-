@@ -103,6 +103,12 @@ public class UserService {
                 if (user == null) {
                     throw new Exception("User does not exists!");
                 }
+                if (current.isEmpty() || newPass.isEmpty() || confirm.isEmpty()) {
+                    throw new Exception("All fields must be filled.");
+                }
+                if (!newPass.equals(confirm)) {
+                    throw new Exception("New password and confirmation do not match.");
+                }
                 if (!PasswordHasher.compareSaltedHash(current, user.getSalt(), user.getHashedPassword())) {
                     throw new Exception("Current password is incorrect !");
                 }

@@ -4,13 +4,6 @@ import app.controller.base.BaseController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
-import models.Dto.user.UpdateUserDto;
-import models.User;
-import repository.KandidatetRepository;
-import repository.StafiRepository;
-import repository.UserRepository;
-import services.PasswordHasher;
-import services.UserContext;
 import services.UserService;
 
 public class ChangePasswordController extends BaseController {
@@ -30,7 +23,7 @@ public class ChangePasswordController extends BaseController {
             UserService.changePassword(current, newPass, confirm);
             showAlert(Alert.AlertType.INFORMATION, "Message", "Password changed successfully");
         } catch (Exception e) {
-            showAlert(Alert.AlertType.WARNING, "Warning", e.getMessage());
+            showAlert(Alert.AlertType.WARNING, "Warning", e.getLocalizedMessage());
         }
     }
 }

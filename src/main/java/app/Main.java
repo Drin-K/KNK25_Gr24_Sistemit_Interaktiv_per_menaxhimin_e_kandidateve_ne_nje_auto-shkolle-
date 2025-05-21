@@ -1,7 +1,6 @@
 package app;
 
 import javafx.application.Application;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import services.SceneManager;
 import utils.SceneLocator;

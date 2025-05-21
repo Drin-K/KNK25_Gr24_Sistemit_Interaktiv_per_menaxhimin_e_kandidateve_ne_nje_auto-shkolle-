@@ -7,8 +7,8 @@ import java.util.Base64;
 
 public class PasswordHasher {
 
-    private static final int SALT_LENGTH = 32; // bajt
-    private static final int HASH_LENGTH = 256; // length of hash in bits
+    private static final int SALT_LENGTH = 32; // ne bajt
+    private static final int HASH_LENGTH = 256; // ne bits
     private static final String HASH_ALGORITHM = "SHA-256";
 
     public static String generateSalt() {

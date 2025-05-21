@@ -31,7 +31,7 @@ public class DokumentService {
         this.kandidatRepository = new KandidatetRepository();
     }
 
-    // Funksioni për krijimin e dokumentit
+
     public Dokumentet create(CreateDokumentetDto createDokumentDto) throws Exception {
         if (createDokumentDto.getIdKandidat() <= 0) {
             throw new Exception("The candidate ID is not valid.");
@@ -156,7 +156,7 @@ public class DokumentService {
                 profilePicture.getFitWidth() / 2,
                 profilePicture.getFitHeight() / 2,
                 Math.min(profilePicture.getFitWidth(), profilePicture.getFitHeight()) / 2
-        ); // Qe ta bejme foton e profilit ne form rrethore
+        );
         profilePicture.setClip(clip);
     }
 }

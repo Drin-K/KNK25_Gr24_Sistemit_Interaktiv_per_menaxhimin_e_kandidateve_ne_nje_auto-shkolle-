@@ -45,7 +45,7 @@ public class KategoritePatentesService {
     }
 
     public boolean delete(int id) throws Exception {
-        this.getById(id); // E kontrollojm a ekziston
+        this.getById(id);
         return kategoriteRepository.delete(id);
     }
 }

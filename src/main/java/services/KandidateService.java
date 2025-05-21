@@ -36,11 +36,8 @@ public class KandidateService {
     }
 
     public Kandidatet create(CreateKandidatetDto createDto) throws Exception {
-        int mosha = Period.between(createDto.getDateOfBirth(), LocalDate.now()).getYears(); //Llogarit moshen duke kalkuluar perioden e sotme zbritur me perioden e lindjes se kandidatit
-        //Implementimi i Period eshte i nevojshum qe saktesisht ta llogarisim moshen duke mos injoruar muajin dhe diten !!!!
-        //Validimi i emrit dhe mbiemrit gjate krijimit te kandidatit
-        //Emri dhe mbiemri nuk duhet te jete bosh -> createDto.getEmri()/getMbiemri() == null
-        //Emri dhe mbiemri duhet te kete se paku nje karakter -> createDto.getEmri()/getMbiemri().trim().isEmpty()
+        int mosha = Period.between(createDto.getDateOfBirth(), LocalDate.now()).getYears();
+
         if (createDto.getName() == null || createDto.getName().trim().isEmpty()) {
             throw new Exception("The name must not be empty!");
         }
@@ -73,7 +70,7 @@ public class KandidateService {
 
 
     public boolean delete(int id) throws Exception {
-        this.getById(id); // E kontrollojm a ekziston
+        this.getById(id);
         return kandidatetRepository.delete(id);
     }
 

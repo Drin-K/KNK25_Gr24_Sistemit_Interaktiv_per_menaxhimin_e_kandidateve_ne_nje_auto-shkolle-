@@ -14,8 +14,8 @@ public class StafiService {
     public static final int MAX_STAF = 50;
     private StafiRepository stafiRepository;
     private Stafi instruktori;
-    private String emailRegEx = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$"; //RegEx i thjesht i emailit
-    private String numriTelefonitRegEx = "\\d{8,15}";// nga bardhi idea. Shikoni KandidatetService per me shum info :)
+    private String emailRegEx = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+    private String numriTelefonitRegEx = "\\d{8,15}";
 
     public StafiService() {
         this.stafiRepository = new StafiRepository();
@@ -32,10 +32,7 @@ public class StafiService {
     }
 
     public Stafi create(CreateStafiDto createDto) throws Exception {
-        //Implementimi i Period eshte i nevojshum qe saktesisht ta llogarisim moshen duke mos injoruar muajin dhe diten !!!!
-        //Validimi i emrit dhe mbiemrit gjate krijimit te kandidatit
-        //Emri dhe mbiemri nuk duhet te jete bosh -> createDto.getEmri()/getMbiemri() == null
-        //Emri dhe mbiemri duhet te kete se paku nje karakter -> createDto.getEmri()/getMbiemri().trim().isEmpty()
+
         if (createDto.getName() == null || createDto.getName().trim().isEmpty()) {
             throw new Exception("The name must not be empty!");
         }
@@ -108,10 +105,10 @@ public class StafiService {
 
         for (Stafi stafi : listaStafit) {
             if (stafi.getIdUser() == idQeKerkohet) {
-                return true; // E gjetëm
+                return true;
             }
         }
 
-        return false; // Nuk u gjet
+        return false;
     }
 }

@@ -33,23 +33,23 @@ public class AutomjetService {
     }
 
     public Automjetet create(CreateAutomjetetDto createDto) throws Exception {
-        //Validimi i ID_Stafi
+
         if (createDto.getIdStaf() <= 0 || stafiRepository.getById(createDto.getIdStaf()) == null) {
             throw new Exception("The staff does not exist!");
         }
-        //Validimi i ID_Kategori
+
         if (createDto.getIdKategori() <= 0 || kategoritePatentesRepository.getById(createDto.getIdKategori()) == null) {
             throw new Exception("The category does not exist!");
         }
-        //Validimi i llojit te automjetit
+
         if (!createDto.getLlojiAutomjetit().equals("Vetura") && !createDto.getLlojiAutomjetit().equals("Motoçikletë") && !createDto.getLlojiAutomjetit().equals("Kamion")) {
             throw new Exception("This type of vehicle does not exist.");
         }
-        //Validimi i statusit te automjetit
+
         if (!createDto.getStatusi().equals("Në përdorim")) {
             throw new Exception("The vehicle must be in 'Maintenance' status to be created!");
         }
-        //Krijimi ne DB
+
         Automjetet automjeti = automjetetRepository.create(createDto);
         if (automjeti == null) {
             throw new Exception("The vehicle was not created!");

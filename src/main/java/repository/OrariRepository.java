@@ -13,31 +13,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrariRepository extends BaseRepository<Orari, CreateOrariDto, UpdateOrariDto> {
-    public OrariRepository(){super("Orari");}
-    public Orari fromResultSet(ResultSet result)throws SQLException{
+    public OrariRepository() {
+        super("Orari");
+    }
+
+    public Orari fromResultSet(ResultSet result) throws SQLException {
         return Orari.getInstance(result);
     }
-    public Orari create(CreateOrariDto orariDto){
-        String query= """
+
+    public Orari create(CreateOrariDto orariDto) {
+        String query = """
                 INSERT INTO
                 Orari(ID_Kandidat, ID_Staf, Data_e_Sesionit, Ora_e_Fillimit, Ora_e_Perfundimit, Lloji_i_Mesimit, Statusi, ID_Automjet)
                 VALUES(?,?,?,?,?,?,?,?)
                 """;
-        try{
-            PreparedStatement pstm=this.connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
-            pstm.setInt(1,orariDto.getIdKandidat());
-            pstm.setInt(2,orariDto.getIdStaf());
-            pstm.setObject(3,orariDto.getDataSesionit());
-            pstm.setObject(4,orariDto.getOraFillimit());
-            pstm.setObject(5,orariDto.getOraPerfundimit());
-            pstm.setString(6,orariDto.getLlojiMesimit());
-            pstm.setString(7,orariDto.getStatusi());
-            pstm.setInt(8,orariDto.getIdAutomjet());
+        try {
+            PreparedStatement pstm = this.connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
+            pstm.setInt(1, orariDto.getIdKandidat());
+            pstm.setInt(2, orariDto.getIdStaf());
+            pstm.setObject(3, orariDto.getDataSesionit());
+            pstm.setObject(4, orariDto.getOraFillimit());
+            pstm.setObject(5, orariDto.getOraPerfundimit());
+            pstm.setString(6, orariDto.getLlojiMesimit());
+            pstm.setString(7, orariDto.getStatusi());
+            pstm.setInt(8, orariDto.getIdAutomjet());
             pstm.execute();
-            ResultSet res=pstm.getGeneratedKeys();
-            if(res.next()){
-                int id=res.getInt(1);
-                return this.getById(id);}
+            ResultSet res = pstm.getGeneratedKeys();
+            if (res.next()) {
+                int id = res.getInt(1);
+                return this.getById(id);
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -45,26 +50,27 @@ public class OrariRepository extends BaseRepository<Orari, CreateOrariDto, Updat
         return null;
 
     }
-    public Orari update(UpdateOrariDto orariDto){
+
+    public Orari update(UpdateOrariDto orariDto) {
         StringBuilder query = new StringBuilder("UPDATE Orari SET ");
         ArrayList<Object> params = new ArrayList<>();
-        if (orariDto.getDataSesionit()!=null){
+        if (orariDto.getDataSesionit() != null) {
             query.append("Data_e_Sesionit=?, ");
             params.add(orariDto.getDataSesionit());
         }
-        if (orariDto.getOraFillimit()!=null){
+        if (orariDto.getOraFillimit() != null) {
             query.append("Ora_e_Fillimit=?, ");
             params.add(orariDto.getOraFillimit());
         }
-        if (orariDto.getOraPerfundimit()!=null){
+        if (orariDto.getOraPerfundimit() != null) {
             query.append("Ora_e_perfundimit=?, ");
             params.add(orariDto.getOraPerfundimit());
         }
-        if (orariDto.getLlojiMesimit()!=null){
+        if (orariDto.getLlojiMesimit() != null) {
             query.append("Lloji_i_Mesimit=?, ");
             params.add(orariDto.getLlojiMesimit());
         }
-        if (orariDto.getStatusi()!=null){
+        if (orariDto.getStatusi() != null) {
             query.append("Statusi=?, ");
             params.add(orariDto.getStatusi());
         }
@@ -86,14 +92,16 @@ public class OrariRepository extends BaseRepository<Orari, CreateOrariDto, Updat
         } catch (SQLException e) {
             throw new RuntimeException("Error updating the schedule.", e);
         }
-        return null;}
+        return null;
+    }
 
     //na duhet te service ->
     public List<Orari> gjejOraretPerDate(LocalDate data) {
         String query = "SELECT * FROM ORARI WHERE Data_e_Sesionit = ?";
         List<Orari> oraret = new ArrayList<>();
 
-        try{ PreparedStatement pstm = this.connection.prepareStatement(query);
+        try {
+            PreparedStatement pstm = this.connection.prepareStatement(query);
             pstm.setObject(1, data);
             ResultSet res = pstm.executeQuery();
 
@@ -113,7 +121,8 @@ public class OrariRepository extends BaseRepository<Orari, CreateOrariDto, Updat
         String query = "SELECT * FROM Orari WHERE ID_Kandidat = ?";
         List<Orari> oraret = new ArrayList<>();
 
-        try {PreparedStatement pstm = this.connection.prepareStatement(query);
+        try {
+            PreparedStatement pstm = this.connection.prepareStatement(query);
             pstm.setInt(1, kandidatId);
             ResultSet res = pstm.executeQuery();
 
@@ -132,7 +141,8 @@ public class OrariRepository extends BaseRepository<Orari, CreateOrariDto, Updat
         String query = "SELECT COUNT(*) FROM Orari WHERE ID_Kandidat = ? AND Lloji_i_Mesimit = ? AND Statusi = ?";
         int numri = 0;
 
-        try{ PreparedStatement pstm = this.connection.prepareStatement(query);
+        try {
+            PreparedStatement pstm = this.connection.prepareStatement(query);
             pstm.setInt(1, idKandidat);
             pstm.setString(2, llojiMesimit);
             pstm.setString(3, statusi);
@@ -147,7 +157,6 @@ public class OrariRepository extends BaseRepository<Orari, CreateOrariDto, Updat
 
         return numri;
     }
-
 
 
 }

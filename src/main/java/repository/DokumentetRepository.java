@@ -16,9 +16,11 @@ public class DokumentetRepository extends BaseRepository<Dokumentet, CreateDokum
     public DokumentetRepository() {
         super("Dokumentet");
     }
+
     public Dokumentet fromResultSet(ResultSet result) throws SQLException {
         return Dokumentet.getInstance(result);
     }
+
     public Dokumentet create(CreateDokumentetDto dokumentetDto) {
         String query = """
                 INSERT INTO Dokumentet(ID_Kandidat, Lloji_Dokumentit, Emri_Skedari, Data_Ngarkimit)
@@ -83,28 +85,29 @@ public class DokumentetRepository extends BaseRepository<Dokumentet, CreateDokum
     }
 
 
-public int numeroDokumentet(int kandidatiId) {
-    String query = """
-        SELECT COUNT(DISTINCT Lloji_Dokumentit)
-        FROM Dokumentet
-        WHERE ID_Kandidat = ?
-          AND Lloji_Dokumentit IN ('Leternjoftim', 'Certifikate Mjekësore', 'Aplikim', 'Foto')
-    """;
+    public int numeroDokumentet(int kandidatiId) {
+        String query = """
+                    SELECT COUNT(DISTINCT Lloji_Dokumentit)
+                    FROM Dokumentet
+                    WHERE ID_Kandidat = ?
+                      AND Lloji_Dokumentit IN ('Leternjoftim', 'Certifikate Mjekësore', 'Aplikim', 'Foto')
+                """;
 
-    try {PreparedStatement statement = connection.prepareStatement(query);
-        statement.setInt(1, kandidatiId);
-        ResultSet resultSet = statement.executeQuery();
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, kandidatiId);
+            ResultSet resultSet = statement.executeQuery();
 
-        if (resultSet.next()) {
-            return resultSet.getInt(1);
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
-    } catch (SQLException e) {
-        e.printStackTrace();
+        return 0;
     }
-
-    return 0;
-}
 
     public Dokumentet create(CreateDokumentetDto dto, File fileToUpload) throws Exception {
         String relativePath = "src/main/java/utils/uploads";
@@ -154,16 +157,18 @@ public int numeroDokumentet(int kandidatiId) {
             throw new Exception("Database error.");
         }
     }
+
     public String getFotoFileNameForCurrentUser() {
         int currentUserId = UserContext.getUserId();
         String query = """
-        SELECT Emri_Skedari
-        FROM Dokumentet
-        WHERE ID_Kandidat = ? AND Lloji_Dokumentit = 'Foto'
-        LIMIT 1
-    """;
+                    SELECT Emri_Skedari
+                    FROM Dokumentet
+                    WHERE ID_Kandidat = ? AND Lloji_Dokumentit = 'Foto'
+                    LIMIT 1
+                """;
 
-        try {PreparedStatement pstm = connection.prepareStatement(query);
+        try {
+            PreparedStatement pstm = connection.prepareStatement(query);
             pstm.setInt(1, currentUserId);
             ResultSet rs = pstm.executeQuery();
 

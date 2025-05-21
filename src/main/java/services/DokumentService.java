@@ -31,7 +31,7 @@ public class DokumentService {
         this.kandidatRepository = new KandidatetRepository();
     }
 
-    // Funksioni për krijimin e dokumentit
+
     public Dokumentet create(CreateDokumentetDto createDokumentDto) throws Exception {
         if (createDokumentDto.getIdKandidat() <= 0) {
             throw new Exception("The candidate ID is not valid.");
@@ -42,7 +42,7 @@ public class DokumentService {
         if (!isValidDokumentType(createDokumentDto.getLlojiDokumentit())) {
             throw new Exception("The document type must be 'Identification Card', 'Medical Certificate', 'Application', or 'Photo'.");
         }
-        Kandidatet kandidati =(Kandidatet) this.kandidatRepository.getById(createDokumentDto.getIdKandidat());
+        Kandidatet kandidati = (Kandidatet) this.kandidatRepository.getById(createDokumentDto.getIdKandidat());
         if (kandidati == null) {
             throw new Exception("The Candidate with ID: " + createDokumentDto.getIdKandidat() + " does not exist");
         }
@@ -53,23 +53,26 @@ public class DokumentService {
 
         return dokument;
     }
+
     public Dokumentet getById(int id) throws Exception {
         if (id <= 0) {
             throw new Exception("The document ID is not valid");
         }
         Dokumentet dokument = this.dokumentRepository.getById(id);
         if (dokument == null) {
-            throw new Exception("The document with ID: " + id+" was not found.");
+            throw new Exception("The document with ID: " + id + " was not found.");
         }
 
         return dokument;
     }
+
     private boolean isValidDokumentType(String llojiDokumentit) {
         return llojiDokumentit.equals("Leternjoftim") ||
                 llojiDokumentit.equals("Certifikate Mjekësore") ||
                 llojiDokumentit.equals("Aplikim") ||
                 llojiDokumentit.equals("Foto");
     }
+
     public void uploadDokument(CreateDokumentetDto dto, File file) throws Exception {
         if (dto.getIdKandidat() <= 0) {
             throw new Exception("The candidate id is not valid.");
@@ -88,7 +91,7 @@ public class DokumentService {
             throw new Exception("The candidate does not exist.");
         }
 
-        dokumentRepository.create(dto,file);
+        dokumentRepository.create(dto, file);
     }
 
     public void delete(int dokumentId) throws Exception {
@@ -101,6 +104,7 @@ public class DokumentService {
             throw new Exception("Error deleting the document with ID " + dokumentId);
         }
     }
+
     public void download(String emriSkedarit) throws IOException {
         Path uploadDir = Paths.get("src", "main", "java", "utils", "uploads");
         Path sourcePath = uploadDir.resolve(emriSkedarit);
@@ -129,7 +133,8 @@ public class DokumentService {
         }
         return validDocuments;
     }
-    public void getProfilePicture(ImageView profilePicture){
+
+    public void getProfilePicture(ImageView profilePicture) {
         String filename = dokumentRepository.getFotoFileNameForCurrentUser();
 
         if (filename != null && !filename.isBlank()) {
@@ -151,7 +156,7 @@ public class DokumentService {
                 profilePicture.getFitWidth() / 2,
                 profilePicture.getFitHeight() / 2,
                 Math.min(profilePicture.getFitWidth(), profilePicture.getFitHeight()) / 2
-        ); // Qe ta bejme foton e profilit ne form rrethore
+        );
         profilePicture.setClip(clip);
     }
 }

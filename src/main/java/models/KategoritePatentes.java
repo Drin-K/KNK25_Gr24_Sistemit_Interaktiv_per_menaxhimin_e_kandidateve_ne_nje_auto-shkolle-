@@ -21,11 +21,11 @@ public class KategoritePatentes {
         return pershkrimi;
     }
 
-    public static KategoritePatentes getInstance(ResultSet result) throws SQLException{
+    public static KategoritePatentes getInstance(ResultSet result) throws SQLException {
         int id = result.getInt("id");
         String kategoria = result.getString("Kategoria");
         String pershkrimi = result.getString("Pershkrimi");
-        return new KategoritePatentes(id,kategoria,pershkrimi);
+        return new KategoritePatentes(id, kategoria, pershkrimi);
     }
 
     private KategoritePatentes(int id, String kategoria, String pershkrimi) {

@@ -1,18 +1,22 @@
 package repository;
+
 import models.Dto.kandidatet.UpdateKandidatetDto;
 import models.Dto.user.CreateUserDto;
 import models.Dto.user.UpdateUserDto;
 import models.Stafi;
 import models.User;
+
 import java.sql.*;
 import java.util.ArrayList;
+
 public abstract class UserRepository extends BaseRepository<User, CreateUserDto, UpdateUserDto> {
 
     public UserRepository() {
         super("\"User\"");
     }
 
-    public abstract User fromResultSet(ResultSet result)throws SQLException;
+    public abstract User fromResultSet(ResultSet result) throws SQLException;
+
     @Override
     public abstract User create(CreateUserDto createUserDto);
 
@@ -79,7 +83,7 @@ public abstract class UserRepository extends BaseRepository<User, CreateUserDto,
         StringBuilder kandidatiQuery = new StringBuilder("UPDATE Kandidatet SET ");
         ArrayList<Object> kandidatiParams = new ArrayList<>();
 
-        if ((updateUserDto.getDataRegjistrimi() != null)){
+        if ((updateUserDto.getDataRegjistrimi() != null)) {
             kandidatiQuery.append("dataRegjistrimi=?, ");
             kandidatiParams.add(updateUserDto.getDataRegjistrimi());
         }
@@ -89,7 +93,7 @@ public abstract class UserRepository extends BaseRepository<User, CreateUserDto,
         }
 
         if (!kandidatiParams.isEmpty()) {
-            kandidatiQuery.setLength(kandidatiQuery.length() - 2); // Heqim ", "
+            kandidatiQuery.setLength(kandidatiQuery.length() - 2);
             kandidatiQuery.append(" WHERE id = ?");
             kandidatiParams.add(updateUserDto.getIdUser());
 
@@ -102,13 +106,10 @@ public abstract class UserRepository extends BaseRepository<User, CreateUserDto,
     }
 
 
-
     public abstract User findByEmail(String email);
-    public abstract User getById(int id);
-    public abstract ArrayList<User> getAll();
-    //delete nuk ka nevoj te implementohet te stafi, kandidati dhe admini per shkak se
-    //e kemi vendos si constrain ON DELETE CASCADE dhe ne momentin qe fshhet prej userit
-    //do fshihet edhe ne tabela tjera
 
+    public abstract User getById(int id);
+
+    public abstract ArrayList<User> getAll();
 
 }

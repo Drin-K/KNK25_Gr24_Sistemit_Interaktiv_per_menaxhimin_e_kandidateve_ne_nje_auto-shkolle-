@@ -21,18 +21,21 @@ public class PatentaService {
         return status.equalsIgnoreCase("aktive") ||
                 status.equalsIgnoreCase("e skaduar");
     }
+
     public PatentaService() {
         this.patentaRepository = new PatentaRepository();
     }
-    public Patenta getById(int id) throws Exception{
-        if(id<=0){
+
+    public Patenta getById(int id) throws Exception {
+        if (id <= 0) {
             throw new Exception("Id does not exist!");
         }
         Patenta patenta = this.patentaRepository.getById(id);
         if (patenta == null) throw new Exception("The Staf was not found!");
         return patenta;
     }
-    public Patenta create(CreatePatentaDto createDto) throws Exception{
+
+    public Patenta create(CreatePatentaDto createDto) throws Exception {
 
         if (createDto.getIdKandidat() <= 0) {
             throw new IllegalArgumentException("The candidate ID is invalid!");
@@ -49,21 +52,23 @@ public class PatentaService {
         if (!isValidStatus(createDto.getStatusi())) {
             throw new IllegalArgumentException("The license status is invalid!");
         }
-       Patenta patenta = patentaRepository.create(createDto);
-        if(patenta == null){
+        Patenta patenta = patentaRepository.create(createDto);
+        if (patenta == null) {
             throw new Exception("The license was not created!");
         }
         return patenta;
     }
-    public ArrayList<Patenta> getAll(){
+
+    public ArrayList<Patenta> getAll() {
         return patentaRepository.getAll();
     }
-    public boolean delete(int id) throws Exception{
+
+    public boolean delete(int id) throws Exception {
         this.getById(id); // E kontrollojm a ekziston
         return patentaRepository.delete(id);
     }
 
-    public boolean aprovoPatenten(int kandidatId) throws SQLException{
+    public boolean aprovoPatenten(int kandidatId) throws SQLException {
         if (kandidatId <= 0) {
             throw new IllegalArgumentException("The candidate ID is invalid.");
         }
@@ -79,6 +84,7 @@ public class PatentaService {
             return new XYChart.Series<>();
         }
     }
+
     public HashMap<String, Integer> getLicensesIssuedCountPerDate() throws SQLException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         HashMap<String, Integer> dateCountMap = new HashMap<>();

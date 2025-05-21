@@ -1,4 +1,5 @@
 package repository;
+
 import models.Dto.user.CreateUserDto;
 import models.Kandidatet;
 import models.User;
@@ -8,14 +9,16 @@ import java.util.*;
 
 public class KandidatetRepository extends UserRepository {
 
-    public KandidatetRepository(){
-        super();}
+    public KandidatetRepository() {
+        super();
+    }
+
     @Override
     public Kandidatet create(CreateUserDto dto) {
         String insertUser = """
-            INSERT INTO "User"(name, surname, email, phoneNumber, dateOfBirth, hashedPassword, salt, role, adresa, gjinia)
-            VALUES (?, ?, ?, ?, ?, ?, ?, 'Kandidat', ?, ?);
-        """;
+                    INSERT INTO "User"(name, surname, email, phoneNumber, dateOfBirth, hashedPassword, salt, role, adresa, gjinia)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, 'Kandidat', ?, ?);
+                """;
         try {
             PreparedStatement userStmt = connection.prepareStatement(insertUser, Statement.RETURN_GENERATED_KEYS);
             userStmt.setString(1, dto.getName());
@@ -34,9 +37,9 @@ public class KandidatetRepository extends UserRepository {
                 int userId = keys.getInt(1);
 
                 String insertKandidat = """
-                    INSERT INTO Kandidatet(id, dataRegjistrimi, statusiProcesit)
-                    VALUES (?, DEFAULT, 'Në proces');
-                """;
+                            INSERT INTO Kandidatet(id, dataRegjistrimi, statusiProcesit)
+                            VALUES (?, DEFAULT, 'Në proces');
+                        """;
                 PreparedStatement kandidatStmt = connection.prepareStatement(insertKandidat);
                 kandidatStmt.setInt(1, userId);
                 kandidatStmt.execute();
@@ -46,13 +49,14 @@ public class KandidatetRepository extends UserRepository {
             e.printStackTrace();
 
         }
-       return null;
+        return null;
     }
 
     @Override
     public Kandidatet fromResultSet(ResultSet result) throws SQLException {
         return Kandidatet.getInstance(result);
     }
+
     public HashMap<String, Integer> getAllRegistrationsGroupedByMonth() throws SQLException {
         HashMap<String, Integer> data = new HashMap<>();
 
@@ -70,11 +74,10 @@ public class KandidatetRepository extends UserRepository {
                 data.put(muaji, totali);
             }
         } catch (SQLException e) {
-           e.printStackTrace();
+            e.printStackTrace();
         }
         return data;
     }
-
 
 
     public ArrayList<User> getAll() {
@@ -83,9 +86,9 @@ public class KandidatetRepository extends UserRepository {
                 "FROM Kandidatet k " +
                 "JOIN \"User\" u ON k.id = u.id " +
                 "WHERE u.role = 'Kandidat'";
-        try{
-                PreparedStatement stmt = connection.prepareStatement(query);
-                ResultSet rs = stmt.executeQuery();
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
 
@@ -113,11 +116,10 @@ public class KandidatetRepository extends UserRepository {
         }
         return 0;
     }
-    //Shembull perfekt se qysh ni metod joabstrakte-> e kthejme ne metode abstrakte ne
-    //userrepository dhe me pas e implementojme ne stafirepository !!!
-    // !!!!!Isolating Specific Logic!!!!     :) :) :)
+
+
     @Override
-    public Kandidatet getById(int id){
+    public Kandidatet getById(int id) {
         String query = "SELECT u.id, u.name, u.surname, u.email, u.phoneNumber, " +
                 "u.dateOfBirth, u.hashedPassword, u.salt, u.adresa, u.gjinia, " +
                 "k.dataRegjistrimi, k.statusiProcesit, u.role " +
@@ -125,14 +127,14 @@ public class KandidatetRepository extends UserRepository {
                 "JOIN \"User\" u ON k.id = u.id " +
                 "WHERE u.role = 'Kandidat' AND u.id = ?";
 
-        try{
+        try {
             PreparedStatement pstm = this.connection.prepareStatement(query);
             pstm.setInt(1, id);
             ResultSet res = pstm.executeQuery();
-            if(res.next()){
+            if (res.next()) {
                 return this.fromResultSet(res);
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
@@ -142,24 +144,25 @@ public class KandidatetRepository extends UserRepository {
         List<Kandidatet> kandidatet = new ArrayList<>();
 
         String sql = """
-            SELECT DISTINCT k.id, k.dataRegjistrimi, k.statusiProcesit,
-                            u.name, u.surname, u.email, u.phoneNumber, u.dateOfBirth,
-                            u.hashedPassword, u.salt, u.adresa, u.gjinia,
-                            p1.Statusi AS StatusiPatentes
-            FROM Kandidatet k
-            JOIN "User" u ON u.id = k.id
-            JOIN Pagesat p2 ON p2.ID_Kandidat = k.id
-            JOIN Regjistrimet r ON r.ID_Kandidat = k.id
-            JOIN Testet t ON t.ID_Kandidat = k.id
-            JOIN Patenta p1 ON p1.ID_Kandidat = k.id
-            WHERE k.statusiProcesit = 'Përfunduar'
-            AND r.Statusi = 'Përfunduar'
-            AND t.Rezultati = 'Kaluar'
-            AND p1.Statusi = 'Në proces'
-            AND p2.Statusi_i_Pageses IN (""" + kushtiPageses + ")";
+                SELECT DISTINCT k.id, k.dataRegjistrimi, k.statusiProcesit,
+                                u.name, u.surname, u.email, u.phoneNumber, u.dateOfBirth,
+                                u.hashedPassword, u.salt, u.adresa, u.gjinia,
+                                p1.Statusi AS StatusiPatentes
+                FROM Kandidatet k
+                JOIN "User" u ON u.id = k.id
+                JOIN Pagesat p2 ON p2.ID_Kandidat = k.id
+                JOIN Regjistrimet r ON r.ID_Kandidat = k.id
+                JOIN Testet t ON t.ID_Kandidat = k.id
+                JOIN Patenta p1 ON p1.ID_Kandidat = k.id
+                WHERE k.statusiProcesit = 'Përfunduar'
+                AND r.Statusi = 'Përfunduar'
+                AND t.Rezultati = 'Kaluar'
+                AND p1.Statusi = 'Në proces'
+                AND p2.Statusi_i_Pageses IN (""" + kushtiPageses + ")";
 
-        try{ PreparedStatement stmt = connection.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery();
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 kandidatet.add(fromResultSet(rs));
             }
@@ -172,7 +175,7 @@ public class KandidatetRepository extends UserRepository {
     }
 
     @Override
-    public Kandidatet findByEmail(String email){
+    public Kandidatet findByEmail(String email) {
         String query = "SELECT *" +
                 "FROM Kandidatet s\n" +
                 "JOIN \"User\" u ON s.id = u.id\n" +
@@ -191,13 +194,13 @@ public class KandidatetRepository extends UserRepository {
 
         return null;
     }
-    //e kam perdor te AdminHomeController me percaktu numrin e kandidateve sipas statusit te procesit
-    //sa jane me status 'Në proces' e sa 'Përfunduar'
+
+
     public HashMap<String, Integer> countKandidatetByStatusiProcesit() {
         HashMap<String, Integer> result = new HashMap<>();
         String query = "SELECT statusiProcesit, COUNT(*) as total FROM Kandidatet GROUP BY statusiProcesit";
 
-        try{
+        try {
             PreparedStatement stmt = this.connection.prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {

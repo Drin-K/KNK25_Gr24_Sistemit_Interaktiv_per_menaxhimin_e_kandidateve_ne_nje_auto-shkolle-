@@ -5,6 +5,7 @@ import models.Dto.testet.CreateTestetDto;
 import models.Kandidatet;
 import models.Testet;
 import repository.TestetRepository;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ public class TestiService {
         if (dto.getLlojiTestit() == null) {
             throw new Exception("The test type cannot be null.");
         }
-        if(!dto.getLlojiTestit().equals("Teori") && !dto.getLlojiTestit().equals("Praktikë")){
+        if (!dto.getLlojiTestit().equals("Teori") && !dto.getLlojiTestit().equals("Praktikë")) {
             throw new Exception("The test type must be 'Theory' or 'Practical'.");
         }
         if (dto.getDataTestit() == null || dto.getDataTestit().isAfter(LocalDate.now().plusYears(1))) {
@@ -37,7 +38,7 @@ public class TestiService {
         if (dto.getRezultati() == null) {
             throw new Exception("The result cannot be null.");
         }
-        if(!dto.getRezultati().equals("Kaluar") && !dto.getRezultati().equals("Dështuar")){
+        if (!dto.getRezultati().equals("Kaluar") && !dto.getRezultati().equals("Dështuar")) {
             throw new Exception("The result must be 'Kaluar' or 'Dështuar'.");
         }
         if (dto.getPiket() < 0 || dto.getPiket() > 100) {
@@ -46,25 +47,26 @@ public class TestiService {
         return testetRepository.create(dto);
     }
 
-    public List<Testet> getTestetByKandidatId(int idKandidat) throws Exception{
+    public List<Testet> getTestetByKandidatId(int idKandidat) throws Exception {
         List<Testet> testet;
         testet = testetRepository.getTestetByKandidatId(idKandidat);
-        if(testet.isEmpty()){
+        if (testet.isEmpty()) {
             throw new Exception("No test results !");
         }
         return testet;
     }
 
     public void delete(int Id) throws Exception {
-       Testet ekzistues = testetRepository.getById(Id);
+        Testet ekzistues = testetRepository.getById(Id);
         if (ekzistues == null) {
             throw new Exception("The exam with id " + Id + " does not exist.");
         }
-        boolean fshirje =testetRepository.delete(Id);
+        boolean fshirje = testetRepository.delete(Id);
         if (!fshirje) {
             throw new Exception("Error occurred while deleting the test with ID " + Id);
         }
     }
+
     public List<Testet> getAll() {
         List<Testet> lista = testetRepository.getAll();
         List<Testet> validList = new ArrayList<>();

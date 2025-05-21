@@ -53,7 +53,8 @@ public class SceneManager {
         sceneManager.childPath = path;
         sceneManager.loadParent(path, pane);
     }
-    public static void mainLoad(String path, Stage stage)throws Exception{
+
+    public static void mainLoad(String path, Stage stage) throws Exception {
         SceneManager.getInstance(path);
         stage.setScene(sceneManager.getScene());
         stage.getIcons().add(new Image(sceneManager.getClass().getResourceAsStream("/images/Tiger-Logo.jpg")));
@@ -90,7 +91,7 @@ public class SceneManager {
     }
 
     public static void reload() throws Exception {
-        load(sceneManager.currentPath); // Reload the whole frontPage
+        load(sceneManager.currentPath);
         if (sceneManager.childPath != null) {
             Pane right = (Pane) sceneManager.scene.getRoot().lookup("#rightPage");
             right.getChildren().setAll(sceneManager.getParent(sceneManager.childPath));

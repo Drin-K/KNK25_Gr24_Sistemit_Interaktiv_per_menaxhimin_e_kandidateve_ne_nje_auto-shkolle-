@@ -7,7 +7,7 @@ import java.time.LocalTime;
 
 public class FeedBack {
     private int id;
-    private  int idKandidat;
+    private int idKandidat;
     private int idStaf;
     private LocalDate dataFeedback;
     private int vlersimi;
@@ -21,14 +21,15 @@ public class FeedBack {
         this.vlersimi = vlersimi;
         this.koment = koment;
     }
-    public static FeedBack getInstance(ResultSet resultSet)throws SQLException{
-        int id=resultSet.getInt("id");
-        int idKandidat=resultSet.getInt("ID_Kandidat");
-        int idStaf=resultSet.getInt("ID_Staf");
-        LocalDate dataFeedback=resultSet.getObject("Data_Feedback",LocalDate.class);
-        int vlersimi=resultSet.getInt("Vleresimi");
-        String koment=resultSet.getString("Koment");
-        return new FeedBack(id,idKandidat,idStaf,dataFeedback,vlersimi,koment);
+
+    public static FeedBack getInstance(ResultSet resultSet) throws SQLException {
+        int id = resultSet.getInt("id");
+        int idKandidat = resultSet.getInt("ID_Kandidat");
+        int idStaf = resultSet.getInt("ID_Staf");
+        LocalDate dataFeedback = resultSet.getObject("Data_Feedback", LocalDate.class);
+        int vlersimi = resultSet.getInt("Vleresimi");
+        String koment = resultSet.getString("Koment");
+        return new FeedBack(id, idKandidat, idStaf, dataFeedback, vlersimi, koment);
     }
 
     public int getId() {

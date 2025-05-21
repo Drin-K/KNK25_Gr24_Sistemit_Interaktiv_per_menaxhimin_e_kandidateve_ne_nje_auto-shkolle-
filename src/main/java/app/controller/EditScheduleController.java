@@ -9,7 +9,8 @@ import models.Orari;
 import services.OrariService;
 
 public class EditScheduleController extends BaseController {
-    @FXML private TextField sessionId;
+    @FXML
+    private TextField sessionId;
 
     private final OrariService orariService = new OrariService();
 
@@ -29,7 +30,7 @@ public class EditScheduleController extends BaseController {
         try {
             sessionId1 = Integer.parseInt(sessionId.getText().trim());
         } catch (NumberFormatException e) {
-            this.showAlert(Alert.AlertType.ERROR,null,"The session ID must be a valid number.");
+            this.showAlert(Alert.AlertType.ERROR, null, "The session ID must be a valid number.");
             return;
         }
 
@@ -37,7 +38,7 @@ public class EditScheduleController extends BaseController {
 
             Orari existing = orariService.getById(sessionId1);
             if (existing == null) {
-                this.showAlert(Alert.AlertType.ERROR,null,"Schedule with the given ID was not found." + sessionId1);
+                this.showAlert(Alert.AlertType.ERROR, null, "Schedule with the given ID was not found." + sessionId1);
                 return;
             }
 
@@ -57,11 +58,11 @@ public class EditScheduleController extends BaseController {
 
             Orari updated = orariService.update(sessionId1, dto);
 
-             this.showAlert(Alert.AlertType.INFORMATION,null,"The schedule was successfully updated. New status:" + updated.getStatusi());
-             this.sessionId.setText("");
+            this.showAlert(Alert.AlertType.INFORMATION, null, "The schedule was successfully updated. New status:" + updated.getStatusi());
+            this.sessionId.setText("");
 
         } catch (Exception ex) {
-            this.showAlert(Alert.AlertType.ERROR,null,"Error during update: " + ex.getMessage());
+            this.showAlert(Alert.AlertType.ERROR, null, "Error during update: " + ex.getMessage());
 
         }
     }

@@ -13,7 +13,7 @@ import utils.SceneLocator;
 public class FrontPageConsumatorController {
 
     private final LanguageManager languageManager = LanguageManager.getInstance();
-    private KandidatetRepository user=new KandidatetRepository();
+    private KandidatetRepository user = new KandidatetRepository();
     private Kandidatet kandidatet;
     @FXML
     private Text kandidatiName;
@@ -28,12 +28,14 @@ public class FrontPageConsumatorController {
         SceneManager.load(SceneLocator.CATEGORY_PAGE, this.rightPage);
 
     }
+
     @FXML
-    public void initialize(){
+    public void initialize() {
         this.kandidatet = user.getById(UserContext.getUserId());
         this.kandidatiName.setText(kandidatet.getName());
         this.kandidatiSurname.setText(kandidatet.getSurname());
     }
+
     @FXML
     private void homeClick() throws Exception {
         SceneManager.load(SceneLocator.HOME_PAGE, this.rightPage);
@@ -74,8 +76,9 @@ public class FrontPageConsumatorController {
         languageManager.toggleLanguage();
         SceneManager.reload();
     }
+
     @FXML
-    private void handleLogOut()throws Exception{
+    private void handleLogOut() throws Exception {
         SceneManager.load(SceneLocator.LOGIN_PAGE);
         UserContext.clear();
     }

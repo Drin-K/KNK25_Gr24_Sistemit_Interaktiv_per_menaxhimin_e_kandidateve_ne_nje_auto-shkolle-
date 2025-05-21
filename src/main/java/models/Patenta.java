@@ -18,6 +18,7 @@ public class Patenta {
         this.dataLeshimit = dataLeshimit;
         this.statusi = statusi;
     }
+
     public int getId() {
         return id;
     }
@@ -37,13 +38,14 @@ public class Patenta {
     public String getStatusi() {
         return statusi;
     }
-    public static Patenta getInstance(ResultSet result)throws SQLException {
-        int id=result.getInt("id");
-        int idKandidat=result.getInt("ID_Kandidat");
-        int idKategori=result.getInt("ID_Kategori");
-        LocalDate dataLeshimit =result.getObject("Data_Leshimit", LocalDate.class);
-        String  statusi=result.getString("Statusi");
 
-        return new Patenta(id,idKandidat,idKategori,dataLeshimit,statusi);
+    public static Patenta getInstance(ResultSet result) throws SQLException {
+        int id = result.getInt("id");
+        int idKandidat = result.getInt("ID_Kandidat");
+        int idKategori = result.getInt("ID_Kategori");
+        LocalDate dataLeshimit = result.getObject("Data_Leshimit", LocalDate.class);
+        String statusi = result.getString("Statusi");
+
+        return new Patenta(id, idKandidat, idKategori, dataLeshimit, statusi);
     }
 }

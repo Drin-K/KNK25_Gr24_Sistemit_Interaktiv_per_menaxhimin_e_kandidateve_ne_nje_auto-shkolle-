@@ -6,7 +6,7 @@ public class UserContext {
     private static int currentUserId;
     private static String currentEmail;
 
-    public static void setUser(String role, int userId,String email) {
+    public static void setUser(String role, int userId, String email) {
         currentRole = role;
         currentUserId = userId;
         currentEmail = email;
@@ -24,7 +24,8 @@ public class UserContext {
         currentRole = null;
         currentUserId = 0;
     }
-    public static String getEmail(){
-        return  currentEmail;
+
+    public static String getEmail() {
+        return currentEmail;
     }
 }

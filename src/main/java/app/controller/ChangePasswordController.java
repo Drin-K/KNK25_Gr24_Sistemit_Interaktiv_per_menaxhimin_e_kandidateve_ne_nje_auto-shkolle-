@@ -20,16 +20,17 @@ public class ChangePasswordController extends BaseController {
     private PasswordField newPassword;
     @FXML
     private PasswordField confirmPassword;
+
     @FXML
-    public void onClickChangePassword(){
+    public void onClickChangePassword() {
         String current = currentPassword.getText();
         String newPass = newPassword.getText();
         String confirm = confirmPassword.getText();
-        try{
-            UserService.changePassword(current,newPass,confirm);
-            showAlert(Alert.AlertType.INFORMATION,"Message","Password changed successfully");
+        try {
+            UserService.changePassword(current, newPass, confirm);
+            showAlert(Alert.AlertType.INFORMATION, "Message", "Password changed successfully");
         } catch (Exception e) {
-            showAlert(Alert.AlertType.WARNING,"Warning",e.getMessage());
+            showAlert(Alert.AlertType.WARNING, "Warning", e.getMessage());
         }
     }
 }

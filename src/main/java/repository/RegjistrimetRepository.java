@@ -24,10 +24,12 @@ public class RegjistrimetRepository extends BaseRepository<Regjistrimet, CreateR
     public Regjistrimet fromResultSet(ResultSet result) throws SQLException {
         return Regjistrimet.getInstance(result);
     }
+
     public void mirato(int id) {
         String query = "UPDATE Regjistrimet SET Statusi = 'Përfunduar' WHERE ID_Kandidat = ?";
 
-        try {PreparedStatement statement = connection.prepareStatement(query);
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, id);
             int affectedRows = statement.executeUpdate();
 
@@ -78,7 +80,7 @@ public class RegjistrimetRepository extends BaseRepository<Regjistrimet, CreateR
         if (params.isEmpty()) {
             return getById(regjistrtimetDto.getIdRegjistrim());
         }
-        query.setLength(query.length() - 2);//me largu "? "->se paraqet gabim ne sintakse
+        query.setLength(query.length() - 2);
         query.append(" WHERE id = ?");
         params.add(regjistrtimetDto.getIdRegjistrim());
         try {

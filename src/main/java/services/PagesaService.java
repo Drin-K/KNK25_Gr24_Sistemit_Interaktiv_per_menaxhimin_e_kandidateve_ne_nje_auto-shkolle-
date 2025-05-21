@@ -18,11 +18,13 @@ import static utils.ChartData.getChartSeries;
 
 public class PagesaService {
     private PagesatRepository pagesatRepository;
-    public PagesaService(){
+
+    public PagesaService() {
         pagesatRepository = new PagesatRepository();
     }
+
     public Pagesat getById(int id) throws Exception {
-        if(id <=0){
+        if (id <= 0) {
             throw new Exception("Id does not exist!");
         }
         Pagesat pagesa = this.pagesatRepository.getById(id);
@@ -31,16 +33,17 @@ public class PagesaService {
         }
         return pagesa;
     }
-    public Pagesat create(CreatePagesatDto createDto) throws Exception{
+
+    public Pagesat create(CreatePagesatDto createDto) throws Exception {
         //Validimi i shumes
-        if(createDto.getShuma() <= 0 && createDto.getShuma()>500){
+        if (createDto.getShuma() <= 0 && createDto.getShuma() > 500) {
             throw new Exception("The amount must be greater than 0.!");
         }
-        if(createDto.getNumriXhirollogarise().length() <= 0 && createDto.getNumriXhirollogarise().length()>10 ){
+        if (createDto.getNumriXhirollogarise().length() <= 0 && createDto.getNumriXhirollogarise().length() > 10) {
             throw new Exception("The bank account number must be 10 digits long!");
         }
         //Validimi i dates se pageses
-        if(createDto.getDataPageses() == null){
+        if (createDto.getDataPageses() == null) {
             createDto.setDataPageses(LocalDate.now()); //Nese mungon data default osht data sot
         }
         // Validimi i metodës së pagesës
@@ -73,6 +76,7 @@ public class PagesaService {
         }
         return series;
     }
+
     public HashMap<String, Integer> getPayments() {
         HashMap<String, Integer> data = pagesatRepository.getPayments();
         if (data == null) {
@@ -100,6 +104,7 @@ public class PagesaService {
             throw new Exception("Error while deleting the payment with ID " + pagesaId);
         }
     }
+
     public void updateLineChartData(XYChart<String, Number> chart) throws SQLException {
         Map<String, Integer> pagesatCount = this.pagesatRepository.getPagesatCountByStatus();
         chart.getData().clear();
@@ -109,6 +114,7 @@ public class PagesaService {
             chart.getData().add(series);
         }
     }
+
     public ArrayList<Pagesat> getAll() {
         ArrayList<Pagesat> all = pagesatRepository.getAll();
         ArrayList<Pagesat> valid = new ArrayList<>();
@@ -121,6 +127,7 @@ public class PagesaService {
         }
         return valid;
     }
+
     public List<Pagesat> filterPagesat(String name, LocalDate fromDate, LocalDate toDate, String metodaPageses, String statusiPageses) throws SQLException {
         if (name == null || name.trim().length() < 2) {
             throw new IllegalArgumentException("Name must be at least 2 characters long.");
@@ -141,6 +148,7 @@ public class PagesaService {
         }
         return pagesatRepository.filterPagesat(name, fromDate, toDate, metodaPageses, statusiPageses);
     }
+
     public int countPagesatOnDate(LocalDate date) throws SQLException {
         if (date == null)
             throw new IllegalArgumentException("Date cannot be null");
@@ -167,6 +175,7 @@ public class PagesaService {
         }
         return pagesatRepository.countPagesatInYear(year);
     }
+
     public void updateStatusiPageses(int pagesaId, String statusiRi) throws SQLException {
         if (pagesaId <= 0) {
             throw new IllegalArgumentException("The payment ID must be a positive number.");

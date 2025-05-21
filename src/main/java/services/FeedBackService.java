@@ -14,19 +14,20 @@ public class FeedBackService {
     public FeedBackService() {
         this.feedbackRepository = new FeedBackRepository();
     }
-    public FeedBack getById(int id)throws Exception{
-        if(id <= 0){
+
+    public FeedBack getById(int id) throws Exception {
+        if (id <= 0) {
             throw new Exception("Id does not exist!");
         }
-        FeedBack feedBack=this.feedbackRepository.getById(id);
-        if (feedBack==null){
+        FeedBack feedBack = this.feedbackRepository.getById(id);
+        if (feedBack == null) {
             throw new Exception("User with Id: " + id + " does not exist!");
         }
         return feedBack;
     }
 
     public FeedBack create(CreateFeedBackDto feedbackDto) throws Exception {
-        if(feedbackDto.getKoment().isEmpty()){
+        if (feedbackDto.getKoment().isEmpty()) {
             throw new Exception("Write a comment to submit!");
         }
         if (feedbackDto.getVlersimi() < 1 || feedbackDto.getVlersimi() > 5) {
@@ -41,14 +42,17 @@ public class FeedBackService {
         }
         return feedback;
     }
+
     public boolean delete(int id) throws Exception {
         this.getById(id);
         return this.feedbackRepository.delete(id);
     }
+
     public List<FeedBack> getFeedbacks(int instructorId, LocalDate date) {
         return feedbackRepository.getFeedbacksByStaffAndDate(instructorId, date);
     }
-    public ArrayList<FeedBack>getAll(){
+
+    public ArrayList<FeedBack> getAll() {
         return this.feedbackRepository.getAll();
     }
 }

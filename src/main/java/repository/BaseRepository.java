@@ -9,54 +9,59 @@ import java.util.ArrayList;
 abstract class BaseRepository<Model, CreateModelDto, UpdateModelDto> {
     protected Connection connection;
     private String tableName;
-    public BaseRepository(String tableName ){
-        this.connection= DBConnector.getConnection();
+
+    public BaseRepository(String tableName) {
+        this.connection = DBConnector.getConnection();
         this.tableName = tableName;
     }
+
     abstract Model fromResultSet(ResultSet res) throws SQLException;
 
-    public Model getById(int id){
+    public Model getById(int id) {
         String query = "SELECT * FROM " + this.tableName + " WHERE id = ?";
-        try{
+        try {
             PreparedStatement pstm = this.connection.prepareStatement(
                     query);
             pstm.setInt(1, id);
             ResultSet res = pstm.executeQuery();
-            if(res.next()){
+            if (res.next()) {
                 return this.fromResultSet(res);
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
-    public ArrayList<Model> getAll(){
+
+    public ArrayList<Model> getAll() {
         ArrayList<Model> models = new ArrayList<>();
         String query = "SELECT * FROM " + this.tableName;
-        try{
+        try {
             Statement stm = this.connection.createStatement();
             ResultSet res = stm.executeQuery(query);
-            while(res.next()){
+            while (res.next()) {
                 models.add(this.fromResultSet(res));
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return models;
     }
-    public boolean delete(int id){
+
+    public boolean delete(int id) {
         String query = "DELETE FROM " + this.tableName + " WHERE id = ?";
-        try{
+        try {
             PreparedStatement pstm =
                     this.connection.prepareStatement(query);
             pstm.setInt(1, id);
             return pstm.executeUpdate() == 1;
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
     }
 
     abstract Model create(CreateModelDto createDto);
+
     abstract Model update(UpdateModelDto updateDto);
 }

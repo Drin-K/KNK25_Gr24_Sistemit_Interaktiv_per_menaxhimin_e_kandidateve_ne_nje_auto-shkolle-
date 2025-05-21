@@ -16,48 +16,77 @@ import utils.SceneLocator;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+
 public class StafManagmentController extends BaseController {
 
-    @FXML private TableView<Stafi> tableStafi;
-    @FXML private TableColumn<Stafi, Integer> idColumn;
-    @FXML private TableColumn<Stafi, String> nameColumn;
-    @FXML private TableColumn<Stafi, String> surnameColumn;
-    @FXML private TableColumn<Stafi, String> emailColumn;
-    @FXML private TableColumn<Stafi, String> phoneColumn;
-    @FXML private TableColumn<Stafi, LocalDate> dobColumn;
-    @FXML private TableColumn<Stafi, String> hashedPasswordColumn;
-    @FXML private TableColumn<Stafi, String> saltColumn;
-    @FXML private TableColumn<Stafi, String> roleColumn;
-    @FXML private TableColumn<Stafi, String> adresaColumn;
-    @FXML private TableColumn<Stafi, String> gjiniaColumn;
+    @FXML
+    private TableView<Stafi> tableStafi;
+    @FXML
+    private TableColumn<Stafi, Integer> idColumn;
+    @FXML
+    private TableColumn<Stafi, String> nameColumn;
+    @FXML
+    private TableColumn<Stafi, String> surnameColumn;
+    @FXML
+    private TableColumn<Stafi, String> emailColumn;
+    @FXML
+    private TableColumn<Stafi, String> phoneColumn;
+    @FXML
+    private TableColumn<Stafi, LocalDate> dobColumn;
+    @FXML
+    private TableColumn<Stafi, String> hashedPasswordColumn;
+    @FXML
+    private TableColumn<Stafi, String> saltColumn;
+    @FXML
+    private TableColumn<Stafi, String> roleColumn;
+    @FXML
+    private TableColumn<Stafi, String> adresaColumn;
+    @FXML
+    private TableColumn<Stafi, String> gjiniaColumn;
 
-    @FXML private TextField txtEmri, txtMbiemri, txtEmail, txtPhone, txtAdresa;
-    @FXML private PasswordField txtPassword;
-    @FXML private ComboBox<String> comboGjinia;
-    @FXML private DatePicker datePickerDob;
-    @FXML private Label high, low;
-    @FXML private HBox krijoFormenHBox;
+    @FXML
+    private TextField txtEmri, txtMbiemri, txtEmail, txtPhone, txtAdresa;
+    @FXML
+    private PasswordField txtPassword;
+    @FXML
+    private ComboBox<String> comboGjinia;
+    @FXML
+    private DatePicker datePickerDob;
+    @FXML
+    private Label high, low;
+    @FXML
+    private HBox krijoFormenHBox;
 
-    @FXML private TableView<FeedBack> feedbackTable;
-    @FXML private TableColumn<FeedBack, Integer> colId, colIdKandidat, colIdStaf, colVleresimi;
-    @FXML private TableColumn<FeedBack, LocalDate> colDataFeedback;
-    @FXML private TableColumn<FeedBack, String> colKoment;
+    @FXML
+    private TableView<FeedBack> feedbackTable;
+    @FXML
+    private TableColumn<FeedBack, Integer> colId, colIdKandidat, colIdStaf, colVleresimi;
+    @FXML
+    private TableColumn<FeedBack, LocalDate> colDataFeedback;
+    @FXML
+    private TableColumn<FeedBack, String> colKoment;
 
-    @FXML private TableView<Orari> orariTable;
-    @FXML private TableColumn<Orari, Integer> idColumn1, idKandidatColumn, idStafColumn, idAutomjetColumn;
-    @FXML private TableColumn<Orari, LocalDate> dataSesioniColumn;
-    @FXML private TableColumn<Orari, LocalTime> oraFillimitColumn, oraPerfundimitColumn;
-    @FXML private TableColumn<Orari, String> llojiMesimitColumn, statusiColumn;
+    @FXML
+    private TableView<Orari> orariTable;
+    @FXML
+    private TableColumn<Orari, Integer> idColumn1, idKandidatColumn, idStafColumn, idAutomjetColumn;
+    @FXML
+    private TableColumn<Orari, LocalDate> dataSesioniColumn;
+    @FXML
+    private TableColumn<Orari, LocalTime> oraFillimitColumn, oraPerfundimitColumn;
+    @FXML
+    private TableColumn<Orari, String> llojiMesimitColumn, statusiColumn;
     @FXML
     private AnchorPane rightPage;
 
     private final StafiService stafiService;
     private final OrariService orariService;
     private final FeedBackService feedBackService;
-    public StafManagmentController(){
-        this.stafiService=new StafiService();
-        this.orariService=new OrariService();
-        this.feedBackService=new FeedBackService();
+
+    public StafManagmentController() {
+        this.stafiService = new StafiService();
+        this.orariService = new OrariService();
+        this.feedBackService = new FeedBackService();
     }
 
     @FXML
@@ -75,7 +104,7 @@ public class StafManagmentController extends BaseController {
     }
 
     private void configureStafiTable() {
-      configureTable(
+        configureTable(
                 tableStafi,
                 List.of(idColumn, nameColumn, surnameColumn, emailColumn, phoneColumn, dobColumn,
                         hashedPasswordColumn, saltColumn, roleColumn, adresaColumn, gjiniaColumn),
@@ -84,14 +113,14 @@ public class StafManagmentController extends BaseController {
     }
 
     private void configureFeedbackTable() {
-       configureTable(
+        configureTable(
                 feedbackTable,
                 List.of(colId, colIdKandidat, colIdStaf, colDataFeedback, colVleresimi, colKoment),
                 new String[]{"id", "idKandidat", "idStaf", "dataFeedback", "vlersimi", "koment"});
     }
 
     private void configureOrariTable() {
-       configureTable(
+        configureTable(
                 orariTable,
                 List.of(idColumn1, idKandidatColumn, idStafColumn, dataSesioniColumn,
                         oraFillimitColumn, oraPerfundimitColumn, llojiMesimitColumn, statusiColumn, idAutomjetColumn),
@@ -121,6 +150,7 @@ public class StafManagmentController extends BaseController {
     private void loadOrariData() {
         orariTable.setItems(FXCollections.observableArrayList(orariService.getAll()));
     }
+
     private boolean checkAndConfirm(Object selected, String confirmMessage, String warningMessage) {
         if (selected == null) {
             showAlert(Alert.AlertType.WARNING, "Warning", warningMessage);
@@ -128,6 +158,7 @@ public class StafManagmentController extends BaseController {
         }
         return showConfirmationDialog("Confirm Deletion", confirmMessage);
     }
+
     @FXML
     private void onDeleteStafiClick() throws Exception {
         Stafi selected = tableStafi.getSelectionModel().getSelectedItem();
@@ -196,13 +227,14 @@ public class StafManagmentController extends BaseController {
             return;
         }
 
-        CreateStafiDto stafi = new CreateStafiDto(emri, mbiemri, email, phone, datelindja,  PasswordHasher.generateSaltedHash(password, salt), salt, "Staf", adresa, gjinia);
+        CreateStafiDto stafi = new CreateStafiDto(emri, mbiemri, email, phone, datelindja, PasswordHasher.generateSaltedHash(password, salt), salt, "Staf", adresa, gjinia);
         stafiService.create(stafi);
         SceneManager.reload();
         clear();
 
     }
-    public void clear(){
+
+    public void clear() {
         txtEmri.clear();
         txtMbiemri.clear();
         txtEmail.clear();
@@ -212,7 +244,8 @@ public class StafManagmentController extends BaseController {
         datePickerDob.setValue(null);
         comboGjinia.setValue(null);
     }
+
     public void onUpdateStafClick() throws Exception {
-        SceneManager.load(SceneLocator.UPDATE_ADMIN_CANDIDATE_PAGE,this.rightPage);
+        SceneManager.load(SceneLocator.UPDATE_ADMIN_CANDIDATE_PAGE, this.rightPage);
     }
 }

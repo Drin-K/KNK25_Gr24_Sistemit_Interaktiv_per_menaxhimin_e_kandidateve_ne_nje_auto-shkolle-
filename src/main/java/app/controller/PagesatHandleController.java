@@ -22,9 +22,11 @@ import java.time.LocalDate;
 public class PagesatHandleController extends BaseController {
 
     private final PagesaService pagesaService;
+
     public PagesatHandleController() {
         this.pagesaService = new PagesaService();
     }
+
     @FXML
     private AnchorPane rightPane;
     @FXML
@@ -35,7 +37,6 @@ public class PagesatHandleController extends BaseController {
     private TextField bankNumTxt;
     @FXML
     private TextField shumaTxt;
-
 
 
     public CreatePagesatDto getPagesaInputData() {
@@ -66,6 +67,7 @@ public class PagesatHandleController extends BaseController {
         }
         return new CreatePagesatDto(UserContext.getUserId(), nrXhirollog, shuma, data, "Online", Statusi);
     }
+
     @FXML
     private void saveClick() {
         try {
@@ -80,10 +82,12 @@ public class PagesatHandleController extends BaseController {
             showAlert(AlertType.ERROR, "Error", "An error occurred while saving the payment data. Please try again.");
         }
     }
+
     private void clearFields() {
         bankNumTxt.clear();
         shumaTxt.clear();
     }
+
     @FXML
     private void cashClick() throws Exception {
         SceneManager.load(SceneLocator.PAYMENTS_CASH, this.rightPane);

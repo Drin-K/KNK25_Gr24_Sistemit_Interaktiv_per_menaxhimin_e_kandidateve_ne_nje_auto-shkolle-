@@ -7,7 +7,7 @@ import java.util.Base64;
 
 public class PasswordHasher {
 
-    private static final int SALT_LENGTH = 32; // length of salt in bytes
+    private static final int SALT_LENGTH = 32; // bajt
     private static final int HASH_LENGTH = 256; // length of hash in bits
     private static final String HASH_ALGORITHM = "SHA-256";
 
@@ -42,15 +42,15 @@ public class PasswordHasher {
             MessageDigest digest = MessageDigest.getInstance(HASH_ALGORITHM);
             digest.reset();
             digest.update(salt.getBytes());
-            byte[]hash= digest.digest(password.getBytes());
-            for(int i=0; i<1000;i++){
+            byte[] hash = digest.digest(password.getBytes());
+            for (int i = 0; i < 1000; i++) {
                 digest.reset();
-                hash=digest.digest(hash);
+                hash = digest.digest(hash);
             }
 
             return hash;
         } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("Failed to hash password:"+e.getMessage(),e);
+            throw new RuntimeException("Failed to hash password:" + e.getMessage(), e);
         }
     }
 }

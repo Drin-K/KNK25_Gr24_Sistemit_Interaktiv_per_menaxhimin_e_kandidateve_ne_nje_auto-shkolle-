@@ -4,11 +4,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
-public class Stafi extends User{
+public class Stafi extends User {
     protected Stafi(int idUser, String name, String surname, String email, String phoneNumber, LocalDate dateOfBirth, String hashedPassword, String salt, String adresa, String gjinia) {
-        super(idUser,name,surname,email,phoneNumber,dateOfBirth,hashedPassword,salt,"Staf",adresa, gjinia);
+        super(idUser, name, surname, email, phoneNumber, dateOfBirth, hashedPassword, salt, "Staf", adresa, gjinia);
 
     }
+
     public static Stafi getInstance(ResultSet result) throws SQLException {
         int id = result.getInt("id");
         String name = result.getString("name");

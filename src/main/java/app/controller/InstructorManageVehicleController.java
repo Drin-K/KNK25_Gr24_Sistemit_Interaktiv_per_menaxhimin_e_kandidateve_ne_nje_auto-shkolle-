@@ -26,9 +26,11 @@ public class InstructorManageVehicleController extends BaseController {
     private int kategoriaId;
     private int kategoriaserviceId;
     private String llojiKategoriseService;
-    public InstructorManageVehicleController(){
+
+    public InstructorManageVehicleController() {
         this.automjetService = new AutomjetService();
     }
+
     @FXML
     private AnchorPane rightPane;
     @FXML
@@ -42,81 +44,94 @@ public class InstructorManageVehicleController extends BaseController {
     @FXML
     private TableView<Automjetet> automjetiTable;
     @FXML
-    private TableColumn<Automjetet,Integer> automjetId;
+    private TableColumn<Automjetet, Integer> automjetId;
     @FXML
-    private TableColumn<Automjetet,String> llojiAutomjetit;
+    private TableColumn<Automjetet, String> llojiAutomjetit;
+
     @FXML
-    public void initialize(){
-        if(automjetId == null){
+    public void initialize() {
+        if (automjetId == null) {
             return;
         }
         automjetId.setCellValueFactory(new PropertyValueFactory<>("id"));
         llojiAutomjetit.setCellValueFactory(new PropertyValueFactory<>("llojiAutomjetit"));
     }
+
     @FXML
     private void listAutomjetet() {
         try {
             List<Automjetet> automjetet = automjetService.findByStatusiAndStafi(UserContext.getUserId(), "Në përdorim");
             automjetiTable.setItems(FXCollections.observableArrayList(automjetet));
         } catch (Exception e) {
-            showAlert(Alert.AlertType.WARNING,"Warning",e.getMessage());
+            showAlert(Alert.AlertType.WARNING, "Warning", e.getMessage());
         }
     }
+
     @FXML
     private void onClickPutForService() throws Exception {
         SceneManager.load(SceneLocator.INSTRUCTOR_PUT_SERVICE, rightPane);
     }
+
     @FXML
-    private void chooseMotorBike(){
+    private void chooseMotorBike() {
         this.kategoriaId = 1;
         this.llojiKategorise = "Motoçikletë";
         category.setText("MotorBike");
     }
+
     @FXML
-    private void chooseCar(){
+    private void chooseCar() {
         this.kategoriaId = 2;
         category.setText("Car");
         this.llojiKategorise = "Vetura";
     }
+
     @FXML
-    private void chooseTruck(){
+    private void chooseTruck() {
         this.kategoriaId = 3;
         category.setText("Truck");
         this.llojiKategorise = "Kamion";
     }
+
     @FXML
-    private void listOnUse(){
+    private void listOnUse() {
         statusi.setText("On Use");
         this.llojiStatusit = "Në përdorim";
     }
+
     @FXML
-    private void listOnService(){
+    private void listOnService() {
         statusi.setText("On Service");
         this.llojiStatusit = "Mirëmbajtje";
     }
+
     @FXML
-    private void listOutOfUse(){
+    private void listOutOfUse() {
         statusi.setText("Out of use");
         this.llojiStatusit = "Jashtë shërbimit";
     }
+
     @FXML
-    private void chooseServiceMotorBike(){
-        this.kategoriaserviceId=1;
+    private void chooseServiceMotorBike() {
+        this.kategoriaserviceId = 1;
         this.llojiKategoriseService = "Motoçikletë";
         chooseCategory.setText("MotorBike");
     }
+
     @FXML
-    private void chooseServiceCar(){
+    private void chooseServiceCar() {
         this.kategoriaserviceId = 2;
         this.llojiKategoriseService = "Vetura";
         chooseCategory.setText("Car");
     }
+
     @FXML
-    private void chooseServiceTruck(){
+    private void chooseServiceTruck() {
         this.kategoriaserviceId = 3;
         this.llojiKategoriseService = "Kamion";
         chooseCategory.setText("Truck");
     }
+
     @FXML
     private void onClickUpdateServiceBtn() throws Exception {
         try {
@@ -124,12 +139,12 @@ public class InstructorManageVehicleController extends BaseController {
             int automjetId = Integer.parseInt(this.vehicleId.getText());
 
             if (automjetId == 0) {
-                showAlert(Alert.AlertType.ERROR,"Error","Please enter a vehicle ID.");
+                showAlert(Alert.AlertType.ERROR, "Error", "Please enter a vehicle ID.");
                 return;
             }
 
             if (this.llojiKategoriseService == null || this.kategoriaserviceId == 0) {
-                showAlert(Alert.AlertType.WARNING,"Error","Please select a vehicle category.");
+                showAlert(Alert.AlertType.WARNING, "Error", "Please select a vehicle category.");
                 return;
             }
 
@@ -140,26 +155,27 @@ public class InstructorManageVehicleController extends BaseController {
             );
 
             if (updated != null) {
-                showAlert(Alert.AlertType.INFORMATION,"Success","Vehicle status updated to 'Në servisim'.");
+                showAlert(Alert.AlertType.INFORMATION, "Success", "Vehicle status updated to 'Në servisim'.");
             } else {
-                showAlert(Alert.AlertType.WARNING,"Error","Vehicle not found or update failed.");
+                showAlert(Alert.AlertType.WARNING, "Error", "Vehicle not found or update failed.");
             }
 
         } catch (NumberFormatException e) {
-            showAlert(Alert.AlertType.WARNING,"Error","Invalid vehicle ID format.");
+            showAlert(Alert.AlertType.WARNING, "Error", "Invalid vehicle ID format.");
         } catch (Exception e) {
-            showAlert(Alert.AlertType.WARNING,"Error","An unexpected error occurred.");
+            showAlert(Alert.AlertType.WARNING, "Error", "An unexpected error occurred.");
         }
     }
+
     @FXML
     private void onClickAddVehicle() {
         try {
             CreateAutomjetetDto dto = new CreateAutomjetetDto(this.llojiKategorise, this.llojiStatusit, this.idStaf, this.kategoriaId);
             Automjetet automjetet = automjetService.create(dto);
             System.out.println("Automjeti u shtua me sukses: " + automjetet.getId());
-            showAlert(Alert.AlertType.INFORMATION,"Notification","Vehicle inserted succecfuly !");
+            showAlert(Alert.AlertType.INFORMATION, "Notification", "Vehicle inserted succecfuly !");
         } catch (Exception e) {
-            showAlert(Alert.AlertType.ERROR,"Notification","Problem while inserting vehicle!");
+            showAlert(Alert.AlertType.ERROR, "Notification", "Problem while inserting vehicle!");
         }
     }
 

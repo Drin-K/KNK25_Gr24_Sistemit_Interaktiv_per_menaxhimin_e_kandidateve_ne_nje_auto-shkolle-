@@ -16,10 +16,12 @@ import java.util.List;
 public class OrariService {
     private final OrariRepository orariRepository;
     private final AutomjetetRepository automjetRepository;
+
     public OrariService() {
         this.orariRepository = new OrariRepository();
         this.automjetRepository = new AutomjetetRepository();
     }
+
     public Orari getById(int idSesioni) {
         return orariRepository.getById(idSesioni);
     }
@@ -27,6 +29,7 @@ public class OrariService {
     public List<Orari> shikoOraretPerId(int id) {
         return orariRepository.gjejOraretPerId(id);
     }
+
     public List<Orari> gjejOraretPerKandidat(LocalDate dataZgjedhur, int kandidatId) {
         List<Orari> teGjithaOraret = orariRepository.gjejOraretPerDate(dataZgjedhur);
         List<Orari> oraretEFiltruara = new ArrayList<>();
@@ -38,6 +41,7 @@ public class OrariService {
         }
         return oraretEFiltruara;
     }
+
     public void delete(int orariId) throws Exception {
         Orari ekzistues = orariRepository.getById(orariId);
         if (ekzistues == null) {
@@ -48,6 +52,7 @@ public class OrariService {
             throw new Exception("Error deleting the schedule with ID " + orariId);
         }
     }
+
     public Orari update(int orariId, UpdateOrariDto dto) throws Exception {
         Orari ekzistues = orariRepository.getById(orariId);
         if (ekzistues == null) {
@@ -143,27 +148,29 @@ public class OrariService {
         if (!errorMessage.isEmpty()) {
             throw new Exception(errorMessage.toString());
         }
-        Orari orari=orariRepository.create(dto);
+        Orari orari = orariRepository.create(dto);
         return orari;
     }
 
 
-
-    public int numeroSesione(int idKandidat, String llojiMesimit, String statusi){
-     int numriSesioneve= this.orariRepository.numeroSesione(idKandidat,llojiMesimit,statusi);
+    public int numeroSesione(int idKandidat, String llojiMesimit, String statusi) {
+        int numriSesioneve = this.orariRepository.numeroSesione(idKandidat, llojiMesimit, statusi);
         if (numriSesioneve > 20) {
             throw new IllegalStateException("The candidate has exceeded the maximum limit of sessions for this type of lesson and status!");
         }
         return numriSesioneve;
 
     }
+
     public List<Orari> getSessionsToday() {
         LocalDate currentDate = LocalDate.now();
         return orariRepository.gjejOraretPerDate(currentDate);
     }
+
     public String getPershkrimiSesionit(Orari orari) {
-        return orari.getLlojiMesimit()+ ": " + orari.getOraFillimit() + "-" + orari.getOraPerfundimit();
+        return orari.getLlojiMesimit() + ": " + orari.getOraFillimit() + "-" + orari.getOraPerfundimit();
     }
+
     public List<String> getPershkrimetESesioneveTeSotme() {
         List<String> pershkrimet = new ArrayList<>();
         for (Orari orari : getSessionsToday()) {
@@ -171,6 +178,7 @@ public class OrariService {
         }
         return pershkrimet;
     }
+
     public List<Orari> getAll() {
         List<Orari> lista = orariRepository.getAll();
         List<Orari> validList = new ArrayList<>();

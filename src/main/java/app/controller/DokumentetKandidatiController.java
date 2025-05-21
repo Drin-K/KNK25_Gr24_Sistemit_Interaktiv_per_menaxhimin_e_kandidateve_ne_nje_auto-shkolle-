@@ -25,13 +25,16 @@ public class DokumentetKandidatiController extends BaseController implements Ini
     private ComboBox<String> chooseDocumentType;
     Stage stage = (Stage) SceneManager.getInstance(SceneLocator.getCurrentRightPage()).getScene().getWindow();
     private final DokumentService dokumentService;
-    public DokumentetKandidatiController(){
+
+    public DokumentetKandidatiController() {
         this.dokumentService = new DokumentService();
     }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         chooseDocumentType.getItems().setAll("Leternjoftim", "Aplikim", "Certifikate Mjekësore", "Foto");
     }
+
     @FXML
     private void handleUploadDokument(ActionEvent event) {
         String llojiDokumentit = chooseDocumentType.getValue();
@@ -50,11 +53,11 @@ public class DokumentetKandidatiController extends BaseController implements Ini
 
             try {
                 dokumentService.uploadDokument(dto, selectedFile);
-                showAlert(Alert.AlertType.INFORMATION,"Notification","File uploaded successfully");
+                showAlert(Alert.AlertType.INFORMATION, "Notification", "File uploaded successfully");
                 System.out.println("Dokumenti u ngarkua me sukses!");
             } catch (Exception e) {
                 System.err.println("Gabim gjatë ngarkimit: " + e.getMessage());
-                showAlert(Alert.AlertType.ERROR,"Error","Error while uploading the files !");
+                showAlert(Alert.AlertType.ERROR, "Error", "Error while uploading the files !");
             }
         }
     }

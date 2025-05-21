@@ -18,19 +18,23 @@ public class CandidateProfileController {
     @FXML
     private ImageView profilePicture;
     @FXML
-    private Text nameField,surnameField,emailField,numberField,birthDateField,registerDateField,statusField,genderField;
+    private Text nameField, surnameField, emailField, numberField, birthDateField, registerDateField, statusField, genderField;
+
     @FXML
-    public void initialize(){
+    public void initialize() {
         this.getKandidati();
         loadProfilePicture();
     }
-    private void getKandidati(){
-        this.kandidateService.getKandidatiInfo(nameField,surnameField,emailField,numberField,birthDateField,registerDateField,statusField,genderField);
+
+    private void getKandidati() {
+        this.kandidateService.getKandidatiInfo(nameField, surnameField, emailField, numberField, birthDateField, registerDateField, statusField, genderField);
     }
+
     @FXML
-    private void changePassClick()throws Exception{
+    private void changePassClick() throws Exception {
         SceneManager.load(SceneLocator.CHANGE_PASSWORD, this.pane);
     }
+
     private void loadProfilePicture() {
         this.dokumentService.getProfilePicture(this.profilePicture);
     }

@@ -23,15 +23,20 @@ public class InstructorSchedulerController extends BaseController {
     private final AutomjetService automjetService;
     private Integer vehicleId;
 
-    // Form fields
-    @FXML private AnchorPane rightPane;
-    @FXML private MenuButton chooseLessonBttn;
-    @FXML private TextField candidateId;
-    @FXML private DatePicker dateForLesson;
-    @FXML private TextField txtStart;
-    @FXML private TextField txtEnd;
 
-    // Lesson type and vehicle type
+    @FXML
+    private AnchorPane rightPane;
+    @FXML
+    private MenuButton chooseLessonBttn;
+    @FXML
+    private TextField candidateId;
+    @FXML
+    private DatePicker dateForLesson;
+    @FXML
+    private TextField txtStart;
+    @FXML
+    private TextField txtEnd;
+
     private String llojiMesimit;
     private String selectedVehicleType;
 
@@ -47,14 +52,14 @@ public class InstructorSchedulerController extends BaseController {
             CreateOrariDto dto = this.getScheduleInputData();
             Orari orari = this.orariService.create(dto);
 
-            this.showAlert(Alert.AlertType.INFORMATION,"Sucess","The schedule was successfully created! Session ID: " + orari.getIdSesioni());
+            this.showAlert(Alert.AlertType.INFORMATION, "Sucess", "The schedule was successfully created! Session ID: " + orari.getIdSesioni());
             this.cleanFields();
 
         } catch (IllegalArgumentException iae) {
-            this.showAlert(Alert.AlertType.WARNING,"Warning","Incomplete or invalid data"+iae.getMessage());
+            this.showAlert(Alert.AlertType.WARNING, "Warning", "Incomplete or invalid data" + iae.getMessage());
 
         } catch (Exception e) {
-            showAlert(Alert.AlertType.ERROR,"Error","The schedule could not be created.");
+            showAlert(Alert.AlertType.ERROR, "Error", "The schedule could not be created.");
             e.printStackTrace();
         }
     }
@@ -96,12 +101,14 @@ public class InstructorSchedulerController extends BaseController {
     }
 
 
-    @FXML private void teoriClick()   {
+    @FXML
+    private void teoriClick() {
         this.llojiMesimit = "Teori";
         chooseLessonBttn.setText("Teori");
     }
 
-    @FXML private void praktikClick() {
+    @FXML
+    private void praktikClick() {
         this.llojiMesimit = "Praktikë";
         chooseLessonBttn.setText("Praktikë");
     }
@@ -110,7 +117,7 @@ public class InstructorSchedulerController extends BaseController {
     @FXML
     private void AClick() {
         this.selectedVehicleType = "Motoçikletë";
-        fetchVehicleId();  // Initialize vehicleId AFTER selecting the type
+        fetchVehicleId();
     }
 
     @FXML

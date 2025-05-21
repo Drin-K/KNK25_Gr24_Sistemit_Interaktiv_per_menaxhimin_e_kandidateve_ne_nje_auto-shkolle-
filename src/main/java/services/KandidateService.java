@@ -23,7 +23,7 @@ public class KandidateService {
 
     public KandidateService() {
         this.kandidatetRepository = new KandidatetRepository();
-        this.patentaRepository=new PatentaRepository();
+        this.patentaRepository = new PatentaRepository();
     }
 
     public Kandidatet getById(int id) throws Exception {
@@ -92,8 +92,7 @@ public class KandidateService {
     }
 
 
-
-    public void getKandidatiInfo(Text name,Text surname,Text email,Text number,Text birth,Text registerDate,Text status,Text genderField){
+    public void getKandidatiInfo(Text name, Text surname, Text email, Text number, Text birth, Text registerDate, Text status, Text genderField) {
         this.kandidatet = kandidatetRepository.getById(UserContext.getUserId());
         name.setText(kandidatet.getName());
         surname.setText(kandidatet.getSurname());
@@ -105,24 +104,26 @@ public class KandidateService {
         genderField.setText(kandidatet.getGjinia());
     }
 
-public ArrayList<Kandidatet> getAll() {
-    ArrayList<User> users = kandidatetRepository.getAll();
-    ArrayList<Kandidatet> kandidatiList = new ArrayList<>();
+    public ArrayList<Kandidatet> getAll() {
+        ArrayList<User> users = kandidatetRepository.getAll();
+        ArrayList<Kandidatet> kandidatiList = new ArrayList<>();
 
-    for (User user : users) {
-        if (user instanceof Kandidatet) {
-            kandidatiList.add((Kandidatet) user);
+        for (User user : users) {
+            if (user instanceof Kandidatet) {
+                kandidatiList.add((Kandidatet) user);
+            }
         }
+        return kandidatiList;
     }
-    return kandidatiList;
-}
+
     public int countKandidatet() {
-        int count=this.kandidatetRepository.countKandidatet();
+        int count = this.kandidatetRepository.countKandidatet();
         if (count > MAX_KANDIDATE) {
             throw new IllegalStateException("The maximum limit of candidates has been reached!");
         }
         return count;
     }
+
     public HashMap<String, Integer> countKandidatetByStatusiProcesit() {
         HashMap<String, Integer> result = this.kandidatetRepository.countKandidatetByStatusiProcesit();
 
@@ -141,8 +142,8 @@ public ArrayList<Kandidatet> getAll() {
         return lista;
     }
 
-    public List<Kandidatet> shfaqKandidatetMeTeDrejtePaPagesa(){
-        List<Kandidatet> lista= this.kandidatetRepository.shfaqKandidatetMeKushtPagesa("'Mbetur', 'Pjesërisht'");
+    public List<Kandidatet> shfaqKandidatetMeTeDrejtePaPagesa() {
+        List<Kandidatet> lista = this.kandidatetRepository.shfaqKandidatetMeKushtPagesa("'Mbetur', 'Pjesërisht'");
         if (lista == null || lista.isEmpty()) {
             throw new IllegalStateException("No candidate meeting the license criteria was found without completed payment.");
         }

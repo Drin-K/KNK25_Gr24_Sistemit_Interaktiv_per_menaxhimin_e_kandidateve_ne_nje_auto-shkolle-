@@ -57,7 +57,7 @@ public class RaportiProgresit {
         return performancaGjenerale;
     }
 
-    public static RaportiProgresit getInstance(ResultSet resultSet)throws SQLException {
+    public static RaportiProgresit getInstance(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("id");
         int idKandidat = resultSet.getInt("ID_Kandidat");
         int idStaf = resultSet.getInt("ID_Staf");
@@ -66,7 +66,7 @@ public class RaportiProgresit {
         int piketPraktike = resultSet.getInt("Piket_Praktike");
         String komentet = resultSet.getString("Komentet");
         String performancaGjenerale = resultSet.getString("Performanca_Gjenerale");
-        return new RaportiProgresit(id,idKandidat,idStaf,dataRaportit,piketTeorike,piketPraktike,komentet,performancaGjenerale);
+        return new RaportiProgresit(id, idKandidat, idStaf, dataRaportit, piketTeorike, piketPraktike, komentet, performancaGjenerale);
     }
 
     public void setId(int id) {

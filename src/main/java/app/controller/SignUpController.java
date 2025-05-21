@@ -1,4 +1,5 @@
 package app.controller;
+
 import app.controller.base.BaseController;
 import javafx.scene.control.ToggleGroup;
 
@@ -13,21 +14,34 @@ import java.time.LocalDate;
 
 public class SignUpController extends BaseController {
     private final LanguageManager languageManager = LanguageManager.getInstance();
-    @FXML private TextField nameField;
-    @FXML private TextField surnameField;
-    @FXML private TextField phoneField;
-    @FXML private TextField emailField;
-    @FXML private TextField addressField;
-    @FXML private PasswordField passwordField;
-    @FXML private PasswordField confirmPasswordField;
-    @FXML private DatePicker dobPicker;
-    @FXML private Label messageLabel;
-    @FXML private Label errorLabel;
-    @FXML private RadioButton maleRadio;
-    @FXML private RadioButton femaleRadio;
-    private ToggleGroup genderGroup;
     @FXML
-    public void initialize(){
+    private TextField nameField;
+    @FXML
+    private TextField surnameField;
+    @FXML
+    private TextField phoneField;
+    @FXML
+    private TextField emailField;
+    @FXML
+    private TextField addressField;
+    @FXML
+    private PasswordField passwordField;
+    @FXML
+    private PasswordField confirmPasswordField;
+    @FXML
+    private DatePicker dobPicker;
+    @FXML
+    private Label messageLabel;
+    @FXML
+    private Label errorLabel;
+    @FXML
+    private RadioButton maleRadio;
+    @FXML
+    private RadioButton femaleRadio;
+    private ToggleGroup genderGroup;
+
+    @FXML
+    public void initialize() {
         genderGroup = new ToggleGroup();
         maleRadio.setToggleGroup(genderGroup);
         femaleRadio.setToggleGroup(genderGroup);
@@ -58,29 +72,31 @@ public class SignUpController extends BaseController {
         }
         //kemi mundsu qe veq kandidati me mujt me u bo signup, instruktoret shtohen veq permes adminit
         CreateKandidatetDto dto = new CreateKandidatetDto(name, surname, email, phone, dob, password, PasswordHasher.generateSalt(), address, gender);
-        try{
-        boolean signupSuccess = UserService.signup(dto);
-        if (signupSuccess) {
-            messageLabel.setText("Successfully signed up!");
-            messageLabel.setVisible(true);
-            errorLabel.setVisible(false);
-        } else {
-            errorLabel.setText("Signup failed, please check your details.");
-            errorLabel.setVisible(true);
-            messageLabel.setVisible(false);
-        }
-        this.clearFields();}
-        catch (Exception e) {
-            showAlert(Alert.AlertType.ERROR,"Error",e.getMessage());
+        try {
+            boolean signupSuccess = UserService.signup(dto);
+            if (signupSuccess) {
+                messageLabel.setText("Successfully signed up!");
+                messageLabel.setVisible(true);
+                errorLabel.setVisible(false);
+            } else {
+                errorLabel.setText("Signup failed, please check your details.");
+                errorLabel.setVisible(true);
+                messageLabel.setVisible(false);
+            }
+            this.clearFields();
+        } catch (Exception e) {
+            showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
         }
 
     }
+
     @FXML
     public void gotoLogIn() throws Exception {
         SceneManager.load(SceneLocator.LOGIN_PAGE);
     }
+
     @FXML
-    private void languageClick() throws Exception{
+    private void languageClick() throws Exception {
         languageManager.toggleLanguage();
         SceneManager.reload();
     }

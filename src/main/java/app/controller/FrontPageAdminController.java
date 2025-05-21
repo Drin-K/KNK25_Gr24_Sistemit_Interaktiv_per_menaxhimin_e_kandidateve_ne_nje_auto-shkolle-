@@ -1,6 +1,7 @@
 package app.controller;
 
-import javafx.fxml.FXML;import javafx.scene.layout.AnchorPane;
+import javafx.fxml.FXML;
+import javafx.scene.layout.AnchorPane;
 import services.LanguageManager;
 import services.SceneManager;
 import services.UserContext;
@@ -15,35 +16,40 @@ public class FrontPageAdminController {
     private AnchorPane rightPage;
 
     @FXML
-    private void licensesClick()throws Exception{
+    private void licensesClick() throws Exception {
 
-        SceneManager.load(SceneLocator.LICENSES_PAGE,this.rightPage);
+        SceneManager.load(SceneLocator.LICENSES_PAGE, this.rightPage);
 
-    }
-    @FXML
-    private void homeAdminClick()throws Exception{
-        SceneManager.load(SceneLocator.ADMIN_HOME_PAGE,this.rightPage);
-    }
-    @FXML
-    private void manageUsersClick()throws Exception{
-        SceneManager.load(SceneLocator.CANDIDATES_PAGE,this.rightPage);
-    }
-    @FXML
-    private void manageStafClick()throws Exception{
-        SceneManager.load(SceneLocator.STAF_PAGE,this.rightPage);
-    }
-    @FXML
-    private void managePaymentsClick()throws Exception{
-        SceneManager.load(SceneLocator.PAYMENTS_MANAGE_PAGE,this.rightPage);
     }
 
     @FXML
-    private void languageClick()throws Exception{
+    private void homeAdminClick() throws Exception {
+        SceneManager.load(SceneLocator.ADMIN_HOME_PAGE, this.rightPage);
+    }
+
+    @FXML
+    private void manageUsersClick() throws Exception {
+        SceneManager.load(SceneLocator.CANDIDATES_PAGE, this.rightPage);
+    }
+
+    @FXML
+    private void manageStafClick() throws Exception {
+        SceneManager.load(SceneLocator.STAF_PAGE, this.rightPage);
+    }
+
+    @FXML
+    private void managePaymentsClick() throws Exception {
+        SceneManager.load(SceneLocator.PAYMENTS_MANAGE_PAGE, this.rightPage);
+    }
+
+    @FXML
+    private void languageClick() throws Exception {
         languageManager.toggleLanguage();
         SceneManager.reload();
     }
+
     @FXML
-    private void handleLogOut()throws Exception{
+    private void handleLogOut() throws Exception {
         SceneManager.load(SceneLocator.LOGIN_PAGE);
         UserContext.clear();
     }

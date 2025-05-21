@@ -1,4 +1,5 @@
 package app.controller;
+
 import app.controller.base.BaseController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
@@ -7,25 +8,36 @@ import javafx.scene.control.*;
 import models.Orari;
 import services.OrariService;
 import services.UserContext;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+
 public class OrariKandidatiController extends BaseController {
 
-    @FXML private TableView<Orari> orariTable;
-    @FXML private TableColumn<Orari, String> dataColumn;
-    @FXML private TableColumn<Orari, String> oraFillimitColumn;
-    @FXML private TableColumn<Orari, String> oraPerfundimitColumn;
-    @FXML private TableColumn<Orari, String> llojiColumn;
-    @FXML private TableColumn<Orari, String> statusiColumn;
-    @FXML private DatePicker dataPicker;
-    @FXML private PieChart progresiChart;
+    @FXML
+    private TableView<Orari> orariTable;
+    @FXML
+    private TableColumn<Orari, String> dataColumn;
+    @FXML
+    private TableColumn<Orari, String> oraFillimitColumn;
+    @FXML
+    private TableColumn<Orari, String> oraPerfundimitColumn;
+    @FXML
+    private TableColumn<Orari, String> llojiColumn;
+    @FXML
+    private TableColumn<Orari, String> statusiColumn;
+    @FXML
+    private DatePicker dataPicker;
+    @FXML
+    private PieChart progresiChart;
 
     private final OrariService orariService;
     private final int kandidatId;
-    public OrariKandidatiController(){
-        this.orariService=new OrariService();
-        this.kandidatId=UserContext.getUserId();
+
+    public OrariKandidatiController() {
+        this.orariService = new OrariService();
+        this.kandidatId = UserContext.getUserId();
     }
 
     @FXML
@@ -35,6 +47,7 @@ public class OrariKandidatiController extends BaseController {
         shfaqOraret(orariService.shikoOraretPerId(kandidatId));
         updateProgresiChart();
     }
+
     //SimpleStringProperty thjesht i tregon JavaFX-it se kjo është një vlerë
 // që mund të vendoset në qeliza të tabelës si tekst.
     private void configureTableColumns() {
@@ -53,14 +66,14 @@ public class OrariKandidatiController extends BaseController {
             String ora = cellData.getValue().getOraPerfundimit().format(timeFmt);
             return new SimpleStringProperty(ora);
         });
-        configureTable(orariTable,List.of(llojiColumn,statusiColumn),new String[]{"llojiMesimit","statusi"});
+        configureTable(orariTable, List.of(llojiColumn, statusiColumn), new String[]{"llojiMesimit", "statusi"});
     }
 
     @FXML
     private void kerkoOraretPerDate() {
         LocalDate dataZgjedhur = dataPicker.getValue();
         if (dataZgjedhur == null) {
-            showAlert(Alert.AlertType.ERROR,"Error", "Please select a date.");
+            showAlert(Alert.AlertType.ERROR, "Error", "Please select a date.");
             return;
         }
         List<Orari> oraretEFiltruara = orariService.gjejOraretPerKandidat(dataZgjedhur, kandidatId);
@@ -71,7 +84,7 @@ public class OrariKandidatiController extends BaseController {
     private void shfaqOraret(List<Orari> oraret) {
         orariTable.getItems().setAll(oraret);
         if (oraret.isEmpty()) {
-            showAlert(Alert.AlertType.INFORMATION,"Information", "No schedules were found.");
+            showAlert(Alert.AlertType.INFORMATION, "Information", "No schedules were found.");
         }
     }
 
@@ -89,7 +102,7 @@ public class OrariKandidatiController extends BaseController {
             progresiChart.setTitle("Lesson Progress\nStatus: " + status);
 
         } catch (Exception e) {
-            showAlert(Alert.AlertType.INFORMATION,"Error", "Error while loading progress.");
+            showAlert(Alert.AlertType.INFORMATION, "Error", "Error while loading progress.");
         }
     }
 

@@ -24,10 +24,12 @@ public class RegjistrimetRepository extends BaseRepository<Regjistrimet, CreateR
     public Regjistrimet fromResultSet(ResultSet result) throws SQLException {
         return Regjistrimet.getInstance(result);
     }
+
     public void mirato(int id) {
         String query = "UPDATE Regjistrimet SET Statusi = 'Përfunduar' WHERE ID_Kandidat = ?";
 
-        try {PreparedStatement statement = connection.prepareStatement(query);
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, id);
             int affectedRows = statement.executeUpdate();
 

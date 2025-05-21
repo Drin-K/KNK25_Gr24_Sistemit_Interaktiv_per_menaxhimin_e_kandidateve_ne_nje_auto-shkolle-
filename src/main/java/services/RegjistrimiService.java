@@ -17,8 +17,9 @@ public class RegjistrimiService {
         this.kandidatRepository = new KandidatetRepository();
         this.kategoritePatentesRepository = new KategoritePatentesRepository();
         this.regjistrimiRepository = new RegjistrimetRepository();
-        this.dokumentetRepository=new DokumentetRepository();
+        this.dokumentetRepository = new DokumentetRepository();
     }
+
     public boolean mirato(int kandidatiId) {
         int dokumenteCount = dokumentetRepository.numeroDokumentet(kandidatiId);
         if (dokumenteCount == 4) {
@@ -28,6 +29,7 @@ public class RegjistrimiService {
             return false;
         }
     }
+
     public Regjistrimet create(CreateRegjistrimetDto createDto) throws Exception {
         // Validimi i ID_Kandidat
         if (createDto.getIdKandidat() <= 0 || kandidatRepository.getById(createDto.getIdKandidat()) == null) {

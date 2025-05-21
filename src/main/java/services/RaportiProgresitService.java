@@ -50,8 +50,9 @@ public class RaportiProgresitService {
 
         return raportiProgresitRepository.create(dto);
     }
-    public List<RaportiProgresit> getRaportetById(int idStaf,int idKategori){
-        return raportiProgresitRepository.getRaportetByStaf(idStaf,idKategori);
+
+    public List<RaportiProgresit> getRaportetById(int idStaf, int idKategori) {
+        return raportiProgresitRepository.getRaportetByStaf(idStaf, idKategori);
     }
 
 }

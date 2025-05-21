@@ -4,12 +4,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
-public class Kandidatet extends User{
+public class Kandidatet extends User {
     private LocalDate dataRegjistrimit;
     private String statusiProcesit;
 
-    protected Kandidatet(int idUser, String name, String surname, String email, String phoneNumber, LocalDate dateOfBirth, String hashedPassword, String salt, String adresa, String gjinia,LocalDate dataRegjistrimit, String statusiProcesit) {
-        super(idUser,name,surname,email,phoneNumber,dateOfBirth,hashedPassword,salt,"Kandidat",adresa, gjinia);
+    protected Kandidatet(int idUser, String name, String surname, String email, String phoneNumber, LocalDate dateOfBirth, String hashedPassword, String salt, String adresa, String gjinia, LocalDate dataRegjistrimit, String statusiProcesit) {
+        super(idUser, name, surname, email, phoneNumber, dateOfBirth, hashedPassword, salt, "Kandidat", adresa, gjinia);
         this.dataRegjistrimit = dataRegjistrimit;
         this.statusiProcesit = statusiProcesit;//ne proces dhe perfunduar
     }

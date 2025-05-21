@@ -14,27 +14,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PatentaRepository extends BaseRepository<Patenta, CreatePatentaDto, UpdatePatentaDto> {
-    public PatentaRepository(){super("Patenta");}
-    public Patenta fromResultSet(ResultSet result)throws SQLException{
+    public PatentaRepository() {
+        super("Patenta");
+    }
+
+    public Patenta fromResultSet(ResultSet result) throws SQLException {
         return Patenta.getInstance(result);
     }
-    public Patenta create(CreatePatentaDto patentaDto){
-        String query= """
+
+    public Patenta create(CreatePatentaDto patentaDto) {
+        String query = """
                 INSERT INTO
                 Patenta(ID_Kandidat, ID_Kategori, Data_Leshimit, Statusi)
                 VALUES(?,?,?,?);
                 """;
-        try{
-            PreparedStatement pstm=this.connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
-            pstm.setInt(1,patentaDto.getIdKandidat());
-            pstm.setInt(2,patentaDto.getIdKategori());
-            pstm.setObject(3,patentaDto.getDataLeshimit());
-            pstm.setString(4,patentaDto.getStatusi());
+        try {
+            PreparedStatement pstm = this.connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
+            pstm.setInt(1, patentaDto.getIdKandidat());
+            pstm.setInt(2, patentaDto.getIdKategori());
+            pstm.setObject(3, patentaDto.getDataLeshimit());
+            pstm.setString(4, patentaDto.getStatusi());
 
-            ResultSet res=pstm.getGeneratedKeys();
-            if(res.next()){
-                int id=res.getInt(1);
-                return this.getById(id);}
+            ResultSet res = pstm.getGeneratedKeys();
+            if (res.next()) {
+                int id = res.getInt(1);
+                return this.getById(id);
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -42,7 +47,8 @@ public class PatentaRepository extends BaseRepository<Patenta, CreatePatentaDto,
         return null;
 
     }
-    public Patenta update(UpdatePatentaDto patentaDto){
+
+    public Patenta update(UpdatePatentaDto patentaDto) {
         StringBuilder query = new StringBuilder("Update Patenta SET ");
         ArrayList<Object> params = new ArrayList<>();
 // private int id;
@@ -50,19 +56,19 @@ public class PatentaRepository extends BaseRepository<Patenta, CreatePatentaDto,
 //    private int idKategori;
 //    private LocalDate dataLeshimit;
 //    private String statusi;
-        if (patentaDto.getIdKandidat()!=0){
+        if (patentaDto.getIdKandidat() != 0) {
             query.append("ID_Kandidat=?, ");
             params.add(patentaDto.getIdKandidat());
         }
-        if (patentaDto.getIdKategori()!=0){
+        if (patentaDto.getIdKategori() != 0) {
             query.append("ID_Kategori=?, ");
             params.add(patentaDto.getIdKategori());
         }
-        if (patentaDto.getDataLeshimit()!=null){
+        if (patentaDto.getDataLeshimit() != null) {
             query.append("Data_Leshimit=?, ");
             params.add(patentaDto.getDataLeshimit());
         }
-        if (patentaDto.getStatusi()!=null){
+        if (patentaDto.getStatusi() != null) {
             query.append("Statusi=?, ");
             params.add(patentaDto.getStatusi());
         }
@@ -84,7 +90,9 @@ public class PatentaRepository extends BaseRepository<Patenta, CreatePatentaDto,
         } catch (SQLException e) {
             throw new RuntimeException("Error updating the license.", e);
         }
-        return null;}
+        return null;
+    }
+
     public List<Patenta> getLicensesIssued() throws SQLException {
         List<Patenta> patentat = new ArrayList<>();
         String query = "SELECT * FROM Patenta WHERE Statusi = 'E lëshuar'";
@@ -95,9 +103,11 @@ public class PatentaRepository extends BaseRepository<Patenta, CreatePatentaDto,
         }
         return patentat;
     }
+
     public boolean aprovoPatenten(int kandidatId) throws SQLException {
         String query = "UPDATE Patenta SET Statusi = 'E lëshuar' WHERE ID_Kandidat = ?";
-        try {PreparedStatement stmt = connection.prepareStatement(query);
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
             stmt.setInt(1, kandidatId);
             int rowsAffected = stmt.executeUpdate();
             return rowsAffected > 0;

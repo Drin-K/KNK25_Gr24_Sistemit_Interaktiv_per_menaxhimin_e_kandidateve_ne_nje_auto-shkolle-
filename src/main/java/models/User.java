@@ -3,6 +3,7 @@ package models;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+
 public abstract class User {
     protected int idUser;
     protected String name;
@@ -27,12 +28,14 @@ public abstract class User {
         this.hashedPassword = hashedPassword;
         this.salt = salt;
         this.role = role;
-        this.adresa=adresa;
-        this.gjinia=gjinia;
+        this.adresa = adresa;
+        this.gjinia = gjinia;
     }
-    public String getGjinia(){
+
+    public String getGjinia() {
         return gjinia;
     }
+
     public int getIdUser() {
         return idUser;
     }
@@ -68,7 +71,8 @@ public abstract class User {
     public String getRole() {
         return role;
     }
-    public String getAdresa(){
+
+    public String getAdresa() {
         return adresa;
     }
 

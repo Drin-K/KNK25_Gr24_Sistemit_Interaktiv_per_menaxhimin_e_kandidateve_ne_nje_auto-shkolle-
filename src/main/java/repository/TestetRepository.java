@@ -57,49 +57,51 @@ public class TestetRepository extends BaseRepository<Testet, CreateTestetDto, Up
     @Override
     public Testet update(UpdateTestetDto testetDto) {
         StringBuilder query = new StringBuilder("UPDATE Testet SET ");
-                ArrayList<Object> params = new ArrayList<>();
+        ArrayList<Object> params = new ArrayList<>();
 
-                if (testetDto.getLlojiTestit() != null) {
-                    query.append("Lloji_i_Testit = ?, ");
-                    params.add(testetDto.getLlojiTestit());
-                }
-                if (testetDto.getDataTestit() != null) {
-                    query.append("Data_e_testit = ?, ");
-                    params.add(testetDto.getDataTestit());
-                }
+        if (testetDto.getLlojiTestit() != null) {
+            query.append("Lloji_i_Testit = ?, ");
+            params.add(testetDto.getLlojiTestit());
+        }
+        if (testetDto.getDataTestit() != null) {
+            query.append("Data_e_testit = ?, ");
+            params.add(testetDto.getDataTestit());
+        }
 
-                if (testetDto.getRezultati() != null) {
-                    query.append("Rezultati = ?, ");
-                    params.add(testetDto.getRezultati());
-                }
-                if (testetDto.getPiket() != 0) {
-                    query.append("Piket = ?, ");
-                    params.add(testetDto.getPiket());
-                }
-                if (params.isEmpty()) {
-                    return getById(testetDto.getIdTest());
-                }
-                query.setLength(query.length() - 2);//me largu "? "->se paraqet gabim ne sintakse
-                query.append(" WHERE id = ?");
-                params.add(testetDto.getIdTest());
-                try {
-                    PreparedStatement pstm = this.connection.prepareStatement(query.toString());
-                    for (int i = 0; i < params.size(); i++) {
-                        pstm.setObject(i + 1, params.get(i));
-                    }
-                    int updated = pstm.executeUpdate();
-                    if (updated == 1) {
-                        return this.getById(testetDto.getIdTest());
-                    }
-                } catch (SQLException e) {
-                    throw new RuntimeException("Error updating the tests.", e);
-                }
-                return null;
-         }
+        if (testetDto.getRezultati() != null) {
+            query.append("Rezultati = ?, ");
+            params.add(testetDto.getRezultati());
+        }
+        if (testetDto.getPiket() != 0) {
+            query.append("Piket = ?, ");
+            params.add(testetDto.getPiket());
+        }
+        if (params.isEmpty()) {
+            return getById(testetDto.getIdTest());
+        }
+        query.setLength(query.length() - 2);//me largu "? "->se paraqet gabim ne sintakse
+        query.append(" WHERE id = ?");
+        params.add(testetDto.getIdTest());
+        try {
+            PreparedStatement pstm = this.connection.prepareStatement(query.toString());
+            for (int i = 0; i < params.size(); i++) {
+                pstm.setObject(i + 1, params.get(i));
+            }
+            int updated = pstm.executeUpdate();
+            if (updated == 1) {
+                return this.getById(testetDto.getIdTest());
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error updating the tests.", e);
+        }
+        return null;
+    }
+
     public List<Testet> getTestetByKandidatId(int idKandidat) {
         List<Testet> testetList = new ArrayList<>();
         String sql = "SELECT * FROM Testet WHERE ID_Kandidat = ?";
-        try{ PreparedStatement statement = connection.prepareStatement(sql);
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, idKandidat);
             ResultSet result = statement.executeQuery();
             while (result.next()) {

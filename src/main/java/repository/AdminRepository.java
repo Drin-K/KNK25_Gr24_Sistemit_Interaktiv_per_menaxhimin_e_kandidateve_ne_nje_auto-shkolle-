@@ -15,13 +15,14 @@ public class AdminRepository extends UserRepository {
     public AdminRepository() {
         super();
     }
+
     @Override
     public Admin create(CreateUserDto dto) {
         String insertUser = """
-        INSERT INTO 
-        "User"(name, surname, email, phoneNumber, dateOfBirth, hashedPassword, salt, role, adresa, gjinia)
-        VALUES (?, ?, ?, ?, ?, ?, ?,'Admin', ?, ?);
-    """;
+                    INSERT INTO 
+                    "User"(name, surname, email, phoneNumber, dateOfBirth, hashedPassword, salt, role, adresa, gjinia)
+                    VALUES (?, ?, ?, ?, ?, ?, ?,'Admin', ?, ?);
+                """;
 
         try {
             PreparedStatement userStmt = this.connection.prepareStatement(insertUser, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -60,8 +61,9 @@ public class AdminRepository extends UserRepository {
     public Admin fromResultSet(ResultSet result) throws SQLException {
         return Admin.getInstance(result);
     }
+
     @Override
-    public Admin findByEmail(String email){
+    public Admin findByEmail(String email) {
         String query = "SELECT *" +
                 "FROM Admin s\n" +
                 "JOIN \"User\" u ON s.id = u.id\n" +
@@ -80,8 +82,9 @@ public class AdminRepository extends UserRepository {
 
         return null;
     }
+
     @Override
-    public Admin getById(int id){
+    public Admin getById(int id) {
         String query = "SELECT u.id, u.name, u.surname, u.email, u.phoneNumber, " +
                 "u.dateOfBirth, u.hashedPassword, u.salt, u.adresa, u.gjinia, " +
                 " u.role " +
@@ -89,19 +92,20 @@ public class AdminRepository extends UserRepository {
                 "JOIN \"User\" u ON k.id = u.id " +
                 "WHERE u.role = 'Admin' AND u.id = ?";
 
-        try{
+        try {
             PreparedStatement pstm = this.connection.prepareStatement(query);
             pstm.setInt(1, id);
             ResultSet res = pstm.executeQuery();
-            if(res.next()){
+            if (res.next()) {
                 return this.fromResultSet(res);
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
-    public ArrayList<User> getAll(){
+
+    public ArrayList<User> getAll() {
         ArrayList<User> admin = new ArrayList<>();
         String query = "SELECT u.id, u.name, u.surname, u.email, u.phoneNumber, u.dateOfBirth, u.hashedPassword, u.salt, u.adresa, u.gjinia, u.role " +
                 "FROM Admin k " +
@@ -109,7 +113,7 @@ public class AdminRepository extends UserRepository {
                 "WHERE u.role = 'Admin'";
         try {
             PreparedStatement stmt = connection.prepareStatement(query);
-                ResultSet rs = stmt.executeQuery();
+            ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 Admin admin1 = fromResultSet(rs);
                 admin.add(admin1);

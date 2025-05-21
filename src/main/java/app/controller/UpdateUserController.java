@@ -17,9 +17,12 @@ import repository.UserRepository;
 public class UpdateUserController extends BaseController {
     @FXML
     private TextField idField, emailField, phoneField, passwordField, addressField;
-    @FXML private DatePicker dataRegjistrimiPicker;
-    @FXML private ComboBox<String> statusiProcesitCombo;
-    @FXML private VBox kandidatExtraFields;
+    @FXML
+    private DatePicker dataRegjistrimiPicker;
+    @FXML
+    private ComboBox<String> statusiProcesitCombo;
+    @FXML
+    private VBox kandidatExtraFields;
 
     @FXML
     private void initialize() {

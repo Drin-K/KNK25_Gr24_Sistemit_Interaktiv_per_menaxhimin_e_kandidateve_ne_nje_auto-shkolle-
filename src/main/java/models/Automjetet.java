@@ -38,12 +38,12 @@ public class Automjetet {
         return idKategori;
     }
 
-    public static Automjetet getInstance(ResultSet result) throws SQLException{
+    public static Automjetet getInstance(ResultSet result) throws SQLException {
         int idAutomjet = result.getInt("id");
         String llojiAutomjetit = result.getString("Lloji_i_Automjetit");
         String statusi = result.getString("Statusi");
         int idStaf = result.getInt("ID_Staf");
         int idKategori = result.getInt("ID_Kategori");
-        return new Automjetet(idAutomjet,llojiAutomjetit,statusi,idStaf,idKategori);
+        return new Automjetet(idAutomjet, llojiAutomjetit, statusi, idStaf, idKategori);
     }
 }

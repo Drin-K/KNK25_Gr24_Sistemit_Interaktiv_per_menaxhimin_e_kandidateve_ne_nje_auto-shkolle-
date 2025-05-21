@@ -83,8 +83,8 @@ public class StafiRepository extends UserRepository {
                 "JOIN \"User\" u ON k.id = u.id " +
                 "WHERE u.role = 'Staf'";
         try {
-                PreparedStatement stmt = connection.prepareStatement(query);
-                ResultSet rs = stmt.executeQuery();
+            PreparedStatement stmt = connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 Stafi stafi1 = fromResultSet(rs);
                 stafi.add(stafi1);
@@ -97,16 +97,17 @@ public class StafiRepository extends UserRepository {
 
     public String getInstructorNameByRatingExtremum(String extremum) {
         String query = String.format("""
-        SELECT u.name, u.surname
-        FROM Feedback fb
-        JOIN "User" u ON fb.ID_Staf = u.id
-        WHERE fb.Vleresimi = (SELECT %s(Vleresimi) FROM Feedback)
-        GROUP BY fb.ID_Staf, u.name, u.surname
-        ORDER BY COUNT(*) DESC
-        LIMIT 1;
-    """, extremum);
-        try {PreparedStatement stmt = this.connection.prepareStatement(query);
-             ResultSet rs = stmt.executeQuery();
+                    SELECT u.name, u.surname
+                    FROM Feedback fb
+                    JOIN "User" u ON fb.ID_Staf = u.id
+                    WHERE fb.Vleresimi = (SELECT %s(Vleresimi) FROM Feedback)
+                    GROUP BY fb.ID_Staf, u.name, u.surname
+                    ORDER BY COUNT(*) DESC
+                    LIMIT 1;
+                """, extremum);
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 return rs.getString("name") + " " + rs.getString("surname");
             }

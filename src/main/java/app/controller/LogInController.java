@@ -22,7 +22,7 @@ public class LogInController extends BaseController {
 
     @FXML
     public void initialize() {
-        // Bind Enter key in password field
+
         passwordField.setOnAction(event -> {
             try {
                 handleLogin();
@@ -30,8 +30,6 @@ public class LogInController extends BaseController {
                 e.printStackTrace();
             }
         });
-
-        // Optional: Also trigger login when Enter is pressed in email field
         emailField.setOnAction(event -> {
             try {
                 handleLogin();

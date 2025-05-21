@@ -70,7 +70,7 @@ public class SignUpController extends BaseController {
             errorLabel.setVisible(true);
             return;
         }
-        //kemi mundsu qe veq kandidati me mujt me u bo signup, instruktoret shtohen veq permes adminit
+
         CreateKandidatetDto dto = new CreateKandidatetDto(name, surname, email, phone, dob, password, PasswordHasher.generateSalt(), address, gender);
         try {
             boolean signupSuccess = UserService.signup(dto);
